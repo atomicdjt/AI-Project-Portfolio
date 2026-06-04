@@ -6,6 +6,10 @@ The project is intentionally not a Photoshop clone. It uses its own naming, layo
 
 Live demo: `https://atomicdjt.github.io/AI-Project-Portfolio-/`
 
+## Demo
+
+![LayerForge Studio demo](../../docs/images/layerforge-demo.gif)
+
 ## Features
 
 - Create new documents with custom width, height, and background color.
