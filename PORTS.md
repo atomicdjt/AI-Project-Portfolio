@@ -7,3 +7,4 @@
 | LayerForge Studio | `http://127.0.0.1:5176/` | None |
 
 LayerForge Studio is assigned to `5176` because an unrelated stale local process may hold `5173` on this machine.
+LayerForge Studio is also the portfolio's GitHub Pages demo: `https://atomicdjt.github.io/AI-Project-Portfolio-/`.
