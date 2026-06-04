@@ -82,6 +82,12 @@
   color: var(--text-dim);
 }
 
+.brand-lockup span,
+.account-strip span,
+.game-head span {
+  display: block;
+}
+
 .nav-stack {
   display: grid;
   align-content: start;
@@ -124,6 +130,17 @@ button {
 }
 
 .workspace {
+  min-width: 0;
+}
+
+.main-column,
+.detail-rail,
+.store-controls,
+.genre-row,
+.catalog-grid,
+.wallet-panel,
+.selected-panel,
+.cart-panel {
   min-width: 0;
 }
 
@@ -335,6 +352,7 @@ button {
   grid-template-columns: minmax(0, 1fr) 340px;
   gap: 20px;
   padding: 20px;
+  overflow: hidden;
 }
 
 .main-column,
@@ -357,6 +375,7 @@ button {
   gap: 8px;
   overflow-x: auto;
   padding-bottom: 4px;
+  max-width: 100%;
 }
 
 .genre-row button,
@@ -394,7 +413,7 @@ button {
 
 .catalog-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
   gap: 14px;
 }
 
@@ -408,6 +427,7 @@ button {
   border: 1px solid #27312d;
   border-radius: 8px;
   background: #151917;
+  min-width: 0;
 }
 
 .game-card {
@@ -471,6 +491,18 @@ button {
 .game-head {
   justify-content: space-between;
   gap: 10px;
+}
+
+.game-head > div {
+  min-width: 0;
+}
+
+.game-head strong,
+.game-head span,
+.cart-line strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .game-head button {

@@ -3,7 +3,10 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
+const base = process.env.GITHUB_PAGES ? '/AI-Project-Portfolio-/' : '/'
+
 export default defineConfig({
+  base,
   plugins: [react(), tailwindcss()],
   server: {
     port: 5176,
