@@ -10,24 +10,34 @@
 
 ## Best for Employers
 
-1. LayerForge Studio
-2. AI Knowledge Operations Toolkit
-3. Astra
-4. Nexus Play
-5. VariantVision Pro
+| Rank | Project | Reason |
+| --- | --- | --- |
+| 1 | LayerForge Studio | Strongest runnable product and best proof of technical implementation. |
+| 2 | AI Knowledge Operations Toolkit | Most directly relevant to operations, documentation, support, and enablement roles. |
+| 3 | Astra | Clear AI app implementation with practical model/API workflow. |
+| 4 | Nexus Play | Strong product UI and platform-flow demonstration. |
+| 5 | VariantVision Pro | Advanced research-tool ambition with strong responsible-use framing. |
 
 ## Best for Research/Expert Review
 
-1. VariantVision Pro
-2. Amino Acid Research Workbench
-3. Ecology of Consciousness
-4. IHOS
-5. FrameEcho
+| Rank | Project | Reason |
+| --- | --- | --- |
+| 1 | VariantVision Pro | Strongest complex-domain research-tool concept. |
+| 2 | Amino Acid Research Workbench | Clear educational/scientific value. |
+| 3 | Ecology of Consciousness | Strongest original framework. |
+| 4 | IHOS | Structured system with practical workbook potential. |
+| 5 | FrameEcho | Strong technical utility concept. |
 
 ## Best for Technical Product Roles
 
-1. LayerForge Studio
-2. AI Knowledge Operations Toolkit
-3. Astra
-4. Nexus Play
-5. FrameEcho
+| Rank | Project | Reason |
+| --- | --- | --- |
+| 1 | LayerForge Studio | Best technical product implementation. |
+| 2 | AI Knowledge Operations Toolkit | Best workflow/product system design. |
+| 3 | Astra | Best AI app implementation. |
+| 4 | Nexus Play | Best consumer platform UI concept. |
+| 5 | FrameEcho | Best algorithmic utility concept. |
+
+## Important Distinction
+
+The portfolio should distinguish between **runnable applications** and **documentation-first product concepts**. This makes the repo more credible because it avoids overstating the implementation status of concept projects.
