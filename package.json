@@ -1,0 +1,19 @@
+{
+  "name": "ai-project-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Portfolio repository for AI-assisted applications, product demos, and prompt workflows.",
+  "workspaces": [
+    "apps/astra",
+    "apps/nexus-play",
+    "apps/layerforge-studio"
+  ],
+  "scripts": {
+    "install:all": "npm install --workspaces",
+    "build:all": "npm run build --workspace apps/astra && npm run build --workspace apps/nexus-play && npm run build --workspace apps/layerforge-studio",
+    "lint:apps": "npm run lint --workspace apps/astra && npm run lint --workspace apps/nexus-play && npm run lint --workspace apps/layerforge-studio",
+    "dev:astra": "npm run dev --workspace apps/astra",
+    "dev:nexus": "npm run dev --workspace apps/nexus-play",
+    "dev:layerforge": "npm run dev --workspace apps/layerforge-studio"
+  }
+}
