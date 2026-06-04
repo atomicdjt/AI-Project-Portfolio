@@ -18,6 +18,21 @@ A curated portfolio of AI-assisted software projects, prompt workflows, and rese
 
 LayerForge Studio is also configured for GitHub Pages deployment at `https://atomicdjt.github.io/AI-Project-Portfolio-/`.
 
+Employer-Facing Project Guides
+This repository also includes employer-facing case studies for the strongest projects in the portfolio:
+
+Employer Overview
+Project Index
+Skills Matrix
+Hiring Summary
+Strongest Case Studies
+Project	Why Review It
+LayerForge Studio	Strongest runnable app and best evidence of product polish.
+AI Knowledge Operations Toolkit	Best direct match for operations, documentation, support, and knowledge-management roles.
+VariantVision Pro	Most advanced research-tool concept with responsible scientific scope.
+Amino Acid Research Workbench	Strong educational bioinformatics tool with explainable analysis workflows.
+Ecology of Consciousness	Strongest original research/framework project.
+
 ## Screenshots
 
 | Astra | Nexus Play | LayerForge Studio |
