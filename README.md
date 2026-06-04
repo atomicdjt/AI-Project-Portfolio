@@ -67,6 +67,9 @@ This repository also includes employer-facing case studies for the strongest pro
 ## Screenshots
 
 | Astra | Nexus Play | LayerForge Studio |
+## LayerForge Studio Demo
+
+![LayerForge Studio demo](docs/images/layerforge-demo.gif)
 | --- | --- | --- |
 | ![Astra AI chat workspace](docs/images/astra-home.png) | ![Nexus Play game storefront](docs/images/nexus-play-home.png) | ![LayerForge Studio image editor](docs/images/layerforge-studio-home.png) |
 
