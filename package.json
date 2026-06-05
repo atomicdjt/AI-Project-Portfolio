@@ -6,14 +6,16 @@
   "workspaces": [
     "apps/astra",
     "apps/nexus-play",
-    "apps/layerforge-studio"
+    "apps/layerforge-studio",
+    "apps/opspilot-ai-operations-toolkit"
   ],
   "scripts": {
     "install:all": "npm install --workspaces",
-    "build:all": "npm run build --workspace apps/astra && npm run build --workspace apps/nexus-play && npm run build --workspace apps/layerforge-studio",
-    "lint:apps": "npm run lint --workspace apps/astra && npm run lint --workspace apps/nexus-play && npm run lint --workspace apps/layerforge-studio",
+    "build:all": "npm run build --workspace apps/astra && npm run build --workspace apps/nexus-play && npm run build --workspace apps/layerforge-studio && npm run build --workspace apps/opspilot-ai-operations-toolkit",
+    "lint:apps": "npm run lint --workspace apps/astra && npm run lint --workspace apps/nexus-play && npm run lint --workspace apps/layerforge-studio && npm run lint --workspace apps/opspilot-ai-operations-toolkit",
     "dev:astra": "npm run dev --workspace apps/astra",
     "dev:nexus": "npm run dev --workspace apps/nexus-play",
-    "dev:layerforge": "npm run dev --workspace apps/layerforge-studio"
+    "dev:layerforge": "npm run dev --workspace apps/layerforge-studio",
+    "dev:opspilot": "npm run dev --workspace apps/opspilot-ai-operations-toolkit"
   }
 }

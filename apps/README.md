@@ -7,5 +7,6 @@ This folder contains the runnable applications in the portfolio.
 - `astra`: AI chat application with a React frontend and Express streaming backend.
 - `nexus-play`: Digital game distribution platform demo with local marketplace APIs.
 - `layerforge-studio`: Browser-based layered image editor built around Canvas 2D and IndexedDB.
+- `opspilot-ai-operations-toolkit`: AI operations documentation dashboard for SOPs, training checklists, knowledge base articles, gap detection, and version tracking.
 
 Each app has its own README, dependencies, scripts, and local port assignments.

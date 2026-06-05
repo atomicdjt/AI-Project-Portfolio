@@ -7,6 +7,7 @@ A curated portfolio of AI-assisted software projects, product prototypes, workfl
 ![Vite](https://img.shields.io/badge/Vite-7-646cff?logo=vite&logoColor=fff)
 ![Express](https://img.shields.io/badge/Express-5-111?logo=express&logoColor=fff)
 ![Canvas](https://img.shields.io/badge/Canvas_2D-Editor-0f766e)
+![Micro SaaS](https://img.shields.io/badge/Micro--SaaS-Operations-14b8a6)
 
 ## Portfolio Snapshot
 
@@ -22,6 +23,7 @@ This portfolio is strongest when read as evidence of:
 
 | Project | Type | Highlights | Default Local Port |
 | --- | --- | --- | --- |
+| [OpsPilot](apps/opspilot-ai-operations-toolkit) | Runnable AI operations toolkit | SOP generation, training checklists, knowledge base output, gap detection, version tracking, Netlify-ready static deployment | `http://127.0.0.1:5177/` |
 | [Astra](apps/astra) | Runnable AI chat app | React chat workspace, Express streaming API, Gemini configuration, Markdown rendering, transcript export, settings panel | `http://127.0.0.1:5174/` |
 | [Nexus Play](apps/nexus-play) | Runnable digital game platform demo | Polished storefront, catalog API, cart, checkout simulation, wishlist, game library, install queue | `http://127.0.0.1:5175/` |
 | [LayerForge Studio](apps/layerforge-studio) | Runnable browser image editor | Layered raster documents, Canvas 2D painting, selections, filters, IndexedDB saves, PNG/JPEG export | `http://127.0.0.1:5176/` |
@@ -44,6 +46,7 @@ This repository also includes employer-facing case studies for the strongest pro
 | Project | Status | Why Review It |
 | --- | --- | --- |
 | [LayerForge Studio](projects/layerforge-studio/CASE_STUDY.md) | Runnable MVP | Strongest runnable app and best evidence of product polish. |
+| [OpsPilot](projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) | Runnable MVP | Strongest business-focused micro-SaaS; directly maps to operations, documentation, onboarding, and knowledge-management roles. |
 | [AI Knowledge Operations Toolkit](projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) | Concept / product specification | Best direct match for operations, documentation, support, and knowledge-management roles. |
 | [VariantVision Pro](projects/variantvision-pro/CASE_STUDY.md) | Research-tool concept | Most advanced research-tool concept with responsible scientific scope. |
 | [Amino Acid Research Workbench](projects/amino-acid-research-workbench/CASE_STUDY.md) | Educational tool concept | Strong educational bioinformatics tool with explainable analysis workflows. |
@@ -53,6 +56,7 @@ This repository also includes employer-facing case studies for the strongest pro
 
 | Project | Current Form | Code in Repo? | Demo Type | Case Study? |
 | --- | --- | --- | --- | --- |
+| OpsPilot | Runnable MVP | Yes | Local / Netlify-ready | Yes |
 | LayerForge Studio | Runnable MVP | Yes | GitHub Pages / local | Yes |
 | Astra | Runnable MVP | Yes | Local | Yes |
 | Nexus Play | Runnable MVP | Yes | Local | Yes |
@@ -66,22 +70,25 @@ This repository also includes employer-facing case studies for the strongest pro
 
 ## Screenshots
 
-| Astra | Nexus Play | LayerForge Studio |
+| OpsPilot | Astra | Nexus Play | LayerForge Studio |
+| --- | --- | --- | --- |
+| ![OpsPilot operations dashboard](docs/images/opspilot-home.png) | ![Astra AI chat workspace](docs/images/astra-home.png) | ![Nexus Play game storefront](docs/images/nexus-play-home.png) | ![LayerForge Studio image editor](docs/images/layerforge-studio-home.png) |
+
 ## LayerForge Studio Demo
 
 ![LayerForge Studio demo](docs/images/layerforge-demo.gif)
-| --- | --- | --- |
-| ![Astra AI chat workspace](docs/images/astra-home.png) | ![Nexus Play game storefront](docs/images/nexus-play-home.png) | ![LayerForge Studio image editor](docs/images/layerforge-studio-home.png) |
 
 ## Repository Layout
 
 ```text
 apps/
+  opspilot-ai-operations-toolkit/  Runnable AI operations documentation toolkit
   astra/                 Runnable local AI chat application
   nexus-play/            Runnable game storefront and platform demo
   layerforge-studio/     Runnable local-first layered raster image editor
 
 projects/
+  opspilot-ai-operations-toolkit/             Employer-facing case study
   layerforge-studio/                         Employer-facing case study
   ai-knowledge-operations-toolkit/           Operations AI workflow case study
   variantvision-pro/                         Bioinformatics research-tool case study
@@ -115,7 +122,7 @@ npm install
 npm run dev
 ```
 
-Use the same pattern for `apps/nexus-play` and `apps/layerforge-studio`.
+Use the same pattern for `apps/nexus-play`, `apps/layerforge-studio`, and `apps/opspilot-ai-operations-toolkit`.
 
 ## Root Convenience Scripts
 
@@ -128,6 +135,7 @@ npm run lint:apps
 npm run dev:astra
 npm run dev:nexus
 npm run dev:layerforge
+npm run dev:opspilot
 ```
 
 ## Evaluation
@@ -153,6 +161,7 @@ These projects demonstrate:
 - End-to-end product development from idea to runnable local app.
 - React, TypeScript, Vite, Express, and modern frontend architecture.
 - Local API design, validation, streaming responses, and stateful demo workflows.
+- Business-focused AI operations tooling for SOPs, onboarding, documentation, and knowledge management.
 - Portfolio-quality UX polish, responsive layouts, and documentation.
 - AI-assisted research and prompt workflow documentation.
 - Technical operations thinking, knowledge management, and structured workflow design.

@@ -14,10 +14,11 @@ A ranked index of the strongest projects in this AI Project Portfolio.
 | Rank | Project | Status | Category | Why It Matters |
 | --- | --- | --- | --- | --- |
 | 1 | [LayerForge Studio](projects/layerforge-studio/CASE_STUDY.md) | Runnable MVP | Browser image editor | Best polished software demo; shows frontend architecture, Canvas 2D interaction, local persistence, and product judgment. |
-| 2 | [AI Knowledge Operations Toolkit](projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) | Concept / product specification | Operations AI system | Directly maps to support ops, documentation, enablement, training, and knowledge management roles. |
-| 3 | [VariantVision Pro](projects/variantvision-pro/CASE_STUDY.md) | Research-tool concept | Bioinformatics research tool | Most advanced research-tool concept; demonstrates scientific workflow thinking and responsible AI boundaries. |
-| 4 | [Amino Acid Research Workbench](projects/amino-acid-research-workbench/CASE_STUDY.md) | Educational tool concept | Educational bioinformatics | Strong explainable-analysis tool with clear classroom and research-triage value. |
-| 5 | [Ecology of Consciousness](projects/ecology-of-consciousness/CASE_STUDY.md) | Research framework | Cognitive / digital ecology framework | Original interdisciplinary framework with strong synthesis and model-building value. |
+| 2 | [OpsPilot](projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) | Runnable MVP | AI operations micro-SaaS | Strongest business-focused app; maps directly to SOPs, onboarding, documentation, knowledge management, and process improvement. |
+| 3 | [AI Knowledge Operations Toolkit](projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) | Concept / product specification | Operations AI system | Directly maps to support ops, documentation, enablement, training, and knowledge management roles. |
+| 4 | [VariantVision Pro](projects/variantvision-pro/CASE_STUDY.md) | Research-tool concept | Bioinformatics research tool | Most advanced research-tool concept; demonstrates scientific workflow thinking and responsible AI boundaries. |
+| 5 | [Amino Acid Research Workbench](projects/amino-acid-research-workbench/CASE_STUDY.md) | Educational tool concept | Educational bioinformatics | Strong explainable-analysis tool with clear classroom and research-triage value. |
+| 6 | [Ecology of Consciousness](projects/ecology-of-consciousness/CASE_STUDY.md) | Research framework | Cognitive / digital ecology framework | Original interdisciplinary framework with strong synthesis and model-building value. |
 
 ## Tier 2 — Strong Supporting Projects
 
@@ -46,6 +47,7 @@ A ranked index of the strongest projects in this AI Project Portfolio.
 
 1. Start with [Employer Overview](EMPLOYER_OVERVIEW.md).
 2. Review [LayerForge Studio](projects/layerforge-studio/CASE_STUDY.md) for the strongest runnable application.
-3. Review [AI Knowledge Operations Toolkit](projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations relevance.
-4. Review [Skills Matrix](SKILLS_MATRIX.md) to connect projects to role requirements.
-5. Review [Portfolio Positioning](docs/portfolio-positioning.md) for the overall professional narrative.
+3. Review [OpsPilot](projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) for the strongest business-focused runnable product.
+4. Review [AI Knowledge Operations Toolkit](projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.
+5. Review [Skills Matrix](SKILLS_MATRIX.md) to connect projects to role requirements.
+6. Review [Portfolio Positioning](docs/portfolio-positioning.md) for the overall professional narrative.
