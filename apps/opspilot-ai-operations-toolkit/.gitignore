@@ -1,0 +1,7 @@
+node_modules
+dist
+.DS_Store
+*.local
+npm-debug.log*
+dev-server*.log
+artifacts/*.png

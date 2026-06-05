@@ -18,16 +18,17 @@ This repository is best read as evidence of:
 
 ## Best Projects to Review First
 
-1. **LayerForge Studio** — browser-based image editor demonstrating the strongest runnable application polish.
-2. **AI Knowledge Operations Toolkit** — operations-focused AI workflow system with strong employer relevance.
-3. **VariantVision Pro** — bioinformatics/variant interpretation workbench concept with advanced research-tool positioning.
-4. **Amino Acid Research Workbench** — educational bioinformatics system with explainable analysis workflows.
-5. **Ecology of Consciousness** — original interdisciplinary framework for analyzing digital cognitive environments.
-6. **IHOS / Integrated Human Operating System** — structured non-clinical self-governance framework.
-7. **Astra** — local AI chat workspace and model-configuration interface.
-8. **Nexus Play** — game storefront and distribution-platform demo.
-9. **FrameEcho** — content-based duplicate video finder concept.
-10. **FocusForge** — gamified focus/productivity prototype.
+1. **LayerForge Studio** - browser-based image editor demonstrating the strongest runnable application polish.
+2. **OpsPilot** - runnable AI operations micro-SaaS for SOPs, onboarding, knowledge base generation, gap detection, and version tracking.
+3. **AI Knowledge Operations Toolkit** - operations-focused AI workflow system with strong employer relevance.
+4. **VariantVision Pro** - bioinformatics/variant interpretation workbench concept with advanced research-tool positioning.
+5. **Amino Acid Research Workbench** - educational bioinformatics system with explainable analysis workflows.
+6. **Ecology of Consciousness** - original interdisciplinary framework for analyzing digital cognitive environments.
+7. **IHOS / Integrated Human Operating System** - structured non-clinical self-governance framework.
+8. **Astra** - local AI chat workspace and model-configuration interface.
+9. **Nexus Play** - game storefront and distribution-platform demo.
+10. **FrameEcho** - content-based duplicate video finder concept.
+11. **FocusForge** - gamified focus/productivity prototype.
 
 ## How Employers Should Interpret This Work
 
@@ -51,5 +52,6 @@ For a fast review, start with:
 1. `README.md` for the repository overview.
 2. `PROJECT_INDEX.md` for the full ranked project list.
 3. `projects/layerforge-studio/CASE_STUDY.md` for the strongest runnable app.
-4. `projects/ai-knowledge-operations-toolkit/CASE_STUDY.md` for operations relevance.
-5. `projects/variantvision-pro/CASE_STUDY.md` for advanced research-tool ambition.
+4. `projects/opspilot-ai-operations-toolkit/CASE_STUDY.md` for the strongest business-focused runnable app.
+5. `projects/ai-knowledge-operations-toolkit/CASE_STUDY.md` for operations concept depth.
+6. `projects/variantvision-pro/CASE_STUDY.md` for advanced research-tool ambition.
