@@ -7,15 +7,17 @@
     "apps/astra",
     "apps/nexus-play",
     "apps/layerforge-studio",
-    "apps/opspilot-ai-operations-toolkit"
+    "apps/opspilot-ai-operations-toolkit",
+    "apps/redactready-local"
   ],
   "scripts": {
     "install:all": "npm install --workspaces",
-    "build:all": "npm run build --workspace apps/astra && npm run build --workspace apps/nexus-play && npm run build --workspace apps/layerforge-studio && npm run build --workspace apps/opspilot-ai-operations-toolkit",
-    "lint:apps": "npm run lint --workspace apps/astra && npm run lint --workspace apps/nexus-play && npm run lint --workspace apps/layerforge-studio && npm run lint --workspace apps/opspilot-ai-operations-toolkit",
+    "build:all": "npm run build --workspace apps/astra && npm run build --workspace apps/nexus-play && npm run build --workspace apps/layerforge-studio && npm run build --workspace apps/opspilot-ai-operations-toolkit && npm run build --workspace apps/redactready-local",
+    "lint:apps": "npm run lint --workspace apps/astra && npm run lint --workspace apps/nexus-play && npm run lint --workspace apps/layerforge-studio && npm run lint --workspace apps/opspilot-ai-operations-toolkit && npm run lint --workspace apps/redactready-local",
     "dev:astra": "npm run dev --workspace apps/astra",
     "dev:nexus": "npm run dev --workspace apps/nexus-play",
     "dev:layerforge": "npm run dev --workspace apps/layerforge-studio",
-    "dev:opspilot": "npm run dev --workspace apps/opspilot-ai-operations-toolkit"
+    "dev:opspilot": "npm run dev --workspace apps/opspilot-ai-operations-toolkit",
+    "dev:redactready": "npm run dev --workspace apps/redactready-local"
   }
 }

@@ -2,20 +2,20 @@
 
 ## Top 5 Overall
 
-1. **LayerForge Studio** — strongest runnable app and best software demonstration.
-2. **AI Knowledge Operations Toolkit** — best direct employer relevance for operations/documentation roles.
-3. **VariantVision Pro** — most advanced technical/research concept.
-4. **Amino Acid Research Workbench** — strongest educational science tool.
-5. **Ecology of Consciousness** — strongest original research/framework project.
+1. **RedactReady** - strongest privacy/security runnable app and best safety-focused product demonstration.
+2. **LayerForge Studio** - strongest creative-tool runnable app and frontend/canvas demonstration.
+3. **AI Knowledge Operations Toolkit** - best direct employer relevance for operations/documentation roles.
+4. **VariantVision Pro** - most advanced technical/research concept.
+5. **Amino Acid Research Workbench** - strongest educational science tool.
 
 ## Best for Employers
 
 | Rank | Project | Reason |
 | --- | --- | --- |
-| 1 | LayerForge Studio | Strongest runnable product and best proof of technical implementation. |
-| 2 | AI Knowledge Operations Toolkit | Most directly relevant to operations, documentation, support, and enablement roles. |
-| 3 | Astra | Clear AI app implementation with practical model/API workflow. |
-| 4 | Nexus Play | Strong product UI and platform-flow demonstration. |
+| 1 | RedactReady | Strongest privacy/security product with true redaction, verification, and clear responsible-use boundaries. |
+| 2 | LayerForge Studio | Strongest creative-tool runnable product and best proof of canvas/frontend implementation. |
+| 3 | AI Knowledge Operations Toolkit | Most directly relevant to operations, documentation, support, and enablement roles. |
+| 4 | Astra | Clear AI app implementation with practical model/API workflow. |
 | 5 | VariantVision Pro | Advanced research-tool ambition with strong responsible-use framing. |
 
 ## Best for Research/Expert Review
@@ -32,10 +32,10 @@
 
 | Rank | Project | Reason |
 | --- | --- | --- |
-| 1 | LayerForge Studio | Best technical product implementation. |
-| 2 | AI Knowledge Operations Toolkit | Best workflow/product system design. |
-| 3 | Astra | Best AI app implementation. |
-| 4 | Nexus Play | Best consumer platform UI concept. |
+| 1 | RedactReady | Best privacy/security product implementation and strongest verification-minded workflow. |
+| 2 | LayerForge Studio | Best creative technical product implementation. |
+| 3 | AI Knowledge Operations Toolkit | Best workflow/product system design. |
+| 4 | Astra | Best AI app implementation. |
 | 5 | FrameEcho | Best algorithmic utility concept. |
 
 ## Important Distinction

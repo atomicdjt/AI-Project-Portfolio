@@ -8,6 +8,7 @@ A curated portfolio of AI-assisted software projects, product prototypes, workfl
 ![Express](https://img.shields.io/badge/Express-5-111?logo=express&logoColor=fff)
 ![Canvas](https://img.shields.io/badge/Canvas_2D-Editor-0f766e)
 ![Micro SaaS](https://img.shields.io/badge/Micro--SaaS-Operations-14b8a6)
+![Privacy](https://img.shields.io/badge/Privacy-Local--First-0f766e)
 
 ## Portfolio Snapshot
 
@@ -15,6 +16,7 @@ This portfolio is strongest when read as evidence of:
 
 - AI-assisted product prototyping and workflow design.
 - Frontend application development with React, TypeScript, Vite, Express, Canvas 2D, and local persistence.
+- Privacy-first product design, local-only processing, and responsible safety limitations.
 - Technical operations thinking across support triage, documentation systems, knowledge management, and process improvement.
 - Research synthesis and structured analysis across bioinformatics, cognitive frameworks, and educational tools.
 - Employer-facing documentation, scope control, and responsible-use framing.
@@ -23,6 +25,7 @@ This portfolio is strongest when read as evidence of:
 
 | Project | Type | Highlights | Default Local Port |
 | --- | --- | --- | --- |
+| [RedactReady](apps/redactready-local) | Runnable privacy/security MVP | Local-first PDF/image/TXT/CSV redaction, detector review queue, manual boxes, flattened exports, verification report | `http://127.0.0.1:5173/` |
 | [OpsPilot](apps/opspilot-ai-operations-toolkit) | Runnable AI operations toolkit | SOP generation, training checklists, knowledge base output, gap detection, version tracking, Netlify-ready static deployment | `http://127.0.0.1:5177/` |
 | [Astra](apps/astra) | Runnable AI chat app | React chat workspace, Express streaming API, Gemini configuration, Markdown rendering, transcript export, settings panel | `http://127.0.0.1:5174/` |
 | [Nexus Play](apps/nexus-play) | Runnable digital game platform demo | Polished storefront, catalog API, cart, checkout simulation, wishlist, game library, install queue | `http://127.0.0.1:5175/` |
@@ -45,6 +48,7 @@ This repository also includes employer-facing case studies for the strongest pro
 
 | Project | Status | Why Review It |
 | --- | --- | --- |
+| [RedactReady](projects/redactready-local/CASE_STUDY.md) | Runnable MVP | Strongest privacy/security product; shows local-first architecture, document processing, true redaction, and safety-focused UX. |
 | [LayerForge Studio](projects/layerforge-studio/CASE_STUDY.md) | Runnable MVP | Strongest runnable app and best evidence of product polish. |
 | [OpsPilot](projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) | Runnable MVP | Strongest business-focused micro-SaaS; directly maps to operations, documentation, onboarding, and knowledge-management roles. |
 | [AI Knowledge Operations Toolkit](projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) | Concept / product specification | Best direct match for operations, documentation, support, and knowledge-management roles. |
@@ -56,6 +60,7 @@ This repository also includes employer-facing case studies for the strongest pro
 
 | Project | Current Form | Code in Repo? | Demo Type | Case Study? |
 | --- | --- | --- | --- | --- |
+| RedactReady | Runnable MVP | Yes | Local / Netlify-ready | Yes |
 | OpsPilot | Runnable MVP | Yes | Local / Netlify-ready | Yes |
 | LayerForge Studio | Runnable MVP | Yes | GitHub Pages / local | Yes |
 | Astra | Runnable MVP | Yes | Local | Yes |
@@ -70,9 +75,9 @@ This repository also includes employer-facing case studies for the strongest pro
 
 ## Screenshots
 
-| OpsPilot | Astra | Nexus Play | LayerForge Studio |
+| RedactReady | OpsPilot | Astra | LayerForge Studio |
 | --- | --- | --- | --- |
-| ![OpsPilot operations dashboard](docs/images/opspilot-home.png) | ![Astra AI chat workspace](docs/images/astra-home.png) | ![Nexus Play game storefront](docs/images/nexus-play-home.png) | ![LayerForge Studio image editor](docs/images/layerforge-studio-home.png) |
+| ![RedactReady review workspace](docs/images/redactready-review-workspace.png) | ![OpsPilot operations dashboard](docs/images/opspilot-home.png) | ![Astra AI chat workspace](docs/images/astra-home.png) | ![LayerForge Studio image editor](docs/images/layerforge-studio-home.png) |
 
 ## LayerForge Studio Demo
 
@@ -82,12 +87,14 @@ This repository also includes employer-facing case studies for the strongest pro
 
 ```text
 apps/
+  redactready-local/       Runnable local-first privacy redaction engine
   opspilot-ai-operations-toolkit/  Runnable AI operations documentation toolkit
   astra/                 Runnable local AI chat application
   nexus-play/            Runnable game storefront and platform demo
   layerforge-studio/     Runnable local-first layered raster image editor
 
 projects/
+  redactready-local/                         Privacy/security redaction case study
   opspilot-ai-operations-toolkit/             Employer-facing case study
   layerforge-studio/                         Employer-facing case study
   ai-knowledge-operations-toolkit/           Operations AI workflow case study
@@ -122,7 +129,7 @@ npm install
 npm run dev
 ```
 
-Use the same pattern for `apps/nexus-play`, `apps/layerforge-studio`, and `apps/opspilot-ai-operations-toolkit`.
+Use the same pattern for `apps/redactready-local`, `apps/nexus-play`, `apps/layerforge-studio`, and `apps/opspilot-ai-operations-toolkit`.
 
 ## Root Convenience Scripts
 
@@ -136,6 +143,7 @@ npm run dev:astra
 npm run dev:nexus
 npm run dev:layerforge
 npm run dev:opspilot
+npm run dev:redactready
 ```
 
 ## Evaluation
@@ -163,12 +171,14 @@ These projects demonstrate:
 - Local API design, validation, streaming responses, and stateful demo workflows.
 - Business-focused AI operations tooling for SOPs, onboarding, documentation, and knowledge management.
 - Portfolio-quality UX polish, responsive layouts, and documentation.
+- Privacy-first document processing, threat modeling, and verification-minded UX.
 - AI-assisted research and prompt workflow documentation.
 - Technical operations thinking, knowledge management, and structured workflow design.
 
 ## Notes
 
 - Astra requires a Gemini API key in `apps/astra/.env.local` for live model responses. The UI still runs and clearly reports configuration status without a key.
+- RedactReady is local-first and does not require an API key or backend upload service for core redaction.
 - Nexus Play uses a local in-memory demo account and simulated checkout. It does not process real payments.
 - LayerForge stores projects locally in browser IndexedDB.
 - Documentation-first projects are intentionally labeled as concepts, frameworks, or specifications when they are not implemented as runnable apps in this repository.

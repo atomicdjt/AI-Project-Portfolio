@@ -13,12 +13,12 @@ A ranked index of the strongest projects in this AI Project Portfolio.
 
 | Rank | Project | Status | Category | Why It Matters |
 | --- | --- | --- | --- | --- |
-| 1 | [LayerForge Studio](projects/layerforge-studio/CASE_STUDY.md) | Runnable MVP | Browser image editor | Best polished software demo; shows frontend architecture, Canvas 2D interaction, local persistence, and product judgment. |
-| 2 | [OpsPilot](projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) | Runnable MVP | AI operations micro-SaaS | Strongest business-focused app; maps directly to SOPs, onboarding, documentation, knowledge management, and process improvement. |
-| 3 | [AI Knowledge Operations Toolkit](projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) | Concept / product specification | Operations AI system | Directly maps to support ops, documentation, enablement, training, and knowledge management roles. |
-| 4 | [VariantVision Pro](projects/variantvision-pro/CASE_STUDY.md) | Research-tool concept | Bioinformatics research tool | Most advanced research-tool concept; demonstrates scientific workflow thinking and responsible AI boundaries. |
-| 5 | [Amino Acid Research Workbench](projects/amino-acid-research-workbench/CASE_STUDY.md) | Educational tool concept | Educational bioinformatics | Strong explainable-analysis tool with clear classroom and research-triage value. |
-| 6 | [Ecology of Consciousness](projects/ecology-of-consciousness/CASE_STUDY.md) | Research framework | Cognitive / digital ecology framework | Original interdisciplinary framework with strong synthesis and model-building value. |
+| 1 | [RedactReady](projects/redactready-local/CASE_STUDY.md) | Runnable MVP | Privacy/security redaction engine | Strongest privacy-first product; shows document processing, true redaction, verification, and safety-focused UX. |
+| 2 | [LayerForge Studio](projects/layerforge-studio/CASE_STUDY.md) | Runnable MVP | Browser image editor | Best creative-tool software demo; shows frontend architecture, Canvas 2D interaction, local persistence, and product judgment. |
+| 3 | [OpsPilot](projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) | Runnable MVP | AI operations micro-SaaS | Strongest business-focused app; maps directly to SOPs, onboarding, documentation, knowledge management, and process improvement. |
+| 4 | [AI Knowledge Operations Toolkit](projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) | Concept / product specification | Operations AI system | Directly maps to support ops, documentation, enablement, training, and knowledge management roles. |
+| 5 | [VariantVision Pro](projects/variantvision-pro/CASE_STUDY.md) | Research-tool concept | Bioinformatics research tool | Most advanced research-tool concept; demonstrates scientific workflow thinking and responsible AI boundaries. |
+| 6 | [Amino Acid Research Workbench](projects/amino-acid-research-workbench/CASE_STUDY.md) | Educational tool concept | Educational bioinformatics | Strong explainable-analysis tool with clear classroom and research-triage value. |
 
 ## Tier 2 — Strong Supporting Projects
 
@@ -36,6 +36,7 @@ A ranked index of the strongest projects in this AI Project Portfolio.
 - Workflow design and process improvement
 - Technical documentation and case-study writing
 - Frontend application design
+- Privacy-first and local-first application design
 - Research synthesis
 - Responsible-use framing
 - Local-first product thinking
@@ -46,8 +47,8 @@ A ranked index of the strongest projects in this AI Project Portfolio.
 ## Recommended Employer Review Path
 
 1. Start with [Employer Overview](EMPLOYER_OVERVIEW.md).
-2. Review [LayerForge Studio](projects/layerforge-studio/CASE_STUDY.md) for the strongest runnable application.
-3. Review [OpsPilot](projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) for the strongest business-focused runnable product.
-4. Review [AI Knowledge Operations Toolkit](projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.
-5. Review [Skills Matrix](SKILLS_MATRIX.md) to connect projects to role requirements.
-6. Review [Portfolio Positioning](docs/portfolio-positioning.md) for the overall professional narrative.
+2. Review [RedactReady](projects/redactready-local/CASE_STUDY.md) for the strongest privacy/security runnable product.
+3. Review [LayerForge Studio](projects/layerforge-studio/CASE_STUDY.md) for creative-tool implementation depth.
+4. Review [OpsPilot](projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) for the strongest business-focused runnable product.
+5. Review [AI Knowledge Operations Toolkit](projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.
+6. Review [Skills Matrix](SKILLS_MATRIX.md) to connect projects to role requirements.
