@@ -23,13 +23,13 @@ This portfolio is strongest when read as evidence of:
 
 ## Featured Applications
 
-| Project | Type | Highlights | Default Local Port |
-| --- | --- | --- | --- |
-| [RedactReady](apps/redactready-local) | Runnable privacy/security MVP | Local-first PDF/image/TXT/CSV redaction, detector review queue, manual boxes, flattened exports, verification report | `http://127.0.0.1:5173/` |
-| [OpsPilot](apps/opspilot-ai-operations-toolkit) | Runnable AI operations toolkit | SOP generation, training checklists, knowledge base output, gap detection, version tracking, Netlify-ready static deployment | `http://127.0.0.1:5177/` |
-| [Astra](apps/astra) | Runnable AI chat app | React chat workspace, Express streaming API, Gemini configuration, Markdown rendering, transcript export, settings panel | `http://127.0.0.1:5174/` |
-| [Nexus Play](apps/nexus-play) | Runnable digital game platform demo | Polished storefront, catalog API, cart, checkout simulation, wishlist, game library, install queue | `http://127.0.0.1:5175/` |
-| [LayerForge Studio](apps/layerforge-studio) | Runnable browser image editor | Layered raster documents, Canvas 2D painting, selections, filters, IndexedDB saves, PNG/JPEG export | `http://127.0.0.1:5176/` |
+| Project | Type | Highlights | Public Demo | Default Local Port |
+| --- | --- | --- | --- | --- |
+| [RedactReady](apps/redactready-local) | Runnable privacy/security MVP | Local-first PDF/image/TXT/CSV redaction, detector review queue, manual boxes, flattened exports, verification report | [Live Netlify demo](https://redactready-local.netlify.app/) | `http://127.0.0.1:5173/` |
+| [OpsPilot](apps/opspilot-ai-operations-toolkit) | Runnable AI operations toolkit | SOP generation, training checklists, knowledge base output, gap detection, version tracking, Netlify-ready static deployment | Not published in this repo | `http://127.0.0.1:5177/` |
+| [Astra](apps/astra) | Runnable AI chat app | React chat workspace, Express streaming API, Gemini configuration, Markdown rendering, transcript export, settings panel | Local demo | `http://127.0.0.1:5174/` |
+| [Nexus Play](apps/nexus-play) | Runnable digital game platform demo | Polished storefront, catalog API, cart, checkout simulation, wishlist, game library, install queue | Local demo | `http://127.0.0.1:5175/` |
+| [LayerForge Studio](apps/layerforge-studio) | Runnable browser image editor | Layered raster documents, Canvas 2D painting, selections, filters, IndexedDB saves, PNG/JPEG export | [GitHub Pages demo](https://atomicdjt.github.io/AI-Project-Portfolio-/) | `http://127.0.0.1:5176/` |
 
 LayerForge Studio is also configured for GitHub Pages deployment at `https://atomicdjt.github.io/AI-Project-Portfolio-/`.
 
@@ -48,7 +48,7 @@ This repository also includes employer-facing case studies for the strongest pro
 
 | Project | Status | Why Review It |
 | --- | --- | --- |
-| [RedactReady](projects/redactready-local/CASE_STUDY.md) | Runnable MVP | Strongest privacy/security product; shows local-first architecture, document processing, true redaction, and safety-focused UX. |
+| [RedactReady](projects/redactready-local/CASE_STUDY.md) | Runnable MVP + live demo | Strongest privacy/security product; shows local-first architecture, document processing, true redaction, safety-focused UX, and public deployment readiness. |
 | [LayerForge Studio](projects/layerforge-studio/CASE_STUDY.md) | Runnable MVP | Strongest runnable app and best evidence of product polish. |
 | [OpsPilot](projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) | Runnable MVP | Strongest business-focused micro-SaaS; directly maps to operations, documentation, onboarding, and knowledge-management roles. |
 | [AI Knowledge Operations Toolkit](projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) | Concept / product specification | Best direct match for operations, documentation, support, and knowledge-management roles. |
@@ -60,7 +60,7 @@ This repository also includes employer-facing case studies for the strongest pro
 
 | Project | Current Form | Code in Repo? | Demo Type | Case Study? |
 | --- | --- | --- | --- | --- |
-| RedactReady | Runnable MVP | Yes | Local / Netlify-ready | Yes |
+| RedactReady | Runnable MVP | Yes | [Live Netlify demo](https://redactready-local.netlify.app/) / local | Yes |
 | OpsPilot | Runnable MVP | Yes | Local / Netlify-ready | Yes |
 | LayerForge Studio | Runnable MVP | Yes | GitHub Pages / local | Yes |
 | Astra | Runnable MVP | Yes | Local | Yes |
@@ -178,7 +178,7 @@ These projects demonstrate:
 ## Notes
 
 - Astra requires a Gemini API key in `apps/astra/.env.local` for live model responses. The UI still runs and clearly reports configuration status without a key.
-- RedactReady is local-first and does not require an API key or backend upload service for core redaction.
+- RedactReady is live at `https://redactready-local.netlify.app/`, is local-first, and does not require an API key or backend upload service for core redaction.
 - Nexus Play uses a local in-memory demo account and simulated checkout. It does not process real payments.
 - LayerForge stores projects locally in browser IndexedDB.
 - Documentation-first projects are intentionally labeled as concepts, frameworks, or specifications when they are not implemented as runnable apps in this repository.

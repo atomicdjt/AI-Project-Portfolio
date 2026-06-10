@@ -3,6 +3,7 @@ node_modules/
 
 # Build output
 dist/
+.netlify/
 coverage/
 playwright-report/
 test-results/

@@ -19,7 +19,7 @@ This repository is best read as evidence of:
 
 ## Best Projects to Review First
 
-1. **RedactReady** - local-first privacy redaction engine demonstrating the strongest privacy/security product implementation.
+1. **RedactReady** - live local-first privacy redaction engine demonstrating the strongest privacy/security product implementation: https://redactready-local.netlify.app/
 2. **LayerForge Studio** - browser-based image editor demonstrating strong runnable application polish.
 3. **OpsPilot** - runnable AI operations micro-SaaS for SOPs, onboarding, knowledge base generation, gap detection, and version tracking.
 4. **AI Knowledge Operations Toolkit** - operations-focused AI workflow system with strong employer relevance.
@@ -53,7 +53,7 @@ For a fast review, start with:
 
 1. `README.md` for the repository overview.
 2. `PROJECT_INDEX.md` for the full ranked project list.
-3. `projects/redactready-local/CASE_STUDY.md` for the strongest privacy/security runnable app.
+3. `projects/redactready-local/CASE_STUDY.md` and `https://redactready-local.netlify.app/` for the strongest privacy/security runnable app.
 4. `projects/layerforge-studio/CASE_STUDY.md` for creative-tool implementation depth.
 5. `projects/opspilot-ai-operations-toolkit/CASE_STUDY.md` for the strongest business-focused runnable app.
 6. `projects/ai-knowledge-operations-toolkit/CASE_STUDY.md` for operations concept depth.

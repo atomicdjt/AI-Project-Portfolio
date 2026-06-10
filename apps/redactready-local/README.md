@@ -2,6 +2,8 @@
 
 RedactReady is a production-quality local-first MVP for privacy-preserving document redaction. It accepts PDF, PNG/JPG, TXT, and CSV files, detects common sensitive patterns, requires human review, supports manual redaction boxes, exports flattened redacted files, and generates a redaction report that does not expose raw sensitive values.
 
+Live demo: https://redactready-local.netlify.app/
+
 This project was created as a separate app in `redactready-local` so existing projects in the parent workspace are not overwritten.
 
 ## Portfolio Highlights
@@ -10,7 +12,7 @@ This project was created as a separate app in `redactready-local` so existing pr
 - True redaction strategy for PDFs and images through flattened canvas/pixel export.
 - Review-first workflow with category filters, masked previews, confidence indicators, custom search, and manual redaction boxes.
 - Testable TypeScript modules for detectors, text replacement, verification, and reports.
-- Production-adjacent project hygiene: CI workflow, Netlify config, security notes, sample fixtures, and a portfolio case study.
+- Launch-ready project hygiene: CI workflow, Netlify config, security notes, sample fixtures, a public Netlify deployment, and a portfolio case study.
 
 See [docs/portfolio-case-study.md](docs/portfolio-case-study.md) for a deeper engineering/product breakdown.
 
@@ -46,7 +48,11 @@ npm run preview  # production preview server
 
 ## Deploy on Netlify
 
-This is a static Vite application and includes `netlify.toml`.
+This is a static Vite application and includes `netlify.toml`. The current public deployment is:
+
+```text
+https://redactready-local.netlify.app/
+```
 
 Recommended Netlify settings:
 

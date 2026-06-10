@@ -13,7 +13,7 @@ A ranked index of the strongest projects in this AI Project Portfolio.
 
 | Rank | Project | Status | Category | Why It Matters |
 | --- | --- | --- | --- | --- |
-| 1 | [RedactReady](projects/redactready-local/CASE_STUDY.md) | Runnable MVP | Privacy/security redaction engine | Strongest privacy-first product; shows document processing, true redaction, verification, and safety-focused UX. |
+| 1 | [RedactReady](projects/redactready-local/CASE_STUDY.md) | [Runnable MVP + live demo](https://redactready-local.netlify.app/) | Privacy/security redaction engine | Strongest privacy-first product; shows document processing, true redaction, verification, safety-focused UX, and public deployment readiness. |
 | 2 | [LayerForge Studio](projects/layerforge-studio/CASE_STUDY.md) | Runnable MVP | Browser image editor | Best creative-tool software demo; shows frontend architecture, Canvas 2D interaction, local persistence, and product judgment. |
 | 3 | [OpsPilot](projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) | Runnable MVP | AI operations micro-SaaS | Strongest business-focused app; maps directly to SOPs, onboarding, documentation, knowledge management, and process improvement. |
 | 4 | [AI Knowledge Operations Toolkit](projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) | Concept / product specification | Operations AI system | Directly maps to support ops, documentation, enablement, training, and knowledge management roles. |
@@ -47,7 +47,7 @@ A ranked index of the strongest projects in this AI Project Portfolio.
 ## Recommended Employer Review Path
 
 1. Start with [Employer Overview](EMPLOYER_OVERVIEW.md).
-2. Review [RedactReady](projects/redactready-local/CASE_STUDY.md) for the strongest privacy/security runnable product.
+2. Review [RedactReady](projects/redactready-local/CASE_STUDY.md) and its [live demo](https://redactready-local.netlify.app/) for the strongest privacy/security runnable product.
 3. Review [LayerForge Studio](projects/layerforge-studio/CASE_STUDY.md) for creative-tool implementation depth.
 4. Review [OpsPilot](projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) for the strongest business-focused runnable product.
 5. Review [AI Knowledge Operations Toolkit](projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.

@@ -4,6 +4,8 @@
 
 RedactReady is a local-first privacy-preserving document redaction engine for PDFs, images, TXT files, and CSV files. It helps users detect sensitive identifiers, review each finding, draw manual redaction boxes, export a safer flattened file, and generate a redaction report that does not expose raw sensitive values.
 
+Live demo: https://redactready-local.netlify.app/
+
 The project is designed around a concrete privacy problem: many redaction workflows only hide visible content while leaving searchable PDF text, metadata, or pixels recoverable. RedactReady prioritizes true redaction and human review over fully automated claims.
 
 ## Portfolio Value
@@ -19,6 +21,7 @@ It demonstrates:
 - Flattened PDF/image export instead of cosmetic overlays.
 - Verification and reporting workflows.
 - Clear limitations and responsible-use framing.
+- Public Netlify deployment with SPA fallback, security headers, and immutable asset caching.
 
 ## User Workflow
 
@@ -92,6 +95,14 @@ npm run e2e
 
 Coverage includes detector behavior, text replacement export, verification logic, report generation, and a Playwright upload smoke test.
 
+## Deployment
+
+- Public URL: https://redactready-local.netlify.app/
+- Netlify project: `redactready-local`
+- Build command: `npm run build`
+- Publish directory: `dist`
+- Runtime shape: static Vite SPA with no backend upload route, one SPA redirect rule, and two deployed header rules.
+
 ## Known Limitations
 
 - OCR is not enabled in V1.
@@ -102,4 +113,4 @@ Coverage includes detector behavior, text replacement export, verification logic
 
 ## Why This Matters to Employers
 
-RedactReady shows the ability to build a credible tool around a real risk, scope hard problems honestly, design for nontechnical users, and package the result with tests, documentation, screenshots, and deployment-ready configuration.
+RedactReady shows the ability to build a credible tool around a real risk, scope hard problems honestly, design for nontechnical users, and package the result with tests, documentation, screenshots, deployment configuration, and a live public demo.

@@ -2,7 +2,7 @@
 
 ## Top 5 Overall
 
-1. **RedactReady** - strongest privacy/security runnable app and best safety-focused product demonstration.
+1. **RedactReady** - strongest privacy/security runnable app, live at https://redactready-local.netlify.app/, and best safety-focused product demonstration.
 2. **LayerForge Studio** - strongest creative-tool runnable app and frontend/canvas demonstration.
 3. **AI Knowledge Operations Toolkit** - best direct employer relevance for operations/documentation roles.
 4. **VariantVision Pro** - most advanced technical/research concept.
@@ -12,7 +12,7 @@
 
 | Rank | Project | Reason |
 | --- | --- | --- |
-| 1 | RedactReady | Strongest privacy/security product with true redaction, verification, and clear responsible-use boundaries. |
+| 1 | RedactReady | Strongest privacy/security product with true redaction, verification, public demo readiness, and clear responsible-use boundaries. |
 | 2 | LayerForge Studio | Strongest creative-tool runnable product and best proof of canvas/frontend implementation. |
 | 3 | AI Knowledge Operations Toolkit | Most directly relevant to operations, documentation, support, and enablement roles. |
 | 4 | Astra | Clear AI app implementation with practical model/API workflow. |
