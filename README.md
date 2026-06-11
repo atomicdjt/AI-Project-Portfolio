@@ -37,9 +37,9 @@ LayerForge Studio is also configured for GitHub Pages deployment at `https://ato
 
 This repository also includes employer-facing case studies for the strongest projects in the portfolio:
 
-- [Employer Overview](EMPLOYER_OVERVIEW.md)
-- [Project Index](PROJECT_INDEX.md)
-- [Skills Matrix](SKILLS_MATRIX.md)
+- [Employer Overview](docs/EMPLOYER_OVERVIEW.md)
+- [Project Index](docs/PROJECT_INDEX.md)
+- [Skills Matrix](docs/SKILLS_MATRIX.md)
 - [Hiring Summary](docs/hiring-summary.md)
 - [Project Ranking](docs/project-ranking.md)
 - [Portfolio Positioning](docs/portfolio-positioning.md)
@@ -108,13 +108,15 @@ projects/
   focusforge/                                Focus/productivity concept
 
 docs/
+  EMPLOYER_OVERVIEW.md
+  PROJECT_INDEX.md
+  SKILLS_MATRIX.md
   hiring-summary.md
   project-ranking.md
   portfolio-positioning.md
 
-EMPLOYER_OVERVIEW.md
-PROJECT_INDEX.md
-SKILLS_MATRIX.md
+_archive/
+  README.md
 ```
 
 Each runnable application is self-contained with its own `package.json`, README, source code, and lockfile.
