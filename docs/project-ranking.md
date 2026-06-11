@@ -2,21 +2,21 @@
 
 ## Top 5 Overall
 
-1. **RedactReady** - strongest privacy/security runnable app and best safety-focused product demonstration.
-2. **LayerForge Studio** - strongest creative-tool runnable app and frontend/canvas demonstration.
-3. **AI Knowledge Operations Toolkit** - best direct employer relevance for operations/documentation roles.
-4. **VariantVision Pro** - most advanced technical/research concept.
-5. **Amino Acid Research Workbench** - strongest educational science tool.
+1. **ScamShield AI** - strongest complete public-interest cybersecurity workflow with a live production demo.
+2. **RedactReady** - strongest privacy/document-security runnable app and verification-focused product demonstration.
+3. **LayerForge Studio** - strongest creative-tool runnable app and frontend/canvas demonstration.
+4. **AI Knowledge Operations Toolkit** - best direct employer relevance for operations/documentation roles.
+5. **VariantVision Pro** - most advanced technical/research concept.
 
 ## Best for Employers
 
 | Rank | Project | Reason |
 | --- | --- | --- |
-| 1 | RedactReady | Strongest privacy/security product with true redaction, verification, and clear responsible-use boundaries. |
-| 2 | LayerForge Studio | Strongest creative-tool runnable product and best proof of canvas/frontend implementation. |
-| 3 | AI Knowledge Operations Toolkit | Most directly relevant to operations, documentation, support, and enablement roles. |
-| 4 | Astra | Clear AI app implementation with practical model/API workflow. |
-| 5 | VariantVision Pro | Advanced research-tool ambition with strong responsible-use framing. |
+| 1 | ScamShield AI | Complete, accessible cybersecurity workflow with live deployment, explainable analysis, evidence tools, and reporting guidance. |
+| 2 | RedactReady | Strong privacy/security product with true redaction, verification, and clear responsible-use boundaries. |
+| 3 | LayerForge Studio | Strong creative-tool runnable product and proof of canvas/frontend implementation. |
+| 4 | AI Knowledge Operations Toolkit | Directly relevant to operations, documentation, support, and enablement roles. |
+| 5 | Astra | Clear AI app implementation with practical model/API workflow. |
 
 ## Best for Research/Expert Review
 
@@ -32,11 +32,11 @@
 
 | Rank | Project | Reason |
 | --- | --- | --- |
-| 1 | RedactReady | Best privacy/security product implementation and strongest verification-minded workflow. |
-| 2 | LayerForge Studio | Best creative technical product implementation. |
-| 3 | AI Knowledge Operations Toolkit | Best workflow/product system design. |
-| 4 | Astra | Best AI app implementation. |
-| 5 | FrameEcho | Best algorithmic utility concept. |
+| 1 | ScamShield AI | Best complete safety-product workflow, explainable analysis, accessibility, and deployment evidence. |
+| 2 | RedactReady | Best privacy/document-security implementation and verification-minded workflow. |
+| 3 | LayerForge Studio | Best creative technical product implementation. |
+| 4 | AI Knowledge Operations Toolkit | Best workflow/product system design. |
+| 5 | Astra | Best AI app implementation. |
 
 ## Important Distinction
 
