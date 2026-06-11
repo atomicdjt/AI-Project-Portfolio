@@ -15,22 +15,24 @@ This repository is best read as evidence of:
 - Technical documentation: producing case studies, architecture notes, implementation plans, and responsible-use boundaries.
 - Frontend/product implementation: React, TypeScript, Vite, Express, Canvas 2D, IndexedDB, local persistence, and deployable demos.
 - Privacy/security product implementation: local-first document processing, redaction safety, verification, and clear threat-model boundaries.
+- Consumer-protection product implementation: explainable scam-risk signals, accessible safety guidance, evidence organization, official reporting resources, and local-first privacy.
 - Research synthesis: converting complex scientific, cognitive, and operational topics into structured frameworks and practical tools.
 
 ## Best Projects to Review First
 
-1. **RedactReady** - local-first privacy redaction engine demonstrating the strongest privacy/security product implementation.
-2. **LayerForge Studio** - browser-based image editor demonstrating strong runnable application polish.
-3. **OpsPilot** - runnable AI operations micro-SaaS for SOPs, onboarding, knowledge base generation, gap detection, and version tracking.
-4. **AI Knowledge Operations Toolkit** - operations-focused AI workflow system with strong employer relevance.
-5. **VariantVision Pro** - bioinformatics/variant interpretation workbench concept with advanced research-tool positioning.
-6. **Amino Acid Research Workbench** - educational bioinformatics system with explainable analysis workflows.
-7. **Ecology of Consciousness** - original interdisciplinary framework for analyzing digital cognitive environments.
-8. **IHOS / Integrated Human Operating System** - structured non-clinical self-governance framework.
-9. **Astra** - local AI chat workspace and model-configuration interface.
-10. **Nexus Play** - game storefront and distribution-platform demo.
-11. **FrameEcho** - content-based duplicate video finder concept.
-12. **FocusForge** - gamified focus/productivity prototype.
+1. **ScamShield AI** - live local-first consumer-protection app with explainable scam-risk signals, evidence tools, accessible safety guidance, and official reporting resources.
+2. **RedactReady** - local-first privacy redaction engine demonstrating strong privacy/security product implementation.
+3. **LayerForge Studio** - browser-based image editor demonstrating strong runnable application polish.
+4. **OpsPilot** - runnable AI operations micro-SaaS for SOPs, onboarding, knowledge base generation, gap detection, and version tracking.
+5. **AI Knowledge Operations Toolkit** - operations-focused AI workflow system with strong employer relevance.
+6. **VariantVision Pro** - bioinformatics/variant interpretation workbench concept with advanced research-tool positioning.
+7. **Amino Acid Research Workbench** - educational bioinformatics system with explainable analysis workflows.
+8. **Ecology of Consciousness** - original interdisciplinary framework for analyzing digital cognitive environments.
+9. **IHOS / Integrated Human Operating System** - structured non-clinical self-governance framework.
+10. **Astra** - local AI chat workspace and model-configuration interface.
+11. **Nexus Play** - game storefront and distribution-platform demo.
+12. **FrameEcho** - content-based duplicate video finder concept.
+13. **FocusForge** - gamified focus/productivity prototype.
 
 ## How Employers Should Interpret This Work
 
@@ -53,7 +55,8 @@ For a fast review, start with:
 
 1. [`README.md`](../README.md) for the repository overview.
 2. [`PROJECT_INDEX.md`](PROJECT_INDEX.md) for the full ranked project list.
-3. [`projects/redactready-local/CASE_STUDY.md`](../projects/redactready-local/CASE_STUDY.md) for the strongest privacy/security runnable app.
-4. [`projects/layerforge-studio/CASE_STUDY.md`](../projects/layerforge-studio/CASE_STUDY.md) for creative-tool implementation depth.
-5. [`projects/opspilot-ai-operations-toolkit/CASE_STUDY.md`](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) for the strongest business-focused runnable app.
-6. [`projects/ai-knowledge-operations-toolkit/CASE_STUDY.md`](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.
+3. [`projects/scamshield-ai/CASE_STUDY.md`](../projects/scamshield-ai/CASE_STUDY.md) for the strongest complete public-interest cybersecurity workflow.
+4. [`projects/redactready-local/CASE_STUDY.md`](../projects/redactready-local/CASE_STUDY.md) for privacy/security implementation depth.
+5. [`projects/layerforge-studio/CASE_STUDY.md`](../projects/layerforge-studio/CASE_STUDY.md) for creative-tool implementation depth.
+6. [`projects/opspilot-ai-operations-toolkit/CASE_STUDY.md`](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) for the strongest business-focused runnable app.
+7. [`projects/ai-knowledge-operations-toolkit/CASE_STUDY.md`](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.
