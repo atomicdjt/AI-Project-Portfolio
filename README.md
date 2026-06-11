@@ -10,6 +10,28 @@ A curated portfolio of AI-assisted software projects, product prototypes, workfl
 ![Micro SaaS](https://img.shields.io/badge/Micro--SaaS-Operations-14b8a6)
 ![Privacy](https://img.shields.io/badge/Privacy-Local--First-0f766e)
 
+## Start Here for Recruiters and Hiring Managers
+
+This portfolio is designed to be reviewed quickly. The strongest evidence is concentrated in five runnable applications, supported by employer-facing case studies and documentation that explain the product thinking behind each build.
+
+**Best review path:**
+
+1. Start with **[RedactReady](apps/redactready-local)** for the strongest privacy/security product implementation.
+2. Review **[LayerForge Studio](apps/layerforge-studio)** for the strongest frontend and Canvas-based application polish.
+3. Review **[OpsPilot](apps/opspilot-ai-operations-toolkit)** for the clearest connection to operations, documentation, onboarding, and knowledge-management roles.
+4. Skim the **[Employer Overview](docs/EMPLOYER_OVERVIEW.md)**, **[Project Index](docs/PROJECT_INDEX.md)**, and **[Skills Matrix](docs/SKILLS_MATRIX.md)** to connect the work to role requirements.
+
+This repository is not presented as a claim of senior engineering experience. It is presented as evidence of practical initiative, AI-assisted execution, product judgment, documentation discipline, and the ability to turn ambiguous ideas into structured working systems.
+
+## Role Fit
+
+| Target Role | Why This Portfolio Fits |
+| --- | --- |
+| **Technical Operations** | Demonstrates workflow analysis, SOP generation, documentation structure, process improvement, and practical tool-building for operational clarity. |
+| **AI Workflow Specialist** | Shows applied AI product thinking across support triage, knowledge operations, redaction workflows, research tooling, and user-facing AI interfaces. |
+| **Documentation Coordinator / Knowledge Base Coordinator** | Includes structured case studies, employer-facing guides, project indexing, knowledge base concepts, training checklists, and review-ready documentation. |
+| **Product Operations** | Shows the ability to define user problems, build MVP workflows, document tradeoffs, prioritize scope, and package products for stakeholder review. |
+
 ## Portfolio Snapshot
 
 This portfolio is strongest when read as evidence of:
@@ -23,19 +45,17 @@ This portfolio is strongest when read as evidence of:
 
 ## Featured Applications
 
-| Project | Type | Highlights | Default Local Port |
-| --- | --- | --- | --- |
-| [RedactReady](apps/redactready-local) | Runnable privacy/security MVP | Local-first PDF/image/TXT/CSV redaction, detector review queue, manual boxes, flattened exports, verification report | `http://127.0.0.1:5173/` |
-| [OpsPilot](apps/opspilot-ai-operations-toolkit) | Runnable AI operations toolkit | SOP generation, training checklists, knowledge base output, gap detection, version tracking, Netlify-ready static deployment | `http://127.0.0.1:5177/` |
-| [Astra](apps/astra) | Runnable AI chat app | React chat workspace, Express streaming API, Gemini configuration, Markdown rendering, transcript export, settings panel | `http://127.0.0.1:5174/` |
-| [Nexus Play](apps/nexus-play) | Runnable digital game platform demo | Polished storefront, catalog API, cart, checkout simulation, wishlist, game library, install queue | `http://127.0.0.1:5175/` |
-| [LayerForge Studio](apps/layerforge-studio) | Runnable browser image editor | Layered raster documents, Canvas 2D painting, selections, filters, IndexedDB saves, PNG/JPEG export | `http://127.0.0.1:5176/` |
-
-LayerForge Studio is also configured for GitHub Pages deployment at `https://atomicdjt.github.io/AI-Project-Portfolio-/`.
+| Project | Review Link | Demo Status | Screenshot | Value Pitch |
+| --- | --- | --- | --- | --- |
+| **[RedactReady](apps/redactready-local)** | [Case Study](projects/redactready-local/CASE_STUDY.md) | [Live Demo](https://redactready-local.netlify.app/) / Local `5173` | ![RedactReady review workspace](docs/images/redactready-review-workspace.png) | RedactReady is the strongest privacy/security product in the portfolio: a local-first redaction MVP for PDFs, images, TXT, and CSV files with detector review, manual redaction boxes, flattened exports, and verification reporting. It demonstrates product judgment around sensitive documents, responsible UX, and practical threat-model boundaries. |
+| **[OpsPilot](apps/opspilot-ai-operations-toolkit)** | [Case Study](projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) | Netlify-ready / Local `5177` | ![OpsPilot operations dashboard](docs/images/opspilot-home.png) | OpsPilot is an AI operations toolkit that turns rough notes, policies, tickets, and FAQs into SOPs, onboarding checklists, knowledge base articles, gap reports, and versioned documentation. It is the clearest bridge between this portfolio and technical operations, enablement, documentation, and knowledge-management roles. |
+| **[Astra](apps/astra)** | [Case Study](projects/astra/CASE_STUDY.md) | Local `5174` with Express API `3002` | ![Astra AI chat workspace](docs/images/astra-home.png) | Astra is a local AI chat workspace that demonstrates a practical AI application pattern: React frontend, Express API layer, streaming response workflow, Markdown rendering, model configuration, transcript export, and visible API-key status handling. It shows the ability to build a credible AI interface beyond a thin API wrapper. |
+| **[Nexus Play](apps/nexus-play)** | [Case Study](projects/nexus-play/CASE_STUDY.md) | Local `5175` with Express API `3003` | ![Nexus Play storefront](docs/images/nexus-play-home.png) | Nexus Play is a digital game distribution platform demo with storefront browsing, catalog interaction, wishlist, cart, simulated checkout, owned library state, and install queue concepts. It demonstrates product UI thinking, user-state design, and platform-style workflow modeling. |
+| **[LayerForge Studio](apps/layerforge-studio)** | [Case Study](projects/layerforge-studio/CASE_STUDY.md) | [Live Demo](https://atomicdjt.github.io/AI-Project-Portfolio-/) / Local `5176` | ![LayerForge Studio image editor](docs/images/layerforge-studio-home.png) | LayerForge Studio is the strongest frontend implementation: a local-first browser image editor with layered raster documents, Canvas 2D painting, selections, filters, undo, IndexedDB persistence, and PNG/JPEG export. It shows deeper UI architecture, interaction design, and application polish. |
 
 ## Employer-Facing Project Guides
 
-This repository also includes employer-facing case studies for the strongest projects in the portfolio:
+This repository also includes employer-facing documentation for the strongest projects in the portfolio:
 
 - [Employer Overview](docs/EMPLOYER_OVERVIEW.md)
 - [Project Index](docs/PROJECT_INDEX.md)
@@ -44,7 +64,7 @@ This repository also includes employer-facing case studies for the strongest pro
 - [Project Ranking](docs/project-ranking.md)
 - [Portfolio Positioning](docs/portfolio-positioning.md)
 
-### Strongest Case Studies
+## Strongest Case Studies
 
 | Project | Status | Why Review It |
 | --- | --- | --- |
@@ -60,7 +80,7 @@ This repository also includes employer-facing case studies for the strongest pro
 
 | Project | Current Form | Code in Repo? | Demo Type | Case Study? |
 | --- | --- | --- | --- | --- |
-| RedactReady | Runnable MVP | Yes | Local / Netlify-ready | Yes |
+| RedactReady | Runnable MVP | Yes | Live / local / Netlify-ready | Yes |
 | OpsPilot | Runnable MVP | Yes | Local / Netlify-ready | Yes |
 | LayerForge Studio | Runnable MVP | Yes | GitHub Pages / local | Yes |
 | Astra | Runnable MVP | Yes | Local | Yes |
@@ -75,9 +95,13 @@ This repository also includes employer-facing case studies for the strongest pro
 
 ## Screenshots
 
-| RedactReady | OpsPilot | Astra | LayerForge Studio |
-| --- | --- | --- | --- |
-| ![RedactReady review workspace](docs/images/redactready-review-workspace.png) | ![OpsPilot operations dashboard](docs/images/opspilot-home.png) | ![Astra AI chat workspace](docs/images/astra-home.png) | ![LayerForge Studio image editor](docs/images/layerforge-studio-home.png) |
+| RedactReady | OpsPilot | Astra |
+| --- | --- | --- |
+| ![RedactReady review workspace](docs/images/redactready-review-workspace.png) | ![OpsPilot operations dashboard](docs/images/opspilot-home.png) | ![Astra AI chat workspace](docs/images/astra-home.png) |
+
+| Nexus Play | LayerForge Studio |
+| --- | --- |
+| ![Nexus Play storefront](docs/images/nexus-play-home.png) | ![LayerForge Studio image editor](docs/images/layerforge-studio-home.png) |
 
 ## LayerForge Studio Demo
 
@@ -119,7 +143,7 @@ _archive/
   README.md
 ```
 
-Each runnable application is self-contained with its own `package.json`, README, source code, and lockfile.
+Each runnable application is self-contained with its own `package.json`, README, source code, and lockfile. Root-level documentation has been consolidated into `docs/` to keep the public repository clean and easy to review.
 
 ## Quick Start
 
