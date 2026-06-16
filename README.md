@@ -13,7 +13,7 @@ A curated portfolio of AI-assisted software projects, product prototypes, workfl
 
 ## Start Here for Recruiters and Hiring Managers
 
-This portfolio is designed to be reviewed quickly. The strongest evidence is concentrated in six runnable applications, supported by employer-facing case studies and documentation that explain the product thinking behind each build.
+This portfolio is designed to be reviewed quickly. The strongest evidence is concentrated in seven runnable applications, supported by employer-facing case studies and documentation that explain the product thinking behind each build.
 
 **Best review path:**
 
@@ -21,7 +21,8 @@ This portfolio is designed to be reviewed quickly. The strongest evidence is con
 2. Review **[RedactReady](apps/redactready-local)** for privacy/security document processing.
 3. Review **[LayerForge Studio](apps/layerforge-studio)** for frontend and Canvas-based application polish.
 4. Review **[OpsPilot](apps/opspilot-ai-operations-toolkit)** for the clearest connection to operations, documentation, onboarding, and knowledge-management roles.
-5. Skim the **[Employer Overview](docs/EMPLOYER_OVERVIEW.md)**, **[Project Index](docs/PROJECT_INDEX.md)**, and **[Skills Matrix](docs/SKILLS_MATRIX.md)** to connect the work to role requirements.
+5. Review **[FocusForge](apps/focusforge)** for a polished gamified productivity app with local persistence, progression systems, and a deployable static architecture.
+6. Skim the **[Employer Overview](docs/EMPLOYER_OVERVIEW.md)**, **[Project Index](docs/PROJECT_INDEX.md)**, and **[Skills Matrix](docs/SKILLS_MATRIX.md)** to connect the work to role requirements.
 
 This repository is not presented as a claim of senior engineering experience. It is presented as evidence of practical initiative, AI-assisted execution, product judgment, documentation discipline, and the ability to turn ambiguous ideas into structured working systems.
 
@@ -52,6 +53,7 @@ This portfolio is strongest when read as evidence of:
 | **[ScamShield AI](apps/scamshield-ai)** | [Case Study](projects/scamshield-ai/CASE_STUDY.md) | [Live Demo](https://scamshield-ai-safety.netlify.app/) / Local `5178` | ![ScamShield AI assessment workspace](docs/images/scamshield-assessment.png) | ScamShield AI is a local-first consumer-protection workflow for assessing suspicious messages, preserving evidence, building a timeline, choosing safer next steps, locating official reporting channels, and exporting a structured PDF packet. It demonstrates accessible safety UX, deterministic explainable analysis, privacy-first architecture, and production deployment. |
 | **[RedactReady](apps/redactready-local)** | [Case Study](projects/redactready-local/CASE_STUDY.md) | [Live Demo](https://redactready-local.netlify.app/) / Local `5173` | ![RedactReady review workspace](docs/images/redactready-review-workspace.png) | RedactReady is the strongest privacy/security product in the portfolio: a local-first redaction MVP for PDFs, images, TXT, and CSV files with detector review, manual redaction boxes, flattened exports, and verification reporting. It demonstrates product judgment around sensitive documents, responsible UX, and practical threat-model boundaries. |
 | **[OpsPilot](apps/opspilot-ai-operations-toolkit)** | [Case Study](projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) | Netlify-ready / Local `5177` | ![OpsPilot operations dashboard](docs/images/opspilot-home.png) | OpsPilot is an AI operations toolkit that turns rough notes, policies, tickets, and FAQs into SOPs, onboarding checklists, knowledge base articles, gap reports, and versioned documentation. It is the clearest bridge between this portfolio and technical operations, enablement, documentation, and knowledge-management roles. |
+| **[FocusForge](apps/focusforge)** | [Case Study](projects/focusforge/CASE_STUDY.md) | [Live Demo](https://focusforge-productivity-game.netlify.app/) / Local `5179` | ![FocusForge forge dashboard](docs/images/focusforge-home.png) | FocusForge is a local-first gamified productivity app that turns uninterrupted focus sessions into civilization growth, research unlocks, streaks, activity history, and exportable local progress. It demonstrates product-system design, persistent client state, responsive UX polish, and static deployment readiness. |
 | **[Astra](apps/astra)** | [Case Study](projects/astra/CASE_STUDY.md) | Local `5174` with Express API `3002` | ![Astra AI chat workspace](docs/images/astra-home.png) | Astra is a local AI chat workspace that demonstrates a practical AI application pattern: React frontend, Express API layer, streaming response workflow, Markdown rendering, model configuration, transcript export, and visible API-key status handling. It shows the ability to build a credible AI interface beyond a thin API wrapper. |
 | **[Nexus Play](apps/nexus-play)** | [Case Study](projects/nexus-play/CASE_STUDY.md) | Local `5175` with Express API `3003` | ![Nexus Play storefront](docs/images/nexus-play-home.png) | Nexus Play is a digital game distribution platform demo with storefront browsing, catalog interaction, wishlist, cart, simulated checkout, owned library state, and install queue concepts. It demonstrates product UI thinking, user-state design, and platform-style workflow modeling. |
 | **[LayerForge Studio](apps/layerforge-studio)** | [Case Study](projects/layerforge-studio/CASE_STUDY.md) | [Live Demo](https://atomicdjt.github.io/AI-Project-Portfolio-/) / Local `5176` | ![LayerForge Studio image editor](docs/images/layerforge-studio-home.png) | LayerForge Studio is the strongest frontend implementation: a local-first browser image editor with layered raster documents, Canvas 2D painting, selections, filters, undo, IndexedDB persistence, and PNG/JPEG export. It shows deeper UI architecture, interaction design, and application polish. |
@@ -75,6 +77,7 @@ This repository also includes employer-facing documentation for the strongest pr
 | [RedactReady](projects/redactready-local/CASE_STUDY.md) | Runnable MVP | Strongest privacy/security product; shows local-first architecture, document processing, true redaction, and safety-focused UX. |
 | [LayerForge Studio](projects/layerforge-studio/CASE_STUDY.md) | Runnable MVP | Strongest runnable app and best evidence of product polish. |
 | [OpsPilot](projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) | Runnable MVP | Strongest business-focused micro-SaaS; directly maps to operations, documentation, onboarding, and knowledge-management roles. |
+| [FocusForge](projects/focusforge/CASE_STUDY.md) | Runnable MVP + live demo | Polished local-first productivity game with durable state, timer recovery, progression systems, and static deployment. |
 | [AI Knowledge Operations Toolkit](projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) | Concept / product specification | Best direct match for operations, documentation, support, and knowledge-management roles. |
 | [VariantVision Pro](projects/variantvision-pro/CASE_STUDY.md) | Research-tool concept | Most advanced research-tool concept with responsible scientific scope. |
 | [Amino Acid Research Workbench](projects/amino-acid-research-workbench/CASE_STUDY.md) | Educational tool concept | Strong educational bioinformatics tool with explainable analysis workflows. |
@@ -87,6 +90,7 @@ This repository also includes employer-facing documentation for the strongest pr
 | ScamShield AI | Runnable MVP | Yes | Live / local / Netlify | Yes |
 | RedactReady | Runnable MVP | Yes | Live / local / Netlify-ready | Yes |
 | OpsPilot | Runnable MVP | Yes | Local / Netlify-ready | Yes |
+| FocusForge | Runnable MVP | Yes | Live / local / Netlify | Yes |
 | LayerForge Studio | Runnable MVP | Yes | GitHub Pages / local | Yes |
 | Astra | Runnable MVP | Yes | Local | Yes |
 | Nexus Play | Runnable MVP | Yes | Local | Yes |
@@ -96,7 +100,6 @@ This repository also includes employer-facing documentation for the strongest pr
 | Ecology of Consciousness | Research framework | Documentation-first | Framework docs | Yes |
 | IHOS | Structured self-governance framework | Documentation-first | Framework docs | Yes |
 | FrameEcho | Technical product concept | Documentation-first | Planned / spec | Yes |
-| FocusForge | Product concept | Documentation-first | Planned / spec | Yes |
 
 ## Screenshots
 
@@ -112,6 +115,10 @@ This repository also includes employer-facing documentation for the strongest pr
 | --- | --- |
 | ![Nexus Play storefront](docs/images/nexus-play-home.png) | ![LayerForge Studio image editor](docs/images/layerforge-studio-home.png) |
 
+| FocusForge forge | FocusForge focus session |
+| --- | --- |
+| ![FocusForge forge dashboard](docs/images/focusforge-home.png) | ![FocusForge active focus session](docs/images/focusforge-focus.png) |
+
 ## LayerForge Studio Demo
 
 ![LayerForge Studio demo](docs/images/layerforge-demo.gif)
@@ -123,6 +130,7 @@ apps/
   scamshield-ai/         Runnable local-first scam safety and evidence workspace
   redactready-local/       Runnable local-first privacy redaction engine
   opspilot-ai-operations-toolkit/  Runnable AI operations documentation toolkit
+  focusforge/            Runnable local-first gamified productivity app
   astra/                 Runnable local AI chat application
   nexus-play/            Runnable game storefront and platform demo
   layerforge-studio/     Runnable local-first layered raster image editor
@@ -131,6 +139,7 @@ projects/
   scamshield-ai/                            Consumer-protection cybersecurity case study
   redactready-local/                         Privacy/security redaction case study
   opspilot-ai-operations-toolkit/             Employer-facing case study
+  focusforge/                                Gamified productivity app case study
   layerforge-studio/                         Employer-facing case study
   ai-knowledge-operations-toolkit/           Operations AI workflow case study
   variantvision-pro/                         Bioinformatics research-tool case study
@@ -140,7 +149,6 @@ projects/
   astra/                                     AI chat workspace case study
   nexus-play/                                Game platform case study
   frameecho/                                 Duplicate video finder concept
-  focusforge/                                Focus/productivity concept
 
 docs/
   EMPLOYER_OVERVIEW.md
@@ -166,7 +174,7 @@ npm install
 npm run dev
 ```
 
-Use the same pattern for `apps/scamshield-ai`, `apps/redactready-local`, `apps/nexus-play`, `apps/layerforge-studio`, and `apps/opspilot-ai-operations-toolkit`.
+Use the same pattern for `apps/scamshield-ai`, `apps/redactready-local`, `apps/nexus-play`, `apps/layerforge-studio`, `apps/opspilot-ai-operations-toolkit`, and `apps/focusforge`.
 
 ## Root Convenience Scripts
 
@@ -180,6 +188,7 @@ npm run dev:astra
 npm run dev:nexus
 npm run dev:layerforge
 npm run dev:opspilot
+npm run dev:focusforge
 npm run dev:redactready
 npm run dev:scamshield
 ```
@@ -218,6 +227,7 @@ These projects demonstrate:
 - Astra requires a Gemini API key in `apps/astra/.env.local` for live model responses. The UI still runs and clearly reports configuration status without a key.
 - RedactReady is local-first and does not require an API key or backend upload service for core redaction.
 - ScamShield AI is live on Netlify, runs its analysis locally, and does not require an account, backend, API key, or database.
+- FocusForge is live on Netlify, stores progress in the browser, and does not require an account, backend, API key, or database.
 - Nexus Play uses a local in-memory demo account and simulated checkout. It does not process real payments.
 - LayerForge stores projects locally in browser IndexedDB.
 - Documentation-first projects are intentionally labeled as concepts, frameworks, or specifications when they are not implemented as runnable apps in this repository.

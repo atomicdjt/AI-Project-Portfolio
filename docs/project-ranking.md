@@ -16,7 +16,7 @@
 | 2 | RedactReady | Strong privacy/security product with true redaction, verification, and clear responsible-use boundaries. |
 | 3 | LayerForge Studio | Strong creative-tool runnable product and proof of canvas/frontend implementation. |
 | 4 | AI Knowledge Operations Toolkit | Directly relevant to operations, documentation, support, and enablement roles. |
-| 5 | Astra | Clear AI app implementation with practical model/API workflow. |
+| 5 | FocusForge | Polished live productivity app with local persistence, progression design, timer recovery, and static deployment. |
 
 ## Best for Research/Expert Review
 
@@ -36,7 +36,7 @@
 | 2 | RedactReady | Best privacy/document-security implementation and verification-minded workflow. |
 | 3 | LayerForge Studio | Best creative technical product implementation. |
 | 4 | AI Knowledge Operations Toolkit | Best workflow/product system design. |
-| 5 | Astra | Best AI app implementation. |
+| 5 | FocusForge | Best habit-loop and local-first product-system implementation. |
 
 ## Important Distinction
 

@@ -31,8 +31,8 @@ This repository is best read as evidence of:
 9. **IHOS / Integrated Human Operating System** - structured non-clinical self-governance framework.
 10. **Astra** - local AI chat workspace and model-configuration interface.
 11. **Nexus Play** - game storefront and distribution-platform demo.
-12. **FrameEcho** - content-based duplicate video finder concept.
-13. **FocusForge** - gamified focus/productivity prototype.
+12. **FocusForge** - live local-first gamified productivity app with timer recovery, progression systems, local persistence, and static deployment.
+13. **FrameEcho** - content-based duplicate video finder concept.
 
 ## How Employers Should Interpret This Work
 
@@ -59,4 +59,5 @@ For a fast review, start with:
 4. [`projects/redactready-local/CASE_STUDY.md`](../projects/redactready-local/CASE_STUDY.md) for privacy/security implementation depth.
 5. [`projects/layerforge-studio/CASE_STUDY.md`](../projects/layerforge-studio/CASE_STUDY.md) for creative-tool implementation depth.
 6. [`projects/opspilot-ai-operations-toolkit/CASE_STUDY.md`](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) for the strongest business-focused runnable app.
-7. [`projects/ai-knowledge-operations-toolkit/CASE_STUDY.md`](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.
+7. [`projects/focusforge/CASE_STUDY.md`](../projects/focusforge/CASE_STUDY.md) for a polished local-first productivity app with live static deployment.
+8. [`projects/ai-knowledge-operations-toolkit/CASE_STUDY.md`](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.
