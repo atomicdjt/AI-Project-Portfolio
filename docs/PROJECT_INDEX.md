@@ -28,8 +28,8 @@ A ranked index of the strongest projects in this AI Project Portfolio.
 | [IHOS / Integrated Human Operating System](../projects/ihos-integrated-human-operating-system/CASE_STUDY.md) | Research / self-governance framework | Structured personal operating system | Shows systems thinking, applied structure, and responsible scope-setting. |
 | [Astra](../projects/astra/CASE_STUDY.md) | Runnable MVP | AI chat workspace | Demonstrates AI app configuration, streaming interface patterns, and UX polish. |
 | [Nexus Play](../projects/nexus-play/CASE_STUDY.md) | Runnable MVP | Game storefront demo | Demonstrates product UI, catalog flow, cart/library concepts, and platform-style design. |
+| [FocusForge](../projects/focusforge/CASE_STUDY.md) | Runnable MVP + live demo | Gamified productivity app | Demonstrates local-first state, timer recovery, progression systems, habit-loop design, and responsive product polish. |
 | [FrameEcho](../projects/frameecho/CASE_STUDY.md) | Technical product concept | Duplicate video finder | Good technical concept with clear utility and algorithmic framing. |
-| [FocusForge](../projects/focusforge/CASE_STUDY.md) | Product concept | Focus/productivity prototype | Shows gamification, behavior design, and lightweight product ideation. |
 
 ## Core Skills Demonstrated
 
@@ -52,5 +52,6 @@ A ranked index of the strongest projects in this AI Project Portfolio.
 3. Review [RedactReady](../projects/redactready-local/CASE_STUDY.md) for privacy/security implementation depth.
 4. Review [LayerForge Studio](../projects/layerforge-studio/CASE_STUDY.md) for creative-tool implementation depth.
 5. Review [OpsPilot](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) for the strongest business-focused runnable product.
-6. Review [AI Knowledge Operations Toolkit](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.
-7. Review [Skills Matrix](SKILLS_MATRIX.md) to connect projects to role requirements.
+6. Review [FocusForge](../projects/focusforge/CASE_STUDY.md) for a polished local-first productivity app with live static deployment.
+7. Review [AI Knowledge Operations Toolkit](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.
+8. Review [Skills Matrix](SKILLS_MATRIX.md) to connect projects to role requirements.
