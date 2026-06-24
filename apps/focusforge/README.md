@@ -21,14 +21,14 @@ FocusForge is a mobile-first productivity web app that turns uninterrupted focus
 Requirements: Node.js 20.19+ or 22.12+ and npm.
 
 ```powershell
-cd "C:\Users\Atomic\Documents\New project\focusforge"
+cd "C:\Users\Atomic\Documents\New project\AI-Project-Portfolio-push\apps\focusforge"
 npm install
 npm run dev
 ```
 
-Open [http://127.0.0.1:5173](http://127.0.0.1:5173). If that port is occupied, Vite prints the alternate local URL.
+Open [http://127.0.0.1:5179](http://127.0.0.1:5179). If that port is occupied, Vite prints the alternate local URL.
 
-The verified session for this build is currently running at [http://127.0.0.1:4175](http://127.0.0.1:4175).
+The production preview command serves the built app at [http://127.0.0.1:4179](http://127.0.0.1:4179).
 
 ## Quality Checks
 
@@ -50,6 +50,10 @@ npm run preview
 ## Deployment
 
 Deploy the generated `dist/` directory to any static host, including Netlify, Vercel, Cloudflare Pages, GitHub Pages, or an ordinary web server. The app has no backend routes or secrets.
+
+Portfolio Netlify site:
+
+- [https://focusforge-productivity-game.netlify.app/](https://focusforge-productivity-game.netlify.app/)
 
 Recommended build settings:
 

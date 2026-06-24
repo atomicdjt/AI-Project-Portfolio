@@ -3,7 +3,6 @@ dist/
 coverage/
 playwright-report/
 test-results/
-*.local
-*.log
-.DS_Store
 .netlify/
+*.log
+*.local

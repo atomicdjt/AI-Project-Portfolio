@@ -4,12 +4,12 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
+    "dev": "vite --host 127.0.0.1 --port 5179",
     "build": "vite build",
     "lint": "eslint .",
     "test": "vitest",
     "test:run": "vitest run",
-    "preview": "vite preview --host 127.0.0.1"
+    "preview": "vite preview --host 127.0.0.1 --port 4179"
   },
   "dependencies": {
     "lucide-react": "^1.17.0",
