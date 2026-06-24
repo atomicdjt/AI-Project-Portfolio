@@ -85,6 +85,13 @@ FocusForge demonstrates:
 
 FocusForge is a productivity tool, not medical or mental-health software. It avoids clinical claims, does not diagnose attention issues, and does not upload behavioral data. Progress remains on the user's device unless they choose to export it.
 
+## What This Demonstrates for Employers
+
+- Ability to turn a familiar productivity pattern into a more engaging product loop.
+- Comfort separating core game/focus rules from React UI components.
+- Practical thinking around lightweight habit support, rewards, and user motivation.
+- Testable JavaScript logic for a small but complete interactive app.
+
 ## Future Improvements
 
 - Add optional achievement filters and custom focus tags.

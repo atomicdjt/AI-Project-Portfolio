@@ -9,8 +9,9 @@ The project is built as a polished micro-SaaS product surface rather than a gene
 ## Runnable App
 
 - App: [apps/opspilot-ai-operations-toolkit](../../apps/opspilot-ai-operations-toolkit)
+- Live demo: [opspilot-ai-operations-toolkit.netlify.app](https://opspilot-ai-operations-toolkit.netlify.app/)
 - Default local URL: `http://127.0.0.1:5177/`
-- Deployment: Netlify-ready static Vite app
+- Deployment: production Netlify static Vite app
 
 ## Target Users
 
@@ -40,6 +41,21 @@ The project is built as a polished micro-SaaS product surface rather than a gene
 ## Why It Matters
 
 OpsPilot is directly aligned with technical operations, support operations, documentation, enablement, and product-operations roles. It demonstrates the ability to translate a real business workflow into a runnable, polished product with clear monetization potential.
+
+## What This Demonstrates for Employers
+
+- Ability to model messy operational inputs into structured SOPs, checklists, articles, gaps, and versions.
+- Strong alignment with documentation, onboarding, support operations, and knowledge-management work.
+- Practical product scoping: local deterministic drafting now, backend/AI integrations reserved for roadmap scope.
+- Clear packaging through a runnable app, live demo, case study, screenshots, and deployment configuration.
+
+## What I Would Improve Next
+
+- Add automated tests for document generation, gap detection, and version history.
+- Add an OpenAI-backed endpoint that returns strict validated JSON.
+- Add organization roles, permissions, approval status, and audit history.
+- Add integrations with Notion, Google Drive, Slack, or help desk tools.
+- Add clearer import/export flows for teams migrating existing documentation.
 
 ## Production Roadmap
 

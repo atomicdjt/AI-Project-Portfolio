@@ -4,6 +4,8 @@
 
 OpsPilot is a polished AI operations toolkit for small businesses. It focuses on a monetizable business pain: converting messy internal information into repeatable SOPs, onboarding checklists, help articles, gap reports, and versioned documentation.
 
+Live demo: https://opspilot-ai-operations-toolkit.netlify.app/
+
 ## Target Users
 
 - Small business owners who need repeatable workflows.
@@ -24,7 +26,7 @@ OpsPilot is a polished AI operations toolkit for small businesses. It focuses on
 - Strong document types for SOPs, training items, knowledge articles, gap findings, and versions.
 - Local persistence via `localStorage` for frictionless demos.
 - Plain CSS design system for predictable responsive behavior and no external styling lock-in.
-- Netlify configuration with SPA fallback, production Node version, security headers, and immutable asset caching.
+- Live Netlify deployment with SPA fallback, production Node version, security headers, and immutable asset caching.
 - GitHub Actions workflow validates lint and production build.
 
 ## Core Workflow

@@ -19,7 +19,7 @@ Small businesses often run on scattered emails, half-finished docs, manager memo
 - **Version Tracker**: records generated, edited, saved, and published document snapshots.
 - **Export Workflow**: supports browser PDF export and downloadable Markdown.
 - **Local Persistence**: keeps documents in browser `localStorage` so the product works without a backend.
-- **Deploy Ready**: includes Netlify build config, SPA fallback, security headers, and cache headers.
+- **Live Deployment**: published on Netlify with SPA fallback, security headers, and cache headers.
 
 ## Product Highlights
 
@@ -38,10 +38,14 @@ Small businesses often run on scattered emails, half-finished docs, manager memo
 - Plain CSS design system
 - Netlify static deployment config
 
+## Live Demo
+
+https://opspilot-ai-operations-toolkit.netlify.app/
+
 ## Run Locally
 
 ```bash
-cd "C:\Users\Atomic\Documents\New project\opspilot-ai-operations-toolkit"
+cd "C:\Users\Atomic\Documents\New project\AI-Project-Portfolio-push\apps\opspilot-ai-operations-toolkit"
 npm install
 npm run dev
 ```
@@ -68,7 +72,13 @@ http://127.0.0.1:4177/
 
 ## Deploy
 
-This is a static Vite app. Netlify can deploy it directly from the repository:
+This is a static Vite app deployed at:
+
+```text
+https://opspilot-ai-operations-toolkit.netlify.app/
+```
+
+Netlify can deploy it directly from the repository:
 
 - Build command: `npm run build`
 - Publish directory: `dist`

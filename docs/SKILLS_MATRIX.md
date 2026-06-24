@@ -1,18 +1,19 @@
 # Skills Matrix
 
-| Skill Area | Evidence in Portfolio |
-| --- | --- |
-| React / TypeScript / Vite | RedactReady, OpsPilot, Astra, Nexus Play, LayerForge Studio |
-| Express / Local API Design | Astra and supporting app architecture |
-| Canvas 2D / Browser Graphics | RedactReady, LayerForge Studio |
-| Local Persistence | OpsPilot, LayerForge Studio, AI Knowledge Operations Toolkit concepts |
-| Local-First Privacy / Security UX | RedactReady |
-| PDF / Document Processing | RedactReady |
-| AI Workflow Design | OpsPilot, AI Knowledge Operations Toolkit, Astra, research tools |
-| Knowledge Operations | OpsPilot, AI Knowledge Operations Toolkit |
-| Documentation Systems | OpsPilot, knowledge toolkit, project case studies, SOP/checklist concepts |
-| Research Synthesis | Ecology of Consciousness, IHOS, Amino Acid Workbench, VariantVision |
-| Bioinformatics Literacy | VariantVision Pro, Amino Acid Research Workbench |
-| Product Thinking | RedactReady, OpsPilot, LayerForge Studio, Nexus Play, Astra, FrameEcho, FocusForge |
-| Responsible Scope-Setting | RedactReady, VariantVision, Amino Acid Workbench, IHOS |
-| Employer-Facing Communication | README structure, case studies, project index, overview docs |
+| Skill Area | Concrete Evidence | Strongest Project Examples | Role Relevance | Confidence Level |
+| --- | --- | --- | --- | --- |
+| React / TypeScript / Vite | Multiple runnable workspace apps with Vite builds, componentized React UIs, and TypeScript project checks during builds. | ScamShield AI, RedactReady, OpsPilot, Astra, Nexus Play, LayerForge Studio | Frontend implementation, product prototyping, technical operations tools | High |
+| Express / Local API Design | Local Express-backed API patterns behind Vite frontends for AI chat and platform-style demo flows. | Astra, Nexus Play | AI workflow apps, internal tools, prototype backend integration | Medium |
+| Canvas 2D / Browser Graphics | Canvas rendering, editor tools, document/image review surfaces, and export-oriented workflows. | LayerForge Studio, RedactReady | Interactive frontend tools, creative/product UI, browser document workflows | High |
+| Local Persistence | Browser storage, local project state, versioned case state, and local progression data. | ScamShield AI, LayerForge Studio, OpsPilot, FocusForge | Local-first apps, user workflow continuity, privacy-minded products | High |
+| Local-First Privacy / Security UX | No-upload core workflows, clear sensitive-data warnings, local analysis, strict safety boundaries, and documented limitations. | ScamShield AI, RedactReady | Privacy tooling, security-conscious UX, responsible product design | High |
+| PDF / Document Processing | Browser PDF evidence packet generation, flattened PDF export, PDF.js rendering, redaction reporting, and verification concepts. | ScamShield AI, RedactReady | Document automation, privacy workflows, operations reporting | High |
+| Testing and Validation | Root lint/build scripts, ScamShield typecheck, Vitest coverage in selected apps, Playwright support in selected apps, and CI workflow. | ScamShield AI, RedactReady, FocusForge | Quality evidence, CI literacy, review-ready engineering hygiene | Medium |
+| AI Workflow Design | Structured workflows for scam review, operations documentation, local chat, and knowledge operations. | ScamShield AI, OpsPilot, Astra, AI Knowledge Operations Toolkit | AI workflow specialist, product operations, technical operations | High |
+| Knowledge Operations | SOP generation, checklist building, knowledge base article workflows, project indexing, and employer-facing review docs. | OpsPilot, AI Knowledge Operations Toolkit, recruiter docs | Documentation coordinator, knowledge base coordinator, enablement roles | High |
+| Documentation Systems | Case studies, verification guide, project index, skills matrix, recruiter quick review, and technical-depth summaries. | Repository docs, OpsPilot, ScamShield AI, RedactReady | Hiring review, stakeholder communication, technical writing | High |
+| Research Synthesis | Structured research/framework documents and scoped research-tool concepts. | Ecology of Consciousness, IHOS, Amino Acid Workbench, VariantVision Pro | Research support, analyst-style synthesis, concept development | Medium |
+| Bioinformatics Literacy | Bioinformatics-oriented product concepts and educational analysis workflows, clearly separated from clinical claims. | VariantVision Pro, Amino Acid Research Workbench | Scientific tooling awareness, responsible technical framing | Medium |
+| Product Thinking | User workflows, product scope, limitations, demos, screenshots, case studies, and future-improvement sections. | ScamShield AI, RedactReady, OpsPilot, LayerForge Studio, Nexus Play, FocusForge | Product operations, UX/product prototyping, stakeholder-ready demos | High |
+| Responsible Scope-Setting | Explicit non-goals, limitations, planned improvements, and avoidance of compliance/medical/legal/fraud determinations. | ScamShield AI, RedactReady, VariantVision Pro, Amino Acid Workbench, IHOS | Trustworthy communication, risk-aware product work | High |
+| Employer-Facing Communication | Fast review links, recruiter guide, validation guide, case studies, screenshots, project rankings, and role-fit framing. | Root README, docs folder, strongest case studies | Recruiter readability, portfolio polish, hiring-manager review | High |

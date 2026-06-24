@@ -100,6 +100,21 @@ Coverage includes detector behavior, text replacement export, verification logic
 - Flattened PDFs lose selectable text and accessibility tags.
 - DOCX/XLSX layout-preserving redaction is not implemented.
 
+## What This Demonstrates for Employers
+
+- Ability to build a practical privacy/security workflow around a real document-handling risk.
+- Careful product scoping around redaction, verification, and human review.
+- Browser document processing with React, TypeScript, PDF.js, `pdf-lib`, Canvas, Zustand, Vitest, and Playwright.
+- Clear communication about what the tool does and does not guarantee.
+
+## What I Would Improve Next
+
+- Add OCR support for scanned PDFs and image-only documents.
+- Improve text-to-visual-box mapping for complex PDF layouts.
+- Add optional face/signature detection with explicit human confirmation.
+- Add larger synthetic fixture sets for regression testing.
+- Add accessibility-preserving export options where feasible.
+
 ## Why This Matters to Employers
 
 RedactReady shows the ability to build a credible tool around a real risk, scope hard problems honestly, design for nontechnical users, and package the result with tests, documentation, screenshots, and deployment-ready configuration.

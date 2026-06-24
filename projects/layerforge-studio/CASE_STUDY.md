@@ -36,6 +36,13 @@ The project is designed around a local-first creative workspace with layers, can
 
 LayerForge is the best project to show first to an employer because it looks and behaves like a serious product prototype rather than a simple exercise.
 
+## What This Demonstrates for Employers
+
+- Ability to build an interaction-heavy frontend beyond a basic form or dashboard.
+- Comfort with Canvas rendering, editor state, tools, history, import/export, and local persistence.
+- Product polish around a workspace-style UI with professional creative-tool conventions.
+- Understanding of browser-based application architecture and deployment constraints.
+
 ## Future Improvements
 
 - Add more precise selection tools.
@@ -44,3 +51,11 @@ LayerForge is the best project to show first to an employer because it looks and
 - Add keyboard shortcuts.
 - Add a test suite for core editor actions.
 - Add a short demo video or animated GIF.
+
+## What I Would Improve Next
+
+- Add automated tests for core editor commands, history, and persistence.
+- Improve keyboard shortcuts and tool discoverability.
+- Add richer layer blending and non-destructive mask workflows.
+- Add import/export edge-case handling for large images.
+- Add a short walkthrough video focused on the editor workflow.

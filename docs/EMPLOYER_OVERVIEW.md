@@ -23,7 +23,7 @@ This repository is best read as evidence of:
 1. **ScamShield AI** - live local-first consumer-protection app with explainable scam-risk signals, evidence tools, accessible safety guidance, and official reporting resources.
 2. **RedactReady** - local-first privacy redaction engine demonstrating strong privacy/security product implementation.
 3. **LayerForge Studio** - browser-based image editor demonstrating strong runnable application polish.
-4. **OpsPilot** - runnable AI operations micro-SaaS for SOPs, onboarding, knowledge base generation, gap detection, and version tracking.
+4. **OpsPilot** - live AI operations micro-SaaS for SOPs, onboarding, knowledge base generation, gap detection, and version tracking.
 5. **AI Knowledge Operations Toolkit** - operations-focused AI workflow system with strong employer relevance.
 6. **VariantVision Pro** - bioinformatics/variant interpretation workbench concept with advanced research-tool positioning.
 7. **Amino Acid Research Workbench** - educational bioinformatics system with explainable analysis workflows.
@@ -58,6 +58,6 @@ For a fast review, start with:
 3. [`projects/scamshield-ai/CASE_STUDY.md`](../projects/scamshield-ai/CASE_STUDY.md) for the strongest complete public-interest cybersecurity workflow.
 4. [`projects/redactready-local/CASE_STUDY.md`](../projects/redactready-local/CASE_STUDY.md) for privacy/security implementation depth.
 5. [`projects/layerforge-studio/CASE_STUDY.md`](../projects/layerforge-studio/CASE_STUDY.md) for creative-tool implementation depth.
-6. [`projects/opspilot-ai-operations-toolkit/CASE_STUDY.md`](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) for the strongest business-focused runnable app.
+6. [`projects/opspilot-ai-operations-toolkit/CASE_STUDY.md`](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) and the [live OpsPilot demo](https://opspilot-ai-operations-toolkit.netlify.app/) for the strongest business-focused runnable app.
 7. [`projects/focusforge/CASE_STUDY.md`](../projects/focusforge/CASE_STUDY.md) for a polished local-first productivity app with live static deployment.
 8. [`projects/ai-knowledge-operations-toolkit/CASE_STUDY.md`](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.
