@@ -29,5 +29,11 @@ jobs:
       - name: Lint apps
         run: npm run lint:apps
 
+      - name: Typecheck apps
+        run: npm run typecheck:all
+
+      - name: Test apps
+        run: npm run test:all
+
       - name: Build apps
         run: npm run build:all

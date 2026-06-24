@@ -2,7 +2,14 @@ node_modules
 dist
 .env
 .env.local
+.env.*
 dev-server.log
 dev-server.err.log
 .DS_Store
 Thumbs.db
+.netlify
+.vercel
+.turbo
+coverage
+playwright-report
+test-results

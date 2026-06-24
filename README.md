@@ -10,6 +10,16 @@ A curated portfolio of AI-assisted software projects, product prototypes, workfl
 ![Micro SaaS](https://img.shields.io/badge/Micro--SaaS-Operations-14b8a6)
 ![Privacy](https://img.shields.io/badge/Privacy-Local--First-0f766e)
 ![Consumer Safety](https://img.shields.io/badge/Consumer_Safety-Scam_Prevention-b45309)
+[![Portfolio CI](https://github.com/atomicdjt/AI-Project-Portfolio-/actions/workflows/ci.yml/badge.svg)](https://github.com/atomicdjt/AI-Project-Portfolio-/actions/workflows/ci.yml)
+
+## Fast Review Links
+
+- [Recruiter Quick Review](docs/recruiter-quick-review.md)
+- [Verification Guide](docs/verification.md)
+- [Technical Depth](docs/technical-depth.md)
+- [Skills Matrix](docs/SKILLS_MATRIX.md)
+- [Employer Overview](docs/EMPLOYER_OVERVIEW.md)
+- [Project Index](docs/PROJECT_INDEX.md)
 
 ## Start Here for Recruiters and Hiring Managers
 
@@ -20,7 +30,7 @@ This portfolio is designed to be reviewed quickly. The strongest evidence is con
 1. Start with **[ScamShield AI](apps/scamshield-ai)** for a complete public-interest cybersecurity workflow and live deployment.
 2. Review **[RedactReady](apps/redactready-local)** for privacy/security document processing.
 3. Review **[LayerForge Studio](apps/layerforge-studio)** for frontend and Canvas-based application polish.
-4. Review **[OpsPilot](apps/opspilot-ai-operations-toolkit)** for the clearest connection to operations, documentation, onboarding, and knowledge-management roles.
+4. Review **[OpsPilot](apps/opspilot-ai-operations-toolkit)** and its **[live demo](https://opspilot-ai-operations-toolkit.netlify.app/)** for the clearest connection to operations, documentation, onboarding, and knowledge-management roles.
 5. Skim the **[Employer Overview](docs/EMPLOYER_OVERVIEW.md)**, **[Project Index](docs/PROJECT_INDEX.md)**, and **[Skills Matrix](docs/SKILLS_MATRIX.md)** to connect the work to role requirements.
 
 This repository is not presented as a claim of senior engineering experience. It is presented as evidence of practical initiative, AI-assisted execution, product judgment, documentation discipline, and the ability to turn ambiguous ideas into structured working systems.
@@ -51,7 +61,7 @@ This portfolio is strongest when read as evidence of:
 | --- | --- | --- | --- | --- |
 | **[ScamShield AI](apps/scamshield-ai)** | [Case Study](projects/scamshield-ai/CASE_STUDY.md) | [Live Demo](https://scamshield-ai-safety.netlify.app/) / Local `5178` | ![ScamShield AI assessment workspace](docs/images/scamshield-assessment.png) | ScamShield AI is a local-first consumer-protection workflow for assessing suspicious messages, preserving evidence, building a timeline, choosing safer next steps, locating official reporting channels, and exporting a structured PDF packet. It demonstrates accessible safety UX, deterministic explainable analysis, privacy-first architecture, and production deployment. |
 | **[RedactReady](apps/redactready-local)** | [Case Study](projects/redactready-local/CASE_STUDY.md) | [Live Demo](https://redactready-local.netlify.app/) / Local `5173` | ![RedactReady review workspace](docs/images/redactready-review-workspace.png) | RedactReady is the strongest privacy/security product in the portfolio: a local-first redaction MVP for PDFs, images, TXT, and CSV files with detector review, manual redaction boxes, flattened exports, and verification reporting. It demonstrates product judgment around sensitive documents, responsible UX, and practical threat-model boundaries. |
-| **[OpsPilot](apps/opspilot-ai-operations-toolkit)** | [Case Study](projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) | Netlify-ready / Local `5177` | ![OpsPilot operations dashboard](docs/images/opspilot-home.png) | OpsPilot is an AI operations toolkit that turns rough notes, policies, tickets, and FAQs into SOPs, onboarding checklists, knowledge base articles, gap reports, and versioned documentation. It is the clearest bridge between this portfolio and technical operations, enablement, documentation, and knowledge-management roles. |
+| **[OpsPilot](apps/opspilot-ai-operations-toolkit)** | [Case Study](projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) | [Live Demo](https://opspilot-ai-operations-toolkit.netlify.app/) / Local `5177` | ![OpsPilot operations dashboard](docs/images/opspilot-home.png) | OpsPilot is an AI operations toolkit that turns rough notes, policies, tickets, and FAQs into SOPs, onboarding checklists, knowledge base articles, gap reports, and versioned documentation. It is the clearest bridge between this portfolio and technical operations, enablement, documentation, and knowledge-management roles. |
 | **[Astra](apps/astra)** | [Case Study](projects/astra/CASE_STUDY.md) | Local `5174` with Express API `3002` | ![Astra AI chat workspace](docs/images/astra-home.png) | Astra is a local AI chat workspace that demonstrates a practical AI application pattern: React frontend, Express API layer, streaming response workflow, Markdown rendering, model configuration, transcript export, and visible API-key status handling. It shows the ability to build a credible AI interface beyond a thin API wrapper. |
 | **[Nexus Play](apps/nexus-play)** | [Case Study](projects/nexus-play/CASE_STUDY.md) | Local `5175` with Express API `3003` | ![Nexus Play storefront](docs/images/nexus-play-home.png) | Nexus Play is a digital game distribution platform demo with storefront browsing, catalog interaction, wishlist, cart, simulated checkout, owned library state, and install queue concepts. It demonstrates product UI thinking, user-state design, and platform-style workflow modeling. |
 | **[LayerForge Studio](apps/layerforge-studio)** | [Case Study](projects/layerforge-studio/CASE_STUDY.md) | [Live Demo](https://atomicdjt.github.io/AI-Project-Portfolio-/) / Local `5176` | ![LayerForge Studio image editor](docs/images/layerforge-studio-home.png) | LayerForge Studio is the strongest frontend implementation: a local-first browser image editor with layered raster documents, Canvas 2D painting, selections, filters, undo, IndexedDB persistence, and PNG/JPEG export. It shows deeper UI architecture, interaction design, and application polish. |
@@ -74,7 +84,7 @@ This repository also includes employer-facing documentation for the strongest pr
 | [ScamShield AI](projects/scamshield-ai/CASE_STUDY.md) | Runnable MVP + live demo | Complete public-interest safety workflow with explainable risk signals, caregiver/plain-language modes, evidence organization, official reporting guidance, and PDF export. |
 | [RedactReady](projects/redactready-local/CASE_STUDY.md) | Runnable MVP | Strongest privacy/security product; shows local-first architecture, document processing, true redaction, and safety-focused UX. |
 | [LayerForge Studio](projects/layerforge-studio/CASE_STUDY.md) | Runnable MVP | Strongest runnable app and best evidence of product polish. |
-| [OpsPilot](projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) | Runnable MVP | Strongest business-focused micro-SaaS; directly maps to operations, documentation, onboarding, and knowledge-management roles. |
+| [OpsPilot](projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) | Runnable MVP + live demo | Strongest business-focused micro-SaaS; directly maps to operations, documentation, onboarding, and knowledge-management roles. |
 | [AI Knowledge Operations Toolkit](projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) | Concept / product specification | Best direct match for operations, documentation, support, and knowledge-management roles. |
 | [VariantVision Pro](projects/variantvision-pro/CASE_STUDY.md) | Research-tool concept | Most advanced research-tool concept with responsible scientific scope. |
 | [Amino Acid Research Workbench](projects/amino-acid-research-workbench/CASE_STUDY.md) | Educational tool concept | Strong educational bioinformatics tool with explainable analysis workflows. |
@@ -85,8 +95,8 @@ This repository also includes employer-facing documentation for the strongest pr
 | Project | Current Form | Code in Repo? | Demo Type | Case Study? |
 | --- | --- | --- | --- | --- |
 | ScamShield AI | Runnable MVP | Yes | Live / local / Netlify | Yes |
-| RedactReady | Runnable MVP | Yes | Live / local / Netlify-ready | Yes |
-| OpsPilot | Runnable MVP | Yes | Local / Netlify-ready | Yes |
+| RedactReady | Runnable MVP | Yes | Live / local / Netlify | Yes |
+| OpsPilot | Runnable MVP | Yes | Live / local / Netlify | Yes |
 | LayerForge Studio | Runnable MVP | Yes | GitHub Pages / local | Yes |
 | Astra | Runnable MVP | Yes | Local | Yes |
 | Nexus Play | Runnable MVP | Yes | Local | Yes |
@@ -166,7 +176,7 @@ npm install
 npm run dev
 ```
 
-Use the same pattern for `apps/scamshield-ai`, `apps/redactready-local`, `apps/nexus-play`, `apps/layerforge-studio`, and `apps/opspilot-ai-operations-toolkit`.
+Use the same pattern for `apps/scamshield-ai`, `apps/redactready-local`, `apps/nexus-play`, `apps/layerforge-studio`, `apps/opspilot-ai-operations-toolkit`, and `apps/focusforge`.
 
 ## Root Convenience Scripts
 
@@ -176,22 +186,29 @@ From the repository root:
 npm run install:all
 npm run build:all
 npm run lint:apps
+npm run typecheck:all
+npm run test:all
+npm run verify
 npm run dev:astra
 npm run dev:nexus
 npm run dev:layerforge
 npm run dev:opspilot
 npm run dev:redactready
 npm run dev:scamshield
+npm run dev:focusforge
 ```
 
-## Evaluation
+## Validation
 
-Use these commands from the repository root to validate the portfolio apps before publishing or reviewing:
+Use [docs/verification.md](docs/verification.md) for the current validation table, supported app scripts, and manual verification notes. The main portfolio-level commands are:
 
 ```bash
 npm install
 npm run lint:apps
+npm run typecheck:all
+npm run test:all
 npm run build:all
+npm run verify
 ```
 
 LayerForge's GitHub Pages build uses the same app code with a Pages-only Vite base path:
@@ -218,6 +235,7 @@ These projects demonstrate:
 - Astra requires a Gemini API key in `apps/astra/.env.local` for live model responses. The UI still runs and clearly reports configuration status without a key.
 - RedactReady is local-first and does not require an API key or backend upload service for core redaction.
 - ScamShield AI is live on Netlify, runs its analysis locally, and does not require an account, backend, API key, or database.
+- OpsPilot is live on Netlify, runs its drafting workflow locally in the browser, and does not require an account, backend, API key, or database.
 - Nexus Play uses a local in-memory demo account and simulated checkout. It does not process real payments.
 - LayerForge stores projects locally in browser IndexedDB.
 - Documentation-first projects are intentionally labeled as concepts, frameworks, or specifications when they are not implemented as runnable apps in this repository.

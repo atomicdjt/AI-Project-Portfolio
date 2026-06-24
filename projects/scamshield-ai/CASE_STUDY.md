@@ -67,3 +67,18 @@ The release was validated with:
 ## Portfolio Value
 
 ScamShield AI demonstrates end-to-end product execution across problem definition, accessibility, consumer safety, explainable rule-based analysis, privacy architecture, structured state, report generation, testing, security review, documentation, and production deployment. It is designed as a credible public-interest MVP with clear limitations rather than an automated authority on fraud.
+
+## What This Demonstrates for Employers
+
+- Ability to turn a stressful consumer-safety problem into a structured, accessible workflow.
+- Practical privacy architecture with no backend, account system, telemetry, or runtime network access.
+- Strong validation habits across linting, typechecking, unit tests, Playwright smoke tests, screenshots, and deployment checks.
+- Product judgment around sensitive domains, including clear limits and safer user guidance.
+
+## What I Would Improve Next
+
+- Add periodic review of official reporting-resource links and copy.
+- Add additional accessibility testing with screen readers and keyboard-only workflows.
+- Add more synthetic demo cases covering multilingual, phone-call, and marketplace scam patterns.
+- Add import/export for case JSON so users can back up local work without an account.
+- Add an optional organization-admin variant for libraries, clinics, or caregiver support teams.

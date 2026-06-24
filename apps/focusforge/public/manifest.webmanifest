@@ -1,0 +1,17 @@
+{
+  "name": "FocusForge",
+  "short_name": "FocusForge",
+  "description": "A productivity-powered idle civilization game.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090806",
+  "theme_color": "#0b0907",
+  "icons": [
+    {
+      "src": "/focusforge-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
