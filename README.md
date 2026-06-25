@@ -79,6 +79,17 @@ This repository also includes employer-facing documentation for the strongest pr
 - [Project Ranking](docs/project-ranking.md)
 - [Portfolio Positioning](docs/portfolio-positioning.md)
 
+## Additional Materials
+
+Supporting materials that are useful for deeper review, but should not clutter the repository root:
+
+- [Dairy autoimmunity research materials](docs/research/dairy-autoimmunity/)
+- [Job-search materials](docs/job-search/)
+- [FocusForge prompt materials](prompts/focusforge/)
+- [GitHub profile README setup](docs/github-profile/)
+- [GitHub repository settings checklist](docs/github-repo-settings.md)
+- [Root loose-file archive](_archive/root-loose-files/)
+
 ## Strongest Case Studies
 
 | Project | Status | Why Review It |
@@ -164,12 +175,20 @@ docs/
   EMPLOYER_OVERVIEW.md
   PROJECT_INDEX.md
   SKILLS_MATRIX.md
+  PORTS.md
+  github-profile/
+  job-search/
   hiring-summary.md
   project-ranking.md
   portfolio-positioning.md
+  research/
+
+prompts/
+  focusforge/
 
 _archive/
   README.md
+  root-loose-files/
 ```
 
 Each runnable application is self-contained with its own `package.json`, README, source code, and lockfile. Root-level documentation has been consolidated into `docs/` to keep the public repository clean and easy to review.
