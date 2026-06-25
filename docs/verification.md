@@ -29,5 +29,6 @@ npm run verify
 
 ## Known Validation Issues
 
-- `npm install` completed successfully on 2026-06-24, but npm reported 3 audit findings: 2 moderate and 1 high. Dependency remediation was not attempted in this polish pass because the request avoided dependency upgrades unless needed for existing scripts.
+- `npm install` completed successfully on 2026-06-25, but npm reported 3 audit findings: 2 moderate and 1 high. Dependency remediation was not attempted in this polish pass because the request avoided dependency upgrades unless needed for existing scripts.
+- `npm run lint:apps`, `npm run typecheck:all`, `npm run test:all`, `npm run build:all`, and `npm run verify` completed successfully on 2026-06-25 after the GitHub profile and repository cleanup pass.
 - `npm run build:all` and `npm run verify` completed successfully, but Vite reported a non-blocking warning about chunks larger than 500 kB after minification. Bundle splitting is a future optimization, not a current validation failure.
