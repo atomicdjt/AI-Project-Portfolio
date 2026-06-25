@@ -66,9 +66,9 @@ Manual steps:
 5. Check GitHub Pages after the rename. The current Pages path uses the repository name, so verify `https://atomicdjt.github.io/AI-Project-Portfolio/`.
 6. Update LinkedIn, resume links, portfolio links, job applications, and any pinned profile links that use the old URL.
 
-## Repository References To Update After Rename
+## Repository References Updated Before Rename
 
-After renaming, update these references from `AI-Project-Portfolio-` to `AI-Project-Portfolio`:
+These repository-internal references already use the preferred `AI-Project-Portfolio` name and Pages path:
 
 - `README.md`
 - `docs/recruiter-quick-review.md`
@@ -76,6 +76,5 @@ After renaming, update these references from `AI-Project-Portfolio-` to `AI-Proj
 - `apps/layerforge-studio/README.md`
 - `apps/layerforge-studio/vite.config.ts`
 - `docs/github-profile/README.md`
-- `.github/workflows/deploy-layerforge.yml` if the Pages path or repository name is referenced there in the future.
 
-Do not update Netlify URLs unless the Netlify site itself changes.
+`.github/workflows/deploy-layerforge.yml` does not hard-code the repository name. Do not update Netlify URLs unless the Netlify site itself changes.

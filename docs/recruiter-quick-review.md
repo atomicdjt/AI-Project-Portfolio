@@ -14,7 +14,7 @@
 | ScamShield AI | https://scamshield-ai-safety.netlify.app/ | Complete public-interest safety workflow with privacy-first architecture and exportable evidence packet. |
 | RedactReady | https://redactready-local.netlify.app/ | Privacy/security workflow for local document redaction and review. |
 | OpsPilot | https://opspilot-ai-operations-toolkit.netlify.app/ | Business operations toolkit aligned with documentation, onboarding, and knowledge-management work. |
-| LayerForge Studio | https://atomicdjt.github.io/AI-Project-Portfolio-/ | Browser-based Canvas editor with layered document concepts and local persistence. |
+| LayerForge Studio | https://atomicdjt.github.io/AI-Project-Portfolio/ | Browser-based Canvas editor with layered document concepts and local persistence. |
 
 ## Best Code Samples to Inspect
 

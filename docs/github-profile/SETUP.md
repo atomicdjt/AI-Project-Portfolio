@@ -32,14 +32,4 @@ Manual steps:
 
 ## After Repository Rename
 
-If the portfolio repository is renamed from `AI-Project-Portfolio-` to `AI-Project-Portfolio`, update the links in the profile README from:
-
-```text
-https://github.com/atomicdjt/AI-Project-Portfolio-
-```
-
-to:
-
-```text
-https://github.com/atomicdjt/AI-Project-Portfolio
-```
+The profile README template in this folder already uses the preferred `AI-Project-Portfolio` repository URL. After the portfolio repository is renamed from `AI-Project-Portfolio-` to `AI-Project-Portfolio`, confirm the copied profile links resolve on GitHub.

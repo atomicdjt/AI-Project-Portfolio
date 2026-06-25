@@ -10,7 +10,7 @@ A curated portfolio of AI-assisted software projects, product prototypes, workfl
 ![Micro SaaS](https://img.shields.io/badge/Micro--SaaS-Operations-14b8a6)
 ![Privacy](https://img.shields.io/badge/Privacy-Local--First-0f766e)
 ![Consumer Safety](https://img.shields.io/badge/Consumer_Safety-Scam_Prevention-b45309)
-[![Portfolio CI](https://github.com/atomicdjt/AI-Project-Portfolio-/actions/workflows/ci.yml/badge.svg)](https://github.com/atomicdjt/AI-Project-Portfolio-/actions/workflows/ci.yml)
+[![Portfolio CI](https://github.com/atomicdjt/AI-Project-Portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/atomicdjt/AI-Project-Portfolio/actions/workflows/ci.yml)
 
 ## Fast Review Links
 
@@ -66,7 +66,7 @@ This portfolio is strongest when read as evidence of:
 | **[FocusForge](apps/focusforge)** | [Case Study](projects/focusforge/CASE_STUDY.md) | [Live Demo](https://focusforge-productivity-game.netlify.app/) / Local `5179` | ![FocusForge forge dashboard](docs/images/focusforge-home.png) | FocusForge is a local-first gamified productivity app that turns uninterrupted focus sessions into civilization growth, research unlocks, streaks, activity history, and exportable local progress. It demonstrates product-system design, persistent client state, responsive UX polish, and static deployment readiness. |
 | **[Astra](apps/astra)** | [Case Study](projects/astra/CASE_STUDY.md) | Local `5174` with Express API `3002` | ![Astra AI chat workspace](docs/images/astra-home.png) | Astra is a local AI chat workspace that demonstrates a practical AI application pattern: React frontend, Express API layer, streaming response workflow, Markdown rendering, model configuration, transcript export, and visible API-key status handling. It shows the ability to build a credible AI interface beyond a thin API wrapper. |
 | **[Nexus Play](apps/nexus-play)** | [Case Study](projects/nexus-play/CASE_STUDY.md) | Local `5175` with Express API `3003` | ![Nexus Play storefront](docs/images/nexus-play-home.png) | Nexus Play is a digital game distribution platform demo with storefront browsing, catalog interaction, wishlist, cart, simulated checkout, owned library state, and install queue concepts. It demonstrates product UI thinking, user-state design, and platform-style workflow modeling. |
-| **[LayerForge Studio](apps/layerforge-studio)** | [Case Study](projects/layerforge-studio/CASE_STUDY.md) | [Live Demo](https://atomicdjt.github.io/AI-Project-Portfolio-/) / Local `5176` | ![LayerForge Studio image editor](docs/images/layerforge-studio-home.png) | LayerForge Studio is the strongest frontend implementation: a local-first browser image editor with layered raster documents, Canvas 2D painting, selections, filters, undo, IndexedDB persistence, and PNG/JPEG export. It shows deeper UI architecture, interaction design, and application polish. |
+| **[LayerForge Studio](apps/layerforge-studio)** | [Case Study](projects/layerforge-studio/CASE_STUDY.md) | [Live Demo](https://atomicdjt.github.io/AI-Project-Portfolio/) / Local `5176` | ![LayerForge Studio image editor](docs/images/layerforge-studio-home.png) | LayerForge Studio is the strongest frontend implementation: a local-first browser image editor with layered raster documents, Canvas 2D painting, selections, filters, undo, IndexedDB persistence, and PNG/JPEG export. It shows deeper UI architecture, interaction design, and application polish. |
 
 ## Employer-Facing Project Guides
 
