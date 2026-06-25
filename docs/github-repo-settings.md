@@ -68,13 +68,13 @@ Manual steps:
 
 ## Repository References Updated Before Rename
 
-These repository-internal references already use the preferred `AI-Project-Portfolio` name and Pages path:
+These repository-internal references already use the preferred `AI-Project-Portfolio` name and Pages path where they link to GitHub:
 
 - `README.md`
 - `docs/recruiter-quick-review.md`
 - `docs/PORTS.md`
 - `apps/layerforge-studio/README.md`
-- `apps/layerforge-studio/vite.config.ts`
+- `apps/layerforge-studio/vite.config.ts` uses a relative GitHub Pages base so the deployment works both before and after the repository rename.
 - `docs/github-profile/README.md`
 
 `.github/workflows/deploy-layerforge.yml` does not hard-code the repository name. Do not update Netlify URLs unless the Netlify site itself changes.
