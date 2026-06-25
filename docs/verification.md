@@ -32,4 +32,5 @@ npm run verify
 - `npm install` completed successfully on 2026-06-25, but npm reported 3 audit findings: 2 moderate and 1 high. Dependency remediation was not attempted in this polish pass because the request avoided dependency upgrades unless needed for existing scripts.
 - `npm run lint:apps`, `npm run typecheck:all`, `npm run test:all`, `npm run build:all`, and `npm run verify` completed successfully on 2026-06-25 after the GitHub profile and repository cleanup pass.
 - `npm install`, `npm run lint:apps`, `npm run typecheck:all`, `npm run test:all`, `npm run build:all`, `npm run verify`, stale-reference searches, and Markdown relative-link checks completed successfully on 2026-06-25 after the repository rename-preparation updates.
+- LayerForge Studio uses a relative GitHub Pages asset base for deployment so the current Pages site remains usable before the repository rename and continues to work after the rename.
 - `npm run build:all` and `npm run verify` completed successfully, but Vite reported a non-blocking warning about chunks larger than 500 kB after minification. Bundle splitting is a future optimization, not a current validation failure.

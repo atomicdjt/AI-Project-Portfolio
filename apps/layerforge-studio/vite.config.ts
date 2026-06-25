@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
-const base = process.env.GITHUB_PAGES ? '/AI-Project-Portfolio/' : '/'
+const base = process.env.GITHUB_PAGES ? './' : '/'
 
 export default defineConfig({
   base,
