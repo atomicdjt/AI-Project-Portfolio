@@ -10,8 +10,10 @@
 | OpsPilot | `http://127.0.0.1:5177/` | None |
 | ScamShield AI | `http://127.0.0.1:5178/` | None |
 | FocusForge | `http://127.0.0.1:5179/` | None |
+| RedactReady Pro | `http://127.0.0.1:5181/` | None |
 
 LayerForge Studio is assigned to `5176` because an unrelated stale local process may hold `5173` on this machine.
 The Portfolio Hub is the portfolio's GitHub Pages root: `https://atomicdjt.github.io/AI-Project-Portfolio/`.
 LayerForge Studio is preserved under the GitHub Pages subpath: `https://atomicdjt.github.io/AI-Project-Portfolio/layerforge-studio/`.
 FocusForge is assigned to `5179` to keep it separate from the existing local apps.
+RedactReady Pro is assigned to `5181` to keep it separate from the earlier RedactReady app on `5173`.

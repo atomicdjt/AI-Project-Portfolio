@@ -20,10 +20,11 @@ This repository is best read as evidence of:
 
 ## Best Projects to Review First
 
-1. **ScamShield AI** - live local-first consumer-protection app with explainable scam-risk signals, evidence tools, accessible safety guidance, and official reporting resources.
-2. **RedactReady** - local-first privacy redaction engine demonstrating strong privacy/security product implementation.
-3. **LayerForge Studio** - browser-based image editor demonstrating strong runnable application polish.
-4. **OpsPilot** - live AI operations micro-SaaS for SOPs, onboarding, knowledge base generation, gap detection, and version tracking.
+1. **RedactReady Pro** - flagship live local-first document intelligence OS with sensitive-information detection, HRI scoring, evidence mapping, redaction, and reports.
+2. **ScamShield AI** - live local-first consumer-protection app with explainable scam-risk signals, evidence tools, accessible safety guidance, and official reporting resources.
+3. **RedactReady** - local-first privacy redaction engine demonstrating strong privacy/security product implementation.
+4. **LayerForge Studio** - browser-based image editor demonstrating strong runnable application polish.
+5. **OpsPilot** - live AI operations micro-SaaS for SOPs, onboarding, knowledge base generation, gap detection, and version tracking.
 5. **AI Knowledge Operations Toolkit** - operations-focused AI workflow system with strong employer relevance.
 6. **VariantVision Pro** - bioinformatics/variant interpretation workbench concept with advanced research-tool positioning.
 7. **Amino Acid Research Workbench** - educational bioinformatics system with explainable analysis workflows.
@@ -56,9 +57,10 @@ For a fast review, start with:
 1. [Public Portfolio Hub](https://atomicdjt.github.io/AI-Project-Portfolio/) for the fastest live review path.
 2. [`README.md`](../README.md) for the repository overview.
 3. [`PROJECT_INDEX.md`](PROJECT_INDEX.md) for the full ranked project list.
-4. [`projects/scamshield-ai/CASE_STUDY.md`](../projects/scamshield-ai/CASE_STUDY.md) for the strongest complete public-interest cybersecurity workflow.
-5. [`projects/redactready-local/CASE_STUDY.md`](../projects/redactready-local/CASE_STUDY.md) for privacy/security implementation depth.
-6. [`projects/layerforge-studio/CASE_STUDY.md`](../projects/layerforge-studio/CASE_STUDY.md) for creative-tool implementation depth.
-7. [`projects/opspilot-ai-operations-toolkit/CASE_STUDY.md`](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) and the [live OpsPilot demo](https://opspilot-ai-operations-toolkit.netlify.app/) for the strongest business-focused runnable app.
-8. [`projects/focusforge/CASE_STUDY.md`](../projects/focusforge/CASE_STUDY.md) for a polished local-first productivity app with live static deployment.
-9. [`projects/ai-knowledge-operations-toolkit/CASE_STUDY.md`](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.
+4. [`projects/redactready-pro-hri-os/CASE_STUDY.md`](../projects/redactready-pro-hri-os/CASE_STUDY.md) and the [live RedactReady Pro demo](https://redactready-pro-hri-os.netlify.app/) for the flagship privacy/document intelligence product.
+5. [`projects/scamshield-ai/CASE_STUDY.md`](../projects/scamshield-ai/CASE_STUDY.md) for the strongest complete public-interest cybersecurity workflow.
+6. [`projects/redactready-local/CASE_STUDY.md`](../projects/redactready-local/CASE_STUDY.md) for privacy/security implementation depth.
+7. [`projects/layerforge-studio/CASE_STUDY.md`](../projects/layerforge-studio/CASE_STUDY.md) for creative-tool implementation depth.
+8. [`projects/opspilot-ai-operations-toolkit/CASE_STUDY.md`](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) and the [live OpsPilot demo](https://opspilot-ai-operations-toolkit.netlify.app/) for the strongest business-focused runnable app.
+9. [`projects/focusforge/CASE_STUDY.md`](../projects/focusforge/CASE_STUDY.md) for a polished local-first productivity app with live static deployment.
+10. [`projects/ai-knowledge-operations-toolkit/CASE_STUDY.md`](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.

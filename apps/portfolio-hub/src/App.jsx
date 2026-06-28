@@ -20,8 +20,22 @@ const imagePath = (fileName) => `images/${fileName}`;
 
 const projects = [
   {
-    name: 'ScamShield AI',
+    name: 'RedactReady Pro',
     rank: 1,
+    status: 'Live',
+    category: 'Privacy intelligence',
+    demo: 'https://redactready-pro-hri-os.netlify.app/',
+    source: `${repoBase}/tree/main/apps/redactready-pro-hri-os`,
+    caseStudy: `${repoBase}/blob/main/projects/redactready-pro-hri-os/CASE_STUDY.md`,
+    image: imagePath('redactready-pro-dashboard.png'),
+    stack: ['React', 'TypeScript', 'Vitest', 'Local-first'],
+    summary: 'Reviews document packets locally, detects sensitive information, scores Human Risk Intelligence, maps evidence, redacts text, and exports reports.',
+    why: 'Best flagship product signal: privacy engineering, original scoring model, local-first architecture, polished dashboard UX, tests, docs, and live deployment.',
+    review: 'Flagship project',
+  },
+  {
+    name: 'ScamShield AI',
+    rank: 2,
     status: 'Live',
     category: 'Consumer safety',
     demo: 'https://scamshield-ai-safety.netlify.app/',
@@ -35,7 +49,7 @@ const projects = [
   },
   {
     name: 'RedactReady',
-    rank: 2,
+    rank: 3,
     status: 'Live',
     category: 'Privacy tool',
     demo: 'https://redactready-local.netlify.app/',
@@ -49,7 +63,7 @@ const projects = [
   },
   {
     name: 'LayerForge Studio',
-    rank: 3,
+    rank: 4,
     status: 'Live',
     category: 'Canvas editor',
     demo: `${githubPagesBase}/layerforge-studio/`,
@@ -63,7 +77,7 @@ const projects = [
   },
   {
     name: 'OpsPilot',
-    rank: 4,
+    rank: 5,
     status: 'Live',
     category: 'Operations toolkit',
     demo: 'https://opspilot-ai-operations-toolkit.netlify.app/',
@@ -77,7 +91,7 @@ const projects = [
   },
   {
     name: 'FocusForge',
-    rank: 5,
+    rank: 6,
     status: 'Live',
     category: 'Productivity game',
     demo: 'https://focusforge-productivity-game.netlify.app/',
@@ -91,7 +105,7 @@ const projects = [
   },
   {
     name: 'VariantVision Pro',
-    rank: 6,
+    rank: 7,
     status: 'Demo',
     category: 'Research tool',
     demo: 'https://variantvisionpro.netlify.app/',
@@ -105,7 +119,7 @@ const projects = [
   },
   {
     name: 'Amino Acid Workbench',
-    rank: 7,
+    rank: 8,
     status: 'Demo',
     category: 'Education tool',
     demo: 'https://aminoacidworkbench.netlify.app/',
@@ -119,7 +133,7 @@ const projects = [
   },
   {
     name: 'GardenGrid',
-    rank: 8,
+    rank: 9,
     status: 'Demo',
     category: 'Planning tool',
     demo: 'https://garden-grid-planner-demo.netlify.app/',
@@ -133,7 +147,7 @@ const projects = [
   },
   {
     name: 'HearthLink',
-    rank: 9,
+    rank: 10,
     status: 'Demo',
     category: 'Community concept',
     demo: 'https://hearthlink-p2p-demo.netlify.app/',
@@ -204,7 +218,7 @@ function App() {
 
         <section className="metrics-strip" aria-label="Portfolio snapshot">
           <Stat label="Live demos" value={liveCount} icon={<Globe2 size={18} aria-hidden="true" />} />
-          <Stat label="Runnable repo apps" value="8" icon={<CheckCircle2 size={18} aria-hidden="true" />} />
+          <Stat label="Runnable repo apps" value="9" icon={<CheckCircle2 size={18} aria-hidden="true" />} />
           <Stat label="Best review time" value="3 min" icon={<Timer size={18} aria-hidden="true" />} />
           <Stat label="Primary themes" value="AI + Ops" icon={<Sparkles size={18} aria-hidden="true" />} />
         </section>

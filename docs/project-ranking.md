@@ -2,21 +2,21 @@
 
 ## Top 5 Overall
 
-1. **ScamShield AI** - strongest complete public-interest cybersecurity workflow with a live production demo.
-2. **RedactReady** - strongest privacy/document-security runnable app and verification-focused product demonstration.
-3. **LayerForge Studio** - strongest creative-tool runnable app and frontend/canvas demonstration.
-4. **AI Knowledge Operations Toolkit** - best direct employer relevance for operations/documentation roles.
-5. **VariantVision Pro** - most advanced technical/research concept.
+1. **RedactReady Pro** - flagship local-first privacy intelligence OS with a live production demo.
+2. **ScamShield AI** - strongest complete public-interest cybersecurity workflow with a live production demo.
+3. **RedactReady** - strongest focused privacy/document-redaction app and verification-focused product demonstration.
+4. **LayerForge Studio** - strongest creative-tool runnable app and frontend/canvas demonstration.
+5. **AI Knowledge Operations Toolkit** - best direct employer relevance for operations/documentation roles.
 
 ## Best for Employers
 
 | Rank | Project | Reason |
 | --- | --- | --- |
-| 1 | ScamShield AI | Complete, accessible cybersecurity workflow with live deployment, explainable analysis, evidence tools, and reporting guidance. |
-| 2 | RedactReady | Strong privacy/security product with true redaction, verification, and clear responsible-use boundaries. |
-| 3 | LayerForge Studio | Strong creative-tool runnable product and proof of canvas/frontend implementation. |
-| 4 | AI Knowledge Operations Toolkit | Directly relevant to operations, documentation, support, and enablement roles. |
-| 5 | FocusForge | Polished live productivity app with local persistence, progression design, timer recovery, and static deployment. |
+| 1 | RedactReady Pro | Flagship privacy/document intelligence product with live deployment, deterministic HRI scoring, redaction, evidence mapping, and report export. |
+| 2 | ScamShield AI | Complete, accessible cybersecurity workflow with live deployment, explainable analysis, evidence tools, and reporting guidance. |
+| 3 | RedactReady | Strong privacy/security product with true redaction, verification, and clear responsible-use boundaries. |
+| 4 | LayerForge Studio | Strong creative-tool runnable product and proof of canvas/frontend implementation. |
+| 5 | AI Knowledge Operations Toolkit | Directly relevant to operations, documentation, support, and enablement roles. |
 
 ## Best for Research/Expert Review
 
@@ -32,11 +32,11 @@
 
 | Rank | Project | Reason |
 | --- | --- | --- |
-| 1 | ScamShield AI | Best complete safety-product workflow, explainable analysis, accessibility, and deployment evidence. |
-| 2 | RedactReady | Best privacy/document-security implementation and verification-minded workflow. |
-| 3 | LayerForge Studio | Best creative technical product implementation. |
-| 4 | AI Knowledge Operations Toolkit | Best workflow/product system design. |
-| 5 | FocusForge | Best habit-loop and local-first product-system implementation. |
+| 1 | RedactReady Pro | Best complete privacy/document intelligence workflow, local-first architecture, original scoring model, and deployment evidence. |
+| 2 | ScamShield AI | Best complete safety-product workflow, explainable analysis, accessibility, and deployment evidence. |
+| 3 | RedactReady | Best focused privacy/document-redaction implementation and verification-minded workflow. |
+| 4 | LayerForge Studio | Best creative technical product implementation. |
+| 5 | AI Knowledge Operations Toolkit | Best workflow/product system design. |
 
 ## Important Distinction
 

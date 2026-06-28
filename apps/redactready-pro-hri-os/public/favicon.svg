@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="LayerForge Studio">
+  <rect width="64" height="64" rx="12" fill="#090b0f"/>
+  <path fill="#68d8b5" d="M14 16h26v8H23v11h15v8H14z"/>
+  <path fill="#67c7f7" d="M32 35h18v8H41v5h11v8H32z"/>
+  <path fill="#f4c36b" d="M41 16h9v18h-9z"/>
+</svg>

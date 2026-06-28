@@ -13,13 +13,13 @@ A ranked index of the strongest projects in this AI Project Portfolio.
 
 | Rank | Project | Status | Category | Why It Matters |
 | --- | --- | --- | --- | --- |
-| 1 | [ScamShield AI](../projects/scamshield-ai/CASE_STUDY.md) | Runnable MVP + live demo | Consumer-protection cybersecurity | Complete safety workflow with explainable risk signals, accessible guidance, evidence organization, reporting resources, and PDF export. |
-| 2 | [RedactReady](../projects/redactready-local/CASE_STUDY.md) | Runnable MVP | Privacy/security redaction engine | Strong privacy-first product; shows document processing, true redaction, verification, and safety-focused UX. |
-| 3 | [LayerForge Studio](../projects/layerforge-studio/CASE_STUDY.md) | Runnable MVP | Browser image editor | Best creative-tool software demo; shows frontend architecture, Canvas 2D interaction, local persistence, and product judgment. |
-| 4 | [OpsPilot](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) | Runnable MVP + live demo | AI operations micro-SaaS | Strong business-focused app; maps directly to SOPs, onboarding, documentation, knowledge management, and process improvement. |
-| 5 | [AI Knowledge Operations Toolkit](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) | Concept / product specification | Operations AI system | Directly maps to support ops, documentation, enablement, training, and knowledge management roles. |
-| 6 | [VariantVision Pro](../projects/variantvision-pro/CASE_STUDY.md) | Research-tool concept | Bioinformatics research tool | Advanced research-tool concept; demonstrates scientific workflow thinking and responsible AI boundaries. |
-| 7 | [Amino Acid Research Workbench](../projects/amino-acid-research-workbench/CASE_STUDY.md) | Educational tool concept | Educational bioinformatics | Strong explainable-analysis tool with clear classroom and research-triage value. |
+| 1 | [RedactReady Pro](../projects/redactready-pro-hri-os/CASE_STUDY.md) | Runnable MVP + live demo | Privacy intelligence / document readiness | Flagship local-first product with sensitive-information detection, HRI scoring, evidence mapping, redaction, reports, tests, docs, and live deployment. |
+| 2 | [ScamShield AI](../projects/scamshield-ai/CASE_STUDY.md) | Runnable MVP + live demo | Consumer-protection cybersecurity | Complete safety workflow with explainable risk signals, accessible guidance, evidence organization, reporting resources, and PDF export. |
+| 3 | [RedactReady](../projects/redactready-local/CASE_STUDY.md) | Runnable MVP | Privacy/security redaction engine | Strong privacy-first product; shows document processing, true redaction, verification, and safety-focused UX. |
+| 4 | [LayerForge Studio](../projects/layerforge-studio/CASE_STUDY.md) | Runnable MVP | Browser image editor | Best creative-tool software demo; shows frontend architecture, Canvas 2D interaction, local persistence, and product judgment. |
+| 5 | [OpsPilot](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) | Runnable MVP + live demo | AI operations micro-SaaS | Strong business-focused app; maps directly to SOPs, onboarding, documentation, knowledge management, and process improvement. |
+| 6 | [AI Knowledge Operations Toolkit](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) | Concept / product specification | Operations AI system | Directly maps to support ops, documentation, enablement, training, and knowledge management roles. |
+| 7 | [VariantVision Pro](../projects/variantvision-pro/CASE_STUDY.md) | Research-tool concept | Bioinformatics research tool | Advanced research-tool concept; demonstrates scientific workflow thinking and responsible AI boundaries. |
 
 ## Tier 2 — Strong Supporting Projects
 
@@ -49,10 +49,11 @@ A ranked index of the strongest projects in this AI Project Portfolio.
 
 1. Start with the public [Portfolio Hub](https://atomicdjt.github.io/AI-Project-Portfolio/).
 2. Review [Employer Overview](EMPLOYER_OVERVIEW.md).
-3. Review [ScamShield AI](../projects/scamshield-ai/CASE_STUDY.md) for the strongest end-to-end public-interest safety workflow.
-4. Review [RedactReady](../projects/redactready-local/CASE_STUDY.md) for privacy/security implementation depth.
-5. Review [LayerForge Studio](../projects/layerforge-studio/CASE_STUDY.md) for creative-tool implementation depth.
-6. Review [OpsPilot](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) and its [live demo](https://opspilot-ai-operations-toolkit.netlify.app/) for the strongest business-focused runnable product.
-7. Review [FocusForge](../projects/focusforge/CASE_STUDY.md) for a polished local-first productivity app with live static deployment.
-8. Review [AI Knowledge Operations Toolkit](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.
-9. Review [Skills Matrix](SKILLS_MATRIX.md) to connect projects to role requirements.
+3. Review [RedactReady Pro](../projects/redactready-pro-hri-os/CASE_STUDY.md) and its [live demo](https://redactready-pro-hri-os.netlify.app/) for the flagship local-first privacy intelligence product.
+4. Review [ScamShield AI](../projects/scamshield-ai/CASE_STUDY.md) for the strongest end-to-end public-interest safety workflow.
+5. Review [RedactReady](../projects/redactready-local/CASE_STUDY.md) for privacy/security implementation depth.
+6. Review [LayerForge Studio](../projects/layerforge-studio/CASE_STUDY.md) for creative-tool implementation depth.
+7. Review [OpsPilot](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) and its [live demo](https://opspilot-ai-operations-toolkit.netlify.app/) for the strongest business-focused runnable product.
+8. Review [FocusForge](../projects/focusforge/CASE_STUDY.md) for a polished local-first productivity app with live static deployment.
+9. Review [AI Knowledge Operations Toolkit](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.
+10. Review [Skills Matrix](SKILLS_MATRIX.md) to connect projects to role requirements.

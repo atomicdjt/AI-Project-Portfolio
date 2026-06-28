@@ -3,7 +3,7 @@
 ## 60-Second Review Path
 
 1. Open the public [Portfolio Hub](https://atomicdjt.github.io/AI-Project-Portfolio/) and use the top three project cards.
-2. Review [ScamShield AI](../projects/scamshield-ai/CASE_STUDY.md), [RedactReady](../projects/redactready-local/CASE_STUDY.md), and [LayerForge Studio](../projects/layerforge-studio/CASE_STUDY.md).
+2. Review [RedactReady Pro](../projects/redactready-pro-hri-os/CASE_STUDY.md), [ScamShield AI](../projects/scamshield-ai/CASE_STUDY.md), and [RedactReady](../projects/redactready-local/CASE_STUDY.md).
 3. Use [Project Index](PROJECT_INDEX.md) and [Skills Matrix](SKILLS_MATRIX.md) to connect the work to role requirements.
 4. Use [Verification](verification.md) to see what can be run locally and which claims are supported by scripts or docs.
 
@@ -12,6 +12,7 @@
 | Project | Demo | Why review it |
 | --- | --- | --- |
 | Portfolio Hub | https://atomicdjt.github.io/AI-Project-Portfolio/ | Fastest public entry point with best projects, live links, case studies, source links, and status labels. |
+| RedactReady Pro | https://redactready-pro-hri-os.netlify.app/ | Flagship local-first privacy/document intelligence workflow with HRI scoring, redaction, evidence mapping, and reports. |
 | ScamShield AI | https://scamshield-ai-safety.netlify.app/ | Complete public-interest safety workflow with privacy-first architecture and exportable evidence packet. |
 | RedactReady | https://redactready-local.netlify.app/ | Privacy/security workflow for local document redaction and review. |
 | OpsPilot | https://opspilot-ai-operations-toolkit.netlify.app/ | Business operations toolkit aligned with documentation, onboarding, and knowledge-management work. |
@@ -21,6 +22,7 @@
 
 | Project | Path | What it demonstrates |
 | --- | --- | --- |
+| RedactReady Pro | `apps/redactready-pro-hri-os/src/modules` | Deterministic sensitive-information detection, HRI scoring, classification, evidence mapping, checklist generation, report generation, and redaction. |
 | ScamShield AI | `apps/scamshield-ai/src/lib` | Deterministic risk scoring, entity extraction, reporting resources, and browser PDF generation. |
 | RedactReady | `apps/redactready-local/src/lib` | Sensitive-data detectors, local file handling, PDF/image redaction, and verification/report generation. |
 | LayerForge Studio | `apps/layerforge-studio/src/engine` | Canvas rendering, document models, history commands, tools, filters, import/export, and IndexedDB persistence. |
@@ -29,6 +31,7 @@
 
 ## Best Case Studies
 
+- [RedactReady Pro](../projects/redactready-pro-hri-os/CASE_STUDY.md)
 - [ScamShield AI](../projects/scamshield-ai/CASE_STUDY.md)
 - [RedactReady](../projects/redactready-local/CASE_STUDY.md)
 - [LayerForge Studio](../projects/layerforge-studio/CASE_STUDY.md)
@@ -64,6 +67,7 @@
 
 | Project | Best evidence |
 | --- | --- |
+| RedactReady Pro | Flagship local-first document intelligence workflow, deterministic HRI scoring, test coverage, report export, Netlify deployment, and strong privacy boundaries. |
 | ScamShield AI | Complete safety workflow, tests, Playwright coverage, PDF export, Netlify deployment, and strict local-first privacy model. |
 | RedactReady | Privacy/security document workflow, deterministic detectors, local redaction exports, test coverage, and Netlify deployment configuration. |
 | LayerForge Studio | Browser graphics, layered editor architecture, Canvas tooling, local persistence, and GitHub Pages subpath deployment. |
