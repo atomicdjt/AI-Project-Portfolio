@@ -53,11 +53,12 @@ The best-fit roles this supports include:
 
 For a fast review, start with:
 
-1. [`README.md`](../README.md) for the repository overview.
-2. [`PROJECT_INDEX.md`](PROJECT_INDEX.md) for the full ranked project list.
-3. [`projects/scamshield-ai/CASE_STUDY.md`](../projects/scamshield-ai/CASE_STUDY.md) for the strongest complete public-interest cybersecurity workflow.
-4. [`projects/redactready-local/CASE_STUDY.md`](../projects/redactready-local/CASE_STUDY.md) for privacy/security implementation depth.
-5. [`projects/layerforge-studio/CASE_STUDY.md`](../projects/layerforge-studio/CASE_STUDY.md) for creative-tool implementation depth.
-6. [`projects/opspilot-ai-operations-toolkit/CASE_STUDY.md`](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) and the [live OpsPilot demo](https://opspilot-ai-operations-toolkit.netlify.app/) for the strongest business-focused runnable app.
-7. [`projects/focusforge/CASE_STUDY.md`](../projects/focusforge/CASE_STUDY.md) for a polished local-first productivity app with live static deployment.
-8. [`projects/ai-knowledge-operations-toolkit/CASE_STUDY.md`](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.
+1. [Public Portfolio Hub](https://atomicdjt.github.io/AI-Project-Portfolio/) for the fastest live review path.
+2. [`README.md`](../README.md) for the repository overview.
+3. [`PROJECT_INDEX.md`](PROJECT_INDEX.md) for the full ranked project list.
+4. [`projects/scamshield-ai/CASE_STUDY.md`](../projects/scamshield-ai/CASE_STUDY.md) for the strongest complete public-interest cybersecurity workflow.
+5. [`projects/redactready-local/CASE_STUDY.md`](../projects/redactready-local/CASE_STUDY.md) for privacy/security implementation depth.
+6. [`projects/layerforge-studio/CASE_STUDY.md`](../projects/layerforge-studio/CASE_STUDY.md) for creative-tool implementation depth.
+7. [`projects/opspilot-ai-operations-toolkit/CASE_STUDY.md`](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) and the [live OpsPilot demo](https://opspilot-ai-operations-toolkit.netlify.app/) for the strongest business-focused runnable app.
+8. [`projects/focusforge/CASE_STUDY.md`](../projects/focusforge/CASE_STUDY.md) for a polished local-first productivity app with live static deployment.
+9. [`projects/ai-knowledge-operations-toolkit/CASE_STUDY.md`](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.

@@ -328,7 +328,7 @@ function IntakePanel({ intake, onChange, onGenerate, onLoadSample }: IntakePanel
         </label>
         <button className="primary-action" type="button" onClick={onGenerate}>
           <Sparkles size={17} aria-hidden="true" />
-          Generate document
+          Generate from intake
         </button>
       </div>
     </section>

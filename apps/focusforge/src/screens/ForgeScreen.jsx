@@ -95,8 +95,8 @@ export function ForgeScreen({
                   placeholder="What will you forge?"
                 />
               </div>
-              <button className="button primary launch-button" type="button" onClick={onStart} aria-label={`Begin ${selectedDuration} minute focus`}>
-                <GameIcon name="Play" size={18} /> Begin focus <span>{selectedDuration} min</span>
+              <button className="button primary launch-button" type="button" onClick={onStart}>
+                <GameIcon name="Play" size={18} /> Begin {selectedDuration} minute focus
               </button>
               <p className="risk-note"><GameIcon name="ShieldAlert" size={15} /> Leaving this page during an active session triggers a distraction disaster.</p>
             </>

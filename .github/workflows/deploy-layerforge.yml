@@ -1,11 +1,13 @@
-name: Deploy LayerForge Studio
+name: Deploy Portfolio Hub
 
 on:
   push:
     branches:
       - main
     paths:
+      - apps/portfolio-hub/**
       - apps/layerforge-studio/**
+      - docs/images/**
       - package.json
       - package-lock.json
       - .github/workflows/deploy-layerforge.yml
@@ -36,10 +38,20 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Build portfolio hub
+        run: npm run build --workspace apps/portfolio-hub
+        env:
+          GITHUB_PAGES: "true"
+
       - name: Build LayerForge Studio
         run: npm run build --workspace apps/layerforge-studio
         env:
           GITHUB_PAGES: "true"
+
+      - name: Preserve LayerForge under portfolio subpath
+        run: |
+          mkdir -p apps/portfolio-hub/dist/layerforge-studio
+          cp -R apps/layerforge-studio/dist/. apps/portfolio-hub/dist/layerforge-studio/
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -47,7 +59,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: apps/layerforge-studio/dist
+          path: apps/portfolio-hub/dist
 
   deploy:
     environment:

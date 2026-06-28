@@ -50,7 +50,8 @@ Deployment patterns include static Vite apps on Netlify and GitHub Pages:
 - ScamShield AI: documented Netlify live deployment.
 - RedactReady: documented Netlify live deployment.
 - OpsPilot: documented Netlify live deployment.
-- LayerForge Studio: documented GitHub Pages deployment with a Pages-specific Vite base.
+- Portfolio Hub: documented GitHub Pages root deployment with a Pages-specific Vite base.
+- LayerForge Studio: documented GitHub Pages subpath deployment with a Pages-specific Vite base.
 - FocusForge: static-host deployment guidance is documented, but no live URL is currently documented.
 
 ## Known Technical Limitations and Future Improvements
