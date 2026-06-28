@@ -10,16 +10,17 @@
     "apps/layerforge-studio",
     "apps/opspilot-ai-operations-toolkit",
     "apps/focusforge",
+    "apps/variantvision-pro",
     "apps/redactready-pro-hri-os",
     "apps/redactready-local",
     "apps/scamshield-ai"
   ],
   "scripts": {
     "install:all": "npm install --workspaces",
-    "build:all": "npm run build --workspace apps/portfolio-hub && npm run build --workspace apps/astra && npm run build --workspace apps/nexus-play && npm run build --workspace apps/layerforge-studio && npm run build --workspace apps/opspilot-ai-operations-toolkit && npm run build --workspace apps/focusforge && npm run build --workspace apps/redactready-pro-hri-os && npm run build --workspace apps/redactready-local && npm run build --workspace apps/scamshield-ai",
-    "lint:apps": "npm run lint --workspace apps/portfolio-hub && npm run lint --workspace apps/astra && npm run lint --workspace apps/nexus-play && npm run lint --workspace apps/layerforge-studio && npm run lint --workspace apps/opspilot-ai-operations-toolkit && npm run lint --workspace apps/focusforge && npm run lint --workspace apps/redactready-pro-hri-os && npm run lint --workspace apps/redactready-local && npm run lint --workspace apps/scamshield-ai",
+    "build:all": "npm run build --workspace apps/portfolio-hub && npm run build --workspace apps/astra && npm run build --workspace apps/nexus-play && npm run build --workspace apps/layerforge-studio && npm run build --workspace apps/opspilot-ai-operations-toolkit && npm run build --workspace apps/focusforge && npm run build --workspace apps/variantvision-pro && npm run build --workspace apps/redactready-pro-hri-os && npm run build --workspace apps/redactready-local && npm run build --workspace apps/scamshield-ai",
+    "lint:apps": "npm run lint --workspace apps/portfolio-hub && npm run lint --workspace apps/astra && npm run lint --workspace apps/nexus-play && npm run lint --workspace apps/layerforge-studio && npm run lint --workspace apps/opspilot-ai-operations-toolkit && npm run lint --workspace apps/focusforge && npm run lint --workspace apps/variantvision-pro && npm run lint --workspace apps/redactready-pro-hri-os && npm run lint --workspace apps/redactready-local && npm run lint --workspace apps/scamshield-ai",
     "typecheck:all": "npm run typecheck --workspaces --if-present",
-    "test:all": "npm run test:run --workspace apps/focusforge && npm run test --workspace apps/redactready-pro-hri-os && npm run test --workspace apps/redactready-local && npm run test --workspace apps/scamshield-ai -- --run",
+    "test:all": "npm run test:run --workspace apps/focusforge && npm run test --workspace apps/variantvision-pro && npm run test --workspace apps/redactready-pro-hri-os && npm run test --workspace apps/redactready-local && npm run test --workspace apps/scamshield-ai -- --run",
     "verify": "npm run lint:apps && npm run typecheck:all && npm run test:all && npm run build:all",
     "dev:portfolio": "npm run dev --workspace apps/portfolio-hub",
     "dev:astra": "npm run dev --workspace apps/astra",
@@ -27,6 +28,7 @@
     "dev:layerforge": "npm run dev --workspace apps/layerforge-studio",
     "dev:opspilot": "npm run dev --workspace apps/opspilot-ai-operations-toolkit",
     "dev:focusforge": "npm run dev --workspace apps/focusforge",
+    "dev:variantvision": "npm run dev --workspace apps/variantvision-pro",
     "dev:redactready-pro": "npm run dev --workspace apps/redactready-pro-hri-os",
     "dev:redactready": "npm run dev --workspace apps/redactready-local",
     "dev:scamshield": "npm run dev --workspace apps/scamshield-ai"

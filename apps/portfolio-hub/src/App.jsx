@@ -106,16 +106,16 @@ const projects = [
   {
     name: 'VariantVision Pro',
     rank: 7,
-    status: 'Demo',
+    status: 'Live',
     category: 'Research tool',
     demo: 'https://variantvisionpro.netlify.app/',
-    source: `${repoBase}/blob/main/projects/variantvision-pro/CASE_STUDY.md`,
+    source: `${repoBase}/tree/main/apps/variantvision-pro`,
     caseStudy: `${repoBase}/blob/main/projects/variantvision-pro/CASE_STUDY.md`,
-    image: null,
-    stack: ['Bioinformatics', 'Evidence review', 'Responsible scope'],
-    summary: 'Educational variant-analysis workbench concept for structured evidence review and research support.',
-    why: 'Shows complex-domain product framing while avoiding clinical or diagnostic claims.',
-    review: 'Research scope',
+    image: imagePath('variantvision-pro-dashboard.png'),
+    stack: ['React', 'TypeScript', 'Bioinformatics', 'Evidence scoring'],
+    summary: 'Live bioinformatics workbench for genetic variants, local normalization helpers, amino-acid comparison, source provenance, evidence scoring, and exportable non-diagnostic dossiers.',
+    why: 'Shows complex-domain product architecture, source-transparency UX, and responsible research-tool implementation.',
+    review: 'Research MVP',
   },
   {
     name: 'Amino Acid Workbench',
@@ -218,7 +218,7 @@ function App() {
 
         <section className="metrics-strip" aria-label="Portfolio snapshot">
           <Stat label="Live demos" value={liveCount} icon={<Globe2 size={18} aria-hidden="true" />} />
-          <Stat label="Runnable repo apps" value="9" icon={<CheckCircle2 size={18} aria-hidden="true" />} />
+          <Stat label="Runnable repo apps" value="10" icon={<CheckCircle2 size={18} aria-hidden="true" />} />
           <Stat label="Best review time" value="3 min" icon={<Timer size={18} aria-hidden="true" />} />
           <Stat label="Primary themes" value="AI + Ops" icon={<Sparkles size={18} aria-hidden="true" />} />
         </section>
@@ -255,6 +255,7 @@ function App() {
               <select value={status} onChange={(event) => setStatus(event.target.value)} aria-label="Filter by status">
                 <option>All</option>
                 <option>Live</option>
+                <option>Runnable</option>
                 <option>Demo</option>
               </select>
             </div>

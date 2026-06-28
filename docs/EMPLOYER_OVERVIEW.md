@@ -25,15 +25,15 @@ This repository is best read as evidence of:
 3. **RedactReady** - local-first privacy redaction engine demonstrating strong privacy/security product implementation.
 4. **LayerForge Studio** - browser-based image editor demonstrating strong runnable application polish.
 5. **OpsPilot** - live AI operations micro-SaaS for SOPs, onboarding, knowledge base generation, gap detection, and version tracking.
-5. **AI Knowledge Operations Toolkit** - operations-focused AI workflow system with strong employer relevance.
-6. **VariantVision Pro** - bioinformatics/variant interpretation workbench concept with advanced research-tool positioning.
-7. **Amino Acid Research Workbench** - educational bioinformatics system with explainable analysis workflows.
-8. **Ecology of Consciousness** - original interdisciplinary framework for analyzing digital cognitive environments.
-9. **IHOS / Integrated Human Operating System** - structured non-clinical self-governance framework.
-10. **Astra** - local AI chat workspace and model-configuration interface.
-11. **Nexus Play** - game storefront and distribution-platform demo.
-12. **FocusForge** - live local-first gamified productivity app with timer recovery, progression systems, local persistence, and static deployment.
-13. **FrameEcho** - content-based duplicate video finder concept.
+6. **VariantVision Pro** - live bioinformatics evidence workbench with source transparency, amino-acid comparison, evidence scoring, and non-diagnostic research-tool positioning.
+7. **AI Knowledge Operations Toolkit** - operations-focused AI workflow system with strong employer relevance.
+8. **Amino Acid Research Workbench** - educational bioinformatics system with explainable analysis workflows.
+9. **Ecology of Consciousness** - original interdisciplinary framework for analyzing digital cognitive environments.
+10. **IHOS / Integrated Human Operating System** - structured non-clinical self-governance framework.
+11. **Astra** - local AI chat workspace and model-configuration interface.
+12. **Nexus Play** - game storefront and distribution-platform demo.
+13. **FocusForge** - live local-first gamified productivity app with timer recovery, progression systems, local persistence, and static deployment.
+14. **FrameEcho** - content-based duplicate video finder concept.
 
 ## How Employers Should Interpret This Work
 
@@ -63,4 +63,5 @@ For a fast review, start with:
 7. [`projects/layerforge-studio/CASE_STUDY.md`](../projects/layerforge-studio/CASE_STUDY.md) for creative-tool implementation depth.
 8. [`projects/opspilot-ai-operations-toolkit/CASE_STUDY.md`](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) and the [live OpsPilot demo](https://opspilot-ai-operations-toolkit.netlify.app/) for the strongest business-focused runnable app.
 9. [`projects/focusforge/CASE_STUDY.md`](../projects/focusforge/CASE_STUDY.md) for a polished local-first productivity app with live static deployment.
-10. [`projects/ai-knowledge-operations-toolkit/CASE_STUDY.md`](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.
+10. [`projects/variantvision-pro/CASE_STUDY.md`](../projects/variantvision-pro/CASE_STUDY.md) for complex-domain research-tool implementation.
+11. [`projects/ai-knowledge-operations-toolkit/CASE_STUDY.md`](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.

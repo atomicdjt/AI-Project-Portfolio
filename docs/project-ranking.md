@@ -22,7 +22,7 @@
 
 | Rank | Project | Reason |
 | --- | --- | --- |
-| 1 | VariantVision Pro | Strongest complex-domain research-tool concept. |
+| 1 | VariantVision Pro | Strongest complex-domain runnable research-tool MVP, with source transparency, deterministic evidence scoring, amino-acid comparison, and report export. |
 | 2 | Amino Acid Research Workbench | Clear educational/scientific value. |
 | 3 | Ecology of Consciousness | Strongest original framework. |
 | 4 | IHOS | Structured system with practical workbook potential. |
@@ -36,7 +36,7 @@
 | 2 | ScamShield AI | Best complete safety-product workflow, explainable analysis, accessibility, and deployment evidence. |
 | 3 | RedactReady | Best focused privacy/document-redaction implementation and verification-minded workflow. |
 | 4 | LayerForge Studio | Best creative technical product implementation. |
-| 5 | AI Knowledge Operations Toolkit | Best workflow/product system design. |
+| 5 | VariantVision Pro | Best complex-domain research-tool implementation and source-transparency workflow. |
 
 ## Important Distinction
 

@@ -18,8 +18,8 @@ A ranked index of the strongest projects in this AI Project Portfolio.
 | 3 | [RedactReady](../projects/redactready-local/CASE_STUDY.md) | Runnable MVP | Privacy/security redaction engine | Strong privacy-first product; shows document processing, true redaction, verification, and safety-focused UX. |
 | 4 | [LayerForge Studio](../projects/layerforge-studio/CASE_STUDY.md) | Runnable MVP | Browser image editor | Best creative-tool software demo; shows frontend architecture, Canvas 2D interaction, local persistence, and product judgment. |
 | 5 | [OpsPilot](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) | Runnable MVP + live demo | AI operations micro-SaaS | Strong business-focused app; maps directly to SOPs, onboarding, documentation, knowledge management, and process improvement. |
-| 6 | [AI Knowledge Operations Toolkit](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) | Concept / product specification | Operations AI system | Directly maps to support ops, documentation, enablement, training, and knowledge management roles. |
-| 7 | [VariantVision Pro](../projects/variantvision-pro/CASE_STUDY.md) | Research-tool concept | Bioinformatics research tool | Advanced research-tool concept; demonstrates scientific workflow thinking and responsible AI boundaries. |
+| 6 | [VariantVision Pro](../projects/variantvision-pro/CASE_STUDY.md) | Runnable MVP + live demo | Bioinformatics research tool | Live evidence workbench with local normalization helpers, amino-acid comparison, source transparency, evidence scoring, and report export. |
+| 7 | [AI Knowledge Operations Toolkit](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) | Concept / product specification | Operations AI system | Directly maps to support ops, documentation, enablement, training, and knowledge management roles. |
 
 ## Tier 2 — Strong Supporting Projects
 
@@ -55,5 +55,6 @@ A ranked index of the strongest projects in this AI Project Portfolio.
 6. Review [LayerForge Studio](../projects/layerforge-studio/CASE_STUDY.md) for creative-tool implementation depth.
 7. Review [OpsPilot](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) and its [live demo](https://opspilot-ai-operations-toolkit.netlify.app/) for the strongest business-focused runnable product.
 8. Review [FocusForge](../projects/focusforge/CASE_STUDY.md) for a polished local-first productivity app with live static deployment.
-9. Review [AI Knowledge Operations Toolkit](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.
-10. Review [Skills Matrix](SKILLS_MATRIX.md) to connect projects to role requirements.
+9. Review [VariantVision Pro](../projects/variantvision-pro/CASE_STUDY.md) for complex-domain research-tool implementation.
+10. Review [AI Knowledge Operations Toolkit](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.
+11. Review [Skills Matrix](SKILLS_MATRIX.md) to connect projects to role requirements.

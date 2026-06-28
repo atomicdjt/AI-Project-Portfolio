@@ -1,0 +1,58 @@
+import type { EvidenceDossier, VariantCase } from '../../types/variant'
+
+function pct(value: number) {
+  return `${(value * 100).toFixed(value < 0.001 ? 4 : 3)}%`
+}
+
+export function generateMarkdownReport(variantCase: VariantCase, dossier: EvidenceDossier) {
+  return [
+    '# VariantVision Pro Evidence Dossier',
+    '',
+    `Generated: ${dossier.generatedAt}`,
+    `Case: ${variantCase.title}`,
+    `Gene: ${dossier.input.gene}`,
+    `Variant: ${dossier.input.variant}`,
+    `Build: ${dossier.input.build}`,
+    `Normalized ID: ${dossier.normalized.vcfId ?? 'manual review required'}`,
+    `SPDI: ${dossier.normalized.spdi ?? 'manual review required'}`,
+    '',
+    '## Evidence Quality',
+    '',
+    `Score: ${dossier.evidenceScore}/100`,
+    `Band: ${dossier.confidenceBand}`,
+    '',
+    ...dossier.metrics.map((metric) => `- ${metric.label}: ${metric.score}/100 (${metric.status}) - ${metric.explanation}`),
+    '',
+    '## Amino Acid Comparison',
+    '',
+    `Original: ${dossier.aminoAcid.original.name} (${dossier.aminoAcid.original.code})`,
+    `Replacement: ${dossier.aminoAcid.replacement.name} (${dossier.aminoAcid.replacement.code})`,
+    `Charge: ${dossier.aminoAcid.chargeShift}`,
+    `Polarity: ${dossier.aminoAcid.polarityShift}`,
+    `Hydropathy delta: ${dossier.aminoAcid.hydropathyDelta}`,
+    `Interpretation: ${dossier.aminoAcid.interpretation}`,
+    '',
+    '## Population Summary',
+    '',
+    `Total alt alleles in fixture: ${dossier.populationSummary.totalAltAlleles}`,
+    `Total alleles in fixture: ${dossier.populationSummary.totalAlleles}`,
+    `Estimated fixture frequency: ${pct(dossier.populationSummary.estimatedFrequency)}`,
+    `Highest fixture group: ${dossier.populationSummary.highestGroup}`,
+    '',
+    '## Source Records',
+    '',
+    ...dossier.sourceRecords.map((record) => `- ${record.kind}: ${record.label} [${record.status}; ${record.weight}] - ${record.detail}`),
+    '',
+    '## Literature Leads',
+    '',
+    ...dossier.literature.map((item) => `- ${item.title}. ${item.journal}, ${item.year}. ${item.url}`),
+    '',
+    '## Boundary',
+    '',
+    dossier.responsibleBoundary,
+    '',
+    '## Fixture Note',
+    '',
+    'This MVP uses curated demo fixtures and source leads for portfolio review. It is designed to show architecture, evidence workflow, and responsible UX. Refresh public databases manually before using any record for real research decisions.',
+  ].join('\n')
+}
