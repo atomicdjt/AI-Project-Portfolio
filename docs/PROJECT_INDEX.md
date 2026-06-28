@@ -47,11 +47,12 @@ A ranked index of the strongest projects in this AI Project Portfolio.
 
 ## Recommended Employer Review Path
 
-1. Start with [Employer Overview](EMPLOYER_OVERVIEW.md).
-2. Review [ScamShield AI](../projects/scamshield-ai/CASE_STUDY.md) for the strongest end-to-end public-interest safety workflow.
-3. Review [RedactReady](../projects/redactready-local/CASE_STUDY.md) for privacy/security implementation depth.
-4. Review [LayerForge Studio](../projects/layerforge-studio/CASE_STUDY.md) for creative-tool implementation depth.
-5. Review [OpsPilot](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) and its [live demo](https://opspilot-ai-operations-toolkit.netlify.app/) for the strongest business-focused runnable product.
-6. Review [FocusForge](../projects/focusforge/CASE_STUDY.md) for a polished local-first productivity app with live static deployment.
-7. Review [AI Knowledge Operations Toolkit](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.
-8. Review [Skills Matrix](SKILLS_MATRIX.md) to connect projects to role requirements.
+1. Start with the public [Portfolio Hub](https://atomicdjt.github.io/AI-Project-Portfolio/).
+2. Review [Employer Overview](EMPLOYER_OVERVIEW.md).
+3. Review [ScamShield AI](../projects/scamshield-ai/CASE_STUDY.md) for the strongest end-to-end public-interest safety workflow.
+4. Review [RedactReady](../projects/redactready-local/CASE_STUDY.md) for privacy/security implementation depth.
+5. Review [LayerForge Studio](../projects/layerforge-studio/CASE_STUDY.md) for creative-tool implementation depth.
+6. Review [OpsPilot](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) and its [live demo](https://opspilot-ai-operations-toolkit.netlify.app/) for the strongest business-focused runnable product.
+7. Review [FocusForge](../projects/focusforge/CASE_STUDY.md) for a polished local-first productivity app with live static deployment.
+8. Review [AI Knowledge Operations Toolkit](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.
+9. Review [Skills Matrix](SKILLS_MATRIX.md) to connect projects to role requirements.

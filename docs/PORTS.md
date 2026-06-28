@@ -2,6 +2,7 @@
 
 | App | Frontend | Backend |
 | --- | --- | --- |
+| Portfolio Hub | `http://127.0.0.1:5180/` | None |
 | RedactReady | `http://127.0.0.1:5173/` | None |
 | Astra | `http://127.0.0.1:5174/` | `http://127.0.0.1:3002/` |
 | Nexus Play | `http://127.0.0.1:5175/` | `http://127.0.0.1:3003/` |
@@ -11,5 +12,6 @@
 | FocusForge | `http://127.0.0.1:5179/` | None |
 
 LayerForge Studio is assigned to `5176` because an unrelated stale local process may hold `5173` on this machine.
-LayerForge Studio is also the portfolio's GitHub Pages demo: `https://atomicdjt.github.io/AI-Project-Portfolio/`.
+The Portfolio Hub is the portfolio's GitHub Pages root: `https://atomicdjt.github.io/AI-Project-Portfolio/`.
+LayerForge Studio is preserved under the GitHub Pages subpath: `https://atomicdjt.github.io/AI-Project-Portfolio/layerforge-studio/`.
 FocusForge is assigned to `5179` to keep it separate from the existing local apps.

@@ -2,7 +2,7 @@
 
 ## 60-Second Review Path
 
-1. Open the root [README](../README.md) and scan the Featured Applications table.
+1. Open the public [Portfolio Hub](https://atomicdjt.github.io/AI-Project-Portfolio/) and use the top three project cards.
 2. Review [ScamShield AI](../projects/scamshield-ai/CASE_STUDY.md), [RedactReady](../projects/redactready-local/CASE_STUDY.md), and [LayerForge Studio](../projects/layerforge-studio/CASE_STUDY.md).
 3. Use [Project Index](PROJECT_INDEX.md) and [Skills Matrix](SKILLS_MATRIX.md) to connect the work to role requirements.
 4. Use [Verification](verification.md) to see what can be run locally and which claims are supported by scripts or docs.
@@ -11,10 +11,11 @@
 
 | Project | Demo | Why review it |
 | --- | --- | --- |
+| Portfolio Hub | https://atomicdjt.github.io/AI-Project-Portfolio/ | Fastest public entry point with best projects, live links, case studies, source links, and status labels. |
 | ScamShield AI | https://scamshield-ai-safety.netlify.app/ | Complete public-interest safety workflow with privacy-first architecture and exportable evidence packet. |
 | RedactReady | https://redactready-local.netlify.app/ | Privacy/security workflow for local document redaction and review. |
 | OpsPilot | https://opspilot-ai-operations-toolkit.netlify.app/ | Business operations toolkit aligned with documentation, onboarding, and knowledge-management work. |
-| LayerForge Studio | https://atomicdjt.github.io/AI-Project-Portfolio/ | Browser-based Canvas editor with layered document concepts and local persistence. |
+| LayerForge Studio | https://atomicdjt.github.io/AI-Project-Portfolio/layerforge-studio/ | Browser-based Canvas editor with layered document concepts and local persistence. |
 
 ## Best Code Samples to Inspect
 
@@ -64,8 +65,8 @@
 | Project | Best evidence |
 | --- | --- |
 | ScamShield AI | Complete safety workflow, tests, Playwright coverage, PDF export, Netlify deployment, and strict local-first privacy model. |
-| RedactReady | Privacy/security document workflow, deterministic detectors, local redaction exports, test coverage, and Netlify-ready configuration. |
-| LayerForge Studio | Browser graphics, layered editor architecture, Canvas tooling, local persistence, and GitHub Pages deployment. |
+| RedactReady | Privacy/security document workflow, deterministic detectors, local redaction exports, test coverage, and Netlify deployment configuration. |
+| LayerForge Studio | Browser graphics, layered editor architecture, Canvas tooling, local persistence, and GitHub Pages subpath deployment. |
 | OpsPilot | Operations documentation product, local deterministic drafting, version concepts, Netlify demo, and direct role alignment. |
 | FocusForge | Gamified focus loop, local game logic, Vitest coverage, and productivity-product thinking. |
 | Astra | AI chat workspace with React UI, Express API layer, streaming workflow, and visible configuration states. |
