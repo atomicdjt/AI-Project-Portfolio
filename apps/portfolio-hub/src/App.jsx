@@ -16,6 +16,7 @@ import { useMemo, useState } from 'react';
 
 const repoBase = 'https://github.com/atomicdjt/AI-Project-Portfolio';
 const githubPagesBase = 'https://atomicdjt.github.io/AI-Project-Portfolio';
+const imagePath = (fileName) => `images/${fileName}`;
 
 const projects = [
   {
@@ -26,7 +27,7 @@ const projects = [
     demo: 'https://scamshield-ai-safety.netlify.app/',
     source: `${repoBase}/tree/main/apps/scamshield-ai`,
     caseStudy: `${repoBase}/blob/main/projects/scamshield-ai/CASE_STUDY.md`,
-    image: '/images/scamshield-assessment.png',
+    image: imagePath('scamshield-assessment.png'),
     stack: ['React', 'Vite', 'PDF export', 'Local-first'],
     summary: 'Assesses suspicious messages, organizes evidence, suggests safer next steps, and exports a report packet.',
     why: 'Shows public-interest product judgment, explainable risk scoring, privacy scope, and complete deployment.',
@@ -40,7 +41,7 @@ const projects = [
     demo: 'https://redactready-local.netlify.app/',
     source: `${repoBase}/tree/main/apps/redactready-local`,
     caseStudy: `${repoBase}/blob/main/projects/redactready-local/CASE_STUDY.md`,
-    image: '/images/redactready-review-workspace.png',
+    image: imagePath('redactready-review-workspace.png'),
     stack: ['React', 'TypeScript', 'PDF.js', 'pdf-lib'],
     summary: 'Reviews sensitive files locally, highlights likely private data, applies redactions, and exports verification notes.',
     why: 'Demonstrates local-first safety boundaries, document workflows, and practical security-minded UX.',
@@ -54,7 +55,7 @@ const projects = [
     demo: `${githubPagesBase}/layerforge-studio/`,
     source: `${repoBase}/tree/main/apps/layerforge-studio`,
     caseStudy: `${repoBase}/blob/main/projects/layerforge-studio/CASE_STUDY.md`,
-    image: '/images/layerforge-studio-home.png',
+    image: imagePath('layerforge-studio-home.png'),
     stack: ['React', 'TypeScript', 'Canvas 2D', 'IndexedDB'],
     summary: 'Browser image editor with layered raster documents, painting tools, filters, undo, persistence, and exports.',
     why: 'Best frontend polish and interaction depth in the portfolio.',
@@ -68,7 +69,7 @@ const projects = [
     demo: 'https://opspilot-ai-operations-toolkit.netlify.app/',
     source: `${repoBase}/tree/main/apps/opspilot-ai-operations-toolkit`,
     caseStudy: `${repoBase}/blob/main/projects/opspilot-ai-operations-toolkit/CASE_STUDY.md`,
-    image: '/images/opspilot-home.png',
+    image: imagePath('opspilot-home.png'),
     stack: ['React', 'TypeScript', 'Local storage', 'Static deploy'],
     summary: 'Turns rough operational notes into SOPs, onboarding checklists, knowledge base articles, gap reports, and versions.',
     why: 'Maps directly to technical operations, enablement, documentation, and knowledge-management roles.',
@@ -82,7 +83,7 @@ const projects = [
     demo: 'https://focusforge-productivity-game.netlify.app/',
     source: `${repoBase}/tree/main/apps/focusforge`,
     caseStudy: `${repoBase}/blob/main/projects/focusforge/CASE_STUDY.md`,
-    image: '/images/focusforge-home.png',
+    image: imagePath('focusforge-home.png'),
     stack: ['React', 'Vite', 'Vitest', 'Local storage'],
     summary: 'Turns focus sessions into civilization growth, research unlocks, streak history, and durable local progress.',
     why: 'Shows product-system thinking, stateful UX, tests, and polished static deployment.',
