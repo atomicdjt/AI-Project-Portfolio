@@ -19,6 +19,7 @@ npm run verify
 
 | App name | Local path | Local port | Build command | Lint support | Typecheck support | Test support | E2E support | Deployment status if documented | Notes / limitations |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| RedactReady Pro | `apps/redactready-pro-hri-os` | `5181` | `npm run build --workspace apps/redactready-pro-hri-os` | Yes | Build includes TypeScript project check | Yes, Vitest | Browser smoke screenshots documented | Live Netlify demo documented: `https://redactready-pro-hri-os.netlify.app/` | Browser-only local-first MVP; PDF/image parsing is a documented fallback/roadmap item. |
 | ScamShield AI | `apps/scamshield-ai` | `5178` | `npm run build --workspace apps/scamshield-ai` | Yes | Yes, `typecheck` script | Yes, Vitest | Yes, Playwright | Live Netlify demo documented: `https://scamshield-ai-safety.netlify.app/` | Local-first static app; documented CSP blocks runtime network access. |
 | RedactReady | `apps/redactready-local` | Vite default `5173` unless occupied | `npm run build --workspace apps/redactready-local` | Yes | Build includes TypeScript project check | Yes, Vitest | Yes, Playwright | Live Netlify demo documented: `https://redactready-local.netlify.app/` | OCR and face/signature detection are documented limitations. |
 | Portfolio Hub | `apps/portfolio-hub` | `5180` | `npm run build --workspace apps/portfolio-hub` | Yes | JavaScript app; no separate typecheck | Not documented | Not documented | GitHub Pages deployment documented | Pages root publishes the portfolio hub. |
@@ -35,3 +36,4 @@ npm run verify
 - `npm install`, `npm run lint:apps`, `npm run typecheck:all`, `npm run test:all`, `npm run build:all`, `npm run verify`, stale-reference searches, and Markdown relative-link checks completed successfully on 2026-06-25 after the repository rename-preparation updates.
 - Portfolio Hub and LayerForge Studio use relative GitHub Pages asset bases so the current Pages site remains usable before the repository rename and continues to work after the rename.
 - `npm run build:all` and `npm run verify` completed successfully, but Vite reported a non-blocking warning about chunks larger than 500 kB after minification. Bundle splitting is a future optimization, not a current validation failure.
+- RedactReady Pro standalone validation passed on 2026-06-28 with `npm run lint`, `npm run test`, `npm run build`, and Playwright browser smoke screenshots before portfolio integration.

@@ -24,16 +24,17 @@ A curated portfolio of AI-assisted software projects, product prototypes, workfl
 
 ## Start Here for Recruiters and Hiring Managers
 
-This portfolio is designed to be reviewed quickly. The strongest evidence is concentrated in the public portfolio hub, eight runnable applications, live demos, and employer-facing case studies that explain the product thinking behind each build.
+This portfolio is designed to be reviewed quickly. The strongest evidence is concentrated in the public portfolio hub, nine runnable applications, live demos, and employer-facing case studies that explain the product thinking behind each build.
 
 **Best review path:**
 
 1. Start with the **[Public Portfolio Hub](https://atomicdjt.github.io/AI-Project-Portfolio/)** for the 3-minute review path and live demo links.
-2. Review **[ScamShield AI](apps/scamshield-ai)** for a complete public-interest cybersecurity workflow and live deployment.
-3. Review **[RedactReady](apps/redactready-local)** for privacy/security document processing.
-4. Review **[LayerForge Studio](apps/layerforge-studio)** for frontend and Canvas-based application polish.
-5. Review **[OpsPilot](apps/opspilot-ai-operations-toolkit)** and its **[live demo](https://opspilot-ai-operations-toolkit.netlify.app/)** for the clearest connection to operations, documentation, onboarding, and knowledge-management roles.
-6. Review **[FocusForge](apps/focusforge)** for a polished gamified productivity app with local persistence, progression systems, and a deployable static architecture.
+2. Review **[RedactReady Pro](apps/redactready-pro-hri-os)** and its **[live demo](https://redactready-pro-hri-os.netlify.app/)** for the flagship privacy/document intelligence product.
+3. Review **[ScamShield AI](apps/scamshield-ai)** for a complete public-interest cybersecurity workflow and live deployment.
+4. Review **[RedactReady](apps/redactready-local)** for deeper privacy/security document redaction mechanics.
+5. Review **[LayerForge Studio](apps/layerforge-studio)** for frontend and Canvas-based application polish.
+6. Review **[OpsPilot](apps/opspilot-ai-operations-toolkit)** and its **[live demo](https://opspilot-ai-operations-toolkit.netlify.app/)** for the clearest connection to operations, documentation, onboarding, and knowledge-management roles.
+7. Review **[FocusForge](apps/focusforge)** for a polished gamified productivity app with local persistence, progression systems, and a deployable static architecture.
 7. Skim the **[Employer Overview](docs/EMPLOYER_OVERVIEW.md)**, **[Project Index](docs/PROJECT_INDEX.md)**, and **[Skills Matrix](docs/SKILLS_MATRIX.md)** to connect the work to role requirements.
 
 This repository is not presented as a claim of senior engineering experience. It is presented as evidence of practical initiative, AI-assisted execution, product judgment, documentation discipline, and the ability to turn ambiguous ideas into structured working systems.
@@ -63,6 +64,7 @@ This portfolio is strongest when read as evidence of:
 | Project | Review Link | Demo Status | Screenshot | Value Pitch |
 | --- | --- | --- | --- | --- |
 | **[Portfolio Hub](apps/portfolio-hub)** | [Recruiter Guide](docs/recruiter-quick-review.md) | [Live Hub](https://atomicdjt.github.io/AI-Project-Portfolio/) / Local `5180` | Uses portfolio screenshots from `docs/images/` | The portfolio hub is the fastest employer-facing entry point: a public, responsive review surface with the best three projects, live demo links, source/case-study links, status labels, and a comparison table. |
+| **[RedactReady Pro](apps/redactready-pro-hri-os)** | [Case Study](projects/redactready-pro-hri-os/CASE_STUDY.md) | [Live Demo](https://redactready-pro-hri-os.netlify.app/) / Local `5181` | ![RedactReady Pro dashboard](docs/images/redactready-pro-dashboard.png) | RedactReady Pro / Human Risk Intelligence OS is the flagship privacy product: a local-first document intelligence platform for sensitive-information detection, HRI scoring, evidence mapping, action planning, redaction, and report export. It demonstrates product architecture, privacy engineering, deterministic analysis, polished UX, and deployment readiness. |
 | **[ScamShield AI](apps/scamshield-ai)** | [Case Study](projects/scamshield-ai/CASE_STUDY.md) | [Live Demo](https://scamshield-ai-safety.netlify.app/) / Local `5178` | ![ScamShield AI assessment workspace](docs/images/scamshield-assessment.png) | ScamShield AI is a local-first consumer-protection workflow for assessing suspicious messages, preserving evidence, building a timeline, choosing safer next steps, locating official reporting channels, and exporting a structured PDF packet. It demonstrates accessible safety UX, deterministic explainable analysis, privacy-first architecture, and production deployment. |
 | **[RedactReady](apps/redactready-local)** | [Case Study](projects/redactready-local/CASE_STUDY.md) | [Live Demo](https://redactready-local.netlify.app/) / Local `5173` | ![RedactReady review workspace](docs/images/redactready-review-workspace.png) | RedactReady is the strongest privacy/security product in the portfolio: a local-first redaction MVP for PDFs, images, TXT, and CSV files with detector review, manual redaction boxes, flattened exports, and verification reporting. It demonstrates product judgment around sensitive documents, responsible UX, and practical threat-model boundaries. |
 | **[OpsPilot](apps/opspilot-ai-operations-toolkit)** | [Case Study](projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) | [Live Demo](https://opspilot-ai-operations-toolkit.netlify.app/) / Local `5177` | ![OpsPilot operations dashboard](docs/images/opspilot-home.png) | OpsPilot is an AI operations toolkit that turns rough notes, policies, tickets, and FAQs into SOPs, onboarding checklists, knowledge base articles, gap reports, and versioned documentation. It is the clearest bridge between this portfolio and technical operations, enablement, documentation, and knowledge-management roles. |
@@ -97,6 +99,7 @@ Supporting materials that are useful for deeper review, but should not clutter t
 
 | Project | Status | Why Review It |
 | --- | --- | --- |
+| [RedactReady Pro](projects/redactready-pro-hri-os/CASE_STUDY.md) | Runnable MVP + live demo | Flagship local-first privacy intelligence product with deterministic detection, HRI scoring, evidence mapping, redaction, reports, tests, and polished deployment. |
 | [ScamShield AI](projects/scamshield-ai/CASE_STUDY.md) | Runnable MVP + live demo | Complete public-interest safety workflow with explainable risk signals, caregiver/plain-language modes, evidence organization, official reporting guidance, and PDF export. |
 | [RedactReady](projects/redactready-local/CASE_STUDY.md) | Runnable MVP | Strongest privacy/security product; shows local-first architecture, document processing, true redaction, and safety-focused UX. |
 | [LayerForge Studio](projects/layerforge-studio/CASE_STUDY.md) | Runnable MVP | Strongest runnable app and best evidence of product polish. |
@@ -112,6 +115,7 @@ Supporting materials that are useful for deeper review, but should not clutter t
 | Project | Current Form | Code in Repo? | Demo Type | Case Study? |
 | --- | --- | --- | --- | --- |
 | Portfolio Hub | Runnable MVP | Yes | GitHub Pages / local | Recruiter guide |
+| RedactReady Pro | Runnable MVP | Yes | Live / local / Netlify | Yes |
 | ScamShield AI | Runnable MVP | Yes | Live / local / Netlify | Yes |
 | RedactReady | Runnable MVP | Yes | Live / local / Netlify | Yes |
 | OpsPilot | Runnable MVP | Yes | Live / local / Netlify | Yes |
@@ -132,9 +136,13 @@ Supporting materials that are useful for deeper review, but should not clutter t
 | --- | --- |
 | ![ScamShield AI landing page](docs/images/scamshield-landing.png) | ![ScamShield AI assessment workspace](docs/images/scamshield-assessment.png) |
 
-| RedactReady | OpsPilot | Astra |
+| RedactReady Pro | RedactReady | OpsPilot |
 | --- | --- | --- |
-| ![RedactReady review workspace](docs/images/redactready-review-workspace.png) | ![OpsPilot operations dashboard](docs/images/opspilot-home.png) | ![Astra AI chat workspace](docs/images/astra-home.png) |
+| ![RedactReady Pro dashboard](docs/images/redactready-pro-dashboard.png) | ![RedactReady review workspace](docs/images/redactready-review-workspace.png) | ![OpsPilot operations dashboard](docs/images/opspilot-home.png) |
+
+| Astra |
+| --- |
+| ![Astra AI chat workspace](docs/images/astra-home.png) |
 
 | Nexus Play | LayerForge Studio |
 | --- | --- |
@@ -157,12 +165,14 @@ apps/
   redactready-local/       Runnable local-first privacy redaction engine
   opspilot-ai-operations-toolkit/  Runnable AI operations documentation toolkit
   focusforge/            Runnable local-first gamified productivity app
+  redactready-pro-hri-os/  Flagship local-first document intelligence and HRI scoring OS
   astra/                 Runnable local AI chat application
   nexus-play/            Runnable game storefront and platform demo
   layerforge-studio/     Runnable local-first layered raster image editor
 
 projects/
   scamshield-ai/                            Consumer-protection cybersecurity case study
+  redactready-pro-hri-os/                   Flagship privacy intelligence case study
   redactready-local/                         Privacy/security redaction case study
   opspilot-ai-operations-toolkit/             Employer-facing case study
   focusforge/                                Gamified productivity app case study
@@ -208,7 +218,7 @@ npm install
 npm run dev
 ```
 
-Use the same pattern for `apps/portfolio-hub`, `apps/scamshield-ai`, `apps/redactready-local`, `apps/nexus-play`, `apps/layerforge-studio`, `apps/opspilot-ai-operations-toolkit`, and `apps/focusforge`.
+Use the same pattern for `apps/portfolio-hub`, `apps/redactready-pro-hri-os`, `apps/scamshield-ai`, `apps/redactready-local`, `apps/nexus-play`, `apps/layerforge-studio`, `apps/opspilot-ai-operations-toolkit`, and `apps/focusforge`.
 
 ## Root Convenience Scripts
 
@@ -227,6 +237,7 @@ npm run dev:nexus
 npm run dev:layerforge
 npm run dev:opspilot
 npm run dev:focusforge
+npm run dev:redactready-pro
 npm run dev:redactready
 npm run dev:scamshield
 ```
@@ -267,6 +278,7 @@ These projects demonstrate:
 ## Notes
 
 - Astra requires a Gemini API key in `apps/astra/.env.local` for live model responses. The UI still runs and clearly reports configuration status without a key.
+- RedactReady Pro is live on Netlify, runs deterministic analysis locally in the browser, and does not require an account, backend, API key, or database.
 - RedactReady is local-first and does not require an API key or backend upload service for core redaction.
 - ScamShield AI is live on Netlify, runs its analysis locally, and does not require an account, backend, API key, or database.
 - OpsPilot is live on Netlify, runs its drafting workflow locally in the browser, and does not require an account, backend, API key, or database.
