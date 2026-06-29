@@ -7,6 +7,7 @@ I build and document runnable applications that turn rough workflow problems int
 ## Best Projects To Review First
 
 - [RedactReady Pro](https://github.com/atomicdjt/AI-Project-Portfolio/tree/main/apps/redactready-pro-hri-os): flagship local-first document intelligence OS with HRI scoring, redaction, evidence mapping, and report export.
+- [BuildWorld AI](https://github.com/atomicdjt/AI-Project-Portfolio/tree/main/apps/buildworld-ai): visual systems simulation lab with graph editing, deterministic simulation engines, SSI scoring, cascade analysis, and reports.
 - [ScamShield AI](https://github.com/atomicdjt/AI-Project-Portfolio/tree/main/apps/scamshield-ai): local-first suspicious-message assessment, evidence organization, reporting guidance, and PDF export.
 - [RedactReady](https://github.com/atomicdjt/AI-Project-Portfolio/tree/main/apps/redactready-local): privacy-first document redaction workflow for PDFs, images, TXT, and CSV files.
 - [OpsPilot](https://github.com/atomicdjt/AI-Project-Portfolio/tree/main/apps/opspilot-ai-operations-toolkit): technical operations toolkit for SOPs, onboarding checklists, knowledge base articles, and gap reports.

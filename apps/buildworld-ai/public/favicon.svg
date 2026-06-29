@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="BuildWorld AI">
+  <rect width="64" height="64" rx="14" fill="#070a0f"/>
+  <path d="M16 42V18h13c5.3 0 8.3 2.6 8.3 6.5 0 2.5-1.2 4.4-3.4 5.5 3.1 1 4.8 3 4.8 5.8 0 4.1-3.3 6.2-9.1 6.2H16Zm7-14h5.1c1.7 0 2.7-.8 2.7-2.3s-1-2.3-2.7-2.3H23V28Zm0 8.5h6.1c1.9 0 2.9-.8 2.9-2.4 0-1.7-1-2.5-2.9-2.5H23v4.9Z" fill="#26d9b5"/>
+  <path d="M39 42 34.6 18h6.2l1.9 13.7L46.1 18h5.1l3.4 13.7L56.5 18H63l-4.5 24h-6.1l-3.7-13.4L45.1 42H39Z" fill="#6ea8ff"/>
+  <circle cx="48" cy="48" r="5" fill="#f6c15f"/>
+</svg>

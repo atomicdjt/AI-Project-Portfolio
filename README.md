@@ -29,14 +29,15 @@ This portfolio is designed to be reviewed quickly. The strongest evidence is con
 **Best review path:**
 
 1. Start with the **[Public Portfolio Hub](https://atomicdjt.github.io/AI-Project-Portfolio/)** for the 3-minute review path and live demo links.
-2. Review **[RedactReady Pro](apps/redactready-pro-hri-os)** and its **[live demo](https://redactready-pro-hri-os.netlify.app/)** for the flagship privacy/document intelligence product.
-3. Review **[ScamShield AI](apps/scamshield-ai)** for a complete public-interest cybersecurity workflow and live deployment.
-4. Review **[RedactReady](apps/redactready-local)** for deeper privacy/security document redaction mechanics.
-5. Review **[LayerForge Studio](apps/layerforge-studio)** for frontend and Canvas-based application polish.
-6. Review **[OpsPilot](apps/opspilot-ai-operations-toolkit)** and its **[live demo](https://opspilot-ai-operations-toolkit.netlify.app/)** for the clearest connection to operations, documentation, onboarding, and knowledge-management roles.
-7. Review **[FocusForge](apps/focusforge)** for a polished gamified productivity app with local persistence, progression systems, and a deployable static architecture.
-8. Review **[VariantVision Pro](apps/variantvision-pro)** for complex-domain research-tool implementation, source transparency, and non-diagnostic evidence review.
-9. Skim the **[Employer Overview](docs/EMPLOYER_OVERVIEW.md)**, **[Project Index](docs/PROJECT_INDEX.md)**, and **[Skills Matrix](docs/SKILLS_MATRIX.md)** to connect the work to role requirements.
+2. Review **[BuildWorld AI](apps/buildworld-ai)** and its **[live demo](https://buildworld-ai.netlify.app/)** for the most technically ambitious simulation, data-visualization, and product-architecture project.
+3. Review **[RedactReady Pro](apps/redactready-pro-hri-os)** and its **[live demo](https://redactready-pro-hri-os.netlify.app/)** for the flagship privacy/document intelligence product.
+4. Review **[ScamShield AI](apps/scamshield-ai)** for a complete public-interest cybersecurity workflow and live deployment.
+5. Review **[RedactReady](apps/redactready-local)** for deeper privacy/security document redaction mechanics.
+6. Review **[LayerForge Studio](apps/layerforge-studio)** for frontend and Canvas-based application polish.
+7. Review **[OpsPilot](apps/opspilot-ai-operations-toolkit)** and its **[live demo](https://opspilot-ai-operations-toolkit.netlify.app/)** for the clearest connection to operations, documentation, onboarding, and knowledge-management roles.
+8. Review **[FocusForge](apps/focusforge)** for a polished gamified productivity app with local persistence, progression systems, and a deployable static architecture.
+9. Review **[VariantVision Pro](apps/variantvision-pro)** for complex-domain research-tool implementation, source transparency, and non-diagnostic evidence review.
+10. Skim the **[Employer Overview](docs/EMPLOYER_OVERVIEW.md)**, **[Project Index](docs/PROJECT_INDEX.md)**, and **[Skills Matrix](docs/SKILLS_MATRIX.md)** to connect the work to role requirements.
 
 This repository is not presented as a claim of senior engineering experience. It is presented as evidence of practical initiative, AI-assisted execution, product judgment, documentation discipline, and the ability to turn ambiguous ideas into structured working systems.
 
@@ -65,6 +66,7 @@ This portfolio is strongest when read as evidence of:
 | Project | Review Link | Demo Status | Screenshot | Value Pitch |
 | --- | --- | --- | --- | --- |
 | **[Portfolio Hub](apps/portfolio-hub)** | [Recruiter Guide](docs/recruiter-quick-review.md) | [Live Hub](https://atomicdjt.github.io/AI-Project-Portfolio/) / Local `5180` | Uses portfolio screenshots from `docs/images/` | The portfolio hub is the fastest employer-facing entry point: a public, responsive review surface with the best three projects, live demo links, source/case-study links, status labels, and a comparison table. |
+| **[BuildWorld AI](apps/buildworld-ai)** | [Case Study](projects/buildworld-ai/CASE_STUDY.md) | [Live Demo](https://buildworld-ai.netlify.app/) / Local `5183` | ![BuildWorld AI simulation studio](docs/images/buildworld-ai-studio.png) | BuildWorld AI is the most technically ambitious flagship: a visual graph-based systems simulation lab with deterministic engines, editable canvas, SSI stability scoring, cascade analysis, optimization suggestions, scenario comparison, local persistence, and exportable reports. |
 | **[RedactReady Pro](apps/redactready-pro-hri-os)** | [Case Study](projects/redactready-pro-hri-os/CASE_STUDY.md) | [Live Demo](https://redactready-pro-hri-os.netlify.app/) / Local `5181` | ![RedactReady Pro dashboard](docs/images/redactready-pro-dashboard.png) | RedactReady Pro / Human Risk Intelligence OS is the flagship privacy product: a local-first document intelligence platform for sensitive-information detection, HRI scoring, evidence mapping, action planning, redaction, and report export. It demonstrates product architecture, privacy engineering, deterministic analysis, polished UX, and deployment readiness. |
 | **[ScamShield AI](apps/scamshield-ai)** | [Case Study](projects/scamshield-ai/CASE_STUDY.md) | [Live Demo](https://scamshield-ai-safety.netlify.app/) / Local `5178` | ![ScamShield AI assessment workspace](docs/images/scamshield-assessment.png) | ScamShield AI is a local-first consumer-protection workflow for assessing suspicious messages, preserving evidence, building a timeline, choosing safer next steps, locating official reporting channels, and exporting a structured PDF packet. It demonstrates accessible safety UX, deterministic explainable analysis, privacy-first architecture, and production deployment. |
 | **[RedactReady](apps/redactready-local)** | [Case Study](projects/redactready-local/CASE_STUDY.md) | [Live Demo](https://redactready-local.netlify.app/) / Local `5173` | ![RedactReady review workspace](docs/images/redactready-review-workspace.png) | RedactReady is the strongest privacy/security product in the portfolio: a local-first redaction MVP for PDFs, images, TXT, and CSV files with detector review, manual redaction boxes, flattened exports, and verification reporting. It demonstrates product judgment around sensitive documents, responsible UX, and practical threat-model boundaries. |
@@ -101,6 +103,7 @@ Supporting materials that are useful for deeper review, but should not clutter t
 
 | Project | Status | Why Review It |
 | --- | --- | --- |
+| [BuildWorld AI](projects/buildworld-ai/CASE_STUDY.md) | Runnable MVP + live demo | Most technically ambitious app: graph simulation studio, deterministic engines, SSI scoring, cascade analyzer, optimization lab, snapshots, reports, tests, and live deployment. |
 | [RedactReady Pro](projects/redactready-pro-hri-os/CASE_STUDY.md) | Runnable MVP + live demo | Flagship local-first privacy intelligence product with deterministic detection, HRI scoring, evidence mapping, redaction, reports, tests, and polished deployment. |
 | [ScamShield AI](projects/scamshield-ai/CASE_STUDY.md) | Runnable MVP + live demo | Complete public-interest safety workflow with explainable risk signals, caregiver/plain-language modes, evidence organization, official reporting guidance, and PDF export. |
 | [RedactReady](projects/redactready-local/CASE_STUDY.md) | Runnable MVP | Strongest privacy/security product; shows local-first architecture, document processing, true redaction, and safety-focused UX. |
@@ -117,6 +120,7 @@ Supporting materials that are useful for deeper review, but should not clutter t
 | Project | Current Form | Code in Repo? | Demo Type | Case Study? |
 | --- | --- | --- | --- | --- |
 | Portfolio Hub | Runnable MVP | Yes | GitHub Pages / local | Recruiter guide |
+| BuildWorld AI | Runnable MVP | Yes | Live / local / Netlify | Yes |
 | RedactReady Pro | Runnable MVP | Yes | Live / local / Netlify | Yes |
 | ScamShield AI | Runnable MVP | Yes | Live / local / Netlify | Yes |
 | RedactReady | Runnable MVP | Yes | Live / local / Netlify | Yes |
@@ -133,6 +137,10 @@ Supporting materials that are useful for deeper review, but should not clutter t
 | FrameEcho | Technical product concept | Documentation-first | Planned / spec | Yes |
 
 ## Screenshots
+
+| BuildWorld AI studio | BuildWorld AI report |
+| --- | --- |
+| ![BuildWorld AI simulation studio](docs/images/buildworld-ai-studio.png) | ![BuildWorld AI report builder](docs/images/buildworld-ai-report.png) |
 
 | ScamShield AI landing | ScamShield AI assessment |
 | --- | --- |
@@ -163,6 +171,7 @@ Supporting materials that are useful for deeper review, but should not clutter t
 ```text
 apps/
   portfolio-hub/          Public employer-facing portfolio review hub
+  buildworld-ai/          Visual systems simulation lab with graph canvas, SSI scoring, and reports
   scamshield-ai/         Runnable local-first scam safety and evidence workspace
   redactready-local/       Runnable local-first privacy redaction engine
   opspilot-ai-operations-toolkit/  Runnable AI operations documentation toolkit
@@ -173,6 +182,7 @@ apps/
   layerforge-studio/     Runnable local-first layered raster image editor
 
 projects/
+  buildworld-ai/                             Systems simulation and data-visualization case study
   scamshield-ai/                            Consumer-protection cybersecurity case study
   redactready-pro-hri-os/                   Flagship privacy intelligence case study
   redactready-local/                         Privacy/security redaction case study
@@ -220,7 +230,7 @@ npm install
 npm run dev
 ```
 
-Use the same pattern for `apps/portfolio-hub`, `apps/redactready-pro-hri-os`, `apps/scamshield-ai`, `apps/redactready-local`, `apps/nexus-play`, `apps/layerforge-studio`, `apps/opspilot-ai-operations-toolkit`, and `apps/focusforge`.
+Use the same pattern for `apps/portfolio-hub`, `apps/buildworld-ai`, `apps/redactready-pro-hri-os`, `apps/scamshield-ai`, `apps/redactready-local`, `apps/nexus-play`, `apps/layerforge-studio`, `apps/opspilot-ai-operations-toolkit`, and `apps/focusforge`.
 
 ## Root Convenience Scripts
 
@@ -241,6 +251,7 @@ npm run dev:opspilot
 npm run dev:focusforge
 npm run dev:variantvision
 npm run dev:redactready-pro
+npm run dev:buildworld
 npm run dev:redactready
 npm run dev:scamshield
 ```
@@ -281,6 +292,7 @@ These projects demonstrate:
 ## Notes
 
 - Astra requires a Gemini API key in `apps/astra/.env.local` for live model responses. The UI still runs and clearly reports configuration status without a key.
+- BuildWorld AI is live on Netlify, runs deterministic educational graph simulations locally in the browser, and does not require an account, backend, API key, or database. Its SSI score is an exploratory portfolio/demo metric, not a certified engineering or public-health model.
 - RedactReady Pro is live on Netlify, runs deterministic analysis locally in the browser, and does not require an account, backend, API key, or database.
 - RedactReady is local-first and does not require an API key or backend upload service for core redaction.
 - ScamShield AI is live on Netlify, runs its analysis locally, and does not require an account, backend, API key, or database.

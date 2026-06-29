@@ -11,6 +11,7 @@ This folder contains the runnable applications in the portfolio.
 - `focusforge`: Local-first gamified focus timer that turns uninterrupted sessions into civilization progress, research, streaks, and exportable local history.
 - `variantvision-pro`: Static-deployable bioinformatics evidence workbench for educational variant review, amino-acid comparison, source transparency, and non-diagnostic research triage.
 - `redactready-pro-hri-os`: Flagship local-first document intelligence OS for sensitive-information detection, Human Risk Intelligence scoring, redaction, evidence mapping, action planning, and report export.
+- `buildworld-ai`: Visual systems simulation lab with editable graph canvas, deterministic simulation engines, SSI scoring, cascade analysis, optimization suggestions, scenario comparison, and exportable reports.
 - `redactready-local`: Local-first privacy redaction engine for PDFs, images, TXT, and CSV files with flattened exports and verification reports.
 - `scamshield-ai`: Local-first scam risk assessment, evidence organization, safety planning, official reporting guidance, and PDF evidence packets.
 

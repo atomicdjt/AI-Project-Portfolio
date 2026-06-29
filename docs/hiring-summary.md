@@ -9,6 +9,7 @@ The portfolio shows the ability to:
 - Turn vague ideas into structured product concepts.
 - Use AI to accelerate documentation, triage, analysis, and workflow design.
 - Build and package runnable frontend applications.
+- Build technically ambitious simulation/data-visualization tools with responsible scope boundaries.
 - Design privacy-conscious tools with explicit limitations and safety checks.
 - Create responsible research and educational tools.
 - Communicate project value in employer-readable terms.
@@ -31,4 +32,5 @@ The portfolio shows the ability to:
 3. **I document my decisions clearly enough for another person to review or continue the work.**
 4. **I understand the importance of scope, limitations, and responsible use.**
 5. **I can build privacy-conscious workflows that make safety tradeoffs visible.**
-6. **I can build credible prototypes quickly and improve them iteratively.**
+6. **I can build graph-based simulation and analytics products that explain complex systems without overstating accuracy.**
+7. **I can build credible prototypes quickly and improve them iteratively.**

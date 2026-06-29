@@ -3,7 +3,7 @@
 ## 60-Second Review Path
 
 1. Open the public [Portfolio Hub](https://atomicdjt.github.io/AI-Project-Portfolio/) and use the top three project cards.
-2. Review [RedactReady Pro](../projects/redactready-pro-hri-os/CASE_STUDY.md), [ScamShield AI](../projects/scamshield-ai/CASE_STUDY.md), and [RedactReady](../projects/redactready-local/CASE_STUDY.md).
+2. Review [BuildWorld AI](../projects/buildworld-ai/CASE_STUDY.md), [RedactReady Pro](../projects/redactready-pro-hri-os/CASE_STUDY.md), and [ScamShield AI](../projects/scamshield-ai/CASE_STUDY.md).
 3. Use [Project Index](PROJECT_INDEX.md) and [Skills Matrix](SKILLS_MATRIX.md) to connect the work to role requirements.
 4. Use [Verification](verification.md) to see what can be run locally and which claims are supported by scripts or docs.
 
@@ -12,6 +12,7 @@
 | Project | Demo | Why review it |
 | --- | --- | --- |
 | Portfolio Hub | https://atomicdjt.github.io/AI-Project-Portfolio/ | Fastest public entry point with best projects, live links, case studies, source links, and status labels. |
+| BuildWorld AI | https://buildworld-ai.netlify.app/ | Most technically ambitious live demo: graph simulation studio, SSI scoring, cascade analyzer, optimization lab, snapshots, and reports. |
 | RedactReady Pro | https://redactready-pro-hri-os.netlify.app/ | Flagship local-first privacy/document intelligence workflow with HRI scoring, redaction, evidence mapping, and reports. |
 | ScamShield AI | https://scamshield-ai-safety.netlify.app/ | Complete public-interest safety workflow with privacy-first architecture and exportable evidence packet. |
 | RedactReady | https://redactready-local.netlify.app/ | Privacy/security workflow for local document redaction and review. |
@@ -22,6 +23,7 @@
 
 | Project | Path | What it demonstrates |
 | --- | --- | --- |
+| BuildWorld AI | `apps/buildworld-ai/src/modules/simulation` | Deterministic graph simulation, SSI scoring, cascade experiments, optimization suggestions, insight generation, reports, and export/import validation. |
 | RedactReady Pro | `apps/redactready-pro-hri-os/src/modules` | Deterministic sensitive-information detection, HRI scoring, classification, evidence mapping, checklist generation, report generation, and redaction. |
 | ScamShield AI | `apps/scamshield-ai/src/lib` | Deterministic risk scoring, entity extraction, reporting resources, and browser PDF generation. |
 | RedactReady | `apps/redactready-local/src/lib` | Sensitive-data detectors, local file handling, PDF/image redaction, and verification/report generation. |
@@ -32,6 +34,7 @@
 ## Best Case Studies
 
 - [RedactReady Pro](../projects/redactready-pro-hri-os/CASE_STUDY.md)
+- [BuildWorld AI](../projects/buildworld-ai/CASE_STUDY.md)
 - [ScamShield AI](../projects/scamshield-ai/CASE_STUDY.md)
 - [RedactReady](../projects/redactready-local/CASE_STUDY.md)
 - [LayerForge Studio](../projects/layerforge-studio/CASE_STUDY.md)
@@ -47,6 +50,7 @@
 | Documentation / Knowledge Base | Case studies, project index, recruiter docs, OpsPilot, and structured knowledge operations concepts. |
 | Product Operations | Clear project scoping, user workflows, validation notes, roadmap boundaries, and stakeholder-readable packaging. |
 | Frontend/Product Implementation | React, TypeScript, Vite, Canvas, local persistence, testing, and deployable static apps. |
+| Systems / Simulation Product | BuildWorld AI shows graph modeling, deterministic simulation, analytics dashboards, cascade analysis, scoring, and exportable reports. |
 
 ## What This Portfolio Demonstrates
 
@@ -67,6 +71,7 @@
 
 | Project | Best evidence |
 | --- | --- |
+| BuildWorld AI | Most technically ambitious live simulation product, deterministic engines, SSI scoring, cascade analyzer, optimization lab, report export, local persistence, Vitest coverage, Netlify deployment, and careful educational limitations. |
 | RedactReady Pro | Flagship local-first document intelligence workflow, deterministic HRI scoring, test coverage, report export, Netlify deployment, and strong privacy boundaries. |
 | ScamShield AI | Complete safety workflow, tests, Playwright coverage, PDF export, Netlify deployment, and strict local-first privacy model. |
 | RedactReady | Privacy/security document workflow, deterministic detectors, local redaction exports, test coverage, and Netlify deployment configuration. |
