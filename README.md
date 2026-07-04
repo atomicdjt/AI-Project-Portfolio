@@ -199,6 +199,7 @@ apps/
   redactready-local/       Runnable local-first privacy redaction engine
   opspilot-ai-operations-toolkit/  Runnable AI operations documentation toolkit
   focusforge/            Runnable local-first gamified productivity app
+  variantvision-pro/     Runnable bioinformatics evidence workbench and research-tool demo
   redactready-pro-hri-os/  Flagship local-first document intelligence and HRI scoring OS
   astra/                 Runnable local AI chat application
   nexus-play/            Runnable game storefront and platform demo
@@ -254,7 +255,7 @@ npm install
 npm run dev
 ```
 
-Use the same pattern for `apps/portfolio-hub`, `apps/buildworld-ai`, `apps/redactready-pro-hri-os`, `apps/scamshield-ai`, `apps/redactready-local`, `apps/nexus-play`, `apps/layerforge-studio`, `apps/opspilot-ai-operations-toolkit`, and `apps/focusforge`.
+Use the same pattern for `apps/portfolio-hub`, `apps/buildworld-ai`, `apps/redactready-pro-hri-os`, `apps/scamshield-ai`, `apps/redactready-local`, `apps/nexus-play`, `apps/layerforge-studio`, `apps/opspilot-ai-operations-toolkit`, `apps/focusforge`, and `apps/variantvision-pro`.
 
 ## Root Convenience Scripts
 
