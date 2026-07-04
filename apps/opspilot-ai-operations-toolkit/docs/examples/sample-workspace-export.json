@@ -1,0 +1,33 @@
+{
+  "product": "OpsPilot Pro",
+  "mode": "seeded-reference-demo",
+  "scope": "sanitized portfolio proof",
+  "organization": {
+    "id": "org-demo",
+    "name": "Demo Operations",
+    "plan": "pro"
+  },
+  "documents": [
+    {
+      "id": "sample-sop",
+      "type": "SOP",
+      "title": "Sample SOP Export",
+      "status": "Draft",
+      "score": 86
+    },
+    {
+      "id": "sample-checklist",
+      "type": "Training Checklist",
+      "title": "Sample Checklist Export",
+      "status": "In Review",
+      "score": 82
+    }
+  ],
+  "auditEvents": [
+    {
+      "id": "audit-sample",
+      "action": "workspace.exported",
+      "summary": "Generated sanitized sample export for portfolio review."
+    }
+  ]
+}
