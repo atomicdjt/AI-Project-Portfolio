@@ -45,7 +45,7 @@ gh pr create --base main --head portfolio-audit-upgrade --title "Improve portfol
 Use this bio:
 
 ```text
-Applied AI product builder focused on local-first privacy tools, workflow systems, research-support software, and technical operations products.
+Applied AI workflow and technical-ops builder shipping deployed local-first tools with documented CI, tests, and case studies.
 ```
 
 Manual steps:
@@ -63,6 +63,7 @@ Applied on July 4, 2026:
 - Display name: `David Turner`
 - Profile website: `https://atomicdjt.github.io/AI-Project-Portfolio/`
 - Hireable flag: enabled
+- Profile bio: `Applied AI workflow and technical-ops builder shipping deployed local-first tools with documented CI, tests, and case studies.`
 - Profile README repository homepage: `https://atomicdjt.github.io/AI-Project-Portfolio/`
 - Profile README repository topics: `github-profile`, `portfolio`, `readme`, `applied-ai`, `technical-operations`
 - `buildworld-ai` repository topics: `ai`, `systems-simulation`, `graph-simulation`, `data-visualization`, `react`, `typescript`, `vite`, `netlify`, `local-first`, `portfolio`

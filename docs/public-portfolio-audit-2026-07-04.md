@@ -6,7 +6,7 @@ This audit reviewed the public GitHub profile, public portfolio repository, GitH
 
 | Area | Rating | Assessment |
 | --- | --- | --- |
-| Public GitHub profile | 8 / 10 | Clear portfolio link and public profile README are present. Remaining improvements are mostly account-level: pinned repo order, profile bio tuning, and social proof. |
+| Public GitHub profile | 8.5 / 10 | Clear portfolio link, current bio, public profile README, validation claims, and strongest-project routing are present. Remaining improvements are mostly UI-managed pinned repo order and external social proof. |
 | Portfolio repository presentation | 8.5 / 10 | Strong root README, recruiter path, case studies, skills matrix, verification docs, and deployment map. Weaknesses were stale local paths and a few status/link inconsistencies. |
 | Portfolio Hub | 7.5 / 10 before fixes, 8.5 / 10 after source fixes | Strong first impression and review path, but the public build had missing screenshot assets and an incomplete app inventory. |
 | Flagship Netlify apps | 8 / 10 | All flagship public URLs resolved with HTTP 200. The main production issue found was FocusForge loading external fonts blocked by its own CSP. |
@@ -47,7 +47,7 @@ This audit reviewed the public GitHub profile, public portfolio repository, GitH
 
 | Priority | Weakness | Recommended Action |
 | --- | --- | --- |
-| P2 | GitHub profile account polish is partially outside this repo. | Update the GitHub profile bio, pinned repositories, and any visible personal links manually using `docs/github-profile/SETUP.md` and `docs/github-repo-settings.md`. |
+| P2 | GitHub profile pinning and some visible social proof remain account UI-managed. | Keep `AI-Project-Portfolio`, `buildworld-ai`, and `atomicdjt` pinned in that order when GitHub's profile UI is available. |
 | P2 | Supplemental demos are public but their source is not in this portfolio repo. | Keep them labeled as supplemental, or move source into `apps/` before treating them as primary portfolio evidence. |
 | P3 | Public app demos have strong text and workflows, but most lack short demo videos or animated proof in the README/profile. | Add 15-30 second GIFs or screenshots for the top three demos once the core portfolio links are stable. |
 
@@ -56,6 +56,7 @@ This audit reviewed the public GitHub profile, public portfolio repository, GitH
 - Pull request: `https://github.com/atomicdjt/AI-Project-Portfolio/pull/15`
 - Merged commit: `860273c`
 - Account-level GitHub profile metadata updated: display name, bio, website field, hireable flag, public repository homepages, and public repository topics.
+- GitHub profile bio refreshed to emphasize deployed local-first tools, AI workflow, technical operations, documented CI, tests, and case studies.
 - GitHub profile README updated with public status badges, audit link, validation status, and strongest public proof table.
 - Netlify account-level project descriptions updated for the flagship and supplemental public sites.
 - GitHub Pages deployment: passed on July 4, 2026.

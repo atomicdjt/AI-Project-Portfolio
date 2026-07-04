@@ -1,8 +1,8 @@
 # David Turner
 
-**Applied AI product builder focused on local-first privacy tools, workflow systems, research-support software, and technical operations products.**
+**Applied AI workflow and technical-ops builder shipping deployed local-first tools with documented CI, tests, and case studies.**
 
-I build reviewable AI-assisted software: live demos, source repos, case studies, validation notes, and deployment documentation that explain the product decisions behind each project.
+I build reviewable AI-assisted software and commercial handoff packages: live demos, source repos, case studies, validation notes, deployment documentation, and buyer-facing materials that explain the product decisions behind each project.
 
 [![Portfolio Hub](https://img.shields.io/badge/Portfolio%20Hub-live-0f766e)](https://atomicdjt.github.io/AI-Project-Portfolio/)
 [![Main Repository](https://img.shields.io/badge/GitHub-AI%20Project%20Portfolio-111827?logo=github)](https://github.com/atomicdjt/AI-Project-Portfolio)
@@ -20,6 +20,7 @@ I build reviewable AI-assisted software: live demos, source repos, case studies,
 
 - Public Portfolio Hub and flagship app links were audited on July 4, 2026.
 - Portfolio validation includes lint, typecheck, tests, production builds, link checks, GitHub Actions, GitHub Pages verification, and Netlify production smoke checks.
+- QuoteForge Local is a shipped commercial product with a live demo and Payhip product page; its source and buyer package are maintained outside the portfolio repo.
 - The strongest evidence is concentrated in the portfolio hub, the first three flagship demos, and the documented case studies.
 
 ## Best Projects To Review First
@@ -34,6 +35,12 @@ I build reviewable AI-assisted software: live demos, source repos, case studies,
 | [OpsPilot](https://github.com/atomicdjt/AI-Project-Portfolio/tree/main/apps/opspilot-ai-operations-toolkit) | [Demo](https://opspilot-ai-operations-toolkit.netlify.app/) | Technical operations toolkit for SOPs, onboarding checklists, knowledge base articles, gap reports, and versioned documents. |
 | [VariantVision Pro](https://github.com/atomicdjt/AI-Project-Portfolio/tree/main/apps/variantvision-pro) | [Demo](https://variantvisionpro.netlify.app/) | Educational bioinformatics evidence workbench with source transparency and non-diagnostic research-tool boundaries. |
 
+## Shipped Commercial Product
+
+| Product | Public links | What it demonstrates |
+| --- | --- | --- |
+| QuoteForge Local | [Demo](https://quoteforge-local.vercel.app/) / [Payhip](https://payhip.com/b/24De9) | Commercial buyer packaging, local-first quoting workflow, setup/customization docs, embed/WordPress handoff, QA evidence, licensing, and sales-page readiness. |
+
 ## Strongest Public Proof
 
 | Proof point | Where to look |
@@ -42,6 +49,7 @@ I build reviewable AI-assisted software: live demos, source repos, case studies,
 | Technical depth | [BuildWorld AI](https://buildworld-ai.netlify.app/) and [technical-depth.md](https://github.com/atomicdjt/AI-Project-Portfolio/blob/main/docs/technical-depth.md) |
 | Privacy and safety judgment | [RedactReady Pro](https://redactready-pro-hri-os.netlify.app/) and [ScamShield AI](https://scamshield-ai-safety.netlify.app/) |
 | Deployment and validation discipline | [verification.md](https://github.com/atomicdjt/AI-Project-Portfolio/blob/main/docs/verification.md) and [deployment-and-previews.md](https://github.com/atomicdjt/AI-Project-Portfolio/blob/main/docs/deployment-and-previews.md) |
+| Commercial product packaging | [QuoteForge Local](https://quoteforge-local.vercel.app/) and [Payhip product page](https://payhip.com/b/24De9) |
 | Recruiter role mapping | [EMPLOYER_OVERVIEW.md](https://github.com/atomicdjt/AI-Project-Portfolio/blob/main/docs/EMPLOYER_OVERVIEW.md) and [SKILLS_MATRIX.md](https://github.com/atomicdjt/AI-Project-Portfolio/blob/main/docs/SKILLS_MATRIX.md) |
 
 ## Role Alignment
@@ -60,4 +68,5 @@ I build reviewable AI-assisted software: live demos, source repos, case studies,
 - Local-first privacy and safety workflows
 - AI-assisted workflow design and product prototyping
 - Documentation systems, case studies, validation notes, and release hygiene
+- CI-backed validation with lint, typecheck, tests, production builds, and link checks
 - Research-support tooling with explicit responsible-use boundaries

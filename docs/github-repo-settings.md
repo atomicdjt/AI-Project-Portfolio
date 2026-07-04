@@ -76,7 +76,7 @@ Keep `apps/portfolio-hub/vite.config.*` and `apps/layerforge-studio/vite.config.
 Recommended GitHub profile bio:
 
 ```text
-AI-assisted product builder focused on workflow systems, privacy-first tools, technical operations, and employer-ready software prototypes.
+Applied AI workflow and technical-ops builder shipping deployed local-first tools with documented CI, tests, and case studies.
 ```
 
 Manual steps:
