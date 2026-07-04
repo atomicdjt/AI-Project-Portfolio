@@ -71,6 +71,6 @@ The root `verify:release` script combines documentation link validation with the
 - Astra and Nexus Play are local demos, not documented production backend deployments.
 - RedactReady Pro does not yet include OCR, robust PDF parsing, image-based QR/signature detection, or encrypted opt-in local storage.
 - RedactReady does not include OCR, face/signature detection, or layout-preserving DOCX/XLSX redaction.
-- OpsPilot currently uses a deterministic local drafting engine; an OpenAI-backed server endpoint is roadmap scope.
+- OpsPilot Pro currently uses a deterministic local drafting engine and seeded reference Function API; durable database persistence, real auth, and OpenAI-backed drafting are production adapter scope.
 - LayerForge Studio would benefit from broader tests around editor actions, persistence, and import/export edge cases.
 - BuildWorld AI would benefit from Web Worker execution and richer graph-editing controls for larger scenarios.

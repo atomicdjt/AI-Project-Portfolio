@@ -95,7 +95,7 @@ const projects = [
     review: 'Frontend depth',
   },
   {
-    name: 'OpsPilot',
+    name: 'OpsPilot Pro',
     rank: 6,
     status: 'Live',
     repoApp: true,
@@ -104,9 +104,9 @@ const projects = [
     source: `${repoBase}/tree/main/apps/opspilot-ai-operations-toolkit`,
     caseStudy: `${repoBase}/blob/main/projects/opspilot-ai-operations-toolkit/CASE_STUDY.md`,
     image: imagePath('opspilot-home.png'),
-    stack: ['React', 'TypeScript', 'Local storage', 'Static deploy'],
-    summary: 'Turns rough operational notes into SOPs, onboarding checklists, knowledge base articles, gap reports, and versions.',
-    why: 'Maps directly to technical operations, enablement, documentation, and knowledge-management roles.',
+    stack: ['React', 'TypeScript', 'Zod', 'Netlify Functions', 'Vitest'],
+    summary: 'Turns rough operational notes into SOPs, onboarding checklists, knowledge base articles, gap reports, audit events, export bundles, and versions.',
+    why: 'Maps directly to technical operations, enablement, documentation, and knowledge-management roles while showing validation, API boundaries, and a database-ready path.',
     review: 'Role fit',
   },
   {

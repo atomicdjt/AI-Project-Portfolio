@@ -10,7 +10,7 @@ React app
       -> validates intake
       -> calls OpenAI model
       -> returns OpsDocument JSON
-  -> database stores document, versions, gaps, and audit events
+  -> database stores document, versions, gaps, training items, knowledge articles, and audit events
 ```
 
 ## API Contract
@@ -40,7 +40,7 @@ Output should match the existing `OpsDocument` type:
 - Never expose API keys in the browser.
 - Keep model calls in a serverless function or backend API route.
 - Validate and bound input length before sending to the model.
-- Store audit logs for publish and version events.
+- Continue storing audit logs for create, update, publish, export, training, gap, and version events.
 - Keep organization data isolated by tenant.
 
 ## Prompting Notes
