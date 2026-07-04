@@ -7,7 +7,7 @@ import {
   toMarkdown,
   updateBodyScore,
 } from '../src/opsEngine'
-import { documentUpdateSchema, intakeSchema, workspaceSessionSchema } from '../src/schemas'
+import { documentUpdateSchema, intakeSchema, supportedApiRoutes, workspaceSessionSchema } from '../src/schemas'
 import type { ExportBundle, IntakeState, OpsDocument, WorkspaceRole, WorkspaceSession } from '../src/types'
 import { forbidden, notFound } from './errors'
 import { createSeedRepository, type OpsPilotRepository } from './repository'
@@ -15,11 +15,37 @@ import { createSeedRepository, type OpsPilotRepository } from './repository'
 const writeRoles: WorkspaceRole[] = ['owner', 'admin', 'editor']
 const adminRoles: WorkspaceRole[] = ['owner', 'admin']
 
+export interface OpsPilotHealthStatus {
+  ok: true
+  app: 'OpsPilot Pro'
+  mode: 'seeded-reference-api'
+  deployment: 'netlify-functions'
+  persistence: 'in-memory-seeded-reference'
+  auth: 'demo-session-simulation'
+  productionReady: false
+  supportedRoutes: string[]
+  timestamp: string
+}
+
 export class OpsPilotApi {
   readonly repository: OpsPilotRepository
 
   constructor(repository: OpsPilotRepository = createSeedRepository()) {
     this.repository = repository
+  }
+
+  health(): OpsPilotHealthStatus {
+    return {
+      ok: true,
+      app: 'OpsPilot Pro',
+      mode: 'seeded-reference-api',
+      deployment: 'netlify-functions',
+      persistence: 'in-memory-seeded-reference',
+      auth: 'demo-session-simulation',
+      productionReady: false,
+      supportedRoutes: [...supportedApiRoutes],
+      timestamp: new Date().toISOString(),
+    }
   }
 
   listDocuments(session: WorkspaceSession): OpsDocument[] {

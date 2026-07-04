@@ -34,6 +34,7 @@ export const workspaceSessionSchema = z.object({
 })
 
 export const apiRouteSchema = z.enum([
+  'health',
   'listDocuments',
   'createDocument',
   'updateDocument',
@@ -44,3 +45,5 @@ export const apiRouteSchema = z.enum([
   'listAuditEvents',
   'exportWorkspace',
 ])
+
+export const supportedApiRoutes = apiRouteSchema.options
