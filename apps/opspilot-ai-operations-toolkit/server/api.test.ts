@@ -5,7 +5,7 @@ import { toApiError } from './errors'
 import { createSeedRepository } from './repository'
 
 function createApi() {
-  return new OpsPilotApi(createSeedRepository())
+  return new OpsPilotApi(createSeedRepository(), { OPSPILOT_AI_ENABLED: 'false' })
 }
 
 describe('OpsPilot Pro API', () => {
@@ -17,6 +17,19 @@ describe('OpsPilot Pro API', () => {
     expect(document.title).toContain('Patient Operations')
     expect(document.organizationId).toBe(demoAdminSession.organizationId)
     expect(audits.some((event) => event.action === 'document.created')).toBe(true)
+  })
+
+  it('creates through aiGenerate with deterministic fallback when AI is not enabled', async () => {
+    const api = createApi()
+    const result = await api.aiGenerate(demoAdminSession, initialIntake)
+    const audits = api.listAuditEvents(demoAdminSession)
+
+    expect(result.document.title).toContain('Patient Operations')
+    expect(result.generation.route).toBe('/api/aiGenerate')
+    expect(result.generation.fallback).toBe(true)
+    expect(result.generation.fallbackReason).toBe('ai_disabled')
+    expect(result.generation.sanitizedConfig.secretVisibleToClient).toBe(false)
+    expect(audits.some((event) => event.action === 'document.generated_fallback')).toBe(true)
   })
 
   it('updates a document body and creates a version plus audit event', () => {
@@ -74,6 +87,12 @@ describe('OpsPilot Pro API', () => {
       /Write access/,
     )
     expect(() => api.exportWorkspace(demoViewerSession)).toThrow(/owner or admin/)
+  })
+
+  it('prevents viewer aiGenerate requests', async () => {
+    const api = createApi()
+
+    await expect(api.aiGenerate(demoViewerSession, initialIntake)).rejects.toThrow(/Write access/)
   })
 
   it('updates training and gap status with audit records', () => {

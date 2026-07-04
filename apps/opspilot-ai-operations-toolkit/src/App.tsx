@@ -5,6 +5,8 @@ import {
   CheckCircle2,
   ChevronRight,
   ClipboardCheck,
+  Code2,
+  Copy,
   Database,
   Download,
   FileArchive,
@@ -15,12 +17,14 @@ import {
   KeyRound,
   LayoutDashboard,
   ListChecks,
+  LoaderCircle,
   Plus,
   Printer,
   RefreshCcw,
   Save,
   Search,
   Send,
+  Server,
   ShieldCheck,
   Sparkles,
   Users,
@@ -39,8 +43,11 @@ import {
 } from './opsEngine'
 import type {
   AuditEvent,
+  AiGenerateResult,
+  AiRuntimeStatus,
   ExportBundle,
   FeatureKey,
+  GenerationDiagnostics,
   IntakeState,
   OpsDocument,
   Organization,
@@ -76,6 +83,32 @@ interface WorkspaceState {
   auditEvents: AuditEvent[]
 }
 
+interface HealthResponse {
+  ok: true
+  app: 'OpsPilot Pro'
+  ai: AiRuntimeStatus
+  supportedRoutes: string[]
+  timestamp: string
+}
+
+const localAiStatus: AiRuntimeStatus = {
+  aiConfigured: false,
+  aiEnabled: false,
+  aiProvider: 'none',
+  model: null,
+  fallback: 'deterministic',
+}
+
+const promptConstraints = [
+  'Strict structured operations document',
+  'Plain text only',
+  'No client-side secrets',
+  'Validate before saving',
+  'Deterministic fallback when unavailable',
+]
+
+const initialGenerationStatus = createClientGenerationDiagnostics(seedDocuments[0], nowMs(), 'Local deterministic demo is ready.')
+
 const featureNav: Array<{ key: FeatureKey; label: string; icon: typeof FileText }> = [
   { key: 'admin', label: 'Admin Dashboard', icon: LayoutDashboard },
   { key: 'sop', label: 'SOP Builder', icon: FileText },
@@ -93,6 +126,10 @@ function App() {
   const [sampleIndex, setSampleIndex] = useState(0)
   const [libraryQuery, setLibraryQuery] = useState('')
   const [toast, setToast] = useState('Workspace ready')
+  const [isGenerating, setIsGenerating] = useState(false)
+  const [generationStatus, setGenerationStatus] = useState<GenerationDiagnostics>(() => initialGenerationStatus)
+  const [healthStatus, setHealthStatus] = useState<HealthResponse | null>(null)
+  const [generationError, setGenerationError] = useState<string | null>(null)
 
   const { auditEvents, documents, mode, organization, session } = workspaceState
   const selectedDocument = documents.find((document) => document.id === selectedId) ?? documents[0]
@@ -111,6 +148,25 @@ function App() {
     window.localStorage.setItem(legacyDocumentStorageKey, JSON.stringify(workspaceState.documents))
   }, [workspaceState])
 
+  useEffect(() => {
+    let active = true
+    async function loadHealth() {
+      try {
+        const response = await fetch('/api/health', { headers: { accept: 'application/json' } })
+        const contentType = response.headers.get('content-type') ?? ''
+        if (!response.ok || !contentType.includes('application/json')) throw new Error('Reference API health endpoint unavailable in this runtime.')
+        const health = (await response.json()) as HealthResponse
+        if (active) setHealthStatus(health)
+      } catch {
+        if (active) setHealthStatus(null)
+      }
+    }
+    void loadHealth()
+    return () => {
+      active = false
+    }
+  }, [])
+
   function upsertDocument(nextDocument: OpsDocument, audit: Omit<AuditEvent, 'id' | 'createdAt'>) {
     setWorkspaceState((current) => {
       const exists = current.documents.some((document) => document.id === nextDocument.id)
@@ -126,17 +182,40 @@ function App() {
     setSelectedId(nextDocument.id)
   }
 
-  function handleGenerate() {
-    const nextDocument = stampWorkspaceDocument(generateDocument(intake, selectedDocument), session)
+  async function handleGenerate() {
+    const started = nowMs()
+    setIsGenerating(true)
+    setGenerationError(null)
+    let result: AiGenerateResult
+
+    try {
+      result = await requestGeneratedDocument(intake, session)
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Reference API was unavailable.'
+      const fallbackDocument = generateDocument(intake, selectedDocument)
+      result = {
+        document: fallbackDocument,
+        generation: createClientGenerationDiagnostics(fallbackDocument, started, message, true),
+      }
+      setGenerationError(message)
+    } finally {
+      setIsGenerating(false)
+    }
+
+    const nextDocument = stampWorkspaceDocument(result.document, session)
+    const generation = { ...result.generation, documentId: nextDocument.id }
+    setGenerationStatus(generation)
     upsertDocument(
       nextDocument,
-      createAudit('document.generated', 'document', nextDocument.id, `Generated ${nextDocument.title}.`, {
+      createAudit(generation.fallback ? 'document.generated_fallback' : 'document.generated_ai', 'document', nextDocument.id, `Generated ${nextDocument.title}.`, {
         mode,
         score: nextDocument.score,
+        fallback: generation.fallback,
+        validation: generation.validationStatus,
       }),
     )
     setActiveFeature(nextDocument.type === 'Training Checklist' ? 'training' : nextDocument.type === 'Knowledge Base' ? 'knowledge' : 'sop')
-    setToast('Generated document, checklist, knowledge base, gaps, and version snapshot')
+    setToast(generation.fallback ? 'Generated with deterministic fallback' : 'Generated through optional server-side AI route')
   }
 
   function handleLoadSample() {
@@ -310,19 +389,21 @@ function App() {
         <header className="topbar">
           <div>
             <h1>OpsPilot Pro Operations Workspace</h1>
-            <p>Saved documents, version history, training checklists, knowledge articles, gap reports, audit logs, and exports.</p>
+            <p>Deterministic operations-document demo with a reference API and optional server-side OpenAI generation when configured.</p>
           </div>
           <div className="topbar-actions">
-            <button type="button" onClick={handleNewDocument}>
+            <button type="button" onClick={handleNewDocument} disabled={isGenerating}>
               <Plus size={17} aria-hidden="true" />
               New document
             </button>
-            <button className="primary-action" type="button" onClick={handleGenerate}>
-              <Sparkles size={17} aria-hidden="true" />
-              Generate from intake
+            <button className="primary-action" type="button" onClick={handleGenerate} disabled={isGenerating}>
+              {isGenerating ? <LoaderCircle className="spin" size={17} aria-hidden="true" /> : <Sparkles size={17} aria-hidden="true" />}
+              {isGenerating ? 'Generating' : 'Generate from intake'}
             </button>
           </div>
         </header>
+
+        <RuntimeStatusBar healthStatus={healthStatus} generationStatus={generationStatus} generationError={generationError} />
 
         <section className="dashboard-grid" aria-label="Operations document workspace">
           <DocumentLibrary
@@ -334,7 +415,8 @@ function App() {
           />
 
           <section className="main-column" aria-label="Document generator">
-            <IntakePanel intake={intake} onChange={setIntake} onGenerate={handleGenerate} onLoadSample={handleLoadSample} />
+            <IntakePanel intake={intake} isGenerating={isGenerating} onChange={setIntake} onGenerate={handleGenerate} onLoadSample={handleLoadSample} />
+            {isGenerating ? <GenerationSkeleton /> : null}
             <DocumentWorkspace
               activeFeature={activeFeature}
               auditEvents={auditEvents}
@@ -343,7 +425,10 @@ function App() {
               mode={mode}
               organization={organization}
               session={session}
+              generationStatus={generationStatus}
+              healthStatus={healthStatus}
               onBodyChange={(body) => selectedDocument && handleUpdateDocument(updateBodyScore(selectedDocument, body), 'Updated draft and recalculated score', 'document.updated')}
+              onCopyDiagnostics={() => copyDiagnostics(generationStatus, healthStatus, generationError)}
               onExportWorkspace={handleExportWorkspace}
               onFixGap={(gapId) => selectedDocument && handleUpdateDocument(markGapFixed(selectedDocument, gapId), 'Marked gap fixed', 'gap.fixed')}
               onModeChange={handleModeChange}
@@ -370,8 +455,141 @@ function App() {
             />
           ) : null}
         </section>
+
+        <section className="portfolio-links" aria-label="Source and reviewer links">
+          <a href="https://github.com/atomicdjt/AI-Project-Portfolio/tree/main/apps/opspilot-ai-operations-toolkit">GitHub source</a>
+          <a href="https://github.com/atomicdjt/AI-Project-Portfolio/tree/main/projects/opspilot-ai-operations-toolkit">Portfolio case study</a>
+          <a href="https://opspilot-ai-operations-toolkit.netlify.app/api/health">API health check</a>
+        </section>
       </main>
     </div>
+  )
+}
+
+function RuntimeStatusBar({
+  generationError,
+  generationStatus,
+  healthStatus,
+}: {
+  generationError: string | null
+  generationStatus: GenerationDiagnostics
+  healthStatus: HealthResponse | null
+}) {
+  const ai = healthStatus?.ai ?? localAiStatus
+  const apiAvailable = Boolean(healthStatus?.ok)
+
+  return (
+    <section className="runtime-strip" aria-label="Runtime status">
+      <StatusBadge icon={ShieldCheck} label="Deterministic demo" value={generationStatus.fallback ? 'Fallback active' : 'Ready'} tone="good" />
+      <StatusBadge icon={Server} label="Reference API" value={apiAvailable ? 'Available' : 'Local fallback'} tone={apiAvailable ? 'good' : 'warn'} />
+      <StatusBadge
+        icon={Sparkles}
+        label="Optional AI"
+        value={ai.aiProvider === 'openai' ? `OpenAI ${ai.model ?? ''}`.trim() : 'Disabled or unconfigured'}
+        tone={ai.aiProvider === 'openai' ? 'good' : 'neutral'}
+      />
+      <StatusBadge
+        icon={Code2}
+        label="Validation"
+        value={generationStatus.validationStatus === 'failed' ? 'Fallback validated' : generationStatus.validationStatus.replace('_', ' ')}
+        tone={generationStatus.validationStatus === 'failed' ? 'warn' : 'neutral'}
+      />
+      {generationError ? <span className="runtime-error">{generationError}</span> : null}
+    </section>
+  )
+}
+
+function StatusBadge({
+  icon: Icon,
+  label,
+  tone,
+  value,
+}: {
+  icon: typeof ShieldCheck
+  label: string
+  tone: 'good' | 'neutral' | 'warn'
+  value: string
+}) {
+  return (
+    <span className={`runtime-badge ${tone}`}>
+      <Icon size={15} aria-hidden="true" />
+      <strong>{label}</strong>
+      <em>{value}</em>
+    </span>
+  )
+}
+
+function GenerationSkeleton() {
+  return (
+    <section className="generation-skeleton" aria-label="Generation in progress" aria-live="polite">
+      <LoaderCircle className="spin" size={18} aria-hidden="true" />
+      <div>
+        <strong>Generating operations document</strong>
+        <span>Checking the optional API route, validating the response, and keeping deterministic fallback ready.</span>
+      </div>
+    </section>
+  )
+}
+
+function DeveloperDebugPanel({
+  generationStatus,
+  healthStatus,
+  onCopyDiagnostics,
+}: {
+  generationStatus: GenerationDiagnostics
+  healthStatus: HealthResponse | null
+  onCopyDiagnostics: () => void
+}) {
+  const diagnosticPayload = {
+    generation: generationStatus,
+    health: healthStatus ?? {
+      ok: false,
+      ai: localAiStatus,
+      supportedRoutes: [],
+      note: 'Reference API health endpoint was not reachable from this runtime.',
+    },
+  }
+
+  return (
+    <section className="debug-panel" aria-label="Developer diagnostics">
+      <div className="section-heading compact">
+        <div>
+          <h2>Developer diagnostics</h2>
+          <span>Generation mode, provider, validation, sanitized config, and route details.</span>
+        </div>
+        <button type="button" onClick={onCopyDiagnostics}>
+          <Copy size={15} aria-hidden="true" />
+          Copy payload
+        </button>
+      </div>
+      <div className="debug-grid">
+        <span>
+          <strong>Mode</strong>
+          {generationStatus.mode}
+        </span>
+        <span>
+          <strong>Route</strong>
+          {generationStatus.route}
+        </span>
+        <span>
+          <strong>Provider/model</strong>
+          {generationStatus.provider} / {generationStatus.model ?? 'none'}
+        </span>
+        <span>
+          <strong>Validation</strong>
+          {generationStatus.validationStatus}
+        </span>
+        <span>
+          <strong>Document ID</strong>
+          {generationStatus.documentId ?? 'none'}
+        </span>
+        <span>
+          <strong>Timestamp</strong>
+          {new Date(generationStatus.timestamp).toLocaleString()}
+        </span>
+      </div>
+      <pre>{JSON.stringify(diagnosticPayload, null, 2)}</pre>
+    </section>
   )
 }
 
@@ -420,12 +638,13 @@ function DocumentLibrary({ documents, selectedId, query, onQueryChange, onSelect
 
 interface IntakePanelProps {
   intake: IntakeState
+  isGenerating: boolean
   onChange: (intake: IntakeState) => void
-  onGenerate: () => void
+  onGenerate: () => void | Promise<void>
   onLoadSample: () => void
 }
 
-function IntakePanel({ intake, onChange, onGenerate, onLoadSample }: IntakePanelProps) {
+function IntakePanel({ intake, isGenerating, onChange, onGenerate, onLoadSample }: IntakePanelProps) {
   return (
     <section className="intake-panel" aria-label="Operations intake">
       <div className="section-heading">
@@ -433,7 +652,7 @@ function IntakePanel({ intake, onChange, onGenerate, onLoadSample }: IntakePanel
           <h2>Operations intake</h2>
           <span>Source notes, policies, FAQs, tickets, and manager context</span>
         </div>
-        <button className="text-button" type="button" onClick={onLoadSample}>
+        <button className="text-button" type="button" onClick={onLoadSample} disabled={isGenerating}>
           <RefreshCcw size={15} aria-hidden="true" />
           Load sample
         </button>
@@ -480,9 +699,9 @@ function IntakePanel({ intake, onChange, onGenerate, onLoadSample }: IntakePanel
             <option>Internal efficiency</option>
           </select>
         </label>
-        <button className="primary-action" type="button" onClick={onGenerate}>
-          <Sparkles size={17} aria-hidden="true" />
-          Generate from intake
+        <button className="primary-action" type="button" onClick={onGenerate} disabled={isGenerating}>
+          {isGenerating ? <LoaderCircle className="spin" size={17} aria-hidden="true" /> : <Sparkles size={17} aria-hidden="true" />}
+          {isGenerating ? 'Generating' : 'Generate from intake'}
         </button>
       </div>
     </section>
@@ -497,7 +716,10 @@ interface DocumentWorkspaceProps {
   mode: WorkspaceMode
   organization: Organization
   session: WorkspaceSession
+  generationStatus: GenerationDiagnostics
+  healthStatus: HealthResponse | null
   onBodyChange: (body: string) => void
+  onCopyDiagnostics: () => void
   onExportWorkspace: () => void
   onFixGap: (gapId: string) => void
   onModeChange: (mode: WorkspaceMode) => void
@@ -514,7 +736,10 @@ function DocumentWorkspace({
   mode,
   organization,
   session,
+  generationStatus,
+  healthStatus,
   onBodyChange,
+  onCopyDiagnostics,
   onExportWorkspace,
   onFixGap,
   onModeChange,
@@ -530,6 +755,9 @@ function DocumentWorkspace({
         mode={mode}
         organization={organization}
         session={session}
+        generationStatus={generationStatus}
+        healthStatus={healthStatus}
+        onCopyDiagnostics={onCopyDiagnostics}
         onExportWorkspace={onExportWorkspace}
         onModeChange={onModeChange}
         onRoleChange={onRoleChange}
@@ -574,7 +802,10 @@ function DocumentWorkspace({
 function AdminDashboard({
   auditEvents,
   documents,
+  generationStatus,
+  healthStatus,
   mode,
+  onCopyDiagnostics,
   organization,
   session,
   onExportWorkspace,
@@ -583,7 +814,10 @@ function AdminDashboard({
 }: {
   auditEvents: AuditEvent[]
   documents: OpsDocument[]
+  generationStatus: GenerationDiagnostics
+  healthStatus: HealthResponse | null
   mode: WorkspaceMode
+  onCopyDiagnostics: () => void
   organization: Organization
   session: WorkspaceSession
   onExportWorkspace: () => void
@@ -659,6 +893,8 @@ function AdminDashboard({
         </div>
       </div>
 
+      <DeveloperDebugPanel generationStatus={generationStatus} healthStatus={healthStatus} onCopyDiagnostics={onCopyDiagnostics} />
+
       <AuditTable auditEvents={auditEvents} />
     </section>
   )
@@ -667,6 +903,10 @@ function AdminDashboard({
 function SopView({ document, onBodyChange }: { document: OpsDocument; onBodyChange: (body: string) => void }) {
   return (
     <div className="sop-layout">
+      <div className="view-heading full-span">
+        <h3>SOP procedure editor</h3>
+        <span>Structured steps and editable plain-text procedure body.</span>
+      </div>
       <div className="step-list">
         {document.steps.map((step, index) => (
           <article className="step-row" key={step.id}>
@@ -694,6 +934,10 @@ function TrainingView({ document, onToggleTraining }: { document: OpsDocument; o
 
   return (
     <div className="training-view">
+      <div className="view-heading">
+        <h3>Training checklist builder</h3>
+        <span>Role-based onboarding tasks generated from the active procedure.</span>
+      </div>
       <div className="progress-strip">
         <Users size={20} aria-hidden="true" />
         <strong>
@@ -721,6 +965,10 @@ function TrainingView({ document, onToggleTraining }: { document: OpsDocument; o
 function KnowledgeView({ document }: { document: OpsDocument }) {
   return (
     <div className="article-list">
+      <div className="view-heading">
+        <h3>Knowledge base articles</h3>
+        <span>Support-ready answers and tags derived from the same operations notes.</span>
+      </div>
       {document.articles.map((article) => (
         <article className="article-row" key={article.id}>
           <BookOpen size={18} aria-hidden="true" />
@@ -737,27 +985,33 @@ function KnowledgeView({ document }: { document: OpsDocument }) {
 
 function GapView({ document, onFixGap }: { document: OpsDocument; onFixGap: (gapId: string) => void }) {
   return (
-    <div className="gap-table" role="table" aria-label="Documentation gap detector">
-      <div className="gap-head" role="row">
-        <span>Risk</span>
-        <span>Finding</span>
-        <span>Suggested fix</span>
-        <span>Status</span>
+    <div className="gap-view">
+      <div className="view-heading">
+        <h3>Documentation gap report</h3>
+        <span>Open findings, evidence, suggested fixes, and review status.</span>
       </div>
-      {document.gaps.map((gap) => (
-        <div className="gap-row" role="row" key={gap.id}>
-          <span className={`severity ${gap.severity}`}>{gap.severity}</span>
-          <span>
-            <strong>{gap.title}</strong>
-            <small>{gap.evidence}</small>
-          </span>
-          <span>{gap.fix}</span>
-          <button type="button" onClick={() => onFixGap(gap.id)} disabled={gap.status === 'Fixed'}>
-            {gap.status === 'Fixed' ? <CheckCircle2 size={15} aria-hidden="true" /> : <AlertTriangle size={15} aria-hidden="true" />}
-            {gap.status}
-          </button>
+      <div className="gap-table" role="table" aria-label="Documentation gap detector">
+        <div className="gap-head" role="row">
+          <span>Risk</span>
+          <span>Finding</span>
+          <span>Suggested fix</span>
+          <span>Status</span>
         </div>
-      ))}
+        {document.gaps.map((gap) => (
+          <div className="gap-row" role="row" key={gap.id}>
+            <span className={`severity ${gap.severity}`}>{gap.severity}</span>
+            <span>
+              <strong>{gap.title}</strong>
+              <small>{gap.evidence}</small>
+            </span>
+            <span>{gap.fix}</span>
+            <button type="button" onClick={() => onFixGap(gap.id)} disabled={gap.status === 'Fixed'}>
+              {gap.status === 'Fixed' ? <CheckCircle2 size={15} aria-hidden="true" /> : <AlertTriangle size={15} aria-hidden="true" />}
+              {gap.status}
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
@@ -765,6 +1019,10 @@ function GapView({ document, onFixGap }: { document: OpsDocument; onFixGap: (gap
 function VersionView({ document }: { document: OpsDocument }) {
   return (
     <div className="version-list">
+      <div className="view-heading">
+        <h3>Version history</h3>
+        <span>Saved generation, edit, publish, and review snapshots.</span>
+      </div>
       {document.versions.map((version) => (
         <article className="version-row" key={version.id}>
           <FileClock size={18} aria-hidden="true" />
@@ -977,6 +1235,80 @@ function downloadText(filename: string, content: string, type: string) {
   link.download = filename
   link.click()
   URL.revokeObjectURL(url)
+}
+
+async function requestGeneratedDocument(intake: IntakeState, session: WorkspaceSession): Promise<AiGenerateResult> {
+  const response = await fetch('/api/aiGenerate', {
+    method: 'POST',
+    headers: {
+      accept: 'application/json',
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({ intake, session }),
+  })
+  const contentType = response.headers.get('content-type') ?? ''
+  if (!contentType.includes('application/json')) {
+    throw new Error('Reference API route is not available in this local runtime.')
+  }
+
+  const payload = (await response.json()) as { data?: AiGenerateResult; error?: { message?: string } }
+  if (!response.ok) {
+    throw new Error(payload.error?.message ?? `Reference API returned ${response.status}.`)
+  }
+  if (!isAiGenerateResult(payload.data)) {
+    throw new Error('Reference API returned an unexpected generation payload.')
+  }
+  return payload.data
+}
+
+function isAiGenerateResult(value: unknown): value is AiGenerateResult {
+  if (!value || typeof value !== 'object') return false
+  const result = value as Partial<AiGenerateResult>
+  return Boolean(result.document?.id && result.document?.body && result.generation?.route && result.generation?.timestamp)
+}
+
+function createClientGenerationDiagnostics(document: OpsDocument, started: number, message: string, fallback = false): GenerationDiagnostics {
+  return {
+    mode: fallback ? 'fallback' : 'deterministic',
+    route: fallback ? 'client:deterministic-fallback' : 'client:deterministic',
+    provider: 'deterministic',
+    model: null,
+    aiConfigured: false,
+    aiEnabled: false,
+    fallback,
+    fallbackReason: fallback ? 'reference_api_unavailable' : undefined,
+    validationStatus: 'not_required',
+    validationMessage: message,
+    latencyMs: nowMs() - started,
+    timestamp: new Date().toISOString(),
+    documentId: document.id,
+    promptConstraints,
+    sanitizedConfig: {
+      provider: 'deterministic',
+      model: null,
+      aiConfigured: false,
+      aiEnabled: false,
+      secretVisibleToClient: false,
+    },
+  }
+}
+
+function copyDiagnostics(generationStatus: GenerationDiagnostics, healthStatus: HealthResponse | null, generationError: string | null) {
+  const payload = JSON.stringify(
+    {
+      generationStatus,
+      healthStatus,
+      generationError,
+      copiedAt: new Date().toISOString(),
+    },
+    null,
+    2,
+  )
+  void navigator.clipboard?.writeText(payload)
+}
+
+function nowMs(): number {
+  return new Date().getTime()
 }
 
 export default App

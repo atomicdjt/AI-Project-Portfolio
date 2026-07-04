@@ -8,7 +8,9 @@ import {
   updateBodyScore,
 } from '../src/opsEngine'
 import { documentUpdateSchema, intakeSchema, supportedApiRoutes, workspaceSessionSchema } from '../src/schemas'
-import type { ExportBundle, IntakeState, OpsDocument, WorkspaceRole, WorkspaceSession } from '../src/types'
+import type { AiGenerateResult, AiRuntimeStatus, ExportBundle, IntakeState, OpsDocument, WorkspaceRole, WorkspaceSession } from '../src/types'
+import { generateDocumentWithOptionalAi, getAiRuntimeStatus } from './ai'
+import type { AiEnvironment } from './ai'
 import { forbidden, notFound } from './errors'
 import { createSeedRepository, type OpsPilotRepository } from './repository'
 
@@ -23,15 +25,18 @@ export interface OpsPilotHealthStatus {
   persistence: 'in-memory-seeded-reference'
   auth: 'demo-session-simulation'
   productionReady: false
+  ai: AiRuntimeStatus
   supportedRoutes: string[]
   timestamp: string
 }
 
 export class OpsPilotApi {
   readonly repository: OpsPilotRepository
+  private readonly aiEnvironment?: AiEnvironment
 
-  constructor(repository: OpsPilotRepository = createSeedRepository()) {
+  constructor(repository: OpsPilotRepository = createSeedRepository(), aiEnvironment?: AiEnvironment) {
     this.repository = repository
+    this.aiEnvironment = aiEnvironment
   }
 
   health(): OpsPilotHealthStatus {
@@ -43,6 +48,7 @@ export class OpsPilotApi {
       persistence: 'in-memory-seeded-reference',
       auth: 'demo-session-simulation',
       productionReady: false,
+      ai: getAiRuntimeStatus(this.aiEnvironment),
       supportedRoutes: [...supportedApiRoutes],
       timestamp: new Date().toISOString(),
     }
@@ -75,6 +81,41 @@ export class OpsPilotApi {
       metadata: { score: document.score, type: document.type },
     })
     return document
+  }
+
+  async aiGenerate(session: WorkspaceSession, input: IntakeState, requestMeta: { rateLimitKey?: string } = {}): Promise<AiGenerateResult> {
+    const validSession = workspaceSessionSchema.parse(session)
+    ensureWriteAccess(validSession)
+    const result = await generateDocumentWithOptionalAi(validSession, input, undefined, {
+      env: this.aiEnvironment,
+      rateLimitKey: requestMeta.rateLimitKey,
+    })
+    const document = {
+      ...result.document,
+      organizationId: validSession.organizationId,
+      createdBy: validSession.userId,
+      updatedBy: validSession.userId,
+    }
+    this.repository.saveDocument(document)
+    this.repository.appendAudit({
+      organizationId: validSession.organizationId,
+      actorId: validSession.userId,
+      actorName: validSession.name,
+      action: result.generation.fallback ? 'document.generated_fallback' : 'document.generated_ai',
+      targetType: 'document',
+      targetId: document.id,
+      summary: result.generation.fallback
+        ? `Generated ${document.title} with deterministic fallback.`
+        : `Generated ${document.title} through optional OpenAI route.`,
+      metadata: {
+        score: document.score,
+        aiConfigured: result.generation.aiConfigured,
+        aiEnabled: result.generation.aiEnabled,
+        fallback: result.generation.fallback,
+        validation: result.generation.validationStatus,
+      },
+    })
+    return { document, generation: { ...result.generation, documentId: document.id } }
   }
 
   updateDocument(session: WorkspaceSession, documentId: string, update: { body: string }): OpsDocument {
