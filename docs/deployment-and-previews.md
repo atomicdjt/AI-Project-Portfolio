@@ -22,6 +22,8 @@ GitHub Pages production deployment should happen only after a reviewed PR is mer
 
 These Netlify projects were confirmed through the Netlify connector on July 4, 2026. Each project reported `currentDeploy.state = ready` and no password or SSO access control.
 
+Netlify account-level project descriptions were also updated on July 4, 2026 so the Netlify dashboard metadata matches the public portfolio positioning.
+
 | Project | Public URL | Local source in this repo | Build command | Publish directory |
 | --- | --- | --- | --- | --- |
 | `buildworld-ai` | `https://buildworld-ai.netlify.app/` | `apps/buildworld-ai` | `npm run build` | `dist` |

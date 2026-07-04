@@ -45,7 +45,7 @@ gh pr create --base main --head portfolio-audit-upgrade --title "Improve portfol
 Use this bio:
 
 ```text
-AI-assisted product builder focused on workflow systems, privacy-first tools, technical operations, and employer-ready software prototypes.
+Applied AI product builder focused on local-first privacy tools, workflow systems, research-support software, and technical operations products.
 ```
 
 Manual steps:
@@ -53,4 +53,24 @@ Manual steps:
 1. Go to `https://github.com/atomicdjt`.
 2. Click **Edit profile**.
 3. Replace the current bio with the recommended bio above.
-4. Click **Save**.
+4. Set the website field to `https://atomicdjt.github.io/AI-Project-Portfolio/`.
+5. Click **Save**.
+
+## Current Account-Level Settings
+
+Applied on July 4, 2026:
+
+- Display name: `David Turner`
+- Profile website: `https://atomicdjt.github.io/AI-Project-Portfolio/`
+- Hireable flag: enabled
+- Profile README repository homepage: `https://atomicdjt.github.io/AI-Project-Portfolio/`
+- Profile README repository topics: `github-profile`, `portfolio`, `readme`, `applied-ai`, `technical-operations`
+- `buildworld-ai` repository topics: `ai`, `systems-simulation`, `graph-simulation`, `data-visualization`, `react`, `typescript`, `vite`, `netlify`, `local-first`, `portfolio`
+
+## Recommended Pinned Repositories
+
+GitHub profile pinning is account UI-managed when no API mutation is available. Use this order:
+
+1. `AI-Project-Portfolio`
+2. `buildworld-ai`
+3. `atomicdjt`

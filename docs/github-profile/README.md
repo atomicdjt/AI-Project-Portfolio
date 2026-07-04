@@ -4,12 +4,23 @@
 
 I build reviewable AI-assisted software: live demos, source repos, case studies, validation notes, and deployment documentation that explain the product decisions behind each project.
 
+[![Portfolio Hub](https://img.shields.io/badge/Portfolio%20Hub-live-0f766e)](https://atomicdjt.github.io/AI-Project-Portfolio/)
+[![Main Repository](https://img.shields.io/badge/GitHub-AI%20Project%20Portfolio-111827?logo=github)](https://github.com/atomicdjt/AI-Project-Portfolio)
+[![Verification](https://img.shields.io/badge/Public%20Audit-Jul%204%202026-2563eb)](https://github.com/atomicdjt/AI-Project-Portfolio/blob/main/docs/public-portfolio-audit-2026-07-04.md)
+
 ## Start Here
 
 - **Portfolio hub:** [atomicdjt.github.io/AI-Project-Portfolio](https://atomicdjt.github.io/AI-Project-Portfolio/)
 - **Main repository:** [AI Project Portfolio](https://github.com/atomicdjt/AI-Project-Portfolio)
 - **Recruiter quick review:** [docs/recruiter-quick-review.md](https://github.com/atomicdjt/AI-Project-Portfolio/blob/main/docs/recruiter-quick-review.md)
 - **Verification guide:** [docs/verification.md](https://github.com/atomicdjt/AI-Project-Portfolio/blob/main/docs/verification.md)
+- **Public audit and ratings:** [docs/public-portfolio-audit-2026-07-04.md](https://github.com/atomicdjt/AI-Project-Portfolio/blob/main/docs/public-portfolio-audit-2026-07-04.md)
+
+## Current Public Status
+
+- Public Portfolio Hub and flagship app links were audited on July 4, 2026.
+- Portfolio validation includes lint, typecheck, tests, production builds, link checks, GitHub Actions, GitHub Pages verification, and Netlify production smoke checks.
+- The strongest evidence is concentrated in the portfolio hub, the first three flagship demos, and the documented case studies.
 
 ## Best Projects To Review First
 
@@ -22,6 +33,16 @@ I build reviewable AI-assisted software: live demos, source repos, case studies,
 | [LayerForge Studio](https://github.com/atomicdjt/AI-Project-Portfolio/tree/main/apps/layerforge-studio) | [Demo](https://atomicdjt.github.io/AI-Project-Portfolio/layerforge-studio/) | Canvas-based layered image editor with local persistence, tools, filters, undo, and exports. |
 | [OpsPilot](https://github.com/atomicdjt/AI-Project-Portfolio/tree/main/apps/opspilot-ai-operations-toolkit) | [Demo](https://opspilot-ai-operations-toolkit.netlify.app/) | Technical operations toolkit for SOPs, onboarding checklists, knowledge base articles, gap reports, and versioned documents. |
 | [VariantVision Pro](https://github.com/atomicdjt/AI-Project-Portfolio/tree/main/apps/variantvision-pro) | [Demo](https://variantvisionpro.netlify.app/) | Educational bioinformatics evidence workbench with source transparency and non-diagnostic research-tool boundaries. |
+
+## Strongest Public Proof
+
+| Proof point | Where to look |
+| --- | --- |
+| Fast portfolio review | [Portfolio Hub](https://atomicdjt.github.io/AI-Project-Portfolio/) |
+| Technical depth | [BuildWorld AI](https://buildworld-ai.netlify.app/) and [technical-depth.md](https://github.com/atomicdjt/AI-Project-Portfolio/blob/main/docs/technical-depth.md) |
+| Privacy and safety judgment | [RedactReady Pro](https://redactready-pro-hri-os.netlify.app/) and [ScamShield AI](https://scamshield-ai-safety.netlify.app/) |
+| Deployment and validation discipline | [verification.md](https://github.com/atomicdjt/AI-Project-Portfolio/blob/main/docs/verification.md) and [deployment-and-previews.md](https://github.com/atomicdjt/AI-Project-Portfolio/blob/main/docs/deployment-and-previews.md) |
+| Recruiter role mapping | [EMPLOYER_OVERVIEW.md](https://github.com/atomicdjt/AI-Project-Portfolio/blob/main/docs/EMPLOYER_OVERVIEW.md) and [SKILLS_MATRIX.md](https://github.com/atomicdjt/AI-Project-Portfolio/blob/main/docs/SKILLS_MATRIX.md) |
 
 ## Role Alignment
 
