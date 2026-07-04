@@ -4,7 +4,7 @@ LayerForge Studio is an original local-first browser image editor and digital pa
 
 The project is intentionally not a Photoshop clone. It uses its own naming, layout, icons, data model, and interaction structure while implementing the broad editing categories expected from a layered raster editor.
 
-Live demo: `https://atomicdjt.github.io/AI-Project-Portfolio/`
+Live demo: `https://atomicdjt.github.io/AI-Project-Portfolio/layerforge-studio/`
 
 ## Demo
 

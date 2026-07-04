@@ -7,13 +7,15 @@ This repository contains several self-contained runnable apps under `apps/`. Val
 ```bash
 npm install
 npm run lint:apps
+npm run check:docs
 npm run typecheck:all
 npm run test:all
 npm run build:all
 npm run verify
+npm run verify:release
 ```
 
-`npm run verify` runs lint, supported standalone typechecks, supported tests, and production builds. Some apps only typecheck as part of `npm run build` because they do not expose a separate `typecheck` script.
+`npm run verify` runs lint, supported standalone typechecks, supported tests, and production builds. `npm run verify:release` adds local Markdown link validation before the full app validation suite. Some apps only typecheck as part of `npm run build` because they do not expose a separate `typecheck` script.
 
 ## Runnable Apps
 
@@ -43,3 +45,5 @@ npm run verify
 - VariantVision Pro production deployment passed on 2026-06-28. Netlify deploy `6a40ffc096311b37468815bb` reached `ready`, `curl.exe -I -L https://variantvisionpro.netlify.app/` returned HTTP 200, and live Playwright smoke verified case switching, source filtering, report preview, and mobile analysis content.
 - BuildWorld AI standalone validation passed on 2026-06-29 with `npm run test`, `npm run lint`, `npm run typecheck`, `npm run build`, and Playwright browser smoke before portfolio integration.
 - BuildWorld AI production deployment passed on 2026-06-29. Netlify deploy `6a41e8c31e62ade78938946f` reached `ready`, `curl.exe -I -L https://buildworld-ai.netlify.app/` returned HTTP 200, built JS/CSS assets returned HTTP 200, SPA fallback returned HTTP 200, and live Playwright smoke verified Studio, cascade test, snapshots, and report preview.
+- On 2026-07-04, `curl.exe -L -s -o NUL -w "%{http_code} %{url_effective}"` returned HTTP 200 for the GitHub profile, profile README repo, portfolio repo, Portfolio Hub, LayerForge Studio GitHub Pages subpath, BuildWorld AI, RedactReady Pro, ScamShield AI, RedactReady, OpsPilot, FocusForge, VariantVision Pro, Amino Acid Workbench, GardenGrid, and HearthLink public URLs.
+- On 2026-07-04, Netlify CLI authentication was available, but the repository root was not linked to a Netlify project. Confirmed app-level Netlify projects are documented in `docs/deployment-and-previews.md`.

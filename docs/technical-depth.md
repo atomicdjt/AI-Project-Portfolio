@@ -41,6 +41,7 @@ ScamShield AI generates a structured PDF evidence packet in the browser. BuildWo
 Current validation evidence includes:
 
 - Root-level lint and build scripts across runnable apps.
+- Root-level Markdown link validation through `npm run check:docs`.
 - Standalone ScamShield AI typechecking.
 - Vitest coverage for BuildWorld AI, RedactReady Pro, ScamShield AI, RedactReady, and FocusForge.
 - Playwright E2E support documented for ScamShield AI and RedactReady.
@@ -60,6 +61,8 @@ Deployment patterns include static Vite apps on Netlify and GitHub Pages:
 - LayerForge Studio: documented GitHub Pages subpath deployment with a Pages-specific Vite base.
 - FocusForge: documented Netlify live deployment.
 - BuildWorld AI: documented Netlify live deployment.
+
+The root `verify:release` script combines documentation link validation with the full application validation suite so release branches catch both code regressions and broken local documentation references before PR review.
 
 ## Known Technical Limitations and Future Improvements
 
