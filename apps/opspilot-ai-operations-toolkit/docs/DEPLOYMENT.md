@@ -1,6 +1,6 @@
 # OpsPilot Pro Deployment Guide
 
-This guide documents the deployable state of OpsPilot Pro without overstating maturity. The frontend and seeded reference API can run on Netlify today. Durable production workspaces require replacing the in-memory repository with a database adapter against the included SQL schema.
+This guide documents the deployable state of OpsPilot Pro without overstating maturity. The frontend, seeded reference API, and reviewer-safe health endpoint can run on Netlify today. Durable production workspaces require replacing the in-memory repository with a database adapter against the included SQL schema.
 
 ## Netlify Frontend and Function
 
@@ -24,15 +24,22 @@ The app-level `netlify.toml` already defines:
 
 ## API Routes
 
-The Netlify function uses the modern `Request`/`Response` handler shape and is configured at:
+The wildcard Netlify function uses the modern `Request`/`Response` handler shape and is configured at:
 
 ```text
 /api/:route
 ```
 
+A separate exact health function is configured at:
+
+```text
+/api/health
+```
+
 Supported routes:
 
 ```text
+health
 listDocuments
 createDocument
 updateDocument
@@ -44,7 +51,23 @@ listAuditEvents
 exportWorkspace
 ```
 
-Example POST body:
+`/api/health` is safe to open directly in a browser. It returns:
+
+```json
+{
+  "ok": true,
+  "app": "OpsPilot Pro",
+  "mode": "seeded-reference-api",
+  "deployment": "netlify-functions",
+  "persistence": "in-memory-seeded-reference",
+  "auth": "demo-session-simulation",
+  "productionReady": false,
+  "supportedRoutes": ["health", "listDocuments", "createDocument"],
+  "timestamp": "2026-07-04T00:00:00.000Z"
+}
+```
+
+Example POST body for the reference API:
 
 ```json
 {
@@ -89,7 +112,7 @@ The current repository ships the schema and service contract, but the checked-in
 
 ## Environment Variables
 
-No environment variables are required for the deterministic demo or seeded reference API.
+No environment variables are required for the deterministic demo, seeded reference API, or `/api/health`.
 
 Recommended variables when adding the production adapter:
 
@@ -110,6 +133,23 @@ The current optional authenticated workspace mode is a demo role/session simulat
 3. Map the identity to `workspace_users`.
 4. Derive `WorkspaceSession` server-side instead of trusting a client-supplied session.
 5. Keep the existing role checks in `server/api.ts`.
+
+## Reviewer Smoke Test
+
+After deployment, test:
+
+```text
+https://opspilot-ai-operations-toolkit.netlify.app/api/health
+```
+
+Then open the app and run the 60-second workflow:
+
+1. Load sample.
+2. Generate from intake.
+3. Open Admin Dashboard.
+4. Switch workspace mode.
+5. Review audit events.
+6. Export workspace JSON.
 
 ## Validation Before Deploy
 
