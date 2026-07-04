@@ -1,12 +1,12 @@
 [build]
-  command = "npm run build"
-  publish = "dist"
+  command = "npm run build --workspace=apps/opspilot-ai-operations-toolkit"
+  publish = "apps/opspilot-ai-operations-toolkit/dist"
 
 [build.environment]
   NODE_VERSION = "22"
 
 [functions]
-  directory = "netlify/functions"
+  directory = "apps/opspilot-ai-operations-toolkit/netlify/functions"
   node_bundler = "esbuild"
 
 [[redirects]]
