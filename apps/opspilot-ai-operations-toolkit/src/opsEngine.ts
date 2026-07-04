@@ -375,7 +375,7 @@ Save a new version after each material edit, publish only after open high-risk g
 
 function buildSummary(intake: IntakeState, sentences: string[]): string {
   const first = sentences[0] ?? 'The team needs a documented workflow from rough internal knowledge.'
-  return `${first.replace(/\.$/, '')}. OpsPilot structured it into a ${intake.documentType.toLowerCase()} with owners, training tasks, knowledge base answers, and gap findings.`
+  return `${first.replace(/\.$/, '')}. ProcessHarbor structured it into a ${intake.documentType.toLowerCase()} with owners, training tasks, knowledge base answers, and gap findings.`
 }
 
 function buildTitle(intake: IntakeState): string {
@@ -472,7 +472,7 @@ function buildVersion(previous?: OpsDocument): VersionEntry {
   return {
     id: createId('ver'),
     label: previous ? `v${previous.versions.length + 1}.0` : 'v1.0',
-    author: 'OpsPilot',
+    author: 'ProcessHarbor',
     date: today(),
     changes: previous
       ? ['Regenerated document from updated intake', 'Refreshed gap detector', 'Rebuilt training and knowledge base outputs']

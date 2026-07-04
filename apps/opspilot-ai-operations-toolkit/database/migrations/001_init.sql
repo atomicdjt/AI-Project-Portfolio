@@ -1,4 +1,4 @@
--- OpsPilot Pro reference schema.
+-- ProcessHarbor Pro reference schema.
 -- This migration is intended for a production database such as Postgres,
 -- Neon, Supabase, or another SQL database behind the API layer.
 

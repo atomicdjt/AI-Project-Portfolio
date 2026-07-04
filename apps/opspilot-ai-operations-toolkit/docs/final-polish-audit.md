@@ -1,7 +1,7 @@
-# OpsPilot Pro Final Polish Audit
+# ProcessHarbor Pro Final Polish Audit
 
 Date: 2026-07-04
-Branch target: `codex/opspilot-pro-final-polish`
+Branch target: `main` after the ProcessHarbor Pro rename and deployment cleanup
 
 ## Current Strengths
 
@@ -14,7 +14,7 @@ Branch target: `codex/opspilot-pro-final-polish`
 ## Gaps To Fix
 
 - AI framing is still mostly roadmap-level. The product needs honest visible wording that separates deterministic demo mode, reference API mode, and optional server-side OpenAI generation.
-- There is no optional live-AI generation route yet. `OPENAI_API_KEY`, `OPENAI_MODEL`, and `OPSPILOT_AI_ENABLED` are not read server-side, health does not report AI readiness, and generation is always client-local.
+- There is no optional live-AI generation route yet. `OPENAI_API_KEY`, `OPENAI_MODEL`, and `PROCESSHARBOR_AI_ENABLED` are not read server-side, health does not report AI readiness, and generation is always client-local.
 - Server JSON parsing is not guarded against malformed request bodies, and the wildcard Netlify route dispatch can be tightened now that `/api/health` has its own function.
 - Generated text is not normalized against escaped HTML or pasted HTML breaks, so `<br>`, `&lt;br&gt;`, and similar markup can leak into the SOP textarea and exports.
 - Deterministic SOP output is useful but still light on formal sections. It should consistently include Purpose, Trigger, Owner, Steps, Quality checks, Escalation path, Review cadence, and Audit/version note.
@@ -23,8 +23,8 @@ Branch target: `codex/opspilot-pro-final-polish`
 - The app has no React error boundary or user-facing diagnostic copy affordance for unexpected runtime failures.
 - The active tabs render different core content, but they need stronger distinct headings and Playwright coverage that clicks every tab and verifies each view.
 - Metadata is minimal. Social preview, crawler metadata, source links, noscript fallback, and scoped license/IP notes need improvement.
-- Proof capture currently rewrites the original `opspilot-pro-*` screenshot/GIF/video names. Final polish should add new proof assets while preserving existing artifacts.
-- CI has a general portfolio workflow, but there is no OpsPilot-specific verification workflow for reviewers.
+- Proof capture now writes ProcessHarbor-branded screenshot, GIF, video, and export names while preserving the existing proof workflow.
+- CI has a general portfolio workflow, but there is no ProcessHarbor-specific verification workflow for reviewers.
 
 ## Constraints
 

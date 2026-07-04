@@ -1,6 +1,6 @@
-# OpsPilot Pro Deployment Guide
+# ProcessHarbor Pro Deployment Guide
 
-This guide documents the deployable state of OpsPilot Pro without overstating maturity. The frontend, seeded reference API, optional server-side AI route, and reviewer-safe health endpoint can run on Netlify today. Durable production workspaces require replacing the in-memory repository with a database adapter against the included SQL schema.
+This guide documents the deployable state of ProcessHarbor Pro without overstating maturity. The frontend, seeded reference API, optional server-side AI route, and reviewer-safe health endpoint can run on Netlify today. Durable production workspaces require replacing the in-memory repository with a database adapter against the included SQL schema.
 
 ## Netlify Frontend and Function
 
@@ -66,7 +66,7 @@ exportWorkspace
 ```json
 {
   "ok": true,
-  "app": "OpsPilot Pro",
+  "app": "ProcessHarbor Pro",
   "mode": "seeded-reference-api",
   "deployment": "netlify-functions",
   "persistence": "in-memory-seeded-reference",
@@ -107,7 +107,7 @@ The API validates session, intake, and update payloads with Zod. Write actions r
 The public demo does not require OpenAI. To enable server-side AI generation on Netlify, add these environment variables in Netlify site settings:
 
 ```text
-OPSPILOT_AI_ENABLED=true
+PROCESSHARBOR_AI_ENABLED=true
 OPENAI_API_KEY=server-side OpenAI key
 OPENAI_MODEL=gpt-4o-mini
 ```
@@ -116,7 +116,7 @@ OPENAI_MODEL=gpt-4o-mini
 
 Fallback behavior is intentional:
 
-- `OPSPILOT_AI_ENABLED` missing or false: deterministic generation.
+- `PROCESSHARBOR_AI_ENABLED` missing or false: deterministic generation.
 - `OPENAI_API_KEY` missing: deterministic generation.
 - OpenAI request failure: deterministic generation.
 - Invalid or non-JSON model output: deterministic generation.
@@ -135,7 +135,7 @@ database/migrations/001_init.sql
 Apply it to a Postgres-compatible database such as Neon, Supabase, or managed Postgres:
 
 ```bash
-psql "$OPSPILOT_DATABASE_URL" -f database/migrations/001_init.sql
+psql "$PROCESSHARBOR_DATABASE_URL" -f database/migrations/001_init.sql
 ```
 
 The current repository ships the schema and service contract, but the checked-in API still uses a seeded in-memory repository for public demo safety. A production deploy should add a repository adapter that reads/writes these tables:
@@ -156,15 +156,15 @@ No environment variables are required for the deterministic demo, seeded referen
 Recommended variables when adding the production adapter:
 
 ```text
-OPSPILOT_DATABASE_URL=postgres connection string
-OPSPILOT_AUTH_JWT_SECRET=server-side auth token verification secret
-VITE_OPSPILOT_API_URL=/api
+PROCESSHARBOR_DATABASE_URL=postgres connection string
+PROCESSHARBOR_AUTH_JWT_SECRET=server-side auth token verification secret
+VITE_PROCESSHARBOR_API_URL=/api
 ```
 
 Optional AI variables:
 
 ```text
-OPSPILOT_AI_ENABLED=true
+PROCESSHARBOR_AI_ENABLED=true
 OPENAI_API_KEY=server-side OpenAI key
 OPENAI_MODEL=gpt-4o-mini
 ```

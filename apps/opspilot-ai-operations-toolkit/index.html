@@ -6,31 +6,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="OpsPilot Pro is a deterministic operations documentation workspace with a reference API and optional server-side AI generation for SOPs, training checklists, knowledge base articles, gap reports, versions, and exports."
+      content="ProcessHarbor Pro is a deterministic operations documentation workspace with a reference API and optional server-side AI generation for SOPs, training checklists, knowledge base articles, gap reports, versions, and exports."
     />
     <meta name="robots" content="index,follow" />
     <link rel="canonical" href="https://opspilot-ai-operations-toolkit.netlify.app/" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="OpsPilot Pro | Operations Documentation Toolkit" />
+    <meta property="og:title" content="ProcessHarbor Pro | Operations Documentation Toolkit" />
     <meta
       property="og:description"
       content="Small-business operations workspace for SOPs, onboarding checklists, knowledge articles, gap reports, audit logs, and optional server-side AI generation."
     />
-    <meta property="og:image" content="/opspilot-social-preview.svg" />
+    <meta property="og:image" content="/processharbor-social-preview.svg" />
     <meta property="og:url" content="https://opspilot-ai-operations-toolkit.netlify.app/" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="OpsPilot Pro | Operations Documentation Toolkit" />
+    <meta name="twitter:title" content="ProcessHarbor Pro | Operations Documentation Toolkit" />
     <meta
       name="twitter:description"
       content="A polished portfolio-grade operations documentation system with deterministic fallback, reference API, validation, audit logs, exports, and proof artifacts."
     />
-    <meta name="twitter:image" content="/opspilot-social-preview.svg" />
-    <title>OpsPilot Pro | Operations Documentation Toolkit</title>
+    <meta name="twitter:image" content="/processharbor-social-preview.svg" />
+    <title>ProcessHarbor Pro | Operations Documentation Toolkit</title>
   </head>
   <body>
+    <script>
+      document.documentElement.classList.add('js')
+    </script>
+    <style>
+      .js .static-crawler-summary {
+        display: none;
+      }
+      .static-crawler-summary {
+        max-width: 760px;
+        margin: 40px auto;
+        padding: 24px;
+        font-family: Arial, sans-serif;
+        line-height: 1.5;
+        color: #111827;
+      }
+    </style>
+    <section class="static-crawler-summary" aria-label="ProcessHarbor Pro summary">
+      <h1>ProcessHarbor Pro</h1>
+      <p>
+        ProcessHarbor Pro is a runnable operations documentation system for small businesses. It turns messy notes, FAQs, tickets, and
+        policy fragments into structured SOPs, training checklists, knowledge base articles, documentation gap reports, audit events,
+        export bundles, and version history.
+      </p>
+      <p>
+        The public demo is deterministic-first and works without accounts or client-side secrets. A Netlify Functions reference API
+        provides server-side validation, audit logging, export support, a health endpoint, and optional server-side OpenAI generation
+        with deterministic fallback.
+      </p>
+    </section>
     <noscript>
-      OpsPilot Pro needs JavaScript to run the interactive workspace. The repository includes README, deployment docs, proof screenshots, and API
-      contracts for static review.
+      ProcessHarbor Pro is a runnable operations documentation system for small businesses. It turns messy notes, FAQs, tickets, and
+      policy fragments into structured SOPs, training checklists, knowledge base articles, documentation gap reports, audit events,
+      export bundles, and version history. The interactive workspace needs JavaScript, but the repository includes README, deployment
+      docs, proof screenshots, and API contracts for static review.
     </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

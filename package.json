@@ -29,7 +29,7 @@
     "dev:astra": "npm run dev --workspace apps/astra",
     "dev:nexus": "npm run dev --workspace apps/nexus-play",
     "dev:layerforge": "npm run dev --workspace apps/layerforge-studio",
-    "dev:opspilot": "npm run dev --workspace apps/opspilot-ai-operations-toolkit",
+    "dev:processharbor": "npm run dev --workspace apps/opspilot-ai-operations-toolkit",
     "dev:focusforge": "npm run dev --workspace apps/focusforge",
     "dev:variantvision": "npm run dev --workspace apps/variantvision-pro",
     "dev:redactready-pro": "npm run dev --workspace apps/redactready-pro-hri-os",

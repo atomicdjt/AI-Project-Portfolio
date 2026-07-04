@@ -1,6 +1,6 @@
 # OpenAI Integration Notes
 
-OpsPilot keeps the local deterministic drafting engine as the default path so the project is easy to run, review, and deploy without secrets. The app also includes an optional server-side OpenAI reference adapter at `/api/aiGenerate`.
+ProcessHarbor keeps the local deterministic drafting engine as the default path so the project is easy to run, review, and deploy without secrets. The app also includes an optional server-side OpenAI reference adapter at `/api/aiGenerate`.
 
 ## Implemented Shape
 
@@ -52,12 +52,12 @@ Output should match the existing `OpsDocument` type:
 ## Environment Variables
 
 ```text
-OPSPILOT_AI_ENABLED=true
+PROCESSHARBOR_AI_ENABLED=true
 OPENAI_API_KEY=server-side OpenAI key
 OPENAI_MODEL=gpt-4o-mini
 ```
 
-`OPENAI_MODEL` is optional. Missing or false `OPSPILOT_AI_ENABLED` keeps deterministic mode. Missing `OPENAI_API_KEY` also keeps deterministic fallback.
+`OPENAI_MODEL` is optional. Missing or false `PROCESSHARBOR_AI_ENABLED` keeps deterministic mode. Missing `OPENAI_API_KEY` also keeps deterministic fallback.
 
 ## Prompting Notes
 

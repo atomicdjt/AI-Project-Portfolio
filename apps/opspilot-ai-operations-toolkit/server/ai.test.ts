@@ -21,7 +21,7 @@ describe('optional OpenAI generation', () => {
       env: {
         OPENAI_API_KEY: 'test-key',
         OPENAI_MODEL: 'test-model',
-        OPSPILOT_AI_ENABLED: 'true',
+        PROCESSHARBOR_AI_ENABLED: 'true',
       },
       rateLimitKey: 'validation-test',
     })

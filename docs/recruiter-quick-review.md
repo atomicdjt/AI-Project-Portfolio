@@ -16,7 +16,7 @@
 | RedactReady Pro | https://redactready-pro-hri-os.netlify.app/ | Flagship local-first privacy/document intelligence workflow with HRI scoring, redaction, evidence mapping, and reports. |
 | ScamShield AI | https://scamshield-ai-safety.netlify.app/ | Complete public-interest safety workflow with privacy-first architecture and exportable evidence packet. |
 | RedactReady | https://redactready-local.netlify.app/ | Privacy/security workflow for local document redaction and review. |
-| OpsPilot | https://opspilot-ai-operations-toolkit.netlify.app/ | Business operations toolkit aligned with documentation, onboarding, and knowledge-management work. |
+| ProcessHarbor | https://opspilot-ai-operations-toolkit.netlify.app/ | Business operations toolkit aligned with documentation, onboarding, and knowledge-management work. |
 | LayerForge Studio | https://atomicdjt.github.io/AI-Project-Portfolio/layerforge-studio/ | Browser-based Canvas editor with layered document concepts and local persistence. |
 
 ## Best Code Samples to Inspect
@@ -28,7 +28,7 @@
 | ScamShield AI | `apps/scamshield-ai/src/lib` | Deterministic risk scoring, entity extraction, reporting resources, and browser PDF generation. |
 | RedactReady | `apps/redactready-local/src/lib` | Sensitive-data detectors, local file handling, PDF/image redaction, and verification/report generation. |
 | LayerForge Studio | `apps/layerforge-studio/src/engine` | Canvas rendering, document models, history commands, tools, filters, import/export, and IndexedDB persistence. |
-| OpsPilot | `apps/opspilot-ai-operations-toolkit/src` | Structured local drafting logic for SOPs, training checklists, knowledge base articles, gap reports, and versions. |
+| ProcessHarbor | `apps/opspilot-ai-operations-toolkit/src` | Structured local drafting logic for SOPs, training checklists, knowledge base articles, gap reports, and versions. |
 | FocusForge | `apps/focusforge/src/game` | Pure game/focus rules, local storage, and tests for a productivity loop. |
 
 ## Best Case Studies
@@ -38,16 +38,16 @@
 - [ScamShield AI](../projects/scamshield-ai/CASE_STUDY.md)
 - [RedactReady](../projects/redactready-local/CASE_STUDY.md)
 - [LayerForge Studio](../projects/layerforge-studio/CASE_STUDY.md)
-- [OpsPilot](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md)
+- [ProcessHarbor](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md)
 - [FocusForge](../projects/focusforge/CASE_STUDY.md)
 
 ## Role Fit
 
 | Role family | Portfolio evidence |
 | --- | --- |
-| Technical Operations | OpsPilot, documentation systems, process decomposition, SOP/checklist workflows, and employer-facing guides. |
-| AI Workflow Specialist | ScamShield AI, OpsPilot, Astra, and AI Knowledge Operations Toolkit show applied workflow design around AI-assisted tasks. |
-| Documentation / Knowledge Base | Case studies, project index, recruiter docs, OpsPilot, and structured knowledge operations concepts. |
+| Technical Operations | ProcessHarbor, documentation systems, process decomposition, SOP/checklist workflows, and employer-facing guides. |
+| AI Workflow Specialist | ScamShield AI, ProcessHarbor, Astra, and AI Knowledge Operations Toolkit show applied workflow design around AI-assisted tasks. |
+| Documentation / Knowledge Base | Case studies, project index, recruiter docs, ProcessHarbor, and structured knowledge operations concepts. |
 | Product Operations | Clear project scoping, user workflows, validation notes, roadmap boundaries, and stakeholder-readable packaging. |
 | Frontend/Product Implementation | React, TypeScript, Vite, Canvas, local persistence, testing, and deployable static apps. |
 | Systems / Simulation Product | BuildWorld AI shows graph modeling, deterministic simulation, analytics dashboards, cascade analysis, scoring, and exportable reports. |
@@ -76,7 +76,7 @@
 | ScamShield AI | Complete safety workflow, tests, Playwright coverage, PDF export, Netlify deployment, and strict local-first privacy model. |
 | RedactReady | Privacy/security document workflow, deterministic detectors, local redaction exports, test coverage, and Netlify deployment configuration. |
 | LayerForge Studio | Browser graphics, layered editor architecture, Canvas tooling, local persistence, and GitHub Pages subpath deployment. |
-| OpsPilot | Operations documentation product, local deterministic drafting, version concepts, Netlify demo, and direct role alignment. |
+| ProcessHarbor | Operations documentation product, local deterministic drafting, version concepts, Netlify demo, and direct role alignment. |
 | FocusForge | Gamified focus loop, local game logic, Vitest coverage, and productivity-product thinking. |
 | Astra | AI chat workspace with React UI, Express API layer, streaming workflow, and visible configuration states. |
 | Nexus Play | Platform-style storefront, cart/library concepts, simulated checkout, and product UI modeling. |

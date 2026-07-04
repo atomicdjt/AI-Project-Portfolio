@@ -1,4 +1,4 @@
-name: OpsPilot Pro Verify
+name: ProcessHarbor Pro Verify
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
     paths:
       - "apps/opspilot-ai-operations-toolkit/**"
       - "projects/opspilot-ai-operations-toolkit/**"
-      - ".github/workflows/opspilot-pro-verify.yml"
+      - ".github/workflows/processharbor-pro-verify.yml"
       - "package.json"
       - "package-lock.json"
   pull_request:
@@ -17,12 +17,12 @@ on:
     paths:
       - "apps/opspilot-ai-operations-toolkit/**"
       - "projects/opspilot-ai-operations-toolkit/**"
-      - ".github/workflows/opspilot-pro-verify.yml"
+      - ".github/workflows/processharbor-pro-verify.yml"
       - "package.json"
       - "package-lock.json"
 
 jobs:
-  opspilot:
+  processharbor:
     runs-on: ubuntu-latest
 
     steps:
@@ -44,25 +44,25 @@ jobs:
       - name: Check docs
         run: npm run check:docs
 
-      - name: Lint OpsPilot
+      - name: Lint ProcessHarbor
         run: npm run lint --workspace apps/opspilot-ai-operations-toolkit
 
-      - name: Typecheck OpsPilot
+      - name: Typecheck ProcessHarbor
         run: npm run typecheck --workspace apps/opspilot-ai-operations-toolkit
 
-      - name: Test OpsPilot
+      - name: Test ProcessHarbor
         run: npm run test:run --workspace apps/opspilot-ai-operations-toolkit
 
-      - name: Build OpsPilot
+      - name: Build ProcessHarbor
         run: npm run build --workspace apps/opspilot-ai-operations-toolkit
 
-      - name: E2E OpsPilot
+      - name: E2E ProcessHarbor
         run: npm run e2e --workspace apps/opspilot-ai-operations-toolkit
 
       - name: Upload Playwright output
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: opspilot-playwright-output
+          name: processharbor-playwright-output
           path: apps/opspilot-ai-operations-toolkit/docs/proof/test-results
           if-no-files-found: ignore

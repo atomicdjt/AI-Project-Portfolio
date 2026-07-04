@@ -26,7 +26,7 @@ This repository is best read as evidence of:
 3. **ScamShield AI** - live local-first consumer-protection app with explainable scam-risk signals, evidence tools, accessible safety guidance, and official reporting resources.
 4. **RedactReady** - local-first privacy redaction engine demonstrating strong privacy/security product implementation.
 5. **LayerForge Studio** - browser-based image editor demonstrating strong runnable application polish.
-6. **OpsPilot** - live AI operations micro-SaaS for SOPs, onboarding, knowledge base generation, gap detection, and version tracking.
+6. **ProcessHarbor** - live AI operations micro-SaaS for SOPs, onboarding, knowledge base generation, gap detection, and version tracking.
 7. **VariantVision Pro** - live bioinformatics evidence workbench with source transparency, amino-acid comparison, evidence scoring, and non-diagnostic research-tool positioning.
 8. **AI Knowledge Operations Toolkit** - operations-focused AI workflow system with strong employer relevance.
 9. **Amino Acid Research Workbench** - educational bioinformatics system with explainable analysis workflows.
@@ -68,7 +68,7 @@ For a fast review, start with:
 6. [`projects/scamshield-ai/CASE_STUDY.md`](../projects/scamshield-ai/CASE_STUDY.md) for the strongest complete public-interest cybersecurity workflow.
 7. [`projects/redactready-local/CASE_STUDY.md`](../projects/redactready-local/CASE_STUDY.md) for privacy/security implementation depth.
 8. [`projects/layerforge-studio/CASE_STUDY.md`](../projects/layerforge-studio/CASE_STUDY.md) for creative-tool implementation depth.
-9. [`projects/opspilot-ai-operations-toolkit/CASE_STUDY.md`](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) and the [live OpsPilot demo](https://opspilot-ai-operations-toolkit.netlify.app/) for the strongest business-focused runnable app.
+9. [`projects/opspilot-ai-operations-toolkit/CASE_STUDY.md`](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) and the [live ProcessHarbor demo](https://opspilot-ai-operations-toolkit.netlify.app/) for the strongest business-focused runnable app.
 10. [`projects/focusforge/CASE_STUDY.md`](../projects/focusforge/CASE_STUDY.md) for a polished local-first productivity app with live static deployment.
 11. [`projects/variantvision-pro/CASE_STUDY.md`](../projects/variantvision-pro/CASE_STUDY.md) for complex-domain research-tool implementation.
 12. [`projects/ai-knowledge-operations-toolkit/CASE_STUDY.md`](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.

@@ -1,8 +1,8 @@
 {
-  "name": "opspilot-ai-operations-toolkit",
+  "name": "processharbor-pro",
   "private": true,
   "version": "1.0.0",
-  "description": "OpsPilot turns messy small-business notes into SOPs, training checklists, knowledge base articles, gap reports, and versioned operations documents.",
+  "description": "ProcessHarbor Pro turns messy small-business notes into SOPs, training checklists, knowledge base articles, gap reports, and versioned operations documents.",
   "type": "module",
   "keywords": [
     "react",

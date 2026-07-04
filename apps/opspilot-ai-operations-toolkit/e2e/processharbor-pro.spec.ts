@@ -1,10 +1,10 @@
 import { expect, test } from '@playwright/test'
 
-test('OpsPilot Pro supports saved docs, training, gaps, audit, and export', async ({ page }) => {
+test('ProcessHarbor Pro supports saved docs, training, gaps, audit, and export', async ({ page }) => {
   await page.goto('/')
   const nav = page.getByLabel('Feature navigation')
 
-  await expect(page.getByRole('heading', { name: 'OpsPilot Pro Operations Workspace' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'ProcessHarbor Pro Operations Workspace' })).toBeVisible()
   await expect(page.getByText('Deterministic operations-document demo')).toBeVisible()
   await expect(page.getByText('Deterministic demo', { exact: true })).toBeVisible()
   await expect(page.getByText('Reference API', { exact: true })).toBeVisible()
@@ -43,6 +43,6 @@ test('OpsPilot Pro supports saved docs, training, gaps, audit, and export', asyn
   await page.getByRole('button', { name: 'Export workspace' }).first().click()
   const download = await downloadPromise
 
-  expect(download.suggestedFilename()).toBe('opspilot-workspace-export.json')
+  expect(download.suggestedFilename()).toBe('processharbor-workspace-export.json')
   await expect(page.getByText('Exported workspace bundle')).toBeVisible()
 })

@@ -3,7 +3,7 @@ import { generateDocument } from '../src/opsEngine'
 import type { AuditEvent, ExportBundle, OpsDocument, Organization, WorkspaceSession } from '../src/types'
 import { notFound } from './errors'
 
-export interface OpsPilotRepository {
+export interface ProcessHarborRepository {
   organization: Organization
   documents: Map<string, OpsDocument>
   auditEvents: AuditEvent[]
@@ -15,7 +15,7 @@ export interface OpsPilotRepository {
   exportWorkspace(session: WorkspaceSession): ExportBundle
 }
 
-export class InMemoryOpsPilotRepository implements OpsPilotRepository {
+export class InMemoryProcessHarborRepository implements ProcessHarborRepository {
   readonly organization: Organization
   readonly documents = new Map<string, OpsDocument>()
   readonly auditEvents: AuditEvent[] = []
@@ -78,7 +78,7 @@ export class InMemoryOpsPilotRepository implements OpsPilotRepository {
   }
 }
 
-export function createSeedRepository(): InMemoryOpsPilotRepository {
+export function createSeedRepository(): InMemoryProcessHarborRepository {
   const organization: Organization = {
     id: 'org-brightline-demo',
     name: 'Brightline Demo Operations',
@@ -97,11 +97,11 @@ export function createSeedRepository(): InMemoryOpsPilotRepository {
     },
   ]
 
-  const repository = new InMemoryOpsPilotRepository(organization, documents)
+  const repository = new InMemoryProcessHarborRepository(organization, documents)
   repository.appendAudit({
     organizationId: organization.id,
     actorId: 'seed-admin',
-    actorName: 'OpsPilot Seed',
+    actorName: 'ProcessHarbor Seed',
     action: 'workspace.seeded',
     targetType: 'workspace',
     targetId: organization.id,

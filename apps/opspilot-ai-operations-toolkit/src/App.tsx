@@ -56,8 +56,8 @@ import type {
   WorkspaceSession,
 } from './types'
 
-const legacyDocumentStorageKey = 'opspilot.documents.v1'
-const workspaceStorageKey = 'opspilot.pro.workspace.v1'
+const legacyDocumentStorageKey = 'processharbor.documents.v1'
+const workspaceStorageKey = 'processharbor.pro.workspace.v1'
 
 const demoOrganization: Organization = {
   id: 'org-brightline-demo',
@@ -85,7 +85,7 @@ interface WorkspaceState {
 
 interface HealthResponse {
   ok: true
-  app: 'OpsPilot Pro'
+  app: 'ProcessHarbor Pro'
   ai: AiRuntimeStatus
   supportedRoutes: string[]
   timestamp: string
@@ -278,7 +278,7 @@ function App() {
       documents,
       auditEvents: [exportAudit, ...auditEvents],
     }
-    downloadText('opspilot-workspace-export.json', JSON.stringify(bundle, null, 2), 'application/json')
+    downloadText('processharbor-workspace-export.json', JSON.stringify(bundle, null, 2), 'application/json')
     setWorkspaceState((current) => ({
       ...current,
       auditEvents: [exportAudit, ...current.auditEvents],
@@ -352,11 +352,11 @@ function App() {
 
   return (
     <div className="app-shell">
-      <aside className="sidebar" aria-label="OpsPilot navigation">
+      <aside className="sidebar" aria-label="ProcessHarbor navigation">
         <div className="brand-block">
-          <div className="brand-mark">OP</div>
+          <div className="brand-mark">PH</div>
           <div>
-            <strong>OpsPilot Pro</strong>
+            <strong>ProcessHarbor Pro</strong>
             <span>AI Operations Toolkit</span>
           </div>
         </div>
@@ -388,7 +388,7 @@ function App() {
       <main className="workspace">
         <header className="topbar">
           <div>
-            <h1>OpsPilot Pro Operations Workspace</h1>
+            <h1>ProcessHarbor Pro Operations Workspace</h1>
             <p>Deterministic operations-document demo with a reference API and optional server-side OpenAI generation when configured.</p>
           </div>
           <div className="topbar-actions">
@@ -831,7 +831,7 @@ function AdminDashboard({
     <section className="output-panel admin-dashboard" aria-label="Admin and export dashboard">
       <div className="document-title-row">
         <div>
-          <span className="doc-type">OpsPilot Pro</span>
+          <span className="doc-type">ProcessHarbor Pro</span>
           <h2>Admin and export dashboard</h2>
           <p>Optional authenticated workspace mode, saved documents, audit events, and export readiness.</p>
         </div>
@@ -1206,7 +1206,7 @@ function createInitialWorkspace(documents: OpsDocument[]): WorkspaceState {
         id: 'audit-seed',
         organizationId: demoOrganization.id,
         actorId: 'seed',
-        actorName: 'OpsPilot Seed',
+        actorName: 'ProcessHarbor Seed',
         action: 'workspace.seeded',
         targetType: 'workspace',
         targetId: demoOrganization.id,

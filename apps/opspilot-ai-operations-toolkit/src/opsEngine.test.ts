@@ -13,7 +13,7 @@ const requiredSections = [
   'Audit/version note',
 ]
 
-describe('deterministic OpsPilot engine', () => {
+describe('deterministic ProcessHarbor engine', () => {
   it('normalizes HTML and escaped break markup from source notes, body edits, and exports', () => {
     const document = generateDocument({
       ...initialIntake,

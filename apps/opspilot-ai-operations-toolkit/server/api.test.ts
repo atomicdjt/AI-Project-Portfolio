@@ -1,14 +1,14 @@
 import { describe, expect, it } from 'vitest'
 import { initialIntake } from '../src/data'
-import { OpsPilotApi, demoAdminSession, demoViewerSession } from './api'
+import { ProcessHarborApi, demoAdminSession, demoViewerSession } from './api'
 import { toApiError } from './errors'
 import { createSeedRepository } from './repository'
 
 function createApi() {
-  return new OpsPilotApi(createSeedRepository(), { OPSPILOT_AI_ENABLED: 'false' })
+  return new ProcessHarborApi(createSeedRepository(), { PROCESSHARBOR_AI_ENABLED: 'false' })
 }
 
-describe('OpsPilot Pro API', () => {
+describe('ProcessHarbor Pro API', () => {
   it('creates a validated document and audit event', () => {
     const api = createApi()
     const document = api.createDocument(demoAdminSession, initialIntake)

@@ -44,40 +44,40 @@ try {
   const shots = []
 
   await page.goto(baseUrl)
-  await page.getByRole('heading', { name: 'OpsPilot Pro Operations Workspace' }).waitFor()
-  shots.push(await screenshot(page, 'opspilot-final-polish-01-dashboard.png'))
+  await page.getByRole('heading', { name: 'ProcessHarbor Pro Operations Workspace' }).waitFor()
+  shots.push(await screenshot(page, 'processharbor-final-polish-01-dashboard.png'))
 
   await page.getByRole('button', { name: 'Admin Dashboard' }).click()
   await page.getByRole('heading', { name: 'Admin and export dashboard' }).waitFor()
   await page.getByRole('heading', { name: 'Developer diagnostics' }).waitFor()
-  shots.push(await screenshot(page, 'opspilot-final-polish-02-admin-diagnostics.png'))
+  shots.push(await screenshot(page, 'processharbor-final-polish-02-admin-diagnostics.png'))
 
   await page.getByRole('button', { name: 'Generate from intake' }).first().click()
   await page.getByText(/Generated with deterministic fallback|Generated through optional server-side AI route/).waitFor()
   await page.getByRole('heading', { name: 'SOP procedure editor' }).waitFor()
-  shots.push(await screenshot(page, 'opspilot-final-polish-03-generated-sop.png'))
+  shots.push(await screenshot(page, 'processharbor-final-polish-03-generated-sop.png'))
 
   await page.getByRole('button', { name: 'Training Checklist' }).click()
   await page.getByRole('heading', { name: 'Training checklist builder' }).waitFor()
   await page.locator('.check-row input').first().check()
-  shots.push(await screenshot(page, 'opspilot-final-polish-04-training.png'))
+  shots.push(await screenshot(page, 'processharbor-final-polish-04-training.png'))
 
   await page.getByRole('button', { name: 'Knowledge Base' }).click()
   await page.getByRole('heading', { name: 'Knowledge base articles' }).waitFor()
-  shots.push(await screenshot(page, 'opspilot-final-polish-05-knowledge.png'))
+  shots.push(await screenshot(page, 'processharbor-final-polish-05-knowledge.png'))
 
   await page.getByRole('button', { name: 'Gap Detector' }).click()
   await page.getByRole('heading', { name: 'Documentation gap report' }).waitFor()
   await page.locator('.gap-row button').first().click()
-  shots.push(await screenshot(page, 'opspilot-final-polish-06-gap-fixed.png'))
+  shots.push(await screenshot(page, 'processharbor-final-polish-06-gap-fixed.png'))
 
   await page.getByRole('button', { name: 'Admin Dashboard' }).click()
   const downloadPromise = page.waitForEvent('download')
   await page.getByRole('button', { name: 'Export workspace' }).first().click()
   const download = await downloadPromise
-  await download.saveAs(join(downloadsDir, 'opspilot-final-polish-workspace-export.json'))
+  await download.saveAs(join(downloadsDir, 'processharbor-final-polish-workspace-export.json'))
   await page.getByText('Exported workspace bundle').waitFor()
-  shots.push(await screenshot(page, 'opspilot-final-polish-07-exported.png'))
+  shots.push(await screenshot(page, 'processharbor-final-polish-07-exported.png'))
 
   for (const viewport of [
     { width: 390, height: 844, name: 'mobile-390x844' },
@@ -87,8 +87,8 @@ try {
   ]) {
     await page.setViewportSize({ width: viewport.width, height: viewport.height })
     await page.goto(baseUrl)
-    await page.getByRole('heading', { name: 'OpsPilot Pro Operations Workspace' }).waitFor()
-    await screenshot(page, `opspilot-final-polish-${viewport.name}.png`)
+    await page.getByRole('heading', { name: 'ProcessHarbor Pro Operations Workspace' }).waitFor()
+    await screenshot(page, `processharbor-final-polish-${viewport.name}.png`)
   }
 
   await context.close()
@@ -96,11 +96,11 @@ try {
 
   if (video) {
     const videoPath = await video.path()
-    await copyFile(videoPath, join(proofDir, 'opspilot-final-polish-workflow.webm'))
+    await copyFile(videoPath, join(proofDir, 'processharbor-final-polish-workflow.webm'))
     await rm(videoPath, { force: true })
   }
 
-  await createGif(shots, join(proofDir, 'opspilot-final-polish-workflow.gif'))
+  await createGif(shots, join(proofDir, 'processharbor-final-polish-workflow.gif'))
 } finally {
   stopServer(server)
 }

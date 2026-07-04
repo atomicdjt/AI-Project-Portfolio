@@ -12,14 +12,14 @@ import type { AiGenerateResult, AiRuntimeStatus, ExportBundle, IntakeState, OpsD
 import { generateDocumentWithOptionalAi, getAiRuntimeStatus } from './ai'
 import type { AiEnvironment } from './ai'
 import { forbidden, notFound } from './errors'
-import { createSeedRepository, type OpsPilotRepository } from './repository'
+import { createSeedRepository, type ProcessHarborRepository } from './repository'
 
 const writeRoles: WorkspaceRole[] = ['owner', 'admin', 'editor']
 const adminRoles: WorkspaceRole[] = ['owner', 'admin']
 
-export interface OpsPilotHealthStatus {
+export interface ProcessHarborHealthStatus {
   ok: true
-  app: 'OpsPilot Pro'
+  app: 'ProcessHarbor Pro'
   mode: 'seeded-reference-api'
   deployment: 'netlify-functions'
   persistence: 'in-memory-seeded-reference'
@@ -30,19 +30,19 @@ export interface OpsPilotHealthStatus {
   timestamp: string
 }
 
-export class OpsPilotApi {
-  readonly repository: OpsPilotRepository
+export class ProcessHarborApi {
+  readonly repository: ProcessHarborRepository
   private readonly aiEnvironment?: AiEnvironment
 
-  constructor(repository: OpsPilotRepository = createSeedRepository(), aiEnvironment?: AiEnvironment) {
+  constructor(repository: ProcessHarborRepository = createSeedRepository(), aiEnvironment?: AiEnvironment) {
     this.repository = repository
     this.aiEnvironment = aiEnvironment
   }
 
-  health(): OpsPilotHealthStatus {
+  health(): ProcessHarborHealthStatus {
     return {
       ok: true,
-      app: 'OpsPilot Pro',
+      app: 'ProcessHarbor Pro',
       mode: 'seeded-reference-api',
       deployment: 'netlify-functions',
       persistence: 'in-memory-seeded-reference',

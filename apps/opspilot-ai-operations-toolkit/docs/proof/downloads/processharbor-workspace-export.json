@@ -5,7 +5,7 @@
     "plan": "pro",
     "createdAt": "2026-06-05T00:00:00.000Z"
   },
-  "exportedAt": "2026-07-04T11:53:18.781Z",
+  "exportedAt": "2026-07-04T10:07:49.137Z",
   "exportedBy": {
     "userId": "demo-admin",
     "name": "Avery Morgan",
@@ -24,46 +24,46 @@
       "score": 98,
       "risk": "Low",
       "lastRevised": "2026-07-04",
-      "summary": "New patient intake is inconsistent. OpsPilot structured it into a sop with owners, training tasks, knowledge base answers, and gap findings.",
+      "summary": "New patient intake is inconsistent. ProcessHarbor structured it into a sop with owners, training tasks, knowledge base answers, and gap findings.",
       "steps": [
         {
-          "id": "step-1-5593ll5",
-          "title": "Standardize intake requirements",
+          "id": "step-1-eym8kni",
+          "title": "Patient intake is inconsistent",
           "detail": "New patient intake is inconsistent.",
           "owner": "Front Desk Coordinator",
           "timing": "Start of workflow"
         },
         {
-          "id": "step-2-qrrcyds",
-          "title": "Collect required documents",
+          "id": "step-2-5mbhkn0",
+          "title": "Ask for insurance card",
           "detail": "Staff ask for insurance card, consent forms, medication list, and preferred pharmacy, but order changes by person.",
           "owner": "Front Desk Coordinator",
           "timing": "During active handling"
         },
         {
-          "id": "step-3-tyjke9c",
-          "title": "Confirm appointment reminders",
+          "id": "step-3-s1koq8e",
+          "title": "Need a script for confirming appointment reminders",
           "detail": "Need a script for confirming appointment reminders.",
           "owner": "Front Desk Coordinator",
           "timing": "During active handling"
         },
         {
-          "id": "step-4-9egd5wk",
-          "title": "Escalate billing questions",
+          "id": "step-4-zklmpox",
+          "title": "Escalate billing questions to office manager",
           "detail": "Escalate billing questions to office manager.",
           "owner": "Operations Manager",
           "timing": "During active handling"
         },
         {
-          "id": "step-5-yiaole6",
-          "title": "Verify compliance acknowledgement",
+          "id": "step-5-xkl5rru",
+          "title": "Confirm HIPAA acknowledgement before collecting clinical history",
           "detail": "Confirm HIPAA acknowledgement before collecting clinical history.",
           "owner": "Front Desk Coordinator",
           "timing": "During active handling"
         },
         {
-          "id": "step-6-m6znc7a",
-          "title": "Collect required documents",
+          "id": "step-6-sblmqok",
+          "title": "Forms are missing",
           "detail": "If forms are missing, send secure portal link and call the patient 24 hours before visit.",
           "owner": "Front Desk Coordinator",
           "timing": "Before completion is approved"
@@ -71,43 +71,43 @@
       ],
       "checklist": [
         {
-          "id": "train-read-o3lfsfc",
-          "task": "Review the sop for Brightline Dental and explain the success criteria",
+          "id": "train-read-bahem32",
+          "task": "Review the sop and explain the success criteria",
           "owner": "Front Desk Coordinator",
           "due": "Day 1",
           "done": true
         },
         {
-          "id": "train-shadow-q9tfuez",
-          "task": "Shadow one complete Patient Operations workflow and record the handoff points",
+          "id": "train-shadow-ydswrr0",
+          "task": "Shadow one complete Patient Operations workflow",
           "owner": "Front Desk Coordinator",
           "due": "Day 2",
           "done": false
         },
         {
-          "id": "train-0-m4n36ut",
-          "task": "Demonstrate standardize intake requirements without manager prompts",
+          "id": "train-0-qo0piae",
+          "task": "Demonstrate: Patient intake is inconsistent",
           "owner": "Front Desk Coordinator",
           "due": "Day 3",
           "done": false
         },
         {
-          "id": "train-1-6jpw7d0",
-          "task": "Demonstrate collect required documents without manager prompts",
+          "id": "train-1-j337w0o",
+          "task": "Demonstrate: Ask for insurance card",
           "owner": "Front Desk Coordinator",
           "due": "Day 4",
           "done": false
         },
         {
-          "id": "train-2-z52i3v3",
-          "task": "Demonstrate confirm appointment reminders without manager prompts",
+          "id": "train-2-bi9313h",
+          "task": "Demonstrate: Need a script for confirming appointment reminders",
           "owner": "Front Desk Coordinator",
           "due": "Day 5",
           "done": false
         },
         {
-          "id": "train-3-zoqzwaw",
-          "task": "Demonstrate escalate billing questions without manager prompts",
+          "id": "train-3-397he2n",
+          "task": "Demonstrate: Escalate billing questions to office manager",
           "owner": "Operations Manager",
           "due": "Day 6",
           "done": false
@@ -115,27 +115,27 @@
       ],
       "articles": [
         {
-          "id": "article-0-4yjbchs",
-          "question": "What does Front Desk Coordinator need before starting the Patient Operations workflow?",
-          "answer": "Start with New patient intake is inconsistent. Confirm required inputs and the expected output before the workflow moves forward.",
+          "id": "article-0-drik15q",
+          "question": "What does Front Desk Coordinator need before starting this workflow?",
+          "answer": "Start with New patient intake is inconsistent. Confirm required inputs before the workflow moves forward.",
           "tags": [
             "patient-operations",
             "sop"
           ]
         },
         {
-          "id": "article-1-jyaamc0",
+          "id": "article-1-konwfus",
           "question": "Who owns exceptions in Patient Operations?",
-          "answer": "Exceptions should be routed to Operations Manager with context, urgency, customer impact, and the next required action.",
+          "answer": "Exceptions should be routed to Operations Manager with context, urgency, and customer impact.",
           "tags": [
             "patient-operations",
             "sop"
           ]
         },
         {
-          "id": "article-2-o28w6lc",
-          "question": "How does Brightline Dental confirm completion?",
-          "answer": "Brightline Dental should confirm completion by checking every required step, recording the owner, and saving final status in the team system of record.",
+          "id": "article-2-nkk9n82",
+          "question": "How is completion tracked?",
+          "answer": "Completion is tracked by confirming each required step, recording the owner, and saving the final status in the team system of record.",
           "tags": [
             "patient-operations",
             "sop"
@@ -144,7 +144,7 @@
       ],
       "gaps": [
         {
-          "id": "gap-review-7p2x8wr",
+          "id": "gap-review-igik02w",
           "severity": "low",
           "title": "Review cadence missing",
           "evidence": "Compliance-sensitive notes need a revision cadence and reviewer.",
@@ -154,9 +154,9 @@
       ],
       "versions": [
         {
-          "id": "ver-t00t4jb",
+          "id": "ver-8z70ju8",
           "label": "v2.0",
-          "author": "OpsPilot",
+          "author": "ProcessHarbor",
           "date": "2026-07-04",
           "changes": [
             "Regenerated document from updated intake",
@@ -167,7 +167,7 @@
         {
           "id": "v1",
           "label": "v1.0",
-          "author": "OpsPilot",
+          "author": "ProcessHarbor",
           "date": "2026-06-05",
           "changes": [
             "Generated intake workflow",
@@ -176,7 +176,7 @@
           ]
         }
       ],
-      "body": "Purpose\nConvert Patient Operations knowledge into a repeatable sop for Brightline Dental so staff can complete work consistently, record ownership, and escalate exceptions without relying on informal memory.\n\nTrigger\nUse this procedure when a sop touches compliance-sensitive records, approvals, consent, billing, or customer data.\n\nOwner\nPrimary owner: Front Desk Coordinator. Backup reviewer: Operations Manager. The owner keeps the procedure current, verifies training completion, and confirms open gaps are reviewed before publishing.\n\nSteps\n1. Standardize intake requirements: New patient intake is inconsistent. Owner: Front Desk Coordinator. Timing: Start of workflow.\n2. Collect required documents: Staff ask for insurance card, consent forms, medication list, and preferred pharmacy, but order changes by person. Owner: Front Desk Coordinator. Timing: During active handling.\n3. Confirm appointment reminders: Need a script for confirming appointment reminders. Owner: Front Desk Coordinator. Timing: During active handling.\n4. Escalate billing questions: Escalate billing questions to office manager. Owner: Operations Manager. Timing: During active handling.\n5. Verify compliance acknowledgement: Confirm HIPAA acknowledgement before collecting clinical history. Owner: Front Desk Coordinator. Timing: During active handling.\n6. Collect required documents: If forms are missing, send secure portal link and call the patient 24 hours before visit. Owner: Front Desk Coordinator. Timing: Before completion is approved.\n\nQuality checks\n- Required inputs are collected before work is marked complete.\n- The accountable owner is recorded in the system of record.\n- Exceptions include context, urgency, customer impact, and next action.\n- Completion notes are clear enough for a manager to audit later.\n\nEscalation path\nEscalate blocked, urgent, compliance-sensitive, billing, safety, or customer-impacting exceptions to the Operations Manager the same business day. Include the document title, affected customer or work item, current owner, and requested decision.\n\nReview cadence\nReview this document quarterly and after any policy, billing, compliance, or customer-impacting workflow change.\n\nAudit/version note\nSave a new version after each material edit, publish only after open high-risk gaps are reviewed, and track this gap focus before handoff: Schedule quarterly review and name the approving manager..",
+      "body": "Purpose: Convert Patient Operations knowledge into a repeatable sop for Brightline Dental.\n\nScope: Front Desk Coordinator and managers responsible for execution, training, review, and escalation.\n\nProcedure:\n1. Patient intake is inconsistent: New patient intake is inconsistent. Owner: Front Desk Coordinator. Timing: Start of workflow.\n2. Ask for insurance card: Staff ask for insurance card, consent forms, medication list, and preferred pharmacy, but order changes by person. Owner: Front Desk Coordinator. Timing: During active handling.\n3. Need a script for confirming appointment reminders: Need a script for confirming appointment reminders. Owner: Front Desk Coordinator. Timing: During active handling.\n4. Escalate billing questions to office manager: Escalate billing questions to office manager. Owner: Operations Manager. Timing: During active handling.\n5. Confirm HIPAA acknowledgement before collecting clinical history: Confirm HIPAA acknowledgement before collecting clinical history. Owner: Front Desk Coordinator. Timing: During active handling.\n6. Forms are missing: If forms are missing, send secure portal link and call the patient 24 hours before visit. Owner: Front Desk Coordinator. Timing: Before completion is approved.\n\nQuality standard: Work is complete when required inputs are collected, the owner is recorded, exceptions are escalated, and the system of record is updated.\n\nControls: Review open gaps before publishing. Current gap focus: Schedule quarterly review and name the approving manager..",
       "organizationId": "org-brightline-demo",
       "createdBy": "demo-admin",
       "updatedBy": "demo-admin"
@@ -195,8 +195,8 @@
         "documents": 1,
         "auditEvents": 5
       },
-      "id": "audit-yxwsj6kf",
-      "createdAt": "2026-07-04T11:53:18.781Z"
+      "id": "audit-ogw5ox7c",
+      "createdAt": "2026-07-04T10:07:49.137Z"
     },
     {
       "organizationId": "org-brightline-demo",
@@ -210,8 +210,8 @@
         "score": 98,
         "openGaps": 0
       },
-      "id": "audit-vq3bve76",
-      "createdAt": "2026-07-04T11:53:18.515Z"
+      "id": "audit-la7yj735",
+      "createdAt": "2026-07-04T10:07:48.900Z"
     },
     {
       "organizationId": "org-brightline-demo",
@@ -225,36 +225,34 @@
         "score": 98,
         "openGaps": 1
       },
-      "id": "audit-2q0bo48a",
-      "createdAt": "2026-07-04T11:53:18.098Z"
+      "id": "audit-vada527f",
+      "createdAt": "2026-07-04T10:07:48.690Z"
     },
     {
       "organizationId": "org-brightline-demo",
       "actorId": "demo-admin",
       "actorName": "Avery Morgan",
-      "action": "document.generated_fallback",
+      "action": "document.generated",
       "targetType": "document",
       "targetId": "seed-client-intake",
       "summary": "Generated Patient Operations SOP.",
       "metadata": {
         "mode": "demo",
-        "score": 98,
-        "fallback": true,
-        "validation": "not_required"
+        "score": 98
       },
-      "id": "audit-z69rhd5g",
-      "createdAt": "2026-07-04T11:53:17.778Z"
+      "id": "audit-bwrl8hdb",
+      "createdAt": "2026-07-04T10:07:48.467Z"
     },
     {
       "id": "audit-seed",
       "organizationId": "org-brightline-demo",
       "actorId": "seed",
-      "actorName": "OpsPilot Seed",
+      "actorName": "ProcessHarbor Seed",
       "action": "workspace.seeded",
       "targetType": "workspace",
       "targetId": "org-brightline-demo",
       "summary": "Seeded demo workspace with operations documents, versions, training, articles, gaps, and audit log.",
-      "createdAt": "2026-07-04T11:53:17.117Z",
+      "createdAt": "2026-07-04T10:07:47.966Z",
       "metadata": {
         "documents": 1
       }

@@ -6,7 +6,7 @@ import type { AiGenerateResult, AiRuntimeStatus, GapSeverity, IntakeState, OpsDo
 const defaultModel = 'gpt-4o-mini'
 const route = '/api/aiGenerate'
 const promptConstraints = [
-  'Return strict JSON matching the OpsPilot document draft schema.',
+  'Return strict JSON matching the ProcessHarbor document draft schema.',
   'Use plain text only; do not return HTML, Markdown tables, scripts, links, or escaped markup.',
   'Keep the result practical for a small-business operations manager.',
   'Include owners, timing, quality checks, escalation, review cadence, and audit/version guidance.',
@@ -20,7 +20,7 @@ const rateLimitStore = new Map<string, { count: number; resetAt: number }>()
 export interface AiEnvironment {
   OPENAI_API_KEY?: string
   OPENAI_MODEL?: string
-  OPSPILOT_AI_ENABLED?: string
+  PROCESSHARBOR_AI_ENABLED?: string
 }
 
 interface AiGenerateOptions {
@@ -40,7 +40,7 @@ interface AiDraft {
 
 export function getAiRuntimeStatus(env: AiEnvironment = readAiEnvironment()): AiRuntimeStatus {
   const aiConfigured = Boolean(env.OPENAI_API_KEY?.trim())
-  const aiEnabled = isEnabled(env.OPSPILOT_AI_ENABLED)
+  const aiEnabled = isEnabled(env.PROCESSHARBOR_AI_ENABLED)
 
   return {
     aiConfigured,
@@ -71,7 +71,7 @@ export async function generateDocumentWithOptionalAi(
       sanitizedConfig,
       fallbackReason: 'ai_disabled',
       validationStatus: 'not_required',
-      validationMessage: 'OPSPILOT_AI_ENABLED is not true, so deterministic generation handled the request.',
+      validationMessage: 'PROCESSHARBOR_AI_ENABLED is not true, so deterministic generation handled the request.',
     })
   }
 
@@ -115,7 +115,7 @@ export async function generateDocumentWithOptionalAi(
       sanitizedConfig,
       fallbackReason: undefined,
       validationStatus: 'passed',
-      validationMessage: 'OpenAI structured output validated against the OpsPilot draft schema.',
+      validationMessage: 'OpenAI structured output validated against the ProcessHarbor draft schema.',
     })
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unknown OpenAI generation error.'
@@ -182,7 +182,7 @@ async function callOpenAi(input: IntakeState, apiKey: string, model: string): Pr
           content: [
             {
               type: 'input_text',
-              text: `You are OpsPilot Pro, an operations-documentation assistant. ${promptConstraints.join(' ')}`,
+              text: `You are ProcessHarbor Pro, an operations-documentation assistant. ${promptConstraints.join(' ')}`,
             },
           ],
         },
@@ -206,7 +206,7 @@ async function callOpenAi(input: IntakeState, apiKey: string, model: string): Pr
       text: {
         format: {
           type: 'json_schema',
-          name: 'opspilot_document_draft',
+          name: 'processharbor_document_draft',
           strict: true,
           schema: aiDraftJsonSchema,
         },
@@ -282,7 +282,7 @@ function mergeAiDraft(base: OpsDocument, draft: AiDraft): OpsDocument {
       {
         id: `ai-ver-${Math.random().toString(36).slice(2, 9)}`,
         label: `v${base.versions.length + 1}.0`,
-        author: 'OpsPilot optional AI',
+        author: 'ProcessHarbor optional AI',
         date: new Date().toISOString().slice(0, 10),
         changes: ['Generated through optional server-side OpenAI route', 'Validated structured output before saving', 'Preserved deterministic fallback path'],
       },
@@ -323,7 +323,7 @@ function readAiEnvironment(): AiEnvironment {
   return {
     OPENAI_API_KEY: readEnv('OPENAI_API_KEY'),
     OPENAI_MODEL: readEnv('OPENAI_MODEL'),
-    OPSPILOT_AI_ENABLED: readEnv('OPSPILOT_AI_ENABLED'),
+    PROCESSHARBOR_AI_ENABLED: readEnv('PROCESSHARBOR_AI_ENABLED'),
   }
 }
 

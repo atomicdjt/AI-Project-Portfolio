@@ -1,8 +1,8 @@
-# OpsPilot Pro Portfolio Case Study
+# ProcessHarbor Pro Portfolio Case Study
 
 ## Summary
 
-OpsPilot Pro is a polished operations documentation system for small businesses. It focuses on a monetizable business pain: converting messy internal information into repeatable SOPs, onboarding checklists, help articles, gap reports, audit events, export bundles, and versioned documentation.
+ProcessHarbor Pro is a polished operations documentation system for small businesses. It focuses on a monetizable business pain: converting messy internal information into repeatable SOPs, onboarding checklists, help articles, gap reports, audit events, export bundles, and versioned documentation.
 
 Live demo: https://opspilot-ai-operations-toolkit.netlify.app/
 

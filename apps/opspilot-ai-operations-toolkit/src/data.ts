@@ -134,7 +134,7 @@ export const seedDocuments: OpsDocument[] = [
       {
         id: 'v1',
         label: 'v1.0',
-        author: 'OpsPilot',
+        author: 'ProcessHarbor',
         date: '2026-06-05',
         changes: ['Generated intake workflow', 'Added compliance-sensitive gap scan', 'Created onboarding checklist'],
       },

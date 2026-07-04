@@ -1,6 +1,6 @@
 # Naming and Search Positioning
 
-Working product name: **OpsPilot Pro**
+Working product name: **ProcessHarbor Pro**
 
 Primary positioning:
 

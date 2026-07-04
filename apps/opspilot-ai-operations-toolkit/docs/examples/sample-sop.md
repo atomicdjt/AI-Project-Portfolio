@@ -1,6 +1,6 @@
 # Sample SOP Export
 
-This sanitized sample Markdown export demonstrates the OpsPilot Pro document output format for portfolio review.
+This sanitized sample Markdown export demonstrates the ProcessHarbor Pro document output format for portfolio review.
 
 ## Purpose
 

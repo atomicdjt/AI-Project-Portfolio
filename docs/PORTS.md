@@ -7,7 +7,7 @@
 | Astra | `http://127.0.0.1:5174/` | `http://127.0.0.1:3002/` |
 | Nexus Play | `http://127.0.0.1:5175/` | `http://127.0.0.1:3003/` |
 | LayerForge Studio | `http://127.0.0.1:5176/` | None |
-| OpsPilot | `http://127.0.0.1:5177/` | None |
+| ProcessHarbor | `http://127.0.0.1:5177/` | None |
 | ScamShield AI | `http://127.0.0.1:5178/` | None |
 | FocusForge | `http://127.0.0.1:5179/` | None |
 | RedactReady Pro | `http://127.0.0.1:5181/` | None |

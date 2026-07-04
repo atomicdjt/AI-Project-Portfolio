@@ -1,8 +1,8 @@
-# OpsPilot Pro Case Study
+# ProcessHarbor Pro Case Study
 
 ## Overview
 
-OpsPilot Pro is a runnable operations documentation system for small businesses. It turns messy notes, FAQs, tickets, and policy fragments into structured operations documents: SOPs, training checklists, knowledge base articles, gap reports, audit events, export bundles, and version history.
+ProcessHarbor Pro is a runnable operations documentation system for small businesses. It turns messy notes, FAQs, tickets, and policy fragments into structured operations documents: SOPs, training checklists, knowledge base articles, gap reports, audit events, export bundles, and version history.
 
 The project is built as a polished micro-SaaS product surface rather than a generic chatbot demo. It targets a clear business pain: reducing operational chaos and manager-dependent tribal knowledge while preserving a credible production path.
 
@@ -48,9 +48,13 @@ The project is built as a polished micro-SaaS product surface rather than a gene
 
 The app does not claim durable production workspaces, real identity-provider authentication, production AI automation, or billing. The default frontend remains a local deterministic demo. Optional OpenAI generation exists only as a server-side reference path when explicitly configured. The backend demonstrates the contracts, validation, authorization, seeded state, audit events, fallback behavior, and export shape that a production repository/database adapter would use.
 
+## License and Reuse Terms
+
+ProcessHarbor Pro is public for portfolio review only. The app-local license is all rights reserved and does not grant reuse, redistribution, sublicensing, resale, fork-for-resale, or production deployment rights without prior written permission.
+
 ## Why It Matters
 
-OpsPilot Pro is directly aligned with technical operations, support operations, documentation, enablement, and product-operations roles. It demonstrates the ability to translate a real business workflow into a runnable, polished product with monetization potential and credible engineering boundaries.
+ProcessHarbor Pro is directly aligned with technical operations, support operations, documentation, enablement, and product-operations roles. It demonstrates the ability to translate a real business workflow into a runnable, polished product with monetization potential and credible engineering boundaries.
 
 ## What This Demonstrates for Employers
 

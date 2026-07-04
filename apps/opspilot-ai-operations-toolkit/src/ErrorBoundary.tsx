@@ -34,7 +34,7 @@ export class ErrorBoundary extends Component<{ children: ReactNode }, ErrorBound
     return (
       <main className="error-boundary" role="alert">
         <AlertTriangle size={28} aria-hidden="true" />
-        <h1>OpsPilot hit an unexpected UI error</h1>
+        <h1>ProcessHarbor hit an unexpected UI error</h1>
         <p>The deterministic demo and reference API are still safe to reload. Copy this diagnostic if you need to review the failure.</p>
         <button type="button" onClick={() => void navigator.clipboard?.writeText(diagnostic)}>
           <Copy size={16} aria-hidden="true" />

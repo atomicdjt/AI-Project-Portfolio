@@ -1,6 +1,6 @@
 # Sample Checklist Export
 
-This sanitized sample export demonstrates the OpsPilot Pro checklist format.
+This sanitized sample export demonstrates the ProcessHarbor Pro checklist format.
 
 ## Checklist
 

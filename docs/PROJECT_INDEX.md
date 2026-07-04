@@ -18,7 +18,7 @@ A ranked index of the strongest projects in this AI Project Portfolio.
 | 3 | [ScamShield AI](../projects/scamshield-ai/CASE_STUDY.md) | Runnable MVP + live demo | Consumer-protection cybersecurity | Complete safety workflow with explainable risk signals, accessible guidance, evidence organization, reporting resources, and PDF export. |
 | 4 | [RedactReady](../projects/redactready-local/CASE_STUDY.md) | Runnable MVP | Privacy/security redaction engine | Strong privacy-first product; shows document processing, true redaction, verification, and safety-focused UX. |
 | 5 | [LayerForge Studio](../projects/layerforge-studio/CASE_STUDY.md) | Runnable MVP | Browser image editor | Best creative-tool software demo; shows frontend architecture, Canvas 2D interaction, local persistence, and product judgment. |
-| 6 | [OpsPilot](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) | Runnable MVP + live demo | AI operations micro-SaaS | Strong business-focused app; maps directly to SOPs, onboarding, documentation, knowledge management, and process improvement. |
+| 6 | [ProcessHarbor](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) | Runnable MVP + live demo | AI operations micro-SaaS | Strong business-focused app; maps directly to SOPs, onboarding, documentation, knowledge management, and process improvement. |
 | 7 | [VariantVision Pro](../projects/variantvision-pro/CASE_STUDY.md) | Runnable MVP + live demo | Bioinformatics research tool | Live evidence workbench with local normalization helpers, amino-acid comparison, source transparency, evidence scoring, and report export. |
 | 8 | [AI Knowledge Operations Toolkit](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) | Concept / product specification | Operations AI system | Directly maps to support ops, documentation, enablement, training, and knowledge management roles. |
 
@@ -67,7 +67,7 @@ These public demos are linked from the Portfolio Hub and deployment map, but the
 5. Review [ScamShield AI](../projects/scamshield-ai/CASE_STUDY.md) for the strongest end-to-end public-interest safety workflow.
 6. Review [RedactReady](../projects/redactready-local/CASE_STUDY.md) for privacy/security implementation depth.
 7. Review [LayerForge Studio](../projects/layerforge-studio/CASE_STUDY.md) for creative-tool implementation depth.
-8. Review [OpsPilot](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) and its [live demo](https://opspilot-ai-operations-toolkit.netlify.app/) for the strongest business-focused runnable product.
+8. Review [ProcessHarbor](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) and its [live demo](https://opspilot-ai-operations-toolkit.netlify.app/) for the strongest business-focused runnable product.
 9. Review [FocusForge](../projects/focusforge/CASE_STUDY.md) for a polished local-first productivity app with live static deployment.
 10. Review [VariantVision Pro](../projects/variantvision-pro/CASE_STUDY.md) for complex-domain research-tool implementation.
 11. Review [AI Knowledge Operations Toolkit](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.

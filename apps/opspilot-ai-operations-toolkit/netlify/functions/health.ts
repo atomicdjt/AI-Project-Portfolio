@@ -1,8 +1,8 @@
 import type { Config } from '@netlify/functions'
-import { OpsPilotApi } from '../../server/api'
+import { ProcessHarborApi } from '../../server/api'
 
 export default async function handler(): Promise<Response> {
-  const api = new OpsPilotApi()
+  const api = new ProcessHarborApi()
   return new Response(JSON.stringify(api.health()), {
     status: 200,
     headers: {

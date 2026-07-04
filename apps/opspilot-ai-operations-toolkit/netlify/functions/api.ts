@@ -1,10 +1,10 @@
 import type { Config, Context } from '@netlify/functions'
-import { OpsPilotApi, demoAdminSession } from '../../server/api'
+import { ProcessHarborApi, demoAdminSession } from '../../server/api'
 import { badRequest, toErrorBody } from '../../server/errors'
 import { apiRouteSchema } from '../../src/schemas'
 import type { WorkspaceSession } from '../../src/types'
 
-const api = new OpsPilotApi()
+const api = new ProcessHarborApi()
 
 interface ApiPayload {
   session?: WorkspaceSession

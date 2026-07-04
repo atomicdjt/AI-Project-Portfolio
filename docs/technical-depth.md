@@ -20,7 +20,7 @@ The repo demonstrates local persistence through browser storage patterns:
 
 - ScamShield AI uses Zustand and versioned localStorage case state.
 - LayerForge Studio uses local project persistence for editor documents.
-- OpsPilot stores draft/version state locally for reviewable operations documents.
+- ProcessHarbor stores draft/version state locally for reviewable operations documents.
 - FocusForge uses local storage for focus/productivity progression.
 - BuildWorld AI uses localStorage and JSON import/export for simulation project persistence and scenario snapshots.
 
@@ -56,7 +56,7 @@ Deployment patterns include static Vite apps on Netlify and GitHub Pages:
 - ScamShield AI: documented Netlify live deployment.
 - RedactReady Pro: documented Netlify live deployment.
 - RedactReady: documented Netlify live deployment.
-- OpsPilot: documented Netlify live deployment.
+- ProcessHarbor: documented Netlify live deployment.
 - Portfolio Hub: documented GitHub Pages root deployment with a Pages-specific Vite base.
 - LayerForge Studio: documented GitHub Pages subpath deployment with a Pages-specific Vite base.
 - FocusForge: documented Netlify live deployment.
@@ -71,6 +71,6 @@ The root `verify:release` script combines documentation link validation with the
 - Astra and Nexus Play are local demos, not documented production backend deployments.
 - RedactReady Pro does not yet include OCR, robust PDF parsing, image-based QR/signature detection, or encrypted opt-in local storage.
 - RedactReady does not include OCR, face/signature detection, or layout-preserving DOCX/XLSX redaction.
-- OpsPilot Pro currently uses a deterministic local drafting engine, seeded reference Function API, optional server-side OpenAI generation with validation/fallback diagnostics, and no client-side secrets; durable database persistence, real auth, and production AI controls remain production adapter scope.
+- ProcessHarbor Pro currently uses a deterministic local drafting engine, seeded reference Function API, optional server-side OpenAI generation with validation/fallback diagnostics, and no client-side secrets; durable database persistence, real auth, and production AI controls remain production adapter scope.
 - LayerForge Studio would benefit from broader tests around editor actions, persistence, and import/export edge cases.
 - BuildWorld AI would benefit from Web Worker execution and richer graph-editing controls for larger scenarios.

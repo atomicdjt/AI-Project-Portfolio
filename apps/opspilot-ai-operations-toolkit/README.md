@@ -1,10 +1,10 @@
-# OpsPilot Pro: AI Operations Toolkit for Small Businesses
+# ProcessHarbor Pro: AI Operations Toolkit for Small Businesses
 
-OpsPilot Pro is a portfolio-grade operations documentation system for small businesses. It turns rough internal notes, policy fragments, support tickets, and FAQs into structured SOPs, onboarding checklists, knowledge base articles, documentation gap reports, audit events, version snapshots, and exportable workspace bundles.
+ProcessHarbor Pro is a portfolio-grade operations documentation system for small businesses. It turns rough internal notes, policy fragments, support tickets, and FAQs into structured SOPs, onboarding checklists, knowledge base articles, documentation gap reports, audit events, version snapshots, and exportable workspace bundles.
 
 The default product experience remains local, deterministic, and deployable without secrets. The full-stack reference layer adds typed API contracts, server-side Zod validation, role-aware authorization checks, seeded workspace data, audit logging, export endpoints, an API health check, optional server-side OpenAI generation with deterministic fallback, and a SQL migration path for a production database adapter.
 
-![OpsPilot desktop dashboard](docs/screenshots/opspilot-desktop.png)
+![ProcessHarbor desktop dashboard](docs/screenshots/processharbor-desktop.png)
 
 ## How to Test This in 60 Seconds
 
@@ -22,18 +22,18 @@ The default product experience remains local, deterministic, and deployable with
 
 The proof workflow includes screenshots, GIF/video capture, and a sample export bundle.
 
-- [Dashboard screenshot](docs/proof/opspilot-pro-01-dashboard.png)
-- [Admin/export screenshot](docs/proof/opspilot-pro-02-admin.png)
-- [Generated document screenshot](docs/proof/opspilot-pro-03-generated.png)
-- [Training checklist screenshot](docs/proof/opspilot-pro-04-training.png)
-- [Gap fixed screenshot](docs/proof/opspilot-pro-05-gap-fixed.png)
-- [Exported workspace screenshot](docs/proof/opspilot-pro-06-exported.png)
-- [Mobile screenshot](docs/proof/opspilot-pro-mobile.png)
-- [Workflow GIF](docs/proof/opspilot-pro-workflow.gif)
-- [Workflow video](docs/proof/opspilot-pro-workflow.webm)
-- [Sample workspace export](docs/proof/downloads/opspilot-workspace-export.json)
+- [Dashboard screenshot](docs/proof/processharbor-pro-01-dashboard.png)
+- [Admin/export screenshot](docs/proof/processharbor-pro-02-admin.png)
+- [Generated document screenshot](docs/proof/processharbor-pro-03-generated.png)
+- [Training checklist screenshot](docs/proof/processharbor-pro-04-training.png)
+- [Gap fixed screenshot](docs/proof/processharbor-pro-05-gap-fixed.png)
+- [Exported workspace screenshot](docs/proof/processharbor-pro-06-exported.png)
+- [Mobile screenshot](docs/proof/processharbor-pro-mobile.png)
+- [Workflow GIF](docs/proof/processharbor-pro-workflow.gif)
+- [Workflow video](docs/proof/processharbor-pro-workflow.webm)
+- [Sample workspace export](docs/proof/downloads/processharbor-workspace-export.json)
 
-Final-polish proof assets are generated with `opspilot-final-polish-*` names so earlier proof files remain intact.
+Final-polish proof assets are generated with `processharbor-final-polish-*` names so earlier proof files remain intact.
 
 Additional sanitized examples live under [`docs/examples/`](docs/examples/).
 
@@ -54,9 +54,13 @@ Additional sanitized examples live under [`docs/examples/`](docs/examples/).
 
 ## Honest Scope
 
-OpsPilot Pro does **not** claim production AI automation, persistent cloud storage, real identity-provider authentication, billing, or multi-tenant database isolation yet.
+ProcessHarbor Pro does **not** claim production AI automation, persistent cloud storage, real identity-provider authentication, billing, or multi-tenant database isolation yet.
 
 The live/local UI still works as a deterministic local-first demo through `localStorage`. The backend is a reference implementation with in-memory seed persistence that is ready to be wired to the included SQL schema. Optional OpenAI generation is server-only and disabled unless explicitly configured. This keeps the app safe to deploy publicly without API keys while showing the backend contracts, validation boundaries, authorization checks, fallback behavior, and production path.
+
+## License
+
+ProcessHarbor Pro is public for portfolio review only. The app-local `LICENSE` is all rights reserved: no reuse, redistribution, sublicensing, resale, fork-for-resale, or production deployment is granted without prior written permission.
 
 ## Tech Stack
 
@@ -139,7 +143,7 @@ Most write routes accept a JSON payload with a `session` object and route-specif
 }
 ```
 
-When `OPSPILOT_AI_ENABLED=true` and `OPENAI_API_KEY` is set server-side, the function uses the OpenAI Responses API with a strict JSON schema and validates the result before saving. Provider errors, invalid model JSON, rate limiting, missing keys, or disabled mode all return deterministic fallback output.
+When `PROCESSHARBOR_AI_ENABLED=true` and `OPENAI_API_KEY` is set server-side, the function uses the OpenAI Responses API with a strict JSON schema and validates the result before saving. Provider errors, invalid model JSON, rate limiting, missing keys, or disabled mode all return deterministic fallback output.
 
 ## Database Migration
 
@@ -171,7 +175,7 @@ npm run build
 npm run proof
 ```
 
-At repository root, OpsPilot is included in:
+At repository root, ProcessHarbor is included in:
 
 ```bash
 npm run check:docs
@@ -192,33 +196,33 @@ docs/proof/
 
 Expected outputs:
 
-- `opspilot-pro-01-dashboard.png`
-- `opspilot-pro-02-admin.png`
-- `opspilot-pro-03-generated.png`
-- `opspilot-pro-04-training.png`
-- `opspilot-pro-05-gap-fixed.png`
-- `opspilot-pro-06-exported.png`
-- `opspilot-pro-mobile.png`
-- `opspilot-pro-workflow.gif`
-- `opspilot-pro-workflow.webm`
-- `downloads/opspilot-workspace-export.json`
+- `processharbor-pro-01-dashboard.png`
+- `processharbor-pro-02-admin.png`
+- `processharbor-pro-03-generated.png`
+- `processharbor-pro-04-training.png`
+- `processharbor-pro-05-gap-fixed.png`
+- `processharbor-pro-06-exported.png`
+- `processharbor-pro-mobile.png`
+- `processharbor-pro-workflow.gif`
+- `processharbor-pro-workflow.webm`
+- `downloads/processharbor-workspace-export.json`
 
 Final polish proof outputs:
 
-- `opspilot-final-polish-01-dashboard.png`
-- `opspilot-final-polish-02-admin-diagnostics.png`
-- `opspilot-final-polish-03-generated-sop.png`
-- `opspilot-final-polish-04-training.png`
-- `opspilot-final-polish-05-knowledge.png`
-- `opspilot-final-polish-06-gap-fixed.png`
-- `opspilot-final-polish-07-exported.png`
-- `opspilot-final-polish-mobile-390x844.png`
-- `opspilot-final-polish-mobile-430x932.png`
-- `opspilot-final-polish-tablet-768x1024.png`
-- `opspilot-final-polish-desktop-1440x1000.png`
-- `opspilot-final-polish-workflow.gif`
-- `opspilot-final-polish-workflow.webm`
-- `downloads/opspilot-final-polish-workspace-export.json`
+- `processharbor-final-polish-01-dashboard.png`
+- `processharbor-final-polish-02-admin-diagnostics.png`
+- `processharbor-final-polish-03-generated-sop.png`
+- `processharbor-final-polish-04-training.png`
+- `processharbor-final-polish-05-knowledge.png`
+- `processharbor-final-polish-06-gap-fixed.png`
+- `processharbor-final-polish-07-exported.png`
+- `processharbor-final-polish-mobile-390x844.png`
+- `processharbor-final-polish-mobile-430x932.png`
+- `processharbor-final-polish-tablet-768x1024.png`
+- `processharbor-final-polish-desktop-1440x1000.png`
+- `processharbor-final-polish-workflow.gif`
+- `processharbor-final-polish-workflow.webm`
+- `downloads/processharbor-final-polish-workspace-export.json`
 
 ## Deploy
 
@@ -244,7 +248,7 @@ No environment variables are required for the deterministic demo, seeded referen
 Optional server-side AI variables:
 
 ```text
-OPSPILOT_AI_ENABLED=true
+PROCESSHARBOR_AI_ENABLED=true
 OPENAI_API_KEY=server-side OpenAI key
 OPENAI_MODEL=gpt-4o-mini
 ```
@@ -262,7 +266,7 @@ docs/
   LICENSE-NOTE.md                Scoped license and IP note
   NAMING_AND_POSITIONING.md      Search and product-positioning note
 e2e/
-  opspilot-pro.spec.ts           Playwright workflow coverage
+  processharbor-pro.spec.ts      Playwright workflow coverage
 netlify/functions/
   api.ts                         Netlify Function reference API
   health.ts                      Reviewer-safe API health endpoint
@@ -287,7 +291,7 @@ src/
 
 ## Production Roadmap
 
-- Replace the in-memory repository with a database adapter using `OPSPILOT_DATABASE_URL`.
+- Replace the in-memory repository with a database adapter using `PROCESSHARBOR_DATABASE_URL`.
 - Replace demo session payloads with an identity provider and signed server-side session validation.
 - Replace the optional OpenAI reference adapter with production usage controls, tenant-level rate limits, trace storage, and admin model configuration.
 - Add approval workflows, comments, review cadences, billing limits, and external exports.
