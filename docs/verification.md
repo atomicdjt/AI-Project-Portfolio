@@ -33,7 +33,38 @@ npm run verify:release
 | Nexus Play | `apps/nexus-play` | UI `5175`, API `3003` | `npm run build --workspace apps/nexus-play` | Yes | Build includes TypeScript project check | Not documented | Not documented | Local-only in current docs | Simulated checkout only; no real payments. |
 | FocusForge | `apps/focusforge` | Vite default `5173` unless occupied | `npm run build --workspace apps/focusforge` | Yes | Not documented as a standalone typecheck | Yes, Vitest via `test:run` | Not documented | Live Netlify demo documented: `https://focusforge-productivity-game.netlify.app/` | JavaScript Vite app; persistent progress and analytics are roadmap items in the case study. |
 
-## Known Validation Issues
+## README Live URL Check - July 4, 2026
+
+The root `README.md` was scanned for every unique HTTP(S) URL. `curl.exe -L -s -o NUL -w "%{http_code} %{url_effective}" <url>` returned HTTP 200 for every URL below.
+
+| Status | URL |
+| --- | --- |
+| 200 | `https://aminoacidworkbench.netlify.app/` |
+| 200 | `https://atomicdjt.github.io/AI-Project-Portfolio/` |
+| 200 | `https://atomicdjt.github.io/AI-Project-Portfolio/layerforge-studio/` |
+| 200 | `https://buildworld-ai.netlify.app/` |
+| 200 | `https://focusforge-productivity-game.netlify.app/` |
+| 200 | `https://garden-grid-planner-demo.netlify.app/` |
+| 200 | `https://github.com/atomicdjt/AI-Project-Portfolio/actions/workflows/ci.yml` |
+| 200 | `https://github.com/atomicdjt/AI-Project-Portfolio/actions/workflows/ci.yml/badge.svg` |
+| 200 | `https://hearthlink-p2p-demo.netlify.app/` |
+| 200 | `https://img.shields.io/badge/Canvas_2D-Editor-0f766e` |
+| 200 | `https://img.shields.io/badge/Consumer_Safety-Scam_Prevention-b45309` |
+| 200 | `https://img.shields.io/badge/Express-5-111?logo=express&logoColor=fff` |
+| 200 | `https://img.shields.io/badge/Micro--SaaS-Operations-14b8a6` |
+| 200 | `https://img.shields.io/badge/Privacy-Local--First-0f766e` |
+| 200 | `https://img.shields.io/badge/React-19-61dafb?logo=react&logoColor=111` |
+| 200 | `https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript&logoColor=fff` |
+| 200 | `https://img.shields.io/badge/Vite-7-646cff?logo=vite&logoColor=fff` |
+| 200 | `https://opspilot-ai-operations-toolkit.netlify.app/` |
+| 200 | `https://payhip.com/b/24De9` |
+| 200 | `https://quoteforge-local.vercel.app/` |
+| 200 | `https://redactready-local.netlify.app/` |
+| 200 | `https://redactready-pro-hri-os.netlify.app/` |
+| 200 | `https://scamshield-ai-safety.netlify.app/` |
+| 200 | `https://variantvisionpro.netlify.app/` |
+
+## Validation Log
 
 - `npm install` completed successfully on 2026-06-25, but npm reported 3 audit findings: 2 moderate and 1 high. Dependency remediation was not attempted in this polish pass because the request avoided dependency upgrades unless needed for existing scripts.
 - `npm run lint:apps`, `npm run typecheck:all`, `npm run test:all`, `npm run build:all`, and `npm run verify` completed successfully on 2026-06-25 after the GitHub profile and repository cleanup pass.
@@ -49,3 +80,7 @@ npm run verify:release
 - On 2026-07-04, Netlify CLI authentication was available, but the repository root was not linked to a Netlify project. Confirmed app-level Netlify projects are documented in `docs/deployment-and-previews.md`.
 - On 2026-07-04, public audit fixes from PR #15 were merged and published. GitHub Pages returned HTTP 200 for the Portfolio Hub, the previously missing Portfolio Hub image URLs returned HTTP 200, and Playwright reported zero console errors. FocusForge was redeployed to Netlify deploy `6a4892ebd547c851d7c876f9`; `https://focusforge-productivity-game.netlify.app/` returned HTTP 200, had no external Google Fonts references in the deployed HTML, and Playwright reported zero console errors.
 - On 2026-07-04, account-level polish was completed for public GitHub and Netlify presentation. GitHub profile metadata, profile README content, public repository topics/homepages, and Netlify project descriptions were updated and rechecked.
+- On 2026-07-04, `npm audit --audit-level=moderate --workspaces` and each app/root audit returned zero vulnerabilities after package-lock dependency remediation.
+- On 2026-07-04, bundle splitting removed the previous Vite `Some chunks are larger than 500 kB after minification` warning from `npm run build:all` and `npm run verify`. RedactReady still emits the PDF.js worker as a large static asset, but no built JavaScript chunk exceeds the Vite warning threshold.
+- On 2026-07-04, `npm run check:docs`, root README app/project inventory checks, and `npm run verify` passed after ranking, commercial-product, and GitHub-profile documentation updates.
+- On 2026-07-04, every HTTP(S) URL extracted from the root `README.md` returned HTTP 200; see the README live URL table above.
