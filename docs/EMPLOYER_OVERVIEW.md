@@ -37,6 +37,10 @@ This repository is best read as evidence of:
 14. **FocusForge** - live local-first gamified productivity app with timer recovery, progression systems, local persistence, and static deployment.
 15. **FrameEcho** - content-based duplicate video finder concept.
 
+## Shipped Commercial Product
+
+**QuoteForge Local** is a separate shipped commercial product, not an open-source app in this repository. It has a [live demo](https://quoteforge-local.vercel.app/) and a [Payhip product page](https://payhip.com/b/24De9). It is useful review evidence for buyer packaging, local-first product design, deployment, QA, setup documentation, customization guidance, embed/WordPress handoff materials, and sales-page readiness.
+
 ## How Employers Should Interpret This Work
 
 This portfolio is not presented as a claim of senior engineering experience. It is presented as evidence of unusually strong initiative, AI leverage, systems thinking, documentation discipline, and the ability to build credible prototypes quickly.
@@ -68,3 +72,4 @@ For a fast review, start with:
 10. [`projects/focusforge/CASE_STUDY.md`](../projects/focusforge/CASE_STUDY.md) for a polished local-first productivity app with live static deployment.
 11. [`projects/variantvision-pro/CASE_STUDY.md`](../projects/variantvision-pro/CASE_STUDY.md) for complex-domain research-tool implementation.
 12. [`projects/ai-knowledge-operations-toolkit/CASE_STUDY.md`](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.
+13. [QuoteForge Local](https://quoteforge-local.vercel.app/) and its [Payhip product page](https://payhip.com/b/24De9) for shipped commercial packaging evidence outside this repository.

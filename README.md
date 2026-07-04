@@ -79,6 +79,14 @@ This portfolio is strongest when read as evidence of:
 | **[Nexus Play](apps/nexus-play)** | [Case Study](projects/nexus-play/CASE_STUDY.md) | Local `5175` with Express API `3003` | ![Nexus Play storefront](docs/images/nexus-play-home.png) | Nexus Play is a digital game distribution platform demo with storefront browsing, catalog interaction, wishlist, cart, simulated checkout, owned library state, and install queue concepts. It demonstrates product UI thinking, user-state design, and platform-style workflow modeling. |
 | **[LayerForge Studio](apps/layerforge-studio)** | [Case Study](projects/layerforge-studio/CASE_STUDY.md) | [Live Demo](https://atomicdjt.github.io/AI-Project-Portfolio/layerforge-studio/) / Local `5176` | ![LayerForge Studio image editor](docs/images/layerforge-studio-home.png) | LayerForge Studio is the strongest frontend implementation: a local-first browser image editor with layered raster documents, Canvas 2D painting, selections, filters, undo, IndexedDB persistence, and PNG/JPEG export. It shows deeper UI architecture, interaction design, and application polish. |
 
+## Shipped Commercial Products
+
+This section is separate from the open portfolio apps because the product source and buyer package are maintained outside this repository.
+
+| Product | Public Link | Commercial Surface | What It Shows |
+| --- | --- | --- | --- |
+| QuoteForge Local | [Live Demo](https://quoteforge-local.vercel.app/) | [Payhip Product Page](https://payhip.com/b/24De9) | A packaged local-first quoting product with buyer-facing setup, customization, embed, WordPress, QA, licensing, and sales materials. |
+
 ## Supplemental Public Demos
 
 These public demos are visible in the Portfolio Hub but are not treated as primary source-backed repo applications unless their source is present under `apps/`.
