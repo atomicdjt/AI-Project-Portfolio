@@ -47,10 +47,19 @@ This audit reviewed the public GitHub profile, public portfolio repository, GitH
 
 | Priority | Weakness | Recommended Action |
 | --- | --- | --- |
-| P1 | FocusForge source fix still needs a production Netlify deploy before the public console error disappears. | Deploy `apps/focusforge` to the linked Netlify project after validation passes, then run a live browser smoke test. |
 | P2 | GitHub profile account polish is partially outside this repo. | Update the GitHub profile bio, pinned repositories, and any visible personal links manually using `docs/github-profile/SETUP.md` and `docs/github-repo-settings.md`. |
 | P2 | Supplemental demos are public but their source is not in this portfolio repo. | Keep them labeled as supplemental, or move source into `apps/` before treating them as primary portfolio evidence. |
 | P3 | Public app demos have strong text and workflows, but most lack short demo videos or animated proof in the README/profile. | Add 15-30 second GIFs or screenshots for the top three demos once the core portfolio links are stable. |
+
+## Publication Results
+
+- Pull request: `https://github.com/atomicdjt/AI-Project-Portfolio/pull/15`
+- Merged commit: `860273c`
+- GitHub Pages deployment: passed on July 4, 2026.
+- Portfolio Hub live verification: HTTP 200, previously missing image URLs now return HTTP 200, and Playwright reported zero console errors.
+- FocusForge Netlify deploy: `6a4892ebd547c851d7c876f9`
+- FocusForge production URL: `https://focusforge-productivity-game.netlify.app/`
+- FocusForge live verification: HTTP 200, no external Google Fonts references in deployed HTML, and Playwright reported zero console errors.
 
 ## Validation Policy
 
