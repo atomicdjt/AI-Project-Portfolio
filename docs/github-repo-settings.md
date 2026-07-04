@@ -1,10 +1,27 @@
 # GitHub Repository Settings Checklist
 
-The authenticated GitHub connector confirmed admin and push access to `atomicdjt/AI-Project-Portfolio-`, but the available tool surface did not expose safe repository rename, description, topic, or profile-bio update operations. Use these GitHub UI steps to complete the account-level and repository-level polish.
+Last audited: July 4, 2026.
+
+The public portfolio repository is now:
+
+```text
+https://github.com/atomicdjt/AI-Project-Portfolio
+```
+
+Do not use the old dashed repository URL (`AI-Project-Portfolio-`) in new documentation, resumes, pinned links, or profile content.
+
+## Current Public Metadata
+
+`gh repo view atomicdjt/AI-Project-Portfolio` reported:
+
+- Default branch: `main`
+- Homepage: `https://atomicdjt.github.io/AI-Project-Portfolio/`
+- Description: `Applied AI project portfolio featuring prompt systems, research tools, privacy-first utilities, and deployable product prototypes.`
+- Topics include `ai`, `ai-safety`, `developer-tools`, `document-redaction`, `github-pages`, `local-first`, `netlify`, `portfolio`, `privacy`, `productivity`, `prompt-engineering`, `react`, `typescript`, and `vite`.
 
 ## Recommended Repository Description
 
-Use this description:
+The current description is acceptable. If you want the About panel to match the current flagship positioning more tightly, use:
 
 ```text
 AI-assisted product portfolio with runnable React/TypeScript apps, local-first privacy tools, workflow systems, case studies, and employer-facing documentation.
@@ -12,69 +29,59 @@ AI-assisted product portfolio with runnable React/TypeScript apps, local-first p
 
 Manual steps:
 
-1. Go to `https://github.com/atomicdjt/AI-Project-Portfolio-/settings`.
+1. Go to `https://github.com/atomicdjt/AI-Project-Portfolio/settings`.
 2. In **General**, find the repository description field.
-3. Replace the current description with the recommended description above.
+3. Replace the current description only if you want the wording above.
 4. Save changes.
 
 ## Recommended Topics
 
-Add these topics:
+Keep the current topics and consider adding any missing items from this list:
 
 ```text
-ai-tools
 ai-workflow
-portfolio
-react
-typescript
-vite
+case-studies
+documentation
 frontend
 product-prototyping
-technical-operations
-documentation
-local-first
-privacy-tools
 security-ux
+technical-operations
 workflow-automation
-case-studies
-netlify
-github-pages
 ```
 
 Manual steps:
 
-1. Go to `https://github.com/atomicdjt/AI-Project-Portfolio-`.
+1. Go to `https://github.com/atomicdjt/AI-Project-Portfolio`.
 2. Click the gear icon next to **About** in the right sidebar.
-3. Paste the description above if it is not already set.
-4. Add the topics above.
-5. Click **Save changes**.
+3. Add missing topics that fit the current project set.
+4. Click **Save changes**.
 
-## Recommended Repository Rename
+## GitHub Pages
 
-Preferred new repository name:
+The current Pages URL is:
 
 ```text
-AI-Project-Portfolio
+https://atomicdjt.github.io/AI-Project-Portfolio/
+```
+
+The Pages workflow publishes:
+
+- Portfolio Hub at the Pages root.
+- LayerForge Studio at `/layerforge-studio/`.
+
+Keep `apps/portfolio-hub/vite.config.*` and `apps/layerforge-studio/vite.config.*` compatible with the current Pages path before changing repository names or Pages settings.
+
+## Manual Profile Bio
+
+Recommended GitHub profile bio:
+
+```text
+AI-assisted product builder focused on workflow systems, privacy-first tools, technical operations, and employer-ready software prototypes.
 ```
 
 Manual steps:
 
-1. Go to `https://github.com/atomicdjt/AI-Project-Portfolio-/settings`.
-2. In **Repository name**, change `AI-Project-Portfolio-` to `AI-Project-Portfolio`.
-3. Click **Rename** and confirm.
-4. GitHub should redirect old repository links, but update documentation and external links to the new URL.
-5. Check GitHub Pages after the rename. The current Pages path uses the repository name, so verify `https://atomicdjt.github.io/AI-Project-Portfolio/`.
-6. Update LinkedIn, resume links, portfolio links, job applications, and any pinned profile links that use the old URL.
-
-## Repository References Updated Before Rename
-
-These repository-internal references already use the preferred `AI-Project-Portfolio` name and Pages path where they link to GitHub:
-
-- `README.md`
-- `docs/recruiter-quick-review.md`
-- `docs/PORTS.md`
-- `apps/layerforge-studio/README.md`
-- `apps/layerforge-studio/vite.config.ts` uses a relative GitHub Pages base so the deployment works both before and after the repository rename.
-- `docs/github-profile/README.md`
-
-`.github/workflows/deploy-layerforge.yml` does not hard-code the repository name. Do not update Netlify URLs unless the Netlify site itself changes.
+1. Go to `https://github.com/atomicdjt`.
+2. Click **Edit profile**.
+3. Update the bio if it does not match the positioning above.
+4. Confirm the pinned repositories include `AI-Project-Portfolio` and any strongest live-demo repos or profile README repo you want visible.

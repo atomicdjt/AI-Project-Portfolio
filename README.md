@@ -21,22 +21,23 @@ A curated portfolio of AI-assisted software projects, product prototypes, workfl
 - [Skills Matrix](docs/SKILLS_MATRIX.md)
 - [Employer Overview](docs/EMPLOYER_OVERVIEW.md)
 - [Project Index](docs/PROJECT_INDEX.md)
+- [Deployment and Preview Map](docs/deployment-and-previews.md)
 
 ## Start Here for Recruiters and Hiring Managers
 
-This portfolio is designed to be reviewed quickly. The strongest evidence is concentrated in the public portfolio hub, ten runnable applications, live demos, and employer-facing case studies that explain the product thinking behind each build.
+This portfolio is designed to be reviewed quickly. The strongest evidence is concentrated in the public portfolio hub, eleven runnable app workspaces, live demos, and employer-facing case studies that explain the product thinking behind each build.
 
 **Best review path:**
 
 1. Start with the **[Public Portfolio Hub](https://atomicdjt.github.io/AI-Project-Portfolio/)** for the 3-minute review path and live demo links.
 2. Review **[BuildWorld AI](apps/buildworld-ai)** and its **[live demo](https://buildworld-ai.netlify.app/)** for the most technically ambitious simulation, data-visualization, and product-architecture project.
 3. Review **[RedactReady Pro](apps/redactready-pro-hri-os)** and its **[live demo](https://redactready-pro-hri-os.netlify.app/)** for the flagship privacy/document intelligence product.
-4. Review **[ScamShield AI](apps/scamshield-ai)** for a complete public-interest cybersecurity workflow and live deployment.
-5. Review **[RedactReady](apps/redactready-local)** for deeper privacy/security document redaction mechanics.
+4. Review **[ScamShield AI](apps/scamshield-ai)** and its **[live demo](https://scamshield-ai-safety.netlify.app/)** for a complete public-interest cybersecurity workflow and live deployment.
+5. Review **[RedactReady](apps/redactready-local)** and its **[live demo](https://redactready-local.netlify.app/)** for deeper privacy/security document redaction mechanics.
 6. Review **[LayerForge Studio](apps/layerforge-studio)** for frontend and Canvas-based application polish.
 7. Review **[OpsPilot](apps/opspilot-ai-operations-toolkit)** and its **[live demo](https://opspilot-ai-operations-toolkit.netlify.app/)** for the clearest connection to operations, documentation, onboarding, and knowledge-management roles.
-8. Review **[FocusForge](apps/focusforge)** for a polished gamified productivity app with local persistence, progression systems, and a deployable static architecture.
-9. Review **[VariantVision Pro](apps/variantvision-pro)** for complex-domain research-tool implementation, source transparency, and non-diagnostic evidence review.
+8. Review **[FocusForge](apps/focusforge)** and its **[live demo](https://focusforge-productivity-game.netlify.app/)** for a polished gamified productivity app with local persistence, progression systems, and a deployable static architecture.
+9. Review **[VariantVision Pro](apps/variantvision-pro)** and its **[live demo](https://variantvisionpro.netlify.app/)** for complex-domain research-tool implementation, source transparency, and non-diagnostic evidence review.
 10. Skim the **[Employer Overview](docs/EMPLOYER_OVERVIEW.md)**, **[Project Index](docs/PROJECT_INDEX.md)**, and **[Skills Matrix](docs/SKILLS_MATRIX.md)** to connect the work to role requirements.
 
 This repository is not presented as a claim of senior engineering experience. It is presented as evidence of practical initiative, AI-assisted execution, product judgment, documentation discipline, and the ability to turn ambiguous ideas into structured working systems.
@@ -97,6 +98,7 @@ Supporting materials that are useful for deeper review, but should not clutter t
 - [FocusForge prompt materials](prompts/focusforge/)
 - [GitHub profile README setup](docs/github-profile/)
 - [GitHub repository settings checklist](docs/github-repo-settings.md)
+- [Deployment and preview map](docs/deployment-and-previews.md)
 - [Root loose-file archive](_archive/root-loose-files/)
 
 ## Strongest Case Studies
@@ -107,7 +109,7 @@ Supporting materials that are useful for deeper review, but should not clutter t
 | [RedactReady Pro](projects/redactready-pro-hri-os/CASE_STUDY.md) | Runnable MVP + live demo | Flagship local-first privacy intelligence product with deterministic detection, HRI scoring, evidence mapping, redaction, reports, tests, and polished deployment. |
 | [ScamShield AI](projects/scamshield-ai/CASE_STUDY.md) | Runnable MVP + live demo | Complete public-interest safety workflow with explainable risk signals, caregiver/plain-language modes, evidence organization, official reporting guidance, and PDF export. |
 | [RedactReady](projects/redactready-local/CASE_STUDY.md) | Runnable MVP | Strongest privacy/security product; shows local-first architecture, document processing, true redaction, and safety-focused UX. |
-| [LayerForge Studio](projects/layerforge-studio/CASE_STUDY.md) | Runnable MVP | Strongest runnable app and best evidence of product polish. |
+| [LayerForge Studio](projects/layerforge-studio/CASE_STUDY.md) | Runnable MVP | Strongest frontend/canvas implementation and best evidence of dense product UI polish. |
 | [OpsPilot](projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) | Runnable MVP + live demo | Strongest business-focused micro-SaaS; directly maps to operations, documentation, onboarding, and knowledge-management roles. |
 | [FocusForge](projects/focusforge/CASE_STUDY.md) | Runnable MVP + live demo | Polished local-first productivity game with durable state, timer recovery, progression systems, and static deployment. |
 | [AI Knowledge Operations Toolkit](projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) | Concept / product specification | Best direct match for operations, documentation, support, and knowledge-management roles. |
@@ -202,6 +204,7 @@ docs/
   EMPLOYER_OVERVIEW.md
   PROJECT_INDEX.md
   SKILLS_MATRIX.md
+  deployment-and-previews.md
   PORTS.md
   github-profile/
   job-search/

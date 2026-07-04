@@ -1,19 +1,50 @@
 # GitHub Profile README Setup
 
-The GitHub profile README requires a public repository named exactly `atomicdjt`. The authenticated connector could read the current account and portfolio repo, but `atomicdjt/atomicdjt` returned 404 and the available tools did not expose safe repository creation or profile-bio update operations.
+Last audited: July 4, 2026.
 
-## Create The Profile Repository
+The profile README repository exists locally at:
 
-1. Go to `https://github.com/new`.
-2. Set **Owner** to `atomicdjt`.
-3. Set **Repository name** to `atomicdjt`.
-4. Set visibility to **Public**.
-5. Check **Add a README file**.
-6. Click **Create repository**.
-7. Open `docs/github-profile/README.md` in this portfolio repo.
-8. Copy its full contents into `atomicdjt/atomicdjt/README.md`.
-9. Commit the change in the GitHub editor.
-10. Visit `https://github.com/atomicdjt` and confirm the profile README appears.
+```text
+C:\Users\Atomic\Documents\New project\atomicdjt
+```
+
+The public repository is:
+
+```text
+https://github.com/atomicdjt/atomicdjt
+```
+
+Use `docs/github-profile/README.md` as the portfolio-maintained draft, then keep the live profile repo synchronized when flagship rankings, live-demo links, or recruiter-facing positioning changes.
+
+## Update The Live Profile README
+
+1. Open the local profile repo:
+
+```bash
+cd "C:\Users\Atomic\Documents\New project\atomicdjt"
+```
+
+2. Replace `README.md` with the current draft from:
+
+```text
+C:\Users\Atomic\Documents\New project\AI-Project-Portfolio-push\docs\github-profile\README.md
+```
+
+3. Review the diff:
+
+```bash
+git diff -- README.md
+```
+
+4. Commit and push on a review branch:
+
+```bash
+git checkout -b portfolio-audit-upgrade
+git add README.md
+git commit -m "Improve portfolio profile README positioning"
+git push -u origin portfolio-audit-upgrade
+gh pr create --base main --head portfolio-audit-upgrade --title "Improve portfolio profile README positioning" --body "Refreshes the GitHub profile README so it leads with the current flagship portfolio projects, live demos, and review paths."
+```
 
 ## Recommended GitHub Profile Bio
 
@@ -29,7 +60,3 @@ Manual steps:
 2. Click **Edit profile**.
 3. Replace the current bio with the recommended bio above.
 4. Click **Save**.
-
-## After Repository Rename
-
-The profile README template in this folder already uses the preferred `AI-Project-Portfolio` repository URL. After the portfolio repository is renamed from `AI-Project-Portfolio-` to `AI-Project-Portfolio`, confirm the copied profile links resolve on GitHub.
