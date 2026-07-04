@@ -64,6 +64,29 @@ The root `README.md` was scanned for every unique HTTP(S) URL. `curl.exe -L -s -
 | 200 | `https://scamshield-ai-safety.netlify.app/` |
 | 200 | `https://variantvisionpro.netlify.app/` |
 
+## Follow-Up URL Sweep - July 4, 2026
+
+The follow-up pass rechecked every live app URL, the GitHub Pages root, the corrected LayerForge Studio subpath, supplemental public demos, and QuoteForge commercial surfaces. `curl.exe -L -s -o NUL -w "%{http_code} %{url_effective}" <url>` returned HTTP 200 for every URL below.
+
+| Surface | Status | URL |
+| --- | --- | --- |
+| Portfolio Hub | 200 | `https://atomicdjt.github.io/AI-Project-Portfolio/` |
+| LayerForge Studio | 200 | `https://atomicdjt.github.io/AI-Project-Portfolio/layerforge-studio/` |
+| BuildWorld AI | 200 | `https://buildworld-ai.netlify.app/` |
+| RedactReady Pro | 200 | `https://redactready-pro-hri-os.netlify.app/` |
+| ScamShield AI | 200 | `https://scamshield-ai-safety.netlify.app/` |
+| RedactReady | 200 | `https://redactready-local.netlify.app/` |
+| OpsPilot | 200 | `https://opspilot-ai-operations-toolkit.netlify.app/` |
+| FocusForge | 200 | `https://focusforge-productivity-game.netlify.app/` |
+| VariantVision Pro | 200 | `https://variantvisionpro.netlify.app/` |
+| Amino Acid Workbench | 200 | `https://aminoacidworkbench.netlify.app/` |
+| GardenGrid | 200 | `https://garden-grid-planner-demo.netlify.app/` |
+| HearthLink | 200 | `https://hearthlink-p2p-demo.netlify.app/` |
+| QuoteForge Local | 200 | `https://quoteforge-local.vercel.app/` |
+| QuoteForge Payhip product page | 200 | `https://payhip.com/b/24De9` |
+
+LayerForge Studio was also checked with Playwright against `https://atomicdjt.github.io/AI-Project-Portfolio/layerforge-studio/`. The browser page title was `LayerForge Studio`, the rendered body contained `LayerForge Studio`, and it did not contain the Portfolio Hub heading `atomicdjt AI Project Portfolio`.
+
 ## Validation Log
 
 - `npm install` completed successfully on 2026-06-25, but npm reported 3 audit findings: 2 moderate and 1 high. Dependency remediation was not attempted in this polish pass because the request avoided dependency upgrades unless needed for existing scripts.
