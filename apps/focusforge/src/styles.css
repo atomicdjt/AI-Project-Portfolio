@@ -1,6 +1,6 @@
 :root {
   color-scheme: dark;
-  font-family: 'Crimson Text', Georgia, serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   --bg: #090806;
@@ -21,8 +21,8 @@
   --red: #ef5b5b;
   --orange: #f9733f;
   --shadow: 0 20px 65px rgb(0 0 0 / 38%);
-  --display: 'Cinzel', Georgia, serif;
-  --body: 'Crimson Text', Georgia, serif;
+  --display: Georgia, 'Times New Roman', serif;
+  --body: Georgia, 'Times New Roman', serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 

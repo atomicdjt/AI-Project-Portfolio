@@ -401,6 +401,14 @@ main {
   color: #a56707;
 }
 
+.status-chip.local {
+  color: #4b5f6b;
+}
+
+.status-chip.supplemental {
+  color: #8a5b12;
+}
+
 .card-actions {
   margin-top: auto;
 }

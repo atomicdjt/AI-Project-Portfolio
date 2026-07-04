@@ -22,6 +22,7 @@ A curated portfolio of AI-assisted software projects, product prototypes, workfl
 - [Employer Overview](docs/EMPLOYER_OVERVIEW.md)
 - [Project Index](docs/PROJECT_INDEX.md)
 - [Deployment and Preview Map](docs/deployment-and-previews.md)
+- [Public Portfolio Audit - July 4, 2026](docs/public-portfolio-audit-2026-07-04.md)
 
 ## Start Here for Recruiters and Hiring Managers
 

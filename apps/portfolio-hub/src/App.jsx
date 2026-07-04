@@ -23,6 +23,7 @@ const projects = [
     name: 'BuildWorld AI',
     rank: 1,
     status: 'Live',
+    repoApp: true,
     category: 'Systems simulation',
     demo: 'https://buildworld-ai.netlify.app/',
     source: `${repoBase}/tree/main/apps/buildworld-ai`,
@@ -37,6 +38,7 @@ const projects = [
     name: 'RedactReady Pro',
     rank: 2,
     status: 'Live',
+    repoApp: true,
     category: 'Privacy intelligence',
     demo: 'https://redactready-pro-hri-os.netlify.app/',
     source: `${repoBase}/tree/main/apps/redactready-pro-hri-os`,
@@ -51,6 +53,7 @@ const projects = [
     name: 'ScamShield AI',
     rank: 3,
     status: 'Live',
+    repoApp: true,
     category: 'Consumer safety',
     demo: 'https://scamshield-ai-safety.netlify.app/',
     source: `${repoBase}/tree/main/apps/scamshield-ai`,
@@ -65,6 +68,7 @@ const projects = [
     name: 'RedactReady',
     rank: 4,
     status: 'Live',
+    repoApp: true,
     category: 'Privacy tool',
     demo: 'https://redactready-local.netlify.app/',
     source: `${repoBase}/tree/main/apps/redactready-local`,
@@ -79,6 +83,7 @@ const projects = [
     name: 'LayerForge Studio',
     rank: 5,
     status: 'Live',
+    repoApp: true,
     category: 'Canvas editor',
     demo: `${githubPagesBase}/layerforge-studio/`,
     source: `${repoBase}/tree/main/apps/layerforge-studio`,
@@ -93,6 +98,7 @@ const projects = [
     name: 'OpsPilot',
     rank: 6,
     status: 'Live',
+    repoApp: true,
     category: 'Operations toolkit',
     demo: 'https://opspilot-ai-operations-toolkit.netlify.app/',
     source: `${repoBase}/tree/main/apps/opspilot-ai-operations-toolkit`,
@@ -107,6 +113,7 @@ const projects = [
     name: 'FocusForge',
     rank: 7,
     status: 'Live',
+    repoApp: true,
     category: 'Productivity game',
     demo: 'https://focusforge-productivity-game.netlify.app/',
     source: `${repoBase}/tree/main/apps/focusforge`,
@@ -121,6 +128,7 @@ const projects = [
     name: 'VariantVision Pro',
     rank: 8,
     status: 'Live',
+    repoApp: true,
     category: 'Research tool',
     demo: 'https://variantvisionpro.netlify.app/',
     source: `${repoBase}/tree/main/apps/variantvision-pro`,
@@ -132,9 +140,40 @@ const projects = [
     review: 'Research MVP',
   },
   {
-    name: 'Amino Acid Workbench',
+    name: 'Astra',
     rank: 9,
-    status: 'Demo',
+    status: 'Local',
+    repoApp: true,
+    category: 'AI chat workspace',
+    demo: null,
+    source: `${repoBase}/tree/main/apps/astra`,
+    caseStudy: `${repoBase}/blob/main/projects/astra/CASE_STUDY.md`,
+    image: imagePath('astra-home.png'),
+    stack: ['React', 'TypeScript', 'Express', 'AI workflow'],
+    summary: 'Local AI chat workspace with a React interface, Express API layer, model configuration visibility, Markdown rendering, and transcript export.',
+    why: 'Shows AI application structure beyond a thin API wrapper, with clear configuration and missing-key states.',
+    review: 'Local AI app',
+  },
+  {
+    name: 'Nexus Play',
+    rank: 10,
+    status: 'Local',
+    repoApp: true,
+    category: 'Platform demo',
+    demo: null,
+    source: `${repoBase}/tree/main/apps/nexus-play`,
+    caseStudy: `${repoBase}/blob/main/projects/nexus-play/CASE_STUDY.md`,
+    image: imagePath('nexus-play-home.png'),
+    stack: ['React', 'TypeScript', 'Express', 'Product UI'],
+    summary: 'Local game storefront and player-library prototype with catalog browsing, cart, wishlist, simulated checkout, owned library, and install queue concepts.',
+    why: 'Demonstrates product-state modeling and platform-style consumer workflow design.',
+    review: 'Local platform',
+  },
+  {
+    name: 'Amino Acid Workbench',
+    rank: 11,
+    status: 'Supplemental',
+    repoApp: false,
     category: 'Education tool',
     demo: 'https://aminoacidworkbench.netlify.app/',
     source: `${repoBase}/blob/main/projects/amino-acid-research-workbench/CASE_STUDY.md`,
@@ -147,8 +186,9 @@ const projects = [
   },
   {
     name: 'GardenGrid',
-    rank: 10,
-    status: 'Demo',
+    rank: 12,
+    status: 'Supplemental',
+    repoApp: false,
     category: 'Planning tool',
     demo: 'https://garden-grid-planner-demo.netlify.app/',
     source: null,
@@ -161,8 +201,9 @@ const projects = [
   },
   {
     name: 'HearthLink',
-    rank: 11,
-    status: 'Demo',
+    rank: 13,
+    status: 'Supplemental',
+    repoApp: false,
     category: 'Community concept',
     demo: 'https://hearthlink-p2p-demo.netlify.app/',
     source: null,
@@ -177,6 +218,7 @@ const projects = [
 
 const quickReview = projects.slice(0, 3);
 const liveCount = projects.filter((project) => project.status === 'Live').length;
+const repoAppCount = projects.filter((project) => project.repoApp).length;
 
 function App() {
   const [query, setQuery] = useState('');
@@ -232,7 +274,7 @@ function App() {
 
         <section className="metrics-strip" aria-label="Portfolio snapshot">
           <Stat label="Live demos" value={liveCount} icon={<Globe2 size={18} aria-hidden="true" />} />
-          <Stat label="Runnable repo apps" value="11" icon={<CheckCircle2 size={18} aria-hidden="true" />} />
+          <Stat label="Repo app workspaces" value={repoAppCount} icon={<CheckCircle2 size={18} aria-hidden="true" />} />
           <Stat label="Best review time" value="3 min" icon={<Timer size={18} aria-hidden="true" />} />
           <Stat label="Primary themes" value="AI + Ops" icon={<Sparkles size={18} aria-hidden="true" />} />
         </section>
@@ -269,8 +311,8 @@ function App() {
               <select value={status} onChange={(event) => setStatus(event.target.value)} aria-label="Filter by status">
                 <option>All</option>
                 <option>Live</option>
-                <option>Runnable</option>
-                <option>Demo</option>
+                <option>Local</option>
+                <option>Supplemental</option>
               </select>
             </div>
           </div>
@@ -304,8 +346,9 @@ function App() {
                     </td>
                     <td data-label="Links">
                       <div className="link-stack">
-                        <ExternalLink href={project.demo}>Live demo</ExternalLink>
-                        {project.caseStudy ? <ExternalLink href={project.caseStudy}>Case study</ExternalLink> : <span>Demo-only source</span>}
+                        {project.demo ? <ExternalLink href={project.demo}>{project.status === 'Local' ? 'Local notes' : 'Live demo'}</ExternalLink> : <span>Local-only app</span>}
+                        {project.source && project.source !== project.caseStudy ? <ExternalLink href={project.source}>Source</ExternalLink> : null}
+                        {project.caseStudy ? <ExternalLink href={project.caseStudy}>Case study</ExternalLink> : <span>External supplemental demo</span>}
                       </div>
                     </td>
                     <td data-label="Tech / framing">
@@ -376,8 +419,8 @@ function ProjectCard({ project }) {
         <strong>Why it matters</strong>
         <p>{project.why}</p>
         <div className="card-actions">
-          <ExternalLink href={project.demo}>Live demo</ExternalLink>
-          <ExternalLink href={project.caseStudy}>Case study</ExternalLink>
+          {project.demo ? <ExternalLink href={project.demo}>Live demo</ExternalLink> : null}
+          {project.caseStudy ? <ExternalLink href={project.caseStudy}>Case study</ExternalLink> : null}
         </div>
       </div>
     </article>

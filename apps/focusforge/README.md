@@ -21,7 +21,7 @@ FocusForge is a mobile-first productivity web app that turns uninterrupted focus
 Requirements: Node.js 20.19+ or 22.12+ and npm.
 
 ```powershell
-cd "C:\Users\Atomic\Documents\New project\AI-Project-Portfolio-push\apps\focusforge"
+cd apps/focusforge
 npm install
 npm run dev
 ```
