@@ -151,6 +151,7 @@ p { line-height: 1.65; }
 .intake-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 22px; align-items: start; }
 .intake-main { display: grid; gap: 18px; }
 .section-card { padding: clamp(22px, 3vw, 32px); background: #fff; border: 1px solid var(--border); border-radius: 18px; box-shadow: 0 7px 24px rgba(33,56,66,.035); }
+.loading-panel { color: var(--muted); font-weight: 800; text-align: center; }
 .card-heading { margin-bottom: 24px; display: flex; align-items: flex-start; gap: 15px; }
 .card-heading h2 { margin: 0 0 5px; font-size: 22px; }
 .card-heading p { margin: 0; color: var(--muted); font-size: 14px; }

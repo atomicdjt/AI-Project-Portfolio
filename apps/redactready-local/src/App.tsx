@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
-import { AboutPage } from './pages/AboutPage'
-import { LandingPage } from './pages/LandingPage'
-import { RedactPage } from './pages/RedactPage'
+import { lazy, Suspense, useEffect, useState } from 'react'
 
 export type Navigate = (path: string) => void
+
+const AboutPage = lazy(() => import('./pages/AboutPage').then((module) => ({ default: module.AboutPage })))
+const LandingPage = lazy(() => import('./pages/LandingPage').then((module) => ({ default: module.LandingPage })))
+const RedactPage = lazy(() => import('./pages/RedactPage').then((module) => ({ default: module.RedactPage })))
 
 function currentPath(): string {
   return window.location.pathname === '/' ? '/' : window.location.pathname.replace(/\/$/, '')
@@ -23,7 +24,9 @@ export default function App() {
     setPath(currentPath())
   }
 
-  if (path === '/about') return <AboutPage navigate={navigate} />
-  if (path === '/redact') return <RedactPage navigate={navigate} />
-  return <LandingPage navigate={navigate} />
+  return (
+    <Suspense fallback={<main className="app-loading" aria-live="polite">Loading workspace...</main>}>
+      {path === '/about' ? <AboutPage navigate={navigate} /> : path === '/redact' ? <RedactPage navigate={navigate} /> : <LandingPage navigate={navigate} />}
+    </Suspense>
+  )
 }

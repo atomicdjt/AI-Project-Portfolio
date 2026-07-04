@@ -1,7 +1,6 @@
 import { detectDocumentKind } from './fileType'
 import { loadImageDocument } from './loadImageDocument'
 import { loadTextDocument } from './loadTextDocument'
-import { renderPdfDocument } from '../pdf/renderPdf'
 import type { LoadedDocument } from '../redaction/types'
 
 export async function loadLocalDocument(file: File): Promise<LoadedDocument> {
@@ -14,7 +13,10 @@ export async function loadLocalDocument(file: File): Promise<LoadedDocument> {
     throw new Error('This MVP limits local files to 50 MB to avoid browser memory pressure.')
   }
 
-  if (kind === 'pdf') return renderPdfDocument(file)
+  if (kind === 'pdf') {
+    const { renderPdfDocument } = await import('../pdf/renderPdf')
+    return renderPdfDocument(file)
+  }
   if (kind === 'image') return loadImageDocument(file)
   return loadTextDocument(file, kind)
 }

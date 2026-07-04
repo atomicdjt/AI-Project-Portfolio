@@ -1,4 +1,3 @@
-import { PDFDocument } from 'pdf-lib'
 import { renderRedactedPageToCanvas } from './applyCanvasRedactions'
 import type { DocumentPage, RedactionBox } from './types'
 
@@ -7,6 +6,7 @@ export async function exportFlattenedPdf(pages: DocumentPage[], boxes: Redaction
     throw new Error('No PDF pages are available to export.')
   }
 
+  const { PDFDocument } = await import('pdf-lib')
   const pdf = await PDFDocument.create()
   pdf.setTitle(`${sourceName} redacted`)
   pdf.setSubject('Flattened local redaction export')
