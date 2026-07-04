@@ -1,6 +1,6 @@
 import type { Context } from '@netlify/functions'
 import { describe, expect, it } from 'vitest'
-import handler from './api'
+import handler from '../netlify/functions/api'
 
 describe('OpsPilot Netlify API function', () => {
   it('returns a validation-style error for malformed JSON bodies', async () => {
