@@ -21,25 +21,37 @@
     "dev": "vite --host 127.0.0.1 --port 5177",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "typecheck": "tsc -b --pretty false && tsc -p tsconfig.server.json --pretty false",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "e2e": "playwright test",
+    "proof": "node scripts/capture-proof.mjs",
     "preview": "npm run build && vite preview --host 127.0.0.1 --port 4177"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^6.0.1",
     "lucide-react": "^1.17.0",
     "react": "^19.2.6",
-    "react-dom": "^19.2.6"
+    "react-dom": "^19.2.6",
+    "zod": "^4.2.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@netlify/functions": "^5.1.0",
+    "@playwright/test": "^1.57.0",
     "@types/node": "^24.12.3",
+    "@types/pngjs": "^6.0.5",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "eslint": "^10.3.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
+    "gifenc": "^1.0.3",
     "globals": "^17.6.0",
+    "pngjs": "^7.0.0",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.59.2",
-    "vite": "^8.0.12"
+    "vite": "^8.0.12",
+    "vitest": "^4.0.15"
   }
 }

@@ -1,0 +1,261 @@
+{
+  "organization": {
+    "id": "org-brightline-demo",
+    "name": "Brightline Demo Operations",
+    "plan": "pro",
+    "createdAt": "2026-06-05T00:00:00.000Z"
+  },
+  "exportedAt": "2026-07-04T09:34:46.731Z",
+  "exportedBy": {
+    "userId": "demo-admin",
+    "name": "Avery Morgan",
+    "role": "admin"
+  },
+  "documents": [
+    {
+      "id": "seed-client-intake",
+      "title": "Patient Operations SOP",
+      "type": "SOP",
+      "business": "Brightline Dental",
+      "department": "Patient Operations",
+      "owner": "Front Desk Coordinator",
+      "status": "In Review",
+      "priority": "Compliance sensitive",
+      "score": 98,
+      "risk": "Low",
+      "lastRevised": "2026-07-04",
+      "summary": "New patient intake is inconsistent. OpsPilot structured it into a sop with owners, training tasks, knowledge base answers, and gap findings.",
+      "steps": [
+        {
+          "id": "step-1-vb152u2",
+          "title": "Patient intake is inconsistent",
+          "detail": "New patient intake is inconsistent.",
+          "owner": "Front Desk Coordinator",
+          "timing": "Start of workflow"
+        },
+        {
+          "id": "step-2-7jna1wu",
+          "title": "Ask for insurance card",
+          "detail": "Staff ask for insurance card, consent forms, medication list, and preferred pharmacy, but order changes by person.",
+          "owner": "Front Desk Coordinator",
+          "timing": "During active handling"
+        },
+        {
+          "id": "step-3-chhy27z",
+          "title": "Need a script for confirming appointment reminders",
+          "detail": "Need a script for confirming appointment reminders.",
+          "owner": "Front Desk Coordinator",
+          "timing": "During active handling"
+        },
+        {
+          "id": "step-4-0mhgcbo",
+          "title": "Escalate billing questions to office manager",
+          "detail": "Escalate billing questions to office manager.",
+          "owner": "Operations Manager",
+          "timing": "During active handling"
+        },
+        {
+          "id": "step-5-gi2zlfh",
+          "title": "Confirm HIPAA acknowledgement before collecting clinical history",
+          "detail": "Confirm HIPAA acknowledgement before collecting clinical history.",
+          "owner": "Front Desk Coordinator",
+          "timing": "During active handling"
+        },
+        {
+          "id": "step-6-ch5e530",
+          "title": "Forms are missing",
+          "detail": "If forms are missing, send secure portal link and call the patient 24 hours before visit.",
+          "owner": "Front Desk Coordinator",
+          "timing": "Before completion is approved"
+        }
+      ],
+      "checklist": [
+        {
+          "id": "train-read-ey8vup2",
+          "task": "Review the sop and explain the success criteria",
+          "owner": "Front Desk Coordinator",
+          "due": "Day 1",
+          "done": true
+        },
+        {
+          "id": "train-shadow-cilnb6i",
+          "task": "Shadow one complete Patient Operations workflow",
+          "owner": "Front Desk Coordinator",
+          "due": "Day 2",
+          "done": false
+        },
+        {
+          "id": "train-0-fi5oknu",
+          "task": "Demonstrate: Patient intake is inconsistent",
+          "owner": "Front Desk Coordinator",
+          "due": "Day 3",
+          "done": false
+        },
+        {
+          "id": "train-1-pkov2nl",
+          "task": "Demonstrate: Ask for insurance card",
+          "owner": "Front Desk Coordinator",
+          "due": "Day 4",
+          "done": false
+        },
+        {
+          "id": "train-2-xf6h1v2",
+          "task": "Demonstrate: Need a script for confirming appointment reminders",
+          "owner": "Front Desk Coordinator",
+          "due": "Day 5",
+          "done": false
+        },
+        {
+          "id": "train-3-jl2w58v",
+          "task": "Demonstrate: Escalate billing questions to office manager",
+          "owner": "Operations Manager",
+          "due": "Day 6",
+          "done": false
+        }
+      ],
+      "articles": [
+        {
+          "id": "article-0-akhwmes",
+          "question": "What does Front Desk Coordinator need before starting this workflow?",
+          "answer": "Start with New patient intake is inconsistent. Confirm required inputs before the workflow moves forward.",
+          "tags": [
+            "patient-operations",
+            "sop"
+          ]
+        },
+        {
+          "id": "article-1-e9ctxjm",
+          "question": "Who owns exceptions in Patient Operations?",
+          "answer": "Exceptions should be routed to Operations Manager with context, urgency, and customer impact.",
+          "tags": [
+            "patient-operations",
+            "sop"
+          ]
+        },
+        {
+          "id": "article-2-kd66zvk",
+          "question": "How is completion tracked?",
+          "answer": "Completion is tracked by confirming each required step, recording the owner, and saving the final status in the team system of record.",
+          "tags": [
+            "patient-operations",
+            "sop"
+          ]
+        }
+      ],
+      "gaps": [
+        {
+          "id": "gap-review-mcjdbpc",
+          "severity": "low",
+          "title": "Review cadence missing",
+          "evidence": "Compliance-sensitive notes need a revision cadence and reviewer.",
+          "fix": "Schedule quarterly review and name the approving manager.",
+          "status": "Fixed"
+        }
+      ],
+      "versions": [
+        {
+          "id": "ver-e7dgd9k",
+          "label": "v2.0",
+          "author": "OpsPilot",
+          "date": "2026-07-04",
+          "changes": [
+            "Regenerated document from updated intake",
+            "Refreshed gap detector",
+            "Rebuilt training and knowledge base outputs"
+          ]
+        },
+        {
+          "id": "v1",
+          "label": "v1.0",
+          "author": "OpsPilot",
+          "date": "2026-06-05",
+          "changes": [
+            "Generated intake workflow",
+            "Added compliance-sensitive gap scan",
+            "Created onboarding checklist"
+          ]
+        }
+      ],
+      "body": "Purpose: Convert Patient Operations knowledge into a repeatable sop for Brightline Dental.\n\nScope: Front Desk Coordinator and managers responsible for execution, training, review, and escalation.\n\nProcedure:\n1. Patient intake is inconsistent: New patient intake is inconsistent. Owner: Front Desk Coordinator. Timing: Start of workflow.\n2. Ask for insurance card: Staff ask for insurance card, consent forms, medication list, and preferred pharmacy, but order changes by person. Owner: Front Desk Coordinator. Timing: During active handling.\n3. Need a script for confirming appointment reminders: Need a script for confirming appointment reminders. Owner: Front Desk Coordinator. Timing: During active handling.\n4. Escalate billing questions to office manager: Escalate billing questions to office manager. Owner: Operations Manager. Timing: During active handling.\n5. Confirm HIPAA acknowledgement before collecting clinical history: Confirm HIPAA acknowledgement before collecting clinical history. Owner: Front Desk Coordinator. Timing: During active handling.\n6. Forms are missing: If forms are missing, send secure portal link and call the patient 24 hours before visit. Owner: Front Desk Coordinator. Timing: Before completion is approved.\n\nQuality standard: Work is complete when required inputs are collected, the owner is recorded, exceptions are escalated, and the system of record is updated.\n\nControls: Review open gaps before publishing. Current gap focus: Schedule quarterly review and name the approving manager..",
+      "organizationId": "org-brightline-demo",
+      "createdBy": "demo-admin",
+      "updatedBy": "demo-admin"
+    }
+  ],
+  "auditEvents": [
+    {
+      "organizationId": "org-brightline-demo",
+      "actorId": "demo-admin",
+      "actorName": "Avery Morgan",
+      "action": "workspace.exported",
+      "targetType": "export",
+      "targetId": "org-brightline-demo",
+      "summary": "Exported 1 documents and 5 audit events.",
+      "metadata": {
+        "documents": 1,
+        "auditEvents": 5
+      },
+      "id": "audit-vu17ot8z",
+      "createdAt": "2026-07-04T09:34:46.731Z"
+    },
+    {
+      "organizationId": "org-brightline-demo",
+      "actorId": "demo-admin",
+      "actorName": "Avery Morgan",
+      "action": "gap.fixed",
+      "targetType": "document",
+      "targetId": "seed-client-intake",
+      "summary": "Marked gap fixed: Patient Operations SOP.",
+      "metadata": {
+        "score": 98,
+        "openGaps": 0
+      },
+      "id": "audit-mqbnu8se",
+      "createdAt": "2026-07-04T09:34:46.491Z"
+    },
+    {
+      "organizationId": "org-brightline-demo",
+      "actorId": "demo-admin",
+      "actorName": "Avery Morgan",
+      "action": "training.updated",
+      "targetType": "document",
+      "targetId": "seed-client-intake",
+      "summary": "Updated training checklist: Patient Operations SOP.",
+      "metadata": {
+        "score": 98,
+        "openGaps": 1
+      },
+      "id": "audit-qzxwmj9f",
+      "createdAt": "2026-07-04T09:34:46.276Z"
+    },
+    {
+      "organizationId": "org-brightline-demo",
+      "actorId": "demo-admin",
+      "actorName": "Avery Morgan",
+      "action": "document.generated",
+      "targetType": "document",
+      "targetId": "seed-client-intake",
+      "summary": "Generated Patient Operations SOP.",
+      "metadata": {
+        "mode": "demo",
+        "score": 98
+      },
+      "id": "audit-p56bos8i",
+      "createdAt": "2026-07-04T09:34:45.995Z"
+    },
+    {
+      "id": "audit-seed",
+      "organizationId": "org-brightline-demo",
+      "actorId": "seed",
+      "actorName": "OpsPilot Seed",
+      "action": "workspace.seeded",
+      "targetType": "workspace",
+      "targetId": "org-brightline-demo",
+      "summary": "Seeded demo workspace with operations documents, versions, training, articles, gaps, and audit log.",
+      "createdAt": "2026-07-04T09:34:45.528Z",
+      "metadata": {
+        "documents": 1
+      }
+    }
+  ]
+}

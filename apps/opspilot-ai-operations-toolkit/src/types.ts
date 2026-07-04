@@ -6,7 +6,11 @@ export type RiskLevel = 'Low' | 'Medium' | 'High'
 
 export type GapSeverity = 'high' | 'medium' | 'low'
 
-export type FeatureKey = 'sop' | 'training' | 'knowledge' | 'gaps' | 'versions'
+export type FeatureKey = 'admin' | 'sop' | 'training' | 'knowledge' | 'gaps' | 'versions'
+
+export type WorkspaceMode = 'demo' | 'authenticated'
+
+export type WorkspaceRole = 'owner' | 'admin' | 'editor' | 'viewer'
 
 export interface IntakeState {
   business: string
@@ -59,6 +63,9 @@ export interface VersionEntry {
 
 export interface OpsDocument {
   id: string
+  organizationId?: string
+  createdBy?: string
+  updatedBy?: string
   title: string
   type: DocumentType
   business: string
@@ -76,4 +83,41 @@ export interface OpsDocument {
   gaps: GapFinding[]
   versions: VersionEntry[]
   body: string
+}
+
+export interface Organization {
+  id: string
+  name: string
+  plan: 'demo' | 'pro'
+  createdAt: string
+}
+
+export interface WorkspaceSession {
+  userId: string
+  organizationId: string
+  name: string
+  email: string
+  role: WorkspaceRole
+  authenticated: boolean
+}
+
+export interface AuditEvent {
+  id: string
+  organizationId: string
+  actorId: string
+  actorName: string
+  action: string
+  targetType: 'document' | 'version' | 'training' | 'gap' | 'export' | 'workspace'
+  targetId: string
+  summary: string
+  createdAt: string
+  metadata?: Record<string, string | number | boolean>
+}
+
+export interface ExportBundle {
+  organization: Organization
+  exportedAt: string
+  exportedBy: Pick<WorkspaceSession, 'userId' | 'name' | 'role'>
+  documents: OpsDocument[]
+  auditEvents: AuditEvent[]
 }

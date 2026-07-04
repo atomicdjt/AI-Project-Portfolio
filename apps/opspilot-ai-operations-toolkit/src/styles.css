@@ -337,7 +337,9 @@ select:focus-visible {
 .step-list,
 .checklist-list,
 .article-list,
-.version-list {
+.version-list,
+.admin-grid,
+.admin-controls {
   display: grid;
   gap: 10px;
 }
@@ -617,6 +619,98 @@ textarea {
   font-size: 0.86rem;
 }
 
+.admin-dashboard {
+  align-content: start;
+}
+
+.admin-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.admin-card {
+  min-height: 104px;
+  display: grid;
+  align-content: center;
+  gap: 6px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-subtle);
+}
+
+.admin-card svg {
+  color: var(--teal-dark);
+}
+
+.admin-card strong {
+  color: var(--ink);
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.admin-card span,
+.workspace-summary span {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.admin-controls {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.workspace-summary {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid #bae6fd;
+  border-radius: 8px;
+  color: #0f172a;
+  background: #f0f9ff;
+}
+
+.workspace-summary svg {
+  color: var(--teal-dark);
+}
+
+.workspace-summary strong,
+.workspace-summary span {
+  display: block;
+}
+
+.audit-table {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.audit-head,
+.audit-row {
+  display: grid;
+  grid-template-columns: 80px 128px 170px minmax(220px, 1fr);
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+}
+
+.audit-head {
+  color: #475569;
+  background: #eef2f7;
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.audit-row {
+  color: #334155;
+  font-size: 0.84rem;
+}
+
+.audit-row + .audit-row {
+  border-top: 1px solid var(--line);
+}
+
 .gap-table {
   overflow-x: auto;
   border: 1px solid var(--line);
@@ -821,7 +915,9 @@ textarea {
   .sop-layout,
   .field-grid,
   .intake-footer,
-  .insights-panel {
+  .insights-panel,
+  .admin-grid,
+  .admin-controls {
     grid-template-columns: minmax(0, 1fr);
   }
 
@@ -855,7 +951,9 @@ textarea {
   }
 
   .gap-head,
-  .gap-row {
+  .gap-row,
+  .audit-head,
+  .audit-row {
     grid-template-columns: minmax(0, 1fr);
   }
 }
