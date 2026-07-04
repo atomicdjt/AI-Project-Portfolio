@@ -79,6 +79,16 @@ This portfolio is strongest when read as evidence of:
 | **[Nexus Play](apps/nexus-play)** | [Case Study](projects/nexus-play/CASE_STUDY.md) | Local `5175` with Express API `3003` | ![Nexus Play storefront](docs/images/nexus-play-home.png) | Nexus Play is a digital game distribution platform demo with storefront browsing, catalog interaction, wishlist, cart, simulated checkout, owned library state, and install queue concepts. It demonstrates product UI thinking, user-state design, and platform-style workflow modeling. |
 | **[LayerForge Studio](apps/layerforge-studio)** | [Case Study](projects/layerforge-studio/CASE_STUDY.md) | [Live Demo](https://atomicdjt.github.io/AI-Project-Portfolio/layerforge-studio/) / Local `5176` | ![LayerForge Studio image editor](docs/images/layerforge-studio-home.png) | LayerForge Studio is the strongest frontend implementation: a local-first browser image editor with layered raster documents, Canvas 2D painting, selections, filters, undo, IndexedDB persistence, and PNG/JPEG export. It shows deeper UI architecture, interaction design, and application polish. |
 
+## Supplemental Public Demos
+
+These public demos are visible in the Portfolio Hub but are not treated as primary source-backed repo applications unless their source is present under `apps/`.
+
+| Demo | Public Link | Repo Status | How to Interpret It |
+| --- | --- | --- | --- |
+| [Amino Acid Research Workbench](projects/amino-acid-research-workbench/CASE_STUDY.md) | [Live Demo](https://aminoacidworkbench.netlify.app/) | Documentation-first case study in this repo; no local `apps/` workspace | Useful educational bioinformatics evidence, but VariantVision Pro is the source-backed runnable research app. |
+| GardenGrid | [Live Demo](https://garden-grid-planner-demo.netlify.app/) | Source not present in this repo | Supplemental external planning demo only. |
+| HearthLink | [Live Demo](https://hearthlink-p2p-demo.netlify.app/) | Source not present in this repo | Supplemental external static concept demo with documented limitations. |
+
 ## Employer-Facing Project Guides
 
 This repository also includes employer-facing documentation for the strongest projects in the portfolio:
@@ -120,7 +130,7 @@ Supporting materials that are useful for deeper review, but should not clutter t
 
 ## Project Status
 
-| Project | Current Form | Code in Repo? | Demo Type | Case Study? |
+| Project | Current Form | Repository Evidence | Demo Type | Case Study? |
 | --- | --- | --- | --- | --- |
 | Portfolio Hub | Runnable MVP | Yes | GitHub Pages / local | Recruiter guide |
 | BuildWorld AI | Runnable MVP | Yes | Live / local / Netlify | Yes |
@@ -134,10 +144,12 @@ Supporting materials that are useful for deeper review, but should not clutter t
 | Nexus Play | Runnable MVP | Yes | Local | Yes |
 | AI Knowledge Operations Toolkit | Product concept / workflow system | Documentation-first | Planned / spec | Yes |
 | VariantVision Pro | Runnable MVP | Yes | Live / local / Netlify | Yes |
-| Amino Acid Research Workbench | Educational bioinformatics concept | Documentation-first | Planned / spec | Yes |
+| Amino Acid Research Workbench | Educational bioinformatics concept | Documentation-first case study; no local `apps/` workspace | Supplemental Netlify demo / spec | Yes |
 | Ecology of Consciousness | Research framework | Documentation-first | Framework docs | Yes |
-| IHOS | Structured self-governance framework | Documentation-first | Framework docs | Yes |
-| FrameEcho | Technical product concept | Documentation-first | Planned / spec | Yes |
+| [IHOS](projects/ihos-integrated-human-operating-system/CASE_STUDY.md) | Structured self-governance framework | Documentation-first | Framework docs | Yes |
+| [FrameEcho](projects/frameecho/CASE_STUDY.md) | Technical product concept | Documentation-first | Planned / spec | Yes |
+| GardenGrid | Supplemental external planning demo | No - source not present in this repo | Live Netlify supplemental | No |
+| HearthLink | Supplemental external community concept demo | No - source not present in this repo | Live Netlify supplemental | No |
 
 ## Screenshots
 

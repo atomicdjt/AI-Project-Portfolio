@@ -27,10 +27,22 @@ A ranked index of the strongest projects in this AI Project Portfolio.
 | Project | Status | Category | Portfolio Value |
 | --- | --- | --- | --- |
 | [IHOS / Integrated Human Operating System](../projects/ihos-integrated-human-operating-system/CASE_STUDY.md) | Research / self-governance framework | Structured personal operating system | Shows systems thinking, applied structure, and responsible scope-setting. |
+| [Amino Acid Research Workbench](../projects/amino-acid-research-workbench/CASE_STUDY.md) | Documentation-first educational tool concept | Bioinformatics education | Strong educational science-tool framing; public supplemental demo exists, but no source-backed `apps/` workspace is present in this repo. |
+| [Ecology of Consciousness](../projects/ecology-of-consciousness/CASE_STUDY.md) | Research framework | Digital cognitive environments | Strong original framework and structured synthesis project. |
 | [Astra](../projects/astra/CASE_STUDY.md) | Runnable MVP | AI chat workspace | Demonstrates AI app configuration, streaming interface patterns, and UX polish. |
 | [Nexus Play](../projects/nexus-play/CASE_STUDY.md) | Runnable MVP | Game storefront demo | Demonstrates product UI, catalog flow, cart/library concepts, and platform-style design. |
 | [FocusForge](../projects/focusforge/CASE_STUDY.md) | Runnable MVP + live demo | Gamified productivity app | Demonstrates local-first state, timer recovery, progression systems, habit-loop design, and responsive product polish. |
 | [FrameEcho](../projects/frameecho/CASE_STUDY.md) | Technical product concept | Duplicate video finder | Good technical concept with clear utility and algorithmic framing. |
+
+## Supplemental External Demos
+
+These public demos are linked from the Portfolio Hub and deployment map, but they are not ranked as source-backed repo applications unless their source is present under `apps/`.
+
+| Demo | Public URL | Repo status |
+| --- | --- | --- |
+| Amino Acid Research Workbench | [Live demo](https://aminoacidworkbench.netlify.app/) | Case study exists in `projects/amino-acid-research-workbench`; no local `apps/` workspace in this repo. |
+| GardenGrid | [Live demo](https://garden-grid-planner-demo.netlify.app/) | Source not present in this repo; supplemental external demo only. |
+| HearthLink | [Live demo](https://hearthlink-p2p-demo.netlify.app/) | Source not present in this repo; supplemental external static concept demo only. |
 
 ## Core Skills Demonstrated
 
@@ -59,4 +71,5 @@ A ranked index of the strongest projects in this AI Project Portfolio.
 9. Review [FocusForge](../projects/focusforge/CASE_STUDY.md) for a polished local-first productivity app with live static deployment.
 10. Review [VariantVision Pro](../projects/variantvision-pro/CASE_STUDY.md) for complex-domain research-tool implementation.
 11. Review [AI Knowledge Operations Toolkit](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.
-12. Review [Skills Matrix](SKILLS_MATRIX.md) to connect projects to role requirements.
+12. Review [Amino Acid Research Workbench](../projects/amino-acid-research-workbench/CASE_STUDY.md), [Ecology of Consciousness](../projects/ecology-of-consciousness/CASE_STUDY.md), [IHOS](../projects/ihos-integrated-human-operating-system/CASE_STUDY.md), and [FrameEcho](../projects/frameecho/CASE_STUDY.md) as documentation-first supporting work.
+13. Review [Skills Matrix](SKILLS_MATRIX.md) to connect projects to role requirements.

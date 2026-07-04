@@ -180,8 +180,8 @@ const projects = [
     caseStudy: `${repoBase}/blob/main/projects/amino-acid-research-workbench/CASE_STUDY.md`,
     image: null,
     stack: ['Education', 'Bioinformatics', 'Explainable analysis'],
-    summary: 'Educational workbench concept for comparing amino acid substitutions and building evidence dossiers.',
-    why: 'Demonstrates explainable science tooling and responsible research-support framing.',
+    summary: 'Educational workbench concept for comparing amino acid substitutions and building evidence dossiers; documented in this repo, with a supplemental external live demo.',
+    why: 'Demonstrates explainable science tooling and responsible research-support framing without presenting it as a maintained repo app workspace.',
     review: 'Education scope',
   },
   {
@@ -194,10 +194,10 @@ const projects = [
     source: null,
     caseStudy: null,
     image: null,
-    stack: ['Static demo', 'Planning UX', 'Responsive UI'],
+    stack: ['Static demo', 'Planning UX', 'Source outside repo'],
     summary: 'Garden layout planning demo for arranging beds, companion planting notes, and seasonal planning.',
-    why: 'Shows applied planning UX outside the AI and operations-heavy projects.',
-    review: 'Supplemental',
+    why: 'Shows applied planning UX outside the AI and operations-heavy projects; source is not present in this portfolio repository.',
+    review: 'External demo',
   },
   {
     name: 'HearthLink',
@@ -209,10 +209,10 @@ const projects = [
     source: null,
     caseStudy: null,
     image: null,
-    stack: ['Static demo', 'P2P concept', 'No signaling backend'],
+    stack: ['Static demo', 'P2P concept', 'Source outside repo'],
     summary: 'Peer-to-peer neighborhood hub demo framed as a front-end concept with offline/no-signaling limitations.',
-    why: 'Useful supplemental demo when presented honestly as a limited static proof of concept.',
-    review: 'Limited demo',
+    why: 'Useful only as a supplemental static proof of concept; source is not present in this portfolio repository.',
+    review: 'External demo',
   },
 ];
 
