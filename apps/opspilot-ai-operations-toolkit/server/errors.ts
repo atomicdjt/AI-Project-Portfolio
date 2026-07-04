@@ -25,6 +25,10 @@ export function forbidden(message = 'You do not have permission to perform this 
   return new ApiError(403, 'forbidden', message)
 }
 
+export function badRequest(message = 'Request body is invalid.', details?: unknown): ApiError {
+  return new ApiError(400, 'bad_request', message, details)
+}
+
 export function notFound(message = 'Resource not found.'): ApiError {
   return new ApiError(404, 'not_found', message)
 }

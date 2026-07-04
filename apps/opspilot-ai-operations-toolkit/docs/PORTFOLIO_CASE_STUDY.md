@@ -18,7 +18,7 @@ Live demo: https://opspilot-ai-operations-toolkit.netlify.app/
 - Built the working dashboard as the first screen instead of a landing page.
 - Preserved a deterministic local-first demo mode so reviewers can use the app without accounts, secrets, or paid APIs.
 - Added an admin/export dashboard because real buyers care about saved documents, audit history, and handoff evidence.
-- Kept the backend honest: the API validates, authorizes, audits, and exports against seeded data, while durable persistence remains a documented production adapter.
+- Kept the backend honest: the API validates, authorizes, audits, exports, reports health, and optionally calls OpenAI server-side, while durable persistence remains a documented production adapter.
 
 ## Engineering Decisions
 
@@ -26,8 +26,9 @@ Live demo: https://opspilot-ai-operations-toolkit.netlify.app/
 - Zod validation for intake, session, route, and update payloads.
 - A service-layer API with role-aware write/export checks.
 - Seeded in-memory repository for safe public review plus a Postgres-compatible SQL migration for production persistence.
+- Optional OpenAI Responses API adapter with strict structured output validation, basic demo rate limiting, and deterministic fallback.
 - `audit_events` model and export bundle format to show compliance-oriented thinking.
-- Vitest coverage for create, update, version, export, audit, validation, authorization, gap, and training paths.
+- Vitest coverage for create, update, version, export, audit, validation, authorization, AI fallback, markup normalization, gap, and training paths.
 - Playwright workflow coverage plus screenshot, GIF, and video proof generation.
 - Netlify static deployment config with a modern Netlify Function at `/api/:route`.
 
@@ -35,7 +36,7 @@ Live demo: https://opspilot-ai-operations-toolkit.netlify.app/
 
 1. Paste messy operational notes.
 2. Select the business, role, department, document type, and priority.
-3. Generate an operations document locally.
+3. Generate an operations document. The public demo falls back deterministically unless server-side AI is explicitly configured.
 4. Review SOP steps, training tasks, knowledge base articles, gaps, and versions.
 5. Mark findings fixed, save snapshots, publish to team, or export Markdown/PDF.
 6. Open the admin dashboard to inspect workspace metrics, switch demo role/mode, review audit events, and export a workspace bundle.
@@ -46,7 +47,7 @@ Live demo: https://opspilot-ai-operations-toolkit.netlify.app/
 - The UI is product-grade and optimized for repeated operational use.
 - The code is organized around domain models, validation contracts, API boundaries, and product workflows.
 - The project includes tests, deployment docs, SQL schema, proof capture, screenshots, and case-study documentation.
-- The scope is credible: deterministic demo now, clearly documented path to production database/auth/AI later.
+- The scope is credible: deterministic demo now, reference API and optional AI adapter available, durable database/auth still documented as production work.
 
 ## Validation Surface
 
@@ -58,7 +59,7 @@ Live demo: https://opspilot-ai-operations-toolkit.netlify.app/
 
 - Replace the in-memory repository with a database adapter using the included SQL migration.
 - Replace demo session payloads with server-derived identity and organization membership.
-- Add OpenAI-backed drafting and revision behind strict JSON schemas and fallback handling.
+- Add production AI usage controls, tenant-level rate limits, trace retention, and model evaluation before calling the AI path production-ready.
 - Add approvals, comments, review cadences, and workspace notifications.
 - Add connectors for Notion, Google Drive, Slack, and help desk exports.
 - Add billing tiers based on documents, seats, integrations, and compliance history.

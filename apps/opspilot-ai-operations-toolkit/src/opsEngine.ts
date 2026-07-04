@@ -8,36 +8,38 @@ import type {
   TrainingItem,
   VersionEntry,
 } from './types'
+import { normalizeGeneratedText } from './textNormalization'
 
 const ownerSignals = ['owner', 'manager', 'lead', 'coordinator', 'dispatcher', 'associate']
 const complianceSignals = ['hipaa', 'consent', 'billing', 'warranty', 'payroll', 'approval', 'compliance']
 const escalationSignals = ['escalate', 'route', 'follow-up', 'manager', 'lead', 'emergency']
 
 export function generateDocument(intake: IntakeState, previous?: OpsDocument): OpsDocument {
-  const sentences = splitNotes(intake.sourceNotes)
-  const steps = buildSteps(intake, sentences)
-  const checklist = buildTrainingChecklist(intake, steps)
-  const articles = buildKnowledgeArticles(intake, sentences, steps)
-  const gaps = detectGaps(intake, steps)
-  const score = scoreDocument(intake, steps, gaps)
+  const cleanIntake = normalizeIntake(intake)
+  const sentences = splitNotes(cleanIntake.sourceNotes)
+  const steps = buildSteps(cleanIntake, sentences)
+  const checklist = buildTrainingChecklist(cleanIntake, steps)
+  const articles = buildKnowledgeArticles(cleanIntake, sentences, steps)
+  const gaps = detectGaps(cleanIntake, steps)
+  const score = scoreDocument(cleanIntake, steps, gaps)
   const risk = riskFromScore(score, gaps)
-  const title = buildTitle(intake)
-  const body = buildBody(intake, steps, gaps)
+  const title = buildTitle(cleanIntake)
+  const body = buildBody(cleanIntake, steps, gaps)
   const version = buildVersion(previous)
 
   return {
     id: previous?.id ?? createId('doc'),
     title,
-    type: intake.documentType,
-    business: intake.business.trim() || 'Small Business',
-    department: intake.department.trim() || 'Operations',
-    owner: intake.role.trim() || 'Operations Owner',
+    type: cleanIntake.documentType,
+    business: cleanIntake.business.trim() || 'Small Business',
+    department: cleanIntake.department.trim() || 'Operations',
+    owner: cleanIntake.role.trim() || 'Operations Owner',
     status: previous?.status ?? 'Draft',
-    priority: intake.priority,
+    priority: cleanIntake.priority,
     score,
     risk,
     lastRevised: today(),
-    summary: buildSummary(intake, sentences),
+    summary: buildSummary(cleanIntake, sentences),
     steps,
     checklist,
     articles,
@@ -48,14 +50,15 @@ export function generateDocument(intake: IntakeState, previous?: OpsDocument): O
 }
 
 export function updateBodyScore(document: OpsDocument, body: string): OpsDocument {
-  const bodyScore = Math.min(100, Math.max(40, Math.round(body.length / 18)))
-  const missingOwner = body.toLowerCase().includes('owner') || body.toLowerCase().includes('manager') ? 0 : 8
-  const missingEscalation = body.toLowerCase().includes('escalat') || body.toLowerCase().includes('route') ? 0 : 8
+  const normalizedBody = normalizeGeneratedText(body)
+  const bodyScore = Math.min(100, Math.max(40, Math.round(normalizedBody.length / 18)))
+  const missingOwner = normalizedBody.toLowerCase().includes('owner') || normalizedBody.toLowerCase().includes('manager') ? 0 : 8
+  const missingEscalation = normalizedBody.toLowerCase().includes('escalat') || normalizedBody.toLowerCase().includes('route') ? 0 : 8
   const score = Math.max(45, Math.min(98, Math.round((document.score + bodyScore) / 2) - missingOwner - missingEscalation))
 
   return {
     ...document,
-    body,
+    body: normalizedBody,
     score,
     risk: score >= 86 ? 'Low' : score >= 70 ? 'Medium' : 'High',
     lastRevised: today(),
@@ -119,30 +122,38 @@ export function createManualVersion(document: OpsDocument): OpsDocument {
 
 export function toMarkdown(document: OpsDocument): string {
   const gapLines = document.gaps
-    .map((gap) => `- [${gap.status === 'Fixed' ? 'x' : ' '}] ${gap.title}: ${gap.fix}`)
+    .map((gap) => `- [${gap.status === 'Fixed' ? 'x' : ' '}] ${normalizeGeneratedText(gap.title)}: ${normalizeGeneratedText(gap.fix)}`)
     .join('\n')
   const trainingLines = document.checklist
-    .map((item) => `- [${item.done ? 'x' : ' '}] ${item.task} (${item.owner}, ${item.due})`)
+    .map(
+      (item) =>
+        `- [${item.done ? 'x' : ' '}] ${normalizeGeneratedText(item.task)} (${normalizeGeneratedText(item.owner)}, ${normalizeGeneratedText(item.due)})`,
+    )
     .join('\n')
   const articleLines = document.articles
-    .map((article) => `### ${article.question}\n${article.answer}\nTags: ${article.tags.join(', ')}`)
+    .map(
+      (article) =>
+        `### ${normalizeGeneratedText(article.question)}\n${normalizeGeneratedText(article.answer)}\nTags: ${article.tags
+          .map(normalizeGeneratedText)
+          .join(', ')}`,
+    )
     .join('\n\n')
 
-  return `# ${document.title}
+  return `# ${normalizeGeneratedText(document.title)}
 
-Business: ${document.business}
-Department: ${document.department}
-Owner: ${document.owner}
+Business: ${normalizeGeneratedText(document.business)}
+Department: ${normalizeGeneratedText(document.department)}
+Owner: ${normalizeGeneratedText(document.owner)}
 Status: ${document.status}
 Score: ${document.score}
 Risk: ${document.risk}
 Last revised: ${document.lastRevised}
 
 ## Summary
-${document.summary}
+${normalizeGeneratedText(document.summary)}
 
 ## Document
-${document.body}
+${normalizeGeneratedText(document.body)}
 
 ## Training Checklist
 ${trainingLines}
@@ -155,8 +166,19 @@ ${gapLines}
 `
 }
 
+function normalizeIntake(intake: IntakeState): IntakeState {
+  return {
+    ...intake,
+    business: normalizeGeneratedText(intake.business),
+    role: normalizeGeneratedText(intake.role),
+    department: normalizeGeneratedText(intake.department),
+    priority: normalizeGeneratedText(intake.priority),
+    sourceNotes: normalizeGeneratedText(intake.sourceNotes),
+  }
+}
+
 function splitNotes(notes: string): string[] {
-  return notes
+  return normalizeGeneratedText(notes)
     .split(/[.\n]/)
     .map((item) => item.trim())
     .filter((item) => item.length > 8)
@@ -169,7 +191,7 @@ function buildSteps(intake: IntakeState, sentences: string[]): DocumentStep[] {
   return selected.map((sentence, index) => ({
     id: createId(`step-${index + 1}`),
     title: stepTitle(sentence, index),
-    detail: sentence.endsWith('.') ? sentence : `${sentence}.`,
+    detail: normalizeGeneratedText(sentence.endsWith('.') ? sentence : `${sentence}.`),
     owner: inferOwner(sentence, intake),
     timing: index === 0 ? 'Start of workflow' : index === selected.length - 1 ? 'Before completion is approved' : 'During active handling',
   }))
@@ -180,14 +202,14 @@ function buildTrainingChecklist(intake: IntakeState, steps: DocumentStep[]): Tra
   const starter: TrainingItem[] = [
     {
       id: createId('train-read'),
-      task: `Review the ${intake.documentType.toLowerCase()} and explain the success criteria`,
+      task: `Review the ${intake.documentType.toLowerCase()} for ${intake.business} and explain the success criteria`,
       owner: role,
       due: 'Day 1',
       done: false,
     },
     {
       id: createId('train-shadow'),
-      task: `Shadow one complete ${intake.department || 'operations'} workflow`,
+      task: `Shadow one complete ${intake.department || 'operations'} workflow and record the handoff points`,
       owner: role,
       due: 'Day 2',
       done: false,
@@ -196,7 +218,7 @@ function buildTrainingChecklist(intake: IntakeState, steps: DocumentStep[]): Tra
 
   const stepItems = steps.slice(0, 4).map((step, index) => ({
     id: createId(`train-${index}`),
-    task: `Demonstrate: ${step.title}`,
+    task: `Demonstrate ${step.title.toLowerCase()} without manager prompts`,
     owner: step.owner,
     due: `Day ${index + 3}`,
     done: false,
@@ -207,10 +229,11 @@ function buildTrainingChecklist(intake: IntakeState, steps: DocumentStep[]): Tra
 
 function buildKnowledgeArticles(intake: IntakeState, sentences: string[], steps: DocumentStep[]): KnowledgeArticle[] {
   const topic = intake.department || 'operations'
+  const business = intake.business || 'the business'
   const questions = [
-    `What does ${intake.role || 'the team'} need before starting this workflow?`,
+    `What does ${intake.role || 'the team'} need before starting the ${topic} workflow?`,
     `Who owns exceptions in ${topic}?`,
-    `How is completion tracked?`,
+    `How does ${business} confirm completion?`,
   ]
 
   return questions.map((question, index) => ({
@@ -218,10 +241,10 @@ function buildKnowledgeArticles(intake: IntakeState, sentences: string[], steps:
     question,
     answer:
       index === 0
-        ? `Start with ${steps[0]?.detail ?? sentences[0] ?? 'the current source notes'} Confirm required inputs before the workflow moves forward.`
+        ? `Start with ${steps[0]?.detail ?? sentences[0] ?? 'the current source notes'} Confirm required inputs and the expected output before the workflow moves forward.`
         : index === 1
-          ? `Exceptions should be routed to ${steps.find((step) => step.owner.toLowerCase().includes('manager'))?.owner ?? 'the accountable manager'} with context, urgency, and customer impact.`
-          : `Completion is tracked by confirming each required step, recording the owner, and saving the final status in the team system of record.`,
+          ? `Exceptions should be routed to ${steps.find((step) => step.owner.toLowerCase().includes('manager'))?.owner ?? 'the accountable manager'} with context, urgency, customer impact, and the next required action.`
+          : `${business} should confirm completion by checking every required step, recording the owner, and saving final status in the team system of record.`,
     tags: [topic.toLowerCase().replace(/\s+/g, '-'), intake.documentType.toLowerCase().replace(/\s+/g, '-')],
   }))
 }
@@ -313,21 +336,41 @@ function buildBody(intake: IntakeState, steps: DocumentStep[], gaps: GapFinding[
   const procedure = steps
     .map((step, index) => `${index + 1}. ${step.title}: ${step.detail} Owner: ${step.owner}. Timing: ${step.timing}.`)
     .join('\n')
-  const controls =
-    gaps.length === 0
-      ? 'Controls: Review this document monthly and archive each published version.'
-      : `Controls: Review open gaps before publishing. Current gap focus: ${gaps[0]?.fix ?? 'confirm ownership'}.`
+  const owner = intake.role || 'Operations Owner'
+  const department = intake.department || 'Operations'
+  const business = intake.business || 'the business'
+  const gapFocus = gaps[0]?.fix ?? 'confirm ownership, tracking, and escalation before publishing'
+  const trigger = triggerFor(intake)
+  const cadence = complianceSignals.some((signal) => intake.sourceNotes.toLowerCase().includes(signal))
+    ? 'Review this document quarterly and after any policy, billing, compliance, or customer-impacting workflow change.'
+    : 'Review this document monthly for the first two cycles, then every quarter after the workflow is stable.'
 
-  return `Purpose: Convert ${intake.department || 'operations'} knowledge into a repeatable ${intake.documentType.toLowerCase()} for ${intake.business || 'the business'}.
+  return `Purpose
+Convert ${department} knowledge into a repeatable ${intake.documentType.toLowerCase()} for ${business} so staff can complete work consistently, record ownership, and escalate exceptions without relying on informal memory.
 
-Scope: ${intake.role || 'Team members'} and managers responsible for execution, training, review, and escalation.
+Trigger
+Use this procedure when ${trigger}
 
-Procedure:
+Owner
+Primary owner: ${owner}. Backup reviewer: Operations Manager. The owner keeps the procedure current, verifies training completion, and confirms open gaps are reviewed before publishing.
+
+Steps
 ${procedure}
 
-Quality standard: Work is complete when required inputs are collected, the owner is recorded, exceptions are escalated, and the system of record is updated.
+Quality checks
+- Required inputs are collected before work is marked complete.
+- The accountable owner is recorded in the system of record.
+- Exceptions include context, urgency, customer impact, and next action.
+- Completion notes are clear enough for a manager to audit later.
 
-${controls}`
+Escalation path
+Escalate blocked, urgent, compliance-sensitive, billing, safety, or customer-impacting exceptions to the Operations Manager the same business day. Include the document title, affected customer or work item, current owner, and requested decision.
+
+Review cadence
+${cadence}
+
+Audit/version note
+Save a new version after each material edit, publish only after open high-risk gaps are reviewed, and track this gap focus before handoff: ${gapFocus}.`
 }
 
 function buildSummary(intake: IntakeState, sentences: string[]): string {
@@ -347,22 +390,82 @@ function buildTitle(intake: IntakeState): string {
 }
 
 function stepTitle(sentence: string, index: number): string {
-  const cleaned = sentence
-    .replace(/^(staff|team|customers|customer|new|if)\s+/i, '')
+  const cleaned = normalizeGeneratedText(sentence)
+    .replace(/^(staff|team|customers|customer|new|if|dispatchers|coordinators|associates|managers)\s+/i, '')
+    .replace(/^(need|needs|should|must|can)\s+to\s+/i, '')
+    .replace(/^(need|needs|should|must|can)\s+/i, '')
     .replace(/[,;:].*$/, '')
     .trim()
-  const fallback = ['Capture required inputs', 'Confirm the workflow owner', 'Complete the customer handoff'][index] ?? 'Record completion'
-  const title = cleaned.length > 5 ? cleaned : fallback
+  const fallback =
+    ['Capture required inputs', 'Verify owner and handoff rules', 'Escalate exceptions', 'Record completion status', 'Review quality checks'][index] ??
+    'Record completion'
+  const signalTitle = titleFromSignal(cleaned, index)
+  const title = signalTitle ?? (startsWithImperativeVerb(cleaned) ? cleaned : fallback)
   return title.charAt(0).toUpperCase() + title.slice(1)
 }
 
 function inferOwner(sentence: string, intake: IntakeState): string {
-  const lower = sentence.toLowerCase()
+  const lower = normalizeGeneratedText(sentence).toLowerCase()
   if (lower.includes('manager')) return 'Operations Manager'
   if (lower.includes('lead')) return 'Team Lead'
   if (lower.includes('tech')) return 'Field Technician'
   if (lower.includes('account')) return 'Account Lead'
   return intake.role.trim() || 'Operations Owner'
+}
+
+function triggerFor(intake: IntakeState): string {
+  const type = intake.documentType.toLowerCase()
+  if (intake.priority.toLowerCase().includes('compliance')) return `a ${type} touches compliance-sensitive records, approvals, consent, billing, or customer data.`
+  if (intake.priority.toLowerCase().includes('revenue')) return `a ${type} affects scheduling, customer commitments, billing, or revenue-critical handoffs.`
+  if (intake.priority.toLowerCase().includes('customer')) return `a ${type} is visible to customers or changes the support experience.`
+  return `a ${type} needs repeatable handling across ${intake.department || 'operations'}.`
+}
+
+function titleFromSignal(sentence: string, index: number): string | undefined {
+  const lower = sentence.toLowerCase()
+  if (lower.includes('insurance') || lower.includes('consent') || lower.includes('forms')) return 'Collect required documents'
+  if (lower.includes('hipaa') || lower.includes('acknowledgement')) return 'Verify compliance acknowledgement'
+  if (lower.includes('appointment') || lower.includes('reminder')) return 'Confirm appointment reminders'
+  if (lower.includes('billing') || lower.includes('question')) return 'Escalate billing questions'
+  if (lower.includes('portal') || lower.includes('link')) return 'Send secure follow-up link'
+  if (lower.includes('track') || lower.includes('record') || lower.includes('log')) return 'Record completion status'
+  if (lower.includes('triage')) return 'Triage incoming requests'
+  if (lower.includes('address')) return 'Confirm service details'
+  if (lower.includes('customer')) return 'Update the customer'
+  if (lower.includes('parts')) return 'Create follow-up task'
+  if (lower.includes('approve')) return 'Confirm approval owner'
+  if (index === 0 && lower.includes('inconsistent')) return 'Standardize intake requirements'
+  return undefined
+}
+
+function startsWithImperativeVerb(sentence: string): boolean {
+  return [
+    'add',
+    'assign',
+    'call',
+    'capture',
+    'check',
+    'collect',
+    'complete',
+    'confirm',
+    'create',
+    'document',
+    'escalate',
+    'explain',
+    'log',
+    'notify',
+    'record',
+    'request',
+    'review',
+    'route',
+    'save',
+    'send',
+    'standardize',
+    'track',
+    'triage',
+    'update',
+    'verify',
+  ].some((verb) => sentence.toLowerCase().startsWith(`${verb} `))
 }
 
 function buildVersion(previous?: OpsDocument): VersionEntry {

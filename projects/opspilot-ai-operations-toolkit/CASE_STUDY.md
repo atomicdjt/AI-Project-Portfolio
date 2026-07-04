@@ -11,7 +11,7 @@ The project is built as a polished micro-SaaS product surface rather than a gene
 - App: [apps/opspilot-ai-operations-toolkit](../../apps/opspilot-ai-operations-toolkit)
 - Live demo: [opspilot-ai-operations-toolkit.netlify.app](https://opspilot-ai-operations-toolkit.netlify.app/)
 - Default local URL: `http://127.0.0.1:5177/`
-- Deployment: Netlify Vite frontend plus seeded reference Function API
+- Deployment: Netlify Vite frontend plus seeded reference Function API and optional server-side AI route
 - Proof artifacts: [apps/opspilot-ai-operations-toolkit/docs/proof](../../apps/opspilot-ai-operations-toolkit/docs/proof)
 
 ## Target Users
@@ -29,6 +29,7 @@ The project is built as a polished micro-SaaS product surface rather than a gene
 - Documentation Gap Detector: identifies missing owners, weak escalation paths, missing review cadence, and unclear completion tracking.
 - Version Tracker: records generated, edited, saved, and published document versions.
 - Admin Dashboard: summarizes saved docs, published docs, open gaps, audit events, workspace mode, and demo role.
+- Developer Diagnostics: reports generation mode, route, provider/model, sanitized config, validation status, timestamp, and document id.
 - Export: Markdown download, browser PDF print flow, and workspace JSON bundle.
 
 ## Engineering Highlights
@@ -38,13 +39,14 @@ The project is built as a polished micro-SaaS product surface rather than a gene
 - Zod validation for intake, update, session, and route payloads.
 - Service-layer API with role-aware authorization for writes and admin exports.
 - Netlify Function reference API using modern `Request`/`Response` syntax.
+- Optional OpenAI Responses API route with strict JSON validation, deterministic fallback, and no client-side secrets.
 - Postgres-compatible SQL migration for organizations, users, documents, versions, training items, articles, gaps, and `audit_events`.
-- Vitest tests for create/update/version/export/audit/validation/authorization paths.
+- Vitest tests for create/update/version/export/audit/validation/authorization, AI fallback, health metadata, and normalization paths.
 - Playwright workflow test plus screenshot, GIF, and video proof capture.
 
 ## Honest Scope
 
-The app does not claim durable production workspaces, real identity-provider authentication, live AI generation, or billing. The default frontend remains a local deterministic demo. The backend demonstrates the contracts, validation, authorization, seeded state, audit events, and export shape that a production repository/database adapter would use.
+The app does not claim durable production workspaces, real identity-provider authentication, production AI automation, or billing. The default frontend remains a local deterministic demo. Optional OpenAI generation exists only as a server-side reference path when explicitly configured. The backend demonstrates the contracts, validation, authorization, seeded state, audit events, fallback behavior, and export shape that a production repository/database adapter would use.
 
 ## Why It Matters
 
@@ -54,14 +56,14 @@ OpsPilot Pro is directly aligned with technical operations, support operations, 
 
 - Ability to model messy operational inputs into structured SOPs, checklists, articles, gaps, versions, and audit records.
 - Strong alignment with documentation, onboarding, support operations, and knowledge-management work.
-- Practical product scoping: local deterministic drafting now, backend/database/auth/AI adapters clearly separated as production work.
+- Practical product scoping: local deterministic drafting now, optional server-side AI reference path, and durable database/auth adapters clearly separated as production work.
 - Clear packaging through a runnable app, live demo, tests, case studies, screenshots, deployment docs, and proof artifacts.
 
 ## What I Would Improve Next
 
 - Implement the persistent database repository against `database/migrations/001_init.sql`.
 - Add server-derived sessions through Netlify Identity, Supabase Auth, Clerk, Auth0, or WorkOS.
-- Add an OpenAI-backed endpoint that returns strict validated JSON with graceful fallback.
+- Add production AI controls: tenant rate limits, trace retention, eval fixtures, and admin model configuration.
 - Add approval status, comments, review cadence reminders, and audit-log filtering.
 - Add integrations with Notion, Google Drive, Slack, or help desk tools.
 

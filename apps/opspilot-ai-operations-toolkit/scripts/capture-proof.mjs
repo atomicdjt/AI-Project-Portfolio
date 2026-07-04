@@ -45,47 +45,62 @@ try {
 
   await page.goto(baseUrl)
   await page.getByRole('heading', { name: 'OpsPilot Pro Operations Workspace' }).waitFor()
-  shots.push(await screenshot(page, 'opspilot-pro-01-dashboard.png'))
+  shots.push(await screenshot(page, 'opspilot-final-polish-01-dashboard.png'))
 
   await page.getByRole('button', { name: 'Admin Dashboard' }).click()
   await page.getByRole('heading', { name: 'Admin and export dashboard' }).waitFor()
-  shots.push(await screenshot(page, 'opspilot-pro-02-admin.png'))
+  await page.getByRole('heading', { name: 'Developer diagnostics' }).waitFor()
+  shots.push(await screenshot(page, 'opspilot-final-polish-02-admin-diagnostics.png'))
 
   await page.getByRole('button', { name: 'Generate from intake' }).first().click()
-  await page.getByText('Generated document, checklist, knowledge base, gaps, and version snapshot').waitFor()
-  shots.push(await screenshot(page, 'opspilot-pro-03-generated.png'))
+  await page.getByText(/Generated with deterministic fallback|Generated through optional server-side AI route/).waitFor()
+  await page.getByRole('heading', { name: 'SOP procedure editor' }).waitFor()
+  shots.push(await screenshot(page, 'opspilot-final-polish-03-generated-sop.png'))
 
   await page.getByRole('button', { name: 'Training Checklist' }).click()
+  await page.getByRole('heading', { name: 'Training checklist builder' }).waitFor()
   await page.locator('.check-row input').first().check()
-  shots.push(await screenshot(page, 'opspilot-pro-04-training.png'))
+  shots.push(await screenshot(page, 'opspilot-final-polish-04-training.png'))
+
+  await page.getByRole('button', { name: 'Knowledge Base' }).click()
+  await page.getByRole('heading', { name: 'Knowledge base articles' }).waitFor()
+  shots.push(await screenshot(page, 'opspilot-final-polish-05-knowledge.png'))
 
   await page.getByRole('button', { name: 'Gap Detector' }).click()
+  await page.getByRole('heading', { name: 'Documentation gap report' }).waitFor()
   await page.locator('.gap-row button').first().click()
-  shots.push(await screenshot(page, 'opspilot-pro-05-gap-fixed.png'))
+  shots.push(await screenshot(page, 'opspilot-final-polish-06-gap-fixed.png'))
 
   await page.getByRole('button', { name: 'Admin Dashboard' }).click()
   const downloadPromise = page.waitForEvent('download')
   await page.getByRole('button', { name: 'Export workspace' }).first().click()
   const download = await downloadPromise
-  await download.saveAs(join(downloadsDir, download.suggestedFilename()))
+  await download.saveAs(join(downloadsDir, 'opspilot-final-polish-workspace-export.json'))
   await page.getByText('Exported workspace bundle').waitFor()
-  shots.push(await screenshot(page, 'opspilot-pro-06-exported.png'))
+  shots.push(await screenshot(page, 'opspilot-final-polish-07-exported.png'))
 
-  await page.setViewportSize({ width: 390, height: 860 })
-  await page.goto(baseUrl)
-  await page.getByRole('heading', { name: 'OpsPilot Pro Operations Workspace' }).waitFor()
-  await screenshot(page, 'opspilot-pro-mobile.png')
+  for (const viewport of [
+    { width: 390, height: 844, name: 'mobile-390x844' },
+    { width: 430, height: 932, name: 'mobile-430x932' },
+    { width: 768, height: 1024, name: 'tablet-768x1024' },
+    { width: 1440, height: 1000, name: 'desktop-1440x1000' },
+  ]) {
+    await page.setViewportSize({ width: viewport.width, height: viewport.height })
+    await page.goto(baseUrl)
+    await page.getByRole('heading', { name: 'OpsPilot Pro Operations Workspace' }).waitFor()
+    await screenshot(page, `opspilot-final-polish-${viewport.name}.png`)
+  }
 
   await context.close()
   await browser.close()
 
   if (video) {
     const videoPath = await video.path()
-    await copyFile(videoPath, join(proofDir, 'opspilot-pro-workflow.webm'))
+    await copyFile(videoPath, join(proofDir, 'opspilot-final-polish-workflow.webm'))
     await rm(videoPath, { force: true })
   }
 
-  await createGif(shots, join(proofDir, 'opspilot-pro-workflow.gif'))
+  await createGif(shots, join(proofDir, 'opspilot-final-polish-workflow.gif'))
 } finally {
   stopServer(server)
 }

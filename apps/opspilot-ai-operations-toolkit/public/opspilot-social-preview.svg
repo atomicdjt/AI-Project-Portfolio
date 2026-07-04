@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">OpsPilot Pro social preview</title>
+  <desc id="desc">Operations documentation workspace preview card.</desc>
+  <rect width="1200" height="630" fill="#f4f6f8" />
+  <rect x="72" y="72" width="1056" height="486" rx="18" fill="#ffffff" stroke="#dbe3ea" />
+  <rect x="72" y="72" width="238" height="486" rx="18" fill="#111827" />
+  <rect x="104" y="112" width="54" height="54" rx="10" fill="#14b8a6" />
+  <text x="119" y="147" fill="#062724" font-family="Arial, sans-serif" font-size="18" font-weight="700">OP</text>
+  <text x="180" y="134" fill="#ffffff" font-family="Arial, sans-serif" font-size="24" font-weight="700">OpsPilot Pro</text>
+  <text x="180" y="162" fill="#a8b2c1" font-family="Arial, sans-serif" font-size="16">AI-ready operations toolkit</text>
+  <rect x="104" y="220" width="172" height="34" rx="8" fill="#1f2937" />
+  <rect x="104" y="270" width="172" height="34" rx="8" fill="#1f2937" />
+  <rect x="104" y="320" width="172" height="34" rx="8" fill="#1f2937" />
+  <rect x="350" y="116" width="722" height="84" rx="14" fill="#f8fafc" stroke="#dbe3ea" />
+  <text x="382" y="152" fill="#111827" font-family="Arial, sans-serif" font-size="28" font-weight="700">Operations Documentation Workspace</text>
+  <text x="382" y="180" fill="#64748b" font-family="Arial, sans-serif" font-size="18">SOPs, training, knowledge base, gaps, versions, audit, exports</text>
+  <rect x="350" y="232" width="330" height="252" rx="14" fill="#f8fafc" stroke="#dbe3ea" />
+  <rect x="714" y="232" width="358" height="252" rx="14" fill="#f8fafc" stroke="#dbe3ea" />
+  <text x="382" y="278" fill="#0f766e" font-family="Arial, sans-serif" font-size="18" font-weight="700">Deterministic demo</text>
+  <text x="382" y="316" fill="#111827" font-family="Arial, sans-serif" font-size="22" font-weight="700">Reference API + optional AI</text>
+  <text x="382" y="350" fill="#64748b" font-family="Arial, sans-serif" font-size="18">Validated server fallback with no client secrets.</text>
+  <text x="746" y="278" fill="#0f766e" font-family="Arial, sans-serif" font-size="18" font-weight="700">Reviewer proof</text>
+  <text x="746" y="316" fill="#111827" font-family="Arial, sans-serif" font-size="22" font-weight="700">Tests, screenshots, GIF, video</text>
+  <text x="746" y="350" fill="#64748b" font-family="Arial, sans-serif" font-size="18">Portfolio-grade docs and deploy path.</text>
+</svg>

@@ -12,6 +12,12 @@ export type WorkspaceMode = 'demo' | 'authenticated'
 
 export type WorkspaceRole = 'owner' | 'admin' | 'editor' | 'viewer'
 
+export type GenerationMode = 'deterministic' | 'openai' | 'fallback'
+
+export type GenerationProvider = 'deterministic' | 'openai' | 'none'
+
+export type GenerationValidationStatus = 'not_required' | 'passed' | 'failed'
+
 export interface IntakeState {
   business: string
   role: string
@@ -120,4 +126,35 @@ export interface ExportBundle {
   exportedBy: Pick<WorkspaceSession, 'userId' | 'name' | 'role'>
   documents: OpsDocument[]
   auditEvents: AuditEvent[]
+}
+
+export interface AiRuntimeStatus {
+  aiConfigured: boolean
+  aiEnabled: boolean
+  aiProvider: 'openai' | 'none'
+  model: string | null
+  fallback: 'deterministic'
+}
+
+export interface GenerationDiagnostics {
+  mode: GenerationMode
+  route: string
+  provider: GenerationProvider
+  model: string | null
+  aiConfigured: boolean
+  aiEnabled: boolean
+  fallback: boolean
+  fallbackReason?: string
+  validationStatus: GenerationValidationStatus
+  validationMessage?: string
+  latencyMs: number
+  timestamp: string
+  documentId?: string
+  promptConstraints: string[]
+  sanitizedConfig: Record<string, string | number | boolean | null>
+}
+
+export interface AiGenerateResult {
+  document: OpsDocument
+  generation: GenerationDiagnostics
 }
