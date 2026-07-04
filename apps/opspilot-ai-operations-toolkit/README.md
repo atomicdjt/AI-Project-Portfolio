@@ -2,9 +2,37 @@
 
 OpsPilot Pro is a portfolio-grade operations documentation system for small businesses. It turns rough internal notes, policy fragments, support tickets, and FAQs into structured SOPs, onboarding checklists, knowledge base articles, documentation gap reports, audit events, version snapshots, and exportable workspace bundles.
 
-The default product experience remains local, deterministic, and deployable without secrets. The new full-stack layer adds a typed reference API, server-side Zod validation, role-aware authorization checks, seeded workspace data, audit logging, export endpoints, and a SQL migration path for a production database adapter.
+The default product experience remains local, deterministic, and deployable without secrets. The full-stack reference layer adds typed API contracts, server-side Zod validation, role-aware authorization checks, seeded workspace data, audit logging, export endpoints, an API health check, and a SQL migration path for a production database adapter.
 
 ![OpsPilot desktop dashboard](docs/screenshots/opspilot-desktop.png)
+
+## How to Test This in 60 Seconds
+
+1. Open the live demo or run the app locally.
+2. Click **Load sample** to populate realistic operations notes.
+3. Click **Generate from intake** to create an SOP, checklist, knowledge-base content, gaps, versions, and audit activity.
+4. Open **Admin Dashboard** in the sidebar.
+5. Switch between **Local deterministic demo** and **Authenticated workspace simulation**.
+6. Review saved documents, open gaps, demo role, and audit events.
+7. Click **Export workspace** and confirm the JSON bundle downloads.
+8. Visit `/api/health` on the deployed site to verify the reference backend is reachable.
+
+## Reviewer Proof Assets
+
+The proof workflow includes screenshots, GIF/video capture, and a sample export bundle.
+
+- [Dashboard screenshot](docs/proof/opspilot-pro-01-dashboard.png)
+- [Admin/export screenshot](docs/proof/opspilot-pro-02-admin.png)
+- [Generated document screenshot](docs/proof/opspilot-pro-03-generated.png)
+- [Training checklist screenshot](docs/proof/opspilot-pro-04-training.png)
+- [Gap fixed screenshot](docs/proof/opspilot-pro-05-gap-fixed.png)
+- [Exported workspace screenshot](docs/proof/opspilot-pro-06-exported.png)
+- [Mobile screenshot](docs/proof/opspilot-pro-mobile.png)
+- [Workflow GIF](docs/proof/opspilot-pro-workflow.gif)
+- [Workflow video](docs/proof/opspilot-pro-workflow.webm)
+- [Sample workspace export](docs/proof/downloads/opspilot-workspace-export.json)
+
+Additional sanitized examples live under [`docs/examples/`](docs/examples/).
 
 ## What Is Implemented
 
@@ -14,7 +42,8 @@ The default product experience remains local, deterministic, and deployable with
 - **Documentation Gap Detector**: identifies missing owners, weak escalation paths, unclear tracking, and missing review cadence.
 - **Version Tracker**: records generated, edited, saved, and published document snapshots.
 - **Admin and Export Dashboard**: shows saved documents, published documents, open gaps, workspace mode, demo role, audit events, and workspace JSON export.
-- **Reference Backend API**: Netlify Function endpoint at `/api/:route` using the same deterministic engine with server-side validation and role checks.
+- **Reference Backend API**: Netlify Function endpoints using the same deterministic engine with server-side validation and role checks.
+- **Health Check**: `/api/health` reports app, deployment, persistence, auth, production-readiness, supported routes, and timestamp metadata for portfolio reviewers.
 - **SQL Migration**: Postgres-compatible schema for organizations, users, documents, versions, training items, knowledge articles, gap findings, and `audit_events`.
 - **Seed Data**: demo organization, demo sessions, seeded documents, generated intake document, and initial audit event.
 - **Validation and Proof**: Vitest API coverage plus Playwright workflow test, screenshots, GIF, and video capture script.
@@ -54,15 +83,22 @@ http://127.0.0.1:5177/
 
 ## Backend API
 
-The Netlify function is implemented at:
+The wildcard reference API is implemented at:
 
 ```text
 netlify/functions/api.ts
 ```
 
+The reviewer health endpoint is implemented at:
+
+```text
+netlify/functions/health.ts
+```
+
 Routes are exposed as:
 
 ```text
+/api/health
 /api/listDocuments
 /api/createDocument
 /api/updateDocument
@@ -75,6 +111,8 @@ Routes are exposed as:
 ```
 
 Most write routes accept a JSON payload with a `session` object and route-specific fields such as `intake`, `documentId`, `update`, `gapId`, or `trainingItemId`. If no session is passed, the reference function uses the seeded admin session for portfolio review.
+
+`/api/health` is intentionally safe for direct browser review and returns no sensitive data.
 
 ## Database Migration
 
@@ -150,22 +188,27 @@ Netlify app settings:
 - Node version: `22`
 - Functions directory: `netlify/functions`
 
-No environment variables are required for the deterministic demo or seeded reference API.
+No environment variables are required for the deterministic demo, seeded reference API, or `/api/health`.
 
 ## Project Structure
 
 ```text
 database/
   migrations/001_init.sql        SQL schema for production adapter
+docs/
+  examples/                      Sanitized sample exports for reviewers
+  proof/                         Screenshots, GIF/video, and exported JSON proof
 e2e/
   opspilot-pro.spec.ts           Playwright workflow coverage
 netlify/functions/
   api.ts                         Netlify Function reference API
+  health.ts                      Reviewer-safe API health endpoint
 scripts/
   capture-proof.mjs              Screenshots, GIF, video, export proof
 server/
-  api.ts                         Validated service layer and role checks
+  api.ts                         Validated service layer, health contract, and role checks
   api.test.ts                    API tests
+  health.test.ts                 Health contract tests
   errors.ts                      Error helpers
   repository.ts                  Seeded in-memory repository
 src/
