@@ -45,7 +45,7 @@ https://opspilot-ai-operations-toolkit.netlify.app/
 ## Run Locally
 
 ```bash
-cd "C:\Users\Atomic\Documents\New project\AI-Project-Portfolio-push\apps\opspilot-ai-operations-toolkit"
+cd apps/opspilot-ai-operations-toolkit
 npm install
 npm run dev
 ```

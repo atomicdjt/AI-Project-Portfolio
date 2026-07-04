@@ -73,7 +73,7 @@ ScamShield AI is defensive and educational only.
 Requirements: Node.js 20 or newer and npm.
 
 ```powershell
-cd "C:\Users\Atomic\Documents\New project\AI-Project-Portfolio-push\apps\scamshield-ai"
+cd apps/scamshield-ai
 npm install
 npm run dev
 ```

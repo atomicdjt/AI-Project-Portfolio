@@ -2,12 +2,6 @@
 
 Last audited: July 4, 2026.
 
-The profile README repository exists locally at:
-
-```text
-C:\Users\Atomic\Documents\New project\atomicdjt
-```
-
 The public repository is:
 
 ```text
@@ -21,13 +15,13 @@ Use `docs/github-profile/README.md` as the portfolio-maintained draft, then keep
 1. Open the local profile repo:
 
 ```bash
-cd "C:\Users\Atomic\Documents\New project\atomicdjt"
+cd ../atomicdjt
 ```
 
 2. Replace `README.md` with the current draft from:
 
 ```text
-C:\Users\Atomic\Documents\New project\AI-Project-Portfolio-push\docs\github-profile\README.md
+docs/github-profile/README.md
 ```
 
 3. Review the diff:
