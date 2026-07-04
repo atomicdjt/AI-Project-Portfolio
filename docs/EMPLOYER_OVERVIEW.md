@@ -39,7 +39,7 @@ This repository is best read as evidence of:
 
 ## Shipped Commercial Product
 
-**QuoteForge Local** is a separate shipped commercial product, not an open-source app in this repository. It has a [live demo](https://quoteforge-local.vercel.app/) and a [Payhip product page](https://payhip.com/b/24De9). It is useful review evidence for buyer packaging, local-first product design, deployment, QA, setup documentation, customization guidance, embed/WordPress handoff materials, and sales-page readiness.
+**QuoteForge Local** is a separate shipped commercial product, not an open-source app in this repository. It is a white-label quote calculator for local service businesses with a [live demo](https://quoteforge-local.vercel.app/) and a [Payhip product page](https://payhip.com/b/24De9). It is useful review evidence for buyer packaging, local-first product design, deployment, QA, setup documentation, customization guidance, embed/WordPress handoff materials, and sales-page readiness.
 
 ## How Employers Should Interpret This Work
 

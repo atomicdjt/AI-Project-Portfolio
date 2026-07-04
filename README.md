@@ -85,7 +85,7 @@ This section is separate from the open portfolio apps because the product source
 
 | Product | Public Link | Commercial Surface | What It Shows |
 | --- | --- | --- | --- |
-| QuoteForge Local | [Live Demo](https://quoteforge-local.vercel.app/) | [Payhip Product Page](https://payhip.com/b/24De9) | A packaged local-first quoting product with buyer-facing setup, customization, embed, WordPress, QA, licensing, and sales materials. |
+| QuoteForge Local | [Live Demo](https://quoteforge-local.vercel.app/) | [Payhip Product Page](https://payhip.com/b/24De9) | A white-label quote calculator for local service businesses, packaged with buyer-facing setup, customization, embed, WordPress, QA, licensing, and sales materials. |
 
 ## Supplemental Public Demos
 
