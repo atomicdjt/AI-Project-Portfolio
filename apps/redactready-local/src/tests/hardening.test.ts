@@ -11,14 +11,14 @@ describe('adaptive export checklist', () => {
     expect(checklist).toContain('PDF text-to-box mapping can be approximate')
     expect(checklist).toContain('OCR is experimental')
     expect(checklist).toContain('flattened PDF export loses selectable text')
-    expect(checklist).toContain('does not guarantee detection or redaction')
+    expect(checklist).toContain('limited/best-effort')
   })
 
   it('uses CSV-specific language for replacement verification', () => {
     const checklist = exportChecklistForKind('csv', 'completed').map((item) => item.text).join(' ')
 
-    expect(checklist).toContain('pattern-based CSV findings')
-    expect(checklist).toContain('columns, quoting, formulas, or downstream imports')
+    expect(checklist).toContain('manually reviewed all visible content')
+    expect(checklist).toContain('columns, quoting, or formulas')
   })
 })
 

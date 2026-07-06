@@ -1,16 +1,22 @@
-import { ArrowRight, Search, ShieldCheck, Scale, Briefcase } from 'lucide-react'
+import { useState } from 'react'
+import { ArrowRight, Search, ShieldCheck, Scale, Briefcase, Activity } from 'lucide-react'
 import type { Navigate } from '../App'
 import { AppHeader } from '../components/AppHeader'
+import { SelfTestPanel } from '../components/SelfTestPanel'
 
 interface LandingPageProps {
   navigate: Navigate
 }
 
 export function LandingPage({ navigate }: LandingPageProps) {
+  const [showSelfTest, setShowSelfTest] = useState(false)
+
   return (
     <div className="site-shell">
       <AppHeader navigate={navigate} current="home" />
       <main className="landing-main">
+        {showSelfTest && <SelfTestPanel onClose={() => setShowSelfTest(false)} />}
+        
         <section className="landing-hero">
           <div className="hero-copy">
             <h1>Redact before you upload.</h1>
@@ -24,6 +30,12 @@ export function LandingPage({ navigate }: LandingPageProps) {
               </button>
               <button className="secondary-button" onClick={() => navigate('/about')} type="button">
                 View limitations
+              </button>
+            </div>
+            <div style={{ marginTop: '16px' }}>
+              <button className="secondary-button" style={{ fontSize: '0.85rem' }} onClick={() => setShowSelfTest(true)} type="button">
+                <Activity size={16} aria-hidden="true" />
+                Run RedactReady Self-Test
               </button>
             </div>
             <small className="trust-note">Assistive privacy review. Human decisions required. No compliance guarantees.</small>

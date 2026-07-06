@@ -90,7 +90,9 @@ export interface RedactionReport {
   totalRejectedOrIgnored: number
   manualBoxes: number
   ocrStatus: OcrStatus
+  barcodeStatus: BarcodeCapabilityStatus
   metadataHandling: MetadataHandlingStatus
+  manualVerificationCompleted: boolean
   metadataNotes: string[]
   categories: Partial<Record<RedactionCategory, number>>
   verification: VerificationResult

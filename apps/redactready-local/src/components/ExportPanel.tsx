@@ -67,21 +67,22 @@ export function ExportPanel() {
         </span>
       </div>
 
-      <div className="verification-checklist">
+      <div className="verification-checklist" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
         {Object.entries(groupedChecklist).map(([groupName, items]) => (
-          <div key={groupName} className="checklist-group">
-            <h3 className="checklist-group-title">{groupName}</h3>
+          <div key={groupName} className="checklist-group" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <h3 className="checklist-group-title" style={{ fontSize: '0.9rem', color: 'var(--brand)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '4px' }}>{groupName}</h3>
             {items.map((item) => (
-              <label key={item.id}>
+              <label key={item.id} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', padding: '8px 0', borderBottom: '1px solid var(--border)' }}>
                 <input
                   type="checkbox"
+                  style={{ width: '20px', height: '20px', marginTop: '2px', flexShrink: 0 }}
                   checked={Boolean(acknowledgements[item.id])}
                   onChange={(event) => {
                     const isChecked = event.currentTarget.checked
                     setAcknowledgements((current) => ({ ...current, [item.id]: isChecked }))
                   }}
                 />
-                {item.text}
+                <span style={{ fontSize: '0.9rem', lineHeight: '1.4' }}>{item.text}</span>
               </label>
             ))}
           </div>
@@ -94,14 +95,15 @@ export function ExportPanel() {
         onClick={() => void exportFile()}
         title={exportAcknowledged ? 'Export redacted file' : 'Complete the verification checklist before exporting.'}
         type="button"
+        style={{ marginTop: '24px' }}
       >
         <Download size={18} aria-hidden="true" />
-        {document.kind === 'pdf' ? 'Export flattened PDF' : document.kind === 'image' ? 'Export redacted PNG' : 'Export redacted text'}
+        {document.kind === 'pdf' ? 'Export flattened PDF (Safe Export Mode)' : document.kind === 'image' ? 'Export redacted PNG' : 'Export redacted text'}
       </button>
       <p className="pre-export-warning">
         {exportAcknowledged
           ? 'Do not share the exported file until you have manually opened and reviewed it.'
-          : 'Complete the file-specific verification checklist before exporting a file.'}
+          : 'Complete the verification checklist to unlock export.'}
       </p>
 
       <button className="secondary-button wide" onClick={exportJsonReport} type="button">
