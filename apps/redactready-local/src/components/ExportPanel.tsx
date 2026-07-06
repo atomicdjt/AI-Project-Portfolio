@@ -77,7 +77,8 @@ export function ExportPanel() {
                   type="checkbox"
                   checked={Boolean(acknowledgements[item.id])}
                   onChange={(event) => {
-                    setAcknowledgements((current) => ({ ...current, [item.id]: event.currentTarget.checked }))
+                    const isChecked = event.currentTarget.checked
+                    setAcknowledgements((current) => ({ ...current, [item.id]: isChecked }))
                   }}
                 />
                 {item.text}

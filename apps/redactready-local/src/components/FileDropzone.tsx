@@ -11,7 +11,7 @@ const sampleFiles = [
     type: 'text/plain',
   },
   {
-    label: 'Synthetic invoice',
+    label: 'Synthetic invoice CSV',
     path: '/samples/redactready-synthetic-invoice.csv',
     fileName: 'redactready-synthetic-invoice.csv',
     type: 'text/csv',

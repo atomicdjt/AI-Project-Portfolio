@@ -1298,6 +1298,21 @@ select:focus-visible {
   margin-bottom: 12px;
 }
 
+.checklist-group label {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--ink);
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.checklist-group input {
+  flex: 0 0 auto;
+  margin-top: 3px;
+}
+
 .checklist-group:last-child {
   margin-bottom: 0;
 }
