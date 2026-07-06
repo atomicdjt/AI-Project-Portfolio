@@ -1280,6 +1280,37 @@ select:focus-visible {
   padding-top: 2px;
 }
 
+.warning-badge {
+  background: #fff8e8 !important;
+  color: #765116 !important;
+  border-color: rgba(183, 121, 31, 0.25) !important;
+}
+
+.info-badge {
+  background: #eefaf7 !important;
+  color: #0f6f66 !important;
+  border-color: rgba(26, 143, 130, 0.25) !important;
+}
+
+.checklist-group {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.checklist-group:last-child {
+  margin-bottom: 0;
+}
+
+.checklist-group-title {
+  margin: 0 0 4px 0;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 @media (max-width: 1220px) {
   .redaction-workspace {
     grid-template-columns: minmax(0, 1fr) 330px;

@@ -1,4 +1,4 @@
-import { ArrowRight, Search, ShieldCheck, Scale, Heart, Briefcase } from 'lucide-react'
+import { ArrowRight, Search, ShieldCheck, Scale, Briefcase } from 'lucide-react'
 import type { Navigate } from '../App'
 import { AppHeader } from '../components/AppHeader'
 
@@ -15,20 +15,15 @@ export function LandingPage({ navigate }: LandingPageProps) {
           <div className="hero-copy">
             <h1>Redact before you upload.</h1>
             <p>
-              RedactReady Local helps you spot, review, redact, and verify potentially sensitive information before sharing documents with AI tools, email, clients, vendors, or public platforms — with processing designed to stay on your device.
+              RedactReady Local is an assistive privacy tool that helps you review and sanitize documents before sharing them. It runs locally in your browser to keep your sensitive files on your machine.
             </p>
-            <ul className="hero-bullets">
-              <li><strong>Local-first review:</strong> Review files before they leave your machine.</li>
-              <li><strong>Sensitive-data detection hints:</strong> Surface possible names, emails, phone numbers, IDs, financial data, and other risky content.</li>
-              <li><strong>Human-in-the-loop verification:</strong> Review every finding, choose what to redact, and verify before export.</li>
-            </ul>
             <div className="hero-actions">
               <button className="primary-button" onClick={() => navigate('/redact')} type="button">
-                Try the Local Demo
+                Start privacy review
                 <ArrowRight size={18} aria-hidden="true" />
               </button>
               <button className="secondary-button" onClick={() => navigate('/about')} type="button">
-                View Privacy Workflow
+                View limitations
               </button>
             </div>
             <small className="trust-note">Assistive privacy review. Human decisions required. No compliance guarantees.</small>
@@ -59,66 +54,72 @@ export function LandingPage({ navigate }: LandingPageProps) {
           </div>
         </section>
 
-        <section className="why-section">
-          <h2>Redaction is more than black boxes.</h2>
-          <p>
-            Visual cover-ups can miss hidden text, OCR layers, metadata, comments, filenames, annotations, and copied text. 
-            RedactReady Local is designed as a pre-share workflow that helps you inspect sensitive content before a document is sent outside your control.
-          </p>
+        <section className="workflow-section">
+          <h2>How the local-first workflow works</h2>
+          <div className="workflow-steps">
+            <div>Upload locally</div>
+            <div>Detect text</div>
+            <div>Review findings</div>
+            <div>Redact content</div>
+            <div>Verify output</div>
+            <div>Export file</div>
+          </div>
         </section>
 
         <section className="use-case-strip">
-          <h2>Built for the files people actually share.</h2>
+          <h2>Who is RedactReady for?</h2>
           <div className="use-case-grid">
             <article>
               <Search size={24} aria-hidden="true" />
-              <h3>AI Uploads</h3>
-              <p>Sanitize PDFs, screenshots, forms, notes, and logs before uploading them to external AI tools.</p>
+              <h3>AI Tool Users</h3>
+              <p>People sharing files with AI tools who need to sanitize PDFs, screenshots, forms, or logs before upload.</p>
             </article>
             <article>
               <ShieldCheck size={24} aria-hidden="true" />
-              <h3>Security & Support</h3>
-              <p>Review screenshots, logs, incident reports, and configuration snippets for credentials, tokens, hostnames, and internal URLs.</p>
+              <h3>Support Teams & Freelancers</h3>
+              <p>Review incident reports, configuration snippets, or client documents for credentials and internal URLs.</p>
             </article>
             <article>
               <Briefcase size={24} aria-hidden="true" />
-              <h3>HR & Operations</h3>
-              <p>Check resumes, salary files, performance notes, and employee records before sharing them externally.</p>
+              <h3>HR, Admin & Small Businesses</h3>
+              <p>Check resumes, salary files, performance notes, and business records before sharing them externally.</p>
             </article>
             <article>
               <Scale size={24} aria-hidden="true" />
-              <h3>Legal & Case Files</h3>
-              <p>Review filings, exhibits, discovery documents, and case materials for personal identifiers and sensitive account details.</p>
-            </article>
-            <article>
-              <Heart size={24} aria-hidden="true" />
-              <h3>Healthcare & Education</h3>
-              <p>Assist with privacy review for documents that may contain health, benefits, student, or research-related identifiers.</p>
-              <small>Not a compliance certification tool.</small>
+              <h3>Legal Assistants & Educators</h3>
+              <p>Assist with privacy review for discovery documents, case materials, or student-related identifiers.</p>
             </article>
           </div>
         </section>
 
         <section className="trust-limitations">
-          <h2>What RedactReady Local does — and does not — do.</h2>
-          <p>
-            RedactReady Local supports privacy-aware workflows by helping you find and review potentially sensitive information. It does not provide legal advice, does not certify regulatory compliance, and does not guarantee complete removal of all sensitive data. Use it as one step in a broader review process.
-          </p>
-        </section>
-
-        <section className="local-first-section">
-          <h2>Keep sensitive content on your machine.</h2>
-          <p>
-            RedactReady Local is designed around local review: inspect the original file, mark risky content, apply redactions, and export a sanitized copy. The goal is to reduce unnecessary exposure before files are uploaded, emailed, or shared.
-          </p>
+          <h2>Trust, File Support, and Limitations</h2>
+          <div className="about-grid">
+            <article>
+              <h3>Local-First & Browser-First</h3>
+              <p>Files are processed directly in your web browser. Nothing is uploaded to our servers, giving you control over where your data goes.</p>
+            </article>
+            <article>
+              <h3>Supported Files</h3>
+              <p>Works with PDFs, PNGs, JPEGs, and plaintext/CSV files. Large files may perform slowly depending on your device.</p>
+            </article>
+            <article>
+              <h3>Human Review Required</h3>
+              <p>Automated detection is approximate and can miss things. There is no guaranteed redaction or guaranteed security.</p>
+            </article>
+            <article>
+              <h3>OCR & Metadata Limits</h3>
+              <p>OCR may struggle with handwriting or rotated text. Metadata handling is best-effort and does not guarantee complete removal.</p>
+            </article>
+          </div>
         </section>
 
         <section className="final-cta">
           <h2>Run a pre-share privacy check before your next upload.</h2>
           <button className="primary-button" onClick={() => navigate('/redact')} type="button">
-            Open the Demo
+            Try the Demo
           </button>
-          <p><small>Use sample documents first. Review all outputs manually before sharing real files.</small></p>
+          <p><small>Synthetic sample files are available to help you test safely.</small></p>
         </section>
 
       </main>

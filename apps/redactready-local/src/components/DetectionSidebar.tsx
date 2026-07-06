@@ -119,8 +119,8 @@ export function DetectionSidebar() {
       <div className="detection-list" data-testid="detection-list">
         {filtered.length === 0 ? (
           <div className="empty-list">
-            <strong>No obvious findings in this pass.</strong>
-            <span>This does not mean the document is safe to share. Manually review the file, metadata, images, filenames, and any OCR or scanned text before sharing.</span>
+            <strong>No automatic findings were detected.</strong>
+            <span>This does not mean the file is safe. Review visually and add manual redactions as needed.</span>
           </div>
         ) : (
           filtered.map((detection) => (
@@ -134,9 +134,9 @@ export function DetectionSidebar() {
                   {detection.pageIndex !== undefined ? ` - page ${detection.pageIndex + 1}` : ''}
                 </span>
                 <span className="detection-badges">
-                  {detection.placement === 'approximate-visual' ? <em>Approximate position</em> : null}
-                  {detection.placement === 'manual-required' ? <em>Manual box required</em> : null}
-                  {detection.source === 'ocr' ? <em>OCR experimental</em> : null}
+                  {detection.placement === 'approximate-visual' ? <em className="warning-badge">Approximate placement</em> : null}
+                  {detection.placement === 'manual-required' ? <em className="warning-badge">Manual box required</em> : null}
+                  {detection.source === 'ocr' ? <em className="info-badge">OCR (Verify text)</em> : null}
                   <em>{reviewLabel(detection)}</em>
                 </span>
                 <span className="confidence-track">

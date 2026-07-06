@@ -81,6 +81,7 @@ export function FileDropzone() {
         <span>Max local MVP size: {formatBytes(50 * 1024 * 1024)}</span>
       </div>
       <div className="sample-actions" aria-label="Synthetic sample files">
+        <strong>Or try with synthetic samples:</strong>
         {sampleFiles.map((sample) => (
           <button key={sample.fileName} className="secondary-button" onClick={() => void loadSample(sample)} type="button">
             <FileText size={16} aria-hidden="true" />

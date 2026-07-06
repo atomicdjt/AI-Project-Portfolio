@@ -28,7 +28,14 @@ export function ExportPanel() {
   const approvedDetections = detections.filter((detection) => detection.approved).length
   const approvedBoxes = boxes.filter((box) => box.approved).length
   const checklistItems = exportChecklistForKind(document.kind, ocrStatus)
-  const exportAcknowledged = checklistItems.every((item) => acknowledgements[item])
+  const exportAcknowledged = checklistItems.every((item) => acknowledgements[item.id])
+
+  // Group checklist items
+  const groupedChecklist = checklistItems.reduce((acc, item) => {
+    if (!acc[item.group]) acc[item.group] = []
+    acc[item.group].push(item)
+    return acc
+  }, {} as Record<string, typeof checklistItems>)
 
   const exportFile = async () => {
     const result = await exportRedactedFile()
@@ -61,17 +68,22 @@ export function ExportPanel() {
       </div>
 
       <div className="verification-checklist">
-        {checklistItems.map((item) => (
-          <label key={item}>
-            <input
-              type="checkbox"
-              checked={Boolean(acknowledgements[item])}
-              onChange={(event) => {
-                setAcknowledgements((current) => ({ ...current, [item]: event.currentTarget.checked }))
-              }}
-            />
-            {item}
-          </label>
+        {Object.entries(groupedChecklist).map(([groupName, items]) => (
+          <div key={groupName} className="checklist-group">
+            <h3 className="checklist-group-title">{groupName}</h3>
+            {items.map((item) => (
+              <label key={item.id}>
+                <input
+                  type="checkbox"
+                  checked={Boolean(acknowledgements[item.id])}
+                  onChange={(event) => {
+                    setAcknowledgements((current) => ({ ...current, [item.id]: event.currentTarget.checked }))
+                  }}
+                />
+                {item.text}
+              </label>
+            ))}
+          </div>
         ))}
       </div>
 
