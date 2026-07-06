@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+coverage/
+playwright-report/
+test-results/
+
+# Local logs and temp files
+*.log
+dev-server*.log
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Editor metadata
+.idea/
+.vscode/
+
+# Package manager caches
+.npm/
+.pnpm-store/
+.yarn/

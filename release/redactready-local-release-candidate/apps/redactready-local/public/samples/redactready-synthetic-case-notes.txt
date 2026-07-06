@@ -1,0 +1,14 @@
+SYNTHETIC SAMPLE ONLY - NOT LEGAL, MEDICAL, OR CUSTOMER DATA.
+
+Case note:
+Applicant Name: Taylor Placeholder
+Email: taylor.placeholder@demo.invalid
+Phone: 202-555-0114
+Address: 42 Example Lane, Springfield, IL 62704
+Reference number: REF-2026-884200
+Patient ID: PT-903377
+Member ID: MED-445566
+Routing number: 021000021
+Password: fake-demo-token-987654321
+
+Reviewer note: surrounding context can still identify a person even after direct values are replaced. Verify manually before sharing.

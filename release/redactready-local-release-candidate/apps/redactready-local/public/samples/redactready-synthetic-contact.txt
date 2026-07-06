@@ -1,0 +1,13 @@
+SYNTHETIC SAMPLE ONLY - NOT A REAL PERSONAL RECORD.
+
+Contact packet for demonstration:
+Name: Jordan Example
+Email: jordan.example@demo.invalid
+Phone: (202) 555-0147
+Address: 123 Market Street, Springfield, IL 62704
+SSN: 123-45-6789
+Client ID: CL-442199
+Reference: CASE-2026-10488
+API key: demo_secret_1234567890
+
+Use this file only to test RedactReady Local detection, review, and export behavior.

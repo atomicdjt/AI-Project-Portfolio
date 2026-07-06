@@ -1,0 +1,11 @@
+Name: Maria Lopez
+Email: maria.lopez@example.com
+Phone: (202) 555-0198
+DOB: 04/22/1984
+SSN: 123-45-6789
+Address: 123 Market Street, Springfield, IL 62704
+Case # AB-20240177
+Policy number: POL-77889922
+api_key=sk_test_1234567890abcdef
+
+This synthetic file is safe for testing RedactReady.
