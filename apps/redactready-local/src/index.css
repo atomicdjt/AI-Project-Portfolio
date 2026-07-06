@@ -1452,3 +1452,88 @@ select:focus-visible {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Responsive Polish: Mobile Tabs & Desktop Collapse */
+.mobile-tab-bar {
+  display: none;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 12px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.mobile-tab-bar button {
+  padding: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--background);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.mobile-tab-bar button.active {
+  background: var(--brand);
+  color: #fff;
+  border-color: var(--brand);
+}
+
+.text-preview-grid.collapsed-original {
+  grid-template-columns: minmax(0, 1fr);
+}
+.toggle-original {
+  margin-left: auto;
+  gap: 6px;
+  font-size: 0.8rem;
+  padding: 4px 8px;
+}
+
+@media (max-width: 920px) {
+  .mobile-tab-bar {
+    display: grid;
+  }
+  
+  .redaction-workspace {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* By default, hide all heavy panels on mobile */
+  .redaction-workspace .document-stage,
+  .redaction-workspace .review-sidebar,
+  .redaction-workspace .export-panel {
+    display: none;
+  }
+
+  /* Show based on active tab */
+  .redaction-workspace.mobile-tab-original .document-stage,
+  .redaction-workspace.mobile-tab-redacted .document-stage,
+  .redaction-workspace.mobile-tab-review .review-sidebar,
+  .redaction-workspace.mobile-tab-review .export-panel {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  /* When on 'original' tab, force text-preview to only show original */
+  .redaction-workspace.mobile-tab-original .text-preview-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .redaction-workspace.mobile-tab-original .text-preview-grid .redacted {
+    display: none;
+  }
+
+  /* When on 'redacted' tab, force text-preview to only show redacted */
+  .redaction-workspace.mobile-tab-redacted .text-preview-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .redaction-workspace.mobile-tab-redacted .text-preview-grid section:not(.redacted) {
+    display: none;
+  }
+
+  /* Hide the toggle button on mobile since we have tabs */
+  .toggle-original {
+    display: none;
+  }
+}

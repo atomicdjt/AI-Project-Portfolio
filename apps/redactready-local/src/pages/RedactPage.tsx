@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { Navigate } from '../App'
 import { AppHeader } from '../components/AppHeader'
 import { DetectionSidebar } from '../components/DetectionSidebar'
@@ -15,6 +16,7 @@ interface RedactPageProps {
 
 export function RedactPage({ navigate }: RedactPageProps) {
   const { document, status, progressMessage } = useRedactionStore()
+  const [mobileTab, setMobileTab] = useState<'original' | 'redacted' | 'review'>('redacted')
 
   return (
     <div className="app-workspace-shell">
@@ -62,8 +64,13 @@ export function RedactPage({ navigate }: RedactPageProps) {
         </main>
       ) : (
         <>
+          <div className="mobile-tab-bar">
+            <button className={mobileTab === 'original' ? 'active' : ''} onClick={() => setMobileTab('original')} type="button">Original</button>
+            <button className={mobileTab === 'redacted' ? 'active' : ''} onClick={() => setMobileTab('redacted')} type="button">Redacted</button>
+            <button className={mobileTab === 'review' ? 'active' : ''} onClick={() => setMobileTab('review')} type="button">Review / Checklist</button>
+          </div>
           <WorkflowNotices />
-          <main className="redaction-workspace">
+          <main className={`redaction-workspace mobile-tab-${mobileTab}`}>
             <section className="document-stage">{document.kind === 'text' || document.kind === 'csv' ? <TextPreview /> : <RedactionCanvas />}</section>
             <DetectionSidebar />
             <ExportPanel />
