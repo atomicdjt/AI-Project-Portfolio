@@ -35,6 +35,7 @@ RedactReady Local helps users spot, review, redact, and verify potentially sensi
 - Supports local-first pre-share review
 - Suggests potentially sensitive findings
 - Allows human review and manual redaction
+- Provides opt-in experimental OCR for PDFs/images
 - Supports verification before export
 - Provides risk reminders for metadata, OCR, and hidden layers
 
@@ -45,6 +46,7 @@ RedactReady Local helps users spot, review, redact, and verify potentially sensi
 - Does not provide legal advice
 - Does not certify HIPAA, FERPA, FOIA, GLBA, GDPR, or other compliance
 - Does not replace human review
+- Does not guarantee OCR coverage or metadata sanitization
 
 ## Demo Workflow
 
@@ -56,7 +58,7 @@ RedactReady Local helps users spot, review, redact, and verify potentially sensi
 
 ## Local-First Privacy Model
 
-RedactReady Local is designed to process document review workflows locally in the browser or local runtime. It does not intentionally send document contents to external servers. Review the implementation and deployment environment before using sensitive real-world files.
+RedactReady Local is designed to process document review workflows locally in the browser or local runtime. It does not intentionally send document contents to external servers. OCR runtime assets and English language data are served from this app's own `public/ocr/` assets. Review the implementation and deployment environment before using sensitive real-world files.
 
 ## Common Redaction Risks
 
@@ -82,6 +84,10 @@ See [TECHNICAL_ARCHITECTURE.md](./TECHNICAL_ARCHITECTURE.md) for the app structu
 ## Setup
 
 See [SETUP.md](./SETUP.md) for installation and local execution instructions.
+
+## Synthetic Samples
+
+The demo includes public synthetic samples under `public/samples/`, and the upload screen exposes one-click sample buttons. These files are fake and intended only for workflow testing.
 
 ## Verification
 
@@ -110,9 +116,10 @@ RedactReady Local provides an assistive pre-share review workflow:
 1. Inspect the file locally.
 2. Surface possible sensitive findings.
 3. Let the user review and manually decide.
-4. Apply redactions.
-5. Verify before export.
-6. Educate users about hidden redaction risks.
+4. Optionally run experimental local OCR for PDF/image pages.
+5. Apply redactions.
+6. Complete the file-specific export checklist.
+7. Verify before export and manually inspect the downloaded file.
 
 ### Product Judgment
 The product deliberately avoids overclaiming. It does not claim HIPAA, FERPA, FOIA, GDPR, or legal compliance. It positions itself as a local-first workflow support tool with human verification.

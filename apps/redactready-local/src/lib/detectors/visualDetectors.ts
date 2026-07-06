@@ -28,6 +28,10 @@ function getBarcodeDetector(): BarcodeDetectorConstructor | undefined {
   return candidate
 }
 
+export function isBarcodeDetectorAvailable(): boolean {
+  return Boolean(getBarcodeDetector())
+}
+
 export async function detectBarcodesOnPages(pages: DocumentPage[]): Promise<DetectionResult[]> {
   const BarcodeDetector = getBarcodeDetector()
   if (!BarcodeDetector) {
@@ -56,6 +60,8 @@ export async function detectBarcodesOnPages(pages: DocumentPage[]): Promise<Dete
         confidence: result.rawValue ? 0.86 : 0.68,
         pageIndex: page.pageIndex,
         source: 'visual-detector',
+        placement: 'approximate-visual',
+        reviewStatus: 'unverified',
         bbox: {
           x: box.x,
           y: box.y,

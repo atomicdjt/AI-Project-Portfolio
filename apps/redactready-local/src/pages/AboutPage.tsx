@@ -46,8 +46,8 @@ export function AboutPage({ navigate }: AboutPageProps) {
             <FileWarning size={22} aria-hidden="true" />
             <h2>Known limitations</h2>
             <p>
-              OCR, face detection, signature detection, and layout-preserving Office exports are roadmap items. Name and
-              address detection use conservative heuristics and require review. Redaction can fail if sensitive content remains in hidden text, OCR layers, metadata, comments, annotations, filenames, embedded objects, cached previews, or unreviewed attachments. Always verify the final exported file.
+              OCR is experimental and opt-in. Face detection, signature detection, and layout-preserving Office exports are not implemented. Name and
+              address detection use conservative heuristics and require review. Redaction can fail if sensitive content remains in hidden text, missed OCR text, metadata, comments, annotations, filenames, embedded objects, cached previews, or unreviewed attachments. Always verify the final exported file.
             </p>
           </article>
         </section>

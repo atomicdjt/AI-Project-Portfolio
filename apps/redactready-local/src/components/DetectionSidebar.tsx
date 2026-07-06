@@ -10,10 +10,17 @@ function confidenceLabel(confidence: number): string {
   return 'Review'
 }
 
+function reviewLabel(detection: DetectionResult): string {
+  if (detection.reviewStatus === 'manually-adjusted') return 'Manually adjusted'
+  if (detection.reviewStatus === 'reviewed') return 'Reviewed'
+  return 'Verify placement'
+}
+
 export function DetectionSidebar() {
   const {
     detections,
     toggleDetection,
+    markDetectionReviewed,
     setCategoryApproval,
     addCustomTerm,
     setSelectedBox,
@@ -55,7 +62,9 @@ export function DetectionSidebar() {
         </div>
         <strong>{detections.filter((item) => item.approved).length}/{detections.length}</strong>
       </div>
-      <p className="sidebar-disclaimer">These suggestions may be incomplete or incorrect. Confirm every item before exporting.</p>
+      <p className="sidebar-disclaimer">
+        These suggestions may be incomplete or incorrect. PDF and OCR positions can be approximate. Confirm every box visually before exporting.
+      </p>
 
       <form
         className="custom-search"
@@ -111,7 +120,7 @@ export function DetectionSidebar() {
         {filtered.length === 0 ? (
           <div className="empty-list">
             <strong>No obvious findings in this pass.</strong>
-            <span>This does not mean the document is safe to share. Manually review the file, metadata, images, filenames, and any hidden or OCR text before sharing.</span>
+            <span>This does not mean the document is safe to share. Manually review the file, metadata, images, filenames, and any OCR or scanned text before sharing.</span>
           </div>
         ) : (
           filtered.map((detection) => (
@@ -121,26 +130,37 @@ export function DetectionSidebar() {
                 <strong>{detection.label}</strong>
                 <code>{detection.valuePreview}</code>
                 <span className="detection-meta">
-                  {confidenceLabel(detection.confidence)} confidence · {Math.round(detection.confidence * 100)}% · {detection.source}
-                  {detection.pageIndex !== undefined ? ` · page ${detection.pageIndex + 1}` : ''}
+                  {confidenceLabel(detection.confidence)} confidence - {Math.round(detection.confidence * 100)}% - {detection.source}
+                  {detection.pageIndex !== undefined ? ` - page ${detection.pageIndex + 1}` : ''}
+                </span>
+                <span className="detection-badges">
+                  {detection.placement === 'approximate-visual' ? <em>Approximate position</em> : null}
+                  {detection.placement === 'manual-required' ? <em>Manual box required</em> : null}
+                  {detection.source === 'ocr' ? <em>OCR experimental</em> : null}
+                  <em>{reviewLabel(detection)}</em>
                 </span>
                 <span className="confidence-track">
                   <i style={{ width: `${Math.round(detection.confidence * 100)}%` }} />
                 </span>
               </button>
-              <button className="approve-toggle" onClick={() => toggleDetection(detection.id)} type="button">
-                {detection.approved ? (
-                  <>
-                    <Check size={15} aria-hidden="true" />
-                    Approved
-                  </>
-                ) : (
-                  <>
-                    <X size={15} aria-hidden="true" />
-                    Rejected
-                  </>
-                )}
-              </button>
+              <div className="detection-actions">
+                <button className="approve-toggle" onClick={() => toggleDetection(detection.id)} type="button">
+                  {detection.approved ? (
+                    <>
+                      <Check size={15} aria-hidden="true" />
+                      Approved
+                    </>
+                  ) : (
+                    <>
+                      <X size={15} aria-hidden="true" />
+                      Rejected
+                    </>
+                  )}
+                </button>
+                <button className="review-toggle" onClick={() => markDetectionReviewed(detection.id)} type="button">
+                  Reviewed
+                </button>
+              </div>
             </article>
           ))
         )}

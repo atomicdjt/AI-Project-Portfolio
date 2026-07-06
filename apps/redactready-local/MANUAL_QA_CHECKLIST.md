@@ -36,6 +36,7 @@ Use synthetic fixtures from `samples/` first. Do not use real sensitive document
 
 6. File upload
    - Upload `samples/sample-sensitive.txt`.
+   - Load each one-click synthetic sample from the upload screen.
    - App transitions from loading to ready.
    - Unsupported file types show an error.
    - Files over 50MB are rejected.
@@ -57,6 +58,7 @@ Use synthetic fixtures from `samples/` first. Do not use real sensitive document
 
 10. Export verification checklist
    - Export file button is disabled before checklist acknowledgement.
+   - Checklist wording changes for PDF, image, TXT, and CSV.
    - Check all acknowledgement boxes.
    - Export file button becomes enabled.
    - Warning still tells the user to manually open and inspect the export.
@@ -70,16 +72,21 @@ Use synthetic fixtures from `samples/` first. Do not use real sensitive document
 12. Verification/report output
    - Exporting a file updates the verification card.
    - Export redaction log downloads JSON.
-   - JSON report excludes raw sensitive values and includes categories, counts, verification status, and warnings.
+   - JSON report excludes raw sensitive values and includes categories, counts, OCR status, metadata handling, verification status, and warnings.
 
-13. About/privacy limitations page
+13. OCR and browser capability notices
+   - Run OCR on a PDF or image and confirm experimental OCR status/progress appears.
+   - Confirm OCR findings are marked as experimental and require manual verification.
+   - In a browser without `BarcodeDetector`, confirm the QR/barcode warning appears.
+
+14. About/privacy limitations page
    - `/about` loads.
-   - Page explains local processing, true redaction strategy, assistive workflow, known limitations, and required safety disclaimer.
+   - Page explains local processing, flattened export strategy, assistive workflow, known limitations, and required safety disclaimer.
 
-14. Documentation links
+15. Documentation links
    - README links point to setup, limitations, verification, feature status, technical architecture, manual QA, and portfolio case study docs.
 
-15. Broken route check
+16. Broken route check
    - Navigate to an unknown path.
    - App falls back to the landing page instead of crashing.
    - Browser back/forward navigation keeps the correct route state.
@@ -91,4 +98,3 @@ Use synthetic fixtures from `samples/` first. Do not use real sensitive document
 - Export file enabled before checklist acknowledgement.
 - Raw sensitive values included in the JSON report.
 - Broken build, lint, tests, or e2e smoke test.
-

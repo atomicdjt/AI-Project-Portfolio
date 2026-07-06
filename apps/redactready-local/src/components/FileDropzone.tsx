@@ -1,7 +1,28 @@
 import { useRef, useState } from 'react'
-import { FileUp, LockKeyhole, UploadCloud } from 'lucide-react'
+import { FileText, FileUp, LockKeyhole, UploadCloud } from 'lucide-react'
 import { SUPPORTED_EXTENSIONS, formatBytes } from '../lib/files/fileType'
 import { useRedactionStore } from '../state/redactionStore'
+
+const sampleFiles = [
+  {
+    label: 'Synthetic contact',
+    path: '/samples/redactready-synthetic-contact.txt',
+    fileName: 'redactready-synthetic-contact.txt',
+    type: 'text/plain',
+  },
+  {
+    label: 'Synthetic invoice',
+    path: '/samples/redactready-synthetic-invoice.csv',
+    fileName: 'redactready-synthetic-invoice.csv',
+    type: 'text/csv',
+  },
+  {
+    label: 'Synthetic case notes',
+    path: '/samples/redactready-synthetic-case-notes.txt',
+    fileName: 'redactready-synthetic-case-notes.txt',
+    type: 'text/plain',
+  },
+]
 
 export function FileDropzone() {
   const inputRef = useRef<HTMLInputElement | null>(null)
@@ -11,6 +32,15 @@ export function FileDropzone() {
   const handleFile = (file?: File) => {
     if (!file) return
     void loadFile(file)
+  }
+
+  const loadSample = async (sample: (typeof sampleFiles)[number]) => {
+    const response = await fetch(sample.path)
+    if (!response.ok) {
+      throw new Error(`Could not load ${sample.fileName}.`)
+    }
+    const blob = await response.blob()
+    await loadFile(new File([blob], sample.fileName, { type: sample.type }))
   }
 
   return (
@@ -49,6 +79,14 @@ export function FileDropzone() {
       <div className="dropzone-meta">
         <span>{SUPPORTED_EXTENSIONS.join(' ')}</span>
         <span>Max local MVP size: {formatBytes(50 * 1024 * 1024)}</span>
+      </div>
+      <div className="sample-actions" aria-label="Synthetic sample files">
+        {sampleFiles.map((sample) => (
+          <button key={sample.fileName} className="secondary-button" onClick={() => void loadSample(sample)} type="button">
+            <FileText size={16} aria-hidden="true" />
+            {sample.label}
+          </button>
+        ))}
       </div>
       <p className="privacy-inline">
         <LockKeyhole size={16} aria-hidden="true" />

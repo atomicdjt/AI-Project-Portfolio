@@ -52,6 +52,7 @@ describe('redaction report', () => {
       pages: [],
       createdAt: new Date().toISOString(),
       warnings: [],
+      metadataNotes: [],
     }
     const verification: VerificationResult = verifyRedactedText(redactTextContent(text, detections), detections)
     const report = buildRedactionReport(document, detections, [], verification)
@@ -59,5 +60,8 @@ describe('redaction report', () => {
     expect(JSON.stringify(report)).not.toContain('alex@example.com')
     expect(report.localOnly).toBe(true)
     expect(report.categories.email).toBe(1)
+    expect(report.metadataHandling).toBe('not applicable')
+    expect(report.ocrStatus).toBe('idle')
+    expect(report.totalRejectedOrIgnored).toBe(0)
   })
 })

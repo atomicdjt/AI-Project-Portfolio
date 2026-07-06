@@ -1,4 +1,4 @@
-import { Brush, Eraser, Minus, Plus, RotateCcw, SearchCheck } from 'lucide-react'
+import { Brush, Eraser, FileSearch, Minus, Plus, RotateCcw, SearchCheck } from 'lucide-react'
 import { CATEGORY_LABELS, CATEGORY_ORDER } from '../lib/redaction/types'
 import { useRedactionStore } from '../state/redactionStore'
 import type { RedactionCategory } from '../lib/redaction/types'
@@ -15,6 +15,9 @@ export function WorkspaceToolbar() {
     manualCategory,
     setManualCategory,
     clearSession,
+    runOcr,
+    ocrStatus,
+    ocrProgressMessage,
     detections,
     boxes,
   } = useRedactionStore()
@@ -27,7 +30,7 @@ export function WorkspaceToolbar() {
       <div className="toolbar-file">
         <strong>{document.name}</strong>
         <span>
-          {document.kind.toUpperCase()} · {detections.length} detections · {boxes.filter((box) => box.approved).length} boxes
+          {document.kind.toUpperCase()} - {detections.length} detections - {boxes.filter((box) => box.approved).length} boxes
         </span>
       </div>
       {document.pages.length > 0 ? (
@@ -72,6 +75,15 @@ export function WorkspaceToolbar() {
           </select>
         </label>
       </div>
+      {document.pages.length > 0 ? (
+        <div className="toolbar-group ocr-controls">
+          <button onClick={() => void runOcr()} disabled={ocrStatus === 'running'} type="button" title="Run experimental local OCR">
+            <FileSearch size={16} aria-hidden="true" />
+            {ocrStatus === 'running' ? 'OCR running' : 'Run OCR'}
+          </button>
+          <span className={`toolbar-readout ocr-${ocrStatus}`}>{ocrStatus}</span>
+        </div>
+      ) : null}
       <button className="ghost-button" onClick={clearSession} type="button">
         <RotateCcw size={16} aria-hidden="true" />
         Clear session
@@ -82,8 +94,9 @@ export function WorkspaceToolbar() {
       </span>
       <span className="scan-chip">
         <Eraser size={16} aria-hidden="true" />
-        True pixel export
+        Flattened export
       </span>
+      {document.pages.length > 0 ? <span className="scan-chip">{ocrProgressMessage}</span> : null}
     </div>
   )
 }

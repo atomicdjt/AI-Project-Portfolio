@@ -4,7 +4,7 @@
 
 RedactReady Local is a local-first assistive privacy review tool for reviewing files before they are shared with AI tools, email recipients, vendors, clients, or public platforms.
 
-The product focuses on a practical risk: visual cover-ups are often mistaken for true redaction. RedactReady Local guides users through detection, human review, manual redaction, export, and verification reminders without claiming compliance or guaranteed removal.
+The product focuses on a practical risk: visual cover-ups are often mistaken for complete removal. RedactReady Local guides users through detection, human review, manual redaction, export, and verification reminders without claiming compliance or guaranteed removal.
 
 ## Problem
 
@@ -27,6 +27,7 @@ The app provides a browser-based workflow:
 - Vite, React, TypeScript, Tailwind, and Zustand.
 - PDF.js rendering with text-layer extraction.
 - `pdf-lib` flattened PDF generation.
+- Opt-in local OCR with Tesseract.js for PDF/image pages, clearly marked experimental.
 - Canvas-based redaction for PDFs and images.
 - Deterministic regex and heuristic detectors with Vitest coverage.
 - Playwright upload smoke test using synthetic fixtures.
@@ -45,6 +46,7 @@ Available in this demo:
 
 - PDF, PNG, JPG, JPEG, TXT, and CSV loading.
 - Suggested findings for common text patterns.
+- Experimental OCR-derived findings for PDFs/images.
 - Manual redaction boxes for visual content.
 - Flattened PDF export, redacted PNG export, and redacted text/CSV export.
 - JSON report export without raw sensitive values.
@@ -55,7 +57,7 @@ Human review required:
 
 Not currently implemented:
 
-- OCR.
+- Guaranteed OCR coverage.
 - Face detection.
 - Signature detection.
 - Batch processing.
@@ -65,4 +67,3 @@ Not currently implemented:
 ## Portfolio Value
 
 This project demonstrates privacy-aware UX, credible regulated-domain copy, local-first architecture thinking, static deployment readiness, typed frontend engineering, deterministic testing, and a release process that treats claims safety as part of quality.
-

@@ -41,6 +41,8 @@ export function matchesToDetections(
     rawValue: match.rawValue,
     confidence: match.confidence,
     source,
+    placement: source === 'ocr' ? 'manual-required' : 'exact-text',
+    reviewStatus: 'unverified',
     pageIndex,
     textRange: match.range,
     approved: true,

@@ -40,7 +40,7 @@ export function attachPdfTextBoxes(detections: DetectionResult[], pages: Documen
       })),
     )
 
-    return bbox ? { ...detection, pageIndex, bbox } : detection
+    return bbox ? { ...detection, pageIndex, bbox, placement: 'approximate-visual' } : detection
   })
 }
 
@@ -58,6 +58,6 @@ export function boxesFromDetections(detections: DetectionResult[]): RedactionBox
       },
       approved: detection.approved,
       createdBy: 'detector',
-      note: detection.label,
+      note: detection.placement === 'approximate-visual' ? `${detection.label} - approximate position` : detection.label,
     }))
 }

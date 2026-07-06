@@ -35,27 +35,31 @@ src/
 2. `loadLocalDocument` validates the file type and 50MB local-browser limit.
 3. PDFs are rendered to page canvases and text-layer items. Images are drawn to canvas. TXT and CSV files are read as text.
 4. Text detectors suggest possible sensitive findings. PDF text findings are mapped to approximate visual boxes when geometry is available.
-5. Browser barcode detection runs only when the `BarcodeDetector` API exists.
-6. The user approves, rejects, filters, or adds findings and can draw manual redaction boxes.
-7. Export creates a redacted copy and updates verification status.
-8. Report export writes a JSON summary that excludes raw sensitive values.
+5. The user can opt into experimental local OCR for PDF/image pages. OCR-derived findings enter the same review queue and are marked for manual verification.
+6. Browser barcode detection runs only when the `BarcodeDetector` API exists; the workspace warns when unavailable.
+7. The user approves, rejects, filters, reviews placement, or adds findings and can draw manual redaction boxes.
+8. Export requires a file-type-aware checklist, creates a redacted copy, and updates verification status.
+9. Report export writes a JSON summary that excludes raw sensitive values.
 
 ## Privacy Boundary
 
-The app does not intentionally send document contents to a backend. The Netlify configuration publishes static assets and sets `connect-src 'none'` for the demo. Users should still verify the deployment environment before using sensitive real-world files.
+The app does not intentionally send document contents to a backend. The Netlify configuration publishes static assets and sets `connect-src 'self'` so same-origin OCR assets can load. Users should still verify the deployment environment before using sensitive real-world files.
 
 Session data is held in browser memory. Exported files and downloaded reports are user-controlled artifacts outside the app session.
+
+OCR uses Tesseract.js with worker/core/language assets served from `public/ocr/` on the same origin. The CSP allows `connect-src 'self'` for those static assets; it does not add a document upload endpoint.
 
 ## Export Behavior
 
 - PDF: page images are rasterized, approved boxes are painted into pixels, and a new image-backed PDF is generated with `pdf-lib`.
 - Image: approved boxes are painted into a PNG export.
 - TXT/CSV: approved matched ranges are replaced with category redaction tokens.
-- Report: JSON includes counts, categories, verification status, and warnings, but not raw matched sensitive values.
+- Metadata: PDF export sets basic RedactReady metadata fields; image export uses canvas PNG output. This is attempted metadata handling, not a complete guarantee.
+- Report: JSON includes counts, categories, verification status, OCR status, metadata notes, and warnings, but not raw matched sensitive values.
 
 ## Known Technical Boundaries
 
-- OCR is not implemented.
+- OCR is experimental, opt-in, CPU-intensive, and may miss handwriting, poor scans, low contrast, rotated text, or unusual layouts.
 - Face and signature detection are not implemented.
 - Barcode and QR detection depends on browser support.
 - PDF text-to-geometry mapping is approximate.
@@ -71,5 +75,4 @@ The app is Netlify-ready as a static Vite project:
 - Publish directory: `dist`
 - Node version: `20`
 - SPA fallback: `/* -> /index.html`
-- Security headers and `connect-src 'none'` are defined in `netlify.toml`.
-
+- Security headers and `connect-src 'self'` are defined in `netlify.toml` so same-origin OCR assets can load without enabling external document upload.

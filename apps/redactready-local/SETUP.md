@@ -56,7 +56,17 @@ No environment variables are required to run the core app locally.
 
 ## Local-First Notes
 
-RedactReady Local is designed to process document review workflows locally in the browser or local runtime. It does not intentionally send document contents to external servers. Review the implementation and deployment environment before using sensitive real-world files.
+RedactReady Local is designed to process document review workflows locally in the browser or local runtime. It does not intentionally send document contents to external servers. OCR worker, core, and English language assets are served from `public/ocr/` so the browser does not need a third-party OCR CDN. Review the implementation and deployment environment before using sensitive real-world files.
+
+## Synthetic Samples
+
+The local demo exposes sample buttons on the upload screen. The files live in `public/samples/`:
+
+- `redactready-synthetic-contact.txt`
+- `redactready-synthetic-invoice.csv`
+- `redactready-synthetic-case-notes.txt`
+
+They contain fake values only and should not be treated as real records.
 
 ## Safe Demo Usage
 
@@ -64,8 +74,8 @@ Use synthetic sample files first. Do not upload real sensitive documents to a pu
 
 ## Known Limitations
 
-- **OCR**: Text within flat images might not be detected if it's not present in the PDF text layer.
-- **Metadata**: RedactReady Local removes many metadata artifacts by rendering to a new canvas, but manual verification is always required.
+- **OCR**: OCR is opt-in, experimental, local, and CPU-intensive. It may miss handwriting, low-contrast scans, rotated text, and poor images.
+- **Metadata**: RedactReady Local attempts to avoid carrying obvious export metadata where supported, but manual verification is always required.
 - **Browser limits**: Very large PDFs may exceed browser memory limits.
 - **Verification**: Human verification is strictly required after every export.
 

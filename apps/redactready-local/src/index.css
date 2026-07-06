@@ -704,6 +704,19 @@ select:focus-visible {
   gap: 10px;
 }
 
+.sample-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.sample-actions button {
+  min-height: 36px;
+  padding: 0 10px;
+  font-size: 0.82rem;
+}
+
 .dropzone-meta span,
 .privacy-inline {
   display: inline-flex;
@@ -763,6 +776,32 @@ select:focus-visible {
   grid-template-columns: minmax(0, 1fr) 360px 310px;
   gap: 12px;
   padding: 12px;
+}
+
+.workflow-notices {
+  width: calc(100% - 24px);
+  display: grid;
+  gap: 8px;
+  margin: 12px auto 0;
+  padding: 10px 12px;
+  border: 1px solid rgba(183, 121, 31, 0.28);
+  border-radius: var(--radius);
+  background: #fffaf0;
+}
+
+.workflow-notices p {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  color: #6f4a14;
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.workflow-notices svg {
+  flex: 0 0 auto;
+  margin-top: 2px;
 }
 
 .document-stage {
@@ -836,6 +875,11 @@ select:focus-visible {
 .redaction-box.selected {
   border-color: var(--blue);
   box-shadow: 0 0 0 3px rgba(45, 108, 223, 0.24);
+}
+
+.redaction-box.approximate {
+  border-style: dashed;
+  border-color: var(--amber);
 }
 
 .redaction-box span {
@@ -1084,10 +1128,43 @@ select:focus-visible {
   white-space: nowrap;
 }
 
+.detection-actions {
+  display: grid;
+  gap: 6px;
+  align-self: start;
+}
+
+.review-toggle {
+  min-height: 30px;
+  padding: 0 9px;
+  color: var(--muted);
+  border-color: var(--line);
+  background: white;
+  white-space: nowrap;
+}
+
 .detection-card.rejected .approve-toggle {
   color: var(--red);
   border-color: rgba(194, 65, 53, 0.24);
   background: #fff1ef;
+}
+
+.detection-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.detection-badges em {
+  width: fit-content;
+  padding: 3px 6px;
+  border: 1px solid rgba(183, 121, 31, 0.25);
+  border-radius: 999px;
+  color: #765116;
+  background: #fff8e8;
+  font-size: 0.7rem;
+  font-style: normal;
+  font-weight: 850;
 }
 
 .empty-list {
@@ -1172,11 +1249,31 @@ select:focus-visible {
 }
 
 .verification-card p,
-.disclaimer {
+.disclaimer,
+.export-summary p {
   margin: 0;
   color: var(--muted);
   font-size: 0.86rem;
   line-height: 1.55;
+}
+
+.export-summary {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid rgba(26, 143, 130, 0.28);
+  border-radius: var(--radius);
+  background: #eefaf7;
+}
+
+.export-summary strong {
+  color: var(--ink);
+}
+
+.export-summary span {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 800;
 }
 
 .disclaimer {

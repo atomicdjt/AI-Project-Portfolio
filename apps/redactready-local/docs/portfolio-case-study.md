@@ -11,6 +11,7 @@ The product focuses on a practical safety problem: drawing a black rectangle ove
 - Product engineering judgment around privacy, safety, and user review.
 - A production-oriented React and TypeScript architecture.
 - PDF.js rendering and `pdf-lib` flattened export.
+- Opt-in local OCR with Tesseract.js, clearly marked experimental.
 - Deterministic sensitive-data detectors with test coverage.
 - Manual canvas redaction controls with move, resize, delete, zoom, and page navigation.
 - A professional SaaS-style interface tuned for a dense document workflow.
@@ -20,9 +21,10 @@ The product focuses on a practical safety problem: drawing a black rectangle ove
 
 1. Upload a local PDF, PNG/JPG, TXT, or CSV file.
 2. Run local detectors for emails, phones, SSNs, dates, financial IDs, case IDs, medical IDs, secrets, names, addresses, and custom terms.
-3. Review every finding in a sidebar with category filters, confidence, approve/reject controls, and masked previews.
-4. Draw manual redaction boxes for visual content such as signatures, faces, scanned text, or detector misses.
-5. Export a redacted file and a JSON report that omits raw sensitive values.
+3. Optionally run experimental local OCR for PDF/image pages.
+4. Review every finding in a sidebar with category filters, confidence, approve/reject controls, placement badges, and masked previews.
+5. Draw manual redaction boxes for visual content such as signatures, faces, scanned text, or detector misses.
+6. Export a redacted file and a JSON report that omits raw sensitive values.
 
 ## Architecture Highlights
 
@@ -48,7 +50,7 @@ src/
 
 ## Engineering Tradeoffs
 
-- OCR is intentionally excluded from V1 to keep the MVP performant and dependable.
+- OCR is experimental, opt-in, CPU-intensive, and still requires manual visual verification.
 - PDF text-to-geometry mapping is approximate because many PDF text layers are fragmented.
 - Flattened PDFs can reduce text-layer leakage, but they lose selectable text and accessibility tags and still require manual review.
 - Name and address detection use conservative heuristics and require human review.

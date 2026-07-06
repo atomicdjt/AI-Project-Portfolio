@@ -43,7 +43,10 @@ export async function loadImageDocument(file: File): Promise<LoadedDocument> {
     pages: [page],
     createdAt: new Date().toISOString(),
     warnings: [
-      'Image text OCR is not enabled in this MVP. Use manual boxes for visible names, signatures, faces, and IDs.',
+      'Image OCR is opt-in and experimental. Use manual boxes for visible names, signatures, faces, and IDs.',
+    ],
+    metadataNotes: [
+      'Image exports are rendered through browser canvas as PNG files, which normally avoids carrying original EXIF metadata. This is not a complete metadata guarantee.',
     ],
   }
 }

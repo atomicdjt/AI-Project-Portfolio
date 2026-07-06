@@ -12,5 +12,6 @@ export async function loadTextDocument(file: File, kind: Extract<DocumentKind, '
     pages: [],
     createdAt: new Date().toISOString(),
     warnings: kind === 'csv' ? ['CSV export preserves delimiter structure by replacing matched values in-place.'] : [],
+    metadataNotes: ['Plain text and CSV exports do not carry PDF/image metadata in the same way, but filenames and surrounding context still require review.'],
   }
 }

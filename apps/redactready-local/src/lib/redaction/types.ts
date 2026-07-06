@@ -20,6 +20,16 @@ export type DocumentKind = 'pdf' | 'image' | 'text' | 'csv'
 
 export type DetectionSource = 'text-layer' | 'ocr' | 'regex' | 'manual' | 'visual-detector'
 
+export type DetectionPlacement = 'exact-text' | 'approximate-visual' | 'manual-required'
+
+export type DetectionReviewStatus = 'unverified' | 'reviewed' | 'manually-adjusted'
+
+export type OcrStatus = 'idle' | 'running' | 'completed' | 'failed' | 'unsupported'
+
+export type BarcodeCapabilityStatus = 'available' | 'unavailable' | 'failed' | 'not-applicable'
+
+export type MetadataHandlingStatus = 'attempted' | 'not applicable' | 'not supported'
+
 export interface BoundingBox {
   x: number
   y: number
@@ -42,6 +52,8 @@ export interface DetectionResult {
   confidence: number
   pageIndex?: number
   source: DetectionSource
+  placement: DetectionPlacement
+  reviewStatus: DetectionReviewStatus
   bbox?: BoundingBox
   textRange?: TextRange
   approved: boolean
@@ -75,6 +87,11 @@ export interface RedactionReport {
   localOnly: boolean
   totalDetections: number
   totalAppliedRedactions: number
+  totalRejectedOrIgnored: number
+  manualBoxes: number
+  ocrStatus: OcrStatus
+  metadataHandling: MetadataHandlingStatus
+  metadataNotes: string[]
   categories: Partial<Record<RedactionCategory, number>>
   verification: VerificationResult
   warnings: string[]
@@ -106,6 +123,7 @@ export interface LoadedDocument {
   pages: DocumentPage[]
   createdAt: string
   warnings: string[]
+  metadataNotes: string[]
 }
 
 export const CATEGORY_LABELS: Record<RedactionCategory, string> = {

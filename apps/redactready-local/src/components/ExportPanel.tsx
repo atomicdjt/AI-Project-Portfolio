@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Download, FileJson2, ShieldAlert, ShieldCheck, TriangleAlert } from 'lucide-react'
+import { exportChecklistForKind } from '../lib/redaction/checklist'
 import { downloadBlob } from '../lib/redaction/download'
 import { useRedactionStore } from '../state/redactionStore'
 
@@ -10,21 +11,24 @@ function statusIcon(status: 'pass' | 'warning' | 'fail') {
 }
 
 export function ExportPanel() {
-  const { document, detections, boxes, exportRedactedFile, exportReport, lastVerification } = useRedactionStore()
-  const [acknowledgements, setAcknowledgements] = useState<boolean[]>(() => Array(5).fill(false))
+  const {
+    document,
+    detections,
+    boxes,
+    exportRedactedFile,
+    exportReport,
+    lastVerification,
+    lastExportSummary,
+    ocrStatus,
+  } = useRedactionStore()
+  const [acknowledgements, setAcknowledgements] = useState<Record<string, boolean>>({})
 
   if (!document) return null
 
   const approvedDetections = detections.filter((detection) => detection.approved).length
   const approvedBoxes = boxes.filter((box) => box.approved).length
-  const exportAcknowledged = acknowledgements.every(Boolean)
-  const checklistItems = [
-    'I reviewed all suggested findings.',
-    'I checked for visible identifiers.',
-    'I checked filenames and document title.',
-    'I checked metadata and text-layer warnings.',
-    'I understand this tool does not guarantee complete redaction.',
-  ]
+  const checklistItems = exportChecklistForKind(document.kind, ocrStatus)
+  const exportAcknowledged = checklistItems.every((item) => acknowledgements[item])
 
   const exportFile = async () => {
     const result = await exportRedactedFile()
@@ -55,17 +59,15 @@ export function ExportPanel() {
           pixel boxes
         </span>
       </div>
-      
+
       <div className="verification-checklist">
-        {checklistItems.map((item, index) => (
+        {checklistItems.map((item) => (
           <label key={item}>
             <input
               type="checkbox"
-              checked={acknowledgements[index]}
+              checked={Boolean(acknowledgements[item])}
               onChange={(event) => {
-                const next = [...acknowledgements]
-                next[index] = event.currentTarget.checked
-                setAcknowledgements(next)
+                setAcknowledgements((current) => ({ ...current, [item]: event.currentTarget.checked }))
               }}
             />
             {item}
@@ -86,9 +88,9 @@ export function ExportPanel() {
       <p className="pre-export-warning">
         {exportAcknowledged
           ? 'Do not share the exported file until you have manually opened and reviewed it.'
-          : 'Complete the verification checklist before exporting a file.'}
+          : 'Complete the file-specific verification checklist before exporting a file.'}
       </p>
-      
+
       <button className="secondary-button wide" onClick={exportJsonReport} type="button">
         <FileJson2 size={18} aria-hidden="true" />
         Export redaction log
@@ -102,6 +104,22 @@ export function ExportPanel() {
           <p key={message}>{message}</p>
         ))}
       </div>
+      {lastExportSummary ? (
+        <div className="export-summary">
+          <strong>Last export summary</strong>
+          <span>{lastExportSummary.fileName}</span>
+          <span>
+            {lastExportSummary.fileType.toUpperCase()} - {lastExportSummary.redactedCount} redaction action
+            {lastExportSummary.redactedCount === 1 ? '' : 's'}
+          </span>
+          <span>{lastExportSummary.findingsReviewed} findings reviewed</span>
+          <span>{lastExportSummary.rejectedOrIgnored} rejected or ignored</span>
+          <span>{lastExportSummary.manualBoxes} manual box{lastExportSummary.manualBoxes === 1 ? '' : 'es'} approved</span>
+          <span>OCR status: {lastExportSummary.ocrStatus}</span>
+          <span>Metadata handling: {lastExportSummary.metadataHandling}</span>
+          <p>Open the exported file and visually inspect every page or value before sharing.</p>
+        </div>
+      ) : null}
       <p className="disclaimer">
         RedactReady Local helps detect and remove potentially sensitive information, but automated detection may miss items or
         flag harmless content. Always review the output before sharing. This tool does not provide legal, medical,

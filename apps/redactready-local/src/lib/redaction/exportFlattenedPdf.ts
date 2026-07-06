@@ -1,19 +1,22 @@
 import { renderRedactedPageToCanvas } from './applyCanvasRedactions'
 import type { DocumentPage, RedactionBox } from './types'
 
-export async function exportFlattenedPdf(pages: DocumentPage[], boxes: RedactionBox[], sourceName: string): Promise<Blob> {
+export async function exportFlattenedPdf(pages: DocumentPage[], boxes: RedactionBox[]): Promise<Blob> {
   if (pages.length === 0) {
     throw new Error('No PDF pages are available to export.')
   }
 
   const { PDFDocument } = await import('pdf-lib')
   const pdf = await PDFDocument.create()
-  pdf.setTitle(`${sourceName} redacted`)
+  const now = new Date()
+  pdf.setTitle('RedactReady redacted export')
+  pdf.setAuthor('')
   pdf.setSubject('Flattened local redaction export')
+  pdf.setKeywords([])
   pdf.setCreator('RedactReady local browser export')
   pdf.setProducer('RedactReady')
-  pdf.setCreationDate(new Date())
-  pdf.setModificationDate(new Date())
+  pdf.setCreationDate(now)
+  pdf.setModificationDate(now)
 
   for (const page of pages) {
     const canvas = await renderRedactedPageToCanvas(page, boxes)

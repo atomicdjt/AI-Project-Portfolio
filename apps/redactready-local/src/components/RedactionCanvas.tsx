@@ -125,7 +125,7 @@ export function RedactionCanvas() {
     return (
       <button
         key={box.id}
-        className={`redaction-box ${selected ? 'selected' : ''} ${box.approved ? '' : 'rejected'}`}
+        className={`redaction-box ${selected ? 'selected' : ''} ${box.approved ? '' : 'rejected'} ${box.note?.includes('approximate') ? 'approximate' : ''}`}
         style={style}
         type="button"
         onPointerDown={(event) => startBoxDrag(event, box, 'move')}
@@ -135,7 +135,7 @@ export function RedactionCanvas() {
         }}
         title="Drag to move. Use the corner handle to resize. Double-click to delete."
       >
-        <span>{box.createdBy === 'user' ? 'Manual' : 'Detected'}</span>
+        <span>{box.createdBy === 'user' ? 'Manual' : box.note?.includes('approximate') ? 'Approximate' : 'Detected'}</span>
         <i onPointerDown={(event) => startBoxDrag(event, box, 'resize')} aria-hidden="true" />
       </button>
     )

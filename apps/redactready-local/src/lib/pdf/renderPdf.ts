@@ -106,7 +106,7 @@ export async function renderPdfDocument(file: File): Promise<LoadedDocument> {
   }
 
   if (!aggregateText.trim()) {
-    warnings.push('No selectable PDF text layer was found. Use manual redaction boxes or OCR in a later build.')
+    warnings.push('No selectable PDF text layer was found. Run experimental OCR or use manual redaction boxes for scanned or image-only content.')
   }
 
   return {
@@ -119,5 +119,8 @@ export async function renderPdfDocument(file: File): Promise<LoadedDocument> {
     pages,
     createdAt: new Date().toISOString(),
     warnings,
+    metadataNotes: [
+      'PDF export creates a new image-backed PDF and attempts to avoid carrying obvious source metadata. Users must still inspect final file properties before sharing.',
+    ],
   }
 }
