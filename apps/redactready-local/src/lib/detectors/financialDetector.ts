@@ -13,7 +13,7 @@ export function createFinancialDetector(): SensitiveDetector {
         if (!luhnCheck(match[0])) continue
         cardMatches.push({
           category: 'financial',
-          label: 'Payment card-like number',
+          label: 'Possible payment card-like number',
           rawValue: match[0],
           confidence: 0.94,
           range: { start: match.index, end: match.index + match[0].length },
@@ -24,7 +24,7 @@ export function createFinancialDetector(): SensitiveDetector {
         text,
         /\b(?:account|acct|member|policy)\s*(?:no\.?|number|#)?\s*[:#-]?\s*([A-Z0-9][A-Z0-9 -]{6,24})\b/gi,
         'financial',
-        'Account-like number',
+        'Possible account-like number',
         0.76,
         1,
       ).filter((match) => /\d/.test(match.rawValue))
@@ -33,7 +33,7 @@ export function createFinancialDetector(): SensitiveDetector {
         text,
         /\b(?:routing|aba)\s*(?:no\.?|number|#)?\s*[:#-]?\s*(\d{9})\b/gi,
         'routing_number',
-        'Routing number-like value',
+        'Possible routing number-like value',
         0.88,
         1,
       )

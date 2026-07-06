@@ -11,7 +11,7 @@ export function detectCustomTerms(text: string, terms: string[]): DetectorMatch[
       if (match.index === undefined) continue
       matches.push({
         category: 'custom',
-        label: 'Custom search term',
+        label: 'Possible custom search term',
         rawValue: match[0],
         confidence: 0.99,
         range: { start: match.index, end: match.index + match[0].length },

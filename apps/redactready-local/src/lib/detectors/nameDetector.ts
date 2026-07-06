@@ -10,7 +10,7 @@ export function createNameDetector(): SensitiveDetector {
         text,
         /\b(?:name|patient|employee|client|student|applicant)\s*[:#-]\s*([A-Z][a-zA-Z'-]+(?:[ \t]+[A-Z][a-zA-Z'-]+){1,3})\b/gi,
         'name',
-        'Name-like value',
+        'Possible name-like value',
         0.58,
         1,
       )

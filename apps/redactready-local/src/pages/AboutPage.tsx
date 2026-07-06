@@ -15,7 +15,7 @@ export function AboutPage({ navigate }: AboutPageProps) {
           <h1>Privacy model and limitations</h1>
           <p>
             RedactReady Local is built for local-first document preparation. Its default architecture is designed to keep documents in the
-            browser session, make automated detections reviewable, and export safer flattened files where feasible.
+              browser session, make automated detections reviewable, and export flattened review copies where feasible.
           </p>
         </section>
 
@@ -29,7 +29,7 @@ export function AboutPage({ navigate }: AboutPageProps) {
           </article>
           <article>
             <EyeOff size={22} aria-hidden="true" />
-            <h2>True redaction strategy</h2>
+            <h2>Flattened export strategy</h2>
             <p>
               PDF pages are rendered to canvas, approved boxes are painted into pixels, and a new image-backed PDF is
               generated. Images are overwritten at the pixel level. Text and CSV values are replaced.

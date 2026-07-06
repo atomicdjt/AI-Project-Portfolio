@@ -10,8 +10,8 @@ export function PrivacyNotice() {
       </div>
       <div>
         <LockKeyhole size={20} aria-hidden="true" />
-        <strong>True redaction exports</strong>
-        <span>PDFs and images are flattened to pixels. Text and CSV values are replaced in the output.</span>
+        <strong>Flattened export workflow</strong>
+        <span>PDFs and images are flattened to pixels where feasible. Text and CSV values are replaced in the output.</span>
       </div>
       <div>
         <ShieldCheck size={20} aria-hidden="true" />

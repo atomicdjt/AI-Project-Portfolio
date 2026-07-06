@@ -2,9 +2,9 @@
 
 ## Product Summary
 
-RedactReady is a local-first privacy-preserving document redaction engine for people who need to sanitize files before sharing them with AI tools, employers, vendors, agencies, clients, insurers, or the public.
+RedactReady Local is a local-first assistive privacy review tool for people who need to inspect files before sharing them with AI tools, employers, vendors, agencies, clients, insurers, or the public.
 
-The product focuses on a practical safety problem: drawing a black rectangle over a PDF is often not true redaction. RedactReady renders PDFs and images to canvas, applies redactions into pixels, and exports a flattened copy with a verification report.
+The product focuses on a practical safety problem: drawing a black rectangle over a PDF can leave hidden text, OCR layers, metadata, or copied text exposed. RedactReady Local renders PDFs and images to canvas, applies approved boxes into pixels, and exports a flattened review copy with a verification report.
 
 ## What This Demonstrates
 
@@ -44,13 +44,13 @@ src/
 - No server-side file upload.
 - No file-content logs.
 - Reports count categories but exclude sensitive raw values.
-- PDF export intentionally sacrifices selectable text for safer flattened output.
+- PDF export intentionally sacrifices selectable text for a flattened pixel-based output.
 
 ## Engineering Tradeoffs
 
 - OCR is intentionally excluded from V1 to keep the MVP performant and dependable.
 - PDF text-to-geometry mapping is approximate because many PDF text layers are fragmented.
-- Flattened PDFs are safer for redaction but lose selectable text and accessibility tags.
+- Flattened PDFs can reduce text-layer leakage, but they lose selectable text and accessibility tags and still require manual review.
 - Name and address detection use conservative heuristics and require human review.
 
 ## Validation

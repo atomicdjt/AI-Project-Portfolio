@@ -10,7 +10,7 @@ export function createPhoneDetector(): SensitiveDetector {
         text,
         /(?:\+?1[\s.-]?)?(?:\(\d{3}\)|\b\d{3})[\s.-]?\d{3}[\s.-]?\d{4}\b/g,
         'phone',
-        'Phone number',
+        'Possible phone number',
         0.88,
       )
     },

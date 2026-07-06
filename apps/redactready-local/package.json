@@ -2,7 +2,7 @@
   "name": "redactready-local",
   "private": true,
   "version": "1.0.0",
-  "description": "A local-first privacy-preserving document redaction engine for PDFs, images, text, and CSV files.",
+  "description": "A local-first assistive privacy review tool for PDFs, images, text, and CSV files.",
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",

@@ -36,6 +36,20 @@ npm run preview
 npm run test
 ```
 
+## Lint
+
+```bash
+npm run lint
+```
+
+## End-to-End Smoke Test
+
+```bash
+npm run e2e
+```
+
+The Playwright smoke test starts the Vite development server and uploads the synthetic text fixture from `samples/`.
+
 ## Environment Variables
 
 No environment variables are required to run the core app locally.

@@ -50,7 +50,7 @@ export async function detectBarcodesOnPages(pages: DocumentPage[]): Promise<Dete
       detections.push({
         id: `barcode-${page.pageIndex}-${Math.round(box.x)}-${Math.round(box.y)}`,
         category: 'barcode_qr',
-        label: result.format ? `${result.format} detected` : 'QR/barcode detected',
+        label: result.format ? `Possible ${result.format}` : 'Possible QR/barcode',
         rawValue,
         valuePreview: result.rawValue ? maskValue(result.rawValue) : 'visual code',
         confidence: result.rawValue ? 0.86 : 0.68,

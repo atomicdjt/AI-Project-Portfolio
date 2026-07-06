@@ -11,9 +11,21 @@ This document outlines the current status of features in RedactReady Local, sepa
 | **Export sanitized copy** | Implemented | Exports flattened PDFs, redacted images, or redacted text. Manual verification required. |
 | **OCR text awareness** | Risk Reminder | Not implemented. Users must manually review images for baked-in text. |
 | **Metadata awareness** | Risk Reminder | PDF flattening mitigates some risks, but users must manually verify final metadata. |
+| **PDF flattening** | Implemented | PDF pages are rasterized and exported into a new image-backed PDF. The output is not text-searchable and still requires manual review. |
+| **Image exports** | Implemented | PNG/JPG inputs export as redacted PNG images with approved boxes painted into pixels. OCR and face/signature detection are not included. |
+| **TXT export** | Implemented | Approved text findings are replaced with redaction tokens. Surrounding context can still reveal sensitive meaning. |
+| **CSV export** | Implemented | Approved values are replaced in place. Strict schemas, formulas, quoting, or downstream parsing should be manually verified. |
 | **Comments / annotations awareness** | Risk Reminder | Mentioned as a verification item. |
+| **Faces** | Not currently implemented | Users must add manual boxes for faces in screenshots, scans, or images. |
+| **Signatures** | Not currently implemented | Users must add manual boxes for signatures and handwriting. |
+| **Barcodes / QR codes** | Browser-dependent | Uses the browser `BarcodeDetector` API when available; otherwise users must review manually. |
+| **Browser memory limits** | Known limitation | Files over 50MB are blocked, and complex PDFs may still hit local browser limits. |
+| **Large files** | Known limitation | Single-file local review only; very large or complex files require manual pre-splitting. |
+| **Sensitive values in reports** | Implemented | JSON reports intentionally exclude raw sensitive values and include counts, categories, verification status, and warnings. |
 | **Batch processing** | Roadmap | Only single-file processing is supported currently. |
 | **Audit report export** | Implemented | JSON export of the verification log is available. |
+| **Human review** | Required | Every export requires checklist acknowledgement, and final output must be manually opened and inspected before sharing. |
+| **Planned improvements** | Roadmap | OCR review, richer visual detection, batch processing, stronger metadata inspection, and layout-aware export validation. |
 | **Compliance certification** | Not included | Explicitly not a compliance certification tool. |
 | **Guaranteed redaction** | Not included | Explicitly not guaranteed. |
 | **Fully automated sensitive-data removal** | Not included | Human review is strictly required. |

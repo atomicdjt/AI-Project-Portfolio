@@ -10,7 +10,7 @@ export function createEmailDetector(): SensitiveDetector {
         text,
         /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/gi,
         'email',
-        'Email address',
+        'Possible email address',
         0.98,
       )
     },

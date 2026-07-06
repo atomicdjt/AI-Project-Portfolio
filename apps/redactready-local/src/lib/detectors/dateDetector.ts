@@ -18,7 +18,7 @@ export function createDateDetector(): SensitiveDetector {
           const contextBoost = hasDateOfBirthContext(text, match.index)
           matches.push({
             category: 'date_of_birth',
-            label: contextBoost ? 'Date of birth' : 'Date-like value',
+            label: contextBoost ? 'Possible date of birth' : 'Possible date-like value',
             rawValue: match[0],
             confidence: contextBoost ? 0.86 : 0.64,
             range: { start: match.index, end: match.index + match[0].length },

@@ -75,6 +75,10 @@ RedactReady Local is designed to process document review workflows locally in th
 
 See [FEATURE_STATUS.md](./FEATURE_STATUS.md) for details on implemented, demo-only, roadmap, and explicitly excluded features.
 
+## Technical Architecture
+
+See [TECHNICAL_ARCHITECTURE.md](./TECHNICAL_ARCHITECTURE.md) for the app structure, data flow, privacy boundary, export behavior, and deployment notes.
+
 ## Setup
 
 See [SETUP.md](./SETUP.md) for installation and local execution instructions.
@@ -87,7 +91,13 @@ See [VERIFICATION.md](./VERIFICATION.md) for details on build validation and cla
 
 See [LIMITATIONS.md](./LIMITATIONS.md) for details on the boundaries of automated detection and visual redaction.
 
+## Manual QA
+
+See [MANUAL_QA_CHECKLIST.md](./MANUAL_QA_CHECKLIST.md) for the browser checklist used before public review.
+
 ## Portfolio Case Study
+
+See [PORTFOLIO_CASE_STUDY.md](./PORTFOLIO_CASE_STUDY.md) for the release-ready portfolio narrative.
 
 ### Problem
 Professionals increasingly share PDFs, screenshots, records, logs, and forms with AI tools, vendors, clients, and public platforms. These files often contain personal identifiers, credentials, financial details, health-related content, employee data, student information, or confidential business context.
