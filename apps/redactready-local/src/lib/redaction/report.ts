@@ -18,7 +18,7 @@ export function buildRedactionReport(
     ...document.warnings,
     'This report intentionally excludes raw sensitive values.',
     'Automated detection can miss content. Human review is required before sharing.',
-    'This report is not proof of complete sanitization.',
+    'This report is a workflow summary, not proof of complete sanitization.',
   ]
   const textApplied =
     document.kind === 'text' || document.kind === 'csv'

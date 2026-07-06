@@ -49,3 +49,95 @@ describe('safe finding labels', () => {
     expect(detections.map((detection) => detection.label)).toContain('Possible SSN-like identifier')
   })
 })
+
+import { buildRedactionReport } from '../lib/redaction/report'
+import type { LoadedDocument, DetectionResult, VerificationResult } from '../lib/redaction/types'
+
+describe('zero-leak reporting', () => {
+  it('does not leak sensitive values into the JSON report', () => {
+    const document: LoadedDocument = {
+      id: 'test-1',
+      name: 'super-secret-report.pdf',
+      kind: 'pdf',
+      mimeType: 'application/pdf',
+      size: 1024,
+      text: '',
+      pages: [],
+      createdAt: new Date().toISOString(),
+      warnings: [],
+      metadataNotes: []
+    }
+
+    const detections: DetectionResult[] = [
+      {
+        id: 'd1',
+        category: 'email',
+        label: 'Possible email',
+        valuePreview: 'jane.example@test.local',
+        rawValue: 'jane.example@test.local',
+        confidence: 0.9,
+        source: 'regex',
+        placement: 'exact-text',
+        reviewStatus: 'unverified',
+        approved: true,
+        createdAt: new Date().toISOString(),
+      },
+      {
+        id: 'd2',
+        category: 'phone',
+        label: 'Possible phone',
+        valuePreview: '555-123-4567',
+        rawValue: '555-123-4567',
+        confidence: 0.9,
+        source: 'regex',
+        placement: 'exact-text',
+        reviewStatus: 'unverified',
+        approved: true,
+        createdAt: new Date().toISOString(),
+      },
+      {
+        id: 'd3',
+        category: 'ssn',
+        label: 'Possible SSN',
+        valuePreview: '123-45-6789',
+        rawValue: '123-45-6789',
+        confidence: 0.9,
+        source: 'regex',
+        placement: 'exact-text',
+        reviewStatus: 'unverified',
+        approved: true,
+        createdAt: new Date().toISOString(),
+      },
+      {
+        id: 'd4',
+        category: 'financial',
+        label: 'Possible credit card',
+        valuePreview: '4111 1111 1111 1111',
+        rawValue: '4111 1111 1111 1111',
+        confidence: 0.9,
+        source: 'regex',
+        placement: 'exact-text',
+        reviewStatus: 'unverified',
+        approved: true,
+        createdAt: new Date().toISOString(),
+      }
+    ]
+
+    const verification: VerificationResult = {
+      status: 'pass',
+      title: 'Test',
+      checkedAt: new Date().toISOString(),
+      checkedValues: 4,
+      leakedValues: 0,
+      messages: []
+    }
+
+    const report = buildRedactionReport(document, detections, [], verification)
+    const jsonStr = JSON.stringify(report)
+
+    expect(jsonStr).not.toContain('jane.example@test.local')
+    expect(jsonStr).not.toContain('555-123-4567')
+    expect(jsonStr).not.toContain('123-45-6789')
+    expect(jsonStr).not.toContain('4111 1111 1111 1111')
+  })
+})

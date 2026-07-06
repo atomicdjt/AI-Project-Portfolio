@@ -1,48 +1,23 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { CheckCircle2, ShieldAlert, XCircle, AlertTriangle, Info } from 'lucide-react'
 
 export function SelfTestPanel({ onClose }: { onClose: () => void }) {
-  const [results, setResults] = useState<{
-    wasm: 'pending' | 'pass' | 'fail'
-    worker: 'pending' | 'pass' | 'fail'
-    barcode: 'pending' | 'pass' | 'fail'
-    localEnv: 'pending' | 'pass' | 'fail'
-  }>({
-    wasm: 'pending',
-    worker: 'pending',
-    barcode: 'pending',
-    localEnv: 'pending',
-  })
-
-  useEffect(() => {
-    // Check Wasm
+  const [results] = useState(() => {
+    let wasm: 'pass' | 'fail' = 'fail'
     try {
       if (typeof WebAssembly === 'object' && typeof WebAssembly.instantiate === 'function') {
-        setResults((r) => ({ ...r, wasm: 'pass' }))
-      } else {
-        setResults((r) => ({ ...r, wasm: 'fail' }))
+        wasm = 'pass'
       }
     } catch {
-      setResults((r) => ({ ...r, wasm: 'fail' }))
+      // Ignore
     }
 
-    // Check Workers and Concurrency
-    if (typeof Worker !== 'undefined' && navigator.hardwareConcurrency > 0) {
-      setResults((r) => ({ ...r, worker: 'pass' }))
-    } else {
-      setResults((r) => ({ ...r, worker: 'fail' }))
-    }
+    const worker: 'pass' | 'fail' = (typeof Worker !== 'undefined' && navigator.hardwareConcurrency > 0) ? 'pass' : 'fail'
+    const barcode: 'pass' | 'fail' = ('BarcodeDetector' in window) ? 'pass' : 'fail'
+    const localEnv: 'pass' | 'fail' = 'pass'
 
-    // Check BarcodeDetector
-    if ('BarcodeDetector' in window) {
-      setResults((r) => ({ ...r, barcode: 'pass' }))
-    } else {
-      setResults((r) => ({ ...r, barcode: 'fail' }))
-    }
-
-    // Check Local Env
-    setResults((r) => ({ ...r, localEnv: 'pass' }))
-  }, [])
+    return { wasm, worker, barcode, localEnv }
+  })
 
   return (
     <div className="self-test-overlay" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, padding: '20px' }}>
@@ -52,7 +27,7 @@ export function SelfTestPanel({ onClose }: { onClose: () => void }) {
         </h2>
         
         <p style={{ marginBottom: '24px', color: 'var(--muted)', lineHeight: '1.5' }}>
-          This self-test verifies your browser's capability to run local privacy models. It is a capability check, not proof of complete redaction.
+          This self-test verifies your browser's capability to run local privacy models. It is a capability check, not proof of complete redaction. Self-test is not proof of complete sanitization. Manual review still required.
         </p>
 
         <div className="test-results" style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '24px' }}>
@@ -69,7 +44,7 @@ export function SelfTestPanel({ onClose }: { onClose: () => void }) {
             {results.wasm === 'pass' ? <CheckCircle2 color="var(--brand)" /> : <XCircle color="red" />}
             <div>
               <strong>WebAssembly Engine</strong>
-              <div style={{ fontSize: '0.85rem', color: 'var(--muted)' }}>{results.wasm === 'pass' ? 'Available. Required for high-performance OCR.' : 'Not available in this browser.'}</div>
+              <div style={{ fontSize: '0.85rem', color: 'var(--muted)' }}>{results.wasm === 'pass' ? 'Available. Experimental feature required for high-performance OCR.' : 'Unavailable in this browser.'}</div>
             </div>
           </div>
 
@@ -77,7 +52,7 @@ export function SelfTestPanel({ onClose }: { onClose: () => void }) {
             {results.worker === 'pass' ? <CheckCircle2 color="var(--brand)" /> : <XCircle color="red" />}
             <div>
               <strong>Web Workers & Concurrency</strong>
-              <div style={{ fontSize: '0.85rem', color: 'var(--muted)' }}>{results.worker === 'pass' ? `Available. Cores exposed: ${navigator.hardwareConcurrency}` : 'Not available.'}</div>
+              <div style={{ fontSize: '0.85rem', color: 'var(--muted)' }}>{results.worker === 'pass' ? `Available. Cores exposed: ${navigator.hardwareConcurrency}` : 'Unavailable in this browser.'}</div>
             </div>
           </div>
 
@@ -85,7 +60,7 @@ export function SelfTestPanel({ onClose }: { onClose: () => void }) {
             {results.barcode === 'pass' ? <CheckCircle2 color="var(--brand)" /> : <AlertTriangle color="orange" />}
             <div>
               <strong>QR / Barcode Detection API</strong>
-              <div style={{ fontSize: '0.85rem', color: 'var(--muted)' }}>{results.barcode === 'pass' ? 'Available in this browser.' : 'Browser-dependent. Not supported natively in this browser.'}</div>
+              <div style={{ fontSize: '0.85rem', color: 'var(--muted)' }}>{results.barcode === 'pass' ? 'Available in this browser.' : 'Browser-dependent. Unavailable in this browser.'}</div>
             </div>
           </div>
 

@@ -22,6 +22,7 @@ export function ExportPanel() {
     ocrStatus,
   } = useRedactionStore()
   const [acknowledgements, setAcknowledgements] = useState<Record<string, boolean>>({})
+  const [unreviewedAcknowledged, setUnreviewedAcknowledged] = useState(false)
 
   if (!document) return null
 
@@ -36,6 +37,9 @@ export function ExportPanel() {
     acc[item.group].push(item)
     return acc
   }, {} as Record<string, typeof checklistItems>)
+
+  const hasUnreviewed = detections.some((d) => d.reviewStatus === 'unverified')
+  const isExportReady = exportAcknowledged && (!hasUnreviewed || unreviewedAcknowledged)
 
   const exportFile = async () => {
     const result = await exportRedactedFile()
@@ -87,19 +91,46 @@ export function ExportPanel() {
             ))}
           </div>
         ))}
+
+        {hasUnreviewed && (
+          <div className="checklist-group" style={{ display: 'flex', flexDirection: 'column', gap: '8px', padding: '12px', background: 'rgba(255, 68, 68, 0.1)', borderRadius: '8px', border: '1px solid rgba(255, 68, 68, 0.3)' }}>
+            <h3 className="checklist-group-title" style={{ fontSize: '0.9rem', color: 'var(--brand)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '4px' }}>
+              <TriangleAlert size={14} style={{ display: 'inline', marginRight: '4px', verticalAlign: 'text-bottom' }} /> Unreviewed Findings
+            </h3>
+            <p style={{ fontSize: '0.85rem', color: 'var(--muted)', margin: '0 0 8px 0' }}>
+              There are still unreviewed findings. Review, reject, or explicitly acknowledge them before exporting.
+            </p>
+            <label style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', padding: '4px 0' }}>
+              <input
+                type="checkbox"
+                style={{ width: '20px', height: '20px', marginTop: '2px', flexShrink: 0 }}
+                checked={unreviewedAcknowledged}
+                onChange={(e) => setUnreviewedAcknowledged(e.currentTarget.checked)}
+              />
+              <span style={{ fontSize: '0.9rem', lineHeight: '1.4', fontWeight: 500 }}>I understand there are unreviewed findings and I still want to export.</span>
+            </label>
+          </div>
+        )}
       </div>
 
       <button
         className="primary-button wide"
-        disabled={!exportAcknowledged}
+        disabled={!isExportReady}
         onClick={() => void exportFile()}
-        title={exportAcknowledged ? 'Export redacted file' : 'Complete the verification checklist before exporting.'}
+        title={isExportReady ? 'Export redacted file' : 'Resolve findings and complete checklist before exporting.'}
         type="button"
         style={{ marginTop: '24px' }}
       >
         <Download size={18} aria-hidden="true" />
         {document.kind === 'pdf' ? 'Export flattened PDF (Safe Export Mode)' : document.kind === 'image' ? 'Export redacted PNG' : 'Export redacted text'}
       </button>
+
+      {document.kind === 'pdf' && (
+        <p className="pre-export-warning" style={{ fontSize: '0.85rem', lineHeight: '1.4', marginTop: '12px' }}>
+          <strong>Flattened PDF tradeoff:</strong> Flattened PDF export converts visible reviewed pages into a redacted visual output. This can reduce hidden-layer risk, but it may remove selectable text, searchability, form fields, and accessibility/screen-reader structure. Always inspect the exported file before sharing.
+        </p>
+      )}
+
       <p className="pre-export-warning">
         {exportAcknowledged
           ? 'Do not share the exported file until you have manually opened and reviewed it.'
