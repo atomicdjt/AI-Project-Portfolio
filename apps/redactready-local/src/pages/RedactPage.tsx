@@ -70,7 +70,7 @@ export function RedactPage({ navigate }: RedactPageProps) {
             <button className={mobileTab === 'review' ? 'active' : ''} onClick={() => setMobileTab('review')} type="button">Review / Checklist</button>
           </div>
           <div className="mobile-only-warning" style={{ display: 'none', padding: '12px', background: 'var(--surface)', borderBottom: '1px solid var(--border)', textAlign: 'center', fontSize: '0.85rem', color: 'var(--muted)' }}>
-            Desktop is recommended for complex document reviews. Mobile layouts are best for quick checks and simple text workflows.
+            Desktop is strongly recommended for complex document reviews to ensure precision and prevent accidental unreviewed exports. Mobile layouts are best for quick checks and simple text workflows.
           </div>
           <style>{`
             @media (max-width: 768px) {

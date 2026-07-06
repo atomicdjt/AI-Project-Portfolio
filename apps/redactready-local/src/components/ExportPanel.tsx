@@ -113,23 +113,27 @@ export function ExportPanel() {
         )}
       </div>
 
+      {document.kind === 'pdf' && (
+        <div className="pdf-tradeoff-warning" style={{ display: 'flex', flexDirection: 'column', gap: '8px', padding: '12px', background: 'rgba(255, 165, 0, 0.1)', borderRadius: '8px', border: '1px solid rgba(255, 165, 0, 0.3)', marginBottom: '16px', marginTop: '8px' }}>
+          <h3 style={{ fontSize: '0.9rem', color: 'var(--brand)', textTransform: 'uppercase', letterSpacing: '0.5px', margin: 0 }}>
+            <TriangleAlert size={14} style={{ display: 'inline', marginRight: '4px', verticalAlign: 'text-bottom' }} /> Flattened PDF Tradeoff
+          </h3>
+          <p style={{ fontSize: '0.85rem', color: 'var(--muted)', margin: 0, lineHeight: '1.4' }}>
+            Flattened PDF export converts visible reviewed pages into a redacted visual output. This can reduce hidden-layer risk, but it may remove selectable text, searchability, form fields, and accessibility/screen-reader structure. Always inspect the exported file before sharing.
+          </p>
+        </div>
+      )}
+
       <button
         className="primary-button wide"
         disabled={!isExportReady}
         onClick={() => void exportFile()}
         title={isExportReady ? 'Export redacted file' : 'Resolve findings and complete checklist before exporting.'}
         type="button"
-        style={{ marginTop: '24px' }}
       >
         <Download size={18} aria-hidden="true" />
         {document.kind === 'pdf' ? 'Export flattened PDF (Safe Export Mode)' : document.kind === 'image' ? 'Export redacted PNG' : 'Export redacted text'}
       </button>
-
-      {document.kind === 'pdf' && (
-        <p className="pre-export-warning" style={{ fontSize: '0.85rem', lineHeight: '1.4', marginTop: '12px' }}>
-          <strong>Flattened PDF tradeoff:</strong> Flattened PDF export converts visible reviewed pages into a redacted visual output. This can reduce hidden-layer risk, but it may remove selectable text, searchability, form fields, and accessibility/screen-reader structure. Always inspect the exported file before sharing.
-        </p>
-      )}
 
       <p className="pre-export-warning">
         {exportAcknowledged
