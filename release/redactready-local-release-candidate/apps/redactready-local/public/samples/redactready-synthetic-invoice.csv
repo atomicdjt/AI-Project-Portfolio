@@ -1,0 +1,4 @@
+SYNTHETIC SAMPLE ONLY - NOT REAL CUSTOMER DATA
+invoice,client_name,email,phone,address,account,case_reference,amount
+INV-1001,Alex Demo,alex.demo@demo.invalid,202-555-0188,"456 Cedar Road, Springfield, IL 62704",ACCT-77889922,CASE-2026-7781,1240.00
+INV-1002,Maria Sample,maria.sample@demo.invalid,202-555-0199,"789 Pine Avenue, Springfield, IL 62704",ACCT-11223344,REF-2026-5520,875.50
