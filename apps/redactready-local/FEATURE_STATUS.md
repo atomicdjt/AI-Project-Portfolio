@@ -28,7 +28,7 @@ This document separates production-ready workflow pieces from experimental, brow
 
 | Feature | Notes |
 | :--- | :--- |
-| Barcode / QR detection | Uses the browser `BarcodeDetector` API when available and warns when unavailable. |
+| Barcode / QR detection | QR/barcode detection is browser-dependent and may not work on all devices. Users must manually inspect visual identifiers before sharing. |
 | PDF rendering and canvas export | Depends on browser memory, canvas behavior, and PDF.js rendering support. |
 | OCR worker execution | Depends on browser worker support and availability of same-origin OCR assets. |
 

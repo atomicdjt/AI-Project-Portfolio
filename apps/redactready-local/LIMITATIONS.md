@@ -14,7 +14,7 @@ RedactReady Local is an **assistive privacy review tool**, not a guaranteed remo
 - **Layout preservation**: PDFs exported from this tool are deliberately *flattened* into images to prevent hidden text layers from leaking. This means the resulting PDF is no longer text-searchable.
 - **PDF mapping**: Text-to-box mapping for selectable PDF text and OCR results can be approximate. Confirm every box visually before export.
 - **Metadata**: PDF export creates a new image-backed PDF and sets basic export metadata. Image export redraws through canvas as PNG. These steps attempt to avoid carrying obvious source metadata, but they are not a complete metadata guarantee.
-- **QR/barcode detection**: Browser barcode detection depends on the `BarcodeDetector` API and may be unavailable outside Chromium-based browsers. Manual review and manual boxes are still required.
+- **QR/barcode detection**: QR/barcode detection depends on the browser’s native Barcode Detection API and may not be available in all browsers or devices. If unavailable, users must visually inspect QR codes, barcodes, boarding passes, wristbands, labels, screenshots, and similar visual identifiers manually.
 
 ## Text and CSV Limitations
 

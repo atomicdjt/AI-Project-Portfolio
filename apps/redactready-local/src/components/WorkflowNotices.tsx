@@ -9,7 +9,7 @@ export function WorkflowNotices() {
     ...document.warnings,
     ...document.metadataNotes,
     barcodeStatus === 'unavailable'
-      ? 'QR/barcode detection may not be available in this browser. You can still review the file manually and draw redaction boxes.'
+      ? 'QR/barcode detection is browser-dependent and may not work on all devices. Manually inspect visual identifiers before sharing.'
       : '',
     ocrStatus === 'completed'
       ? 'OCR is experimental and may miss text. OCR results require manual verification.'
