@@ -14,8 +14,8 @@ export function AboutPage({ navigate }: AboutPageProps) {
         <section className="about-intro">
           <h1>Privacy model and limitations</h1>
           <p>
-            RedactReady is built for local-first document preparation. Its default architecture keeps documents in the
-            browser session, makes automated detections reviewable, and exports safer flattened files where feasible.
+            RedactReady Local is built for local-first document preparation. Its default architecture is designed to keep documents in the
+            browser session, make automated detections reviewable, and export safer flattened files where feasible.
           </p>
         </section>
 
@@ -24,8 +24,7 @@ export function AboutPage({ navigate }: AboutPageProps) {
             <ServerOff size={22} aria-hidden="true" />
             <h2>Local processing boundary</h2>
             <p>
-              The app does not include a backend upload route for user documents. PDF rendering, image redaction, text
-              replacement, and report generation run client-side.
+              RedactReady Local is designed to process document review workflows locally in the browser or local runtime. RedactReady Local does not intentionally send document contents to external servers.
             </p>
           </article>
           <article>
@@ -38,10 +37,9 @@ export function AboutPage({ navigate }: AboutPageProps) {
           </article>
           <article>
             <LockKeyhole size={22} aria-hidden="true" />
-            <h2>Threat model</h2>
+            <h2>Assistive Workflow</h2>
             <p>
-              The MVP reduces accidental sharing of visible identifiers, text-layer identifiers, metadata inherited from
-              source PDFs, and simple secrets. It does not defend against compromised browsers or malicious files.
+              The product helps surface risk. The user remains responsible for deciding what must be redacted. RedactReady Local provides privacy review assistance. You make the final decisions.
             </p>
           </article>
           <article>
@@ -49,7 +47,7 @@ export function AboutPage({ navigate }: AboutPageProps) {
             <h2>Known limitations</h2>
             <p>
               OCR, face detection, signature detection, and layout-preserving Office exports are roadmap items. Name and
-              address detection use conservative heuristics and require review.
+              address detection use conservative heuristics and require review. Redaction can fail if sensitive content remains in hidden text, OCR layers, metadata, comments, annotations, filenames, embedded objects, cached previews, or unreviewed attachments. Always verify the final exported file.
             </p>
           </article>
         </section>
@@ -59,9 +57,7 @@ export function AboutPage({ navigate }: AboutPageProps) {
           <div>
             <h2>Required safety disclaimer</h2>
             <p>
-              RedactReady helps detect and remove potentially sensitive information, but automated detection may miss
-              items or flag harmless content. Always review the output before sharing. This tool does not provide legal,
-              medical, compliance, or security guarantees.
+              RedactReady Local is designed to support local-first privacy review workflows. It can help users identify, review, mark, and verify potentially sensitive information in documents before sharing them externally. It does not provide legal advice, does not certify compliance with HIPAA, FERPA, FOIA, GLBA, GDPR, or any other regulation, and does not guarantee that all sensitive information will be detected or removed. Users are responsible for manually reviewing all files, exports, metadata, filenames, hidden text layers, OCR text, comments, annotations, and other document artifacts before sharing.
             </p>
           </div>
         </section>

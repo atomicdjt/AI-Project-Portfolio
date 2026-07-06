@@ -51,10 +51,11 @@ export function DetectionSidebar() {
             <Filter size={14} aria-hidden="true" />
             Detected items
           </span>
-          <h2>Review queue</h2>
+          <h2>Review suggested findings</h2>
         </div>
         <strong>{detections.filter((item) => item.approved).length}/{detections.length}</strong>
       </div>
+      <p className="sidebar-disclaimer">These suggestions may be incomplete or incorrect. Confirm every item before exporting.</p>
 
       <form
         className="custom-search"
@@ -109,8 +110,8 @@ export function DetectionSidebar() {
       <div className="detection-list" data-testid="detection-list">
         {filtered.length === 0 ? (
           <div className="empty-list">
-            <strong>No detections in this view</strong>
-            <span>Add a custom search term or draw manual boxes for content the detectors missed.</span>
+            <strong>No obvious findings in this pass.</strong>
+            <span>This does not mean the document is safe to share. Manually review the file, metadata, images, filenames, and any hidden or OCR text before sharing.</span>
           </div>
         ) : (
           filtered.map((detection) => (

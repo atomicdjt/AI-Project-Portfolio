@@ -14,8 +14,8 @@ export function AppHeader({ navigate, current = 'home' }: AppHeaderProps) {
           <FileLock2 size={20} aria-hidden="true" />
         </span>
         <span>
-          <strong>RedactReady</strong>
-          <small>Local-only redaction</small>
+          <strong>RedactReady Local</strong>
+          <small>Local-first privacy review</small>
         </span>
       </button>
       <nav className="header-nav" aria-label="Primary">

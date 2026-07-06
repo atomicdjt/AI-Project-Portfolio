@@ -38,8 +38,9 @@ export function FileDropzone() {
         <UploadCloud size={34} aria-hidden="true" />
       </div>
       <div className="dropzone-copy">
-        <h2>Import a file to redact locally</h2>
-        <p>PDF, PNG, JPG, TXT, and CSV files are processed in this browser session without a document upload API.</p>
+        <h2>Add a file for local privacy review.</h2>
+        <p>Upload a PDF, screenshot, scan, image, or document sample to review possible sensitive information before sharing.</p>
+        <p className="helper-text">RedactReady Local is an assistive review tool. It does not guarantee detection or removal of every sensitive item.</p>
       </div>
       <button className="primary-button" onClick={() => inputRef.current?.click()} type="button">
         <FileUp size={18} aria-hidden="true" />

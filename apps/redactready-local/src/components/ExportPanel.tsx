@@ -32,7 +32,7 @@ export function ExportPanel() {
       <div className="panel-heading">
         <div>
           <span className="panel-kicker">Verification</span>
-          <h2>Export package</h2>
+          <h2>Verify before sharing</h2>
         </div>
       </div>
       <div className="export-stats">
@@ -45,10 +45,21 @@ export function ExportPanel() {
           pixel boxes
         </span>
       </div>
+      
+      <div className="verification-checklist">
+        <label><input type="checkbox" /> I reviewed all suggested findings.</label>
+        <label><input type="checkbox" /> I checked for visible identifiers.</label>
+        <label><input type="checkbox" /> I checked filenames and document title.</label>
+        <label><input type="checkbox" /> I checked metadata & text-layer warnings.</label>
+        <label><input type="checkbox" /> I understand this tool does not guarantee complete redaction.</label>
+      </div>
+
       <button className="primary-button wide" onClick={() => void exportFile()} type="button">
         <Download size={18} aria-hidden="true" />
         {document.kind === 'pdf' ? 'Export flattened PDF' : document.kind === 'image' ? 'Export redacted PNG' : 'Export redacted text'}
       </button>
+      <p className="pre-export-warning">Do not share the exported file until you have manually opened and reviewed it.</p>
+      
       <button className="secondary-button wide" onClick={exportJsonReport} type="button">
         <FileJson2 size={18} aria-hidden="true" />
         Export redaction log
@@ -63,7 +74,7 @@ export function ExportPanel() {
         ))}
       </div>
       <p className="disclaimer">
-        RedactReady helps detect and remove potentially sensitive information, but automated detection may miss items or
+        RedactReady Local helps detect and remove potentially sensitive information, but automated detection may miss items or
         flag harmless content. Always review the output before sharing. This tool does not provide legal, medical,
         compliance, or security guarantees.
       </p>
