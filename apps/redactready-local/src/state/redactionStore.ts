@@ -411,6 +411,15 @@ export const useRedactionStore = create<RedactionState>((set, get) => ({
   },
 
   clearSession() {
+    const doc = get().document
+    if (doc) {
+      for (const page of doc.pages) {
+        if (page.imageUrl && page.imageUrl.startsWith('blob:')) {
+          URL.revokeObjectURL(page.imageUrl)
+        }
+      }
+    }
+
     set({
       document: null,
       detections: [],
@@ -422,7 +431,7 @@ export const useRedactionStore = create<RedactionState>((set, get) => ({
       manualMode: false,
       manualCategory: 'custom',
       status: 'idle',
-      progressMessage: 'Session cleared. No file is retained by the app.',
+      progressMessage: 'Start Over clears the current in-app workspace state. It does not clear your browser downloads folder or system clipboard.',
       error: null,
       lastVerification: null,
       lastExportSummary: null,

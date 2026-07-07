@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400" style="background-color: white; font-family: sans-serif;">
+  <text x="20" y="40" font-size="24" font-weight="bold">INVOICE #9901</text>
+  <text x="20" y="80" font-size="16">Billed To:</text>
+  <text x="20" y="100" font-size="16">Fake Customer</text>
+  <text x="20" y="120" font-size="16">fake.customer@example.com</text>
+  <text x="20" y="140" font-size="16">123 Imaginary Lane, NY 10001</text>
+  <text x="400" y="80" font-size="16">Amount Due: $1,250.00</text>
+  <text x="400" y="100" font-size="16">Account: 9876-5432-1000</text>
+  
+  <rect x="20" y="180" width="560" height="40" fill="#eee" />
+  <text x="30" y="205" font-size="16" font-weight="bold">Item</text>
+  <text x="450" y="205" font-size="16" font-weight="bold">Price</text>
+  
+  <text x="30" y="245" font-size="16">Web Development Services</text>
+  <text x="450" y="245" font-size="16">$1,250.00</text>
+  
+  <text x="20" y="380" font-size="12" fill="gray">This is a synthetic sample. All data is fake.</text>
+</svg>

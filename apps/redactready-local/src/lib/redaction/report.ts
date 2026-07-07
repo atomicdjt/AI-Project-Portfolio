@@ -18,6 +18,7 @@ export function buildRedactionReport(
     ...document.warnings,
     'This report intentionally excludes raw sensitive values.',
     'Automated detection can miss content. Human review is required before sharing.',
+    'This report is a workflow summary, not proof of complete sanitization.',
   ]
   const textApplied =
     document.kind === 'text' || document.kind === 'csv'
@@ -25,6 +26,7 @@ export function buildRedactionReport(
       : 0
   const approvedDetections = detections.filter((detection) => detection.approved).length
   const metadata = metadataSummaryForKind(document.kind)
+  const barcodeStatus: import('./types').BarcodeCapabilityStatus = 'BarcodeDetector' in globalThis ? 'available' : 'unavailable'
 
   return {
     fileName: document.name,
@@ -36,7 +38,9 @@ export function buildRedactionReport(
     totalRejectedOrIgnored: detections.length - approvedDetections,
     manualBoxes: boxes.filter((box) => box.approved && box.createdBy === 'user').length,
     ocrStatus,
+    barcodeStatus,
     metadataHandling: metadata.status,
+    manualVerificationCompleted: true, // If they exported this report, they passed the checklist gating
     metadataNotes: [...metadata.notes, ...document.metadataNotes],
     categories,
     verification,
