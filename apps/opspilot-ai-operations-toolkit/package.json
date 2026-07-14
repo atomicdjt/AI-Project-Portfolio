@@ -15,7 +15,7 @@
     "micro-saas"
   ],
   "engines": {
-    "node": ">=22"
+    "node": "22.x"
   },
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 5177",
