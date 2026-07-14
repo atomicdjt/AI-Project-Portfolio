@@ -4,8 +4,7 @@ This index records public names, source authority, implementation status, Vercel
 
 ## Status and Authority Legend
 
-- **Live on Vercel** — Vercel reports a production deployment and the core route has been verified.
-- **Vercel Pending** — source and migration configuration are present, but no verified production Vercel alias is claimed.
+- **Live on Vercel** — a production Vercel alias is recorded and the deployed application identity has been checked.
 - **Portfolio workspace** — runnable source is present under `apps/` in this repository.
 - **Separate authoritative repository** — current product development and release evidence are maintained in another repository.
 - **Local-only** — runnable source is present, but the architecture requires additional backend or Vercel Functions work.
@@ -16,14 +15,15 @@ This index records public names, source authority, implementation status, Vercel
 
 | Public name | Deployment status | Repository authority | Best evidence |
 | --- | --- | --- | --- |
-| [BuildWorld AI](https://github.com/atomicdjt/buildworld-ai) | [Live on Vercel](https://buildworld-ai-v01-improvements.vercel.app/) | Separate authoritative repository, `main` | Graph simulation, deterministic engines, cascade analysis, multi-seed reproducibility, SSI scoring, variants, local persistence, reports, tests, and architecture documentation. |
-| [RedactReady Pro](../projects/redactready-pro-hri-os/CASE_STUDY.md) | Vercel Pending | `apps/redactready-pro-hri-os` | Local-first document intelligence, sensitive-information detection, HRI scoring, evidence mapping, redaction, reports, tests, and responsible-use boundaries. |
-| [ProcessHarbor](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) | Vercel Pending | `apps/opspilot-ai-operations-toolkit` | SOP, onboarding, knowledge-base, gap-report, versioning, validation, export, and technical-operations workflow evidence. |
-| [ScamShield AI](../projects/scamshield-ai/CASE_STUDY.md) | Vercel Pending | `apps/scamshield-ai` | Explainable local risk review, evidence organization, safer next steps, official reporting resources, accessibility, tests, and PDF export. |
-| [RedactReady](../projects/redactready-local/CASE_STUDY.md) | Vercel Pending | `apps/redactready-local` | PDF/image/text/CSV review, detector confirmation, manual redaction, flattened output, and verification-oriented workflow design. |
-| [LayerForge Studio](../projects/layerforge-studio/CASE_STUDY.md) | Vercel Pending | `apps/layerforge-studio` | Canvas rendering, layered raster state, tools, filters, history commands, IndexedDB persistence, and export. |
-| [FocusForge](../projects/focusforge/CASE_STUDY.md) | Vercel Pending | `apps/focusforge` | Stateful product loop, local persistence, game-rule testing, responsive UI, and Vercel-ready static build. |
-| [VariantVision Pro](../projects/variantvision-pro/CASE_STUDY.md) | Vercel Pending | `apps/variantvision-pro` | Educational bioinformatics evidence review, source provenance, comparison tools, scoring, and non-diagnostic reporting. |
+| [Portfolio Hub](https://ai-project-portfolio-portfolio-hub.vercel.app/) | Live on Vercel | `apps/portfolio-hub` | Employer-first navigation, project filtering, evidence routes, demos, and case studies. |
+| [BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/) | Live on Vercel | [Separate authoritative repository, `main`](https://github.com/atomicdjt/buildworld-ai) | Graph simulation, deterministic engines, cascade analysis, multi-seed reproducibility, SSI scoring, variants, local persistence, reports, tests, and architecture documentation. |
+| [RedactReady Pro](https://ai-project-portfolio-redactready-pr.vercel.app/) | Live on Vercel | `apps/redactready-pro-hri-os` | Local-first document intelligence, sensitive-information detection, HRI scoring, evidence mapping, redaction, reports, tests, and responsible-use boundaries. |
+| [ProcessHarbor](https://ai-project-portfolio-opspilot-ai-op.vercel.app/) | Live on Vercel — deterministic static workflow | `apps/opspilot-ai-operations-toolkit` | SOP, onboarding, knowledge-base, gap-report, versioning, validation, export, and technical-operations workflow evidence. Reference server endpoints remain documented extension work. |
+| [ScamShield AI](https://ai-project-portfolio-scamshield-ai.vercel.app/) | Live on Vercel | `apps/scamshield-ai` | Explainable local risk review, evidence organization, safer next steps, official reporting resources, accessibility, tests, and PDF export. |
+| [RedactReady](https://ai-project-portfolio-redactready-lo.vercel.app/) | Live on Vercel | `apps/redactready-local` | PDF/image/text/CSV review, detector confirmation, manual redaction, flattened output, and verification-oriented workflow design. |
+| [LayerForge Studio](https://ai-project-portfolio-layerforge-stu.vercel.app/) | Live on Vercel | `apps/layerforge-studio` | Canvas rendering, layered raster state, tools, filters, history commands, IndexedDB persistence, and export. |
+| [FocusForge](https://ai-project-portfolio-focusforge.vercel.app/) | Live on Vercel | `apps/focusforge` | Stateful product loop, local persistence, game-rule testing, responsive UI, and static Vercel deployment. |
+| [VariantVision Pro](https://ai-project-portfolio-variantvision.vercel.app/) | Live on Vercel | `apps/variantvision-pro` | Educational bioinformatics evidence review, source provenance, comparison tools, scoring, and non-diagnostic reporting. |
 | [Astra](../projects/astra/CASE_STUDY.md) | Local-only | `apps/astra` | React/Express AI workspace, model configuration, visible key states, Markdown rendering, streaming workflow, and transcript export. Requires an explicit Vercel Functions or backend design. |
 | [Nexus Play](../projects/nexus-play/CASE_STUDY.md) | Local-only | `apps/nexus-play` | Storefront, cart, wishlist, simulated checkout, owned-library state, install-queue concepts, and product-state modeling. Requires an explicit Vercel backend design. |
 
@@ -58,10 +58,10 @@ Legacy non-Vercel URLs are not used as current portfolio routes.
 
 ## Recommended Review by Audience
 
-- **Employer:** BuildWorld AI → RedactReady Pro → ProcessHarbor → verification documentation.
+- **Employer:** Portfolio Hub → BuildWorld AI → RedactReady Pro → ProcessHarbor → verification documentation.
 - **Buyer or commercial partner:** WeaveStudio → QuoteForge Local → source-authority and transfer documentation.
 - **Technical reviewer:** BuildWorld AI → RedactReady family → LayerForge Studio → VariantVision Pro.
 - **Research reviewer:** VariantVision Pro → Amino Acid Workbench → Ecology of Consciousness → IHOS.
-- **Deployment reviewer:** [Vercel Deployment Plan](VERCEL_DEPLOYMENT.md) → [Deployment and Source-Authority Map](deployment-and-previews.md).
+- **Deployment reviewer:** [Vercel Deployment Record](VERCEL_DEPLOYMENT.md) → [Deployment and Source-Authority Map](deployment-and-previews.md).
 
 See [Contextual Project Rankings](project-ranking.md) for the reasoning behind the audience-specific review paths.
