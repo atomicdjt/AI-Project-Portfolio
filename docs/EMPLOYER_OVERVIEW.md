@@ -1,75 +1,68 @@
 # Employer Overview
 
-This portfolio presents a set of AI-assisted applications, research tools, product prototypes, and documentation systems built to demonstrate practical technical judgment rather than isolated prompt experiments.
+David Turner's portfolio demonstrates applied AI workflow design, technical-operations thinking, local-first product architecture, frontend implementation, documentation discipline, and responsible scope control.
 
-The strongest theme across the repository is the ability to turn ambiguous ideas into structured, usable systems: define the problem, design the workflow, build or specify the product, document tradeoffs, and package the result for review.
+The consistent pattern is the ability to take an ambiguous problem, define the user and workflow, build a reviewable application, document the boundaries and tradeoffs, validate the result, and package the work for another person to evaluate or continue.
 
-## Portfolio Positioning
+## Best Employer Review Path
 
-**AI-assisted technical operations, product prototyping, research synthesis, and workflow system design.**
+1. **[BuildWorld AI](https://github.com/atomicdjt/buildworld-ai)** — strongest technical originality and systems thinking.
+2. **[RedactReady Pro](../projects/redactready-pro-hri-os/CASE_STUDY.md)** — strongest privacy and document-intelligence workflow.
+3. **[ProcessHarbor](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md)** — strongest direct evidence for technical operations, documentation, enablement, and knowledge-management roles.
+4. **[ScamShield AI](../projects/scamshield-ai/CASE_STUDY.md)** — strongest public-interest safety and explainable workflow design.
+5. **[LayerForge Studio](../projects/layerforge-studio/CASE_STUDY.md)** — strongest frontend and Canvas interaction depth.
 
-This repository is best read as evidence of:
+Start with the [Portfolio Hub](https://atomicdjt.github.io/AI-Project-Portfolio/) for live demos and source routing, then use [Verification](verification.md) to understand the evidence behind public claims.
 
-- Product thinking: translating broad ideas into concrete tools, user flows, and implementation plans.
-- AI workflow design: using AI to support triage, research, documentation, knowledge operations, and educational analysis.
-- Technical documentation: producing case studies, architecture notes, implementation plans, and responsible-use boundaries.
-- Frontend/product implementation: React, TypeScript, Vite, Express, Canvas 2D, IndexedDB, local persistence, and deployable demos.
-- Systems simulation and data visualization: graph-based modeling, deterministic simulation engines, dashboards, cascade analysis, scoring models, and exportable reports.
-- Privacy/security product implementation: local-first document processing, redaction safety, verification, and clear threat-model boundaries.
-- Consumer-protection product implementation: explainable scam-risk signals, accessible safety guidance, evidence organization, official reporting resources, and local-first privacy.
-- Research synthesis: converting complex scientific, cognitive, and operational topics into structured frameworks and practical tools.
+## Role-to-Evidence Map
 
-## Best Projects to Review First
+| Role family | Strongest evidence |
+| --- | --- |
+| **Technical Operations** | ProcessHarbor, workflow decomposition, SOPs, onboarding checklists, knowledge-base drafts, gap reports, versioning, export bundles, verification documentation, and release discipline. |
+| **AI Workflow Specialist** | WeaveStudio, ScamShield AI, ProcessHarbor, Astra, explicit provider boundaries, review-before-apply behavior, and deterministic fallbacks. |
+| **Documentation / Knowledge Operations** | ProcessHarbor, project case studies, architecture guides, recruiter documentation, source-of-truth maps, buyer transfer materials, and structured project indexes. |
+| **Product Operations** | WeaveStudio acquisition packaging, QuoteForge release workflow, feature-reality matrices, roadmap boundaries, release checklists, and stakeholder-readable documentation. |
+| **Junior Technical Product Analyst** | BuildWorld AI, evidence comparison, deterministic scoring, graph models, product limitations, risk framing, and structured evaluation tools. |
+| **Frontend / Product Implementation** | React, TypeScript, Vite, Next.js, Canvas 2D, browser storage, IndexedDB, PDF/report export, responsive UI, tests, and static deployment. |
+| **Research Operations** | VariantVision Pro, BuildWorld methodology, source provenance, evidence scoring, non-diagnostic boundaries, and structured research-support workflows. |
 
-1. **BuildWorld AI** - live systems-simulation lab with editable graph canvas, deterministic engines, SSI scoring, cascade analysis, optimization suggestions, and reports.
-2. **RedactReady Pro** - flagship live local-first document intelligence OS with sensitive-information detection, HRI scoring, evidence mapping, redaction, and reports.
-3. **ScamShield AI** - live local-first consumer-protection app with explainable scam-risk signals, evidence tools, accessible safety guidance, and official reporting resources.
-4. **RedactReady** - local-first privacy redaction engine demonstrating strong privacy/security product implementation.
-5. **LayerForge Studio** - browser-based image editor demonstrating strong runnable application polish.
-6. **ProcessHarbor** - live AI operations micro-SaaS for SOPs, onboarding, knowledge base generation, gap detection, and version tracking.
-7. **VariantVision Pro** - live bioinformatics evidence workbench with source transparency, amino-acid comparison, evidence scoring, and non-diagnostic research-tool positioning.
-8. **AI Knowledge Operations Toolkit** - operations-focused AI workflow system with strong employer relevance.
-9. **Amino Acid Research Workbench** - educational bioinformatics system with explainable analysis workflows.
-10. **Ecology of Consciousness** - original interdisciplinary framework for analyzing digital cognitive environments.
-11. **IHOS / Integrated Human Operating System** - structured non-clinical self-governance framework.
-12. **Astra** - local AI chat workspace and model-configuration interface.
-13. **Nexus Play** - game storefront and distribution-platform demo.
-14. **FocusForge** - live local-first gamified productivity app with timer recovery, progression systems, local persistence, and static deployment.
-15. **FrameEcho** - content-based duplicate video finder concept.
+## Portfolio Strengths
 
-## Shipped Commercial Product
+- **Problem framing:** projects identify users, tasks, non-goals, and review checkpoints rather than presenting isolated technical demos.
+- **Operational structure:** applications emphasize repeatable workflows, exports, documentation, versioning, recovery, and handoff.
+- **Responsible AI boundaries:** optional external AI is separated from deterministic logic, keys and data flows are documented, and generated work requires review.
+- **Local-first judgment:** several projects avoid unnecessary accounts and cloud services while acknowledging that browser storage is not encrypted or durable.
+- **Validation discipline:** root scripts cover linting, type checking, tests, production builds, documentation checks, and release verification.
+- **Transferability:** WeaveStudio and QuoteForge demonstrate buyer documentation, licensing boundaries, source authority, release packaging, and implementation guidance.
 
-**QuoteForge Local** is a separate shipped commercial product, not an open-source app in this repository. It is a white-label quote calculator for local service businesses with a [live demo](https://quoteforge-local.vercel.app/) and a [Payhip product page](https://payhip.com/b/24De9). It is useful review evidence for buyer packaging, local-first product design, deployment, QA, setup documentation, customization guidance, embed/WordPress handoff materials, and sales-page readiness.
+## Products and Commercial Proof
 
-## How Employers Should Interpret This Work
+Commercial products are a secondary proof track rather than the main hiring path.
 
-This portfolio is not presented as a claim of senior engineering experience. It is presented as evidence of unusually strong initiative, AI leverage, systems thinking, documentation discipline, and the ability to build credible prototypes quickly.
+- **[WeaveStudio](https://github.com/atomicdjt/weavestudio):** acquisition-ready local-first workflow product with a consolidated default branch, portable exports, undo/redo, recovery, browser and unit validation, transfer materials, and consent-gated OpenAI/Gemini assistance.
+- **[QuoteForge Local](https://quoteforge-local.vercel.app/):** shipped white-label quote-calculator package with ten templates, typed pricing logic, embed and WordPress paths, licensing, buyer documentation, and release tooling.
 
-The best-fit roles this supports include:
+These descriptions do not claim verified revenue, customers, active users, purchases, or completed acquisitions.
 
-- Technical Operations Associate / Analyst
+## How Employers Should Interpret the Work
+
+This portfolio is not presented as a claim of senior engineering tenure. It is evidence of practical initiative, strong AI leverage, systems thinking, documentation quality, product judgment, and the ability to produce credible, testable software from ambiguous requirements.
+
+Best-fit role families include:
+
+- Technical Operations Associate or Analyst
 - AI Workflow Specialist
 - Knowledge Operations Coordinator
 - Documentation or Knowledge Base Coordinator
 - Product Operations Associate
 - Junior Technical Product Analyst
 - Research Operations Assistant
-- Support Operations / Enablement roles
+- Support Operations or Enablement
 
-## Review Path
+## Responsible Interpretation
 
-For a fast review, start with:
-
-1. [Public Portfolio Hub](https://atomicdjt.github.io/AI-Project-Portfolio/) for the fastest live review path.
-2. [`README.md`](../README.md) for the repository overview.
-3. [`PROJECT_INDEX.md`](PROJECT_INDEX.md) for the full ranked project list.
-4. [`projects/buildworld-ai/CASE_STUDY.md`](../projects/buildworld-ai/CASE_STUDY.md) and the [live BuildWorld AI demo](https://buildworld-ai.netlify.app/) for the strongest systems-simulation and data-visualization project.
-5. [`projects/redactready-pro-hri-os/CASE_STUDY.md`](../projects/redactready-pro-hri-os/CASE_STUDY.md) and the [live RedactReady Pro demo](https://redactready-pro-hri-os.netlify.app/) for the flagship privacy/document intelligence product.
-6. [`projects/scamshield-ai/CASE_STUDY.md`](../projects/scamshield-ai/CASE_STUDY.md) for the strongest complete public-interest cybersecurity workflow.
-7. [`projects/redactready-local/CASE_STUDY.md`](../projects/redactready-local/CASE_STUDY.md) for privacy/security implementation depth.
-8. [`projects/layerforge-studio/CASE_STUDY.md`](../projects/layerforge-studio/CASE_STUDY.md) for creative-tool implementation depth.
-9. [`projects/opspilot-ai-operations-toolkit/CASE_STUDY.md`](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) and the [live ProcessHarbor demo](https://opspilot-ai-operations-toolkit.netlify.app/) for the strongest business-focused runnable app.
-10. [`projects/focusforge/CASE_STUDY.md`](../projects/focusforge/CASE_STUDY.md) for a polished local-first productivity app with live static deployment.
-11. [`projects/variantvision-pro/CASE_STUDY.md`](../projects/variantvision-pro/CASE_STUDY.md) for complex-domain research-tool implementation.
-12. [`projects/ai-knowledge-operations-toolkit/CASE_STUDY.md`](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) for operations concept depth.
-13. [QuoteForge Local](https://quoteforge-local.vercel.app/) and its [Payhip product page](https://payhip.com/b/24De9) for shipped commercial packaging evidence outside this repository.
+- Deterministic scores are heuristics, not certified predictions.
+- Local-first storage is not automatically encrypted, durable, or compliant.
+- AI-assisted outputs require human review.
+- Medical, legal, financial, fraud, infrastructure, and safety-critical decisions remain outside project scope unless a project explicitly documents a narrow educational use.
+- Supplemental demos are not described as source-backed when their source is absent from this repository.
