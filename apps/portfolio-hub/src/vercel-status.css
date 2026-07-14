@@ -1,0 +1,11 @@
+.status-chip.vercel-pending {
+  color: #4b5f6b;
+}
+
+.status-chip.acquisition-asset {
+  color: #6d28d9;
+}
+
+.status-chip.commercial {
+  color: #8a5b12;
+}
