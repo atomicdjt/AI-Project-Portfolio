@@ -6,7 +6,7 @@ VariantVision Pro is a runnable educational bioinformatics workbench for explori
 
 The React/TypeScript MVP lives under `apps/variantvision-pro`. It demonstrates complex-domain product thinking, deterministic analysis, source transparency, and responsible research-tool boundaries without requiring a backend or private data.
 
-**Deployment status:** Vercel Pending. The app includes `vercel.json`; no production Vercel alias is claimed until preview and production verification are complete.
+**Deployment status:** [Live on Vercel](https://ai-project-portfolio-variantvision.vercel.app/). The static Vite build includes `vercel.json` for SPA routing.
 
 ## Problem
 
@@ -44,7 +44,7 @@ The app separates:
 
 Repository validation includes linting, automated tests, and production build. The app is migration-ready for a Vercel project using Root Directory `apps/variantvision-pro`, Vite, build command `npm run build`, and output directory `dist`.
 
-A live status will be added only after Vercel reports `READY` and browser review confirms case switching, source filtering, export, direct-route refresh, mobile layout, and visible non-diagnostic boundaries.
+The recorded production deployment reported `READY`; browser regression checks should continue to cover case switching, source filtering, export, direct-route refresh, mobile layout, and visible non-diagnostic boundaries.
 
 ## Responsible Scope
 

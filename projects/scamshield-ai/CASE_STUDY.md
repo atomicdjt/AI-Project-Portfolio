@@ -5,9 +5,9 @@
 ScamShield AI is a local-first public-interest cybersecurity and consumer-protection application. It helps a person or trusted caregiver review a suspicious message, document evidence, understand possible risk signals, build an incident timeline, choose safer next steps, find official reporting channels, and export a professional PDF evidence packet.
 
 - [Application source](../../apps/scamshield-ai)
-- **Deployment status:** Vercel Pending
+- **Deployment status:** [Live on Vercel](https://ai-project-portfolio-scamshield-ai.vercel.app/)
 
-The app includes Vercel SPA configuration. A production URL will be added only after Vercel reports a ready deployment and the complete browser workflow is verified.
+The app uses Vercel SPA configuration and is served from its recorded production alias.
 
 ## Problem
 
@@ -60,7 +60,7 @@ Repository validation includes:
 - desktop and mobile screenshots
 - Vercel preview configuration
 
-A `Live` deployment claim remains pending until Vercel and browser verification pass.
+The production route is live; browser regression checks remain part of release verification.
 
 ## Screenshots
 
@@ -78,11 +78,10 @@ ScamShield demonstrates end-to-end product execution across problem definition, 
 - Practical privacy architecture with no backend, account system, telemetry, or required runtime network access
 - Validation habits across linting, type checking, automated tests, browser smoke tests, screenshots, and deployment checks
 - Product judgment around sensitive domains, including explicit limits and safer guidance
-- Vercel deployment discipline that separates migration readiness from a verified live claim
+- Vercel deployment discipline with explicit release verification
 
 ## What I Would Improve Next
 
-- Complete and verify the Vercel production deployment.
 - Add periodic review of official reporting-resource links and copy.
 - Add additional screen-reader and keyboard-only accessibility testing.
 - Add more synthetic cases covering multilingual, phone-call, and marketplace scam patterns.

@@ -6,7 +6,7 @@ FocusForge is a local-first gamified productivity web app that turns uninterrupt
 
 - **Runnable app:** [../../apps/focusforge](../../apps/focusforge)
 - **Local port:** `http://127.0.0.1:5179/`
-- **Deployment status:** Vercel Pending
+- **Deployment status:** [Live on Vercel](https://ai-project-portfolio-focusforge.vercel.app/)
 
 The app includes Vercel SPA configuration. A production URL will be added only after Vercel reports a ready deployment and the focus, recovery, persistence, export, and responsive workflows are verified.
 
@@ -91,11 +91,10 @@ FocusForge is a productivity tool, not medical or mental-health software. It avo
 - Comfort separating game and focus rules from React UI components
 - Practical thinking around lightweight habit support, rewards, and user motivation
 - Testable JavaScript logic for a small but complete interactive app
-- Clear separation between deployment readiness and a verified live Vercel claim
+- Clear separation between the verified static deployment and future product work
 
 ## Future Improvements
 
-- Complete and verify the Vercel production deployment.
 - Add optional achievement filters and custom focus tags.
 - Add printable weekly focus summaries from Chronicle.
 - Add keyboard shortcuts for power users.

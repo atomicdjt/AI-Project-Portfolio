@@ -4,7 +4,7 @@
 
 LayerForge Studio is a browser-based layered raster image editor and digital-painting application. It demonstrates real application structure, interaction-heavy UI behavior, browser graphics, local persistence, and product polish.
 
-**Deployment status:** Vercel Pending. The workspace includes Vercel SPA configuration; no production URL is claimed until preview and production verification are complete.
+**Deployment status:** [Live on Vercel](https://ai-project-portfolio-layerforge-stu.vercel.app/). The static Vite build uses Vercel SPA routing.
 
 ## Problem
 
@@ -47,7 +47,7 @@ History commands store bounded before/after information for reversible changes. 
 
 The app builds to `dist/` and includes `vercel.json` for direct-route SPA recovery. The recommended Vercel project uses Root Directory `apps/layerforge-studio`, Framework Preset `Vite`, Build Command `npm run build`, and Output Directory `dist`.
 
-A `Live` claim will be added only after Vercel reports `READY` and browser review verifies editing, history, persistence, export, direct-route refresh, mobile layout, and console behavior.
+The recorded production deployment reported `READY`; ongoing browser regression checks should continue to cover editing, history, persistence, export, direct-route refresh, mobile layout, and console behavior.
 
 ## Portfolio Value
 
@@ -59,7 +59,7 @@ LayerForge is one of the strongest projects for frontend and product-implementat
 - Comfort with Canvas rendering, editor state, tools, history, import/export, and local persistence
 - Product polish around a workspace-style UI with professional creative-tool conventions
 - Understanding of browser application architecture, storage boundaries, and deployment verification
-- Honest distinction between source readiness and a verified Vercel production deployment
+- Honest deployment evidence and clear product limitations
 
 ## Known Limitations
 
@@ -72,7 +72,6 @@ LayerForge is one of the strongest projects for frontend and product-implementat
 
 ## Future Improvements
 
-- Complete and verify the Vercel production deployment.
 - Add automated tests for core editor commands, history, and persistence.
 - Improve keyboard shortcuts and tool discoverability.
 - Add richer blending and non-destructive masks.
