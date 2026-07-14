@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - "codex/**"
+      - "portfolio/**"
   pull_request:
     branches:
       - main
@@ -25,6 +26,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Check documentation links
+        run: npm run check:docs
 
       - name: Lint apps
         run: npm run lint:apps
