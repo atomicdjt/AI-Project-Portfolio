@@ -1,21 +1,23 @@
-# ScamShield AI
+# ScamShield AI — Case Study
 
 ## Overview
 
 ScamShield AI is a local-first public-interest cybersecurity and consumer-protection application. It helps a person or trusted caregiver review a suspicious message, document evidence, understand possible risk signals, build an incident timeline, choose safer next steps, find official reporting channels, and export a professional PDF evidence packet.
 
-- [Live demo](https://scamshield-ai-safety.netlify.app/)
 - [Application source](../../apps/scamshield-ai)
+- **Deployment status:** Vercel Pending
+
+The app includes Vercel SPA configuration. A production URL will be added only after Vercel reports a ready deployment and the complete browser workflow is verified.
 
 ## Problem
 
 Fraud attempts are designed to create urgency, fear, secrecy, confusion, or emotional pressure. People targeted by scams often need to make decisions while evidence is scattered across messages, screenshots, payment records, phone calls, and notes. Generic advice can be difficult to apply, especially for seniors, disabled adults, caregivers, and people with limited technical confidence.
 
-ScamShield AI turns that stressful situation into a calm, structured workflow. The product does not declare that a person or message is fraudulent. It identifies possible indicators, explains why they matter, and directs the user toward independent verification and official support.
+ScamShield turns that stressful situation into a calm, structured workflow. It does not declare that a person or message is fraudulent. It identifies possible indicators, explains why they matter, and directs the user toward independent verification and official support.
 
 ## Product Workflow
 
-1. Start a case or load one of five clearly synthetic demonstrations.
+1. Start a case or load one of five synthetic demonstrations.
 2. Enter suspicious text and optional contextual details or local file references.
 3. Review a transparent `0-100` risk assessment and plain-language red flags.
 4. Organize an editable evidence timeline and situation-aware safety checklist.
@@ -31,13 +33,13 @@ Plain-language mode reduces technical terminology. Caregiver mode reframes actio
 - Local entity extraction for emails, phone numbers, URLs, money amounts, dates, deadlines, and references
 - jsPDF evidence-packet generation in the browser
 - Vitest, Testing Library, and Playwright validation
-- Netlify static deployment with strict security headers and no runtime network access
+- Vercel SPA configuration
 
-The application has no backend, account system, API key, analytics service, telemetry, or database. Netlify's Content Security Policy uses `connect-src 'none'`, so the deployed app cannot make runtime network requests.
+The application has no backend, account system, API key, analytics service, telemetry, or database. Its standard workflow does not require runtime network requests. A Vercel deployment must preserve restrictive security headers and be checked for unexpected network activity before production promotion.
 
 ## Safety and Privacy Decisions
 
-- Analysis is educational and explicitly avoids definitive fraud claims.
+- Analysis is educational and avoids definitive fraud claims.
 - Suspicious links are treated as text; the app never opens, crawls, submits to, or interacts with them.
 - The interface warns against entering passwords, authentication codes, private keys, complete payment-card numbers, or full Social Security numbers.
 - Uploaded images remain local previews. Files are not uploaded or embedded in reports.
@@ -46,17 +48,19 @@ The application has no backend, account system, API key, analytics service, tele
 
 ## Quality Evidence
 
-The release was validated with:
+Repository validation includes:
 
 - ESLint
 - TypeScript project checking
-- 18 automated unit and workflow tests across 12 test files
-- Production Vite build
-- Two Playwright end-to-end projects covering desktop and mobile workflows
-- Real browser PDF download verification
-- Dependency audit with zero known vulnerabilities at release time
-- Desktop and mobile screenshot captures
-- Public Netlify deployment verification
+- unit and workflow tests
+- production Vite build
+- desktop and mobile Playwright coverage
+- browser PDF download verification
+- dependency review recorded at release time
+- desktop and mobile screenshots
+- Vercel preview configuration
+
+A `Live` deployment claim remains pending until Vercel and browser verification pass.
 
 ## Screenshots
 
@@ -66,19 +70,21 @@ The release was validated with:
 
 ## Portfolio Value
 
-ScamShield AI demonstrates end-to-end product execution across problem definition, accessibility, consumer safety, explainable rule-based analysis, privacy architecture, structured state, report generation, testing, security review, documentation, and production deployment. It is designed as a credible public-interest MVP with clear limitations rather than an automated authority on fraud.
+ScamShield demonstrates end-to-end product execution across problem definition, accessibility, consumer safety, explainable rule-based analysis, privacy architecture, structured state, report generation, testing, security review, documentation, and deployment preparation. It is designed as a credible public-interest MVP with clear limitations rather than an automated authority on fraud.
 
 ## What This Demonstrates for Employers
 
-- Ability to turn a stressful consumer-safety problem into a structured, accessible workflow.
-- Practical privacy architecture with no backend, account system, telemetry, or runtime network access.
-- Strong validation habits across linting, typechecking, unit tests, Playwright smoke tests, screenshots, and deployment checks.
-- Product judgment around sensitive domains, including clear limits and safer user guidance.
+- Ability to turn a stressful consumer-safety problem into a structured, accessible workflow
+- Practical privacy architecture with no backend, account system, telemetry, or required runtime network access
+- Validation habits across linting, type checking, automated tests, browser smoke tests, screenshots, and deployment checks
+- Product judgment around sensitive domains, including explicit limits and safer guidance
+- Vercel deployment discipline that separates migration readiness from a verified live claim
 
 ## What I Would Improve Next
 
+- Complete and verify the Vercel production deployment.
 - Add periodic review of official reporting-resource links and copy.
-- Add additional accessibility testing with screen readers and keyboard-only workflows.
-- Add more synthetic demo cases covering multilingual, phone-call, and marketplace scam patterns.
-- Add import/export for case JSON so users can back up local work without an account.
-- Add an optional organization-admin variant for libraries, clinics, or caregiver support teams.
+- Add additional screen-reader and keyboard-only accessibility testing.
+- Add more synthetic cases covering multilingual, phone-call, and marketplace scam patterns.
+- Add case JSON import/export.
+- Add an optional organization-admin variant for libraries, clinics, or caregiver-support teams.
