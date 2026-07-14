@@ -1,86 +1,93 @@
-# Deployment and Preview Map
+# Vercel Deployment and Source-Authority Map
 
-Last audited: July 4, 2026.
+Last updated: July 14, 2026.
 
-This portfolio uses two deployment patterns:
+All new portfolio deployments, redeployments, preview deployments, and production aliases must use Vercel. Legacy non-Vercel hosts are historical evidence only and are not canonical routes.
 
-- **GitHub Pages** for the public portfolio hub and the LayerForge Studio subpath.
-- **App-level Netlify projects** for standalone static demos.
+A Vercel deployment is an output of a GitHub repository. It does not replace the repository as the editable source of truth.
 
-The repository root is not currently linked to a Netlify project. `npx netlify status` from the repo root reports an authenticated Netlify user, then warns that the folder is not linked to a project. Treat Netlify deployment as app-level unless a root site is explicitly linked later.
+## Authoritative Repositories
 
-## GitHub Pages
-
-| Surface | URL | Source | Deployment trigger |
+| Product or portfolio | Authoritative repository | Branch | Current deployment state |
 | --- | --- | --- | --- |
-| Portfolio Hub | `https://atomicdjt.github.io/AI-Project-Portfolio/` | `apps/portfolio-hub` | `.github/workflows/deploy-layerforge.yml` on `main` |
-| LayerForge Studio | `https://atomicdjt.github.io/AI-Project-Portfolio/layerforge-studio/` | `apps/layerforge-studio` | Copied into the Pages artifact by `.github/workflows/deploy-layerforge.yml` |
+| Employer portfolio and monorepo apps | `atomicdjt/AI-Project-Portfolio` | `main` | Portfolio Hub Vercel project pending |
+| WeaveStudio | `atomicdjt/weavestudio` | `master` | Live on Vercel |
+| BuildWorld AI standalone product | `atomicdjt/buildworld-ai` | `main` | Live on Vercel |
+| QuoteForge Local | private `atomicdjt/quoteforge-local` | `main` | Live on Vercel |
+| GitHub profile | `atomicdjt/atomicdjt` | `main` | GitHub profile surface; product links route only to Vercel or source |
 
-GitHub Pages production deployment should happen only after a reviewed PR is merged into `main` and CI passes.
+The monorepo contains a BuildWorld review workspace, but current standalone product development and release evidence are maintained in `atomicdjt/buildworld-ai`.
 
-## Confirmed Netlify Projects
+## Current Verified Vercel Projects
 
-These Netlify projects were confirmed through the Netlify connector on July 4, 2026. Each project reported `currentDeploy.state = ready` and no password or SSO access control.
+| Vercel project | Public URL | Source authority | Purpose |
+| --- | --- | --- | --- |
+| `weavestudio` | `https://weavestudio-nine.vercel.app/` | `atomicdjt/weavestudio/master` | Primary WeaveStudio production deployment. |
+| `weavestudio-demo` | `https://weavestudio-demo.vercel.app/` | `atomicdjt/weavestudio/master` | Public review and acquisition surface. |
+| `buildworld-ai-v01-improvements` | `https://buildworld-ai-v01-improvements.vercel.app/` | `atomicdjt/buildworld-ai/main` | Authoritative BuildWorld public demo. |
+| `quoteforge-local` | `https://quoteforge-local.vercel.app/` | private `atomicdjt/quoteforge-local/main` | QuoteForge Local public product demo. |
 
-Netlify account-level project descriptions were also updated on July 4, 2026 so the Netlify dashboard metadata matches the public portfolio positioning.
+A project named `source` exists in the Vercel team but is not assigned as a canonical portfolio deployment in this map.
 
-| Project | Public URL | Local source in this repo | Build command | Publish directory |
+## Vercel-Pending Employer Applications
+
+| Public name | Source | Recommended Vercel project | Root Directory | Current status |
 | --- | --- | --- | --- | --- |
-| `buildworld-ai` | `https://buildworld-ai.netlify.app/` | `apps/buildworld-ai` | `npm run build` | `dist` |
-| `redactready-pro-hri-os` | `https://redactready-pro-hri-os.netlify.app/` | `apps/redactready-pro-hri-os` | `npm run build` | `dist` |
-| `redactready-local` | `https://redactready-local.netlify.app/` | `apps/redactready-local` | `npm run build` | `dist` |
-| `scamshield-ai-safety` | `https://scamshield-ai-safety.netlify.app/` | `apps/scamshield-ai` | `npm run build` | `dist` |
-| `opspilot-ai-operations-toolkit` | `https://opspilot-ai-operations-toolkit.netlify.app/` | `apps/opspilot-ai-operations-toolkit` | `npm run build` | `dist` |
-| `focusforge-productivity-game` | `https://focusforge-productivity-game.netlify.app/` | `apps/focusforge` | `npm run build` | `dist` |
-| `variantvisionpro` | `https://variantvisionpro.netlify.app/` | `apps/variantvision-pro` | `npm run build` | `dist` |
+| Portfolio Hub | `apps/portfolio-hub` | `david-turner-portfolio` | `apps/portfolio-hub` | Vercel project pending; prior GitHub Pages deployment workflow disabled. |
+| RedactReady Pro | `apps/redactready-pro-hri-os` | `redactready-pro` | `apps/redactready-pro-hri-os` | `vercel.json` added; production deployment pending. |
+| ProcessHarbor | `apps/opspilot-ai-operations-toolkit` | `processharbor` | `apps/opspilot-ai-operations-toolkit` | `vercel.json` added; static workflow deployment pending; optional server endpoints require Vercel Functions verification. |
+| ScamShield AI | `apps/scamshield-ai` | `scamshield-ai` | `apps/scamshield-ai` | `vercel.json` added; production deployment pending. |
+| RedactReady | `apps/redactready-local` | `redactready-local` | `apps/redactready-local` | `vercel.json` added; production deployment pending. |
+| LayerForge Studio | `apps/layerforge-studio` | `layerforge-studio` | `apps/layerforge-studio` | `vercel.json` added; production deployment pending. |
+| FocusForge | `apps/focusforge` | `focusforge` | `apps/focusforge` | `vercel.json` added; production deployment pending. |
+| VariantVision Pro | `apps/variantvision-pro` | `variantvision-pro` | `apps/variantvision-pro` | `vercel.json` added; production deployment pending. |
 
-Supplemental Netlify demos also resolved with HTTP 200 and were visible in the Netlify account, but they are not currently maintained as runnable app folders in this portfolio repo:
+See [VERCEL_DEPLOYMENT.md](VERCEL_DEPLOYMENT.md) for exact project settings, migration order, and verification requirements.
 
-| Project | Public URL | Repo status |
-| --- | --- | --- |
-| `aminoacidworkbench` | `https://aminoacidworkbench.netlify.app/` | Concept documentation in `projects/amino-acid-research-workbench` |
-| `garden-grid-planner-demo` | `https://garden-grid-planner-demo.netlify.app/` | Source not present in this repo |
-| `hearthlink-p2p-demo` | `https://hearthlink-p2p-demo.netlify.app/` | Source not present in this repo |
+## Local-Only Workspaces
 
-## Pull Request Preview Policy
+| Project | Source | Local services | Reason not yet deployed |
+| --- | --- | --- | --- |
+| Astra | `apps/astra` | UI `5174`, API `3002` | Requires an explicit Vercel Functions or separate backend design before production deployment. |
+| Nexus Play | `apps/nexus-play` | UI `5175`, API `3003` | Requires an explicit Vercel backend design; checkout remains simulated. |
 
-Prefer pull requests and preview deployments over direct production deploys.
+## Preview and Production Policy
 
-1. Create a feature branch.
-2. Run `npm run verify:release` from the repo root.
-3. Open a PR into `main`.
-4. Let GitHub Actions validate the PR.
-5. If a Netlify app is connected to the Git repository with deploy previews enabled, use the Netlify PR preview for review.
-6. If the app is not Git-connected or the repo root is not linked, create a manual preview from the app folder:
+1. Create a focused Git branch and pull request.
+2. Run repository validation.
+3. Use a Vercel preview deployment connected to the pull-request branch.
+4. Verify the core workflow, direct-route refresh, static assets, browser console, and mobile layout.
+5. Correct the source branch when validation or deployment fails.
+6. Merge only after required checks pass.
+7. Promote or alias only a ready Vercel deployment built from the authoritative branch.
+8. Record the source commit, Vercel project, deployment URL, and production alias.
 
-```bash
-cd apps/<app-name>
-npx netlify link
-npx netlify deploy --build
-```
+Do not use GitHub Actions to deploy the Portfolio Hub. The former Pages workflow is now a build-only **Portfolio Vercel Readiness** check.
 
-Do not use `--prod` for review previews.
+## Production Verification Standard
 
-## Production Publish Steps
+A project becomes `Live` only when:
 
-After PR review and approval:
+- repository validation passes,
+- Vercel reports `READY`,
+- the production alias resolves,
+- the primary browser workflow succeeds,
+- direct route refreshes do not return 404,
+- static assets load correctly,
+- browser console has no unresolved application errors,
+- the source commit and production URL are recorded.
 
-```bash
-git checkout main
-git pull
-npm run verify:release
-gh pr merge <PR_NUMBER> --merge --delete-branch
-git pull
-```
+Until then, use `Vercel Pending` and route reviewers to source and case studies.
 
-For GitHub Pages, the merge to `main` triggers the Pages workflow.
+## Rollback
 
-For a Netlify app that needs a manual production deploy:
+If a Vercel deployment fails or regresses:
 
-```bash
-cd apps/<app-name>
-npx netlify link
-npx netlify deploy --build --prod
-```
+- keep GitHub as the source of truth,
+- inspect Vercel build or runtime logs,
+- fix the repository branch,
+- create a new preview deployment,
+- promote the corrected deployment or roll the alias back to the last verified deployment,
+- document the final source commit.
 
-After production deploy, verify the public URL with `curl.exe -L -s -o NUL -w "%{http_code} %{url_effective}" <url>` and perform a browser smoke check for the core workflow.
+Do not restore a legacy non-Vercel host as the canonical deployment.

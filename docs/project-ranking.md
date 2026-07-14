@@ -1,57 +1,55 @@
-# Project Ranking
+# Contextual Project Rankings
 
-This ranking separates source-backed runnable apps from documentation-first projects and supplemental external demos. The goal is to make the strongest work easy to review without overstating what is implemented in this repository.
+A single universal ranking is misleading because different reviewers value different evidence. This document groups the strongest projects by review purpose while preserving source, implementation, and Vercel deployment boundaries.
 
-## Top 5 Overall
+## Employer Review — Role Fit and Execution
 
-1. **[BuildWorld AI](../apps/buildworld-ai)** - most technically ambitious systems-simulation and data-visualization product with a live production demo.
-2. **[RedactReady Pro](../apps/redactready-pro-hri-os)** - flagship local-first privacy intelligence OS with a live production demo.
-3. **[ScamShield AI](../apps/scamshield-ai)** - strongest complete public-interest cybersecurity workflow with a live production demo.
-4. **[RedactReady](../apps/redactready-local)** - strongest focused privacy/document-redaction app and verification-focused product demonstration.
-5. **[LayerForge Studio](../apps/layerforge-studio)** - strongest creative-tool runnable app and frontend/canvas demonstration.
-
-## Best for Employers
-
-| Rank | Project | Repo status | Reason |
+| Priority | Project | Why it leads this review path | Deployment status |
 | --- | --- | --- | --- |
-| 1 | [BuildWorld AI](../apps/buildworld-ai) | Runnable app + case study + live demo | Most technically ambitious app with live deployment, graph simulation, data visualization, SSI scoring, cascade analysis, optimization suggestions, reports, and tests. |
-| 2 | [RedactReady Pro](../apps/redactready-pro-hri-os) | Runnable app + case study + live demo | Flagship privacy/document intelligence product with live deployment, deterministic HRI scoring, redaction, evidence mapping, and report export. |
-| 3 | [ScamShield AI](../apps/scamshield-ai) | Runnable app + case study + live demo | Complete, accessible cybersecurity workflow with live deployment, explainable analysis, evidence tools, and reporting guidance. |
-| 4 | [RedactReady](../apps/redactready-local) | Runnable app + case study + live demo | Strong privacy/security product with true redaction, verification, and clear responsible-use boundaries. |
-| 5 | [LayerForge Studio](../apps/layerforge-studio) | Runnable app + case study + GitHub Pages demo | Strong creative-tool runnable product and proof of canvas/frontend implementation. |
+| 1 | [BuildWorld AI](https://github.com/atomicdjt/buildworld-ai) | Strongest technical originality: graph modeling, deterministic engines, cascade analysis, reproducible experiments, SSI scoring, reports, tests, and architecture documentation. | [Live on Vercel](https://buildworld-ai-v01-improvements.vercel.app/) |
+| 2 | [RedactReady Pro](../projects/redactready-pro-hri-os/CASE_STUDY.md) | Strongest privacy and document-intelligence workflow with local analysis, sensitive-information review, scoring, evidence mapping, redaction, reporting, and tests. | Vercel Pending |
+| 3 | [ProcessHarbor](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) | Strongest direct alignment with technical operations, SOPs, onboarding, documentation, knowledge management, versions, and export workflows. | Vercel Pending |
+| 4 | [ScamShield AI](../projects/scamshield-ai/CASE_STUDY.md) | Strongest public-interest safety workflow with explainable local analysis, evidence organization, accessible guidance, and PDF export. | Vercel Pending |
+| 5 | [LayerForge Studio](../projects/layerforge-studio/CASE_STUDY.md) | Strongest frontend and interaction-depth evidence through Canvas architecture, document state, tools, history, persistence, and export. | Vercel Pending |
 
-## Best for Research/Expert Review
+## Commercial Readiness — Packaging and Transferability
 
-| Rank | Project | Repo status | Reason |
+| Priority | Product | Why it leads this review path | Vercel surface |
 | --- | --- | --- | --- |
-| 1 | [VariantVision Pro](../apps/variantvision-pro) | Runnable app + case study + live demo | Strongest complex-domain runnable research-tool MVP, with source transparency, deterministic evidence scoring, amino-acid comparison, and report export. |
-| 2 | [Amino Acid Research Workbench](../projects/amino-acid-research-workbench/CASE_STUDY.md) | Documentation-first case study + supplemental external demo | Clear educational/scientific value, but not currently maintained as an `apps/` workspace in this repository. |
-| 3 | [Ecology of Consciousness](../projects/ecology-of-consciousness/CASE_STUDY.md) | Research framework case study | Strongest original framework and best evidence of structured interdisciplinary synthesis. |
-| 4 | [IHOS](../projects/ihos-integrated-human-operating-system/CASE_STUDY.md) | Research/self-governance framework case study | Structured system with practical workbook potential and clear non-clinical scope. |
-| 5 | [FrameEcho](../projects/frameecho/CASE_STUDY.md) | Technical product concept case study | Strong technical utility concept, currently documentation-first in this repository. |
+| 1 | [WeaveStudio](https://github.com/atomicdjt/weavestudio) | Most complete product asset: consolidated default branch, visual workflow canvas, recovery, portable exports, browser and unit validation, buyer documentation, transfer guidance, and consent-gated OpenAI/Gemini assistance. | [Demo](https://weavestudio-demo.vercel.app/) |
+| 2 | [QuoteForge Local](https://quoteforge-local.vercel.app/) | Strongest shipped commercial package: ten calculator templates, typed quote logic, branding, lead capture, CSV export, embed/WordPress paths, licensing, buyer docs, and release tooling. | [Demo](https://quoteforge-local.vercel.app/) |
 
-## Best for Technical Product Roles
+Commercial readiness does not imply verified revenue, customers, active users, purchases, or a completed acquisition.
 
-| Rank | Project | Repo status | Reason |
-| --- | --- | --- | --- |
-| 1 | [BuildWorld AI](../apps/buildworld-ai) | Runnable app + live demo | Best technical architecture signal: graph-based simulation, typed engines, data visualization, scenario comparison, report generation, and deployment evidence. |
-| 2 | [RedactReady Pro](../apps/redactready-pro-hri-os) | Runnable app + live demo | Best complete privacy/document intelligence workflow, local-first architecture, original scoring model, and deployment evidence. |
-| 3 | [ScamShield AI](../apps/scamshield-ai) | Runnable app + live demo | Best complete safety-product workflow, explainable analysis, accessibility, and deployment evidence. |
-| 4 | [RedactReady](../apps/redactready-local) | Runnable app + live demo | Best focused privacy/document-redaction implementation and verification-minded workflow. |
-| 5 | [LayerForge Studio](../apps/layerforge-studio) | Runnable app + GitHub Pages demo | Best creative technical product implementation. |
+## Technical Originality
 
-## Supplemental External Demos
-
-These demos are public and useful, but they are not ranked as primary source-backed repo applications unless an `apps/` workspace exists here.
-
-| Demo | Public URL | Repository status |
+| Priority | Project or family | Distinguishing evidence |
 | --- | --- | --- |
-| Amino Acid Research Workbench | [Live demo](https://aminoacidworkbench.netlify.app/) | Case study exists in `projects/amino-acid-research-workbench`; no local `apps/` workspace in this repo. |
-| GardenGrid | [Live demo](https://garden-grid-planner-demo.netlify.app/) | Source is not present in this repo; keep as supplemental external demo only. |
-| HearthLink | [Live demo](https://hearthlink-p2p-demo.netlify.app/) | Source is not present in this repo; keep as supplemental external demo only. |
+| 1 | [BuildWorld AI](https://github.com/atomicdjt/buildworld-ai) | Original graph-simulation product, SSI scoring framework, deterministic experiments, multi-seed ranges, variants, cascade analysis, and reproducible reporting. |
+| 2 | RedactReady family | Local-first document intelligence, deterministic detection, risk scoring, evidence mapping, true redaction, verification outputs, and privacy boundaries. |
+| 3 | [LayerForge Studio](../projects/layerforge-studio/CASE_STUDY.md) | Browser graphics architecture, layered raster state, Canvas tools, command history, filters, IndexedDB persistence, and export. |
+| 4 | [VariantVision Pro](../projects/variantvision-pro/CASE_STUDY.md) | Complex-domain evidence workbench, provenance, normalization helpers, scoring, amino-acid comparison, and non-diagnostic reporting. |
 
-## Coverage Check
+## Research and Framework Review
 
-- Every `apps/` workspace is discoverable from the root README Featured Applications table.
-- Every `projects/` case-study folder is discoverable from the root README Project Status table or Strongest Case Studies section.
-- External demos without source in this repo are labeled as supplemental so reviewers do not mistake them for maintained source-backed applications.
+| Priority | Project | Interpretation |
+| --- | --- | --- |
+| 1 | [VariantVision Pro](../projects/variantvision-pro/CASE_STUDY.md) | Strongest source-backed research application; Vercel deployment pending. |
+| 2 | [Amino Acid Research Workbench](../projects/amino-acid-research-workbench/CASE_STUDY.md) | Documentation-first educational bioinformatics case study; no current Vercel deployment claimed. |
+| 3 | [Ecology of Consciousness](../projects/ecology-of-consciousness/CASE_STUDY.md) | Strongest original interdisciplinary research framework. |
+| 4 | [IHOS](../projects/ihos-integrated-human-operating-system/CASE_STUDY.md) | Structured non-clinical self-governance framework with practical workbook potential. |
+| 5 | [FrameEcho](../projects/frameecho/CASE_STUDY.md) | Focused technical product concept for content-based duplicate-video discovery. |
+
+## Supplemental Work
+
+| Project | Current interpretation |
+| --- | --- |
+| Amino Acid Research Workbench | Case study exists; no current Vercel deployment or local `apps/` workspace. |
+| GardenGrid | Source is not present in this repository; no current Vercel deployment is claimed. |
+| HearthLink | Source is not present in this repository; no current Vercel deployment is claimed. |
+
+Legacy non-Vercel hosts are not used as current review routes.
+
+## Interpretation Rule
+
+Use the employer list for hiring review, commercial list for buyer review, technical-originality list for engineering depth, and research list for domain or framework evaluation. Use [VERCEL_DEPLOYMENT.md](VERCEL_DEPLOYMENT.md) to distinguish a live Vercel product from migration-ready source. No list should be presented as an objective market valuation or universal quality score.

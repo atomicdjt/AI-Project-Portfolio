@@ -2,6 +2,10 @@
 
 RedactReady Pro is a privacy-first, local-first document intelligence MVP for reviewing messy document packets before sharing. It detects sensitive information, classifies document risk, generates a Human Risk Intelligence Score, builds an evidence map, creates an action checklist, and produces a professional report without requiring a backend or paid AI API.
 
+## Deployment Status
+
+The application is source-backed and configured for Vercel through `vercel.json`. A production Vercel alias is not claimed until the project is created, Vercel reports a ready deployment, and the core workflow is verified.
+
 ## Key Features
 
 - Dashboard with HRI Score, category breakdowns, sensitive findings, evidence preview, and checklist status.
@@ -37,6 +41,12 @@ npm run test
 npm run build
 ```
 
+## Vercel Deployment
+
+Create a Vercel project from `atomicdjt/AI-Project-Portfolio` with Root Directory `apps/redactready-pro-hri-os`, Framework Preset `Vite`, Build Command `npm run build`, Output Directory `dist`, and Production Branch `main`.
+
+Use a preview deployment first. Verify source intake, demo packets, findings, redaction toggles, report export, direct-route refresh, static assets, and browser console before assigning a production alias.
+
 ## Demo Mode
 
 Use the Demo page to load fictional sample packets:
@@ -61,7 +71,7 @@ Users should still manually verify redactions before sharing any document.
 - Tailwind CSS runtime import plus custom CSS
 - Lucide icons
 - Vitest for pure logic tests
-- Static Netlify deploy config
+- Vercel SPA configuration
 
 ## Limitations
 
@@ -71,6 +81,6 @@ PDF and image uploads currently create explicit fallback records. For full analy
 
 ## Portfolio Positioning
 
-This project is designed as a flagship applied privacy/product-engineering case study: a polished local-first workflow, an original HRI scoring model, deterministic privacy safeguards, exportable reporting, and deploy-ready static architecture.
+This project is designed as a flagship applied privacy/product-engineering case study: a polished local-first workflow, an original HRI scoring model, deterministic privacy safeguards, exportable reporting, and Vercel-ready static architecture.
 
 See [CASE_STUDY.md](./CASE_STUDY.md), [METHODOLOGY.md](./METHODOLOGY.md), [PRIVACY.md](./PRIVACY.md), and [ROADMAP.md](./ROADMAP.md).

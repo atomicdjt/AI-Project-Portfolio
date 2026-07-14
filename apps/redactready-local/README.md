@@ -1,19 +1,18 @@
 # RedactReady Local
 
-Local-first privacy review before sharing documents externally.
-
-## Overview
+**Local-first privacy review before sharing documents externally.**
 
 RedactReady Local helps users spot, review, redact, and verify potentially sensitive information before sharing files with AI tools, email, clients, vendors, or public platforms.
 
-## Live Demo
+## Deployment Status
 
-- Live demo: https://redactready-local.netlify.app/
-- Use the included synthetic samples first. Do not upload real sensitive files to a public demo unless the deployment and privacy model have been independently verified.
+The application is source-backed and configured for Vercel through `vercel.json`. A production Vercel alias is not claimed until a preview and production deployment are verified.
+
+Use the included synthetic samples first. Do not upload real sensitive files to any public deployment unless its privacy model, runtime behavior, and export workflow have been independently reviewed for the intended use.
 
 ## Positioning
 
-"Redact before you upload."
+> Redact before you upload.
 
 ## Who It Is For
 
@@ -26,8 +25,8 @@ RedactReady Local helps users spot, review, redact, and verify potentially sensi
 
 ## What It Helps Review
 
-- PII
-- PHI-related content
+- Personally identifiable information
+- Health-related content
 - Financial identifiers
 - Credentials and tokens
 - HR and employee data
@@ -35,14 +34,15 @@ RedactReady Local helps users spot, review, redact, and verify potentially sensi
 - Case details
 - Confidential business information
 
-## What It Does
+## Implemented Workflow
 
-- Supports local-first pre-share review
-- Suggests potentially sensitive findings
-- Allows human review and manual redaction
-- Provides opt-in experimental OCR for PDFs/images
-- Supports verification before export
-- Provides risk reminders for metadata, OCR, and hidden layers
+- Local-first pre-share review
+- Suggested sensitive-information findings
+- Human approval, rejection, and manual redaction boxes
+- Opt-in experimental OCR for PDF and image pages
+- File-specific verification checklists
+- Redacted file export and optional JSON report
+- Risk reminders for metadata, OCR, hidden layers, filenames, and visual content
 
 ## Supported Files
 
@@ -66,45 +66,41 @@ RedactReady Local helps users spot, review, redact, and verify potentially sensi
 1. Load a supported local file or synthetic sample.
 2. Review possible sensitive-data findings.
 3. Approve, reject, or add manual redaction boxes.
-4. Optionally run experimental local OCR for PDF/image pages.
+4. Optionally run experimental local OCR for PDF or image pages.
 5. Complete the file-specific verification checklist.
 6. Export a redacted copy and optional JSON report.
 7. Open and manually inspect the exported file before sharing.
 
 ## OCR, Metadata, and Browser Support
 
-- OCR status: implemented as opt-in experimental local OCR for rendered PDF/image pages using same-origin Tesseract.js assets.
-- Metadata status: attempted where feasible. PDF export creates a new image-backed PDF and sets basic RedactReady export metadata. Image export redraws through canvas as PNG. Users must still inspect final file properties and filenames.
-- Barcode/browser status: QR/barcode detection depends on the browser `BarcodeDetector` API. The app warns when unavailable, and users must add manual boxes for missed visual content.
+- **OCR:** opt-in experimental local OCR for rendered PDF and image pages using same-origin Tesseract.js assets.
+- **PDF metadata:** export creates a new image-backed PDF and sets basic RedactReady export metadata.
+- **Image metadata:** image export redraws content through canvas as PNG.
+- **QR and barcode detection:** depends on the browser `BarcodeDetector` API. The app warns when unavailable, and users must add manual boxes for missed visual content.
+
+Users must still inspect final file properties, visible content, filenames, and exported text behavior.
 
 ## Local-First Privacy Model
 
-RedactReady Local is designed to process document review workflows locally in the browser or local runtime. It does not intentionally send document contents to external servers. OCR runtime assets and English language data are served from this app's own `public/ocr/` assets. Review the implementation and deployment environment before using sensitive real-world files.
+RedactReady Local is designed to process review workflows in the browser. It does not intentionally send document contents to external servers. OCR runtime assets and English language data are served from the application's own `public/ocr/` assets.
+
+A Vercel preview must be checked for unexpected network requests, third-party asset loading, runtime errors, and export behavior before production promotion.
 
 ## Common Redaction Risks
 
 - Visual-only black boxes
 - OCR layers
 - Metadata
-- Comments
-- Annotations
+- Comments and annotations
 - Bookmarks
 - Filenames
 - Embedded objects
 - Copy-paste leaks
 - Unreviewed attachments
 
-## Feature Status
+## Local Setup and Verification
 
-See [FEATURE_STATUS.md](./FEATURE_STATUS.md) for details on implemented, demo-only, roadmap, and explicitly excluded features.
-
-## Technical Architecture
-
-See [TECHNICAL_ARCHITECTURE.md](./TECHNICAL_ARCHITECTURE.md) for the app structure, data flow, privacy boundary, export behavior, and deployment notes.
-
-## Setup
-
-See [SETUP.md](./SETUP.md) for installation and local execution instructions.
+See [SETUP.md](./SETUP.md) for installation details.
 
 ```bash
 npm install
@@ -116,48 +112,52 @@ npm run e2e
 npm run preview
 ```
 
-## Synthetic Samples
+See [VERIFICATION.md](./VERIFICATION.md), [LIMITATIONS.md](./LIMITATIONS.md), and [MANUAL_QA_CHECKLIST.md](./MANUAL_QA_CHECKLIST.md) for claims auditing and browser review.
 
-The demo includes public synthetic samples under `public/samples/`, and the upload screen exposes one-click sample buttons. These files are fake and intended only for workflow testing.
+## Deploy to Vercel
 
-## Verification
+Create a Vercel project from `atomicdjt/AI-Project-Portfolio` with:
 
-See [VERIFICATION.md](./VERIFICATION.md) for details on build validation and claims auditing.
+```text
+Project name: redactready-local
+Root Directory: apps/redactready-local
+Framework Preset: Vite
+Build Command: npm run build
+Output Directory: dist
+Production Branch: main
+Node.js: 22
+```
 
-## Limitations
+No server-side environment variables are required for the documented local-first workflow.
 
-See [LIMITATIONS.md](./LIMITATIONS.md) for details on the boundaries of automated detection and visual redaction.
+Use a preview deployment first and verify:
 
-## Manual QA
+1. synthetic sample loading,
+2. PDF, image, text, and CSV review,
+3. finding confirmation and manual boxes,
+4. experimental OCR behavior,
+5. redacted file and JSON export,
+6. direct-route refresh and static assets,
+7. runtime network activity,
+8. browser console and mobile layout,
+9. manual inspection of every exported sample.
 
-See [MANUAL_QA_CHECKLIST.md](./MANUAL_QA_CHECKLIST.md) for the browser checklist used before public review.
+Promote only after Vercel reports `READY` and the complete manual QA checklist passes.
 
-## Portfolio Case Study
+## Documentation
 
-See [PORTFOLIO_CASE_STUDY.md](./PORTFOLIO_CASE_STUDY.md) for the release-ready portfolio narrative.
+- [Feature Status](./FEATURE_STATUS.md)
+- [Technical Architecture](./TECHNICAL_ARCHITECTURE.md)
+- [Setup](./SETUP.md)
+- [Verification](./VERIFICATION.md)
+- [Limitations](./LIMITATIONS.md)
+- [Manual QA Checklist](./MANUAL_QA_CHECKLIST.md)
+- [Portfolio Case Study](./PORTFOLIO_CASE_STUDY.md)
 
-### Problem
-Professionals increasingly share PDFs, screenshots, records, logs, and forms with AI tools, vendors, clients, and public platforms. These files often contain personal identifiers, credentials, financial details, health-related content, employee data, student information, or confidential business context.
+## Product Judgment
 
-### Challenge
-Redaction is frequently misunderstood. Visual cover-ups may leave hidden text, OCR layers, metadata, comments, annotations, filenames, or copied text exposed. A useful tool must support human review rather than pretending to guarantee automated safety.
-
-### Solution
-RedactReady Local provides an assistive pre-share review workflow:
-1. Inspect the file locally.
-2. Surface possible sensitive findings.
-3. Let the user review and manually decide.
-4. Optionally run experimental local OCR for PDF/image pages.
-5. Apply redactions.
-6. Complete the file-specific export checklist.
-7. Verify before export and manually inspect the downloaded file.
-
-### Product Judgment
-The product deliberately avoids overclaiming. It does not claim HIPAA, FERPA, FOIA, GDPR, or legal compliance. It positions itself as a local-first workflow support tool with human verification.
-
-### Why This Is Strong for Portfolio Credibility
-This project shows privacy-aware product strategy, safety-conscious UX writing, human-in-the-loop design, local-first architecture thinking, regulated-domain sensitivity, documentation discipline, demo clarity, and trust-building limitations language.
+The product deliberately avoids overclaiming. It does not claim legal or regulatory compliance. It is an assistive local-first review workflow with explicit human verification and export inspection.
 
 ## License
 
-See LICENSE file in the repository.
+See [LICENSE](./LICENSE).

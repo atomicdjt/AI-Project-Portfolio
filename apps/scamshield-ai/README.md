@@ -2,7 +2,9 @@
 
 ScamShield AI is a local-first public-interest cybersecurity and consumer-protection web app. It helps people identify possible scam risk signals, preserve suspicious messages and file references, organize an evidence timeline, choose safer next steps, find official reporting channels, and export a professional PDF evidence packet. The MVP runs entirely in the browser with deterministic TypeScript rules and requires no account, backend, API key, or database.
 
-**Live demo:** [scamshield-ai-safety.netlify.app](https://scamshield-ai-safety.netlify.app/)
+## Deployment Status
+
+ScamShield AI is source-backed and configured for Vercel through `vercel.json`. A production Vercel alias is not claimed until a preview and production deployment are verified.
 
 ## Problem Statement
 
@@ -50,11 +52,12 @@ ScamShield AI is defensive and educational only.
 
 - Evidence analysis runs in the browser.
 - No application backend, database, analytics service, or telemetry is included.
-- `connect-src 'none'` in the Netlify Content Security Policy prevents runtime network requests by the app.
+- The application does not require runtime network requests for its standard workflow.
 - Case state is stored in browser localStorage so work can survive a refresh.
 - Temporary image preview URLs are not written to localStorage.
 - Uploaded files are not embedded in the exported report; filenames and entered evidence text are included.
 - Users should clear the case before leaving a shared device and store exported reports carefully.
+- A production deployment should preserve a restrictive Content Security Policy and verify it on Vercel before promotion.
 
 ## Tech Stack
 
@@ -66,11 +69,11 @@ ScamShield AI is defensive and educational only.
 - Vitest and Testing Library
 - Playwright
 - ESLint
-- Netlify static hosting configuration
+- Vercel SPA configuration
 
 ## Run Locally
 
-Requirements: Node.js 20 or newer and npm.
+Requirements: Node.js 22 or newer and npm.
 
 ```powershell
 cd apps/scamshield-ai
@@ -92,30 +95,35 @@ npm run e2e
 
 The production output is written to `dist/`.
 
-## Deploy to Netlify
+## Deploy to Vercel
+
+Create a Vercel project from `atomicdjt/AI-Project-Portfolio` with:
+
+```text
+Project name: scamshield-ai
+Root Directory: apps/scamshield-ai
+Framework Preset: Vite
+Build Command: npm run build
+Output Directory: dist
+Production Branch: main
+Node.js: 22
+```
 
 No environment variables are required.
 
-The production deployment is live at [https://scamshield-ai-safety.netlify.app/](https://scamshield-ai-safety.netlify.app/).
+Use a preview deployment first. Verify:
 
-### Deploy from GitHub
+1. the landing page and all five workflow steps,
+2. each synthetic demo case,
+3. assessment scoring and explanation,
+4. timeline and action editing,
+5. PDF export,
+6. refresh persistence and clear-data behavior,
+7. direct-route refresh and static assets,
+8. browser console and accessibility basics,
+9. production security headers and CSP.
 
-1. Import the portfolio repository in Netlify.
-2. Set the base directory to `apps/scamshield-ai`.
-3. Netlify reads `netlify.toml` automatically.
-4. Confirm build command `npm run build` and publish directory `dist`.
-5. Deploy the site.
-6. After deployment, verify the home page, demo analysis, timeline, PDF export, refresh persistence, and clear-data action.
-
-### Deploy with Netlify CLI
-
-```powershell
-npm install -g netlify-cli
-netlify login
-netlify init
-netlify deploy --build
-netlify deploy --build --prod
-```
+Promote only after Vercel reports the deployment as `READY` and the browser smoke workflow succeeds.
 
 ## Demo Cases
 

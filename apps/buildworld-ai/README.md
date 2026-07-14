@@ -1,17 +1,20 @@
-# BuildWorld AI
+# BuildWorld AI — Portfolio Review Copy
 
 BuildWorld AI is a visual systems-simulation lab for designing, running, comparing, and reporting graph-based models of complex systems. It focuses on bottlenecks, cascading failures, resilience, optimization, and emergent behavior while staying clear that the results are educational and exploratory.
 
-Live demo: https://buildworld-ai.netlify.app/
+**Authoritative product source:** [atomicdjt/buildworld-ai](https://github.com/atomicdjt/buildworld-ai)  
+**Canonical Vercel demo:** [buildworld-ai-v01-improvements.vercel.app](https://buildworld-ai-v01-improvements.vercel.app/)
+
+This monorepo workspace remains available for portfolio review. Product development, release evidence, and deployment authority are maintained in the standalone repository.
 
 ## Features
 
 - Interactive Simulation Studio with draggable graph nodes, editable properties, run/pause/reset controls, speed control, and live metrics.
-- Eight built-in demo scenarios: traffic, supply chain, power grid, ecosystem, warehouse, epidemic/population, emergency resilience, and a blank custom network.
+- Eight built-in scenarios: traffic, supply chain, power grid, ecosystem, warehouse, epidemic/population, emergency resilience, and a blank custom network.
 - Deterministic simulation engines for flow networks, ecosystem dynamics, epidemic/population models, and cascade stress experiments.
-- SSI System Stability Index: an original 0-100 score across throughput, bottleneck risk, resilience, redundancy, cascade resistance, resource balance, recovery, and optimization potential.
+- SSI System Stability Index across throughput, bottleneck risk, resilience, redundancy, cascade resistance, resource balance, recovery, and optimization potential.
 - Dashboard charts, event logs, critical-node analysis, optimization suggestions, snapshot comparison, Markdown/JSON report export, local save/load, project import/export, and print-to-PDF support.
-- No paid AI API required. The insight layer is deterministic and local.
+- No paid AI API is required. The insight layer is deterministic and local.
 
 ## Tech Stack
 
@@ -20,8 +23,8 @@ Live demo: https://buildworld-ai.netlify.app/
 - TypeScript
 - Custom SVG/CSS visualizations
 - Browser localStorage persistence
-- Vitest for pure simulation logic tests
-- Netlify/Vercel-ready static deployment
+- Vitest for simulation logic tests
+- Vercel static deployment
 
 ## Local Setup
 
@@ -30,7 +33,7 @@ npm install
 npm run dev
 ```
 
-Open the local Vite URL: `http://127.0.0.1:5183/`.
+Open `http://127.0.0.1:5183/`.
 
 ## Commands
 
@@ -56,29 +59,15 @@ npm run build
 
 BuildWorld AI is not a certified engineering model, public-health tool, infrastructure-design recommendation system, ecological forecast, financial tool, or safety-critical decision system. It is intended for education, portfolio review, scenario reasoning, and product exploration.
 
-## Deployment
+## Deployment Boundary
 
-Netlify:
+Do not deploy this monorepo review copy as a competing production product. Use the standalone repository and its recorded Vercel project for product deployments.
 
-```bash
-npm run build
-netlify deploy --prod --dir dist
-```
-
-Production demo: https://buildworld-ai.netlify.app/
-
-Vercel:
-
-```bash
-npm run build
-vercel --prod
-```
-
-No environment variables are required for the MVP.
+No environment variables are required for the deterministic MVP.
 
 ## Portfolio Notes
 
-Suggested screenshots after browser QA:
+Suggested review assets:
 
 - `../../docs/images/buildworld-ai-landing.png`
 - `../../docs/images/buildworld-ai-studio.png`
