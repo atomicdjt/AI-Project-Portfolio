@@ -1,56 +1,48 @@
-# Deployment
+# BuildWorld AI Deployment Authority
 
-BuildWorld AI is a static Vite app. It requires no database and no environment variables.
+BuildWorld AI is a static Vite application. It requires no database or environment variables for the deterministic MVP.
 
-Production Netlify demo: https://buildworld-ai.netlify.app/
+## Authoritative Deployment
+
+The standalone repository is authoritative:
+
+- Repository: `atomicdjt/buildworld-ai`
+- Branch: `main`
+- Vercel project: `buildworld-ai-v01-improvements`
+- Production URL: `https://buildworld-ai-v01-improvements.vercel.app/`
+
+This monorepo workspace is maintained as portfolio-review evidence and should not be deployed as a competing product source.
 
 ## Local Production Build
 
 ```bash
 npm install
+npm run lint
+npm run typecheck
+npm run test
 npm run build
 ```
 
 The production output is `dist`.
 
-## Netlify
+## Vercel Verification
 
-`netlify.toml` is included:
+For product deployment, use the standalone repository and verify:
 
-- Build command: `npm run build`
-- Publish directory: `dist`
-- SPA fallback: `/* -> /index.html`
+1. Vercel builds from the recorded `main` commit.
+2. The deployment reaches `READY`.
+3. The production alias resolves.
+4. Studio, scenarios, cascade analysis, snapshots, reports, and import/export work.
+5. Direct-route refresh and static assets succeed.
+6. Browser console has no unresolved application errors.
+7. The deployment commit is recorded in the release evidence.
 
-Deploy:
+## Static Scope
 
-```bash
-npm run build
-netlify deploy --prod --dir dist
-```
-
-Current Netlify project:
-
-- Site name: `buildworld-ai`
-- Site ID: `60b76922-d322-4887-a73b-4601a8f12e5f`
-- Production URL: https://buildworld-ai.netlify.app/
-
-## Vercel
-
-Deploy:
-
-```bash
-npm run build
-vercel --prod
-```
-
-Framework preset: Vite. Output directory: `dist`.
-
-## Static Fallback
-
-The product works without server routes. Scenarios, simulation, reports, project export/import, and deterministic insights run in the browser.
+The product works without server routes. Scenarios, simulations, reports, project export/import, and deterministic insights run in the browser.
 
 ## Environment Variables
 
-None required.
+None are required.
 
-If an optional AI provider is added later, it should be isolated behind a provider abstraction and must not be required for demo mode.
+Any future external AI provider must remain optional, isolated behind an explicit provider abstraction, and unnecessary for the deterministic demo workflow.
