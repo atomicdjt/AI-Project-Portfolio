@@ -1,0 +1,37 @@
+name: Sync Vercel Live Links
+
+on:
+  push:
+    branches:
+      - deployments/vercel-live-links-2026-07-14
+    paths:
+      - scripts/sync-vercel-live-links.mjs
+      - .github/workflows/sync-vercel-live-links.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: deployments/vercel-live-links-2026-07-14
+
+      - name: Apply verified Vercel routes
+        run: node scripts/sync-vercel-live-links.mjs
+
+      - name: Commit synchronized Hub data
+        run: |
+          if git diff --quiet; then
+            echo "Portfolio Hub deployment data is already synchronized."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apps/portfolio-hub/src/App.jsx
+          git commit -m "docs(hub): publish verified Vercel routes"
+          git push
