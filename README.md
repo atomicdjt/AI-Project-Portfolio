@@ -136,4 +136,4 @@ The former GitHub Pages workflow is a build-only **Portfolio Vercel Readiness** 
 
 ## Repository and License Boundary
 
-This public repository is available for portfolio and employer review. See [NOTICE](NOTICE) and project-specific license files for reuse boundaries. Separate commercial repositories and delivered packages retain their own licensing and source-authority rules.
+This public repository is available for portfolio and employer review under the [Portfolio Review License](LICENSE.md). It is not offered under an open-source license. See [NOTICE](NOTICE) and project-specific license files for additional reuse boundaries. Separate commercial repositories and delivered packages retain their own licensing and source-authority rules.
