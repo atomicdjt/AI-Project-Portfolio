@@ -6,13 +6,13 @@ The consistent pattern is the ability to take an ambiguous problem, define the u
 
 ## Best Employer Review Path
 
-1. **[BuildWorld AI](https://github.com/atomicdjt/buildworld-ai)** — strongest technical originality and systems thinking.
-2. **[RedactReady Pro](../projects/redactready-pro-hri-os/CASE_STUDY.md)** — strongest privacy and document-intelligence workflow.
-3. **[ProcessHarbor](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md)** — strongest direct evidence for technical operations, documentation, enablement, and knowledge-management roles.
-4. **[ScamShield AI](../projects/scamshield-ai/CASE_STUDY.md)** — strongest public-interest safety and explainable workflow design.
-5. **[LayerForge Studio](../projects/layerforge-studio/CASE_STUDY.md)** — strongest frontend and Canvas interaction depth.
+1. **[BuildWorld AI](https://github.com/atomicdjt/buildworld-ai)** — strongest technical originality and systems thinking; [live on Vercel](https://buildworld-ai-v01-improvements.vercel.app/).
+2. **[RedactReady Pro](../projects/redactready-pro-hri-os/CASE_STUDY.md)** — strongest privacy and document-intelligence workflow; Vercel deployment pending.
+3. **[ProcessHarbor](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md)** — strongest direct evidence for technical operations, documentation, enablement, and knowledge-management roles; Vercel deployment pending.
+4. **[ScamShield AI](../projects/scamshield-ai/CASE_STUDY.md)** — strongest public-interest safety and explainable workflow design; Vercel deployment pending.
+5. **[LayerForge Studio](../projects/layerforge-studio/CASE_STUDY.md)** — strongest frontend and Canvas interaction depth; Vercel deployment pending.
 
-Start with the [Portfolio Hub](https://atomicdjt.github.io/AI-Project-Portfolio/) for live demos and source routing, then use [Verification](verification.md) to understand the evidence behind public claims.
+Use [Verification](verification.md) to understand the evidence behind public claims and [Vercel Deployment](VERCEL_DEPLOYMENT.md) to distinguish live products from migration-ready source.
 
 ## Role-to-Evidence Map
 
@@ -23,7 +23,7 @@ Start with the [Portfolio Hub](https://atomicdjt.github.io/AI-Project-Portfolio/
 | **Documentation / Knowledge Operations** | ProcessHarbor, project case studies, architecture guides, recruiter documentation, source-of-truth maps, buyer transfer materials, and structured project indexes. |
 | **Product Operations** | WeaveStudio acquisition packaging, QuoteForge release workflow, feature-reality matrices, roadmap boundaries, release checklists, and stakeholder-readable documentation. |
 | **Junior Technical Product Analyst** | BuildWorld AI, evidence comparison, deterministic scoring, graph models, product limitations, risk framing, and structured evaluation tools. |
-| **Frontend / Product Implementation** | React, TypeScript, Vite, Next.js, Canvas 2D, browser storage, IndexedDB, PDF/report export, responsive UI, tests, and static deployment. |
+| **Frontend / Product Implementation** | React, TypeScript, Vite, Next.js, Canvas 2D, browser storage, IndexedDB, PDF/report export, responsive UI, tests, and Vercel-ready static builds. |
 | **Research Operations** | VariantVision Pro, BuildWorld methodology, source provenance, evidence scoring, non-diagnostic boundaries, and structured research-support workflows. |
 
 ## Portfolio Strengths
@@ -33,13 +33,14 @@ Start with the [Portfolio Hub](https://atomicdjt.github.io/AI-Project-Portfolio/
 - **Responsible AI boundaries:** optional external AI is separated from deterministic logic, keys and data flows are documented, and generated work requires review.
 - **Local-first judgment:** several projects avoid unnecessary accounts and cloud services while acknowledging that browser storage is not encrypted or durable.
 - **Validation discipline:** root scripts cover linting, type checking, tests, production builds, documentation checks, and release verification.
+- **Deployment discipline:** only verified Vercel deployments are labeled live; migration-ready workspaces include Vercel SPA configuration and preview-first guidance.
 - **Transferability:** WeaveStudio and QuoteForge demonstrate buyer documentation, licensing boundaries, source authority, release packaging, and implementation guidance.
 
 ## Products and Commercial Proof
 
 Commercial products are a secondary proof track rather than the main hiring path.
 
-- **[WeaveStudio](https://github.com/atomicdjt/weavestudio):** acquisition-ready local-first workflow product with a consolidated default branch, portable exports, undo/redo, recovery, browser and unit validation, transfer materials, and consent-gated OpenAI/Gemini assistance.
+- **[WeaveStudio](https://github.com/atomicdjt/weavestudio):** acquisition-ready local-first workflow product with a consolidated default branch, portable exports, undo/redo, recovery, browser and unit validation, transfer materials, and consent-gated OpenAI/Gemini assistance. [Vercel demo](https://weavestudio-demo.vercel.app/).
 - **[QuoteForge Local](https://quoteforge-local.vercel.app/):** shipped white-label quote-calculator package with ten templates, typed pricing logic, embed and WordPress paths, licensing, buyer documentation, and release tooling.
 
 These descriptions do not claim verified revenue, customers, active users, purchases, or completed acquisitions.
@@ -59,10 +60,17 @@ Best-fit role families include:
 - Research Operations Assistant
 - Support Operations or Enablement
 
+## Deployment Interpretation
+
+- A project is labeled **Live** only after Vercel reports a ready deployment and its core workflow is checked.
+- **Vercel Pending** means the source, tests, documentation, and deployment configuration are present, but no verified production Vercel alias is claimed.
+- Legacy non-Vercel hosts are historical evidence only and should not be used for new publication or redeployment.
+- GitHub remains the editable source of truth; Vercel deployments are outputs of recorded commits.
+
 ## Responsible Interpretation
 
 - Deterministic scores are heuristics, not certified predictions.
 - Local-first storage is not automatically encrypted, durable, or compliant.
 - AI-assisted outputs require human review.
 - Medical, legal, financial, fraud, infrastructure, and safety-critical decisions remain outside project scope unless a project explicitly documents a narrow educational use.
-- Supplemental demos are not described as source-backed when their source is absent from this repository.
+- Supplemental work is not described as live when no current Vercel deployment exists.
