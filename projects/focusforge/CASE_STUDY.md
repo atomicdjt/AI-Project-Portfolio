@@ -8,7 +8,7 @@ FocusForge is a local-first gamified productivity web app that turns uninterrupt
 - **Local port:** `http://127.0.0.1:5179/`
 - **Deployment status:** [Live on Vercel](https://ai-project-portfolio-focusforge.vercel.app/)
 
-The app includes Vercel SPA configuration. A production URL will be added only after Vercel reports a ready deployment and the focus, recovery, persistence, export, and responsive workflows are verified.
+The app includes Vercel SPA configuration and is served from its recorded production alias. Release verification continues to cover focus, recovery, persistence, export, and responsive workflows.
 
 ## Problem
 

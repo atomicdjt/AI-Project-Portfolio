@@ -378,7 +378,6 @@ function App() {
               <select value={status} onChange={(event) => setStatus(event.target.value)} aria-label="Filter by status">
                 <option>All</option>
                 <option>Live</option>
-                <option>Vercel Pending</option>
                 <option>Local</option>
                 <option>Commercial</option>
                 <option>Acquisition Asset</option>
