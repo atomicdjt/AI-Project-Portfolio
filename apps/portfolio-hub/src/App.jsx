@@ -15,7 +15,6 @@ import {
 import { useMemo, useState } from 'react';
 
 const repoBase = 'https://github.com/atomicdjt/AI-Project-Portfolio';
-const githubPagesBase = 'https://atomicdjt.github.io/AI-Project-Portfolio';
 const imagePath = (fileName) => `images/${fileName}`;
 
 const projects = [
@@ -30,121 +29,121 @@ const projects = [
     source: 'https://github.com/atomicdjt/buildworld-ai',
     caseStudy: `${repoBase}/blob/main/projects/buildworld-ai/CASE_STUDY.md`,
     image: imagePath('buildworld-ai-studio.png'),
-    stack: ['React', 'TypeScript', 'Simulation', 'Data visualization'],
+    stack: ['React', 'TypeScript', 'Simulation', 'Vercel'],
     summary: 'Visual graph-based simulation lab for complex systems, bottlenecks, cascade risk, reproducible experiments, SSI scoring, optimization suggestions, and reports.',
-    evidence: 'Most technically original flagship: deterministic engines, editable graph models, multi-seed analysis, local persistence, tests, architecture documentation, and a live deployment.',
+    evidence: 'Most technically original flagship: deterministic engines, editable graph models, multi-seed analysis, local persistence, tests, architecture documentation, and a Vercel deployment.',
     review: 'Technical flagship',
   },
   {
     name: 'redactready-pro-hri-os',
     publicName: 'RedactReady Pro',
     audience: 'Employer',
-    status: 'Live',
+    status: 'Vercel Pending',
     repositoryAuthority: 'Portfolio workspace',
     category: 'Privacy intelligence',
-    demo: 'https://redactready-pro-hri-os.netlify.app/',
+    demo: null,
     source: `${repoBase}/tree/main/apps/redactready-pro-hri-os`,
     caseStudy: `${repoBase}/blob/main/projects/redactready-pro-hri-os/CASE_STUDY.md`,
     image: imagePath('redactready-pro-dashboard.png'),
     stack: ['React', 'TypeScript', 'Vitest', 'Local-first'],
     summary: 'Reviews document packets locally, detects sensitive information, scores human-risk signals, maps evidence, supports redaction, and exports reports.',
-    evidence: 'Strongest privacy and document-intelligence workflow: deterministic analysis, local-first boundaries, polished review UX, tests, case-study documentation, and deployment.',
+    evidence: 'Strongest privacy and document-intelligence workflow: deterministic analysis, local-first boundaries, polished review UX, tests, and case-study documentation. Vercel project creation remains pending.',
     review: 'Privacy flagship',
   },
   {
     name: 'opspilot-ai-operations-toolkit',
     publicName: 'ProcessHarbor',
     audience: 'Employer',
-    status: 'Live',
+    status: 'Vercel Pending',
     repositoryAuthority: 'Portfolio workspace',
     category: 'Technical operations',
-    demo: 'https://opspilot-ai-operations-toolkit.netlify.app/',
+    demo: null,
     source: `${repoBase}/tree/main/apps/opspilot-ai-operations-toolkit`,
     caseStudy: `${repoBase}/blob/main/projects/opspilot-ai-operations-toolkit/CASE_STUDY.md`,
     image: imagePath('opspilot-home.png'),
-    stack: ['React', 'TypeScript', 'Zod', 'Netlify Functions', 'Vitest'],
+    stack: ['React', 'TypeScript', 'Zod', 'Functions', 'Vitest'],
     summary: 'Turns rough operational inputs into reviewable SOPs, onboarding checklists, knowledge-base drafts, gap reports, versions, and export bundles.',
-    evidence: 'Clearest role fit for technical operations, documentation, enablement, and knowledge management, with validation boundaries and a database-ready path.',
+    evidence: 'Clearest role fit for technical operations, documentation, enablement, and knowledge management, with validation boundaries and a database-ready path. Vercel deployment remains pending.',
     review: 'Best role alignment',
   },
   {
     name: 'scamshield-ai',
     publicName: 'ScamShield AI',
     audience: 'Employer',
-    status: 'Live',
+    status: 'Vercel Pending',
     repositoryAuthority: 'Portfolio workspace',
     category: 'Consumer safety',
-    demo: 'https://scamshield-ai-safety.netlify.app/',
+    demo: null,
     source: `${repoBase}/tree/main/apps/scamshield-ai`,
     caseStudy: `${repoBase}/blob/main/projects/scamshield-ai/CASE_STUDY.md`,
     image: imagePath('scamshield-assessment.png'),
     stack: ['React', 'Vite', 'PDF export', 'Local-first'],
     summary: 'Assesses suspicious messages, organizes evidence, suggests safer next steps, locates official reporting channels, and exports a structured packet.',
-    evidence: 'Shows public-interest product judgment, explainable deterministic scoring, privacy-conscious workflow design, accessible guidance, tests, and deployment.',
+    evidence: 'Shows public-interest product judgment, explainable deterministic scoring, privacy-conscious workflow design, accessible guidance, and automated tests. Vercel deployment remains pending.',
     review: 'Safety workflow',
   },
   {
     name: 'redactready-local',
     publicName: 'RedactReady',
     audience: 'Employer',
-    status: 'Live',
+    status: 'Vercel Pending',
     repositoryAuthority: 'Portfolio workspace',
     category: 'Privacy tool',
-    demo: 'https://redactready-local.netlify.app/',
+    demo: null,
     source: `${repoBase}/tree/main/apps/redactready-local`,
     caseStudy: `${repoBase}/blob/main/projects/redactready-local/CASE_STUDY.md`,
     image: imagePath('redactready-review-workspace.png'),
     stack: ['React', 'TypeScript', 'PDF.js', 'pdf-lib'],
     summary: 'Reviews sensitive files locally, highlights likely private data, supports manual redaction, and exports verification-oriented results.',
-    evidence: 'Demonstrates document workflows, local processing, practical threat-model boundaries, true flattened redaction output, and security-minded UX.',
+    evidence: 'Demonstrates document workflows, local processing, practical threat-model boundaries, true flattened redaction output, and security-minded UX. Vercel deployment remains pending.',
     review: 'Privacy depth',
   },
   {
     name: 'layerforge-studio',
     publicName: 'LayerForge Studio',
     audience: 'Employer',
-    status: 'Live',
+    status: 'Vercel Pending',
     repositoryAuthority: 'Portfolio workspace',
     category: 'Canvas editor',
-    demo: `${githubPagesBase}/layerforge-studio/`,
+    demo: null,
     source: `${repoBase}/tree/main/apps/layerforge-studio`,
     caseStudy: `${repoBase}/blob/main/projects/layerforge-studio/CASE_STUDY.md`,
     image: imagePath('layerforge-studio-home.png'),
     stack: ['React', 'TypeScript', 'Canvas 2D', 'IndexedDB'],
     summary: 'Browser image editor with layered raster documents, painting tools, selections, filters, undo, persistence, and exports.',
-    evidence: 'Strongest frontend and interaction-depth evidence in the monorepo, including Canvas architecture, command history, local persistence, and dense product UI.',
+    evidence: 'Strong frontend and interaction-depth evidence, including Canvas architecture, command history, local persistence, and dense product UI. Vercel deployment remains pending.',
     review: 'Frontend depth',
   },
   {
     name: 'focusforge',
     publicName: 'FocusForge',
     audience: 'Employer',
-    status: 'Live',
+    status: 'Vercel Pending',
     repositoryAuthority: 'Portfolio workspace',
     category: 'Productivity game',
-    demo: 'https://focusforge-productivity-game.netlify.app/',
+    demo: null,
     source: `${repoBase}/tree/main/apps/focusforge`,
     caseStudy: `${repoBase}/blob/main/projects/focusforge/CASE_STUDY.md`,
     image: imagePath('focusforge-home.png'),
     stack: ['React', 'Vite', 'Vitest', 'Local storage'],
     summary: 'Turns focus sessions into civilization growth, research unlocks, streak history, and durable local progress.',
-    evidence: 'Shows product-system thinking, stateful UX, persistent client data, testable game rules, and polished static deployment.',
+    evidence: 'Shows product-system thinking, stateful UX, persistent client data, testable game rules, and responsive design. Vercel deployment remains pending.',
     review: 'Product system',
   },
   {
     name: 'variantvision-pro',
     publicName: 'VariantVision Pro',
     audience: 'Employer',
-    status: 'Live',
+    status: 'Vercel Pending',
     repositoryAuthority: 'Portfolio workspace',
     category: 'Research tool',
-    demo: 'https://variantvisionpro.netlify.app/',
+    demo: null,
     source: `${repoBase}/tree/main/apps/variantvision-pro`,
     caseStudy: `${repoBase}/blob/main/projects/variantvision-pro/CASE_STUDY.md`,
     image: imagePath('variantvision-pro-dashboard.png'),
     stack: ['React', 'TypeScript', 'Bioinformatics', 'Evidence scoring'],
     summary: 'Educational bioinformatics workbench for genetic-variant review, source provenance, amino-acid comparison, evidence scoring, and non-diagnostic reports.',
-    evidence: 'Shows complex-domain product architecture, source-transparency UX, research support, and careful non-diagnostic scope boundaries.',
+    evidence: 'Shows complex-domain product architecture, source-transparency UX, research support, and careful non-diagnostic scope boundaries. Vercel deployment remains pending.',
     review: 'Research implementation',
   },
   {
@@ -190,7 +189,7 @@ const projects = [
     source: 'https://github.com/atomicdjt/weavestudio',
     caseStudy: 'https://weavestudio-demo.vercel.app/acquire',
     image: null,
-    stack: ['React', 'TypeScript', 'React Flow', 'Playwright', 'Local-first'],
+    stack: ['React', 'TypeScript', 'React Flow', 'Playwright', 'Vercel'],
     summary: 'Local-first visual workflow canvas for turning fragmented notes, transcripts, logs, and research inputs into structured, reviewable deliverables.',
     evidence: 'Most complete product asset: consolidated default branch, browser and unit validation, portable exports, buyer transfer materials, and consent-gated OpenAI/Gemini BYOK assistance.',
     review: 'Transfer-ready product',
@@ -206,7 +205,7 @@ const projects = [
     source: null,
     caseStudy: 'https://payhip.com/b/24De9',
     image: null,
-    stack: ['Next.js', 'TypeScript', 'Playwright', 'CSV export', 'White-label'],
+    stack: ['Next.js', 'TypeScript', 'Playwright', 'CSV export', 'Vercel'],
     summary: 'White-label quote-calculator and lead-capture package for agencies, freelancers, WordPress developers, and local-service website implementers.',
     evidence: 'Ten calculator templates, embed and WordPress paths, buyer documentation, licensing, QA scripts, sales materials, and release packaging.',
     review: 'Shipped commercial package',
@@ -218,14 +217,14 @@ const projects = [
     status: 'Supplemental',
     repositoryAuthority: 'Documentation-first case study',
     category: 'Education tool',
-    demo: 'https://aminoacidworkbench.netlify.app/',
+    demo: null,
     source: `${repoBase}/blob/main/projects/amino-acid-research-workbench/CASE_STUDY.md`,
     caseStudy: `${repoBase}/blob/main/projects/amino-acid-research-workbench/CASE_STUDY.md`,
     image: null,
     stack: ['Education', 'Bioinformatics', 'Explainable analysis'],
     summary: 'Educational workbench concept for comparing amino-acid substitutions and building evidence dossiers.',
-    evidence: 'Useful complex-domain and educational UX evidence; the current portfolio repository contains documentation rather than a maintained app workspace.',
-    review: 'Supplemental research demo',
+    evidence: 'Useful complex-domain and educational UX evidence; no current Vercel deployment is claimed.',
+    review: 'Supplemental research work',
   },
   {
     name: 'garden-grid',
@@ -234,14 +233,14 @@ const projects = [
     status: 'Supplemental',
     repositoryAuthority: 'Source outside portfolio repository',
     category: 'Planning tool',
-    demo: 'https://garden-grid-planner-demo.netlify.app/',
+    demo: null,
     source: null,
     caseStudy: null,
     image: null,
-    stack: ['Static demo', 'Planning UX', 'External source'],
-    summary: 'Garden-layout planning demo for arranging beds, companion-planting notes, and seasonal planning.',
-    evidence: 'Supplemental planning-UX evidence only; source is not represented as part of the portfolio monorepo.',
-    review: 'External demo',
+    stack: ['Planning UX', 'External source'],
+    summary: 'Garden-layout planning concept for arranging beds, companion-planting notes, and seasonal planning.',
+    evidence: 'Supplemental planning-UX evidence only; no current Vercel deployment or source-backed workspace is claimed.',
+    review: 'External concept',
   },
   {
     name: 'hearthlink',
@@ -250,13 +249,13 @@ const projects = [
     status: 'Supplemental',
     repositoryAuthority: 'Source outside portfolio repository',
     category: 'Community concept',
-    demo: 'https://hearthlink-p2p-demo.netlify.app/',
+    demo: null,
     source: null,
     caseStudy: null,
     image: null,
-    stack: ['Static demo', 'P2P concept', 'External source'],
+    stack: ['P2P concept', 'External source'],
     summary: 'Peer-to-peer neighborhood-hub concept with explicit offline and signaling limitations.',
-    evidence: 'Supplemental concept evidence only; source is not represented as part of the portfolio monorepo.',
+    evidence: 'Supplemental concept evidence only; no current Vercel deployment or source-backed workspace is claimed.',
     review: 'External concept',
   },
 ];
@@ -265,7 +264,7 @@ const employerQuickReview = projects.filter((project) =>
   ['BuildWorld AI', 'RedactReady Pro', 'ProcessHarbor'].includes(project.publicName),
 );
 const commercialAssets = projects.filter((project) => project.audience === 'Commercial');
-const liveCount = projects.filter((project) => ['Live', 'Commercial', 'Acquisition Asset'].includes(project.status)).length;
+const vercelLiveCount = projects.filter((project) => ['Live', 'Commercial', 'Acquisition Asset'].includes(project.status)).length;
 const sourceBackedCount = projects.filter((project) => project.source).length;
 
 function App() {
@@ -286,7 +285,7 @@ function App() {
   return (
     <div className="app-shell">
       <aside className="side-rail" aria-label="Portfolio navigation">
-        <a className="brand" href={githubPagesBase} aria-label="David Turner portfolio hub">
+        <a className="brand" href="/" aria-label="David Turner portfolio hub">
           <span className="brand-mark">DT</span>
           <span>
             <strong>David Turner</strong>
@@ -301,9 +300,9 @@ function App() {
           <a href={repoBase}><Code2 size={18} aria-hidden="true" /> GitHub repo</a>
         </nav>
         <div className="rail-panel">
-          <span>Recommended path</span>
-          <strong>Employer-first, buyer-ready</strong>
-          <p>Start with three role-aligned projects. Commercial products have a separate review path and make no unsupported traction claims.</p>
+          <span>Deployment policy</span>
+          <strong>Vercel only</strong>
+          <p>Only Vercel-hosted products are labeled live. Other source-backed applications remain reviewable through code and case studies until their Vercel projects are created.</p>
         </div>
       </aside>
 
@@ -311,7 +310,7 @@ function App() {
         <header className="topbar">
           <div>
             <h1>David Turner — Applied AI & Technical Operations Portfolio</h1>
-            <p>Local-first products, workflow systems, deployed applications, and evidence-oriented documentation organized for employer and commercial review.</p>
+            <p>Local-first products, workflow systems, source-backed applications, and evidence-oriented documentation organized for employer and commercial review.</p>
           </div>
           <div className="topbar-actions" aria-label="Primary portfolio actions">
             <a className="button secondary" href={repoBase}>
@@ -324,7 +323,7 @@ function App() {
         </header>
 
         <section className="metrics-strip" aria-label="Portfolio snapshot">
-          <Stat label="Live or product demos" value={liveCount} icon={<Globe2 size={18} aria-hidden="true" />} />
+          <Stat label="Vercel-hosted products" value={vercelLiveCount} icon={<Globe2 size={18} aria-hidden="true" />} />
           <Stat label="Source-linked entries" value={sourceBackedCount} icon={<CheckCircle2 size={18} aria-hidden="true" />} />
           <Stat label="Employer review" value="3 projects" icon={<Timer size={18} aria-hidden="true" />} />
           <Stat label="Review paths" value="Hiring + Products" icon={<Sparkles size={18} aria-hidden="true" />} />
@@ -349,7 +348,7 @@ function App() {
           <div className="section-title">
             <div>
               <span>Products and acquisition assets</span>
-              <h2 id="commercial-title">Separate products with clear source authority and buyer-facing documentation</h2>
+              <h2 id="commercial-title">Separate products with Vercel deployments and clear source authority</h2>
             </div>
           </div>
           <p>Commercial status describes product packaging and availability; it does not imply revenue, customers, active users, or a completed acquisition.</p>
@@ -362,7 +361,7 @@ function App() {
           <div className="section-title browser-title">
             <div>
               <span>Complete catalog</span>
-              <h2 id="projects-title">Demos, source authority, case studies, status, and evidence</h2>
+              <h2 id="projects-title">Source authority, Vercel status, case studies, and evidence</h2>
             </div>
             <div className="filters">
               <label className="search-field">
@@ -379,6 +378,7 @@ function App() {
               <select value={status} onChange={(event) => setStatus(event.target.value)} aria-label="Filter by status">
                 <option>All</option>
                 <option>Live</option>
+                <option>Vercel Pending</option>
                 <option>Local</option>
                 <option>Commercial</option>
                 <option>Acquisition Asset</option>
@@ -416,7 +416,7 @@ function App() {
                     </td>
                     <td data-label="Links">
                       <div className="link-stack">
-                        {project.demo ? <ExternalLink href={project.demo}>Live demo</ExternalLink> : <span>Local-only app</span>}
+                        {project.demo ? <ExternalLink href={project.demo}>Vercel demo</ExternalLink> : <span>No current Vercel demo</span>}
                         {project.source && project.source !== project.caseStudy ? <ExternalLink href={project.source}>Source</ExternalLink> : null}
                         {project.caseStudy ? <ExternalLink href={project.caseStudy}>{project.audience === 'Commercial' ? 'Product details' : 'Case study'}</ExternalLink> : <span>No portfolio case study</span>}
                       </div>
@@ -430,11 +430,11 @@ function App() {
         </section>
 
         <section id="technical-depth" className="technical-depth" aria-labelledby="depth-title">
-          <div><span>Evidence and role mapping</span><h2 id="depth-title">Recommended next stops after the demos</h2></div>
+          <div><span>Evidence and role mapping</span><h2 id="depth-title">Recommended next stops after the project review</h2></div>
           <div className="depth-grid">
             <DepthLink icon={<ShieldCheck size={19} aria-hidden="true" />} title="Verification guide" text="Commands, validation boundaries, and public checks used to support portfolio claims." href={`${repoBase}/blob/main/docs/verification.md`} />
-            <DepthLink icon={<BookOpen size={19} aria-hidden="true" />} title="Project index" text="Source authority, status, best evidence, and role-fit notes for the complete catalog." href={`${repoBase}/blob/main/docs/PROJECT_INDEX.md`} />
-            <DepthLink icon={<FileText size={19} aria-hidden="true" />} title="Skills matrix" text="How the projects map to operations, AI workflow, documentation, research, and frontend skills." href={`${repoBase}/blob/main/docs/SKILLS_MATRIX.md`} />
+            <DepthLink icon={<BookOpen size={19} aria-hidden="true" />} title="Project index" text="Source authority, Vercel status, best evidence, and role-fit notes for the complete catalog." href={`${repoBase}/blob/main/docs/PROJECT_INDEX.md`} />
+            <DepthLink icon={<FileText size={19} aria-hidden="true" />} title="Vercel deployment plan" text="Project-by-project migration settings and the Vercel-only publication policy." href={`${repoBase}/blob/main/docs/VERCEL_DEPLOYMENT.md`} />
           </div>
         </section>
       </main>
@@ -458,7 +458,7 @@ function ProjectCard({ project }) {
         <p>{project.evidence}</p>
         <small>{project.repositoryAuthority}</small>
         <div className="card-actions">
-          {project.demo ? <ExternalLink href={project.demo}>Live demo</ExternalLink> : null}
+          {project.demo ? <ExternalLink href={project.demo}>Vercel demo</ExternalLink> : null}
           {project.source ? <ExternalLink href={project.source}>Source</ExternalLink> : null}
           {project.caseStudy ? <ExternalLink href={project.caseStudy}>{project.audience === 'Commercial' ? 'Product details' : 'Case study'}</ExternalLink> : null}
         </div>
