@@ -11,6 +11,7 @@ Use Node.js 22 or later.
 ```bash
 npm ci
 npm run check:docs
+npm run check:deployment-policy
 npm run lint:apps
 npm run typecheck:all
 npm run test:all
@@ -22,6 +23,7 @@ npm run verify:release
 The root `package.json` defines:
 
 - `check:docs` — validates repository Markdown links and documentation references.
+- `check:deployment-policy` — prevents primary surfaces from restoring legacy deployment routes.
 - `lint:apps` — runs each configured application's lint command.
 - `typecheck:all` — runs workspace typechecks where present.
 - `test:all` — runs supported automated test suites.
@@ -35,7 +37,7 @@ Some workspaces perform TypeScript validation as part of `build` rather than thr
 
 All new deployments and redeployments use Vercel. The repository does not publish through Netlify or GitHub Pages.
 
-The former Pages workflow is now a build-only **Portfolio Vercel Readiness** workflow. It builds the Portfolio Hub and LayerForge Studio, confirms their static output, and uploads CI artifacts without deploying them.
+The former Pages workflow is a build-only **Portfolio Vercel Readiness** workflow. It builds the Portfolio Hub and LayerForge Studio, confirms their static output, and uploads CI artifacts without deploying them.
 
 Migration-ready Vite workspaces contain `vercel.json` with the documented SPA rewrite to `index.html`.
 
@@ -43,17 +45,32 @@ Migration-ready Vite workspaces contain `vercel.json` with the documented SPA re
 
 | Public name | Local path | Local port or services | Build | Automated tests | Vercel status | Important boundary |
 | --- | --- | --- | --- | --- | --- | --- |
-| Portfolio Hub | `apps/portfolio-hub` | `5180` | Yes | No dedicated suite; lint and build required | Vercel Pending | Presentation surface; public URL should be added only after verified Vercel deployment. |
+| Portfolio Hub | `apps/portfolio-hub` | `5180` | Yes | No dedicated suite; lint and build required | [Live](https://ai-project-portfolio-portfolio-hub.vercel.app/) | Presentation surface; source and case studies remain authoritative evidence. |
 | BuildWorld AI review copy | `apps/buildworld-ai` | `5183` | Yes | Vitest | Standalone product is [live on Vercel](https://buildworld-ai-v01-improvements.vercel.app/) | Educational and exploratory simulation; SSI and suggestions are heuristics. |
-| RedactReady Pro | `apps/redactready-pro-hri-os` | `5181` | Yes | Vitest | Vercel Pending | Browser-local MVP; local storage and document parsing have documented limits. |
-| ProcessHarbor | `apps/opspilot-ai-operations-toolkit` | `5177` | Yes | Vitest and Playwright workflow evidence | Vercel Pending | Static deterministic workflow is migration-ready; optional provider endpoints require Vercel Functions verification. |
-| ScamShield AI | `apps/scamshield-ai` | `5178` | Yes | Vitest and Playwright | Vercel Pending | Explainable risk workflow, not a fraud determination or emergency service. |
-| RedactReady | `apps/redactready-local` | Vite default unless occupied | Yes | Vitest and Playwright | Vercel Pending | OCR, face, and signature detection retain documented limitations. |
-| LayerForge Studio | `apps/layerforge-studio` | `5176` | Yes | No dedicated suite documented | Vercel Pending | Local browser image editor; not a cloud collaboration system. |
-| FocusForge | `apps/focusforge` | Vite default unless occupied | Yes | Vitest | Vercel Pending | Local productivity game; no medical or guaranteed productivity claim. |
-| VariantVision Pro | `apps/variantvision-pro` | `5182` | Yes | Vitest and Playwright smoke evidence | Vercel Pending | Educational research workbench; not clinical interpretation or diagnosis. |
+| RedactReady Pro | `apps/redactready-pro-hri-os` | `5181` | Yes | Vitest | [Live](https://ai-project-portfolio-redactready-pr.vercel.app/) | Browser-local MVP; local storage and document parsing have documented limits. |
+| ProcessHarbor | `apps/opspilot-ai-operations-toolkit` | `5177` | Yes | Vitest and Playwright workflow evidence | [Live static workflow](https://ai-project-portfolio-opspilot-ai-op.vercel.app/) | Optional provider endpoints are source-documented but are not represented as deployed on the static Vercel surface. |
+| ScamShield AI | `apps/scamshield-ai` | `5178` | Yes | Vitest and Playwright | [Live](https://ai-project-portfolio-scamshield-ai.vercel.app/) | Explainable risk workflow, not a fraud determination or emergency service. |
+| RedactReady | `apps/redactready-local` | Vite default unless occupied | Yes | Vitest and Playwright | [Live](https://ai-project-portfolio-redactready-lo.vercel.app/) | OCR, face, signature, metadata, and export verification retain documented limitations. |
+| LayerForge Studio | `apps/layerforge-studio` | `5176` | Yes | No dedicated suite documented | [Live](https://ai-project-portfolio-layerforge-stu.vercel.app/) | Local browser image editor; not a cloud collaboration system. |
+| FocusForge | `apps/focusforge` | Vite default unless occupied | Yes | Vitest | [Live](https://ai-project-portfolio-focusforge.vercel.app/) | Local productivity game; no medical or guaranteed productivity claim. |
+| VariantVision Pro | `apps/variantvision-pro` | `5182` | Yes | Vitest and Playwright smoke evidence | [Live](https://ai-project-portfolio-variantvision.vercel.app/) | Educational research workbench; not clinical interpretation or diagnosis. |
 | Astra | `apps/astra` | UI `5174`, API `3002` | Yes | No dedicated suite documented | Local-only | Requires explicit Vercel Functions or separate backend design. |
 | Nexus Play | `apps/nexus-play` | UI `5175`, API `3003` | Yes | No dedicated suite documented | Local-only | Simulated checkout; requires explicit Vercel backend design. |
+
+## Deployment Verification Recorded July 14, 2026
+
+For the Portfolio Hub and seven employer applications:
+
+- Vercel framework: Vite
+- Node.js: 22.x
+- production branch: `main`
+- latest inspected production state: `READY`
+- production root response: HTTP 200
+- deployed HTML identity: matched the intended application
+- runtime-error clusters during the inspection window: none reported
+- initial recorded source commit: `b122456e89b0915e27666b046ae108b51486fd4f`
+
+This is point-in-time deployment evidence. It does not replace project-level automated tests, browser workflow testing, accessibility review, or future monitoring.
 
 ## Separate Authoritative Product Repositories
 
@@ -107,21 +124,6 @@ Current Vercel surface: `https://quoteforge-local.vercel.app/`.
 
 A release ZIP, Payhip delivery package, and Vercel deployment should record the source commit from which they were generated. A passing package check does not establish customer adoption, legal sufficiency, or production-ready lead storage.
 
-## Vercel Verification
-
-A public project becomes `Live` only after:
-
-1. repository validation passes,
-2. Vercel reports the deployment as `READY`,
-3. the production alias resolves,
-4. core workflow smoke testing succeeds,
-5. direct routes refresh correctly,
-6. static assets load,
-7. browser console has no unresolved application errors,
-8. source commit and deployment URL are recorded.
-
-See [VERCEL_DEPLOYMENT.md](VERCEL_DEPLOYMENT.md) and [deployment-and-previews.md](deployment-and-previews.md) for project settings and the current source-authority map.
-
 ## Evidence Interpretation
 
 Verification supports claims such as:
@@ -129,8 +131,8 @@ Verification supports claims such as:
 - the application builds,
 - documented automated tests pass,
 - a Vercel deployment reached a ready state,
-- a route was reachable when checked,
-- a workflow behaved as described in the recorded test,
+- a production root route was reachable when checked,
+- deployed HTML matched the intended application,
 - packaging scripts produced the expected output.
 
 Verification does not by itself support claims such as:
@@ -146,4 +148,4 @@ Verification does not by itself support claims such as:
 
 The July 4, 2026 public audit and prior deployment logs remain historical snapshots. They may contain legacy hosting references and do not define the current deployment policy.
 
-The current portfolio state, Vercel policy, source authorities, names, and deployment routing are summarized in [public-portfolio-audit-2026-07-14.md](public-portfolio-audit-2026-07-14.md).
+The current portfolio state, Vercel policy, source authorities, names, and deployment routing are summarized in [public-portfolio-audit-2026-07-14.md](public-portfolio-audit-2026-07-14.md) and [deployment-and-previews.md](deployment-and-previews.md).

@@ -459,7 +459,6 @@ function App() {
         <section className="portfolio-links" aria-label="Source and reviewer links">
           <a href="https://github.com/atomicdjt/AI-Project-Portfolio/tree/main/apps/opspilot-ai-operations-toolkit">GitHub source</a>
           <a href="https://github.com/atomicdjt/AI-Project-Portfolio/tree/main/projects/opspilot-ai-operations-toolkit">Portfolio case study</a>
-          <a href="https://opspilot-ai-operations-toolkit.netlify.app/api/health">API health check</a>
         </section>
       </main>
     </div>

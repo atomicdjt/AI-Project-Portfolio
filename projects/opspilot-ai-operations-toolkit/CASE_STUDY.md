@@ -11,7 +11,7 @@ The product is designed as a polished operations workflow rather than a generic 
 - Source: [apps/opspilot-ai-operations-toolkit](../../apps/opspilot-ai-operations-toolkit)
 - Default local URL: `http://127.0.0.1:5177/`
 - Proof assets: [apps/opspilot-ai-operations-toolkit/docs/proof](../../apps/opspilot-ai-operations-toolkit/docs/proof)
-- Deployment status: **Vercel Pending**
+- Deployment status: **[Live on Vercel](https://ai-project-portfolio-opspilot-ai-op.vercel.app/)** — deterministic static workflow only; the source-documented API, AI-provider, and database paths are not deployed on this route.
 
 The deterministic browser workflow is configured for a Vercel preview. Optional backend routes must be exposed and validated as Vercel Functions before server-backed functionality is described as deployed.
 

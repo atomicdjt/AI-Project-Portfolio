@@ -7,10 +7,10 @@ A single universal ranking is misleading because different reviewers value diffe
 | Priority | Project | Why it leads this review path | Deployment status |
 | --- | --- | --- | --- |
 | 1 | [BuildWorld AI](https://github.com/atomicdjt/buildworld-ai) | Strongest technical originality: graph modeling, deterministic engines, cascade analysis, reproducible experiments, SSI scoring, reports, tests, and architecture documentation. | [Live on Vercel](https://buildworld-ai-v01-improvements.vercel.app/) |
-| 2 | [RedactReady Pro](../projects/redactready-pro-hri-os/CASE_STUDY.md) | Strongest privacy and document-intelligence workflow with local analysis, sensitive-information review, scoring, evidence mapping, redaction, reporting, and tests. | Vercel Pending |
-| 3 | [ProcessHarbor](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) | Strongest direct alignment with technical operations, SOPs, onboarding, documentation, knowledge management, versions, and export workflows. | Vercel Pending |
-| 4 | [ScamShield AI](../projects/scamshield-ai/CASE_STUDY.md) | Strongest public-interest safety workflow with explainable local analysis, evidence organization, accessible guidance, and PDF export. | Vercel Pending |
-| 5 | [LayerForge Studio](../projects/layerforge-studio/CASE_STUDY.md) | Strongest frontend and interaction-depth evidence through Canvas architecture, document state, tools, history, persistence, and export. | Vercel Pending |
+| 2 | [RedactReady Pro](../projects/redactready-pro-hri-os/CASE_STUDY.md) | Strongest privacy and document-intelligence workflow with local analysis, sensitive-information review, scoring, evidence mapping, redaction, reporting, and tests. | Live on Vercel |
+| 3 | [ProcessHarbor](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) | Strongest direct alignment with technical operations, SOPs, onboarding, documentation, knowledge management, versions, and export workflows. | Live on Vercel (static workflow) |
+| 4 | [ScamShield AI](../projects/scamshield-ai/CASE_STUDY.md) | Strongest public-interest safety workflow with explainable local analysis, evidence organization, accessible guidance, and PDF export. | Live on Vercel |
+| 5 | [LayerForge Studio](../projects/layerforge-studio/CASE_STUDY.md) | Strongest frontend and interaction-depth evidence through Canvas architecture, document state, tools, history, persistence, and export. | Live on Vercel |
 
 ## Commercial Readiness — Packaging and Transferability
 

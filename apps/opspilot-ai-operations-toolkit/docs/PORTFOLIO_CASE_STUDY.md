@@ -4,7 +4,7 @@
 
 ProcessHarbor Pro is a polished operations documentation system for small businesses. It focuses on a monetizable business pain: converting messy internal information into repeatable SOPs, onboarding checklists, help articles, gap reports, audit events, export bundles, and versioned documentation.
 
-Live demo: https://opspilot-ai-operations-toolkit.netlify.app/
+Live demo: https://ai-project-portfolio-opspilot-ai-op.vercel.app/
 
 ## Target Users
 
@@ -30,7 +30,7 @@ Live demo: https://opspilot-ai-operations-toolkit.netlify.app/
 - `audit_events` model and export bundle format to show compliance-oriented thinking.
 - Vitest coverage for create, update, version, export, audit, validation, authorization, AI fallback, markup normalization, gap, and training paths.
 - Playwright workflow coverage plus screenshot, GIF, and video proof generation.
-- Netlify static deployment config with a modern Netlify Function at `/api/:route`.
+- Vercel static deployment for the deterministic browser workflow. The source-documented API is not active on this deployment.
 
 ## Core Workflow
 
