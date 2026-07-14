@@ -41,6 +41,9 @@ jobs:
           path: documentation-check.log
           if-no-files-found: error
 
+      - name: Enforce Vercel-only deployment policy
+        run: npm run check:deployment-policy
+
       - name: Lint apps
         run: npm run lint:apps
 
