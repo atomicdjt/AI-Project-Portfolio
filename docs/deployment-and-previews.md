@@ -2,15 +2,13 @@
 
 Last updated: July 14, 2026.
 
-All new portfolio deployments, redeployments, preview deployments, and production aliases must use Vercel. Legacy non-Vercel hosts are historical evidence only and are not canonical routes.
-
-A Vercel deployment is an output of a GitHub repository. It does not replace the repository as the editable source of truth.
+All new portfolio deployments, redeployments, preview deployments, and production aliases use Vercel. Legacy non-Vercel hosts are historical evidence only and are not canonical routes. GitHub remains the editable source of truth; Vercel deployments are derivative outputs.
 
 ## Authoritative Repositories
 
 | Product or portfolio | Authoritative repository | Branch | Current deployment state |
 | --- | --- | --- | --- |
-| Employer portfolio and monorepo apps | `atomicdjt/AI-Project-Portfolio` | `main` | Portfolio Hub Vercel project pending |
+| Employer portfolio and monorepo apps | `atomicdjt/AI-Project-Portfolio` | `main` | Portfolio Hub and seven employer applications live on Vercel |
 | WeaveStudio | `atomicdjt/weavestudio` | `master` | Live on Vercel |
 | BuildWorld AI standalone product | `atomicdjt/buildworld-ai` | `main` | Live on Vercel |
 | QuoteForge Local | private `atomicdjt/quoteforge-local` | `main` | Live on Vercel |
@@ -18,7 +16,28 @@ A Vercel deployment is an output of a GitHub repository. It does not replace the
 
 The monorepo contains a BuildWorld review workspace, but current standalone product development and release evidence are maintained in `atomicdjt/buildworld-ai`.
 
-## Current Verified Vercel Projects
+## Employer Portfolio Vercel Projects
+
+The eight monorepo projects below were created from `atomicdjt/AI-Project-Portfolio`, production branch `main`, with Vite and Node.js 22.x. Their initial verified production deployments were derived from commit `b122456e89b0915e27666b046ae108b51486fd4f`; later repository changes may create newer deployment commits and should remain traceable in Vercel.
+
+| Public name | Vercel project | Root Directory | Canonical production route | State |
+| --- | --- | --- | --- | --- |
+| Portfolio Hub | `ai-project-portfolio-portfolio-hub` | `apps/portfolio-hub` | `https://ai-project-portfolio-portfolio-hub.vercel.app/` | `READY`, HTTP 200 |
+| RedactReady Pro | `ai-project-portfolio-redactready-pro-hri-os` | `apps/redactready-pro-hri-os` | `https://ai-project-portfolio-redactready-pr.vercel.app/` | `READY`, HTTP 200 |
+| ProcessHarbor | `ai-project-portfolio-opspilot-ai-operations-toolkit` | `apps/opspilot-ai-operations-toolkit` | `https://ai-project-portfolio-opspilot-ai-op.vercel.app/` | `READY`, HTTP 200; static deterministic workflow |
+| ScamShield AI | `ai-project-portfolio-scamshield-ai` | `apps/scamshield-ai` | `https://ai-project-portfolio-scamshield-ai.vercel.app/` | `READY`, HTTP 200 |
+| RedactReady | `ai-project-portfolio-redactready-local` | `apps/redactready-local` | `https://ai-project-portfolio-redactready-lo.vercel.app/` | `READY`, HTTP 200 |
+| LayerForge Studio | `ai-project-portfolio-layerforge-studio` | `apps/layerforge-studio` | `https://ai-project-portfolio-layerforge-stu.vercel.app/` | `READY`, HTTP 200 |
+| FocusForge | `ai-project-portfolio-focusforge` | `apps/focusforge` | `https://ai-project-portfolio-focusforge.vercel.app/` | `READY`, HTTP 200 |
+| VariantVision Pro | `ai-project-portfolio-variantvision-pro` | `apps/variantvision-pro` | `https://ai-project-portfolio-variantvision.vercel.app/` | `READY`, HTTP 200 |
+
+No runtime-error clusters were reported for these projects during the post-creation inspection window.
+
+### ProcessHarbor boundary
+
+The public Vercel deployment is the deterministic browser workflow. The repository also contains reference API contracts, validation, an optional server-side AI design, and a database migration path. Those provider-backed endpoints are not represented as deployed on the current static Vercel surface.
+
+## Other Canonical Vercel Projects
 
 | Vercel project | Public URL | Source authority | Purpose |
 | --- | --- | --- | --- |
@@ -27,67 +46,39 @@ The monorepo contains a BuildWorld review workspace, but current standalone prod
 | `buildworld-ai-v01-improvements` | `https://buildworld-ai-v01-improvements.vercel.app/` | `atomicdjt/buildworld-ai/main` | Authoritative BuildWorld public demo. |
 | `quoteforge-local` | `https://quoteforge-local.vercel.app/` | private `atomicdjt/quoteforge-local/main` | QuoteForge Local public product demo. |
 
-A project named `source` exists in the Vercel team but is not assigned as a canonical portfolio deployment in this map.
-
-## Vercel-Pending Employer Applications
-
-| Public name | Source | Recommended Vercel project | Root Directory | Current status |
-| --- | --- | --- | --- | --- |
-| Portfolio Hub | `apps/portfolio-hub` | `david-turner-portfolio` | `apps/portfolio-hub` | Vercel project pending; prior GitHub Pages deployment workflow disabled. |
-| RedactReady Pro | `apps/redactready-pro-hri-os` | `redactready-pro` | `apps/redactready-pro-hri-os` | `vercel.json` added; production deployment pending. |
-| ProcessHarbor | `apps/opspilot-ai-operations-toolkit` | `processharbor` | `apps/opspilot-ai-operations-toolkit` | `vercel.json` added; static workflow deployment pending; optional server endpoints require Vercel Functions verification. |
-| ScamShield AI | `apps/scamshield-ai` | `scamshield-ai` | `apps/scamshield-ai` | `vercel.json` added; production deployment pending. |
-| RedactReady | `apps/redactready-local` | `redactready-local` | `apps/redactready-local` | `vercel.json` added; production deployment pending. |
-| LayerForge Studio | `apps/layerforge-studio` | `layerforge-studio` | `apps/layerforge-studio` | `vercel.json` added; production deployment pending. |
-| FocusForge | `apps/focusforge` | `focusforge` | `apps/focusforge` | `vercel.json` added; production deployment pending. |
-| VariantVision Pro | `apps/variantvision-pro` | `variantvision-pro` | `apps/variantvision-pro` | `vercel.json` added; production deployment pending. |
-
-See [VERCEL_DEPLOYMENT.md](VERCEL_DEPLOYMENT.md) for exact project settings, migration order, and verification requirements.
+A project named `source` exists in the Vercel team but is not assigned as a canonical portfolio deployment.
 
 ## Local-Only Workspaces
 
-| Project | Source | Local services | Reason not yet deployed |
+| Project | Source | Local services | Reason not deployed |
 | --- | --- | --- | --- |
 | Astra | `apps/astra` | UI `5174`, API `3002` | Requires an explicit Vercel Functions or separate backend design before production deployment. |
 | Nexus Play | `apps/nexus-play` | UI `5175`, API `3003` | Requires an explicit Vercel backend design; checkout remains simulated. |
 
-## Preview and Production Policy
-
-1. Create a focused Git branch and pull request.
-2. Run repository validation.
-3. Use a Vercel preview deployment connected to the pull-request branch.
-4. Verify the core workflow, direct-route refresh, static assets, browser console, and mobile layout.
-5. Correct the source branch when validation or deployment fails.
-6. Merge only after required checks pass.
-7. Promote or alias only a ready Vercel deployment built from the authoritative branch.
-8. Record the source commit, Vercel project, deployment URL, and production alias.
-
-Do not use GitHub Actions to deploy the Portfolio Hub. The former Pages workflow is now a build-only **Portfolio Vercel Readiness** check.
-
 ## Production Verification Standard
 
-A project becomes `Live` only when:
+A project is labeled `Live` when:
 
 - repository validation passes,
 - Vercel reports `READY`,
 - the production alias resolves,
-- the primary browser workflow succeeds,
-- direct route refreshes do not return 404,
-- static assets load correctly,
-- browser console has no unresolved application errors,
-- the source commit and production URL are recorded.
+- the root document and static assets respond successfully,
+- the deployed application identity matches the intended workspace,
+- runtime inspection reports no unresolved application-error cluster,
+- important product limitations remain explicit,
+- source authority and production URL are recorded.
 
-Until then, use `Vercel Pending` and route reviewers to source and case studies.
+Interactive workflow testing and future uptime remain point-in-time concerns; a successful deployment does not imply independent security certification, compliance, external adoption, or production-scale suitability.
 
-## Rollback
+## Preview and Rollback Policy
 
-If a Vercel deployment fails or regresses:
+1. Create a focused Git branch and pull request.
+2. Run repository validation.
+3. Use the connected Vercel preview deployment where appropriate.
+4. Correct source when validation, metadata, routing, or runtime checks fail.
+5. Merge only after required checks pass.
+6. Keep GitHub as the source of truth.
+7. Promote or retain only a `READY` deployment from the authoritative branch.
+8. Use Vercel rollback history rather than restoring a legacy host.
 
-- keep GitHub as the source of truth,
-- inspect Vercel build or runtime logs,
-- fix the repository branch,
-- create a new preview deployment,
-- promote the corrected deployment or roll the alias back to the last verified deployment,
-- document the final source commit.
-
-Do not restore a legacy non-Vercel host as the canonical deployment.
+The former GitHub Pages workflow is a build-only **Portfolio Vercel Readiness** check and does not deploy the Hub.
