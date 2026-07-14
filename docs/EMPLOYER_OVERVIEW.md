@@ -6,13 +6,14 @@ The consistent pattern is the ability to take an ambiguous problem, define the u
 
 ## Best Employer Review Path
 
-1. **[BuildWorld AI](https://github.com/atomicdjt/buildworld-ai)** — strongest technical originality and systems thinking; [live on Vercel](https://buildworld-ai-v01-improvements.vercel.app/).
-2. **[RedactReady Pro](../projects/redactready-pro-hri-os/CASE_STUDY.md)** — strongest privacy and document-intelligence workflow; Vercel deployment pending.
-3. **[ProcessHarbor](../projects/opspilot-ai-operations-toolkit/CASE_STUDY.md)** — strongest direct evidence for technical operations, documentation, enablement, and knowledge-management roles; Vercel deployment pending.
-4. **[ScamShield AI](../projects/scamshield-ai/CASE_STUDY.md)** — strongest public-interest safety and explainable workflow design; Vercel deployment pending.
-5. **[LayerForge Studio](../projects/layerforge-studio/CASE_STUDY.md)** — strongest frontend and Canvas interaction depth; Vercel deployment pending.
+1. **[Portfolio Hub](https://ai-project-portfolio-portfolio-hub.vercel.app/)** — fastest visual orientation across projects, evidence, source, and case studies.
+2. **[BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/)** — strongest technical originality and systems thinking.
+3. **[RedactReady Pro](https://ai-project-portfolio-redactready-pr.vercel.app/)** — strongest privacy and document-intelligence workflow.
+4. **[ProcessHarbor](https://ai-project-portfolio-opspilot-ai-op.vercel.app/)** — strongest direct evidence for technical operations, documentation, enablement, and knowledge-management roles.
+5. **[ScamShield AI](https://ai-project-portfolio-scamshield-ai.vercel.app/)** — strongest public-interest safety and explainable workflow design.
+6. **[LayerForge Studio](https://ai-project-portfolio-layerforge-stu.vercel.app/)** — strongest frontend and Canvas interaction depth.
 
-Use [Verification](verification.md) to understand the evidence behind public claims and [Vercel Deployment](VERCEL_DEPLOYMENT.md) to distinguish live products from migration-ready source.
+Use [Verification](verification.md) to understand the evidence behind public claims and [Deployment Map](deployment-and-previews.md) to confirm source authority and canonical routes.
 
 ## Role-to-Evidence Map
 
@@ -23,7 +24,7 @@ Use [Verification](verification.md) to understand the evidence behind public cla
 | **Documentation / Knowledge Operations** | ProcessHarbor, project case studies, architecture guides, recruiter documentation, source-of-truth maps, buyer transfer materials, and structured project indexes. |
 | **Product Operations** | WeaveStudio acquisition packaging, QuoteForge release workflow, feature-reality matrices, roadmap boundaries, release checklists, and stakeholder-readable documentation. |
 | **Junior Technical Product Analyst** | BuildWorld AI, evidence comparison, deterministic scoring, graph models, product limitations, risk framing, and structured evaluation tools. |
-| **Frontend / Product Implementation** | React, TypeScript, Vite, Next.js, Canvas 2D, browser storage, IndexedDB, PDF/report export, responsive UI, tests, and Vercel-ready static builds. |
+| **Frontend / Product Implementation** | React, TypeScript, Vite, Next.js, Canvas 2D, browser storage, IndexedDB, PDF/report export, responsive UI, tests, and verified Vercel deployments. |
 | **Research Operations** | VariantVision Pro, BuildWorld methodology, source provenance, evidence scoring, non-diagnostic boundaries, and structured research-support workflows. |
 
 ## Portfolio Strengths
@@ -33,8 +34,21 @@ Use [Verification](verification.md) to understand the evidence behind public cla
 - **Responsible AI boundaries:** optional external AI is separated from deterministic logic, keys and data flows are documented, and generated work requires review.
 - **Local-first judgment:** several projects avoid unnecessary accounts and cloud services while acknowledging that browser storage is not encrypted or durable.
 - **Validation discipline:** root scripts cover linting, type checking, tests, production builds, documentation checks, and release verification.
-- **Deployment discipline:** only verified Vercel deployments are labeled live; migration-ready workspaces include Vercel SPA configuration and preview-first guidance.
+- **Deployment discipline:** the Portfolio Hub and seven employer applications each have isolated Vercel projects and recorded production routes.
 - **Transferability:** WeaveStudio and QuoteForge demonstrate buyer documentation, licensing boundaries, source authority, release packaging, and implementation guidance.
+
+## Live Employer Applications
+
+| Project | Vercel route | Scope note |
+| --- | --- | --- |
+| Portfolio Hub | https://ai-project-portfolio-portfolio-hub.vercel.app/ | Employer-facing navigation and comparison surface. |
+| RedactReady Pro | https://ai-project-portfolio-redactready-pr.vercel.app/ | Browser-local document intelligence MVP. |
+| ProcessHarbor | https://ai-project-portfolio-opspilot-ai-op.vercel.app/ | Deterministic static workflow; reference server endpoints remain source-documented extension work. |
+| ScamShield AI | https://ai-project-portfolio-scamshield-ai.vercel.app/ | Defensive educational risk organization, not a fraud determination. |
+| RedactReady | https://ai-project-portfolio-redactready-lo.vercel.app/ | Assistive redaction workflow requiring human verification. |
+| LayerForge Studio | https://ai-project-portfolio-layerforge-stu.vercel.app/ | Local browser image-editor MVP. |
+| FocusForge | https://ai-project-portfolio-focusforge.vercel.app/ | Local productivity game, not medical software. |
+| VariantVision Pro | https://ai-project-portfolio-variantvision.vercel.app/ | Educational research support, not diagnosis or clinical interpretation. |
 
 ## Products and Commercial Proof
 
@@ -62,8 +76,8 @@ Best-fit role families include:
 
 ## Deployment Interpretation
 
-- A project is labeled **Live** only after Vercel reports a ready deployment and its core workflow is checked.
-- **Vercel Pending** means the source, tests, documentation, and deployment configuration are present, but no verified production Vercel alias is claimed.
+- A project is labeled **Live** after a production Vercel route is recorded and the deployed application identity is checked.
+- Vercel `READY` and HTTP 200 are point-in-time evidence, not guarantees of future uptime, security, or production-scale suitability.
 - Legacy non-Vercel hosts are historical evidence only and should not be used for new publication or redeployment.
 - GitHub remains the editable source of truth; Vercel deployments are outputs of recorded commits.
 
