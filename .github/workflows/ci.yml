@@ -28,7 +28,10 @@ jobs:
         run: npm ci
 
       - name: Check documentation links
-        run: npm run check:docs 2>&1 | tee documentation-check.log
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run check:docs 2>&1 | tee documentation-check.log
 
       - name: Upload documentation diagnostics
         if: always()
