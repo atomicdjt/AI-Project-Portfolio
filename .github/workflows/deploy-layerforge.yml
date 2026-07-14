@@ -1,13 +1,22 @@
-name: Deploy Portfolio Hub
+name: Portfolio Vercel Readiness
 
 on:
   push:
     branches:
       - main
+      - "portfolio/**"
     paths:
       - apps/portfolio-hub/**
       - apps/layerforge-studio/**
-      - docs/images/**
+      - package.json
+      - package-lock.json
+      - .github/workflows/deploy-layerforge.yml
+  pull_request:
+    branches:
+      - main
+    paths:
+      - apps/portfolio-hub/**
+      - apps/layerforge-studio/**
       - package.json
       - package-lock.json
       - .github/workflows/deploy-layerforge.yml
@@ -15,12 +24,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: false
 
 jobs:
   build:
@@ -38,36 +41,25 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build portfolio hub
+      - name: Build portfolio hub for Vercel
         run: npm run build --workspace apps/portfolio-hub
-        env:
-          GITHUB_PAGES: "true"
 
-      - name: Build LayerForge Studio
+      - name: Build LayerForge Studio for Vercel
         run: npm run build --workspace apps/layerforge-studio
-        env:
-          GITHUB_PAGES: "true"
 
-      - name: Preserve LayerForge under portfolio subpath
+      - name: Confirm static outputs
         run: |
-          mkdir -p apps/portfolio-hub/dist/layerforge-studio
-          cp -R apps/layerforge-studio/dist/. apps/portfolio-hub/dist/layerforge-studio/
+          test -f apps/portfolio-hub/dist/index.html
+          test -f apps/layerforge-studio/dist/index.html
 
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Upload Vercel-readiness artifacts
+        uses: actions/upload-artifact@v4
         with:
-          path: apps/portfolio-hub/dist
+          name: portfolio-vercel-readiness
+          path: |
+            apps/portfolio-hub/dist
+            apps/layerforge-studio/dist
+          if-no-files-found: error
 
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+# Deployment is intentionally not performed by GitHub Actions.
+# Connect each app to its own Vercel project and deploy only through Vercel.
