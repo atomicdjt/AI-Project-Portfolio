@@ -28,7 +28,15 @@ jobs:
         run: npm ci
 
       - name: Check documentation links
-        run: npm run check:docs
+        run: npm run check:docs 2>&1 | tee documentation-check.log
+
+      - name: Upload documentation diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation-check
+          path: documentation-check.log
+          if-no-files-found: error
 
       - name: Lint apps
         run: npm run lint:apps
