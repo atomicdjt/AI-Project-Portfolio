@@ -6,6 +6,10 @@ This audit reviews the GitHub profile, employer portfolio repository, live Portf
 
 It is a first-party portfolio audit supported by repository metadata, documented scripts, pull-request history, Vercel project inventory, deployment status checks, and public product surfaces. It is not an independent certification, security audit, legal review, valuation report, or claim of customer adoption.
 
+## Production Verification Update â€” July 15, 2026
+
+All eight GitHub-connected employer-portfolio Vercel projects were confirmed `READY` on `AI-Project-Portfolio/main` commit `61b12a058b6d6467d15b95303fd1dea4219159cc`. The public Portfolio Hub and every canonical employer demo returned HTTP 200 with its intended application identity; the Hub no longer exposed Vercel-pending placeholders.
+
 ## Current Authoritative Repositories
 
 | Surface | Authoritative repository | Branch |
