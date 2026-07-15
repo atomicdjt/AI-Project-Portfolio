@@ -1,0 +1,29 @@
+name: Feature request
+description: Suggest a scoped improvement to a portfolio project or demo.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or opportunity
+      description: What user need would this address?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the smallest useful outcome.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints or claim boundaries
+      description: Note privacy, safety, reliability, or scope considerations.
