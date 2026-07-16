@@ -30,8 +30,13 @@ The eight monorepo projects below were created from `atomicdjt/AI-Project-Portfo
 | LayerForge Studio | `ai-project-portfolio-layerforge-studio` | `apps/layerforge-studio` | `https://ai-project-portfolio-layerforge-stu.vercel.app/` | `READY`, HTTP 200 |
 | FocusForge | `ai-project-portfolio-focusforge` | `apps/focusforge` | `https://ai-project-portfolio-focusforge.vercel.app/` | `READY`, HTTP 200 |
 | VariantVision Pro | `ai-project-portfolio-variantvision-pro` | `apps/variantvision-pro` | `https://ai-project-portfolio-variantvision.vercel.app/` | `READY`, HTTP 200 |
+| GardenGrid | `ai-project-portfolio-garden-grid` | `apps/garden-grid-planner` | `https://ai-project-portfolio-garden-grid.vercel.app/` | `READY`, HTTP 200; recovered source |
+| Amino Acid Workbench | `ai-project-portfolio-amino-workbench` | `apps/amino-acid-workbench-legacy` | `https://ai-project-portfolio-amino-workbenc.vercel.app/` | `READY`, HTTP 200; legacy static artifact |
+| HearthLink | `ai-project-portfolio-hearthlink` | `apps/hearthlink-legacy` | `https://ai-project-portfolio-hearthlink.vercel.app/` | `READY`, HTTP 200; offline/demo static artifact |
 
 No runtime-error clusters were reported for these projects during the post-creation inspection window.
+
+GardenGrid is source-backed in this repository. Amino Acid Workbench and HearthLink are static legacy artifacts preserved from their Netlify deployments because no original editable source was available locally. HearthLink intentionally runs in offline/demo mode without a signaling server; do not describe it as an operating multi-peer service.
 
 ### ProcessHarbor boundary
 
