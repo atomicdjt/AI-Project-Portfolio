@@ -73,7 +73,7 @@ The root workspace configuration contains eleven applications:
 - `apps/redactready-local`
 - `apps/scamshield-ai`
 
-Astra and Nexus Play remain local applications because their local API services require an explicit Vercel Functions or separate backend design. Supplemental concepts are not represented as live deployments when no verified Vercel project exists.
+Astra and Nexus Play remain local applications because their local API services require an explicit Vercel Functions or separate backend design. GardenGrid is source-backed and live on Vercel. Amino Acid Workbench and HearthLink are preserved legacy static demos on Vercel; the original editable sources were not available during migration, and HearthLink remains explicitly offline/demo-only without a signaling service.
 
 ## Role Fit
 
@@ -118,7 +118,7 @@ The former GitHub Pages workflow is a build-only **Portfolio Vercel Readiness** 
 - Deterministic scores and recommendations are product heuristics, not certified predictions or professional advice.
 - AI-assisted output requires review and should not be represented as independently verified.
 - Medical, legal, financial, fraud, infrastructure, and safety-critical decisions remain outside project scope unless a project explicitly documents a narrower educational use.
-- Supplemental work is not described as live or source-backed when current evidence is absent.
+- Supplemental work distinguishes recovered source from preserved legacy static artifacts and keeps non-deployed backend limitations explicit.
 
 ## Documentation
 

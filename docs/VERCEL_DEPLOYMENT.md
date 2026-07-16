@@ -20,6 +20,9 @@ Eight isolated Vercel projects were created from `atomicdjt/AI-Project-Portfolio
 | `ai-project-portfolio-layerforge-studio` | `apps/layerforge-studio` | `https://ai-project-portfolio-layerforge-stu.vercel.app/` | `READY`, HTTP 200 |
 | `ai-project-portfolio-focusforge` | `apps/focusforge` | `https://ai-project-portfolio-focusforge.vercel.app/` | `READY`, HTTP 200 |
 | `ai-project-portfolio-variantvision-pro` | `apps/variantvision-pro` | `https://ai-project-portfolio-variantvision.vercel.app/` | `READY`, HTTP 200 |
+| `ai-project-portfolio-garden-grid` | `apps/garden-grid-planner` | `https://ai-project-portfolio-garden-grid.vercel.app/` | `READY`, HTTP 200; recovered local source |
+| `ai-project-portfolio-amino-workbench` | `apps/amino-acid-workbench-legacy` | `https://ai-project-portfolio-amino-workbenc.vercel.app/` | `READY`, HTTP 200; preserved legacy static artifact |
+| `ai-project-portfolio-hearthlink` | `apps/hearthlink-legacy` | `https://ai-project-portfolio-hearthlink.vercel.app/` | `READY`, HTTP 200; preserved offline/demo static artifact |
 
 The initial inspected deployments were derived from `AI-Project-Portfolio/main` commit `b122456e89b0915e27666b046ae108b51486fd4f`. A production verification on July 15, 2026 confirmed all eight projects `READY` from commit `61b12a058b6d6467d15b95303fd1dea4219159cc`. Subsequent repository changes may create newer deployments; Vercel remains the deployment-history record while GitHub remains the editable source of truth.
 
@@ -69,6 +72,10 @@ Do not describe `/api/*` provider-backed routes as deployed until they are imple
 ### Astra and Nexus Play
 
 These workspaces include local API services and are outside this completed static migration. They require an explicit Vercel Functions or separate backend design before production deployment. Continue to describe them as local-only until that work is implemented and verified.
+
+### Recovered and legacy supplemental demos
+
+GardenGrid is a recovered Vite source workspace and passed type checking, linting, and a production build before its Vercel deployment. Amino Acid Workbench and HearthLink are preserved static deploy artifacts because their original editable sources were not available locally. The preserved HearthLink configuration deliberately uses offline/demo mode: it does not provide a signaling server, multi-peer room service, or production P2P claim.
 
 ## Other Canonical Vercel Projects
 

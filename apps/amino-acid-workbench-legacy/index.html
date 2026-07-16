@@ -1,0 +1,2261 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amino Acid Research Workbench v3 — Advanced Web App</title>
+  <meta name="description" content="A polished education and research-triage workbench for amino-acid substitutions, evidence dossiers, curated case studies, and protein database handoffs." />
+  <style>
+:root,
+[data-theme="light"] {
+  --bg: #f7f6f2;
+  --surface: #fffefb;
+  --surface-2: #f1eee8;
+  --surface-3: #e8f1ef;
+  --text: #27241f;
+  --muted: #68635c;
+  --faint: #9b958c;
+  --border: #d7d1c7;
+  --primary: #0a6d75;
+  --primary-2: #0d535b;
+  --success: #3f7a28;
+  --warning: #a35916;
+  --danger: #9d2b6e;
+  --info: #245f91;
+  --shadow: 0 12px 38px rgba(39, 36, 31, 0.08);
+  --radius-sm: 0.55rem;
+  --radius: 0.85rem;
+  --radius-lg: 1.25rem;
+  --sidebar: 310px;
+  --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+[data-theme="dark"] {
+  --bg: #151412;
+  --surface: #1c1a17;
+  --surface-2: #24221f;
+  --surface-3: #17292b;
+  --text: #ebe7de;
+  --muted: #b8b1a7;
+  --faint: #847d74;
+  --border: #38332d;
+  --primary: #5ab5c0;
+  --primary-2: #87d2da;
+  --success: #82c75c;
+  --warning: #e49a4f;
+  --danger: #ec78b8;
+  --info: #7fb3e6;
+  --shadow: 0 12px 42px rgba(0, 0, 0, 0.35);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  font-family: var(--font);
+  background: radial-gradient(circle at top left, color-mix(in oklab, var(--primary) 12%, transparent), transparent 38%), var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+button, input, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+a { color: var(--primary); }
+code, .mono { font-family: var(--mono); }
+.app-shell {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: var(--sidebar) 1fr;
+  grid-template-rows: auto 1fr;
+}
+.sidebar {
+  grid-row: 1 / -1;
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  overflow: auto;
+  padding: 1.25rem;
+  background: color-mix(in oklab, var(--surface) 92%, var(--bg));
+  border-right: 1px solid var(--border);
+}
+.brand { display: flex; gap: 0.85rem; align-items: center; margin-bottom: 1.1rem; }
+.brand-mark {
+  width: 48px; height: 48px; border-radius: 1rem;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  color: #fff; font-weight: 900; letter-spacing: -0.08em;
+  box-shadow: var(--shadow);
+}
+.brand h1 { margin: 0; font-size: 1.1rem; line-height: 1.05; letter-spacing: -0.025em; }
+.brand p, .status, .eyebrow { margin: 0; color: var(--muted); }
+.eyebrow { text-transform: uppercase; letter-spacing: 0.13em; font-size: 0.74rem; font-weight: 800; color: var(--faint); }
+.nav-stack { display: grid; gap: 0.45rem; margin: 1rem 0; }
+.nav-btn, .btn, .icon-btn, .seg {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  min-height: 42px;
+  transition: 160ms ease;
+}
+.nav-btn {
+  display: flex; justify-content: space-between; align-items: center;
+  width: 100%; padding: 0.72rem 0.8rem; text-align: left;
+  font-weight: 750;
+}
+.nav-btn span { color: var(--faint); font-size: 0.8rem; font-family: var(--mono); }
+.nav-btn.active, .nav-btn:hover, .btn:hover, .icon-btn:hover, .seg:hover, .seg.active {
+  border-color: color-mix(in oklab, var(--primary) 50%, var(--border));
+  background: color-mix(in oklab, var(--surface-3) 75%, var(--surface));
+}
+.btn { padding: 0.65rem 0.9rem; font-weight: 800; }
+.btn.primary { background: var(--primary); color: white; border-color: var(--primary); }
+.btn.primary:hover { background: var(--primary-2); }
+.btn.ghost { background: transparent; }
+.full { width: 100%; }
+.icon-btn { width: 44px; height: 44px; display: grid; place-items: center; }
+.side-section { margin-top: 1.4rem; }
+.side-section h2 { color: var(--faint); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.12em; margin: 0 0 0.55rem; }
+.toggle-group { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.35rem; }
+.seg { padding: 0.55rem 0.35rem; font-size: 0.8rem; font-weight: 800; }
+.topbar {
+  grid-column: 2;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  padding: 1rem 1.35rem;
+  background: color-mix(in oklab, var(--surface) 88%, transparent);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.top-actions, .action-row, .filter-row, .pill-row { display: flex; gap: 0.65rem; align-items: center; flex-wrap: wrap; }
+.main { grid-column: 2; padding: 1.35rem; }
+.view { display: none; }
+.view.active { display: block; }
+.hero-grid, .layout.two { display: grid; grid-template-columns: 1.25fr 0.95fr; gap: 1.1rem; }
+.card {
+  background: color-mix(in oklab, var(--surface) 96%, var(--bg));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+}
+.hero-card h2 { font-size: clamp(2rem, 4vw, 4.4rem); letter-spacing: -0.07em; line-height: 0.95; max-width: 9.8ch; margin: 1.1rem 0; }
+.lede { max-width: 64ch; color: var(--muted); font-size: 1.05rem; }
+.stack { display: grid; gap: 1rem; align-content: start; }
+.small { font-size: 0.92rem; }
+.muted { color: var(--muted); }
+.hint { color: var(--muted); margin: 0.35rem 0 0; font-size: 0.88rem; }
+.pill {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  border-radius: 99px;
+  padding: 0.28rem 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--muted);
+}
+.notice {
+  background: color-mix(in oklab, var(--surface-3) 68%, var(--surface));
+  border: 1px solid color-mix(in oklab, var(--primary) 25%, var(--border));
+  border-radius: var(--radius);
+  padding: 0.85rem;
+  color: var(--muted);
+}
+.notice.compact { font-size: 0.88rem; }
+.metric-grid, .feature-grid, .quality-grid, .source-grid, .case-grid, .test-grid, .roadmap-grid, .three-col {
+  display: grid;
+  gap: 0.85rem;
+}
+.metric-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); margin: 1.1rem 0; }
+.metric, .feature-grid > div, .panel, .quality-card, .source-card, .case-card, .test-card, .roadmap-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 0.95rem;
+}
+.metric span, .feature-grid span { display: block; color: var(--muted); font-size: 0.86rem; }
+.metric strong { display: block; margin-top: 0.2rem; font-size: 1.35rem; letter-spacing: -0.04em; }
+.feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.three-col { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 1rem; }
+.section-head { display: flex; justify-content: space-between; gap: 1rem; align-items: flex-start; margin-bottom: 1rem; }
+.section-head h2, .card h2, .card h3 { margin: 0; letter-spacing: -0.03em; }
+.field { display: grid; gap: 0.42rem; margin-bottom: 1rem; }
+.field label { font-weight: 850; font-size: 0.92rem; }
+.input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  padding: 0.72rem 0.8rem;
+  outline: none;
+}
+.input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 18%, transparent); }
+textarea.input { min-height: 120px; resize: vertical; }
+.split { display: grid; grid-template-columns: 1fr 1fr 0.75fr; gap: 0.75rem; }
+.top-gap { margin-top: 1.1rem; }
+.compact-input { max-width: 210px; }
+.table-wrap { overflow: auto; border: 1px solid var(--border); border-radius: var(--radius); }
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+th, td { text-align: left; vertical-align: top; padding: 0.85rem; border-bottom: 1px solid var(--border); }
+th { background: var(--surface-2); position: sticky; top: 0; z-index: 1; }
+tr.selectable { cursor: pointer; }
+tr.selectable:hover, tr.selected { background: color-mix(in oklab, var(--surface-3) 55%, transparent); }
+.badge { display: inline-flex; border-radius: 99px; padding: 0.22rem 0.55rem; font-size: 0.75rem; font-weight: 900; border: 1px solid currentColor; margin: 0.08rem; }
+.good { color: var(--success); }
+.warn { color: var(--warning); }
+.bad { color: var(--danger); }
+.info { color: var(--info); }
+.quality-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.source-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.case-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.case-card h3 { margin: 0 0 0.35rem; }
+.case-card .actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem; }
+.viewer-box { min-height: 420px; border: 1px dashed var(--border); border-radius: var(--radius); background: var(--surface-2); overflow: hidden; }
+.timeline { display: grid; gap: 0.75rem; margin: 0; padding-left: 1.25rem; }
+.checklist { display: grid; gap: 0.65rem; }
+.check-item { display: flex; gap: 0.65rem; align-items: flex-start; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); }
+.check-item input { margin-top: 0.2rem; }
+.test-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.roadmap-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.vertical-actions { align-items: stretch; flex-direction: column; }
+.vertical-actions .btn { width: 100%; text-align: left; }
+@media (max-width: 1100px) {
+  .app-shell { grid-template-columns: 1fr; }
+  .sidebar { position: static; height: auto; grid-row: auto; }
+  .topbar, .main { grid-column: 1; }
+  .hero-grid, .layout.two, .split { grid-template-columns: 1fr; }
+  .metric-grid, .case-grid, .roadmap-grid, .three-col { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (max-width: 720px) {
+  .metric-grid, .feature-grid, .quality-grid, .source-grid, .case-grid, .test-grid, .roadmap-grid, .three-col { grid-template-columns: 1fr; }
+  .topbar { align-items: flex-start; flex-direction: column; }
+  .hero-card h2 { font-size: 2.5rem; }
+}
+@media print {
+  .sidebar, .topbar, .action-row, .filter-row { display: none !important; }
+  .app-shell, .main { display: block; padding: 0; }
+  .view { display: block !important; page-break-after: always; }
+  .card { box-shadow: none; break-inside: avoid; }
+}
+
+
+.section-head.mini{margin-bottom:.5rem;gap:.5rem}.enrichment-card pre{max-height:220px;overflow:auto;background:rgba(127,127,127,.08);border:1px solid var(--border);border-radius:14px;padding:.75rem}.dashboard-metrics .metric strong{font-size:1.1rem}.landing-link{display:inline-flex}.viewer-box canvas{border-radius:18px}.btn[href]{text-decoration:none}.feature-grid.small div span{display:block}.app-shell code{background:rgba(127,127,127,.13);padding:.1rem .35rem;border-radius:.4rem}
+
+</style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Application navigation">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">AA</div>
+        <div>
+          <h1>Amino Acid Research Workbench</h1>
+          <p>v3 Advanced Web App</p>
+        </div>
+      </div>
+
+      <div class="notice compact">
+        <strong>Boundary:</strong> education and research triage only. This tool does not diagnose, treat, or classify pathogenicity.
+      </div>
+
+      <nav class="nav-stack" id="navStack">
+        <button class="nav-btn active" data-view="overview">Overview <span>01</span></button>
+        <button class="nav-btn" data-view="workbench">Workbench <span>02</span></button>
+        <button class="nav-btn" data-view="dossier">Evidence dossier <span>03</span></button>
+        <button class="nav-btn" data-view="cases">Expanded case library <span>04</span></button>
+        <button class="nav-btn" data-view="visualization">Structure view <span>05</span></button>
+        <button class="nav-btn" data-view="classroom">Teacher dashboard <span>06</span></button>
+        <button class="nav-btn" data-view="validation">Validation & guardrails <span>07</span></button>
+        <button class="nav-btn" data-view="exports">Exports <span>08</span></button>
+      </nav>
+
+      <section class="side-section">
+        <h2>Quick demos</h2>
+        <button class="btn ghost full" data-load-case="hbb-e6v">Load HBB E6V</button>
+        <button class="btn ghost full" data-load-case="hbb-conservative">Load HBB conservative contrast</button>
+        <button class="btn ghost full" data-load-case="synthetic-charge">Load teaching charge-shift demo</button>
+      </section>
+
+      <section class="side-section">
+        <h2>Mode</h2>
+        <div class="toggle-group" role="group" aria-label="Mode selection">
+          <button class="seg active" data-mode="research">Research</button>
+          <button class="seg" data-mode="student">Student</button>
+          <button class="seg" data-mode="teacher">Teacher</button>
+        </div>
+      </section>
+    </aside>
+
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Transparent protein-variant triage</p>
+        <p id="statusLine" class="status">Ready. Load a demo or paste a protein sequence and variants.</p>
+      </div>
+      <div class="top-actions">
+        <button class="btn" id="runSelfTestBtn">Run self-test</button>
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="view active" id="view-overview">
+        <div class="hero-grid">
+          <article class="card hero-card">
+            <div class="pill-row">
+              <span class="pill">Education-ready</span>
+              <span class="pill">Research-triage workflow</span>
+              <span class="pill">PDF-ready worksheets</span>
+            </div>
+            <h2>Explainable amino-acid variant analysis without pretending to be a clinical oracle.</h2>
+            <p class="lede">This upgraded build separates biochemical computation, sequence-quality checks, structure/database handoffs, evidence gaps, and classroom guidance into a polished product workflow.</p>
+            <div class="action-row">
+              <button class="btn primary" data-view-jump="workbench">Start analyzing</button>
+              <button class="btn" data-view-jump="cases">Browse cases</button>
+            </div>
+          </article>
+
+          <article class="card stack">
+            <h3>What v3 adds</h3>
+            <div class="feature-grid small">
+              <div><strong>Guided modes</strong><span>Student, teacher, and research framing.</span></div>
+              <div><strong>Self-tests</strong><span>Built-in quality checks for parser/report reliability.</span></div>
+              <div><strong>Evidence panels</strong><span>Biochemical, evolutionary, structural, and database readiness separated.</span></div>
+              <div><strong>Live enrichment</strong><span>UniProt metadata/features, AlphaFold status, ClinVar summaries, and PDBe mappings.</span></div>
+              <div><strong>Expanded case library</strong><span>25+ demos, templates, synthetic controls, and QC drills.</span></div>
+              <div><strong>PDF + dossier exports</strong><span>Worksheet PDF, Markdown/JSON/CSV outputs, methods, and boundaries.</span></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="metric-grid">
+          <div class="metric"><span>Parsed variants</span><strong id="metricVariants">0</strong></div>
+          <div class="metric"><span>Sequence length</span><strong id="metricLength">0</strong></div>
+          <div class="metric"><span>Mean BLOSUM62</span><strong id="metricBlosum">—</strong></div>
+          <div class="metric"><span>Mean Grantham</span><strong id="metricGrantham">—</strong></div>
+          <div class="metric"><span>Quality status</span><strong id="metricQuality">Unchecked</strong></div>
+        </div>
+
+        <article class="card">
+          <h3>Deploy-ready package</h3>
+          <p>This build is structured as a static web app. Upload the project folder to GitHub Pages, Netlify, Vercel, Cloudflare Pages, or any static host. A separate polished landing page is included in <code>landing/index.html</code>.</p>
+          <div class="action-row">
+            <a class="btn" href="landing/index.html" target="_blank" rel="noopener noreferrer">Open landing page</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Product positioning</h3>
+          <p>The strongest version of this product is not an automated pathogenicity classifier. It is an <strong>explainable teaching and research-prep environment</strong> that helps users ask better questions before deeper database review, conservation analysis, structural modeling, or expert interpretation.</p>
+          <div class="three-col small">
+            <div class="panel"><strong>For students</strong><p>Learn how amino-acid chemistry, substitution matrices, and sequence context influence variant hypotheses.</p></div>
+            <div class="panel"><strong>For educators</strong><p>Run guided cases, export classroom reports, and teach evidence separation without relying on black boxes.</p></div>
+            <div class="panel"><strong>For researchers</strong><p>Batch-triage substitutions, document quality gates, and create reproducible evidence dossiers.</p></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="view" id="view-workbench">
+        <div class="layout two">
+          <article class="card">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Input</p>
+                <h2>Protein and variant intake</h2>
+              </div>
+              <span class="pill" id="modeBadge">Research mode</span>
+            </div>
+
+            <div class="field">
+              <label for="proteinName">Protein label</label>
+              <input id="proteinName" class="input" value="Hemoglobin subunit beta — HBB mature-chain demo" />
+            </div>
+            <div class="split">
+              <div class="field">
+                <label for="geneSymbol">Gene symbol</label>
+                <input id="geneSymbol" class="input mono" value="HBB" />
+              </div>
+              <div class="field">
+                <label for="uniprotId">UniProt accession</label>
+                <input id="uniprotId" class="input mono" value="P68871" />
+              </div>
+              <div class="field">
+                <label for="sequenceStart">Residue numbering starts at</label>
+                <input id="sequenceStart" type="number" class="input mono" min="1" value="1" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="sequenceInput">Protein sequence / FASTA</label>
+              <textarea id="sequenceInput" class="input mono" spellcheck="false">VHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH</textarea>
+            </div>
+
+            <div class="field">
+              <label for="variantInput">Variants, one per line</label>
+              <textarea id="variantInput" class="input mono" spellcheck="false">E6V
+K8R
+F41S</textarea>
+              <p class="hint">Accepted examples: <code>E6V</code>, <code>p.Glu6Val</code>, <code>Arg175His</code>, <code>F508del</code>, <code>W24*</code>. Insertions and complex indels are flagged as unsupported.</p>
+            </div>
+
+            <div class="action-row">
+              <button class="btn primary" id="analyzeBtn">Analyze variants</button>
+              <button class="btn" id="loadUniProtBtn">Fetch UniProt sequence</button>
+              <button class="btn ghost" id="clearBtn">Clear variants</button>
+            </div>
+          </article>
+
+          <article class="card stack">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Quality gate</p>
+                <h2>Input integrity</h2>
+              </div>
+              <span class="pill" id="qualityBadge">Unchecked</span>
+            </div>
+            <div id="qualityCards" class="quality-grid"></div>
+            <div class="notice">
+              <strong>Interpretation principle:</strong> a high score means “review priority,” not disease causation. Database evidence and expert context remain separate from computed chemistry.
+            </div>
+          </article>
+        </div>
+
+        <article class="card top-gap">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Results</p>
+              <h2>Variant triage table</h2>
+            </div>
+            <div class="filter-row">
+              <select id="filterSelect" class="input compact-input" aria-label="Filter variants">
+                <option value="all">All results</option>
+                <option value="high">High priority</option>
+                <option value="moderate">Moderate priority</option>
+                <option value="low">Low priority</option>
+                <option value="invalid">Invalid / unsupported</option>
+                <option value="mismatch">Sequence mismatch</option>
+              </select>
+              <select id="sortSelect" class="input compact-input" aria-label="Sort variants">
+                <option value="priority-desc">Priority ↓</option>
+                <option value="position-asc">Position ↑</option>
+                <option value="grantham-desc">Grantham ↓</option>
+                <option value="blosum-asc">BLOSUM risk ↑</option>
+                <option value="input-order">Input order</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Variant</th>
+                  <th>Mapping</th>
+                  <th>Scores</th>
+                  <th>Physics</th>
+                  <th>Panel interpretation</th>
+                  <th>Quality flags</th>
+                  <th>Priority</th>
+                </tr>
+              </thead>
+              <tbody id="variantTableBody"></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section class="view" id="view-dossier">
+        <div class="layout two">
+          <article class="card stack">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Selected variant</p>
+                <h2 id="selectedVariantTitle">No variant selected</h2>
+              </div>
+              <span class="pill" id="selectedVariantBadge">—</span>
+            </div>
+            <div id="dossierPanel" class="stack"></div>
+          </article>
+
+          <article class="card stack">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Database enrichment</p>
+                <h2>Live evidence handoff</h2>
+              </div>
+            </div>
+            <div class="action-row">
+              <button class="btn" id="fetchUniProtMetaBtn">UniProt metadata</button>
+              <button class="btn" id="fetchAlphaFoldBtn">AlphaFold status</button>
+              <button class="btn" id="fetchClinVarBtn">ClinVar search</button>
+              <button class="btn" id="fetchPdbeBtn">PDBe structures</button>
+              <button class="btn primary" id="fetchAllEvidenceBtn">Run all evidence lookups</button>
+            </div>
+            <div id="enrichmentStatus" class="notice compact">Online enrichment is optional. If a browser blocks an API request, use the generated source links instead.</div>
+            <div id="enrichmentPanel" class="source-grid"></div>
+            <h3>Source links</h3>
+            <div id="sourceLinks" class="source-grid"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="view-cases">
+        <article class="card">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Case library</p>
+              <h2>Curated examples and teaching scenarios</h2>
+            </div>
+            <span class="pill">Validated demos + teaching-only contrasts</span>
+          </div>
+          <p class="muted">Cases are deliberately split into <strong>reference-backed demos</strong> and <strong>teaching-only scenarios</strong>. Teaching-only examples are useful for lessons but should not be presented as real clinical variants.</p>
+          <div id="caseLibrary" class="case-grid"></div>
+        </article>
+      </section>
+
+      <section class="view" id="view-visualization">
+        <div class="layout two">
+          <article class="card stack">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Structure</p>
+                <h2>AlphaFold / protein structure viewer</h2>
+              </div>
+              <span class="pill">Optional online feature</span>
+            </div>
+            <p class="muted">Load the AlphaFold model for the UniProt accession and highlight the selected residue. If the viewer library or model file is unavailable, the tool keeps the analysis usable through source links and report export.</p>
+            <div class="action-row">
+              <button class="btn primary" id="loadStructureBtn">Load structure viewer</button>
+              <button class="btn" id="highlightResidueBtn">Highlight selected residue</button>
+            </div>
+            <div id="viewerStatus" class="notice compact">Viewer not loaded yet.</div>
+            <div id="nglViewer" class="viewer-box" aria-label="Protein 3D viewer placeholder"></div>
+          </article>
+
+          <article class="card stack">
+            <h2>Residue context</h2>
+            <div id="residueContextPanel" class="stack"></div>
+            <div class="notice">
+              Structural context shown here is preliminary. AlphaFold confidence, experimental structures, domains, active sites, and interfaces must be reviewed separately before any serious claim.
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="view-classroom">
+        <div class="layout two">
+          <article class="card stack">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Student mode</p>
+                <h2>Guided learning flow</h2>
+              </div>
+            </div>
+            <ol class="timeline">
+              <li><strong>Observe the substitution.</strong> What changed: size, charge, hydrophobicity, aromaticity, or flexibility?</li>
+              <li><strong>Check the sequence.</strong> Does the reference amino acid match the provided protein sequence?</li>
+              <li><strong>Compare scoring panels.</strong> Is the result high because chemistry changed, evolution disfavors it, or both?</li>
+              <li><strong>Separate evidence types.</strong> Computed features are not the same as clinical assertions, population frequency, or experimental results.</li>
+              <li><strong>Write a hypothesis.</strong> State what might be disrupted and what evidence is still missing.</li>
+            </ol>
+          </article>
+
+          <article class="card stack">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Teacher mode</p>
+                <h2>Classroom packet generator</h2>
+              </div>
+            </div>
+            <div class="field">
+              <label for="lessonGoal">Lesson goal</label>
+              <input id="lessonGoal" class="input" value="Explain how amino-acid substitutions can alter protein function hypotheses." />
+            </div>
+            <div class="field">
+              <label for="studentLevel">Student level</label>
+              <select id="studentLevel" class="input">
+                <option>AP Biology / advanced high school</option>
+                <option>Intro undergraduate biology</option>
+                <option>Intro bioinformatics</option>
+                <option>Research methods seminar</option>
+              </select>
+            </div>
+            <button class="btn primary" id="generateLessonBtn">Generate lesson worksheet</button>
+            <textarea id="lessonOutput" class="input" placeholder="Generated worksheet will appear here." spellcheck="true"></textarea>
+          </article>
+        </div>
+        <article class="card top-gap stack">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Teacher dashboard</p>
+              <h2>Readiness, warnings, and lesson framing</h2>
+            </div>
+            <span class="pill">Static dashboard</span>
+          </div>
+          <div id="teacherDashboard" class="stack"></div>
+        </article>
+      </section>
+
+      <section class="view" id="view-validation">
+        <div class="layout two">
+          <article class="card stack">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Built-in checks</p>
+                <h2>Reliability self-test</h2>
+              </div>
+              <span class="pill" id="selfTestBadge">Not run</span>
+            </div>
+            <div id="selfTestResults" class="test-grid"></div>
+          </article>
+
+          <article class="card stack">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Guardrails</p>
+                <h2>Responsible-use checklist</h2>
+              </div>
+            </div>
+            <div id="guardrailChecklist" class="checklist"></div>
+          </article>
+        </div>
+        <article class="card top-gap">
+          <h2>Validation roadmap</h2>
+          <div id="validationRoadmap" class="roadmap-grid"></div>
+        </article>
+      </section>
+
+      <section class="view" id="view-exports">
+        <div class="layout two">
+          <article class="card stack">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Notes</p>
+                <h2>Reviewer notes and assumptions</h2>
+              </div>
+            </div>
+            <textarea id="notesArea" class="input" spellcheck="true" placeholder="Document database pages checked, assumptions, known limits, and next experimental questions."></textarea>
+            <div class="action-row">
+              <button class="btn" id="copySummaryBtn">Copy summary</button>
+              <button class="btn" id="copyMethodsBtn">Copy methods</button>
+            </div>
+          </article>
+
+          <article class="card stack">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Exports</p>
+                <h2>Download outputs</h2>
+              </div>
+            </div>
+            <div class="action-row vertical-actions">
+              <button class="btn primary" id="downloadReportBtn">Download evidence dossier Markdown</button>
+              <button class="btn" id="downloadJsonBtn">Download project JSON</button>
+              <button class="btn" id="downloadCsvBtn">Download variant table CSV</button>
+              <button class="btn" id="downloadLessonBtn">Download lesson worksheet Markdown</button>
+              <button class="btn" id="downloadLessonPdfBtn">Download student worksheet PDF</button>
+            </div>
+            <div class="notice">
+              Every export includes a non-clinical boundary statement, timestamp, method notes, and quality checks. PDF export uses jsPDF from a browser CDN and falls back to Markdown if unavailable.
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+(() => {
+  'use strict';
+
+  const AA_ORDER = ['A','R','N','D','C','Q','E','G','H','I','L','K','M','F','P','S','T','W','Y','V'];
+  const AA = {
+    A:{name:'Alanine',three:'Ala',class:'small nonpolar',charge:0,hydro:1.8,volume:88.6,aromatic:false,polar:false,notes:'small, flexible, helix-compatible'},
+    R:{name:'Arginine',three:'Arg',class:'basic positive',charge:1,hydro:-4.5,volume:173.4,aromatic:false,polar:true,notes:'large, positively charged, hydrogen-bonding'},
+    N:{name:'Asparagine',three:'Asn',class:'polar amide',charge:0,hydro:-3.5,volume:114.1,aromatic:false,polar:true,notes:'polar, hydrogen-bonding'},
+    D:{name:'Aspartate',three:'Asp',class:'acidic negative',charge:-1,hydro:-3.5,volume:111.1,aromatic:false,polar:true,notes:'negatively charged, often catalytic or salt-bridge forming'},
+    C:{name:'Cysteine',three:'Cys',class:'sulfur-containing',charge:0,hydro:2.5,volume:108.5,aromatic:false,polar:true,notes:'can form disulfides or metal-binding contacts'},
+    Q:{name:'Glutamine',three:'Gln',class:'polar amide',charge:0,hydro:-3.5,volume:143.8,aromatic:false,polar:true,notes:'polar, hydrogen-bonding'},
+    E:{name:'Glutamate',three:'Glu',class:'acidic negative',charge:-1,hydro:-3.5,volume:138.4,aromatic:false,polar:true,notes:'negatively charged, salt-bridge and active-site compatible'},
+    G:{name:'Glycine',three:'Gly',class:'small flexible',charge:0,hydro:-0.4,volume:60.1,aromatic:false,polar:false,notes:'very small, high backbone flexibility'},
+    H:{name:'Histidine',three:'His',class:'basic/aromatic',charge:0.1,hydro:-3.2,volume:153.2,aromatic:true,polar:true,notes:'pH-sensitive, catalytic and metal-binding potential'},
+    I:{name:'Isoleucine',three:'Ile',class:'branched hydrophobic',charge:0,hydro:4.5,volume:166.7,aromatic:false,polar:false,notes:'bulky hydrophobic core residue'},
+    L:{name:'Leucine',three:'Leu',class:'branched hydrophobic',charge:0,hydro:3.8,volume:166.7,aromatic:false,polar:false,notes:'bulky hydrophobic core residue'},
+    K:{name:'Lysine',three:'Lys',class:'basic positive',charge:1,hydro:-3.9,volume:168.6,aromatic:false,polar:true,notes:'positively charged, flexible, often surface-exposed'},
+    M:{name:'Methionine',three:'Met',class:'sulfur hydrophobic',charge:0,hydro:1.9,volume:162.9,aromatic:false,polar:false,notes:'hydrophobic sulfur-containing residue'},
+    F:{name:'Phenylalanine',three:'Phe',class:'aromatic hydrophobic',charge:0,hydro:2.8,volume:189.9,aromatic:true,polar:false,notes:'bulky aromatic packing residue'},
+    P:{name:'Proline',three:'Pro',class:'rigid cyclic',charge:0,hydro:-1.6,volume:112.7,aromatic:false,polar:false,notes:'rigid, kink-inducing, constrains backbone'},
+    S:{name:'Serine',three:'Ser',class:'small polar',charge:0,hydro:-0.8,volume:89.0,aromatic:false,polar:true,notes:'small polar; phosphorylation-capable'},
+    T:{name:'Threonine',three:'Thr',class:'polar',charge:0,hydro:-0.7,volume:116.1,aromatic:false,polar:true,notes:'polar; phosphorylation-capable'},
+    W:{name:'Tryptophan',three:'Trp',class:'aromatic hydrophobic',charge:0,hydro:-0.9,volume:227.8,aromatic:true,polar:false,notes:'very large aromatic residue'},
+    Y:{name:'Tyrosine',three:'Tyr',class:'aromatic polar',charge:0,hydro:-1.3,volume:193.6,aromatic:true,polar:true,notes:'aromatic and polar; phosphorylation-capable'},
+    V:{name:'Valine',three:'Val',class:'branched hydrophobic',charge:0,hydro:4.2,volume:140.0,aromatic:false,polar:false,notes:'branched hydrophobic core residue'},
+    '*':{name:'Stop',three:'Ter',class:'termination',charge:0,hydro:0,volume:0,aromatic:false,polar:false,notes:'protein truncation signal'}
+  };
+  const THREE_TO_ONE = Object.fromEntries(Object.entries(AA).filter(([k]) => k !== '*').map(([one, v]) => [v.three.toUpperCase(), one]));
+  THREE_TO_ONE.TER = '*'; THREE_TO_ONE.STOP = '*'; THREE_TO_ONE.XAA = 'X';
+
+  function parseMatrix(matrixText) {
+    const lines = matrixText.trim().split(/\n+/).map(line => line.trim()).filter(Boolean);
+    const header = lines[0].split(/\s+/);
+    const out = {};
+    for (const line of lines.slice(1)) {
+      const parts = line.split(/\s+/);
+      const row = parts.shift();
+      out[row] = {};
+      header.forEach((col, i) => { out[row][col] = Number(parts[i]); });
+    }
+    return out;
+  }
+
+  const BLOSUM62 = parseMatrix(`
+      A  R  N  D  C  Q  E  G  H  I  L  K  M  F  P  S  T  W  Y  V
+   A  4 -1 -2 -2  0 -1 -1  0 -2 -1 -1 -1 -1 -2 -1  1  0 -3 -2  0
+   R -1  5  0 -2 -3  1  0 -2  0 -3 -2  2 -1 -3 -2 -1 -1 -3 -2 -3
+   N -2  0  6  1 -3  0  0  0  1 -3 -3  0 -2 -3 -2  1  0 -4 -2 -3
+   D -2 -2  1  6 -3  0  2 -1 -1 -3 -4 -1 -3 -3 -1  0 -1 -4 -3 -3
+   C  0 -3 -3 -3  9 -3 -4 -3 -3 -1 -1 -3 -1 -2 -3 -1 -1 -2 -2 -1
+   Q -1  1  0  0 -3  5  2 -2  0 -3 -2  1  0 -3 -1  0 -1 -2 -1 -2
+   E -1  0  0  2 -4  2  5 -2  0 -3 -3  1 -2 -3 -1  0 -1 -3 -2 -2
+   G  0 -2  0 -1 -3 -2 -2  6 -2 -4 -4 -2 -3 -3 -2  0 -2 -2 -3 -3
+   H -2  0  1 -1 -3  0  0 -2  8 -3 -3 -1 -2 -1 -2 -1 -2 -2  2 -3
+   I -1 -3 -3 -3 -1 -3 -3 -4 -3  4  2 -3  1  0 -3 -2 -1 -3 -1  3
+   L -1 -2 -3 -4 -1 -2 -3 -4 -3  2  4 -2  2  0 -3 -2 -1 -2 -1  1
+   K -1  2  0 -1 -3  1  1 -2 -1 -3 -2  5 -1 -3 -1  0 -1 -3 -2 -2
+   M -1 -1 -2 -3 -1  0 -2 -3 -2  1  2 -1  5  0 -2 -1 -1 -1 -1  1
+   F -2 -3 -3 -3 -2 -3 -3 -3 -1  0  0 -3  0  6 -4 -2 -2  1  3 -1
+   P -1 -2 -2 -1 -3 -1 -1 -2 -2 -3 -3 -1 -2 -4  7 -1 -1 -4 -3 -2
+   S  1 -1  1  0 -1  0  0  0 -1 -2 -2  0 -1 -2 -1  4  1 -3 -2 -2
+   T  0 -1  0 -1 -1 -1 -1 -2 -2 -1 -1 -1 -1 -2 -1  1  5 -2 -2  0
+   W -3 -3 -4 -4 -2 -2 -3 -2 -2 -3 -2 -3 -1  1 -4 -3 -2 11  2 -3
+   Y -2 -2 -2 -3 -2 -1 -2 -3  2 -1 -1 -2 -1  3 -3 -2 -2  2  7 -1
+   V  0 -3 -3 -3 -1 -2 -2 -3 -3  3  1 -2  1 -1 -2 -2  0 -3 -1  4
+  `);
+
+  const GRANTHAM = parseMatrix(`
+      A   R   N   D   C   Q   E   G   H   I   L   K   M   F   P   S   T   W   Y   V
+   A  0 112 111 126 195  91 107  60  86  94  96 106  84 113  27  99  58 148 112  64
+   R112   0  86  96 180  43  54 125  29  97 102  26  91  97 103 110  71 101  77  96
+   N111  86   0  23 139  46  42  80  68 149 153  94 142 158  91  46  65 174 143 133
+   D126  96  23   0 154  61  45  94  81 168 172 101 160 177 108  65  85 181 160 152
+   C195 180 139 154   0 154 170 159 174 198 198 202 196 205 169 112 149 215 194 192
+   Q 91  43  46  61 154   0  29  87  24 109 113  53 101 116  76  68  42 130  99  96
+   E107  54  42  45 170  29   0  98  40 134 138  56 126 140  93  80  65 152 122 121
+   G 60 125  80  94 159  87  98   0  98 135 138 127 127 153  42  56  59 184 147 109
+   H 86  29  68  81 174  24  40  98   0  94  99  32  87 100  77  89  47 115  83  84
+   I 94  97 149 168 198 109 134 135  94   0   5 102  10  21  95 142  89  61  33  29
+   L 96 102 153 172 198 113 138 138  99   5   0 107  15  22  98 145  92  61  36  32
+   K106  26  94 101 202  53  56 127  32 102 107   0  95 102 103 121  78 110  85  97
+   M 84  91 142 160 196 101 126 127  87  10  15  95   0  28  87 135  81  67  36  21
+   F113  97 158 177 205 116 140 153 100  21  22 102  28   0 114 155 103  40  22  50
+   P 27 103  91 108 169  76  93  42  77  95  98 103  87 114   0  74  38 147 110  68
+   S 99 110  46  65 112  68  80  56  89 142 145 121 135 155  74   0  58 177 144 124
+   T 58  71  65  85 149  42  65  59  47  89  92  78  81 103  38  58   0 128  92  69
+   W148 101 174 181 215 130 152 184 115  61  61 110  67  40 147 177 128   0  37  88
+   Y112  77 143 160 194  99 122 147  83  33  36  85  36  22 110 144  92  37   0  55
+   V 64  96 133 152 192  96 121 109  84  29  32  97  21  50  68 124  69  88  55   0
+  `.replace(/^\s*([ARNDCQEGHILKMFPSTWYV])(\d)/gm, '   $1 $2'));
+
+  const CASES = [
+    {
+        "id": "hbb-e6v",
+        "type": "Reference-backed demo",
+        "title": "HBB E6V — classic charge/hydropathy shift",
+        "protein": "Hemoglobin subunit beta — HBB mature-chain demo",
+        "gene": "HBB",
+        "uniprot": "P68871",
+        "start": 1,
+        "sequence": "VHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH",
+        "variants": "E6V\nK8R\nF41S",
+        "notes": "Uses mature beta-globin numbering so E6V maps correctly to the classical HbS teaching example. Use it to teach charge loss, hydrophobicity shift, and evidence separation.",
+        "questions": [
+            "What changes chemically in E6V?",
+            "Why is sequence numbering important?",
+            "Which evidence would be needed beyond computed chemistry?"
+        ],
+        "tags": [
+            "HBB",
+            "charge",
+            "hydropathy",
+            "mapping"
+        ]
+    },
+    {
+        "id": "hbb-conservative",
+        "type": "Reference-backed demo",
+        "title": "HBB conservative contrast",
+        "protein": "Hemoglobin subunit beta — mature-chain conservative contrast",
+        "gene": "HBB",
+        "uniprot": "P68871",
+        "start": 1,
+        "sequence": "VHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH",
+        "variants": "K8R\nL14I\nV18I\nG16D",
+        "notes": "Compare conservative substitutions with a stronger class shift. Ask students why not every amino-acid change deserves the same concern.",
+        "questions": [
+            "Which substitutions are chemically conservative?",
+            "Which score panel changes the most?"
+        ],
+        "tags": [
+            "controls",
+            "conservative",
+            "contrast"
+        ]
+    },
+    {
+        "id": "hbb-invalid",
+        "type": "Quality-control demo",
+        "title": "Parser and mapping stress test",
+        "protein": "Hemoglobin subunit beta — mature-chain QC stress test",
+        "gene": "HBB",
+        "uniprot": "P68871",
+        "start": 1,
+        "sequence": "VHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH",
+        "variants": "E6V\nE6V\nQ999R\nBAD_INPUT\np.Glu6Val",
+        "notes": "Designed to confirm duplicate detection, out-of-range detection, malformed input handling, and HGVS-like parsing.",
+        "questions": [
+            "Which warning matters most before exporting?",
+            "How should a reviewer resolve a mismatch?"
+        ],
+        "tags": [
+            "QA",
+            "parser",
+            "stress-test"
+        ]
+    },
+    {
+        "id": "cftr-core",
+        "type": "Manual research template",
+        "title": "CFTR core teaching set",
+        "protein": "Cystic fibrosis transmembrane conductance regulator — template",
+        "gene": "CFTR",
+        "uniprot": "P13569",
+        "start": 1,
+        "sequence": "",
+        "variants": "F508del\nG551D\nR117H\nN1303K",
+        "notes": "Fetch the canonical UniProt sequence, then verify numbering and database evidence. Deletions are flagged separately from substitutions.",
+        "questions": [
+            "Why are deletion and substitution metrics separated?",
+            "What database evidence would you inspect first?"
+        ],
+        "tags": [
+            "CFTR",
+            "deletion",
+            "manual"
+        ]
+    },
+    {
+        "id": "tp53-hotspots",
+        "type": "Manual research template",
+        "title": "TP53 hotspot-style comparison",
+        "protein": "Cellular tumor antigen p53 — template",
+        "gene": "TP53",
+        "uniprot": "P04637",
+        "start": 1,
+        "sequence": "",
+        "variants": "R175H\nR248Q\nR273H\nY220C",
+        "notes": "Template for demonstrating hotspot-style literature/database review. Protein-only notation still requires transcript, assay, and disease-context review.",
+        "questions": [
+            "Which substitutions have large charge/size shifts?",
+            "Why is literature review essential here?"
+        ],
+        "tags": [
+            "TP53",
+            "hotspots",
+            "manual"
+        ]
+    },
+    {
+        "id": "braf-mapk",
+        "type": "Manual research template",
+        "title": "BRAF MAPK pathway template",
+        "protein": "B-Raf proto-oncogene serine/threonine-protein kinase — template",
+        "gene": "BRAF",
+        "uniprot": "P15056",
+        "start": 1,
+        "sequence": "",
+        "variants": "V600E\nK601E\nG469A\nD594G",
+        "notes": "Fetch sequence and map variants. Use as a database-evidence separation exercise, not as clinical interpretation.",
+        "questions": [
+            "How does local/domain context change the question?",
+            "Which claims require database/literature support?"
+        ],
+        "tags": [
+            "BRAF",
+            "kinase",
+            "manual"
+        ]
+    },
+    {
+        "id": "egfr-kinase",
+        "type": "Manual research template",
+        "title": "EGFR kinase-domain template",
+        "protein": "Epidermal growth factor receptor — template",
+        "gene": "EGFR",
+        "uniprot": "P00533",
+        "start": 1,
+        "sequence": "",
+        "variants": "L858R\nT790M\nG719S\nL861Q",
+        "notes": "Use to teach domain-aware review and the difference between a protein-level variant note and treatment/clinical claims.",
+        "questions": [
+            "Which residues require domain mapping?",
+            "Why is treatment inference outside this tool?"
+        ],
+        "tags": [
+            "EGFR",
+            "kinase",
+            "domain"
+        ]
+    },
+    {
+        "id": "kras-g12",
+        "type": "Manual research template",
+        "title": "KRAS codon-comparison template",
+        "protein": "GTPase KRas — template",
+        "gene": "KRAS",
+        "uniprot": "P01116",
+        "start": 1,
+        "sequence": "",
+        "variants": "G12D\nG12V\nG12C\nG13D\nQ61H",
+        "notes": "Fetch sequence and compare how different substitutions at nearby positions can have different chemical profiles while still requiring external evidence.",
+        "questions": [
+            "How do same-position substitutions differ chemically?",
+            "What is missing from protein-only analysis?"
+        ],
+        "tags": [
+            "KRAS",
+            "same-position",
+            "manual"
+        ]
+    },
+    {
+        "id": "brca1-ring",
+        "type": "Manual research template",
+        "title": "BRCA1 protein-change template",
+        "protein": "Breast cancer type 1 susceptibility protein — template",
+        "gene": "BRCA1",
+        "uniprot": "P38398",
+        "start": 1,
+        "sequence": "",
+        "variants": "C61G\nM1775R\nA1708E",
+        "notes": "Protein-only changes require transcript/genomic context for serious interpretation. Use for responsible-use discussion.",
+        "questions": [
+            "Why can a protein-only workbench not replace variant classification?",
+            "What evidence is missing?"
+        ],
+        "tags": [
+            "BRCA1",
+            "responsible-use",
+            "manual"
+        ]
+    },
+    {
+        "id": "brca2-template",
+        "type": "Manual research template",
+        "title": "BRCA2 protein-change template",
+        "protein": "Breast cancer type 2 susceptibility protein — template",
+        "gene": "BRCA2",
+        "uniprot": "P51587",
+        "start": 1,
+        "sequence": "",
+        "variants": "D2723H\nK3326*\nN372H",
+        "notes": "Use only as a manual evidence-gathering template; confirm transcript, isoform, and exact notation before interpretation.",
+        "questions": [
+            "How do stop-gain and missense events differ?",
+            "Why does transcript context matter?"
+        ],
+        "tags": [
+            "BRCA2",
+            "nonsense",
+            "manual"
+        ]
+    },
+    {
+        "id": "ldlr-template",
+        "type": "Manual research template",
+        "title": "LDLR receptor template",
+        "protein": "Low-density lipoprotein receptor — template",
+        "gene": "LDLR",
+        "uniprot": "P01130",
+        "start": 1,
+        "sequence": "",
+        "variants": "G528D\nC646Y\nD206E",
+        "notes": "Use for domain and disulfide-context discussion after UniProt feature lookup. Do not infer disease status from chemistry alone.",
+        "questions": [
+            "What UniProt features overlap the residue?",
+            "Which changes might affect disulfide/domain context?"
+        ],
+        "tags": [
+            "LDLR",
+            "domain",
+            "manual"
+        ]
+    },
+    {
+        "id": "pah-template",
+        "type": "Manual research template",
+        "title": "PAH enzyme template",
+        "protein": "Phenylalanine-4-hydroxylase — template",
+        "gene": "PAH",
+        "uniprot": "P00439",
+        "start": 1,
+        "sequence": "",
+        "variants": "R408W\nY414C\nI65T",
+        "notes": "Fetch sequence and inspect enzyme/domain annotations. Good for comparing charged-to-aromatic changes and domain context.",
+        "questions": [
+            "Which features overlap these residues?",
+            "What evidence would distinguish functional effect from chemical concern?"
+        ],
+        "tags": [
+            "PAH",
+            "enzyme",
+            "manual"
+        ]
+    },
+    {
+        "id": "sod1-template",
+        "type": "Manual research template",
+        "title": "SOD1 structure-template set",
+        "protein": "Superoxide dismutase [Cu-Zn] — template",
+        "gene": "SOD1",
+        "uniprot": "P00441",
+        "start": 1,
+        "sequence": "",
+        "variants": "A5V\nG93A\nD90A",
+        "notes": "Use for structure-viewer practice and feature lookup. Verify numbering and source evidence before drawing conclusions.",
+        "questions": [
+            "Does the residue highlight work?",
+            "What would experimental structures add?"
+        ],
+        "tags": [
+            "SOD1",
+            "structure",
+            "manual"
+        ]
+    },
+    {
+        "id": "serpina1-template",
+        "type": "Manual research template",
+        "title": "SERPINA1 folding/context template",
+        "protein": "Alpha-1-antitrypsin — template",
+        "gene": "SERPINA1",
+        "uniprot": "P01009",
+        "start": 1,
+        "sequence": "",
+        "variants": "E342K\nS53F\nI92N",
+        "notes": "Use as a folding/context example. Numbering can be convention-sensitive, so sequence mapping must be checked.",
+        "questions": [
+            "Did the reference residue match?",
+            "What does mismatch teach about numbering conventions?"
+        ],
+        "tags": [
+            "SERPINA1",
+            "folding",
+            "numbering"
+        ]
+    },
+    {
+        "id": "g6pd-template",
+        "type": "Manual research template",
+        "title": "G6PD enzyme template",
+        "protein": "Glucose-6-phosphate 1-dehydrogenase — template",
+        "gene": "G6PD",
+        "uniprot": "P11413",
+        "start": 1,
+        "sequence": "",
+        "variants": "V68M\nN126D\nS188F",
+        "notes": "Use for enzyme-context review and database lookup practice. Confirm exact variant notation externally.",
+        "questions": [
+            "Which biochemical panel changes most?",
+            "What population/context evidence is missing?"
+        ],
+        "tags": [
+            "G6PD",
+            "enzyme",
+            "manual"
+        ]
+    },
+    {
+        "id": "meCP2-template",
+        "type": "Manual research template",
+        "title": "MECP2 stop/substitution template",
+        "protein": "Methyl-CpG-binding protein 2 — template",
+        "gene": "MECP2",
+        "uniprot": "P51608",
+        "start": 1,
+        "sequence": "",
+        "variants": "R168*\nT158M\nR106W",
+        "notes": "Demonstrates stop-gain handling and responsible boundary language. Serious interpretation needs expert review.",
+        "questions": [
+            "How does the workbench treat stop-gain inputs?",
+            "What evidence is outside protein chemistry?"
+        ],
+        "tags": [
+            "MECP2",
+            "nonsense",
+            "manual"
+        ]
+    },
+    {
+        "id": "f8-template",
+        "type": "Manual research template",
+        "title": "F8 large-protein template",
+        "protein": "Coagulation factor VIII — template",
+        "gene": "F8",
+        "uniprot": "P00451",
+        "start": 1,
+        "sequence": "",
+        "variants": "R593C\nR2150H\nY1680C",
+        "notes": "Use to teach large-protein numbering, isoform caution, and feature overlap lookup.",
+        "questions": [
+            "How does sequence length affect mapping mistakes?",
+            "Which features need review?"
+        ],
+        "tags": [
+            "F8",
+            "large-protein",
+            "manual"
+        ]
+    },
+    {
+        "id": "col1a1-template",
+        "type": "Manual research template",
+        "title": "COL1A1 glycine-repeat template",
+        "protein": "Collagen alpha-1(I) chain — template",
+        "gene": "COL1A1",
+        "uniprot": "P02452",
+        "start": 1,
+        "sequence": "",
+        "variants": "G352S\nG997S\nR897*",
+        "notes": "Use for glycine/flexibility discussion and repetitive-sequence caution; confirm exact numbering externally.",
+        "questions": [
+            "Why might glycine substitutions be context-sensitive?",
+            "What does repetitive sequence do to confidence?"
+        ],
+        "tags": [
+            "collagen",
+            "glycine",
+            "manual"
+        ]
+    },
+    {
+        "id": "apoe-template",
+        "type": "Manual research template",
+        "title": "APOE isoform-numbering discussion",
+        "protein": "Apolipoprotein E — template",
+        "gene": "APOE",
+        "uniprot": "P02649",
+        "start": 1,
+        "sequence": "",
+        "variants": "C130R\nR176C",
+        "notes": "Use to teach isoform/numbering conventions and why names alone can be ambiguous.",
+        "questions": [
+            "Did UniProt numbering match the variant convention?",
+            "How should ambiguity be documented?"
+        ],
+        "tags": [
+            "APOE",
+            "numbering",
+            "manual"
+        ]
+    },
+    {
+        "id": "synthetic-charge",
+        "type": "Teaching-only scenario",
+        "title": "Synthetic charge-shift mini-protein",
+        "protein": "Teaching-only charge-shift mini-protein",
+        "gene": "SYN1",
+        "uniprot": "",
+        "start": 1,
+        "sequence": "MSEDEKQKLAALIVVGVLGGFGGSSSTTYYWWHHPPCCNNRRDDVV",
+        "variants": "D4V\nE5K\nR42D\nY32F",
+        "notes": "Teaching-only sequence. Demonstrates charge reversal, hydrophobic switch, and aromatic-conservative substitutions.",
+        "questions": [
+            "Which change reverses charge?",
+            "Which is aromatic-conservative?"
+        ],
+        "tags": [
+            "synthetic",
+            "charge"
+        ]
+    },
+    {
+        "id": "synthetic-core",
+        "type": "Teaching-only scenario",
+        "title": "Synthetic hydrophobic-core disruption",
+        "protein": "Teaching-only hydrophobic-core mini-protein",
+        "gene": "SYN2",
+        "uniprot": "",
+        "start": 1,
+        "sequence": "MALLVVVILILFLGAGGAGSTSTNQDEKRHPPGGCCWYF",
+        "variants": "L3P\nV7D\nF12S\nG16W",
+        "notes": "Teaching-only sequence for comparing proline disruption, buried-to-charged swaps, and size/rigidity effects.",
+        "questions": [
+            "Why can proline be disruptive?",
+            "What happens when a charged residue appears in a hydrophobic region?"
+        ],
+        "tags": [
+            "synthetic",
+            "hydrophobic-core"
+        ]
+    },
+    {
+        "id": "synthetic-phospho",
+        "type": "Teaching-only scenario",
+        "title": "Synthetic phosphorylation-site discussion",
+        "protein": "Teaching-only polar-site mini-protein",
+        "gene": "SYN3",
+        "uniprot": "",
+        "start": 1,
+        "sequence": "MAGKSTPQRSSSTYEDVVVVLLLKKKGGGPPPTTTYYY",
+        "variants": "S5A\nT6P\nY13F\nE14K",
+        "notes": "Teaching-only sequence for discussing serine/threonine/tyrosine chemistry without making PTM claims.",
+        "questions": [
+            "Which residues are phosphorylation-capable?",
+            "Why is PTM evidence not automatic?"
+        ],
+        "tags": [
+            "synthetic",
+            "PTM"
+        ]
+    },
+    {
+        "id": "synthetic-disulfide",
+        "type": "Teaching-only scenario",
+        "title": "Synthetic cysteine/disulfide scenario",
+        "protein": "Teaching-only cysteine mini-protein",
+        "gene": "SYN4",
+        "uniprot": "",
+        "start": 1,
+        "sequence": "MCTGAVILCDEKRPGGYYWWHHLLVVTTSSNNQQ",
+        "variants": "C2Y\nC9R\nY17C\nW20G",
+        "notes": "Teaching-only sequence for cysteine introduction/loss and aromatic/size discussion. Does not prove disulfide biology.",
+        "questions": [
+            "Which variants add or remove cysteine?",
+            "What evidence would prove a disulfide?"
+        ],
+        "tags": [
+            "synthetic",
+            "cysteine"
+        ]
+    },
+    {
+        "id": "synthetic-helix-break",
+        "type": "Teaching-only scenario",
+        "title": "Synthetic proline/glycine flexibility contrast",
+        "protein": "Teaching-only helix-break mini-protein",
+        "gene": "SYN5",
+        "uniprot": "",
+        "start": 1,
+        "sequence": "MAAAAAALAAAAAAGGGGGTTTTEEEEKKKKLLLL",
+        "variants": "A5P\nL8P\nG16W\nK31E",
+        "notes": "Teaching-only scenario for backbone rigidity, glycine flexibility, and charge reversal discussion.",
+        "questions": [
+            "Which substitutions affect backbone flexibility?",
+            "Which are charge reversals?"
+        ],
+        "tags": [
+            "synthetic",
+            "proline",
+            "glycine"
+        ]
+    },
+    {
+        "id": "synthetic-stop",
+        "type": "Teaching-only scenario",
+        "title": "Synthetic stop-gain handling",
+        "protein": "Teaching-only truncation mini-protein",
+        "gene": "SYN6",
+        "uniprot": "",
+        "start": 1,
+        "sequence": "MSTNPKPQRITLWYFDENQGAVLIVLLLSSSTTTKKK",
+        "variants": "W12*\nQ19*\nL28P\nK38R",
+        "notes": "Teaching-only case for how the parser and report treat stop-gain notation. Not a transcript/NMD model.",
+        "questions": [
+            "How are stop-gain events reported?",
+            "What does this tool not know about transcripts?"
+        ],
+        "tags": [
+            "synthetic",
+            "stop"
+        ]
+    },
+    {
+        "id": "synthetic-mismatch",
+        "type": "Quality-control demo",
+        "title": "Intentional mismatch exercise",
+        "protein": "Teaching-only mismatch exercise",
+        "gene": "SYN7",
+        "uniprot": "",
+        "start": 101,
+        "sequence": "ACDEFGHIKLMNPQRSTVWY",
+        "variants": "A101V\nC102W\nA102V\nY120F\nY121F",
+        "notes": "Tests offset mapping and mismatch/out-of-range warnings. Useful for teaching why quality gates come before scoring.",
+        "questions": [
+            "Which entries map correctly?",
+            "Which warning stops interpretation?"
+        ],
+        "tags": [
+            "QA",
+            "offset",
+            "mismatch"
+        ]
+    },
+    {
+        "id": "synthetic-batch",
+        "type": "Quality-control demo",
+        "title": "Batch-triage classroom drill",
+        "protein": "Teaching-only batch triage mini-protein",
+        "gene": "SYN8",
+        "uniprot": "",
+        "start": 1,
+        "sequence": "ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY",
+        "variants": "A1V\nR15H\nW19G\nY20F\nA21V\nR35C\nBAD\nC2C",
+        "notes": "Practice filtering, sorting, exports, and dashboard review with mixed-validity inputs.",
+        "questions": [
+            "Which results should be filtered first?",
+            "What goes into the evidence dossier?"
+        ],
+        "tags": [
+            "QA",
+            "batch",
+            "classroom"
+        ]
+    }
+];
+
+  const GUARDRAILS = [
+    ['No clinical substitution', 'Do not use this product as diagnosis, treatment advice, or automated ACMG/AMP classification.'],
+    ['Sequence verification', 'Confirm the reference amino acid matches the exact sequence and isoform being studied.'],
+    ['Evidence separation', 'Keep computed biochemical features separate from ClinVar assertions, population frequency, conservation, and experimental evidence.'],
+    ['Database provenance', 'Record database source, lookup date, accession, and uncertainty.'],
+    ['Human review', 'Any clinical-adjacent interpretation requires qualified human review and disease-context evidence.'],
+    ['Privacy', 'Do not upload or store identifiable personal genetic/health data in this static classroom build.']
+  ];
+
+  const VALIDATION_ROADMAP = [
+    ['Parser benchmark', 'Test one-letter, three-letter, HGVS-like, deletion, stop, invalid, duplicate, out-of-range, and mismatch inputs.'],
+    ['Curated case set', 'Use known educational examples and neutral controls; explicitly label teaching-only synthetic examples.'],
+    ['User comprehension', 'Measure whether students can explain why computed scores are not clinical classifications.'],
+    ['Reproducibility', 'Export method version, timestamp, sequence, residue offset, source links, and notes.'],
+    ['Database integration', 'Pin API response timestamps and handle failed/blocked lookups gracefully.'],
+    ['Expert review', 'Ask a biology educator or bioinformatics reviewer to inspect scoring language, cases, and disclaimers.']
+  ];
+
+  const state = {
+    mode: 'research', proteinName: '', gene: '', uniprot: '', sequenceStart: 1, cleanSequence: '', variants: [], selectedIndex: 0,
+    enrichment: {}, structureStage: null
+  };
+
+  const els = {};
+  const version = '3.0.0-advanced-web-app';
+
+  function $(id) { return document.getElementById(id); }
+  function qsa(sel, root = document) { return Array.from(root.querySelectorAll(sel)); }
+  function escapeHtml(value = '') {
+    return String(value).replace(/[&<>'"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));
+  }
+  function round(n, d = 1) { return Number.isFinite(n) ? Number(n).toFixed(d).replace(/\.0$/, '') : '—'; }
+  function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
+  function cleanSequence(input) {
+    return String(input || '').split(/\n/).filter(line => !line.trim().startsWith('>')).join('').toUpperCase().replace(/[^ACDEFGHIKLMNPQRSTVWY]/g, '');
+  }
+  function parseThreeOrOne(raw) {
+    if (!raw) return null;
+    const s = String(raw).trim();
+    if (/^[A-Za-z]$/.test(s)) return s.toUpperCase();
+    const key = s.slice(0,3).toUpperCase();
+    return THREE_TO_ONE[key] || null;
+  }
+
+  function parseVariant(raw, order = 0) {
+    const original = String(raw || '').trim();
+    if (!original) return {raw: original, order, valid:false, error:'Blank line'};
+    const normalized = original.replace(/^p\./i, '').replace(/[()\s]/g, '');
+    let m = normalized.match(/^([A-Za-z]{1}|[A-Za-z]{3})(\d+)del$/i);
+    if (m) {
+      const from = parseThreeOrOne(m[1]);
+      const pos = Number(m[2]);
+      if (!from || !pos) return {raw: original, order, valid:false, error:'Unrecognized deletion notation'};
+      return {raw: original, order, valid:true, type:'deletion', from, pos, to:'del'};
+    }
+    m = normalized.match(/^([A-Za-z]{1}|[A-Za-z]{3})(\d+)([A-Za-z]{1}|[A-Za-z]{3}|\*)$/);
+    if (m) {
+      const from = parseThreeOrOne(m[1]);
+      const pos = Number(m[2]);
+      const to = parseThreeOrOne(m[3]) || (m[3] === '*' ? '*' : null);
+      if (!from || !to || !pos) return {raw: original, order, valid:false, error:'Unrecognized amino-acid code'};
+      return {raw: original, order, valid:true, type: to === '*' ? 'nonsense' : 'substitution', from, pos, to};
+    }
+    if (/ins|dup|delins|fs/i.test(normalized)) return {raw: original, order, valid:false, error:'Complex indel/frameshift not supported in this static build'};
+    return {raw: original, order, valid:false, error:'Could not parse variant. Try E6V, p.Glu6Val, Arg175His, or F508del.'};
+  }
+
+  function aaAtPosition(pos) {
+    const idx = pos - state.sequenceStart;
+    if (idx < 0 || idx >= state.cleanSequence.length) return null;
+    return state.cleanSequence[idx];
+  }
+
+  function localWindow(pos, flank = 5) {
+    const idx = pos - state.sequenceStart;
+    if (idx < 0 || idx >= state.cleanSequence.length) return '';
+    const start = Math.max(0, idx - flank);
+    const end = Math.min(state.cleanSequence.length, idx + flank + 1);
+    return state.cleanSequence.slice(start, end);
+  }
+
+  function inferSecondaryContext(windowSeq) {
+    if (!windowSeq) return 'No local context';
+    const hydrophobic = (windowSeq.match(/[AILMFWYV]/g) || []).length / windowSeq.length;
+    const glyPro = (windowSeq.match(/[GP]/g) || []).length / windowSeq.length;
+    const charged = (windowSeq.match(/[DEKRH]/g) || []).length / windowSeq.length;
+    if (hydrophobic > 0.55) return 'hydrophobic-enriched local region';
+    if (glyPro > 0.25) return 'flexible / turn-prone local region';
+    if (charged > 0.35) return 'charged / surface-like local region';
+    return 'mixed local sequence context';
+  }
+
+  function computeVariant(v, seen) {
+    if (!v.valid) return v;
+    const expected = aaAtPosition(v.pos);
+    const inRange = Boolean(expected);
+    const matches = inRange && expected === v.from;
+    const duplicateKey = `${v.from}${v.pos}${v.to}`;
+    const duplicate = seen.has(duplicateKey);
+    seen.add(duplicateKey);
+    const fromAA = AA[v.from];
+    const toAA = AA[v.to];
+    const windowSeq = localWindow(v.pos, 6);
+    const context = inferSecondaryContext(windowSeq);
+
+    if (v.type === 'deletion') {
+      const priorityScore = matches ? 76 : inRange ? 58 : 42;
+      return {...v, expected, inRange, matches, duplicate, windowSeq, context, blosum:null, grantham:null, hydroDelta:null, chargeShift:null, volumeDelta:null, biochemicalScore:70, evolutionaryScore:50, structuralScore:context.includes('hydrophobic') ? 70 : 55, priorityScore, impact: priorityScore >= 70 ? 'High review priority' : 'Needs sequence review', mechanism:'Deletion can disrupt spacing, motifs, local packing, or domain register; full interpretation requires isoform and database review.'};
+    }
+    if (v.type === 'nonsense') {
+      const priorityScore = matches ? 88 : inRange ? 70 : 55;
+      return {...v, expected, inRange, matches, duplicate, windowSeq, context, blosum:null, grantham:null, hydroDelta:null, chargeShift:null, volumeDelta:null, biochemicalScore:90, evolutionaryScore:70, structuralScore:65, priorityScore, impact:'High review priority', mechanism:'Premature termination may truncate protein sequence; clinical relevance depends on transcript, position, NMD, isoform, and disease mechanism.'};
+    }
+
+    const blosum = BLOSUM62[v.from]?.[v.to];
+    const grantham = GRANTHAM[v.from]?.[v.to];
+    const hydroDelta = toAA.hydro - fromAA.hydro;
+    const chargeShift = Math.abs(toAA.charge - fromAA.charge) >= 0.9;
+    const volumeDelta = toAA.volume - fromAA.volume;
+    const classShift = fromAA.class !== toAA.class;
+    const aromaticShift = fromAA.aromatic !== toAA.aromatic;
+    const polarShift = fromAA.polar !== toAA.polar;
+
+    const biochemicalScore = clamp(
+      (grantham ?? 0) / 2.15 + Math.min(28, Math.abs(hydroDelta) * 4.8) + (chargeShift ? 18 : 0) + (classShift ? 9 : 0) + (aromaticShift ? 7 : 0) + (polarShift ? 5 : 0), 0, 100
+    );
+    const evolutionaryScore = clamp(blosum == null ? 45 : (blosum <= -3 ? 88 : blosum <= -2 ? 72 : blosum <= -1 ? 55 : blosum === 0 ? 40 : 22), 0, 100);
+    const structuralScore = clamp(
+      (context.includes('hydrophobic') ? 18 : 0) + (Math.abs(volumeDelta) > 65 ? 22 : Math.abs(volumeDelta) > 35 ? 12 : 4) + (v.to === 'P' || v.from === 'G' ? 15 : 0) + (chargeShift && context.includes('hydrophobic') ? 24 : 0) + 25, 0, 100
+    );
+    const dataQualityBonus = matches ? 10 : inRange ? -12 : -24;
+    const priorityScore = clamp(Math.round(biochemicalScore * 0.42 + evolutionaryScore * 0.25 + structuralScore * 0.23 + dataQualityBonus), 0, 100);
+
+    let mechanism = [];
+    if (chargeShift) mechanism.push('charge/salt-bridge change');
+    if (Math.abs(hydroDelta) >= 3.5) mechanism.push('large hydrophobicity shift');
+    if (Math.abs(volumeDelta) >= 55) mechanism.push('size/packing disruption');
+    if (v.to === 'P') mechanism.push('possible backbone rigidity/kink');
+    if (v.from === 'G') mechanism.push('loss of glycine flexibility');
+    if (aromaticShift) mechanism.push('aromatic packing change');
+    if (!mechanism.length) mechanism.push('limited physicochemical disruption predicted');
+
+    return {
+      ...v, expected, inRange, matches, duplicate, windowSeq, context, blosum, grantham,
+      hydroDelta, chargeShift, volumeDelta, classShift, aromaticShift, polarShift,
+      biochemicalScore: Math.round(biochemicalScore), evolutionaryScore: Math.round(evolutionaryScore), structuralScore: Math.round(structuralScore),
+      priorityScore, impact: priorityScore >= 70 ? 'High review priority' : priorityScore >= 45 ? 'Moderate review priority' : 'Lower computed priority',
+      mechanism: mechanism.join('; ')
+    };
+  }
+
+  function analyze() {
+    readInputs();
+    const rawLines = $('variantInput').value.split(/\n+/).map(x => x.trim()).filter(Boolean);
+    const seen = new Set();
+    state.variants = rawLines.map((line, idx) => computeVariant(parseVariant(line, idx), seen));
+    if (state.selectedIndex >= state.variants.length) state.selectedIndex = 0;
+    renderAll();
+    status(`Analyzed ${state.variants.length} variant${state.variants.length === 1 ? '' : 's'}.`);
+  }
+
+  function readInputs() {
+    state.proteinName = $('proteinName').value.trim();
+    state.gene = $('geneSymbol').value.trim().toUpperCase();
+    state.uniprot = $('uniprotId').value.trim().toUpperCase();
+    state.sequenceStart = Number($('sequenceStart').value || 1);
+    state.cleanSequence = cleanSequence($('sequenceInput').value);
+  }
+
+  function qualitySummary() {
+    const total = state.variants.length;
+    return {
+      sequenceLength: state.cleanSequence.length,
+      total,
+      valid: state.variants.filter(v => v.valid).length,
+      matches: state.variants.filter(v => v.valid && v.matches).length,
+      mismatches: state.variants.filter(v => v.valid && v.inRange && !v.matches).length,
+      outOfRange: state.variants.filter(v => v.valid && !v.inRange).length,
+      invalid: state.variants.filter(v => !v.valid).length,
+      duplicates: state.variants.filter(v => v.duplicate).length
+    };
+  }
+
+  function qualityStatus() {
+    const q = qualitySummary();
+    if (!q.sequenceLength) return ['No sequence', 'bad'];
+    if (!q.total) return ['Ready for variants', 'info'];
+    if (q.invalid || q.outOfRange || q.mismatches) return ['Needs review', 'warn'];
+    return ['Ready for export', 'good'];
+  }
+
+  function flags(v) {
+    if (!v) return [];
+    const out = [];
+    if (!v.valid) out.push(['Invalid', 'bad']);
+    if (v.valid && !v.inRange) out.push(['Out of range', 'bad']);
+    if (v.valid && v.inRange && !v.matches) out.push(['Reference mismatch', 'bad']);
+    if (v.duplicate) out.push(['Duplicate', 'warn']);
+    if (v.valid && v.matches) out.push(['Sequence match', 'good']);
+    if (v.type === 'deletion') out.push(['Deletion', 'warn']);
+    if (v.type === 'nonsense') out.push(['Stop gained', 'warn']);
+    if (v.chargeShift) out.push(['Charge shift', 'warn']);
+    if (Math.abs(v.hydroDelta || 0) >= 3.5) out.push(['Hydropathy shift', 'warn']);
+    return out;
+  }
+
+  function renderAll() {
+    renderMetrics(); renderQuality(); renderVariantTable(); renderDossier(); renderLinks(); renderResidueContext(); renderCases(); renderTeacherDashboard(); renderGuardrails(); renderValidationRoadmap(); renderMode();
+  }
+
+  function renderMetrics() {
+    const q = qualitySummary();
+    const validSubs = state.variants.filter(v => v.valid && v.type === 'substitution' && v.matches);
+    const mean = (arr) => arr.length ? arr.reduce((a,b) => a + b, 0) / arr.length : null;
+    $('metricVariants').textContent = String(q.total);
+    $('metricLength').textContent = String(q.sequenceLength || 0);
+    $('metricBlosum').textContent = validSubs.length ? round(mean(validSubs.map(v => v.blosum)), 1) : '—';
+    $('metricGrantham').textContent = validSubs.length ? round(mean(validSubs.map(v => v.grantham)), 0) : '—';
+    $('metricQuality').textContent = qualityStatus()[0];
+  }
+
+  function renderQuality() {
+    const q = qualitySummary();
+    const [label, cls] = qualityStatus();
+    $('qualityBadge').textContent = label;
+    $('qualityBadge').className = `pill ${cls}`;
+    const cards = [
+      ['Sequence', q.sequenceLength ? `${q.sequenceLength} amino-acid residues loaded. Numbering starts at ${state.sequenceStart}.` : 'No sequence loaded.', q.sequenceLength ? 'good' : 'bad'],
+      ['Variant mapping', `${q.matches}/${q.total} variant inputs match the provided sequence; ${q.mismatches} mismatch; ${q.outOfRange} out of range.`, q.mismatches || q.outOfRange ? 'warn' : q.total ? 'good' : 'info'],
+      ['Input hygiene', `${q.invalid} invalid/unsupported input(s); ${q.duplicates} duplicate(s).`, q.invalid ? 'bad' : q.duplicates ? 'warn' : 'good'],
+      ['Export readiness', label === 'Ready for export' ? 'Dossier can be exported with current quality checks.' : 'Review warnings before sharing outside the classroom.', cls]
+    ];
+    $('qualityCards').innerHTML = cards.map(([t,b,c]) => `<div class="quality-card"><span class="badge ${c}">${escapeHtml(c)}</span><strong>${escapeHtml(t)}</strong><p class="muted">${escapeHtml(b)}</p></div>`).join('');
+  }
+
+  function filteredVariants() {
+    const filter = $('filterSelect')?.value || 'all';
+    const sort = $('sortSelect')?.value || 'priority-desc';
+    let arr = [...state.variants];
+    arr = arr.filter(v => {
+      if (filter === 'invalid') return !v.valid;
+      if (filter === 'mismatch') return v.valid && v.inRange && !v.matches;
+      if (!v.valid) return filter === 'all';
+      if (filter === 'high') return v.priorityScore >= 70;
+      if (filter === 'moderate') return v.priorityScore >= 45 && v.priorityScore < 70;
+      if (filter === 'low') return v.priorityScore < 45;
+      return true;
+    });
+    const by = {
+      'priority-desc': (a,b) => (b.priorityScore || -1) - (a.priorityScore || -1),
+      'position-asc': (a,b) => (a.pos || 999999) - (b.pos || 999999),
+      'grantham-desc': (a,b) => (b.grantham || -1) - (a.grantham || -1),
+      'blosum-asc': (a,b) => (a.blosum ?? 99) - (b.blosum ?? 99),
+      'input-order': (a,b) => a.order - b.order
+    }[sort];
+    return arr.sort(by);
+  }
+
+  function renderVariantTable() {
+    const rows = filteredVariants();
+    const body = $('variantTableBody');
+    if (!rows.length) {
+      body.innerHTML = '<tr><td colspan="7" class="muted">No variants to show. Paste variants and click Analyze.</td></tr>';
+      return;
+    }
+    body.innerHTML = rows.map(v => {
+      const idx = state.variants.indexOf(v);
+      if (!v.valid) {
+        return `<tr class="selectable ${idx === state.selectedIndex ? 'selected' : ''}" data-select-index="${idx}"><td><strong>${escapeHtml(v.raw)}</strong></td><td colspan="5" class="bad">${escapeHtml(v.error)}</td><td>—</td></tr>`;
+      }
+      const mapping = v.inRange ? `${v.from}${v.pos}${v.to} · sequence has ${v.expected}` : `${v.from}${v.pos}${v.to} · outside ${state.sequenceStart}-${state.sequenceStart + state.cleanSequence.length - 1}`;
+      const scores = v.type === 'substitution'
+        ? `BLOSUM ${v.blosum}; Grantham ${v.grantham}<br><span class="muted">Bio ${v.biochemicalScore} · Evol ${v.evolutionaryScore} · Struct ${v.structuralScore}</span>`
+        : `<span class="muted">${escapeHtml(v.type)}; substitution matrices not applicable.</span>`;
+      const physics = v.type === 'substitution'
+        ? `${AA[v.from].name} → ${AA[v.to].name}<br><span class="muted">Δhydro ${round(v.hydroDelta)} · Δvolume ${round(v.volumeDelta,0)} · ${v.chargeShift ? 'charge shift' : 'charge stable'}</span>`
+        : `${AA[v.from]?.name || v.from} → ${escapeHtml(v.to)}`;
+      const flagHtml = flags(v).map(([name, cls]) => `<span class="badge ${cls}">${escapeHtml(name)}</span>`).join(' ');
+      const priorityClass = v.priorityScore >= 70 ? 'bad' : v.priorityScore >= 45 ? 'warn' : 'good';
+      return `<tr class="selectable ${idx === state.selectedIndex ? 'selected' : ''}" data-select-index="${idx}">
+        <td><strong>${escapeHtml(v.raw)}</strong><br><span class="muted mono">${escapeHtml(v.from)}${v.pos}${escapeHtml(v.to)}</span></td>
+        <td>${escapeHtml(mapping)}</td>
+        <td>${scores}</td>
+        <td>${physics}</td>
+        <td>${escapeHtml(v.impact)}<br><span class="muted">${escapeHtml(v.mechanism)}</span></td>
+        <td>${flagHtml}</td>
+        <td><span class="badge ${priorityClass}">${v.priorityScore}/100</span></td>
+      </tr>`;
+    }).join('');
+    qsa('[data-select-index]', body).forEach(row => row.addEventListener('click', () => {
+      state.selectedIndex = Number(row.dataset.selectIndex);
+      renderVariantTable(); renderDossier(); renderLinks(); renderResidueContext();
+      showView('dossier');
+    }));
+  }
+
+  function selectedVariant() { return state.variants[state.selectedIndex] || state.variants.find(v => v.valid) || null; }
+
+  function evidenceRows(v) {
+    if (!v) return [];
+    if (!v.valid) return [['Input parsing', v.error || 'Invalid input', 'bad']];
+    return [
+      ['Reference mapping', v.matches ? 'Reference residue matches supplied sequence.' : v.inRange ? `Mismatch: sequence has ${v.expected} at this position.` : 'Position is outside supplied sequence range.', v.matches ? 'good' : 'bad'],
+      ['Biochemical disruption', v.type === 'substitution' ? `Grantham ${v.grantham}, hydropathy delta ${round(v.hydroDelta)}, volume delta ${round(v.volumeDelta,0)}, ${v.chargeShift ? 'charge changed' : 'charge stable'}.` : `${v.type} event; substitution metrics are not directly applicable.`, v.biochemicalScore >= 70 ? 'warn' : 'info'],
+      ['Evolutionary tolerance', v.type === 'substitution' ? `BLOSUM62 score ${v.blosum}; lower values generally indicate less tolerated substitutions.` : 'Requires separate protein/transcript consequence review.', v.evolutionaryScore >= 70 ? 'warn' : 'info'],
+      ['Local sequence context', `${v.context}; local window ${v.windowSeq || 'not available'}.`, 'info'],
+      ['Database evidence', state.enrichment.clinvar?.records?.length ? `${state.enrichment.clinvar.records.length} ClinVar candidate record(s) loaded; exact-match review still required.` : 'Use live lookup and source links; do not infer database status from computed scores.', state.enrichment.clinvar?.records?.length ? 'info' : 'warn'],
+      ['Evidence gaps', 'Conservation, domain mapping, population frequency, literature, assay data, transcript context, and expert review remain outside automated scoring.', 'warn']
+    ];
+  }
+
+  function renderDossier() {
+    const v = selectedVariant();
+    if (!v) {
+      $('selectedVariantTitle').textContent = 'No variant selected';
+      $('selectedVariantBadge').textContent = '—';
+      $('dossierPanel').innerHTML = '<div class="notice">Analyze variants to generate an evidence dossier.</div>';
+      return;
+    }
+    $('selectedVariantTitle').textContent = v.valid ? `${v.from}${v.pos}${v.to}` : v.raw;
+    $('selectedVariantBadge').textContent = v.valid ? v.impact : 'Invalid input';
+    const readiness = v.valid ? clamp(Math.round((v.matches ? 28 : 0) + (state.uniprot ? 18 : 0) + (state.gene ? 12 : 0) + (qualitySummary().invalid ? 0 : 8) + 20), 0, 100) : 10;
+    const panelRows = evidenceRows(v).map(([area, status, cls]) => `<tr><td><strong>${escapeHtml(area)}</strong></td><td>${escapeHtml(status)}</td><td><span class="badge ${cls}">${escapeHtml(cls)}</span></td></tr>`).join('');
+    $('dossierPanel').innerHTML = `
+      <div class="metric-grid" style="grid-template-columns:repeat(3,minmax(0,1fr));margin:0;">
+        <div class="metric"><span>Review priority</span><strong>${v.valid ? v.priorityScore + '/100' : '—'}</strong></div>
+        <div class="metric"><span>Dossier readiness</span><strong>${readiness}/100</strong></div>
+        <div class="metric"><span>Sequence mapping</span><strong>${v.valid ? (v.matches ? 'Match' : 'Review') : 'Invalid'}</strong></div>
+      </div>
+      <div class="table-wrap"><table><thead><tr><th>Evidence area</th><th>Status</th><th>Grade</th></tr></thead><tbody>${panelRows}</tbody></table></div>
+      <div class="notice"><strong>Recommended next action:</strong> ${escapeHtml(recommendedAction(v))}</div>
+    `;
+  }
+
+  function recommendedAction(v) {
+    if (!v || !v.valid) return 'Correct the variant format before interpretation.';
+    if (!v.inRange) return 'Check residue numbering, isoform, and whether you pasted a fragment instead of the full canonical sequence.';
+    if (!v.matches) return 'Verify sequence source and variant notation; a mismatch should be resolved before scoring is used.';
+    if (v.priorityScore >= 70) return 'Create a full evidence dossier: UniProt features, AlphaFold confidence, PDB structures, ClinVar, population frequency, conservation, and literature.';
+    if (v.priorityScore >= 45) return 'Review database evidence and local context before deciding whether deeper analysis is warranted.';
+    return 'Use as a lower-priority comparison case unless external evidence indicates functional importance.';
+  }
+
+  function sourceLinks() {
+    const v = selectedVariant();
+    const gene = encodeURIComponent(state.gene || '');
+    const uni = encodeURIComponent(state.uniprot || '');
+    const term = encodeURIComponent(`${state.gene || ''} ${v?.raw || ''}`.trim() || 'protein variant');
+    return [
+      ['UniProtKB', state.uniprot ? `https://www.uniprot.org/uniprotkb/${uni}` : 'https://www.uniprot.org/', 'Protein sequence, features, variants, domains, PTMs, functional annotation.'],
+      ['AlphaFold DB', state.uniprot ? `https://alphafold.ebi.ac.uk/entry/${uni}` : 'https://alphafold.ebi.ac.uk/', 'Predicted structure and local model confidence.'],
+      ['ClinVar', `https://www.ncbi.nlm.nih.gov/clinvar/?term=${term}`, 'Clinical assertions; review condition, submitter, review status, date, and evidence.'],
+      ['PDBe / PDB', state.uniprot ? `https://www.ebi.ac.uk/pdbe/entry/search/index?uniprot_accession:${uni}` : (state.gene ? `https://www.rcsb.org/search?query=${gene}` : 'https://www.rcsb.org/'), 'Experimental structures and mappings.'],
+      ['InterPro', state.uniprot ? `https://www.ebi.ac.uk/interpro/protein/UniProt/${uni}/` : 'https://www.ebi.ac.uk/interpro/', 'Domains, families, and functional-site context.'],
+      ['gnomAD', state.gene ? `https://gnomad.broadinstitute.org/gene/${gene}` : 'https://gnomad.broadinstitute.org/', 'Population-frequency context; often requires genomic coordinate or transcript mapping.']
+    ];
+  }
+
+  function renderLinks() {
+    $('sourceLinks').innerHTML = sourceLinks().map(([name, href, note]) => `<div class="source-card"><strong>${escapeHtml(name)}</strong><p class="muted">${escapeHtml(note)}</p><a target="_blank" rel="noopener noreferrer" href="${href}">Open source ↗</a></div>`).join('');
+  }
+
+  function renderResidueContext() {
+    const v = selectedVariant();
+    if (!v || !v.valid) { $('residueContextPanel').innerHTML = '<div class="notice">Select a valid variant to inspect residue context.</div>'; return; }
+    const from = AA[v.from];
+    const to = AA[v.to];
+    const toText = to ? `${to.name} (${to.class})` : v.to;
+    $('residueContextPanel').innerHTML = `
+      <div class="panel"><strong>Variant</strong><p class="mono">${escapeHtml(v.from)}${v.pos}${escapeHtml(v.to)}</p></div>
+      <div class="panel"><strong>Residue change</strong><p>${escapeHtml(from?.name || v.from)} (${escapeHtml(from?.class || '')}) → ${escapeHtml(toText)}</p></div>
+      <div class="panel"><strong>Local window</strong><p class="mono">${escapeHtml(v.windowSeq || 'not available')}</p><p class="muted">${escapeHtml(v.context || '')}</p></div>
+      <div class="panel"><strong>Mechanism hypothesis</strong><p>${escapeHtml(v.mechanism || 'No mechanism generated.')}</p></div>
+    `;
+  }
+
+  function renderCases() {
+    const grid = $('caseLibrary');
+    if (!grid || grid.dataset.rendered === 'true') return;
+    grid.innerHTML = CASES.map(c => `<div class="case-card">
+      <span class="badge ${c.type.includes('Reference') ? 'good' : c.type.includes('Manual') ? 'info' : 'warn'}">${escapeHtml(c.type)}</span>
+      <h3>${escapeHtml(c.title)}</h3>
+      <p class="muted">${escapeHtml(c.notes)}</p>
+      <div class="actions"><button class="btn" data-load-case="${escapeHtml(c.id)}">Load case</button></div>
+    </div>`).join('');
+    grid.dataset.rendered = 'true';
+    qsa('[data-load-case]', grid).forEach(btn => btn.addEventListener('click', () => loadCase(btn.dataset.loadCase)));
+  }
+
+  function renderGuardrails() {
+    const panel = $('guardrailChecklist');
+    if (!panel || panel.dataset.rendered === 'true') return;
+    panel.innerHTML = GUARDRAILS.map(([title, body], i) => `<label class="check-item"><input type="checkbox" /><span><strong>${escapeHtml(title)}</strong><br><span class="muted">${escapeHtml(body)}</span></span></label>`).join('');
+    panel.dataset.rendered = 'true';
+  }
+
+  function renderValidationRoadmap() {
+    const panel = $('validationRoadmap');
+    if (!panel || panel.dataset.rendered === 'true') return;
+    panel.innerHTML = VALIDATION_ROADMAP.map(([title, body]) => `<div class="roadmap-card"><strong>${escapeHtml(title)}</strong><p class="muted">${escapeHtml(body)}</p></div>`).join('');
+    panel.dataset.rendered = 'true';
+  }
+
+  function renderMode() {
+    $('modeBadge').textContent = `${state.mode.charAt(0).toUpperCase() + state.mode.slice(1)} mode`;
+    qsa('[data-mode]').forEach(btn => btn.classList.toggle('active', btn.dataset.mode === state.mode));
+  }
+
+  function loadCase(id) {
+    const c = CASES.find(x => x.id === id);
+    if (!c) return;
+    $('proteinName').value = c.protein;
+    $('geneSymbol').value = c.gene;
+    $('uniprotId').value = c.uniprot;
+    $('sequenceStart').value = c.start;
+    $('sequenceInput').value = c.sequence;
+    $('variantInput').value = c.variants;
+    $('notesArea').value = c.notes;
+    state.selectedIndex = 0;
+    analyze();
+    showView('workbench');
+  }
+
+  function showView(view) {
+    qsa('.view').forEach(el => el.classList.toggle('active', el.id === `view-${view}`));
+    qsa('.nav-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.view === view));
+  }
+
+  async function fetchJson(url) {
+    const response = await fetch(url, {headers: {'Accept':'application/json'}});
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return response.json();
+  }
+
+  async function loadUniProtSequence() {
+    const uni = $('uniprotId').value.trim().toUpperCase();
+    if (!uni) { status('Add a UniProt accession first.'); return; }
+    try {
+      status(`Fetching UniProt sequence for ${uni}...`);
+      const data = await fetchJson(`https://rest.uniprot.org/uniprotkb/${encodeURIComponent(uni)}.json`);
+      const seq = data?.sequence?.value || '';
+      if (!seq) throw new Error('No sequence in UniProt response');
+      $('sequenceInput').value = seq;
+      if (!$('proteinName').value.trim()) $('proteinName').value = data?.proteinDescription?.recommendedName?.fullName?.value || uni;
+      if (!$('geneSymbol').value.trim() && data?.genes?.[0]?.geneName?.value) $('geneSymbol').value = data.genes[0].geneName.value;
+      analyze();
+      status(`Loaded ${seq.length} amino acids from UniProt ${uni}.`);
+    } catch (err) {
+      status(`UniProt sequence fetch failed: ${err.message}. Use the UniProt source link instead.`);
+    }
+  }
+
+
+  function featureLocation(feature) {
+    const start = Number(feature?.location?.start?.value || feature?.location?.start || NaN);
+    const end = Number(feature?.location?.end?.value || feature?.location?.end || start);
+    return {start, end};
+  }
+
+  function featureLabel(feature) {
+    const {start, end} = featureLocation(feature);
+    const loc = Number.isFinite(start) ? `${start}-${end}` : '?';
+    const description = feature.description || feature.featureId || feature.type || 'feature';
+    return `${feature.type || 'feature'}: ${description} (${loc})`;
+  }
+
+  function selectedResidueFeatures(features = [], variant = selectedVariant()) {
+    if (!variant?.valid) return [];
+    return features.filter(feature => {
+      const {start, end} = featureLocation(feature);
+      return Number.isFinite(start) && Number.isFinite(end) && variant.pos >= start && variant.pos <= end;
+    }).slice(0, 12).map(featureLabel);
+  }
+
+  function normalizeClinvarRecord(id, raw = {}) {
+    const sig = raw.clinical_significance || raw.germline_classification || raw.classification || {};
+    const clinicalSignificance = typeof sig === 'string' ? sig : (sig.description || sig.review_status || JSON.stringify(sig));
+    const traitSet = raw.trait_set || raw.trait || raw.traits || [];
+    const traits = Array.isArray(traitSet) ? traitSet.map(t => t.trait_name || t.name || t).join('; ') : String(traitSet || '');
+    return {
+      id,
+      accession: raw.accession || raw.accession_version || raw.variation_accession || '',
+      title: raw.title || raw.variation_name || raw.objdescription || raw.accession || `ClinVar record ${id}`,
+      clinicalSignificance: clinicalSignificance || 'not parsed from summary',
+      reviewStatus: raw.review_status || raw.germline_review_status || raw.stars || 'not parsed from summary',
+      traits: traits || raw.trait_name || '',
+      updated: raw.last_update_date || raw.date_last_updated || raw.update_date || '',
+      link: `https://www.ncbi.nlm.nih.gov/clinvar/variation/${id}/`
+    };
+  }
+
+  function safeList(values, limit = 8) {
+    return (values || []).filter(Boolean).slice(0, limit);
+  }
+
+  async function fetchAllEvidence() {
+    status('Running all live evidence lookups...');
+    await Promise.allSettled([fetchUniProtMeta(), fetchAlphaFold(), fetchClinVar(), fetchPdbe()]);
+    renderDossier();
+    status('Live evidence lookup pass completed. Review each source before exporting.');
+  }
+
+  async function fetchUniProtMeta() {
+    readInputs();
+    if (!state.uniprot) return enrichError('UniProt metadata', 'Add a UniProt accession first.');
+    try {
+      const data = await fetchJson(`https://rest.uniprot.org/uniprotkb/${encodeURIComponent(state.uniprot)}.json`);
+      const featuresRaw = data?.features || [];
+      const selectedFeatures = selectedResidueFeatures(featuresRaw);
+      const geneNames = safeList((data?.genes || []).flatMap(g => [g.geneName?.value, ...(g.synonyms || []).map(s => s.value)]), 12);
+      const comments = safeList((data?.comments || []).map(c => c.commentType || c.type), 10);
+      state.enrichment.uniprot = {
+        accession: data?.primaryAccession || state.uniprot,
+        entryType: data?.entryType || 'not reported',
+        name: data?.proteinDescription?.recommendedName?.fullName?.value || data?.uniProtkbId || state.uniprot,
+        organism: data?.organism?.scientificName || 'not reported',
+        length: data?.sequence?.length || data?.sequence?.value?.length || 'not reported',
+        geneNames,
+        keywords: safeList((data?.keywords || []).map(k => k.name), 12),
+        commentTypes: comments,
+        featuresShown: featuresRaw.slice(0, 16).map(featureLabel),
+        selectedResidueFeatures: selectedFeatures.length ? selectedFeatures : ['No overlapping UniProt feature parsed for selected residue.'],
+        retrievedAt: new Date().toISOString(),
+        source: `https://rest.uniprot.org/uniprotkb/${encodeURIComponent(state.uniprot)}.json`,
+        featuresRaw
+      };
+      renderEnrichment();
+      renderDossier();
+      status('UniProt metadata and selected-residue feature overlap loaded.');
+    } catch (err) { enrichError('UniProt metadata', err.message); }
+  }
+
+  async function fetchAlphaFold() {
+    readInputs();
+    if (!state.uniprot) return enrichError('AlphaFold', 'Add a UniProt accession first.');
+    try {
+      const data = await fetchJson(`https://alphafold.ebi.ac.uk/api/prediction/${encodeURIComponent(state.uniprot)}`);
+      const first = Array.isArray(data) ? data[0] : null;
+      const v = selectedVariant();
+      state.enrichment.alphafold = first ? {
+        model: first.entryId || `AF-${state.uniprot}`,
+        uniprot: first.uniprotAccession || state.uniprot,
+        coverage: `${first.uniprotStart || 1}-${first.uniprotEnd || 'unknown'}`,
+        selectedResidueInCoverage: v?.valid ? (v.pos >= (first.uniprotStart || 1) && v.pos <= (first.uniprotEnd || Infinity)) : 'no selected residue',
+        confidence: first.confidenceAvgLocalScore ? round(first.confidenceAvgLocalScore, 1) : 'check model file / pLDDT coloring',
+        pdbUrl: first.pdbUrl || '',
+        cifUrl: first.cifUrl || '',
+        paeDocUrl: first.paeDocUrl || '',
+        retrievedAt: new Date().toISOString(),
+        source: `https://alphafold.ebi.ac.uk/api/prediction/${encodeURIComponent(state.uniprot)}`
+      } : {model:'No model returned', coverage:'—', confidence:'—', retrievedAt:new Date().toISOString()};
+      renderEnrichment();
+      renderDossier();
+      status('AlphaFold status loaded. Use Structure view to highlight the selected residue.');
+    } catch (err) { enrichError('AlphaFold', err.message); }
+  }
+
+  async function fetchClinVar() {
+    readInputs();
+    const v = selectedVariant();
+    const queryPieces = [state.gene, v?.valid ? `${v.from}${v.pos}${v.to}` : v?.raw, v?.valid && AA[v.from] && AA[v.to] ? `p.${AA[v.from].three}${v.pos}${AA[v.to]?.three || v.to}` : ''].filter(Boolean);
+    const term = queryPieces.join(' OR ');
+    if (!state.gene && !v?.raw) return enrichError('ClinVar', 'Add a gene and variant first.');
+    try {
+      const searchTerm = state.gene && v?.raw ? `${state.gene}[gene] AND (${v.raw} OR ${v.valid && AA[v.from] && AA[v.to] ? `p.${AA[v.from].three}${v.pos}${AA[v.to]?.three || v.to}` : v.raw})` : queryPieces.join(' ');
+      const url = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=clinvar&retmode=json&retmax=10&term=${encodeURIComponent(searchTerm)}`;
+      const data = await fetchJson(url);
+      const ids = data?.esearchresult?.idlist || [];
+      let records = [];
+      if (ids.length) {
+        const summaryUrl = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=clinvar&retmode=json&id=${encodeURIComponent(ids.join(','))}`;
+        const summary = await fetchJson(summaryUrl);
+        const uids = summary?.result?.uids || ids;
+        records = uids.map(id => normalizeClinvarRecord(id, summary?.result?.[id] || {}));
+      }
+      state.enrichment.clinvar = {
+        query: searchTerm,
+        count: data?.esearchresult?.count || '0',
+        ids,
+        records,
+        guidance: 'Treat ClinVar as external database evidence. Review assertion criteria, submitter, review status, condition, date, and exact genomic/transcript match before making any claim.',
+        retrievedAt: new Date().toISOString(),
+        source: url
+      };
+      renderEnrichment();
+      renderDossier();
+      status(ids.length ? `ClinVar returned ${ids.length} candidate record(s). Review exact matches manually.` : 'ClinVar search completed with no candidate records for this query.');
+    } catch (err) { enrichError('ClinVar', err.message); }
+  }
+
+  async function fetchPdbe() {
+    readInputs();
+    if (!state.uniprot) return enrichError('PDBe', 'Add a UniProt accession first.');
+    try {
+      const data = await fetchJson(`https://www.ebi.ac.uk/pdbe/api/mappings/uniprot/${encodeURIComponent(state.uniprot)}`);
+      const keys = Object.keys(data || {});
+      const entry = data[keys[0]] || {};
+      const pdb = entry?.PDB || {};
+      const mappings = Object.entries(pdb).slice(0, 12).map(([pdbId, value]) => ({pdbId, chains:Object.keys(value?.mappings || {}).length || (value?.mappings || []).length || 'check PDBe'}));
+      state.enrichment.pdbe = {mappedEntries: Object.keys(pdb).length, examples: mappings, retrievedAt:new Date().toISOString(), source:`https://www.ebi.ac.uk/pdbe/api/mappings/uniprot/${encodeURIComponent(state.uniprot)}`};
+      renderEnrichment();
+      renderDossier();
+      status('PDBe mapping lookup completed.');
+    } catch (err) { enrichError('PDBe', err.message); }
+  }
+
+  function enrichError(source, msg) {
+    state.enrichment[source.toLowerCase().split(' ')[0]] = {error: msg};
+    renderEnrichment();
+    status(`${source} lookup failed: ${msg}`);
+  }
+
+  function renderEnrichment() {
+    const entries = Object.entries(state.enrichment);
+    if (!entries.length) {
+      $('enrichmentPanel').innerHTML = '<div class="notice compact">No live enrichment loaded yet.</div>';
+      return;
+    }
+    $('enrichmentPanel').innerHTML = entries.map(([source, data]) => {
+      const error = data?.error;
+      const compact = JSON.stringify({...data, featuresRaw: undefined}, null, 2);
+      return `<div class="source-card enrichment-card"><div class="section-head mini"><strong>${escapeHtml(source.toUpperCase())}</strong><span class="badge ${error ? 'bad' : 'good'}">${error ? 'check' : 'loaded'}</span></div><pre class="small" style="white-space:pre-wrap;">${escapeHtml(compact)}</pre></div>`;
+    }).join('');
+  }
+
+
+  function loadNglLibrary() {
+    if (window.NGL) return Promise.resolve();
+    return new Promise((resolve, reject) => {
+      const existing = document.querySelector('script[data-ngl-loader="true"]');
+      if (existing) {
+        existing.addEventListener('load', () => resolve(), {once:true});
+        existing.addEventListener('error', () => reject(new Error('NGL viewer library failed to load')), {once:true});
+        return;
+      }
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/ngl@2.0.0-dev.39/dist/ngl.js';
+      script.async = true;
+      script.dataset.nglLoader = 'true';
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error('NGL viewer library failed to load'));
+      document.head.appendChild(script);
+      setTimeout(() => {
+        if (!window.NGL) reject(new Error('NGL viewer library timed out'));
+      }, 12000);
+    });
+  }
+
+  async function loadStructureViewer() {
+    readInputs();
+    if (!state.uniprot) { $('viewerStatus').textContent = 'Add a UniProt accession before loading structure.'; return; }
+    try {
+      $('viewerStatus').textContent = 'Loading viewer library...';
+      await loadNglLibrary();
+      $('viewerStatus').textContent = 'Loading AlphaFold model...';
+      const pred = await fetchJson(`https://alphafold.ebi.ac.uk/api/prediction/${encodeURIComponent(state.uniprot)}`);
+      const pdbUrl = pred?.[0]?.pdbUrl || `https://alphafold.ebi.ac.uk/files/AF-${state.uniprot}-F1-model_v4.pdb`;
+      $('nglViewer').innerHTML = '';
+      state.structureStage = new window.NGL.Stage('nglViewer', {backgroundColor: document.documentElement.dataset.theme === 'dark' ? 'black' : 'white'});
+      const comp = await state.structureStage.loadFile(pdbUrl, {ext:'pdb'});
+      comp.addRepresentation('cartoon', {color:'residueindex'});
+      comp.autoView();
+      $('viewerStatus').textContent = `Loaded model for ${state.uniprot}.`;
+      highlightResidue();
+    } catch (err) { $('viewerStatus').textContent = `Structure load failed: ${err.message}. Open AlphaFold source link instead.`; }
+  }
+
+  function highlightResidue() {
+    const v = selectedVariant();
+    if (!state.structureStage || !v?.valid) { $('viewerStatus').textContent = 'Load a structure and select a valid variant first.'; return; }
+    state.structureStage.eachComponent(comp => {
+      comp.removeAllRepresentations();
+      comp.addRepresentation('cartoon', {color:'residueindex', opacity:0.92});
+      comp.addRepresentation('spacefill', {sele:`${v.pos}`, color:'red', scale:1.3});
+      comp.autoView(`${v.pos}`, 1000);
+    });
+    $('viewerStatus').textContent = `Highlighted residue ${v.pos}. Confirm residue numbering and model coverage.`;
+  }
+
+
+  function teachingLevelLabel() {
+    return $('studentLevel')?.value || 'AP Biology / advanced high school';
+  }
+
+  function currentLessonText() {
+    if (!$('lessonOutput').value.trim()) generateLesson();
+    return $('lessonOutput').value || 'Generate a worksheet first.';
+  }
+
+  function renderTeacherDashboard() {
+    const panel = $('teacherDashboard');
+    if (!panel) return;
+    const q = qualitySummary();
+    const high = state.variants.filter(v => v.valid && v.priorityScore >= 70).length;
+    const warn = q.invalid + q.mismatches + q.outOfRange + q.duplicates;
+    const loadedCase = $('proteinName')?.value || 'Custom protein';
+    const rubric = [
+      ['Sequence hygiene', q.sequenceLength && !q.mismatches && !q.outOfRange ? 'Ready' : 'Needs check'],
+      ['Evidence separation', state.enrichment.clinvar || state.enrichment.uniprot ? 'Live evidence started' : 'Use source links or live lookup'],
+      ['Discussion quality', high ? 'Good for high-disruption discussion' : 'Good for contrast/control discussion'],
+      ['Export readiness', warn ? 'Review warnings first' : 'Ready for worksheet/dossier export']
+    ];
+    panel.innerHTML = `
+      <div class="metric-grid dashboard-metrics" style="grid-template-columns:repeat(4,minmax(0,1fr));margin:0;">
+        <div class="metric"><span>Loaded case</span><strong>${escapeHtml(loadedCase.slice(0,24))}${loadedCase.length>24?'…':''}</strong></div>
+        <div class="metric"><span>Mapped variants</span><strong>${q.matches}/${q.total}</strong></div>
+        <div class="metric"><span>High priority</span><strong>${high}</strong></div>
+        <div class="metric"><span>Warnings</span><strong>${warn}</strong></div>
+      </div>
+      <div class="table-wrap"><table><thead><tr><th>Teaching dimension</th><th>Status</th></tr></thead><tbody>
+        ${rubric.map(([a,b]) => `<tr><td><strong>${escapeHtml(a)}</strong></td><td>${escapeHtml(b)}</td></tr>`).join('')}
+      </tbody></table></div>
+      <div class="three-col small">
+        <div class="panel"><strong>Best use today</strong><p>${high ? 'Case discussion on high-disruption hypotheses and evidence gaps.' : 'Contrast/control lesson on why some substitutions are lower concern.'}</p></div>
+        <div class="panel"><strong>Common misconception</strong><p>Students may treat high computed priority as disease causation. Require them to label evidence type.</p></div>
+        <div class="panel"><strong>Exit ticket</strong><p>Name one computed feature, one database source, and one piece of evidence still missing.</p></div>
+      </div>`;
+  }
+
+  function worksheetPlainText() {
+    return currentLessonText() + `\n\n---\nTeacher rubric\n- 4: Clearly separates computed chemistry from database/experimental evidence.\n- 3: Explains main biochemical change and one evidence gap.\n- 2: Describes the substitution but blurs evidence types.\n- 1: Treats the workbench score as a clinical/pathogenicity answer.\n\nResponsible-use reminder: this worksheet is for education and research triage only.`;
+  }
+
+  function loadJsPdf() {
+    if (window.jspdf?.jsPDF) return Promise.resolve(window.jspdf.jsPDF);
+    return new Promise((resolve, reject) => {
+      const existing = document.querySelector('script[data-jspdf-loader="true"]');
+      if (existing) {
+        existing.addEventListener('load', () => resolve(window.jspdf.jsPDF), {once:true});
+        existing.addEventListener('error', () => reject(new Error('jsPDF failed to load')), {once:true});
+        return;
+      }
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js';
+      script.async = true;
+      script.dataset.jspdfLoader = 'true';
+      script.onload = () => window.jspdf?.jsPDF ? resolve(window.jspdf.jsPDF) : reject(new Error('jsPDF loaded but API was unavailable'));
+      script.onerror = () => reject(new Error('jsPDF library failed to load'));
+      document.head.appendChild(script);
+      setTimeout(() => { if (!window.jspdf?.jsPDF) reject(new Error('jsPDF library timed out')); }, 12000);
+    });
+  }
+
+  async function downloadWorksheetPdf() {
+    try {
+      status('Preparing worksheet PDF...');
+      const JsPDF = await loadJsPdf();
+      const doc = new JsPDF({unit:'pt', format:'letter'});
+      const margin = 54;
+      const width = 612 - margin * 2;
+      let y = margin;
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(16);
+      doc.text('Amino Acid Research Workbench — Student Worksheet', margin, y);
+      y += 24;
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(10);
+      const lines = doc.splitTextToSize(worksheetPlainText(), width);
+      lines.forEach(line => {
+        if (y > 740) { doc.addPage(); y = margin; }
+        doc.text(line, margin, y); y += 14;
+      });
+      doc.save(`${state.gene || 'protein'}-student-worksheet.pdf`);
+      status('Worksheet PDF generated.');
+    } catch (err) {
+      status(`PDF export unavailable: ${err.message}. Downloading Markdown fallback.`);
+      downloadFile(`${state.gene || 'protein'}-lesson-worksheet.md`, worksheetPlainText(), 'text/markdown');
+    }
+  }
+
+  function generateLesson() {
+    const v = selectedVariant();
+    const goal = $('lessonGoal').value.trim();
+    const level = $('studentLevel').value;
+    const worksheet = [
+      `# Amino Acid Research Workbench — Lesson Worksheet`,
+      ``,
+      `**Level:** ${level}`,
+      `**Goal:** ${goal}`,
+      `**Protein:** ${state.proteinName || 'not specified'} (${state.gene || 'gene not specified'})`,
+      `**Selected variant:** ${v?.valid ? `${v.from}${v.pos}${v.to}` : v?.raw || 'none selected'}`,
+      ``,
+      `## Part 1 — Observe`,
+      `1. What amino acid is present in the reference sequence?`,
+      `2. What amino acid replaces it, or is the variant a deletion/stop?`,
+      `3. Does the reference amino acid match the supplied protein sequence?`,
+      ``,
+      `## Part 2 — Explain the chemistry`,
+      v?.valid && v.type === 'substitution' ? `- From: ${AA[v.from].name} (${AA[v.from].class})\n- To: ${AA[v.to].name} (${AA[v.to].class})\n- Hydropathy delta: ${round(v.hydroDelta)}\n- Grantham: ${v.grantham}\n- BLOSUM62: ${v.blosum}` : `- Record whether this is a substitution, deletion, stop, or unsupported input.`,
+      ``,
+      `## Part 3 — Evidence separation`,
+      `Mark each claim as computed evidence, database evidence, experimental evidence, or unknown:`,
+      `- The amino-acid charge changed.`,
+      `- ClinVar lists an assertion for the variant.`,
+      `- The residue falls in a domain or active site.`,
+      `- The variant causes disease.`,
+      ``,
+      `## Part 4 — Short answer`,
+      `Write a two-sentence hypothesis about what this change might affect, followed by two evidence gaps that still need review.`,
+      ``,
+      `Boundary: this worksheet is for education and research triage only, not clinical interpretation.`
+    ].join('\n');
+    $('lessonOutput').value = worksheet;
+    renderTeacherDashboard();
+    status('Lesson worksheet generated.');
+  }
+
+  function methodsText() {
+    return `This workbench parses protein-level amino-acid changes, validates the reference residue against the supplied sequence and residue offset, and computes explainable triage features: BLOSUM62 substitution score, Grantham distance, Kyte-Doolittle hydropathy delta, charge shift, residue-class shift, aromatic/polar shift, approximate volume delta, and local sequence-context heuristics. The resulting priority score is a review-priority heuristic for education and research triage only. It is not a clinical classification, diagnosis, or substitute for UniProt, ClinVar, population-frequency, conservation, structure, functional-assay, transcript, literature, or qualified expert review.`;
+  }
+
+  function reportMarkdown() {
+    readInputs();
+    const q = qualitySummary();
+    const v = selectedVariant();
+    const rows = state.variants.map(x => x.valid
+      ? `- **${x.raw}**: ${x.from}${x.pos}${x.to}; priority ${x.priorityScore}/100; mapping ${x.matches ? 'match' : x.inRange ? `mismatch, sequence has ${x.expected}` : 'out of range'}; BLOSUM62 ${x.blosum ?? 'NA'}; Grantham ${x.grantham ?? 'NA'}; mechanism: ${x.mechanism || 'NA'}.`
+      : `- **${x.raw}**: invalid/unsupported — ${x.error}`).join('\n');
+    return `# Amino Acid Research Workbench Evidence Dossier\n\n` +
+      `**Generated:** ${new Date().toISOString()}  \n` +
+      `**Workbench version:** ${version}  \n` +
+      `**Protein:** ${state.proteinName || 'not specified'}  \n` +
+      `**Gene:** ${state.gene || 'not specified'}  \n` +
+      `**UniProt:** ${state.uniprot || 'not specified'}  \n` +
+      `**Sequence length:** ${state.cleanSequence.length}  \n` +
+      `**Residue numbering starts at:** ${state.sequenceStart}\n\n` +
+      `## Quality summary\n\n` +
+      `- Total inputs: ${q.total}\n- Valid parsed inputs: ${q.valid}\n- Sequence matches: ${q.matches}\n- Mismatches: ${q.mismatches}\n- Out of range: ${q.outOfRange}\n- Invalid/unsupported: ${q.invalid}\n- Duplicates: ${q.duplicates}\n\n` +
+      `## Selected variant\n\n${v ? JSON.stringify(v, null, 2) : 'No variant selected.'}\n\n` +
+      `## Variant findings\n\n${rows || 'No variants analyzed.'}\n\n` +
+      `## Methods\n\n${methodsText()}\n\n` +
+      `## Live enrichment summary\n\n${JSON.stringify({...state.enrichment, uniprot: state.enrichment.uniprot ? {...state.enrichment.uniprot, featuresRaw: undefined} : undefined}, null, 2)}\n\n` +
+      `## Source links\n\n${sourceLinks().map(([name, href, note]) => `- ${name}: ${note} ${href}`).join('\n')}\n\n` +
+      `## Reviewer notes\n\n${$('notesArea').value || '(none)'}\n\n` +
+      `## Boundary statement\n\nThis report is for education, research triage, and hypothesis generation only. It is not clinical interpretation, not a diagnosis, not a treatment recommendation, and not an automated pathogenicity classification.\n`;
+  }
+
+  function projectJson() {
+    readInputs();
+    return {
+      version, generatedAt: new Date().toISOString(), mode: state.mode,
+      inputs: {proteinName: state.proteinName, gene: state.gene, uniprot: state.uniprot, sequenceStart: state.sequenceStart, sequenceLength: state.cleanSequence.length},
+      proteinName: state.proteinName, gene: state.gene, uniprot: state.uniprot, sequenceStart: state.sequenceStart,
+      sequenceLength: state.cleanSequence.length, variants: state.variants, quality: qualitySummary(), selectedVariant: selectedVariant(), caseLibrarySize: CASES.length,
+      enrichment: state.enrichment, methods: methodsText(), notes: $('notesArea').value,
+      boundary: 'Education and research triage only; not clinical interpretation or diagnosis.'
+    };
+  }
+
+  function csvText() {
+    const headers = ['raw','valid','type','from','position','to','expected','in_range','matches','duplicate','blosum62','grantham','hydropathy_delta','volume_delta','charge_shift','biochemical_score','evolutionary_score','structural_score','priority_score','impact','mechanism','context'];
+    const rows = state.variants.map(v => headers.map(h => {
+      const map = {raw:v.raw, valid:v.valid, type:v.type || '', from:v.from || '', position:v.pos || '', to:v.to || '', expected:v.expected || '', in_range:v.inRange ?? '', matches:v.matches ?? '', duplicate:v.duplicate ?? '', blosum62:v.blosum ?? '', grantham:v.grantham ?? '', hydropathy_delta:v.hydroDelta ?? '', volume_delta:v.volumeDelta ?? '', charge_shift:v.chargeShift ?? '', biochemical_score:v.biochemicalScore ?? '', evolutionary_score:v.evolutionaryScore ?? '', structural_score:v.structuralScore ?? '', priority_score:v.priorityScore ?? '', impact:v.impact || '', mechanism:v.mechanism || v.error || '', context:v.context || ''};
+      return `"${String(map[h]).replace(/"/g, '""')}"`;
+    }).join(','));
+    return [headers.join(','), ...rows].join('\n');
+  }
+
+  function downloadFile(filename, text, type = 'text/plain') {
+    const blob = new Blob([text], {type});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  function copyText(text, fallbackName) {
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(() => status('Copied to clipboard.')).catch(() => downloadFile(fallbackName, text));
+    else downloadFile(fallbackName, text);
+  }
+
+  function runSelfTest() {
+    const tests = [];
+    function test(name, fn) {
+      try { tests.push([name, fn() ? 'pass' : 'fail']); }
+      catch (err) { tests.push([name, `fail: ${err.message}`]); }
+    }
+    const old = {
+      proteinName:$('proteinName').value, gene:$('geneSymbol').value, uniprot:$('uniprotId').value, seq:$('sequenceInput').value, vars:$('variantInput').value, start:$('sequenceStart').value, selected:state.selectedIndex
+    };
+    loadCase('hbb-e6v');
+    test('One-letter parser parses E6V', () => parseVariant('E6V').valid && parseVariant('E6V').from === 'E' && parseVariant('E6V').to === 'V');
+    test('HGVS-like parser parses p.Glu6Val', () => parseVariant('p.Glu6Val').valid && parseVariant('p.Glu6Val').from === 'E' && parseVariant('p.Glu6Val').to === 'V');
+    test('HBB E6V reference maps correctly', () => state.variants.find(v => v.raw === 'E6V')?.matches === true);
+    test('E6V has strong review priority', () => (state.variants.find(v => v.raw === 'E6V')?.priorityScore || 0) >= 70);
+    test('Invalid input is rejected', () => !parseVariant('BAD_INPUT').valid);
+    $('variantInput').value = 'E6V\nE6V\nQ999R\nBAD_INPUT'; analyze();
+    test('Duplicate is detected', () => state.variants.some(v => v.duplicate));
+    test('Out-of-range is detected', () => state.variants.some(v => v.valid && !v.inRange));
+    test('Markdown report generates boundary statement', () => reportMarkdown().includes('not clinical interpretation'));
+    test('Expanded case library is loaded', () => CASES.length >= 25);
+    test('Worksheet PDF export function exists', () => typeof downloadWorksheetPdf === 'function');
+    $('proteinName').value = old.proteinName; $('geneSymbol').value = old.gene; $('uniprotId').value = old.uniprot; $('sequenceInput').value = old.seq; $('variantInput').value = old.vars; $('sequenceStart').value = old.start; state.selectedIndex = old.selected; analyze();
+    const pass = tests.filter(([,r]) => r === 'pass').length;
+    $('selfTestBadge').textContent = `${pass}/${tests.length} passed`;
+    $('selfTestBadge').className = `pill ${pass === tests.length ? 'good' : 'bad'}`;
+    $('selfTestResults').innerHTML = tests.map(([name, result]) => `<div class="test-card"><span class="badge ${result === 'pass' ? 'good' : 'bad'}">${escapeHtml(result)}</span><strong>${escapeHtml(name)}</strong></div>`).join('');
+    status(`Self-test complete: ${pass}/${tests.length} passed.`);
+    showView('validation');
+  }
+
+  function status(msg) { $('statusLine').textContent = msg; }
+
+  function init() {
+    ['proteinName','geneSymbol','uniprotId','sequenceStart','sequenceInput','variantInput','notesArea'].forEach(id => { els[id] = $(id); });
+    qsa('.nav-btn').forEach(btn => btn.addEventListener('click', () => showView(btn.dataset.view)));
+    qsa('[data-view-jump]').forEach(btn => btn.addEventListener('click', () => showView(btn.dataset.viewJump)));
+    qsa('[data-load-case]').forEach(btn => btn.addEventListener('click', () => loadCase(btn.dataset.loadCase)));
+    qsa('[data-mode]').forEach(btn => btn.addEventListener('click', () => { state.mode = btn.dataset.mode; renderMode(); status(`${state.mode} mode selected.`); }));
+    $('analyzeBtn').addEventListener('click', analyze);
+    $('clearBtn').addEventListener('click', () => { $('variantInput').value = ''; analyze(); });
+    $('loadUniProtBtn').addEventListener('click', loadUniProtSequence);
+    $('fetchUniProtMetaBtn').addEventListener('click', fetchUniProtMeta);
+    $('fetchAlphaFoldBtn').addEventListener('click', fetchAlphaFold);
+    $('fetchClinVarBtn').addEventListener('click', fetchClinVar);
+    $('fetchPdbeBtn').addEventListener('click', fetchPdbe);
+    $('fetchAllEvidenceBtn')?.addEventListener('click', fetchAllEvidence);
+    $('loadStructureBtn').addEventListener('click', loadStructureViewer);
+    $('highlightResidueBtn').addEventListener('click', highlightResidue);
+    $('generateLessonBtn').addEventListener('click', generateLesson);
+    $('runSelfTestBtn').addEventListener('click', runSelfTest);
+    $('filterSelect').addEventListener('change', renderVariantTable);
+    $('sortSelect').addEventListener('change', renderVariantTable);
+    $('downloadReportBtn').addEventListener('click', () => downloadFile(`${state.gene || 'protein'}-evidence-dossier.md`, reportMarkdown(), 'text/markdown'));
+    $('downloadJsonBtn').addEventListener('click', () => downloadFile(`${state.gene || 'protein'}-project.json`, JSON.stringify(projectJson(), null, 2), 'application/json'));
+    $('downloadCsvBtn').addEventListener('click', () => downloadFile(`${state.gene || 'protein'}-variant-table.csv`, csvText(), 'text/csv'));
+    $('downloadLessonBtn').addEventListener('click', () => downloadFile(`${state.gene || 'protein'}-lesson-worksheet.md`, $('lessonOutput').value || 'Generate a lesson worksheet first.', 'text/markdown'));
+    $('downloadLessonPdfBtn')?.addEventListener('click', downloadWorksheetPdf);
+    $('copySummaryBtn').addEventListener('click', () => copyText(reportMarkdown().slice(0, 3000), 'summary.md'));
+    $('copyMethodsBtn').addEventListener('click', () => copyText(methodsText(), 'methods.txt'));
+    $('themeToggle').addEventListener('click', () => { document.documentElement.dataset.theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'; });
+    ['proteinName','geneSymbol','uniprotId','sequenceStart','sequenceInput','variantInput'].forEach(id => $(id).addEventListener('input', () => { readInputs(); renderMetrics(); }));
+    analyze();
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#111827" />
+  <title>HearthLink P2P</title>
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div id="toastRegion" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <main id="landing" class="landing shell">
+    <section class="hero-card">
+      <div class="brand-row">
+        <div class="brand-mark">HL</div>
+        <div>
+          <h1>HearthLink</h1>
+          <p>Private peer-to-peer rooms for your close circle.</p>
+        </div>
+      </div>
+      <p class="hero-copy">
+        Host a small, encrypted-by-transport social space with live voice rooms, text/image chat,
+        lightweight posts, presence, pins, reactions, and local-only history.
+      </p>
+      <div id="configStatus" class="status-panel" role="status">
+        Checking signaling configuration...
+      </div>
+      <div class="feature-grid">
+        <div><strong>P2P first</strong><span>Chat and media move over WebRTC data/media channels.</span></div>
+        <div><strong>Self-hosted</strong><span>The Node server only coordinates room discovery and signaling.</span></div>
+        <div><strong>Private keys</strong><span>Optional passphrase encryption runs in the browser.</span></div>
+        <div><strong>Small circles</strong><span>Designed for friend groups, study pods, and private squads.</span></div>
+      </div>
+    </section>
+
+    <section class="join-card" aria-label="Join or create a HearthLink room">
+      <h2>Enter your room</h2>
+      <label>
+        Display name
+        <input id="displayName" type="text" maxlength="40" placeholder="Nova" autocomplete="nickname" />
+      </label>
+      <label>
+        Room name / code
+        <input id="roomId" type="text" maxlength="48" placeholder="my-friends" autocomplete="off" />
+      </label>
+      <label>
+        Room passphrase <span class="muted">optional, never sent to server</span>
+        <input id="roomKey" type="password" maxlength="120" placeholder="Shared secret" autocomplete="current-password" />
+      </label>
+      <div class="accent-row" aria-label="Choose profile accent color">
+        <button class="accent-dot selected" data-accent="#8b5cf6" style="--accent:#8b5cf6" title="Violet"></button>
+        <button class="accent-dot" data-accent="#06b6d4" style="--accent:#06b6d4" title="Cyan"></button>
+        <button class="accent-dot" data-accent="#10b981" style="--accent:#10b981" title="Emerald"></button>
+        <button class="accent-dot" data-accent="#f59e0b" style="--accent:#f59e0b" title="Amber"></button>
+        <button class="accent-dot" data-accent="#f43f5e" style="--accent:#f43f5e" title="Rose"></button>
+      </div>
+      <button id="joinBtn" class="primary">Create / Join Room</button>
+      <button id="randomRoomBtn" class="ghost">Generate private room code</button>
+      <p class="fine-print">
+        For microphone access with friends outside localhost, serve over HTTPS. See README for deployment steps.
+      </p>
+    </section>
+  </main>
+
+  <main id="app" class="app hidden" aria-label="HearthLink application">
+    <aside class="sidebar left-rail">
+      <div class="app-brand">
+        <div class="brand-mark small">HL</div>
+        <div>
+          <strong>HearthLink</strong>
+          <span id="connectionState" class="muted">offline</span>
+        </div>
+      </div>
+
+      <section>
+        <div class="section-title">Circle</div>
+        <div id="roomBadge" class="room-badge"></div>
+        <button id="copyInviteBtn" class="wide secondary">Copy invite</button>
+      </section>
+
+      <section>
+        <div class="section-title">Text spaces</div>
+        <nav id="textChannels" class="channel-list"></nav>
+      </section>
+
+      <section>
+        <div class="section-title">Voice hearths</div>
+        <nav id="voiceChannels" class="channel-list voice-list"></nav>
+        <div class="voice-controls">
+          <button id="muteBtn" class="secondary" title="Mute microphone">Mic on</button>
+          <button id="deafenBtn" class="secondary" title="Mute incoming voice">Sound on</button>
+          <button id="leaveVoiceBtn" class="danger" title="Leave voice">Leave</button>
+        </div>
+      </section>
+    </aside>
+
+    <section class="main-panel">
+      <header class="topbar">
+        <div>
+          <h2 id="activeChannelName"># commons</h2>
+          <p id="activeChannelDescription" class="muted">General room chat.</p>
+        </div>
+        <div class="topbar-actions">
+          <button id="togglePostsBtn" class="secondary">Posts</button>
+          <button id="togglePinsBtn" class="secondary">Pins</button>
+        </div>
+      </header>
+
+      <section id="postsPanel" class="drawer hidden" aria-label="Bulletin posts">
+        <div class="drawer-head">
+          <h3>Bulletin</h3>
+          <button id="closePostsBtn" class="icon">×</button>
+        </div>
+        <form id="postForm" class="post-form">
+          <input id="postTitle" maxlength="80" placeholder="Post title" />
+          <textarea id="postBody" maxlength="1200" placeholder="Share a plan, note, link, or update..."></textarea>
+          <button class="primary" type="submit">Publish to peers</button>
+        </form>
+        <div id="postsList" class="posts-list"></div>
+      </section>
+
+      <section id="pinsPanel" class="drawer right hidden" aria-label="Pinned messages">
+        <div class="drawer-head">
+          <h3>Pins</h3>
+          <button id="closePinsBtn" class="icon">×</button>
+        </div>
+        <div id="pinsList" class="pins-list"></div>
+      </section>
+
+      <section id="messages" class="messages" aria-live="polite"></section>
+
+      <div id="typingLine" class="typing-line muted"></div>
+
+      <form id="composer" class="composer">
+        <button id="attachBtn" type="button" class="secondary" title="Attach image">Image</button>
+        <input id="imageInput" type="file" accept="image/*" hidden />
+        <textarea id="messageInput" rows="1" maxlength="1800" placeholder="Message your circle..."></textarea>
+        <button class="primary" type="submit">Send</button>
+      </form>
+    </section>
+
+    <aside class="sidebar member-rail">
+      <section>
+        <div class="section-title">Members</div>
+        <div id="memberList" class="member-list"></div>
+      </section>
+      <section>
+        <div class="section-title">Session</div>
+        <div class="stat-card"><span>Peers</span><strong id="peerCount">0</strong></div>
+        <div class="stat-card"><span>Mode</span><strong id="securityMode">WebRTC</strong></div>
+        <button id="exportBtn" class="wide secondary">Export local history</button>
+        <button id="clearBtn" class="wide danger">Clear local history</button>
+      </section>
+    </aside>
+
+    <div id="audioStage" aria-hidden="true"></div>
+  </main>
+
+  <script src="/config.js"></script>
+  <script src="/app.js" type="module"></script>
+</body>
+</html>
