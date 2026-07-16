@@ -23,6 +23,9 @@
     "remark-gfm": "^4.0.1",
     "zod": "^4.4.3"
   },
+  "overrides": {
+    "protobufjs": "7.6.5"
+  },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/express": "^5.0.6",
