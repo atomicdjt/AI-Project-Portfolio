@@ -1,0 +1,222 @@
+name: Vercel Affected Deployment Plan
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vercel-affected-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      deploy: ${{ steps.selector.outputs.deploy }}
+      manual: ${{ steps.selector.outputs.manual }}
+      reason: ${{ steps.selector.outputs.reason }}
+      matrix: ${{ steps.selector.outputs.matrix }}
+      has_deployments: ${{ steps.selector.outputs['has-deployments'] }}
+
+    steps:
+      - name: Checkout repository history
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Determine changed files
+        id: changes
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PUSH_BEFORE_SHA: ${{ github.event.before }}
+          CURRENT_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+
+          if [[ "$EVENT_NAME" == "pull_request" ]]; then
+            base="$PR_BASE_SHA"
+            head="$PR_HEAD_SHA"
+          elif [[ "$EVENT_NAME" == "push" && -n "$PUSH_BEFORE_SHA" && "$PUSH_BEFORE_SHA" != "0000000000000000000000000000000000000000" ]]; then
+            base="$PUSH_BEFORE_SHA"
+            head="$CURRENT_SHA"
+          else
+            base="$(git rev-parse HEAD^)"
+            head="$(git rev-parse HEAD)"
+          fi
+
+          git diff --name-only "$base" "$head" | sort -u > changed-files.txt
+
+          echo "base=$base" >> "$GITHUB_OUTPUT"
+          echo "head=$head" >> "$GITHUB_OUTPUT"
+          echo "Changed files:"
+          cat changed-files.txt
+
+      - name: Select affected Vercel projects
+        id: selector
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/detect-affected-apps.mjs \
+            --manifest config/vercel-projects.json \
+            --files-from changed-files.txt \
+            --github-output "$GITHUB_OUTPUT" | tee deployment-plan.json
+
+      - name: Publish deployment plan summary
+        shell: bash
+        env:
+          BASE_SHA: ${{ steps.changes.outputs.base }}
+          HEAD_SHA: ${{ steps.changes.outputs.head }}
+          DEPLOY_PROJECTS: ${{ steps.selector.outputs.deploy }}
+          MANUAL_PROJECTS: ${{ steps.selector.outputs.manual }}
+          PLAN_REASON: ${{ steps.selector.outputs.reason }}
+          ORCHESTRATION_ENABLED: ${{ vars.VERCEL_DEPLOYMENT_ORCHESTRATION_ENABLED }}
+        run: |
+          {
+            echo "## Vercel affected-project plan"
+            echo
+            echo "- Base: \`$BASE_SHA\`"
+            echo "- Head: \`$HEAD_SHA\`"
+            echo "- Automatically deployable projects: \`$DEPLOY_PROJECTS\`"
+            echo "- Manual-only projects: \`$MANUAL_PROJECTS\`"
+            echo "- Selection reason: \`$PLAN_REASON\`"
+            echo "- Deployment activation variable: \`${ORCHESTRATION_ENABLED:-not set}\`"
+            echo
+            if [[ "${ORCHESTRATION_ENABLED:-}" != "true" ]]; then
+              echo "> Dry-run only. No Vercel deployment job is authorized until the repository variable is explicitly set to \`true\` after checkpoint approval."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload deployment-plan evidence
+        uses: actions/upload-artifact@v7
+        with:
+          name: vercel-affected-plan-${{ github.run_id }}
+          path: |
+            changed-files.txt
+            deployment-plan.json
+          if-no-files-found: error
+          retention-days: 14
+
+  deploy:
+    name: Deploy ${{ matrix.publicName }}
+    needs: plan
+    if: >-
+      ${{
+        needs.plan.outputs.has_deployments == 'true' &&
+        vars.VERCEL_DEPLOYMENT_ORCHESTRATION_ENABLED == 'true'
+      }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install repository dependencies
+        run: npm ci
+
+      - name: Verify selected application
+        run: ${{ matrix.verificationCommand }}
+
+      - name: Verify required deployment credentials
+        shell: bash
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets[matrix.projectIdSecret] }}
+        run: |
+          set -euo pipefail
+          test -n "$VERCEL_TOKEN"
+          test -n "$VERCEL_ORG_ID"
+          test -n "$VERCEL_PROJECT_ID"
+
+      - name: Pull Vercel project configuration
+        working-directory: ${{ matrix.path }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets[matrix.projectIdSecret] }}
+        run: |
+          environment="preview"
+          if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/main" ]]; then
+            environment="production"
+          fi
+          npx --yes vercel@latest pull --yes --environment="$environment" --token="$VERCEL_TOKEN"
+
+      - name: Build Vercel output
+        working-directory: ${{ matrix.path }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets[matrix.projectIdSecret] }}
+        run: |
+          production_flag=""
+          if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/main" ]]; then
+            production_flag="--prod"
+          fi
+          npx --yes vercel@latest build $production_flag --token="$VERCEL_TOKEN"
+
+      - name: Deploy prebuilt output
+        id: deploy
+        working-directory: ${{ matrix.path }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets[matrix.projectIdSecret] }}
+        run: |
+          production_flag=""
+          if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/main" ]]; then
+            production_flag="--prod"
+          fi
+          url="$(npx --yes vercel@latest deploy --prebuilt $production_flag --token="$VERCEL_TOKEN")"
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "Deployed ${{ matrix.publicName }} to $url"
+
+      - name: Smoke-check deployed document
+        shell: bash
+        env:
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.url }}
+        run: |
+          set -euo pipefail
+          curl --fail --location --silent --show-error \
+            --retry 3 --retry-delay 2 \
+            "$DEPLOYMENT_URL" > deployed-document.html
+          test -s deployed-document.html
+
+      - name: Publish deployment evidence
+        shell: bash
+        env:
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.url }}
+        run: |
+          {
+            echo "## ${{ matrix.publicName }} deployment"
+            echo
+            echo "- Source SHA: \`${{ github.sha }}\`"
+            echo "- Deployment: $DEPLOYMENT_URL"
+            echo "- Canonical route: ${{ matrix.productionUrl }}"
+          } >> "$GITHUB_STEP_SUMMARY"
