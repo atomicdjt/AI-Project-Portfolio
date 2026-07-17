@@ -17,7 +17,6 @@
       "deploymentMode": "affected",
       "sharedPaths": [],
       "vercelProject": "ai-project-portfolio-portfolio-hub",
-      "projectIdSecret": "VERCEL_PROJECT_ID_PORTFOLIO_HUB",
       "productionUrl": "https://ai-project-portfolio-portfolio-hub.vercel.app/",
       "verificationCommand": "npm run build --workspace apps/portfolio-hub"
     },
@@ -28,7 +27,6 @@
       "deploymentMode": "affected",
       "sharedPaths": [],
       "vercelProject": "ai-project-portfolio-redactready-pro-hri-os",
-      "projectIdSecret": "VERCEL_PROJECT_ID_REDACTREADY_PRO",
       "productionUrl": "https://ai-project-portfolio-redactready-pr.vercel.app/",
       "verificationCommand": "npm run build --workspace apps/redactready-pro-hri-os"
     },
@@ -39,7 +37,6 @@
       "deploymentMode": "affected",
       "sharedPaths": [],
       "vercelProject": "ai-project-portfolio-opspilot-ai-operations-toolkit",
-      "projectIdSecret": "VERCEL_PROJECT_ID_PROCESSHARBOR",
       "productionUrl": "https://ai-project-portfolio-opspilot-ai-op.vercel.app/",
       "verificationCommand": "npm run build --workspace apps/opspilot-ai-operations-toolkit"
     },
@@ -50,7 +47,6 @@
       "deploymentMode": "affected",
       "sharedPaths": [],
       "vercelProject": "ai-project-portfolio-scamshield-ai",
-      "projectIdSecret": "VERCEL_PROJECT_ID_SCAMSHIELD_AI",
       "productionUrl": "https://ai-project-portfolio-scamshield-ai.vercel.app/",
       "verificationCommand": "npm run build --workspace apps/scamshield-ai"
     },
@@ -61,7 +57,6 @@
       "deploymentMode": "affected",
       "sharedPaths": [],
       "vercelProject": "ai-project-portfolio-redactready-local",
-      "projectIdSecret": "VERCEL_PROJECT_ID_REDACTREADY_LOCAL",
       "productionUrl": "https://ai-project-portfolio-redactready-lo.vercel.app/",
       "verificationCommand": "npm run build --workspace apps/redactready-local"
     },
@@ -72,7 +67,6 @@
       "deploymentMode": "affected",
       "sharedPaths": [],
       "vercelProject": "ai-project-portfolio-layerforge-studio",
-      "projectIdSecret": "VERCEL_PROJECT_ID_LAYERFORGE_STUDIO",
       "productionUrl": "https://ai-project-portfolio-layerforge-stu.vercel.app/",
       "verificationCommand": "npm run build --workspace apps/layerforge-studio"
     },
@@ -83,7 +77,6 @@
       "deploymentMode": "affected",
       "sharedPaths": [],
       "vercelProject": "ai-project-portfolio-focusforge",
-      "projectIdSecret": "VERCEL_PROJECT_ID_FOCUSFORGE",
       "productionUrl": "https://ai-project-portfolio-focusforge.vercel.app/",
       "verificationCommand": "npm run build --workspace apps/focusforge"
     },
@@ -94,7 +87,6 @@
       "deploymentMode": "affected",
       "sharedPaths": [],
       "vercelProject": "ai-project-portfolio-variantvision-pro",
-      "projectIdSecret": "VERCEL_PROJECT_ID_VARIANTVISION_PRO",
       "productionUrl": "https://ai-project-portfolio-variantvision.vercel.app/",
       "verificationCommand": "npm run build --workspace apps/variantvision-pro"
     },
@@ -105,7 +97,6 @@
       "deploymentMode": "affected",
       "sharedPaths": [],
       "vercelProject": "ai-project-portfolio-garden-grid",
-      "projectIdSecret": "VERCEL_PROJECT_ID_GARDEN_GRID",
       "productionUrl": "https://ai-project-portfolio-garden-grid.vercel.app/",
       "verificationCommand": "npm --prefix apps/garden-grid-planner run build"
     },
@@ -116,7 +107,6 @@
       "deploymentMode": "manual",
       "sharedPaths": [],
       "vercelProject": "ai-project-portfolio-amino-workbench",
-      "projectIdSecret": "VERCEL_PROJECT_ID_AMINO_WORKBENCH",
       "productionUrl": "https://ai-project-portfolio-amino-workbenc.vercel.app/",
       "verificationCommand": "test -f apps/amino-acid-workbench-legacy/index.html"
     },
@@ -127,7 +117,6 @@
       "deploymentMode": "manual",
       "sharedPaths": [],
       "vercelProject": "ai-project-portfolio-hearthlink",
-      "projectIdSecret": "VERCEL_PROJECT_ID_HEARTHLINK",
       "productionUrl": "https://ai-project-portfolio-hearthlink.vercel.app/",
       "verificationCommand": "test -f apps/hearthlink-legacy/index.html"
     }
