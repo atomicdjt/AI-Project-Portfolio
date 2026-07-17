@@ -1,7 +1,11 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 
-import { selectAffectedProjects, validateManifest } from '../detect-affected-apps.mjs'
+import {
+  selectAffectedProjects,
+  selectRequestedProjects,
+  validateManifest,
+} from '../detect-affected-apps.mjs'
 
 const manifest = {
   schemaVersion: 1,
@@ -109,6 +113,38 @@ test('duplicate changed paths do not duplicate selected projects', () => {
   })
 
   assert.deepEqual(result.deploy, ['layerforge-studio'])
+})
+
+test('an explicit preview request selects only the requested active project', () => {
+  const result = selectRequestedProjects({
+    requestedProjectIds: ['layerforge-studio'],
+    manifest,
+  })
+
+  assert.deepEqual(result.deploy, ['layerforge-studio'])
+  assert.deepEqual(result.manual, [])
+  assert.equal(result.reason, 'explicit-project-request')
+})
+
+test('an explicit request cannot automatically deploy a manual legacy project', () => {
+  const result = selectRequestedProjects({
+    requestedProjectIds: ['amino-workbench-legacy'],
+    manifest,
+  })
+
+  assert.deepEqual(result.deploy, [])
+  assert.deepEqual(result.manual, ['amino-workbench-legacy'])
+  assert.equal(result.reason, 'manual-projects-require-dispatch')
+})
+
+test('an explicit request rejects an unknown project identifier', () => {
+  assert.throws(
+    () => selectRequestedProjects({
+      requestedProjectIds: ['missing-project'],
+      manifest,
+    }),
+    /unknown deployment project/i,
+  )
 })
 
 test('manifest validation rejects duplicate project identifiers', () => {
