@@ -16,6 +16,10 @@ concurrency:
   group: vercel-affected-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  VERCEL_CLI_VERSION: 54.21.1
+  VERCEL_SCOPE: atomicdjts-projects
+
 jobs:
   plan:
     runs-on: ubuntu-latest
@@ -143,57 +147,69 @@ jobs:
       - name: Verify selected application
         run: ${{ matrix.verificationCommand }}
 
-      - name: Verify required deployment credentials
+      - name: Verify Vercel token
         shell: bash
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets[matrix.projectIdSecret] }}
         run: |
           set -euo pipefail
           test -n "$VERCEL_TOKEN"
-          test -n "$VERCEL_ORG_ID"
-          test -n "$VERCEL_PROJECT_ID"
+
+      - name: Link selected Vercel project
+        working-directory: ${{ matrix.path }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          npx --yes "vercel@$VERCEL_CLI_VERSION" link \
+            --yes \
+            --project "${{ matrix.vercelProject }}" \
+            --scope "$VERCEL_SCOPE" \
+            --token "$VERCEL_TOKEN"
 
       - name: Pull Vercel project configuration
         working-directory: ${{ matrix.path }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets[matrix.projectIdSecret] }}
         run: |
           environment="preview"
           if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/main" ]]; then
             environment="production"
           fi
-          npx --yes vercel@latest pull --yes --environment="$environment" --token="$VERCEL_TOKEN"
+          npx --yes "vercel@$VERCEL_CLI_VERSION" pull \
+            --yes \
+            --environment="$environment" \
+            --scope "$VERCEL_SCOPE" \
+            --token "$VERCEL_TOKEN"
 
       - name: Build Vercel output
         working-directory: ${{ matrix.path }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets[matrix.projectIdSecret] }}
         run: |
           production_flag=""
           if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/main" ]]; then
             production_flag="--prod"
           fi
-          npx --yes vercel@latest build $production_flag --token="$VERCEL_TOKEN"
+          npx --yes "vercel@$VERCEL_CLI_VERSION" build \
+            $production_flag \
+            --scope "$VERCEL_SCOPE" \
+            --token "$VERCEL_TOKEN"
 
       - name: Deploy prebuilt output
         id: deploy
         working-directory: ${{ matrix.path }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets[matrix.projectIdSecret] }}
         run: |
           production_flag=""
           if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/main" ]]; then
             production_flag="--prod"
           fi
-          url="$(npx --yes vercel@latest deploy --prebuilt $production_flag --token="$VERCEL_TOKEN")"
+          url="$(npx --yes "vercel@$VERCEL_CLI_VERSION" deploy \
+            --prebuilt \
+            $production_flag \
+            --scope "$VERCEL_SCOPE" \
+            --token "$VERCEL_TOKEN")"
           echo "url=$url" >> "$GITHUB_OUTPUT"
           echo "Deployed ${{ matrix.publicName }} to $url"
 
