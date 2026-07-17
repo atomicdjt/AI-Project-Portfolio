@@ -128,6 +128,40 @@ export const selectAffectedProjects = ({ changedFiles, manifest }) => {
   }
 }
 
+export const selectRequestedProjects = ({ requestedProjectIds, manifest }) => {
+  validateManifest(manifest)
+
+  if (!Array.isArray(requestedProjectIds)) {
+    throw new TypeError('requestedProjectIds must be an array')
+  }
+
+  const requested = [...new Set(requestedProjectIds.map(normalizePath).filter(Boolean))]
+  const projectsById = new Map(manifest.projects.map((project) => [project.id, project]))
+  const deploy = []
+  const manual = []
+
+  for (const projectId of requested) {
+    const project = projectsById.get(projectId)
+    if (!project) throw new Error(`Unknown deployment project: ${projectId}`)
+    if (project.deploymentMode === 'manual') manual.push(projectId)
+    else deploy.push(projectId)
+  }
+
+  const deployList = deploy.sort()
+  const manualList = manual.sort()
+
+  let reason = 'no-deployable-projects-affected'
+  if (deployList.length > 0) reason = 'explicit-project-request'
+  else if (manualList.length > 0) reason = 'manual-projects-require-dispatch'
+
+  return {
+    deploy: deployList,
+    manual: manualList,
+    reason,
+    changedFiles: [],
+  }
+}
+
 const parseArguments = (argv) => {
   const options = {}
   for (let index = 0; index < argv.length; index += 1) {
@@ -150,13 +184,23 @@ const writeGithubOutput = (outputPath, key, value) => {
 const runCli = () => {
   const options = parseArguments(process.argv.slice(2))
   if (!options.manifest) throw new Error('--manifest is required')
-  if (!options['files-from']) throw new Error('--files-from is required')
 
   const manifestPath = path.resolve(options.manifest)
-  const filesPath = path.resolve(options['files-from'])
   const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
-  const changedFiles = fs.readFileSync(filesPath, 'utf8').split(/\r?\n/)
-  const result = selectAffectedProjects({ changedFiles, manifest })
+
+  let result
+  if (options.project) {
+    result = selectRequestedProjects({
+      requestedProjectIds: options.project.split(','),
+      manifest,
+    })
+  } else {
+    if (!options['files-from']) throw new Error('--files-from is required when --project is not provided')
+    const filesPath = path.resolve(options['files-from'])
+    const changedFiles = fs.readFileSync(filesPath, 'utf8').split(/\r?\n/)
+    result = selectAffectedProjects({ changedFiles, manifest })
+  }
+
   const selectedProjects = manifest.projects.filter((project) => result.deploy.includes(project.id))
 
   const output = {
