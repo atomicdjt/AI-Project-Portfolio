@@ -8,12 +8,34 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      project_id:
+        description: Project to plan or deploy; use auto for changed-path selection
+        required: true
+        default: auto
+        type: choice
+        options:
+          - auto
+          - portfolio-hub
+          - redactready-pro
+          - processharbor
+          - scamshield-ai
+          - redactready-local
+          - layerforge-studio
+          - focusforge
+          - variantvision-pro
+          - garden-grid
+      execute_deployment:
+        description: Run the guarded deployment job instead of planning only
+        required: true
+        default: false
+        type: boolean
 
 permissions:
   contents: read
 
 concurrency:
-  group: vercel-affected-${{ github.workflow }}-${{ github.ref }}
+  group: vercel-affected-${{ github.workflow }}-${{ github.ref }}-${{ github.event.inputs.project_id || 'auto' }}
   cancel-in-progress: true
 
 env:
@@ -47,6 +69,7 @@ jobs:
         shell: bash
         env:
           EVENT_NAME: ${{ github.event_name }}
+          REQUESTED_PROJECT: ${{ github.event.inputs.project_id || 'auto' }}
           PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           PUSH_BEFORE_SHA: ${{ github.event.before }}
@@ -54,18 +77,23 @@ jobs:
         run: |
           set -euo pipefail
 
-          if [[ "$EVENT_NAME" == "pull_request" ]]; then
+          if [[ "$EVENT_NAME" == "workflow_dispatch" && "$REQUESTED_PROJECT" != "auto" ]]; then
+            base="$CURRENT_SHA"
+            head="$CURRENT_SHA"
+            : > changed-files.txt
+          elif [[ "$EVENT_NAME" == "pull_request" ]]; then
             base="$PR_BASE_SHA"
             head="$PR_HEAD_SHA"
+            git diff --name-only "$base" "$head" | sort -u > changed-files.txt
           elif [[ "$EVENT_NAME" == "push" && -n "$PUSH_BEFORE_SHA" && "$PUSH_BEFORE_SHA" != "0000000000000000000000000000000000000000" ]]; then
             base="$PUSH_BEFORE_SHA"
             head="$CURRENT_SHA"
+            git diff --name-only "$base" "$head" | sort -u > changed-files.txt
           else
             base="$(git rev-parse HEAD^)"
             head="$(git rev-parse HEAD)"
+            git diff --name-only "$base" "$head" | sort -u > changed-files.txt
           fi
-
-          git diff --name-only "$base" "$head" | sort -u > changed-files.txt
 
           echo "base=$base" >> "$GITHUB_OUTPUT"
           echo "head=$head" >> "$GITHUB_OUTPUT"
@@ -75,18 +103,30 @@ jobs:
       - name: Select affected Vercel projects
         id: selector
         shell: bash
+        env:
+          REQUESTED_PROJECT: ${{ github.event.inputs.project_id || 'auto' }}
         run: |
           set -euo pipefail
-          node scripts/detect-affected-apps.mjs \
-            --manifest config/vercel-projects.json \
-            --files-from changed-files.txt \
-            --github-output "$GITHUB_OUTPUT" | tee deployment-plan.json
+
+          if [[ "$REQUESTED_PROJECT" != "auto" ]]; then
+            node scripts/detect-affected-apps.mjs \
+              --manifest config/vercel-projects.json \
+              --project "$REQUESTED_PROJECT" \
+              --github-output "$GITHUB_OUTPUT" | tee deployment-plan.json
+          else
+            node scripts/detect-affected-apps.mjs \
+              --manifest config/vercel-projects.json \
+              --files-from changed-files.txt \
+              --github-output "$GITHUB_OUTPUT" | tee deployment-plan.json
+          fi
 
       - name: Publish deployment plan summary
         shell: bash
         env:
           BASE_SHA: ${{ steps.changes.outputs.base }}
           HEAD_SHA: ${{ steps.changes.outputs.head }}
+          REQUESTED_PROJECT: ${{ github.event.inputs.project_id || 'auto' }}
+          EXECUTE_REQUESTED: ${{ github.event.inputs.execute_deployment || 'false' }}
           DEPLOY_PROJECTS: ${{ steps.selector.outputs.deploy }}
           MANUAL_PROJECTS: ${{ steps.selector.outputs.manual }}
           PLAN_REASON: ${{ steps.selector.outputs.reason }}
@@ -97,6 +137,8 @@ jobs:
             echo
             echo "- Base: \`$BASE_SHA\`"
             echo "- Head: \`$HEAD_SHA\`"
+            echo "- Requested project: \`$REQUESTED_PROJECT\`"
+            echo "- Execute requested: \`$EXECUTE_REQUESTED\`"
             echo "- Automatically deployable projects: \`$DEPLOY_PROJECTS\`"
             echo "- Manual-only projects: \`$MANUAL_PROJECTS\`"
             echo "- Selection reason: \`$PLAN_REASON\`"
@@ -104,6 +146,8 @@ jobs:
             echo
             if [[ "${ORCHESTRATION_ENABLED:-}" != "true" ]]; then
               echo "> Dry-run only. No Vercel deployment job is authorized until the repository variable is explicitly set to \`true\` after checkpoint approval."
+            elif [[ "${{ github.event_name }}" == "workflow_dispatch" && "$EXECUTE_REQUESTED" != "true" ]]; then
+              echo "> Manual dispatch is plan-only because execute_deployment was not enabled."
             fi
           } >> "$GITHUB_STEP_SUMMARY"
 
@@ -123,7 +167,8 @@ jobs:
     if: >-
       ${{
         needs.plan.outputs.has_deployments == 'true' &&
-        vars.VERCEL_DEPLOYMENT_ORCHESTRATION_ENABLED == 'true'
+        vars.VERCEL_DEPLOYMENT_ORCHESTRATION_ENABLED == 'true' &&
+        (github.event_name != 'workflow_dispatch' || inputs.execute_deployment == true)
       }}
     runs-on: ubuntu-latest
     strategy:
