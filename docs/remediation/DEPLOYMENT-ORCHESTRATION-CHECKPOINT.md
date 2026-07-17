@@ -8,7 +8,8 @@
 
 - A declarative Vercel project manifest at `config/vercel-projects.json`.
 - A deterministic affected-project selector at `scripts/detect-affected-apps.mjs`.
-- Node test coverage for documentation-only, application-only, root dependency, manual legacy, deduplication, and malformed-manifest cases.
+- An explicit-project selector for tightly controlled manual preview validation.
+- Node test coverage for documentation-only, application-only, root dependency, manual legacy, deduplication, explicit project selection, unknown project rejection, and malformed-manifest cases.
 - A `Vercel Affected Deployment Plan` GitHub Actions workflow.
 - A guarded deployment matrix that verifies, links, builds, deploys, and smoke-checks only selected applications when explicitly activated.
 - Deployment-plan artifacts and GitHub job summaries for auditability.
@@ -16,10 +17,16 @@
 
 ## Current safety controls
 
-The new deployment job requires both conditions below:
+Automatic changed-path deployment requires all applicable conditions below:
 
-1. at least one affected project is selected;
+1. at least one active project is selected;
 2. repository variable `VERCEL_DEPLOYMENT_ORCHESTRATION_ENABLED` equals `true`.
+
+A manual workflow dispatch adds an additional requirement:
+
+3. `execute_deployment` must be explicitly enabled.
+
+A manual dispatch can select one named active project. Preserved legacy projects are not offered as deployment choices and remain `manual` in the manifest.
 
 The activation variable has not been set by this branch. Therefore the workflow is currently a dry-run planner and cannot create a Vercel deployment.
 
@@ -43,6 +50,17 @@ A change under an active project root selects only that project.
 
 Changes to the root package manifest, root lockfile, or deployment manifest select every project whose deployment mode is `affected` because those files can alter clean installation or deployment configuration.
 
+### Explicit manual selection
+
+A `workflow_dispatch` run can choose one active project independently of changed-path selection. This exists specifically to ensure the first credentialed preview can target `layerforge-studio` only, even though the orchestration pull request changes global build inputs.
+
+The dispatch defaults to:
+
+- `project_id: auto`;
+- `execute_deployment: false`.
+
+Those defaults produce a plan only.
+
 ### Manual-only applications
 
 Changes under these preserved artifacts are reported but not automatically deployed:
@@ -58,19 +76,26 @@ Create one GitHub Actions repository secret:
 
 The token must have access to the `atomicdjts-projects` Vercel scope and the existing project slugs declared in the manifest.
 
-The workflow does not require public project IDs or a separate secret for every application. It links the selected application directory to the existing project by project slug before pulling project configuration.
+The workflow does not require a separate project secret for every application. It links the selected application directory to the existing Vercel project by project slug before pulling configuration.
+
+Never paste the token into an issue, pull request, repository file, workflow input, or chat transcript. Store it only as the GitHub Actions secret.
 
 ## Activation sequence after checkpoint review
 
 1. Confirm the selector and dry-run workflow pass in pull request `#32`.
-2. Add `VERCEL_TOKEN` as a GitHub Actions secret.
-3. Temporarily activate the orchestration variable for one explicitly selected preview validation.
-4. Validate one application project link, build, preview deployment, and smoke check.
-5. Return the activation variable to disabled if any validation fails.
-6. Add `git.deploymentEnabled: false` to the monorepo application `vercel.json` files only after the controlled preview succeeds.
-7. Enable the orchestration variable permanently.
-8. Merge the cutover configuration only after affected-project behavior and canonical aliases are verified.
-9. Retain Vercel deployment history for rollback.
+2. Merge the guarded architecture while native Vercel Git deployment remains unchanged.
+3. Add `VERCEL_TOKEN` as a GitHub Actions repository secret.
+4. Set repository variable `VERCEL_DEPLOYMENT_ORCHESTRATION_ENABLED` to `true` for the controlled validation.
+5. Manually run `Vercel Affected Deployment Plan` with:
+   - `project_id: layerforge-studio`;
+   - `execute_deployment: true`.
+6. Verify that the generated matrix contains only LayerForge Studio.
+7. Validate the existing project link, build, preview deployment, and HTTP smoke check.
+8. Return the activation variable to `false` immediately if any validation fails.
+9. Add `git.deploymentEnabled: false` to the monorepo application `vercel.json` files only after the controlled preview succeeds.
+10. Verify changed-path behavior with documentation-only and single-application test commits.
+11. Enable the orchestration variable for normal operation only after the native Git cutover is verified.
+12. Retain Vercel deployment history for rollback.
 
 ## Preview validation target
 
@@ -78,14 +103,14 @@ Use LayerForge Studio as the first controlled preview because:
 
 - it is an active static Vite application;
 - it has an isolated Vercel project;
-- its latest Vercel status was the only successful monorepo deployment in the audited rate-limit incident;
-- it does not require provider secrets or server endpoints.
+- it does not require provider secrets or server endpoints;
+- it provides a low-risk verification of directory linking, prebuilt deployment, and smoke testing.
 
 The preview must confirm that running the CLI from the application directory links to the existing project and does not duplicate the configured root directory.
 
 ## Cutover files not yet changed
 
-The following change is intentionally deferred until this checkpoint is accepted:
+The following change is intentionally deferred until the controlled preview succeeds:
 
 ```json
 {
