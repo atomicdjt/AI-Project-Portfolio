@@ -146,6 +146,8 @@ jobs:
             echo
             if [[ "${ORCHESTRATION_ENABLED:-}" != "true" ]]; then
               echo "> Dry-run only. No Vercel deployment job is authorized until the repository variable is explicitly set to \`true\` after checkpoint approval."
+            elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
+              echo "> Pull requests are plan-only and never receive Vercel deployment credentials."
             elif [[ "${{ github.event_name }}" == "workflow_dispatch" && "$EXECUTE_REQUESTED" != "true" ]]; then
               echo "> Manual dispatch is plan-only because execute_deployment was not enabled."
             fi
@@ -166,6 +168,7 @@ jobs:
     needs: plan
     if: >-
       ${{
+        github.event_name != 'pull_request' &&
         needs.plan.outputs.has_deployments == 'true' &&
         vars.VERCEL_DEPLOYMENT_ORCHESTRATION_ENABLED == 'true' &&
         (github.event_name != 'workflow_dispatch' || inputs.execute_deployment == true)
