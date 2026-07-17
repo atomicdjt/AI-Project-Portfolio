@@ -17,14 +17,17 @@
 
 ## Current safety controls
 
-Automatic changed-path deployment requires all applicable conditions below:
+Pull requests are **plan-only**. They can generate the affected-project matrix and evidence artifact, but the credentialed deployment job is explicitly disabled for the `pull_request` event. Vercel credentials are therefore not used to execute pull-request code.
+
+Automatic changed-path deployment from a trusted `main` push requires all applicable conditions below:
 
 1. at least one active project is selected;
 2. repository variable `VERCEL_DEPLOYMENT_ORCHESTRATION_ENABLED` equals `true`.
 
-A manual workflow dispatch adds an additional requirement:
+A manual workflow dispatch adds two additional requirements:
 
-3. `execute_deployment` must be explicitly enabled.
+3. one active project or `auto` must be deliberately selected;
+4. `execute_deployment` must be explicitly enabled.
 
 A manual dispatch can select one named active project. Preserved legacy projects are not offered as deployment choices and remain `manual` in the manifest.
 
