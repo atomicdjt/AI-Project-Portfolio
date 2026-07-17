@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "globalAffectingPaths": [
+    "package.json",
+    "package-lock.json",
+    "config/vercel-projects.json"
+  ],
+  "ignoredPaths": [
+    "docs/**",
+    ".github/**"
+  ],
+  "projects": [
+    {
+      "id": "portfolio-hub",
+      "publicName": "Portfolio Hub",
+      "path": "apps/portfolio-hub",
+      "deploymentMode": "affected",
+      "sharedPaths": [],
+      "vercelProject": "ai-project-portfolio-portfolio-hub",
+      "productionUrl": "https://ai-project-portfolio-portfolio-hub.vercel.app/",
+      "verificationCommand": "npm run build --workspace apps/portfolio-hub"
+    },
+    {
+      "id": "redactready-pro",
+      "publicName": "RedactReady Pro",
+      "path": "apps/redactready-pro-hri-os",
+      "deploymentMode": "affected",
+      "sharedPaths": [],
+      "vercelProject": "ai-project-portfolio-redactready-pro-hri-os",
+      "productionUrl": "https://ai-project-portfolio-redactready-pr.vercel.app/",
+      "verificationCommand": "npm run build --workspace apps/redactready-pro-hri-os"
+    },
+    {
+      "id": "processharbor",
+      "publicName": "ProcessHarbor",
+      "path": "apps/opspilot-ai-operations-toolkit",
+      "deploymentMode": "affected",
+      "sharedPaths": [],
+      "vercelProject": "ai-project-portfolio-opspilot-ai-operations-toolkit",
+      "productionUrl": "https://ai-project-portfolio-opspilot-ai-op.vercel.app/",
+      "verificationCommand": "npm run build --workspace apps/opspilot-ai-operations-toolkit"
+    },
+    {
+      "id": "scamshield-ai",
+      "publicName": "ScamShield AI",
+      "path": "apps/scamshield-ai",
+      "deploymentMode": "affected",
+      "sharedPaths": [],
+      "vercelProject": "ai-project-portfolio-scamshield-ai",
+      "productionUrl": "https://ai-project-portfolio-scamshield-ai.vercel.app/",
+      "verificationCommand": "npm run build --workspace apps/scamshield-ai"
+    },
+    {
+      "id": "redactready-local",
+      "publicName": "RedactReady",
+      "path": "apps/redactready-local",
+      "deploymentMode": "affected",
+      "sharedPaths": [],
+      "vercelProject": "ai-project-portfolio-redactready-local",
+      "productionUrl": "https://ai-project-portfolio-redactready-lo.vercel.app/",
+      "verificationCommand": "npm run build --workspace apps/redactready-local"
+    },
+    {
+      "id": "layerforge-studio",
+      "publicName": "LayerForge Studio",
+      "path": "apps/layerforge-studio",
+      "deploymentMode": "affected",
+      "sharedPaths": [],
+      "vercelProject": "ai-project-portfolio-layerforge-studio",
+      "productionUrl": "https://ai-project-portfolio-layerforge-stu.vercel.app/",
+      "verificationCommand": "npm run build --workspace apps/layerforge-studio"
+    },
+    {
+      "id": "focusforge",
+      "publicName": "FocusForge",
+      "path": "apps/focusforge",
+      "deploymentMode": "affected",
+      "sharedPaths": [],
+      "vercelProject": "ai-project-portfolio-focusforge",
+      "productionUrl": "https://ai-project-portfolio-focusforge.vercel.app/",
+      "verificationCommand": "npm run build --workspace apps/focusforge"
+    },
+    {
+      "id": "variantvision-pro",
+      "publicName": "VariantVision Pro",
+      "path": "apps/variantvision-pro",
+      "deploymentMode": "affected",
+      "sharedPaths": [],
+      "vercelProject": "ai-project-portfolio-variantvision-pro",
+      "productionUrl": "https://ai-project-portfolio-variantvision.vercel.app/",
+      "verificationCommand": "npm run build --workspace apps/variantvision-pro"
+    },
+    {
+      "id": "garden-grid",
+      "publicName": "GardenGrid",
+      "path": "apps/garden-grid-planner",
+      "deploymentMode": "affected",
+      "sharedPaths": [],
+      "vercelProject": "ai-project-portfolio-garden-grid",
+      "productionUrl": "https://ai-project-portfolio-garden-grid.vercel.app/",
+      "verificationCommand": "npm --prefix apps/garden-grid-planner run build"
+    },
+    {
+      "id": "amino-workbench-legacy",
+      "publicName": "Amino Acid Workbench Legacy",
+      "path": "apps/amino-acid-workbench-legacy",
+      "deploymentMode": "manual",
+      "sharedPaths": [],
+      "vercelProject": "ai-project-portfolio-amino-workbench",
+      "productionUrl": "https://ai-project-portfolio-amino-workbenc.vercel.app/",
+      "verificationCommand": "test -f apps/amino-acid-workbench-legacy/index.html"
+    },
+    {
+      "id": "hearthlink-legacy",
+      "publicName": "HearthLink Legacy",
+      "path": "apps/hearthlink-legacy",
+      "deploymentMode": "manual",
+      "sharedPaths": [],
+      "vercelProject": "ai-project-portfolio-hearthlink",
+      "productionUrl": "https://ai-project-portfolio-hearthlink.vercel.app/",
+      "verificationCommand": "test -f apps/hearthlink-legacy/index.html"
+    }
+  ]
+}

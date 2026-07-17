@@ -6,6 +6,7 @@ on:
       - main
       - "codex/**"
       - "portfolio/**"
+      - "chore/deployment-orchestration-**"
   pull_request:
     branches:
       - main
@@ -43,6 +44,9 @@ jobs:
 
       - name: Enforce Vercel-only deployment policy
         run: npm run check:deployment-policy
+
+      - name: Test deployment selector
+        run: npm run test:deployment-selector
 
       - name: Lint apps
         run: npm run lint:apps
