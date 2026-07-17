@@ -204,7 +204,6 @@ jobs:
           test -n "$VERCEL_TOKEN"
 
       - name: Link selected Vercel project
-        working-directory: ${{ matrix.path }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
@@ -215,7 +214,6 @@ jobs:
             --token "$VERCEL_TOKEN"
 
       - name: Pull Vercel project configuration
-        working-directory: ${{ matrix.path }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
@@ -230,7 +228,6 @@ jobs:
             --token "$VERCEL_TOKEN"
 
       - name: Build Vercel output
-        working-directory: ${{ matrix.path }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
@@ -245,7 +242,6 @@ jobs:
 
       - name: Deploy prebuilt output
         id: deploy
-        working-directory: ${{ matrix.path }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
