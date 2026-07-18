@@ -261,9 +261,9 @@ const projects = [
 ];
 
 const employerQuickReview = projects.filter((project) =>
-  ['BuildWorld AI', 'RedactReady Pro', 'ProcessHarbor'].includes(project.publicName),
+  ['BuildWorld AI', 'ProcessHarbor', 'WeaveStudio'].includes(project.publicName),
 );
-const commercialAssets = projects.filter((project) => project.audience === 'Commercial');
+const commercialAssets = projects.filter((project) => project.publicName === 'QuoteForge Local');
 const vercelLiveCount = projects.filter((project) => ['Live', 'Commercial', 'Acquisition Asset'].includes(project.status)).length;
 const sourceBackedCount = projects.filter((project) => project.source).length;
 
@@ -347,8 +347,8 @@ function App() {
         <section id="commercial-assets" className="quick-review" aria-labelledby="commercial-title">
           <div className="section-title">
             <div>
-              <span>Products and acquisition assets</span>
-              <h2 id="commercial-title">Separate products with Vercel deployments and clear source authority</h2>
+              <span>Commercial execution</span>
+              <h2 id="commercial-title">A separately maintained private-source product</h2>
             </div>
           </div>
           <p>Commercial status describes product packaging and availability; it does not imply revenue, customers, active users, or a completed acquisition.</p>
