@@ -185,7 +185,7 @@ const projects = [
     status: 'Acquisition Asset',
     repositoryAuthority: 'Separate authoritative repository',
     category: 'Workflow product',
-    demo: 'https://weavestudio-demo.vercel.app/',
+    demo: 'https://weavestudio-nine.vercel.app/',
     source: 'https://github.com/atomicdjt/weavestudio',
     caseStudy: 'https://weavestudio-demo.vercel.app/acquire',
     image: imagePath('weavestudio-demo.gif'),
