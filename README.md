@@ -52,7 +52,7 @@ These products are maintained separately from the employer portfolio monorepo. T
 
 | Product | Status | Public surface | What it demonstrates |
 | --- | --- | --- | --- |
-| **[WeaveStudio](https://github.com/atomicdjt/weavestudio)** | Acquisition-ready asset | [Vercel demo](https://weavestudio-demo.vercel.app/) · [Acquisition overview](https://weavestudio-demo.vercel.app/acquire) | Local-first visual workflow canvas, consolidated default branch, portable exports, undo/redo, data recovery, browser and unit validation, buyer transfer materials, and consent-gated OpenAI/Gemini BYOK assistance. |
+| **[WeaveStudio](https://github.com/atomicdjt/weavestudio)** | Acquisition-ready asset | [Vercel demo](https://weavestudio-nine.vercel.app/) · [Acquisition overview](https://weavestudio-nine.vercel.app/acquire) | Local-first visual workflow canvas, consolidated default branch, portable exports, undo/redo, data recovery, browser and unit validation, buyer transfer materials, and consent-gated OpenAI/Gemini BYOK assistance. |
 | **QuoteForge Local** | Shipped commercial package | [Vercel demo](https://quoteforge-local.vercel.app/) · [Product page](https://payhip.com/b/24De9) | Ten quote-calculator templates, typed pricing engine, local demo leads, CSV export, branding, iframe/WordPress paths, buyer documentation, licensing, and release packaging. |
 
 Commercial status describes packaging and availability. This portfolio does not claim verified revenue, customers, active users, purchases, or completed acquisitions unless separately documented.
@@ -73,7 +73,7 @@ The root workspace configuration contains eleven applications:
 - `apps/redactready-local`
 - `apps/scamshield-ai`
 
-Astra and Nexus Play remain local applications because their local API services require an explicit Vercel Functions or separate backend design. GardenGrid is source-backed and live on Vercel. Amino Acid Workbench and HearthLink are preserved legacy static demos on Vercel; the original editable sources were not available during migration, and HearthLink remains explicitly offline/demo-only without a signaling service.
+Astra and Nexus Play remain local applications because their local API services require an explicit Vercel Functions or separate backend design. [GardenGrid](https://ai-project-portfolio-garden-grid.vercel.app/) is source-backed and live on Vercel through a controlled manual deployment; its existing Vercel project still awaits Git attachment. [Mnemosyne](https://mnemosyne-vercel-preview.vercel.app/) is an explicitly public manual Vercel deployment, not yet Git-connected. Amino Acid Workbench and HearthLink are preserved legacy static demos on Vercel; the original editable sources were not available during migration, and HearthLink remains explicitly offline/demo-only without a signaling service.
 
 ## Role Fit
 

@@ -49,7 +49,7 @@ These products demonstrate packaging and transfer discipline. Their status does 
 
 | Product | Vercel review | What it demonstrates |
 | --- | --- | --- |
-| WeaveStudio | https://weavestudio-demo.vercel.app/acquire | Consolidated default branch, visual workflow product, data portability, browser and unit validation, buyer materials, and consent-gated OpenAI/Gemini assistance. |
+| WeaveStudio | https://weavestudio-nine.vercel.app/acquire | Consolidated default branch, visual workflow product, data portability, browser and unit validation, buyer materials, and consent-gated OpenAI/Gemini assistance. |
 | QuoteForge Local | https://quoteforge-local.vercel.app/ | White-label quote workflow, ten templates, typed quote engine, embed/WordPress paths, licensing, buyer documentation, and commercial release packaging. |
 
 ## What This Portfolio Demonstrates

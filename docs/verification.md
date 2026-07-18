@@ -83,10 +83,9 @@ npm ci
 npm run verify:buyer
 ```
 
-Current Vercel surfaces:
+Current canonical Vercel surface: `https://weavestudio-nine.vercel.app/`.
 
-- `https://weavestudio-nine.vercel.app/`
-- `https://weavestudio-demo.vercel.app/`
+Legacy branch preview: `https://weavestudio-demo.vercel.app/` (non-canonical; retained for historical review only).
 
 The buyer gate includes unit tests, lint, type checking, production build, browser tests, and acquisition-package generation. External provider requests are mocked during browser tests. Passing tests do not imply independent certification or production adoption.
 

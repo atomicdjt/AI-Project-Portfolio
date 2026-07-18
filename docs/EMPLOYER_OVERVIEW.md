@@ -54,7 +54,7 @@ Use [Verification](verification.md) to understand the evidence behind public cla
 
 Commercial products are a secondary proof track rather than the main hiring path.
 
-- **[WeaveStudio](https://github.com/atomicdjt/weavestudio):** acquisition-ready local-first workflow product with a consolidated default branch, portable exports, undo/redo, recovery, browser and unit validation, transfer materials, and consent-gated OpenAI/Gemini assistance. [Vercel demo](https://weavestudio-demo.vercel.app/).
+- **[WeaveStudio](https://github.com/atomicdjt/weavestudio):** acquisition-ready local-first workflow product with a consolidated default branch, portable exports, undo/redo, recovery, browser and unit validation, transfer materials, and consent-gated OpenAI/Gemini assistance. [Canonical Vercel demo](https://weavestudio-nine.vercel.app/).
 - **[QuoteForge Local](https://quoteforge-local.vercel.app/):** shipped white-label quote-calculator package with ten templates, typed pricing logic, embed and WordPress paths, licensing, buyer documentation, and release tooling.
 
 These descriptions do not claim verified revenue, customers, active users, purchases, or completed acquisitions.
