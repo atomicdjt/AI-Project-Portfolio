@@ -75,14 +75,14 @@ These workspaces include local API services and are outside this completed stati
 
 ### Recovered and legacy supplemental demos
 
-GardenGrid is a recovered Vite source workspace and passed type checking, linting, and a production build before its Vercel deployment. Amino Acid Workbench and HearthLink are preserved static deploy artifacts because their original editable sources were not available locally. The preserved HearthLink configuration deliberately uses offline/demo mode: it does not provide a signaling server, multi-peer room service, or production P2P claim.
+GardenGrid is a recovered Vite source workspace and passed type checking, linting, and a production build before its controlled Vercel deployment. Its existing Vercel project is publicly live but still awaits Git attachment. Mnemosyne is an explicitly public manual Vercel deployment and remains outside the Git deployment path. Amino Acid Workbench and HearthLink are preserved static deploy artifacts because their original editable sources were not available locally. The preserved HearthLink configuration deliberately uses offline/demo mode: it does not provide a signaling server, multi-peer room service, or production P2P claim.
 
 ## Other Canonical Vercel Projects
 
 | Project | Route | Authority |
 | --- | --- | --- |
 | WeaveStudio production | `https://weavestudio-nine.vercel.app/` | `atomicdjt/weavestudio/master` |
-| WeaveStudio demo | `https://weavestudio-demo.vercel.app/` | `atomicdjt/weavestudio/master` |
+| WeaveStudio legacy preview | `https://weavestudio-demo.vercel.app/` | `atomicdjt/weavestudio/hardening/qa-remediation-multiprovider-ai`; non-canonical |
 | BuildWorld AI | `https://buildworld-ai-v01-improvements.vercel.app/` | `atomicdjt/buildworld-ai/main` |
 | QuoteForge Local | `https://quoteforge-local.vercel.app/` | private `atomicdjt/quoteforge-local/main` |
 

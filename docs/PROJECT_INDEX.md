@@ -31,7 +31,7 @@ This index records public names, source authority, implementation status, Vercel
 
 | Product | Status | Repository authority | Vercel surface | Best evidence |
 | --- | --- | --- | --- | --- |
-| [WeaveStudio](https://github.com/atomicdjt/weavestudio) | Acquisition-ready asset | Separate authoritative repository, `master` | [Demo](https://weavestudio-demo.vercel.app/) · [Acquisition overview](https://weavestudio-demo.vercel.app/acquire) | Consolidated default branch, local-first visual workflow canvas, undo/redo, data portability, exports, browser and unit validation, buyer transfer materials, and consent-gated OpenAI/Gemini assistance. |
+| [WeaveStudio](https://github.com/atomicdjt/weavestudio) | Acquisition-ready asset | Separate authoritative repository, `master` | [Demo](https://weavestudio-nine.vercel.app/) · [Acquisition overview](https://weavestudio-nine.vercel.app/acquire) | Consolidated default branch, local-first visual workflow canvas, undo/redo, data portability, exports, browser and unit validation, buyer transfer materials, and consent-gated OpenAI/Gemini assistance. |
 | QuoteForge Local | Shipped commercial package | Private separate repository, `main` | [Demo](https://quoteforge-local.vercel.app/) · [Product page](https://payhip.com/b/24De9) | Ten templates, typed quote engine, local demo leads, CSV export, branding, embed and WordPress paths, licensing, buyer docs, QA, and release packaging. |
 
 No customer, revenue, active-user, purchase, or completed-acquisition claim is implied by these status labels.
@@ -51,7 +51,7 @@ No customer, revenue, active-user, purchase, or completed-acquisition claim is i
 | Project | Current status | Repository interpretation |
 | --- | --- | --- |
 | Amino Acid Research Workbench | No current Vercel deployment | Case study exists; no local `apps/` workspace. |
-| GardenGrid | No current Vercel deployment | Source is not present in this repository. |
+| GardenGrid | [Public Vercel deployment](https://ai-project-portfolio-garden-grid.vercel.app/) | Source-backed in this repository; controlled manual deployment while Vercel Git attachment is pending. |
 | HearthLink | No current Vercel deployment | Source is not present in this repository. |
 
 Legacy non-Vercel URLs are not used as current portfolio routes.

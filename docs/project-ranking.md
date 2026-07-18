@@ -16,7 +16,7 @@ A single universal ranking is misleading because different reviewers value diffe
 
 | Priority | Product | Why it leads this review path | Vercel surface |
 | --- | --- | --- | --- |
-| 1 | [WeaveStudio](https://github.com/atomicdjt/weavestudio) | Most complete product asset: consolidated default branch, visual workflow canvas, recovery, portable exports, browser and unit validation, buyer documentation, transfer guidance, and consent-gated OpenAI/Gemini assistance. | [Demo](https://weavestudio-demo.vercel.app/) |
+| 1 | [WeaveStudio](https://github.com/atomicdjt/weavestudio) | Most complete product asset: consolidated default branch, visual workflow canvas, recovery, portable exports, browser and unit validation, buyer documentation, transfer guidance, and consent-gated OpenAI/Gemini assistance. | [Demo](https://weavestudio-nine.vercel.app/) |
 | 2 | [QuoteForge Local](https://quoteforge-local.vercel.app/) | Strongest shipped commercial package: ten calculator templates, typed quote logic, branding, lead capture, CSV export, embed/WordPress paths, licensing, buyer docs, and release tooling. | [Demo](https://quoteforge-local.vercel.app/) |
 
 Commercial readiness does not imply verified revenue, customers, active users, purchases, or a completed acquisition.
@@ -45,7 +45,7 @@ Commercial readiness does not imply verified revenue, customers, active users, p
 | Project | Current interpretation |
 | --- | --- |
 | Amino Acid Research Workbench | Case study exists; no current Vercel deployment or local `apps/` workspace. |
-| GardenGrid | Source is not present in this repository; no current Vercel deployment is claimed. |
+| GardenGrid | Source-backed in this repository and publicly deployed at [GardenGrid](https://ai-project-portfolio-garden-grid.vercel.app/); its existing Vercel project is awaiting Git attachment. |
 | HearthLink | Source is not present in this repository; no current Vercel deployment is claimed. |
 
 Legacy non-Vercel hosts are not used as current review routes.

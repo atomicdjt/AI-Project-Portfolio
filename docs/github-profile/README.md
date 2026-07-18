@@ -22,7 +22,7 @@ I turn ambiguous operational, privacy, research, and documentation problems into
 ### Products and Acquisition Assets
 
 - **[WeaveStudio](https://github.com/atomicdjt/weavestudio):** acquisition-ready local-first workflow product with a consolidated default branch, buyer documentation, browser and unit validation, portable exports, and consent-gated OpenAI/Gemini BYOK assistance.
-- **[WeaveStudio Vercel demo](https://weavestudio-demo.vercel.app/):** public product review and acquisition overview.
+- **[WeaveStudio Vercel demo](https://weavestudio-nine.vercel.app/):** canonical public product review and acquisition overview.
 - **[QuoteForge Local](https://quoteforge-local.vercel.app/):** shipped white-label quoting and lead-capture product with ten calculator templates, embed and WordPress paths, licensing, buyer documentation, and release packaging.
 
 Commercial packaging does not imply revenue, customers, or completed acquisitions unless separately documented.
@@ -31,14 +31,14 @@ Commercial packaging does not imply revenue, customers, or completed acquisition
 
 | Project | Best reason to review it | Current evidence |
 | --- | --- | --- |
-| **[WeaveStudio](https://github.com/atomicdjt/weavestudio)** | Most complete product and strongest transfer-ready software asset | [Vercel demo](https://weavestudio-demo.vercel.app/) · [Acquisition overview](https://weavestudio-demo.vercel.app/acquire) |
+| **[WeaveStudio](https://github.com/atomicdjt/weavestudio)** | Most complete product and strongest transfer-ready software asset | [Vercel demo](https://weavestudio-nine.vercel.app/) · [Acquisition overview](https://weavestudio-nine.vercel.app/acquire) |
 | **[BuildWorld AI](https://github.com/atomicdjt/buildworld-ai)** | Most technically original implementation: graph simulation, deterministic engines, cascade analysis, reproducible reports, and SSI scoring | [Vercel demo](https://buildworld-ai-v01-improvements.vercel.app/) · [Repository](https://github.com/atomicdjt/buildworld-ai) |
 | **[RedactReady Pro](https://ai-project-portfolio-redactready-pr.vercel.app/)** | Strongest privacy and document-intelligence workflow | [Live demo](https://ai-project-portfolio-redactready-pr.vercel.app/) · [Case study](https://github.com/atomicdjt/AI-Project-Portfolio/blob/main/projects/redactready-pro-hri-os/CASE_STUDY.md) |
 | **[ProcessHarbor](https://ai-project-portfolio-opspilot-ai-op.vercel.app/)** | Clearest evidence for technical operations, SOPs, onboarding, knowledge-base, and documentation roles | [Live deterministic workflow](https://ai-project-portfolio-opspilot-ai-op.vercel.app/) · [Case study](https://github.com/atomicdjt/AI-Project-Portfolio/blob/main/projects/opspilot-ai-operations-toolkit/CASE_STUDY.md) |
 | **[ScamShield AI](https://ai-project-portfolio-scamshield-ai.vercel.app/)** | Strongest public-interest safety workflow and explainable local-first risk review | [Live demo](https://ai-project-portfolio-scamshield-ai.vercel.app/) · [Case study](https://github.com/atomicdjt/AI-Project-Portfolio/blob/main/projects/scamshield-ai/CASE_STUDY.md) |
 | **[QuoteForge Local](https://quoteforge-local.vercel.app/)** | Strongest evidence of commercial packaging, licensing, implementation guidance, and a buyer-facing release | [Vercel demo](https://quoteforge-local.vercel.app/) · [Product page](https://payhip.com/b/24De9) |
 
-Additional live employer projects: [RedactReady](https://ai-project-portfolio-redactready-lo.vercel.app/), [LayerForge Studio](https://ai-project-portfolio-layerforge-stu.vercel.app/), [FocusForge](https://ai-project-portfolio-focusforge.vercel.app/), and [VariantVision Pro](https://ai-project-portfolio-variantvision.vercel.app/).
+Additional live employer projects: [RedactReady](https://ai-project-portfolio-redactready-lo.vercel.app/), [LayerForge Studio](https://ai-project-portfolio-layerforge-stu.vercel.app/), [FocusForge](https://ai-project-portfolio-focusforge.vercel.app/), [VariantVision Pro](https://ai-project-portfolio-variantvision.vercel.app/), and [GardenGrid](https://ai-project-portfolio-garden-grid.vercel.app/).
 
 ## Role Alignment
 
