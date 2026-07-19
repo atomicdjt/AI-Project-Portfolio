@@ -1,0 +1,346 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-07-19",
+  "purpose": "Canonical public identity, source authority, review priority, and deployment-boundary record for the portfolio. config/vercel-projects.json remains the deployment-selection configuration.",
+  "primaryEmployerReviewOrder": [
+    "buildworld-ai",
+    "processharbor",
+    "weavestudio",
+    "redactready-pro"
+  ],
+  "commercialReviewOrder": [
+    "weavestudio",
+    "quoteforge-local"
+  ],
+  "projects": [
+    {
+      "id": "portfolio-hub",
+      "publicName": "Portfolio Hub",
+      "tier": "flagship-navigation",
+      "audiences": ["employer", "technical", "buyer"],
+      "sourceAuthority": {
+        "repository": "atomicdjt/AI-Project-Portfolio",
+        "branch": "main",
+        "path": "apps/portfolio-hub",
+        "visibility": "public"
+      },
+      "deployment": {
+        "provider": "Vercel",
+        "project": "ai-project-portfolio-portfolio-hub",
+        "canonicalUrl": "https://ai-project-portfolio-portfolio-hub.vercel.app/",
+        "observedState": "READY",
+        "target": "production"
+      },
+      "implementationStatus": "maintained-runnable",
+      "tractionStatus": "not-claimed"
+    },
+    {
+      "id": "buildworld-ai",
+      "publicName": "BuildWorld AI",
+      "tier": "technical-flagship",
+      "audiences": ["employer", "technical", "research"],
+      "sourceAuthority": {
+        "repository": "atomicdjt/buildworld-ai",
+        "branch": "main",
+        "path": "/",
+        "visibility": "public"
+      },
+      "deployment": {
+        "provider": "Vercel",
+        "project": "buildworld-ai-v01-improvements",
+        "canonicalUrl": "https://buildworld-ai-v01-improvements.vercel.app/",
+        "observedState": "READY",
+        "target": "requires-final-vercel-confirmation"
+      },
+      "implementationStatus": "maintained-runnable",
+      "tractionStatus": "not-claimed"
+    },
+    {
+      "id": "processharbor",
+      "publicName": "ProcessHarbor",
+      "tier": "role-alignment-flagship",
+      "audiences": ["employer", "technical-operations"],
+      "sourceAuthority": {
+        "repository": "atomicdjt/AI-Project-Portfolio",
+        "branch": "main",
+        "path": "apps/opspilot-ai-operations-toolkit",
+        "visibility": "public"
+      },
+      "deployment": {
+        "provider": "Vercel",
+        "project": "ai-project-portfolio-opspilot-ai-operations-toolkit",
+        "canonicalUrl": "https://ai-project-portfolio-opspilot-ai-op.vercel.app/",
+        "observedState": "READY",
+        "target": "production"
+      },
+      "implementationStatus": "maintained-runnable-static-workflow",
+      "tractionStatus": "not-claimed"
+    },
+    {
+      "id": "weavestudio",
+      "publicName": "WeaveStudio",
+      "tier": "productization-flagship",
+      "audiences": ["employer", "technical", "buyer"],
+      "sourceAuthority": {
+        "repository": "atomicdjt/weavestudio",
+        "branch": "main",
+        "path": "/",
+        "visibility": "public"
+      },
+      "deployment": {
+        "provider": "Vercel",
+        "project": "weavestudio",
+        "canonicalUrl": "https://weavestudio-nine.vercel.app/",
+        "observedState": "READY",
+        "target": "production"
+      },
+      "implementationStatus": "maintained-runnable-acquisition-package",
+      "tractionStatus": "not-claimed"
+    },
+    {
+      "id": "redactready-pro",
+      "publicName": "RedactReady Pro",
+      "tier": "supporting-specialization",
+      "audiences": ["employer", "technical", "privacy"],
+      "sourceAuthority": {
+        "repository": "atomicdjt/AI-Project-Portfolio",
+        "branch": "main",
+        "path": "apps/redactready-pro-hri-os",
+        "visibility": "public"
+      },
+      "deployment": {
+        "provider": "Vercel",
+        "project": "ai-project-portfolio-redactready-pro-hri-os",
+        "canonicalUrl": "https://ai-project-portfolio-redactready-pr.vercel.app/",
+        "observedState": "READY",
+        "target": "production"
+      },
+      "implementationStatus": "maintained-runnable",
+      "tractionStatus": "not-claimed"
+    },
+    {
+      "id": "variantvision-pro",
+      "publicName": "VariantVision Pro",
+      "tier": "supporting-specialization",
+      "audiences": ["technical", "research"],
+      "sourceAuthority": {
+        "repository": "atomicdjt/AI-Project-Portfolio",
+        "branch": "main",
+        "path": "apps/variantvision-pro",
+        "visibility": "public"
+      },
+      "deployment": {
+        "provider": "Vercel",
+        "project": "ai-project-portfolio-variantvision-pro",
+        "canonicalUrl": "https://ai-project-portfolio-variantvision.vercel.app/",
+        "observedState": "READY",
+        "target": "production"
+      },
+      "implementationStatus": "maintained-runnable-non-diagnostic",
+      "tractionStatus": "not-claimed"
+    },
+    {
+      "id": "layerforge-studio",
+      "publicName": "LayerForge Studio",
+      "tier": "supporting-technical",
+      "audiences": ["technical", "frontend"],
+      "sourceAuthority": {
+        "repository": "atomicdjt/AI-Project-Portfolio",
+        "branch": "main",
+        "path": "apps/layerforge-studio",
+        "visibility": "public"
+      },
+      "deployment": {
+        "provider": "Vercel",
+        "project": "ai-project-portfolio-layerforge-studio",
+        "canonicalUrl": "https://ai-project-portfolio-layerforge-stu.vercel.app/",
+        "observedState": "READY",
+        "target": "production"
+      },
+      "implementationStatus": "maintained-runnable",
+      "tractionStatus": "not-claimed"
+    },
+    {
+      "id": "scamshield-ai",
+      "publicName": "ScamShield AI",
+      "tier": "supporting-technical",
+      "audiences": ["employer", "public-interest"],
+      "sourceAuthority": {
+        "repository": "atomicdjt/AI-Project-Portfolio",
+        "branch": "main",
+        "path": "apps/scamshield-ai",
+        "visibility": "public"
+      },
+      "deployment": {
+        "provider": "Vercel",
+        "project": "ai-project-portfolio-scamshield-ai",
+        "canonicalUrl": "https://ai-project-portfolio-scamshield-ai.vercel.app/",
+        "observedState": "READY",
+        "target": "production"
+      },
+      "implementationStatus": "maintained-runnable",
+      "tractionStatus": "not-claimed"
+    },
+    {
+      "id": "redactready-local",
+      "publicName": "RedactReady",
+      "tier": "supporting-technical",
+      "audiences": ["technical", "privacy"],
+      "sourceAuthority": {
+        "repository": "atomicdjt/AI-Project-Portfolio",
+        "branch": "main",
+        "path": "apps/redactready-local",
+        "visibility": "public"
+      },
+      "deployment": {
+        "provider": "Vercel",
+        "project": "ai-project-portfolio-redactready-local",
+        "canonicalUrl": "https://ai-project-portfolio-redactready-lo.vercel.app/",
+        "observedState": "READY",
+        "target": "production"
+      },
+      "implementationStatus": "maintained-runnable",
+      "tractionStatus": "not-claimed"
+    },
+    {
+      "id": "focusforge",
+      "publicName": "FocusForge",
+      "tier": "supporting-work",
+      "audiences": ["product", "frontend"],
+      "sourceAuthority": {
+        "repository": "atomicdjt/AI-Project-Portfolio",
+        "branch": "main",
+        "path": "apps/focusforge",
+        "visibility": "public"
+      },
+      "deployment": {
+        "provider": "Vercel",
+        "project": "ai-project-portfolio-focusforge",
+        "canonicalUrl": "https://ai-project-portfolio-focusforge.vercel.app/",
+        "observedState": "READY",
+        "target": "production"
+      },
+      "implementationStatus": "maintained-runnable",
+      "tractionStatus": "not-claimed"
+    },
+    {
+      "id": "quoteforge-local",
+      "publicName": "QuoteForge Local",
+      "tier": "commercial-flagship",
+      "audiences": ["buyer", "product"],
+      "sourceAuthority": {
+        "repository": "atomicdjt/quoteforge-local",
+        "branch": "main",
+        "path": "/",
+        "visibility": "private"
+      },
+      "deployment": {
+        "provider": "Vercel",
+        "project": "quoteforge-local",
+        "canonicalUrl": "https://quoteforge-local.vercel.app/",
+        "observedState": "READY",
+        "target": "production"
+      },
+      "implementationStatus": "maintained-runnable-commercial-package",
+      "tractionStatus": "not-claimed"
+    },
+    {
+      "id": "garden-grid",
+      "publicName": "GardenGrid",
+      "tier": "supplemental",
+      "audiences": ["frontend"],
+      "sourceAuthority": {
+        "repository": "atomicdjt/AI-Project-Portfolio",
+        "branch": "main",
+        "path": "apps/garden-grid",
+        "visibility": "public"
+      },
+      "deployment": {
+        "provider": "Vercel",
+        "project": "ai-project-portfolio-garden-grid",
+        "canonicalUrl": "https://ai-project-portfolio-garden-grid.vercel.app/",
+        "observedState": "READY",
+        "target": "production-manual-git-attachment-follow-up"
+      },
+      "implementationStatus": "source-backed-supplemental",
+      "tractionStatus": "not-claimed"
+    },
+    {
+      "id": "amino-workbench",
+      "publicName": "Amino Acid Research Workbench",
+      "tier": "legacy-preserved",
+      "audiences": ["research"],
+      "sourceAuthority": {
+        "repository": "atomicdjt/AI-Project-Portfolio",
+        "branch": "main",
+        "path": null,
+        "visibility": "public-case-study-only"
+      },
+      "deployment": {
+        "provider": "Vercel",
+        "project": "ai-project-portfolio-amino-workbench",
+        "canonicalUrl": "https://ai-project-portfolio-amino-workbenc.vercel.app/",
+        "observedState": "READY",
+        "target": "production"
+      },
+      "implementationStatus": "documentation-first-legacy-deployment",
+      "tractionStatus": "not-claimed"
+    },
+    {
+      "id": "hearthlink",
+      "publicName": "HearthLink",
+      "tier": "legacy-preserved",
+      "audiences": ["supplemental"],
+      "sourceAuthority": {
+        "repository": null,
+        "branch": null,
+        "path": null,
+        "visibility": "source-authority-incomplete"
+      },
+      "deployment": {
+        "provider": "Vercel",
+        "project": "ai-project-portfolio-hearthlink",
+        "canonicalUrl": "https://ai-project-portfolio-hearthlink.vercel.app/",
+        "observedState": "READY",
+        "target": "production"
+      },
+      "implementationStatus": "legacy-preserved-deployment",
+      "tractionStatus": "not-claimed"
+    },
+    {
+      "id": "mnemosyne",
+      "publicName": "Mnemosyne",
+      "tier": "experimental",
+      "audiences": ["supplemental"],
+      "sourceAuthority": {
+        "repository": null,
+        "branch": null,
+        "path": null,
+        "visibility": "not-verified"
+      },
+      "deployment": {
+        "provider": "Vercel",
+        "project": "mnemosyne-vercel-preview",
+        "canonicalUrl": "https://mnemosyne-vercel-preview.vercel.app/",
+        "observedState": "READY",
+        "target": "production"
+      },
+      "implementationStatus": "experimental-deployment",
+      "tractionStatus": "not-claimed"
+    }
+  ],
+  "nonCanonicalDeployments": [
+    {
+      "project": "source",
+      "classification": "deletion-candidate",
+      "canonicalReplacement": "quoteforge-local",
+      "reason": "Duplicate QuoteForge infrastructure; verify environment and external references before deleting in Vercel."
+    },
+    {
+      "project": "weavestudio-demo",
+      "classification": "secondary-preview",
+      "canonicalReplacement": "weavestudio",
+      "reason": "Noncanonical branch preview; retain only until equivalence is verified and then archive or delete through Vercel."
+    }
+  ]
+}
