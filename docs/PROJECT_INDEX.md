@@ -4,6 +4,8 @@ This index records public names, source authority, implementation status, deploy
 
 **Status verified:** July 19, 2026. Deployment availability reflects the connected Vercel account at that time; a `READY` deployment is not a claim that every browser interaction was independently retested.
 
+The canonical machine-readable authority record is [`config/portfolio-authority.json`](../config/portfolio-authority.json). The separate [`config/vercel-projects.json`](../config/vercel-projects.json) remains the deployment-selection configuration and must not be treated as the public-status authority.
+
 ## Status and Authority Legend
 
 - **Live on Vercel** — a production Vercel deployment and public alias were observed.
@@ -68,4 +70,4 @@ Legacy non-Vercel URLs are not used as current portfolio routes.
 - **Research reviewer:** VariantVision Pro → Amino Acid Workbench → Ecology of Consciousness → IHOS.
 - **Deployment reviewer:** [Vercel Deployment Record](VERCEL_DEPLOYMENT.md) → [Deployment and Source-Authority Map](deployment-and-previews.md).
 
-See [Contextual Project Rankings](project-ranking.md) for the reasoning behind the audience-specific review paths. The canonical machine-readable deployment and project authority record is [`config/vercel-projects.json`](../config/vercel-projects.json).
+See [Contextual Project Rankings](project-ranking.md) for the reasoning behind the audience-specific review paths.
