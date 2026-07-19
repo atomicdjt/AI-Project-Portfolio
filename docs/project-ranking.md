@@ -4,6 +4,8 @@ A single universal ranking is misleading because different reviewers value diffe
 
 **Status verified:** July 19, 2026. A live deployment is evidence of availability, not independent proof that every interaction, integration, or production claim has been retested.
 
+The canonical project, source-authority, review-tier, and deployment-boundary record is [`config/portfolio-authority.json`](../config/portfolio-authority.json).
+
 ## Employer Review — Role Fit and Execution
 
 | Priority | Project | Why it leads this review path | Deployment status |
@@ -54,6 +56,6 @@ Commercial readiness does not imply verified revenue, customers, active users, p
 
 ## Interpretation Rule
 
-Use the employer list for hiring review, the commercial list for buyer review, the technical-originality list for engineering depth, and the research list for domain or framework evaluation. Use [VERCEL_DEPLOYMENT.md](VERCEL_DEPLOYMENT.md) to distinguish a live Vercel product from migration-ready source, and use [`config/vercel-projects.json`](../config/vercel-projects.json) as the canonical machine-readable authority record.
+Use the employer list for hiring review, the commercial list for buyer review, the technical-originality list for engineering depth, and the research list for domain or framework evaluation. Use [VERCEL_DEPLOYMENT.md](VERCEL_DEPLOYMENT.md) to distinguish a live Vercel product from migration-ready source.
 
 No ranking is an objective market valuation, proof of production adoption, or substitute for independent technical review.
