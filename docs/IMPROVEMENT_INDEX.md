@@ -11,7 +11,7 @@ This page connects the portfolio’s credibility, validation, and deployment-gov
 ## Evidence and authorship
 
 - [Authorship, AI Assistance, and Verification](AUTHORSHIP_AND_VERIFICATION.md) — describes the human-directed, AI-assisted workflow, what the portfolio demonstrates, and what it does not independently prove.
-- [Verification guide](VERIFICATION.md) — repository verification procedures and claim-safe completion language.
+- [Verification guide](verification.md) — repository verification procedures and claim-safe completion language.
 
 ## External proof
 
