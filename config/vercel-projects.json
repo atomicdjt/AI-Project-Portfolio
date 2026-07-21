@@ -1,10 +1,19 @@
 {
   "schemaVersion": 1,
-  "catalogVersion": 1,
+  "catalogVersion": 2,
   "catalogPurpose": "Canonical project identity, deployment authority, public-review priority, and evidence boundary record. The projects array remains the deployment-selector input.",
-  "primaryEmployerReviewOrder": ["buildworld-ai", "processharbor", "weavestudio"],
-  "supportingSpecialization": ["redactready-pro"],
-  "commercialExecution": ["quoteforge-local"],
+  "verifiedAt": "2026-07-19",
+  "primaryEmployerReviewOrder": [
+    "buildworld-ai",
+    "processharbor",
+    "weavestudio"
+  ],
+  "supportingSpecialization": [
+    "redactready-pro"
+  ],
+  "commercialExecution": [
+    "quoteforge-local"
+  ],
   "globalAffectingPaths": [
     "package.json",
     "package-lock.json",
@@ -146,12 +155,17 @@
       "currentRelease": "Unreleased; release candidate assessment required",
       "caseStudy": "https://github.com/atomicdjt/AI-Project-Portfolio/blob/main/projects/buildworld-ai/CASE_STUDY.md",
       "architecture": "https://github.com/atomicdjt/buildworld-ai/blob/main/ARCHITECTURE.md",
-      "roleAlignment": ["Applied AI Workflow Specialist", "Junior Technical Product Analyst", "Research Operations"],
+      "roleAlignment": [
+        "Applied AI Workflow Specialist",
+        "Junior Technical Product Analyst",
+        "Research Operations"
+      ],
       "responsibleUseBoundary": "Simulation outputs are deterministic product heuristics, not certified predictions or professional advice.",
       "legacy": false,
       "commercial": false,
       "verifiedRevenueOrAdoption": false,
-      "reviewPriority": 1
+      "reviewPriority": 1,
+      "deploymentTargetStatus": "public-ready-production-target-requires-final-vercel-confirmation"
     },
     {
       "id": "weavestudio",
@@ -162,7 +176,7 @@
       "status": "active",
       "repository": "https://github.com/atomicdjt/weavestudio",
       "repositoryVisibility": "public",
-      "authoritativeBranch": "master pending non-force migration to main",
+      "authoritativeBranch": "main",
       "sourcePath": "/",
       "canonicalProductionUrl": "https://weavestudio-nine.vercel.app/",
       "vercelProject": "weavestudio",
@@ -171,13 +185,18 @@
       "nodeVersion": "24.x",
       "currentRelease": "v1.0.0",
       "caseStudy": "https://weavestudio-nine.vercel.app/acquire",
-      "architecture": "https://github.com/atomicdjt/weavestudio/blob/master/docs/buyer/ARCHITECTURE.md",
-      "roleAlignment": ["AI Workflow Specialist", "Frontend/Product Implementation", "Product Operations"],
+      "architecture": "https://github.com/atomicdjt/weavestudio/blob/main/docs/buyer/ARCHITECTURE.md",
+      "roleAlignment": [
+        "AI Workflow Specialist",
+        "Frontend/Product Implementation",
+        "Product Operations"
+      ],
       "responsibleUseBoundary": "Optional AI assistance is consent-gated and requires user review before application.",
       "legacy": false,
       "commercial": true,
       "verifiedRevenueOrAdoption": false,
-      "reviewPriority": 3
+      "reviewPriority": 3,
+      "deploymentTargetStatus": "production"
     },
     {
       "id": "quoteforge-local",
@@ -198,12 +217,16 @@
       "currentRelease": "package version 1.0.1",
       "caseStudy": "https://payhip.com/b/24De9",
       "architecture": "private buyer and package documentation",
-      "roleAlignment": ["Product Operations", "Frontend/Product Implementation"],
+      "roleAlignment": [
+        "Product Operations",
+        "Frontend/Product Implementation"
+      ],
       "responsibleUseBoundary": "Calculator estimates are configurable lead-intake ranges, not contractor quotes or professional pricing advice.",
       "legacy": false,
       "commercial": true,
       "verifiedRevenueOrAdoption": false,
-      "reviewPriority": 5
+      "reviewPriority": 5,
+      "deploymentTargetStatus": "production"
     },
     {
       "id": "mnemosyne",
@@ -229,7 +252,8 @@
       "legacy": false,
       "commercial": false,
       "verifiedRevenueOrAdoption": false,
-      "reviewPriority": null
+      "reviewPriority": null,
+      "deploymentTargetStatus": "experimental-public"
     }
   ],
   "nonCanonicalDeployments": [
@@ -243,7 +267,7 @@
     {
       "vercelProject": "weavestudio-demo",
       "status": "secondary public demo",
-      "reason": "Uses the WeaveStudio repository but a hardening branch; retained only as a clearly secondary review surface until equivalence and audience boundaries are documented.",
+      "reason": "Uses the WeaveStudio repository but a noncanonical review branch; retain only until parity and public-reference checks are complete.",
       "replacement": "https://weavestudio-nine.vercel.app/",
       "requiresExplicitDeletionApproval": true
     },

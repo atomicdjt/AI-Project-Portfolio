@@ -11,7 +11,9 @@ Use Node.js 22 or later.
 ```bash
 npm ci
 npm run check:docs
+npm run check:portfolio-authority
 npm run check:deployment-policy
+npm run test:deployment-selector
 npm run lint:apps
 npm run typecheck:all
 npm run test:all
@@ -23,13 +25,15 @@ npm run verify:release
 The root `package.json` defines:
 
 - `check:docs` — validates repository Markdown links and documentation references.
+- `check:portfolio-authority` — validates canonical project identities, branches, URLs, review order, duplicate deployment classifications, and claim-safe public wording.
 - `check:deployment-policy` — prevents primary surfaces from restoring legacy deployment routes.
+- `test:deployment-selector` — validates deterministic affected-project and explicit-project selection.
 - `lint:apps` — runs each configured application's lint command.
 - `typecheck:all` — runs workspace typechecks where present.
 - `test:all` — runs supported automated test suites.
 - `build:all` — creates production builds for all eleven configured workspaces.
-- `verify` — lint, typecheck, tests, and builds.
-- `verify:release` — documentation checks followed by the complete verification suite.
+- `verify` — deployment-selector tests, lint, typecheck, application tests, and builds.
+- `verify:release` — documentation, portfolio-authority, deployment-policy, and complete verification checks.
 
 Some workspaces perform TypeScript validation as part of `build` rather than through a separate `typecheck` script.
 
@@ -37,9 +41,9 @@ Some workspaces perform TypeScript validation as part of `build` rather than thr
 
 All new deployments and redeployments use Vercel. The repository does not publish through Netlify or GitHub Pages.
 
-The former Pages workflow is a build-only **Portfolio Vercel Readiness** workflow. It builds the Portfolio Hub and LayerForge Studio, confirms their static output, and uploads CI artifacts without deploying them.
+The former Pages workflow is a build-only **Portfolio Vercel Readiness** workflow. It builds selected static outputs and uploads CI artifacts without deploying them.
 
-Migration-ready Vite workspaces contain `vercel.json` with the documented SPA rewrite to `index.html`.
+The repository also contains a guarded affected-project Vercel workflow. Pull requests remain plan-only, and credentialed deployment stays disabled until secrets, activation, a single-project preview, and rollback are verified. Native Vercel Git deployment should not be disabled before that checkpoint.
 
 ## Runnable Workspace Matrix
 
@@ -76,7 +80,7 @@ This is point-in-time deployment evidence. It does not replace project-level aut
 
 ### WeaveStudio
 
-Authoritative source: `atomicdjt/weavestudio`, branch `master`.
+Authoritative source: `atomicdjt/weavestudio`, branch `main`.
 
 ```bash
 npm ci
@@ -85,7 +89,7 @@ npm run verify:buyer
 
 Current canonical Vercel surface: `https://weavestudio-nine.vercel.app/`.
 
-Legacy branch preview: `https://weavestudio-demo.vercel.app/` (non-canonical; retained for historical review only).
+Legacy branch preview: `https://weavestudio-demo.vercel.app/` (non-canonical; retained only pending parity and public-reference checks).
 
 The buyer gate includes unit tests, lint, type checking, production build, browser tests, and acquisition-package generation. External provider requests are mocked during browser tests. Passing tests do not imply independent certification or production adoption.
 
@@ -103,7 +107,7 @@ npm run build
 
 Current Vercel surface: `https://buildworld-ai-v01-improvements.vercel.app/`.
 
-The standalone repository is the current source for product development and release evidence. The monorepo workspace remains useful portfolio-review evidence.
+The standalone repository is the current source for product development and release evidence. The monorepo workspace remains useful portfolio-review evidence. The production target still requires final confirmation in Vercel.
 
 ### QuoteForge Local
 
@@ -127,24 +131,24 @@ A release ZIP, Payhip delivery package, and Vercel deployment should record the 
 
 Verification supports claims such as:
 
-- the application builds,
-- documented automated tests pass,
-- a Vercel deployment reached a ready state,
-- a production root route was reachable when checked,
-- deployed HTML matched the intended application,
+- the application builds;
+- documented automated tests pass;
+- a Vercel deployment reached a ready state;
+- a production root route was reachable when checked;
+- deployed HTML matched the intended application;
 - packaging scripts produced the expected output.
 
 Verification does not by itself support claims such as:
 
-- secure against all attacks,
-- compliant with a regulation,
-- independently audited or certified,
-- factually correct in all generated output,
-- clinically, legally, financially, or operationally suitable,
+- secure against all attacks;
+- compliant with a regulation;
+- independently audited or certified;
+- factually correct in all generated output;
+- clinically, legally, financially, or operationally suitable;
 - used or purchased by external customers.
 
 ## Historical Validation
 
-The July 4, 2026 public audit and prior deployment logs remain historical snapshots. They may contain legacy hosting references and do not define the current deployment policy.
+The July 4 and July 14, 2026 audits and prior deployment logs remain historical snapshots. They may contain legacy hosting references and do not define current deployment policy.
 
-The current portfolio state, Vercel policy, source authorities, names, and deployment routing are summarized in [public-portfolio-audit-2026-07-14.md](public-portfolio-audit-2026-07-14.md) and [deployment-and-previews.md](deployment-and-previews.md).
+Current source authorities, review order, Vercel routing, and evidence boundaries are defined by `config/vercel-projects.json`, [Project Index](PROJECT_INDEX.md), [Contextual Project Rankings](project-ranking.md), and [Deployment Map](deployment-and-previews.md).

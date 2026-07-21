@@ -1,38 +1,43 @@
 # Project Index
 
-This index records public names, source authority, implementation status, Vercel deployment status, and the best reason to review each project. It avoids applying one universal ranking across employer, technical, research, and buyer audiences.
+This index records public names, source authority, implementation status, deployment status, and the best reason to review each project. It intentionally avoids one universal ranking because employer, technical, research, and buyer audiences evaluate different evidence.
+
+**Status verified:** July 19, 2026. Deployment availability reflects the connected Vercel account at that time; a `READY` deployment is not a claim that every browser interaction was independently retested.
+
+The canonical project identity, deployment authority, and public-review record is [`config/vercel-projects.json`](../config/vercel-projects.json). It also remains the input to the affected-project deployment selector.
 
 ## Status and Authority Legend
 
-- **Live on Vercel** — a production Vercel alias is recorded and the deployed application identity has been checked.
+- **Live on Vercel** — a production Vercel deployment and public alias were observed.
 - **Portfolio workspace** — runnable source is present under `apps/` in this repository.
-- **Separate authoritative repository** — current product development and release evidence are maintained in another repository.
+- **Separate authoritative repository** — current product development and release evidence are maintained elsewhere.
 - **Local-only** — runnable source is present, but the architecture requires additional backend or Vercel Functions work.
-- **Documentation-first** — case study or specification exists without a maintained runnable workspace.
-- **Commercial / Acquisition asset** — packaged for sale, licensing, or transfer; does not imply verified traction.
+- **Documentation-first** — the case study or specification is the principal maintained artifact.
+- **Legacy preserved deployment** — a public deployment remains available, but current editable source authority is incomplete.
+- **Commercial / acquisition asset** — packaged for sale, licensing, or transfer; this does not imply verified traction.
 
 ## Employer-Facing Applications
 
 | Public name | Deployment status | Repository authority | Best evidence |
 | --- | --- | --- | --- |
 | [Portfolio Hub](https://ai-project-portfolio-portfolio-hub.vercel.app/) | Live on Vercel | `apps/portfolio-hub` | Employer-first navigation, project filtering, evidence routes, demos, and case studies. |
-| [BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/) | Live on Vercel | [Separate authoritative repository, `main`](https://github.com/atomicdjt/buildworld-ai) | Graph simulation, deterministic engines, cascade analysis, multi-seed reproducibility, SSI scoring, variants, local persistence, reports, tests, and architecture documentation. |
-| [RedactReady Pro](https://ai-project-portfolio-redactready-pr.vercel.app/) | Live on Vercel | `apps/redactready-pro-hri-os` | Local-first document intelligence, sensitive-information detection, HRI scoring, evidence mapping, redaction, reports, tests, and responsible-use boundaries. |
+| [BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/) | Public Vercel deployment; production-target governance requires final Vercel confirmation | [Separate authoritative repository, `main`](https://github.com/atomicdjt/buildworld-ai) | Graph simulation, deterministic engines, cascade analysis, multi-seed reproducibility, SSI scoring, variants, local persistence, reports, tests, and architecture documentation. |
 | [ProcessHarbor](https://ai-project-portfolio-opspilot-ai-op.vercel.app/) | Live on Vercel — deterministic static workflow | `apps/opspilot-ai-operations-toolkit` | SOP, onboarding, knowledge-base, gap-report, versioning, validation, export, and technical-operations workflow evidence. Reference server endpoints remain documented extension work. |
+| [RedactReady Pro](https://ai-project-portfolio-redactready-pr.vercel.app/) | Live on Vercel | `apps/redactready-pro-hri-os` | Local-first document intelligence, sensitive-information detection, HRI scoring, evidence mapping, redaction, reports, tests, and responsible-use boundaries. |
 | [ScamShield AI](https://ai-project-portfolio-scamshield-ai.vercel.app/) | Live on Vercel | `apps/scamshield-ai` | Explainable local risk review, evidence organization, safer next steps, official reporting resources, accessibility, tests, and PDF export. |
 | [RedactReady](https://ai-project-portfolio-redactready-lo.vercel.app/) | Live on Vercel | `apps/redactready-local` | PDF/image/text/CSV review, detector confirmation, manual redaction, flattened output, and verification-oriented workflow design. |
 | [LayerForge Studio](https://ai-project-portfolio-layerforge-stu.vercel.app/) | Live on Vercel | `apps/layerforge-studio` | Canvas rendering, layered raster state, tools, filters, history commands, IndexedDB persistence, and export. |
 | [FocusForge](https://ai-project-portfolio-focusforge.vercel.app/) | Live on Vercel | `apps/focusforge` | Stateful product loop, local persistence, game-rule testing, responsive UI, and static Vercel deployment. |
 | [VariantVision Pro](https://ai-project-portfolio-variantvision.vercel.app/) | Live on Vercel | `apps/variantvision-pro` | Educational bioinformatics evidence review, source provenance, comparison tools, scoring, and non-diagnostic reporting. |
-| [Astra](../projects/astra/CASE_STUDY.md) | Local-only | `apps/astra` | React/Express AI workspace, model configuration, visible key states, Markdown rendering, streaming workflow, and transcript export. Requires an explicit Vercel Functions or backend design. |
-| [Nexus Play](../projects/nexus-play/CASE_STUDY.md) | Local-only | `apps/nexus-play` | Storefront, cart, wishlist, simulated checkout, owned-library state, install-queue concepts, and product-state modeling. Requires an explicit Vercel backend design. |
+| [Astra](../projects/astra/CASE_STUDY.md) | Local-only | `apps/astra` | React/Express AI workspace, model configuration, visible key states, Markdown rendering, streaming workflow, and transcript export. |
+| [Nexus Play](../projects/nexus-play/CASE_STUDY.md) | Local-only | `apps/nexus-play` | Storefront, cart, wishlist, simulated checkout, owned-library state, install-queue concepts, and product-state modeling. |
 
 ## Products and Acquisition Assets
 
 | Product | Status | Repository authority | Vercel surface | Best evidence |
 | --- | --- | --- | --- | --- |
-| [WeaveStudio](https://github.com/atomicdjt/weavestudio) | Acquisition-ready asset | Separate authoritative repository, `master` | [Demo](https://weavestudio-nine.vercel.app/) · [Acquisition overview](https://weavestudio-nine.vercel.app/acquire) | Consolidated default branch, local-first visual workflow canvas, undo/redo, data portability, exports, browser and unit validation, buyer transfer materials, and consent-gated OpenAI/Gemini assistance. |
-| QuoteForge Local | Shipped commercial package | Private separate repository, `main` | [Demo](https://quoteforge-local.vercel.app/) · [Product page](https://payhip.com/b/24De9) | Ten templates, typed quote engine, local demo leads, CSV export, branding, embed and WordPress paths, licensing, buyer docs, QA, and release packaging. |
+| [WeaveStudio](https://github.com/atomicdjt/weavestudio) | Acquisition-ready asset | Separate authoritative repository, `main` | [Canonical demo](https://weavestudio-nine.vercel.app/) · [Acquisition overview](https://weavestudio-nine.vercel.app/acquire) | Local-first visual workflow canvas, undo/redo, recovery, portable exports, browser and unit validation, buyer transfer materials, and consent-gated OpenAI/Gemini assistance. |
+| QuoteForge Local | Shipped commercial package | Private separate repository, `main` | [Canonical demo](https://quoteforge-local.vercel.app/) · [Product page](https://payhip.com/b/24De9) | Ten templates, typed quote engine, local demo leads, CSV export, branding, embed/WordPress paths, licensing, buyer docs, QA, and release packaging. |
 
 No customer, revenue, active-user, purchase, or completed-acquisition claim is implied by these status labels.
 
@@ -41,27 +46,28 @@ No customer, revenue, active-user, purchase, or completed-acquisition claim is i
 | Project | Status | Category | Best evidence |
 | --- | --- | --- | --- |
 | [AI Knowledge Operations Toolkit](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) | Concept / product specification | Operations AI | Strong employer relevance for support operations, documentation, enablement, training, and knowledge management. |
-| [Amino Acid Research Workbench](../projects/amino-acid-research-workbench/CASE_STUDY.md) | Documentation-first | Bioinformatics education | Explainable scientific workflow and responsible educational framing; no current Vercel deployment is claimed. |
+| [Amino Acid Research Workbench](../projects/amino-acid-research-workbench/CASE_STUDY.md) | Documentation-first with a preserved public Vercel deployment | Bioinformatics education | Explainable scientific workflow and responsible educational framing; editable source authority is not maintained as a current workspace. |
 | [Ecology of Consciousness](../projects/ecology-of-consciousness/CASE_STUDY.md) | Research framework | Digital cognitive environments | Original interdisciplinary model, structured audit concepts, and research-synthesis evidence. |
 | [IHOS](../projects/ihos-integrated-human-operating-system/CASE_STUDY.md) | Research and self-governance framework | Non-clinical personal systems | Systems thinking, practical structure, ethics boundaries, and workbook/facilitation potential. |
 | [FrameEcho](../projects/frameecho/CASE_STUDY.md) | Technical product concept | Duplicate-video discovery | Clear utility, algorithmic framing, file-system workflow design, and product requirements. |
 
-## Supplemental Concepts
+## Supplemental and Preserved Work
 
 | Project | Current status | Repository interpretation |
 | --- | --- | --- |
-| Amino Acid Research Workbench | No current Vercel deployment | Case study exists; no local `apps/` workspace. |
-| GardenGrid | [Public Vercel deployment](https://ai-project-portfolio-garden-grid.vercel.app/) | Source-backed in this repository; controlled manual deployment while Vercel Git attachment is pending. |
-| HearthLink | No current Vercel deployment | Source is not present in this repository. |
+| [GardenGrid](https://ai-project-portfolio-garden-grid.vercel.app/) | Public Vercel deployment | Source-backed in this repository; controlled manual deployment while Vercel Git attachment remains an operational follow-up. |
+| [Amino Acid Research Workbench](https://ai-project-portfolio-amino-workbenc.vercel.app/) | Legacy preserved public deployment | Case study exists; current source authority is limited to a preserved static artifact rather than a maintained workspace. |
+| [HearthLink](https://ai-project-portfolio-hearthlink.vercel.app/) | Legacy preserved public deployment | Source authority is incomplete; treat the deployment as a preserved demonstration, not a flagship maintained product. |
+| [Mnemosyne](https://mnemosyne-vercel-preview.vercel.app/) | Experimental public deployment | Source attachment and formal portfolio positioning remain unverified; excluded from flagship review paths. |
 
 Legacy non-Vercel URLs are not used as current portfolio routes.
 
 ## Recommended Review by Audience
 
-- **Employer:** Portfolio Hub → BuildWorld AI → RedactReady Pro → ProcessHarbor → verification documentation.
+- **Employer:** Portfolio Hub → BuildWorld AI → ProcessHarbor → WeaveStudio → RedactReady Pro → verification documentation.
 - **Buyer or commercial partner:** WeaveStudio → QuoteForge Local → source-authority and transfer documentation.
 - **Technical reviewer:** BuildWorld AI → RedactReady family → LayerForge Studio → VariantVision Pro.
 - **Research reviewer:** VariantVision Pro → Amino Acid Workbench → Ecology of Consciousness → IHOS.
 - **Deployment reviewer:** [Vercel Deployment Record](VERCEL_DEPLOYMENT.md) → [Deployment and Source-Authority Map](deployment-and-previews.md).
 
-See [Contextual Project Rankings](project-ranking.md) for the reasoning behind the audience-specific review paths.
+See [Contextual Project Rankings](project-ranking.md) for the reasoning behind these paths.

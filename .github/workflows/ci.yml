@@ -42,6 +42,9 @@ jobs:
           path: documentation-check.log
           if-no-files-found: error
 
+      - name: Validate portfolio authority
+        run: npm run check:portfolio-authority
+
       - name: Enforce Vercel-only deployment policy
         run: npm run check:deployment-policy
 
