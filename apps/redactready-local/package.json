@@ -11,7 +11,10 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "e2e": "playwright test",
-    "preview": "npm run build && vite preview --host 127.0.0.1"
+    "preview": "npm run build && vite preview --host 127.0.0.1",
+    "verify": "npm run lint && npm run test && npm run build",
+    "package:commercial": "node scripts/create-commercial-release.mjs",
+    "package:payhip": "npm run package:commercial"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",
