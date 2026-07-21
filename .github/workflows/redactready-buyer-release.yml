@@ -1,0 +1,75 @@
+name: RedactReady Buyer Release
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/redactready-buyer-release.yml"
+      - "apps/redactready-local/**"
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: windows-latest
+    timeout-minutes: 35
+
+    defaults:
+      run:
+        working-directory: apps/redactready-local
+
+    steps:
+      - name: Check out authoritative source
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/redactready-local/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install chromium
+
+      - name: Run end-to-end tests
+        run: npm run e2e
+
+      - name: Confirm clean release source
+        shell: pwsh
+        run: |
+          $status = git status --porcelain
+          if ($status) {
+            Write-Host $status
+            throw "Verification modified tracked source files; refusing to package."
+          }
+
+      - name: Generate commercial implementation kit
+        run: npm run package:commercial
+
+      - name: Locate and inspect release
+        id: release
+        shell: pwsh
+        run: |
+          $releaseRoot = Join-Path $env:USERPROFILE "Desktop\RedactReady-Local-Release"
+          $integrity = Join-Path $releaseRoot "RELEASE-INTEGRITY.json"
+          $checksums = Join-Path $releaseRoot "CHECKSUMS.txt"
+          if (!(Test-Path $integrity)) { throw "Missing RELEASE-INTEGRITY.json" }
+          if (!(Test-Path $checksums)) { throw "Missing CHECKSUMS.txt" }
+          Get-Content $integrity
+          Get-Content $checksums
+          "release_root=$releaseRoot" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+
+      - name: Upload validated buyer release
+        uses: actions/upload-artifact@v4
+        with:
+          name: redactready-local-buyer-release
+          path: ${{ steps.release.outputs.release_root }}
+          if-no-files-found: error
+          retention-days: 14
