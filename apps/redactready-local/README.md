@@ -4,11 +4,15 @@
 
 RedactReady Local helps users spot, review, redact, and verify potentially sensitive information before sharing files with AI tools, email, clients, vendors, or public platforms.
 
-## Deployment Status
+## Canonical Deployment
 
-The application is source-backed and configured for Vercel through `vercel.json`. A production Vercel alias is not claimed until a preview and production deployment are verified.
+The canonical public demo is:
 
-Use the included synthetic samples first. Do not upload real sensitive files to any public deployment unless its privacy model, runtime behavior, and export workflow have been independently reviewed for the intended use.
+`https://ai-project-portfolio-redactready-lo.vercel.app/`
+
+It is source-backed by `apps/redactready-local` in this repository and configured for Vercel. Older Netlify links and files under `release/redactready-local-release-candidate/` are legacy review artifacts and are not the current source of truth.
+
+Use the included synthetic samples first. Do not upload real sensitive files to any public deployment unless its privacy model, runtime behavior, network activity, and export workflow have been independently reviewed for the intended use.
 
 ## Positioning
 
@@ -84,7 +88,7 @@ Users must still inspect final file properties, visible content, filenames, and 
 
 RedactReady Local is designed to process review workflows in the browser. It does not intentionally send document contents to external servers. OCR runtime assets and English language data are served from the application's own `public/ocr/` assets.
 
-A Vercel preview must be checked for unexpected network requests, third-party asset loading, runtime errors, and export behavior before production promotion.
+A deployment should be checked for unexpected network requests, third-party asset loading, runtime errors, and export behavior before use with real information.
 
 ## Common Redaction Risks
 
@@ -103,7 +107,7 @@ A Vercel preview must be checked for unexpected network requests, third-party as
 See [SETUP.md](./SETUP.md) for installation details.
 
 ```bash
-npm install
+npm ci
 npm run dev
 npm run lint
 npm run test
@@ -119,7 +123,7 @@ See [VERIFICATION.md](./VERIFICATION.md), [LIMITATIONS.md](./LIMITATIONS.md), an
 Create a Vercel project from `atomicdjt/AI-Project-Portfolio` with:
 
 ```text
-Project name: redactready-local
+Project name: ai-project-portfolio-redactready-local
 Root Directory: apps/redactready-local
 Framework Preset: Vite
 Build Command: npm run build
@@ -144,6 +148,29 @@ Use a preview deployment first and verify:
 
 Promote only after Vercel reports `READY` and the complete manual QA checklist passes.
 
+## Commercial Implementation Package
+
+The application source is licensed under the MIT License. A paid RedactReady package must therefore be described accurately as a curated implementation and deployment kit, not as exclusive ownership of the existing source.
+
+Generate a provenance-recorded package only from a clean Git working tree:
+
+```bash
+npm ci
+npm run e2e
+npm run package:commercial
+```
+
+The commercial packager runs lint, unit tests, and the production build; excludes generated folders, secrets, and private environment files; records the source commit and canonical demo; creates a per-file SHA-256 manifest; creates the Payhip archive; re-extracts it; and validates its contents.
+
+See:
+
+- [COMMERCIAL-PACKAGE.md](./COMMERCIAL-PACKAGE.md)
+- [STORE-COPY.md](./STORE-COPY.md)
+- [RELEASE-INTEGRITY.md](./RELEASE-INTEGRITY.md)
+- [PAYHIP-PUBLISHING-CHECKLIST.md](./PAYHIP-PUBLISHING-CHECKLIST.md)
+
+A generated or uploaded archive is not buyer-path verified until the file downloaded through Payhip matches the recorded SHA-256.
+
 ## Documentation
 
 - [Feature Status](./FEATURE_STATUS.md)
@@ -160,4 +187,4 @@ The product deliberately avoids overclaiming. It does not claim legal or regulat
 
 ## License
 
-See [LICENSE](./LICENSE).
+See [LICENSE](./LICENSE). The source is MIT-licensed; a commercial package may charge for curation, documentation, verification materials, delivery, and separately agreed services, but it does not make the existing source exclusive.
