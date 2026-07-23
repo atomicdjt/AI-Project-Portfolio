@@ -48,6 +48,7 @@ const excludedNames = new Set([
   "dist",
   "node_modules",
   "playwright-report",
+  "release",
   "test-results",
   "RedactReady-Local-Release",
 ]);
@@ -75,6 +76,8 @@ function run(command, args, options = {}) {
     cwd: appRoot,
     encoding: "utf8",
     stdio: options.capture ? "pipe" : "inherit",
+    shell:
+      process.platform === "win32" && command.toLowerCase().endsWith(".cmd"),
     ...options,
   });
   if (result.status !== 0) {
@@ -107,6 +110,7 @@ function shouldExclude(absolutePath) {
   const parts = relative.split("/");
   if (parts.some((part) => excludedNames.has(part))) return true;
   const base = path.basename(absolutePath);
+  if (base === "create_docs.cjs") return true;
   if (base.startsWith(".env") && base !== ".env.example") return true;
   if (base.endsWith(".log")) return true;
   if (base === "tsconfig.tsbuildinfo" || base === ".DS_Store") return true;
@@ -394,8 +398,8 @@ if (existsSync(sampleSource)) {
 
 createBuyerDocs(reviewDir, source);
 scanForSecrets(reviewDir);
-validateRequiredFiles(reviewDir);
 writeFileManifest(reviewDir);
+validateRequiredFiles(reviewDir);
 validateFileManifest(reviewDir);
 
 createZip(reviewDir, payhipZip);
