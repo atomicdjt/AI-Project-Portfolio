@@ -76,7 +76,8 @@ function run(command, args, options = {}) {
     cwd: appRoot,
     encoding: "utf8",
     stdio: options.capture ? "pipe" : "inherit",
-    shell: process.platform === "win32",
+    shell:
+      process.platform === "win32" && command.toLowerCase().endsWith(".cmd"),
     ...options,
   });
   if (result.status !== 0) {
