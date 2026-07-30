@@ -489,6 +489,12 @@ main {
   background: #ffffff;
 }
 
+.filter-summary {
+  margin: 14px 0 10px;
+  color: #506068;
+  font-size: 0.9rem;
+}
+
 .table-wrap {
   overflow: auto;
   border: 1px solid #d8e2df;
@@ -520,6 +526,11 @@ th {
 
 tbody tr:last-child td {
   border-bottom: 0;
+}
+
+.empty-results {
+  color: #506068;
+  font-style: italic;
 }
 
 td p {

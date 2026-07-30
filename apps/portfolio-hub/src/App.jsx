@@ -387,6 +387,9 @@ function App() {
               </select>
             </div>
           </div>
+          <p className="filter-summary" role="status" aria-live="polite">
+            Showing {filteredProjects.length} of {projects.length} projects.
+          </p>
           <div className="table-wrap">
             <table>
               <thead>
@@ -425,6 +428,11 @@ function App() {
                     <td data-label="Tech / framing"><div className="tag-list">{project.stack.map((item) => <span key={item}>{item}</span>)}</div></td>
                   </tr>
                 ))}
+                {filteredProjects.length === 0 ? (
+                  <tr>
+                    <td colSpan="5" className="empty-results">No projects match the current filters. Try clearing a filter or using a broader search.</td>
+                  </tr>
+                ) : null}
               </tbody>
             </table>
           </div>
