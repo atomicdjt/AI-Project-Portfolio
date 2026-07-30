@@ -12,6 +12,7 @@ A source-backed portfolio of applications, workflow systems, and product prototy
 ## Fast Review
 
 - **[Live Portfolio Hub](https://ai-project-portfolio-portfolio-hub.vercel.app/):** visual employer-facing review surface with project filters, evidence routes, demos, and case studies.
+- **[Five-minute review](https://ai-project-portfolio-portfolio-hub.vercel.app/review):** a focused BuildWorld AI, ProcessHarbor, and WeaveStudio review sequence.
 - **[Recruiter Quick Review](docs/recruiter-quick-review.md):** shortest evidence-based review sequence.
 - **[Employer Overview](docs/EMPLOYER_OVERVIEW.md):** direct role-to-project mapping.
 - **[Verification Guide](docs/verification.md):** repository scripts, deployment checks, validation scope, and evidence boundaries.
@@ -94,6 +95,7 @@ Use Node.js 22 or later:
 npm ci
 npm run check:docs
 npm run check:deployment-policy
+npm run verify:public-links
 npm run lint:apps
 npm run typecheck:all
 npm run test:all

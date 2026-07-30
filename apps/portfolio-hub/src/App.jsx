@@ -1,16 +1,15 @@
 import {
+  ArrowRight,
   ArrowUpRight,
   BookOpen,
   BriefcaseBusiness,
-  CheckCircle2,
   Code2,
   FileText,
-  Globe2,
   Layers3,
+  Network,
   Search,
   ShieldCheck,
   Sparkles,
-  Timer,
 } from 'lucide-react';
 import { useMemo, useState } from 'react';
 
@@ -264,9 +263,6 @@ const employerQuickReview = projects.filter((project) =>
   ['BuildWorld AI', 'ProcessHarbor', 'WeaveStudio'].includes(project.publicName),
 );
 const commercialAssets = projects.filter((project) => project.publicName === 'QuoteForge Local');
-const vercelLiveCount = projects.filter((project) => ['Live', 'Commercial', 'Acquisition Asset'].includes(project.status)).length;
-const sourceBackedCount = projects.filter((project) => project.source).length;
-
 function App() {
   const [query, setQuery] = useState('');
   const [status, setStatus] = useState('All');
@@ -282,6 +278,8 @@ function App() {
     });
   }, [audience, query, status]);
 
+  if (window.location.pathname.replace(/\/+$/, '') === '/review') return <ReviewPath />;
+
   return (
     <div className="app-shell">
       <aside className="side-rail" aria-label="Portfolio navigation">
@@ -293,7 +291,8 @@ function App() {
           </span>
         </a>
         <nav>
-          <a href="#employer-review"><BriefcaseBusiness size={18} aria-hidden="true" /> Hiring review</a>
+          <a href="/review"><BriefcaseBusiness size={18} aria-hidden="true" /> Five-minute review</a>
+          <a href="#employer-review"><BriefcaseBusiness size={18} aria-hidden="true" /> Hiring evidence</a>
           <a href="#commercial-assets"><Sparkles size={18} aria-hidden="true" /> Products</a>
           <a href="#projects"><Layers3 size={18} aria-hidden="true" /> All projects</a>
           <a href="#technical-depth"><BookOpen size={18} aria-hidden="true" /> Evidence</a>
@@ -307,26 +306,28 @@ function App() {
       </aside>
 
       <main>
-        <header className="topbar">
-          <div>
-            <h1>David Turner — Applied AI & Technical Operations Portfolio</h1>
-            <p>Local-first products, workflow systems, source-backed applications, and evidence-oriented documentation organized for employer and commercial review.</p>
+        <header className="topbar hero">
+          <div className="hero-copy">
+            <h1>I turn ambiguous workflows into reviewable, local-first software.</h1>
+            <p>Applied AI and technical operations work for teams that need clearer processes, human review checkpoints, and defensible handoffs.</p>
+            <div className="topbar-actions" aria-label="Primary portfolio actions">
+              <a className="button primary" href="/review">
+                Review the work <ArrowRight size={17} aria-hidden="true" />
+              </a>
+              <a className="button secondary" href="#projects">
+                <Layers3 size={17} aria-hidden="true" /> Open portfolio
+              </a>
+            </div>
           </div>
-          <div className="topbar-actions" aria-label="Primary portfolio actions">
-            <a className="button secondary" href={repoBase}>
-              <Code2 size={17} aria-hidden="true" /> View GitHub
-            </a>
-            <a className="button primary" href={`${repoBase}/blob/main/docs/recruiter-quick-review.md`}>
-              <FileText size={17} aria-hidden="true" /> Recruiter guide
-            </a>
-          </div>
+          <WorkflowPreview />
         </header>
 
-        <section className="metrics-strip" aria-label="Portfolio snapshot">
-          <Stat label="Vercel-hosted products" value={vercelLiveCount} icon={<Globe2 size={18} aria-hidden="true" />} />
-          <Stat label="Source-linked entries" value={sourceBackedCount} icon={<CheckCircle2 size={18} aria-hidden="true" />} />
-          <Stat label="Employer review" value="3 projects" icon={<Timer size={18} aria-hidden="true" />} />
-          <Stat label="Review paths" value="Hiring + Products" icon={<Sparkles size={18} aria-hidden="true" />} />
+        <section className="review-intro" aria-label="Portfolio review guidance">
+          <p><strong>Start with the three flagships below.</strong> Each includes a live product, source authority, and a specific kind of evidence—without implying customer, revenue, or compliance claims.</p>
+          <div className="topbar-actions">
+            <a className="button secondary" href={repoBase}><Code2 size={17} aria-hidden="true" /> View GitHub</a>
+            <a className="button primary" href={`${repoBase}/blob/main/docs/recruiter-quick-review.md`}><FileText size={17} aria-hidden="true" /> Recruiter guide</a>
+          </div>
         </section>
 
         <section id="employer-review" className="quick-review" aria-labelledby="employer-title">
@@ -441,8 +442,50 @@ function App() {
   );
 }
 
-function Stat({ label, value, icon }) {
-  return <div className="stat">{icon}<span>{label}</span><strong>{value}</strong></div>;
+function WorkflowPreview() {
+  const steps = ['Intake', 'Structure', 'Validate', 'Review', 'Export'];
+  return (
+    <div className="workflow-preview" aria-label="A reviewable workflow moves from intake through structure, validation, review, and export.">
+      <Network size={22} aria-hidden="true" />
+      <div className="workflow-nodes">
+        {steps.map((step, index) => <span key={step} className={index === 3 ? 'workflow-node active' : 'workflow-node'}>{step}</span>)}
+      </div>
+      <small>Human review remains explicit before output is used.</small>
+    </div>
+  );
+}
+
+function ReviewPath() {
+  return (
+    <main className="review-page">
+      <a className="review-back" href="/">← Portfolio hub</a>
+      <header className="review-hero">
+        <h1>A five-minute review of applied AI and technical-operations work.</h1>
+        <p>Three focused projects demonstrate product reasoning, operational workflow design, and end-to-end delivery. Review each in order, then inspect the source and validation evidence that matters to you.</p>
+      </header>
+      <ol className="review-steps">
+        {employerQuickReview.map((project, index) => (
+          <li key={project.name}>
+            <span className="review-number">0{index + 1}</span>
+            <div>
+              <p className="review-label">{project.review}</p>
+              <h2>{project.publicName}</h2>
+              <p>{project.evidence}</p>
+              <div className="card-actions">
+                {project.demo ? <ExternalLink href={project.demo}>Open live demo</ExternalLink> : null}
+                {project.source ? <ExternalLink href={project.source}>Inspect source</ExternalLink> : null}
+                {project.caseStudy ? <ExternalLink href={project.caseStudy}>Read case study</ExternalLink> : null}
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <section className="review-boundary">
+        <h2>Evidence boundary</h2>
+        <p>These products demonstrate documented implementation, testing, and public review paths. They do not claim verified revenue, active users, completed acquisitions, professional certification, or compliance status unless separately evidenced.</p>
+      </section>
+    </main>
+  );
 }
 
 function ProjectCard({ project }) {
