@@ -18,6 +18,7 @@ A source-backed portfolio of applications, workflow systems, and product prototy
 - **[Verification Guide](docs/verification.md):** repository scripts, deployment checks, validation scope, and evidence boundaries.
 - **[Project Index](docs/PROJECT_INDEX.md):** source authority, current Vercel routes, and best evidence for each project.
 - **[Deployment Map](docs/deployment-and-previews.md):** authoritative repository-to-Vercel mapping.
+- **[Usability Pilot Kit](docs/portfolio-usability-pilot.md):** ready-to-run, claim-safe research materials for the Portfolio Hub review path.
 - **[Current Public Audit — July 14, 2026](docs/public-portfolio-audit-2026-07-14.md):** current status and remaining limitations.
 
 ## Recommended Employer Review Path

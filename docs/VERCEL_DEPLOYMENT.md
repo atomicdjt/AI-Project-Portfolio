@@ -42,6 +42,12 @@ The initial inspected deployments were derived from `AI-Project-Portfolio/main` 
 
 The repository includes a `vercel.json` file in each deployed Vite workspace to support SPA routing.
 
+## Dependency Change Fanout
+
+The affected-project workflow treats root build inputs such as `package.json`, `package-lock.json`, shared configuration, and CI configuration as global changes. A root dependency remediation therefore selects every affected-mode Vercel project for a plan. This is intentional: those projects can consume the shared root lockfile.
+
+Pull requests remain plan-only and receive no Vercel deployment credentials. A push or manual dispatch can deploy only when the repository variable `VERCEL_DEPLOYMENT_ORCHESTRATION_ENABLED` is explicitly `true`; the workflow otherwise records a dry-run. Review the generated affected-project plan before enabling a global dependency rollout, and use one coordinated change rather than repeated speculative commits.
+
 ## Post-Deployment Inspection
 
 The migration inspection confirmed:
