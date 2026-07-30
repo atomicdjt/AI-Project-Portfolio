@@ -282,6 +282,7 @@ function App() {
 
   return (
     <div className="app-shell">
+      <a className="skip-link" href="#main-content">Skip to portfolio content</a>
       <aside className="side-rail" aria-label="Portfolio navigation">
         <a className="brand" href="/" aria-label="David Turner portfolio hub">
           <span className="brand-mark">DT</span>
@@ -305,7 +306,7 @@ function App() {
         </div>
       </aside>
 
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <header className="topbar hero">
           <div className="hero-copy">
             <h1>I turn ambiguous workflows into reviewable, local-first software.</h1>

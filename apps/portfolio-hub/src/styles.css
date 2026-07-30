@@ -25,6 +25,11 @@ a {
   color: inherit;
 }
 
+:focus-visible {
+  outline: 3px solid #075e56;
+  outline-offset: 3px;
+}
+
 button,
 input,
 select {
@@ -149,6 +154,24 @@ main {
   margin-bottom: 18px;
   padding-bottom: 18px;
   border-bottom: 1px solid #dde5e1;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 10;
+  top: 12px;
+  left: 12px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  color: #ffffff;
+  background: #075e56;
+  font-weight: 760;
+  text-decoration: none;
+  transform: translateY(-160%);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
 }
 
 .hero { align-items: stretch; min-height: 340px; padding: 28px 0 34px; }
