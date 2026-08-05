@@ -12,12 +12,16 @@ if (!app.includes("const flagshipNames = ['ProcessHarbor', 'RedactReady', 'Weave
   throw new Error('Portfolio Hub flagship list does not match the approved five-flagship hierarchy.');
 }
 
-if (!app.includes("caseStudy: 'https://weavestudio-nine.vercel.app/acquire'")) {
+if (!app.includes("caseStudy: `${weaveStudioRepoBase}/blob/main/docs/case-studies/WEAVESTUDIO.md`")) {
+  throw new Error('Portfolio Hub must expose the canonical WeaveStudio case-study source.');
+}
+
+if (!app.includes("acquisition: 'https://weavestudio-nine.vercel.app/acquire'")) {
   throw new Error('Portfolio Hub must use the canonical WeaveStudio acquisition URL.');
 }
 
-if (app.includes("caseStudy: 'https://weavestudio-demo.vercel.app/acquire'")) {
-  throw new Error('Portfolio Hub still uses the legacy WeaveStudio acquisition URL.');
+if (app.includes('weavestudio-demo.vercel.app')) {
+  throw new Error('Portfolio Hub still uses the legacy WeaveStudio deployment.');
 }
 
 console.log('Portfolio remediation consistency checks passed.');

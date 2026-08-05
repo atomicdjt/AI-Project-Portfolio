@@ -14,6 +14,7 @@ import {
 import { useMemo, useState } from 'react';
 
 const repoBase = 'https://github.com/atomicdjt/AI-Project-Portfolio';
+const weaveStudioRepoBase = 'https://github.com/atomicdjt/weavestudio';
 const imagePath = (fileName) => `images/${fileName}`;
 
 const projects = [
@@ -185,11 +186,16 @@ const projects = [
     repositoryAuthority: 'Separate authoritative repository',
     category: 'Workflow product',
     demo: 'https://weavestudio-nine.vercel.app/',
-    source: 'https://github.com/atomicdjt/weavestudio',
-    caseStudy: 'https://weavestudio-nine.vercel.app/acquire',
+    source: weaveStudioRepoBase,
+    caseStudy: `${weaveStudioRepoBase}/blob/main/docs/case-studies/WEAVESTUDIO.md`,
+    acquisition: 'https://weavestudio-nine.vercel.app/acquire',
     image: imagePath('weavestudio-demo.gif'),
     stack: ['React', 'TypeScript', 'React Flow', 'Playwright', 'Vercel'],
     summary: 'Local-first visual workflow canvas for turning fragmented notes, transcripts, logs, and research inputs into structured, reviewable deliverables.',
+    reviewerSummary: 'In a 60-second review: start with rough source material, structure it as a visible workflow, validate it with a human checkpoint, generate a reviewable deliverable, and export locally. Optional BYOK AI assistance is consent-gated.',
+    maturity: 'Transfer-ready product; technical implementation verified locally.',
+    externalValidation: 'External workflow outcomes have not been independently validated.',
+    limitations: 'No independent productivity, adoption, or commercial outcome is claimed. Public rendering and acquisition terms require manual verification.',
     evidence: 'Most complete product asset: consolidated default branch, browser and unit validation, portable exports, buyer transfer materials, and consent-gated OpenAI/Gemini BYOK assistance.',
     review: 'Transfer-ready product',
   },
@@ -479,10 +485,13 @@ function ReviewPath() {
               <p className="review-label">{project.review}</p>
               <h2>{project.publicName}</h2>
               <p>{project.evidence}</p>
+              {project.reviewerSummary ? <p className="review-case-study-summary"><strong>Case-study snapshot:</strong> {project.reviewerSummary}</p> : null}
+              {project.maturity ? <p className="review-case-study-meta"><strong>Maturity:</strong> {project.maturity} <strong>External status:</strong> {project.externalValidation} <strong>Limitations:</strong> {project.limitations}</p> : null}
               <div className="card-actions">
                 {project.demo ? <ExternalLink href={project.demo}>Open live demo</ExternalLink> : null}
                 {project.source ? <ExternalLink href={project.source}>Inspect source</ExternalLink> : null}
                 {project.caseStudy ? <ExternalLink href={project.caseStudy}>Read case study</ExternalLink> : null}
+                {project.acquisition ? <ExternalLink href={project.acquisition}>Acquisition information</ExternalLink> : null}
               </div>
             </div>
           </li>
