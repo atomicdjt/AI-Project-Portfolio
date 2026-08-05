@@ -19,6 +19,7 @@
   "scripts": {
     "install:all": "npm install --workspaces",
     "check:docs": "node scripts/check-docs.mjs",
+    "check:portfolio-remediation": "node scripts/check-portfolio-remediation.mjs",
     "check:deployment-policy": "node scripts/check-deployment-policy.mjs",
     "verify:public-links": "node scripts/verify-public-links.mjs",
     "test:deployment-selector": "node --test scripts/__tests__/*.test.mjs",

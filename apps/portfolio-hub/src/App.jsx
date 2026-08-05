@@ -46,7 +46,7 @@ const projects = [
     image: imagePath('redactready-pro-dashboard.png'),
     stack: ['React', 'TypeScript', 'Vitest', 'Local-first'],
     summary: 'Reviews document packets locally, detects sensitive information, scores human-risk signals, maps evidence, supports redaction, and exports reports.',
-    evidence: 'Strongest privacy and document-intelligence workflow: deterministic analysis, local-first boundaries, polished review UX, tests, and case-study documentation. Live Vercel production route verified.',
+    evidence: 'Strong privacy and document-intelligence workflow with deterministic analysis, local-first boundaries, review UX, tests, and case-study documentation. Current public rendering requires manual verification.',
     review: 'Privacy flagship',
   },
   {
@@ -62,7 +62,7 @@ const projects = [
     image: imagePath('opspilot-home.png'),
     stack: ['React', 'TypeScript', 'Zod', 'Functions', 'Vitest'],
     summary: 'Turns rough operational inputs into reviewable SOPs, onboarding checklists, knowledge-base drafts, gap reports, versions, and export bundles.',
-    evidence: 'Clearest role fit for technical operations, documentation, enablement, and knowledge management, with validation boundaries and a database-ready path. Live Vercel production route verified.',
+    evidence: 'Clearest role fit for technical operations, documentation, enablement, and knowledge management, with validation boundaries and a database-ready path. Current public rendering requires manual verification.',
     review: 'Best role alignment',
   },
   {
@@ -78,7 +78,7 @@ const projects = [
     image: imagePath('scamshield-assessment.png'),
     stack: ['React', 'Vite', 'PDF export', 'Local-first'],
     summary: 'Assesses suspicious messages, organizes evidence, suggests safer next steps, locates official reporting channels, and exports a structured packet.',
-    evidence: 'Shows public-interest product judgment, explainable deterministic scoring, privacy-conscious workflow design, accessible guidance, and automated tests. Live Vercel production route verified.',
+    evidence: 'Shows public-interest product judgment, explainable deterministic scoring, privacy-conscious workflow design, accessible guidance, and automated tests. Current public rendering requires manual verification.',
     review: 'Safety workflow',
   },
   {
@@ -94,7 +94,7 @@ const projects = [
     image: imagePath('redactready-review-workspace.png'),
     stack: ['React', 'TypeScript', 'PDF.js', 'pdf-lib'],
     summary: 'Reviews sensitive files locally, highlights likely private data, supports manual redaction, and exports verification-oriented results.',
-    evidence: 'Demonstrates document workflows, local processing, practical threat-model boundaries, true flattened redaction output, and security-minded UX. Live Vercel production route verified.',
+    evidence: 'Demonstrates document workflows, local processing, practical threat-model boundaries, flattened redaction output, and security-minded UX. Current public rendering requires manual verification.',
     review: 'Privacy depth',
   },
   {
@@ -110,7 +110,7 @@ const projects = [
     image: imagePath('layerforge-studio-home.png'),
     stack: ['React', 'TypeScript', 'Canvas 2D', 'IndexedDB'],
     summary: 'Browser image editor with layered raster documents, painting tools, selections, filters, undo, persistence, and exports.',
-    evidence: 'Strong frontend and interaction-depth evidence, including Canvas architecture, command history, local persistence, and dense product UI. Live Vercel production route verified.',
+    evidence: 'Strong frontend and interaction-depth evidence, including Canvas architecture, command history, local persistence, and dense product UI. Current public rendering requires manual verification.',
     review: 'Frontend depth',
   },
   {
@@ -126,7 +126,7 @@ const projects = [
     image: imagePath('focusforge-home.png'),
     stack: ['React', 'Vite', 'Vitest', 'Local storage'],
     summary: 'Turns focus sessions into civilization growth, research unlocks, streak history, and durable local progress.',
-    evidence: 'Shows product-system thinking, stateful UX, persistent client data, testable game rules, and responsive design. Live Vercel production route verified.',
+    evidence: 'Shows product-system thinking, stateful UX, persistent client data, testable game rules, and responsive design. Current public rendering requires manual verification.',
     review: 'Product system',
   },
   {
@@ -142,7 +142,7 @@ const projects = [
     image: imagePath('variantvision-pro-dashboard.png'),
     stack: ['React', 'TypeScript', 'Bioinformatics', 'Evidence scoring'],
     summary: 'Educational bioinformatics workbench for genetic-variant review, source provenance, amino-acid comparison, evidence scoring, and non-diagnostic reports.',
-    evidence: 'Shows complex-domain product architecture, source-transparency UX, research support, and careful non-diagnostic scope boundaries. Live Vercel production route verified.',
+    evidence: 'Shows complex-domain product architecture, source-transparency UX, research support, and careful non-diagnostic scope boundaries. Current public rendering requires manual verification.',
     review: 'Research implementation',
   },
   {
@@ -186,7 +186,7 @@ const projects = [
     category: 'Workflow product',
     demo: 'https://weavestudio-nine.vercel.app/',
     source: 'https://github.com/atomicdjt/weavestudio',
-    caseStudy: 'https://weavestudio-demo.vercel.app/acquire',
+    caseStudy: 'https://weavestudio-nine.vercel.app/acquire',
     image: imagePath('weavestudio-demo.gif'),
     stack: ['React', 'TypeScript', 'React Flow', 'Playwright', 'Vercel'],
     summary: 'Local-first visual workflow canvas for turning fragmented notes, transcripts, logs, and research inputs into structured, reviewable deliverables.',
@@ -259,10 +259,9 @@ const projects = [
   },
 ];
 
-const employerQuickReview = projects.filter((project) =>
-  ['BuildWorld AI', 'ProcessHarbor', 'WeaveStudio'].includes(project.publicName),
-);
-const commercialAssets = projects.filter((project) => project.publicName === 'QuoteForge Local');
+const flagshipNames = ['ProcessHarbor', 'RedactReady', 'WeaveStudio', 'QuoteForge Local', 'BuildWorld AI'];
+const flagshipProjects = projects.filter((project) => flagshipNames.includes(project.publicName));
+const supportingProjects = projects.filter((project) => !flagshipNames.includes(project.publicName));
 function App() {
   const [query, setQuery] = useState('');
   const [status, setStatus] = useState('All');
@@ -335,27 +334,27 @@ function App() {
           <div className="section-title">
             <div>
               <span>Employer review</span>
-              <h2 id="employer-title">Three projects that show role fit in under five minutes</h2>
+              <h2 id="employer-title">Five flagship assets for a focused technical-operations review</h2>
             </div>
             <a href={`${repoBase}/blob/main/docs/EMPLOYER_OVERVIEW.md`}>
               Employer overview <ArrowUpRight size={15} aria-hidden="true" />
             </a>
           </div>
           <div className="featured-grid">
-            {employerQuickReview.map((project) => <ProjectCard key={project.name} project={project} />)}
+            {flagshipProjects.map((project) => <ProjectCard key={project.name} project={project} />)}
           </div>
         </section>
 
         <section id="commercial-assets" className="quick-review" aria-labelledby="commercial-title">
           <div className="section-title">
             <div>
-              <span>Commercial execution</span>
-              <h2 id="commercial-title">A separately maintained private-source product</h2>
+              <span>Supporting work</span>
+              <h2 id="commercial-title">Supporting, experimental, and legacy work</h2>
             </div>
           </div>
           <p>Commercial status describes product packaging and availability; it does not imply revenue, customers, active users, or a completed acquisition.</p>
           <div className="featured-grid">
-            {commercialAssets.map((project) => <ProjectCard key={project.name} project={project} />)}
+            {supportingProjects.slice(0, 3).map((project) => <ProjectCard key={project.name} project={project} />)}
           </div>
         </section>
 
@@ -469,11 +468,11 @@ function ReviewPath() {
     <main className="review-page">
       <a className="review-back" href="/">← Portfolio hub</a>
       <header className="review-hero">
-        <h1>A five-minute review of applied AI and technical-operations work.</h1>
-        <p>Three focused projects demonstrate product reasoning, operational workflow design, and end-to-end delivery. Review each in order, then inspect the source and validation evidence that matters to you.</p>
+        <h1>A focused review of applied AI and technical-operations work.</h1>
+        <p>Five focused assets demonstrate product reasoning, operational workflow design, privacy boundaries, and end-to-end delivery. Review each in order, then inspect the source and validation evidence that matters to you.</p>
       </header>
       <ol className="review-steps">
-        {employerQuickReview.map((project, index) => (
+        {flagshipProjects.map((project, index) => (
           <li key={project.name}>
             <span className="review-number">0{index + 1}</span>
             <div>
