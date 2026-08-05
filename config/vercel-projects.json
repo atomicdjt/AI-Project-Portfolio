@@ -37,7 +37,7 @@
     },
     {
       "id": "processharbor",
-      "publicName": "ProcessHarbor",
+      "publicName": "ProcessHarbor Pro",
       "path": "apps/opspilot-ai-operations-toolkit",
       "deploymentMode": "affected",
       "sharedPaths": [],

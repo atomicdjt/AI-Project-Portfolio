@@ -8,7 +8,7 @@ if (JSON.stringify(profile.flagshipProjectIds) !== JSON.stringify(expectedIds)) 
   throw new Error('Professional profile flagshipProjectIds must contain the approved five-flagship hierarchy in order.');
 }
 
-if (!app.includes("const flagshipNames = ['ProcessHarbor', 'RedactReady', 'WeaveStudio', 'QuoteForge Local', 'BuildWorld AI'];")) {
+if (!app.includes("const flagshipNames = ['ProcessHarbor Pro', 'RedactReady', 'WeaveStudio', 'QuoteForge Local', 'BuildWorld AI'];")) {
   throw new Error('Portfolio Hub flagship list does not match the approved five-flagship hierarchy.');
 }
 

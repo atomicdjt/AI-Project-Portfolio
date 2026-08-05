@@ -52,18 +52,22 @@ const projects = [
   },
   {
     name: 'opspilot-ai-operations-toolkit',
-    publicName: 'ProcessHarbor',
+    publicName: 'ProcessHarbor Pro',
     audience: 'Employer',
     status: 'Live',
     repositoryAuthority: 'Portfolio workspace',
     category: 'Technical operations',
     demo: 'https://ai-project-portfolio-opspilot-ai-op.vercel.app/',
     source: `${repoBase}/tree/main/apps/opspilot-ai-operations-toolkit`,
-    caseStudy: `${repoBase}/blob/main/projects/opspilot-ai-operations-toolkit/CASE_STUDY.md`,
+    caseStudy: `${repoBase}/blob/main/docs/case-studies/PROCESSHARBOR.md`,
     image: imagePath('opspilot-home.png'),
     stack: ['React', 'TypeScript', 'Zod', 'Functions', 'Vitest'],
     summary: 'Turns rough operational inputs into reviewable SOPs, onboarding checklists, knowledge-base drafts, gap reports, versions, and export bundles.',
-    evidence: 'Clearest role fit for technical operations, documentation, enablement, and knowledge management, with validation boundaries and a database-ready path. Current public rendering requires manual verification.',
+    reviewerSummary: 'In a 60-second review: enter fictional or sanitized notes, generate a deterministic draft, inspect ownership and open gaps, make human-reviewed changes, then record versions and export a local handoff bundle.',
+    maturity: 'Pilot-evaluation demonstrator; deterministic local workflow verified locally.',
+    externalValidation: 'External workflow outcomes have not been independently validated.',
+    limitations: 'No production AI automation, durable cloud workspace, real identity provider, adoption, or productivity outcome is claimed. The static route does not prove reference server endpoints are deployed.',
+    evidence: 'Clearest role fit for technical operations, documentation, enablement, and knowledge management, with deterministic validation boundaries and a database-ready path. Current public rendering requires manual verification.',
     review: 'Best role alignment',
   },
   {
@@ -265,7 +269,7 @@ const projects = [
   },
 ];
 
-const flagshipNames = ['ProcessHarbor', 'RedactReady', 'WeaveStudio', 'QuoteForge Local', 'BuildWorld AI'];
+const flagshipNames = ['ProcessHarbor Pro', 'RedactReady', 'WeaveStudio', 'QuoteForge Local', 'BuildWorld AI'];
 const flagshipProjects = projects.filter((project) => flagshipNames.includes(project.publicName));
 const supportingProjects = projects.filter((project) => !flagshipNames.includes(project.publicName));
 function App() {
