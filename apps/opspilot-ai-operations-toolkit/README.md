@@ -8,9 +8,9 @@ The default product experience is local and deterministic. The reference service
 
 ## Deployment Status
 
-ProcessHarbor is configured for Vercel through `vercel.json`, but a production Vercel alias is not claimed yet.
+ProcessHarbor is configured for Vercel through `vercel.json`. The controlled deployment record identifies `https://ai-project-portfolio-opspilot-ai-op.vercel.app/` as the current deterministic static workflow; its older hostname preserves the historical OpsPilot workspace alias. Current public rendering still requires manual revalidation before a new release claim.
 
-The deterministic browser workflow is ready for a Vercel preview. The optional backend routes must be exposed as Vercel Functions and verified before server-backed functionality is described as live.
+The deterministic browser workflow is the only capability represented by that static route. The optional backend routes must be exposed as Vercel Functions and verified before server-backed functionality is described as live.
 
 Legacy provider-specific function adapters remain in the source history for reference only. They are not an approved deployment target and must not be used for new publication.
 
