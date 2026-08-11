@@ -1,5 +1,7 @@
 # LayerForge Studio
 
+**A local-first browser image editor by David Turner · [atomicdjt](https://github.com/atomicdjt)**
+
 LayerForge Studio is an original local-first browser image editor and digital-painting MVP. It supports layered raster documents, image import, Canvas 2D painting, rectangular selections, destructive filters with undo, IndexedDB project persistence, and flattened PNG/JPEG export.
 
 The project is intentionally not a Photoshop clone. It uses its own naming, layout, icons, data model, and interaction structure while implementing the broad editing categories expected from a layered raster editor.

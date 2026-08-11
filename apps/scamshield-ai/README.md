@@ -1,5 +1,7 @@
 # ScamShield AI
 
+**Explainable Scam Analysis by David Turner · [atomicdjt](https://github.com/atomicdjt)**
+
 ScamShield AI is a local-first public-interest cybersecurity and consumer-protection web app. It helps people identify possible scam risk signals, preserve suspicious messages and file references, organize an evidence timeline, choose safer next steps, find official reporting channels, and export a professional PDF evidence packet. The MVP runs entirely in the browser with deterministic TypeScript rules and requires no account, backend, API key, or database.
 
 ## Deployment Status

@@ -1,4 +1,4 @@
-# ScamShield AI — Case Study
+# ScamShield AI — Explainable Scam Analysis by David Turner
 
 ## Overview
 
