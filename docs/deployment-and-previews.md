@@ -77,7 +77,7 @@ Interactive workflow testing and future uptime remain point-in-time concerns; a 
 
 ## Preview and Rollback Policy
 
-Each Git-connected monorepo app declares an `ignoreCommand` in its workspace `vercel.json`. The command reuses `scripts/detect-affected-apps.mjs`, compares the current commit with `VERCEL_GIT_PREVIOUS_SHA`, builds on project, shared, or global-input changes, and skips unrelated or documentation-only previews. Any missing SHA, invalid manifest, or Git diff failure falls back conservatively to building.
+Each Git-connected monorepo app declares an `ignoreCommand` in its workspace `vercel.json`. The command reuses `scripts/detect-affected-apps.mjs`, compares the current commit with `VERCEL_GIT_PREVIOUS_SHA`, builds on project, shared, or global-input changes, and skips unrelated or documentation-only previews. Production deployments always build. Any missing SHA, invalid manifest, or Git diff failure falls back conservatively to building.
 
 1. Create a focused Git branch and pull request.
 2. Run repository validation.
