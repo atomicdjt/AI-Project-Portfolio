@@ -29,6 +29,56 @@ describe('redaction', () => {
     expect(redacted).toContain('[REDACTED EMAIL]')
     expect(redacted).toContain('555-244-9182')
   })
+
+  it('applies overlapping findings once and ignores invalid ranges', () => {
+    const text = 'Account 1234567890123 is under review.'
+    const findings = [
+      {
+        id: 'outer',
+        type: 'financial_information' as const,
+        label: 'Payment card pattern',
+        match: '1234567890123',
+        start: 8,
+        end: 21,
+        severity: 'Critical' as const,
+        confidence: 0.72,
+        explanation: 'Long digit sequence.',
+        suggestedRedaction: '[REDACTED FINANCIAL ID]',
+      },
+      {
+        id: 'inner',
+        type: 'account_number' as const,
+        label: 'Account number',
+        match: '456789',
+        start: 11,
+        end: 17,
+        severity: 'High' as const,
+        confidence: 0.84,
+        explanation: 'Nested identifier.',
+        suggestedRedaction: '[REDACTED ACCOUNT]',
+      },
+      {
+        id: 'invalid',
+        type: 'account_number' as const,
+        label: 'Invalid range',
+        match: 'missing',
+        start: -1,
+        end: 200,
+        severity: 'High' as const,
+        confidence: 0.5,
+        explanation: 'Invalid range.',
+        suggestedRedaction: '[INVALID]',
+      },
+    ]
+
+    const redacted = redactText(
+      text,
+      findings,
+      findings.map((finding) => ({ findingId: finding.id, enabled: true, label: finding.suggestedRedaction })),
+    )
+
+    expect(redacted).toBe('Account [REDACTED FINANCIAL ID] is under review.')
+  })
 })
 
 describe('HRI analysis pipeline', () => {

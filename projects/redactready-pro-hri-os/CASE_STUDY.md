@@ -4,6 +4,17 @@
 
 People often need to share document packets that contain mixed sensitive data, weak context, missing supporting evidence, or unclear administrative references. Existing tools tend to focus on either storage, generic summarization, or manual redaction. RedactReady Pro treats this as a privacy and readiness workflow.
 
+## Constraints
+
+- Sensitive text must remain in the browser for the public MVP.
+- Detection must be deterministic and inspectable, with no claim of exhaustive coverage.
+- Redaction coordinates must be validated so stale, invalid, or overlapping findings cannot corrupt the exported text.
+- Scores and classifications must remain decision-support signals, not official determinations.
+
+## David's Role
+
+David Turner owned the product framing, privacy workflow, acceptance criteria, scoring and reporting requirements, implementation direction, AI-assisted development, testing expectations, documentation, and release decisions. AI tools assisted implementation under David's direction and review.
+
 ## Solution
 
 RedactReady Pro gives users a local-first workbench for document packet review:
@@ -56,6 +67,25 @@ The MVP runs analysis in the browser and does not require a backend or external 
 ## What Makes It Novel
 
 RedactReady Pro combines redaction, risk scoring, evidence mapping, action planning, and report export into one coherent local workflow. The product is not a thin AI wrapper: it uses deterministic, inspectable logic and clear safety boundaries.
+
+## Important Decisions
+
+- Pure TypeScript modules keep detection, classification, scoring, evidence mapping, checklists, redaction, and reports independently testable.
+- Browser-only analysis avoids network leakage in the public demonstration.
+- Redaction applies only enabled, in-bounds findings whose match still corresponds to the source text, and overlapping ranges are applied once.
+- The HRI score is decomposed into named categories and paired with explanations and actions.
+
+## Verification
+
+Vitest protects detection, selective redaction, overlap and range boundaries, classification, HRI scoring, evidence mapping, checklists, and report generation. Monorepo lint, typecheck, and production builds provide additional local verification. These checks do not establish regulatory compliance or prove every sensitive value will be found.
+
+## Responsible Boundaries
+
+RedactReady Pro is not legal advice, a compliance certification, a medical or benefits decision system, or a substitute for trained human review. Rule-based detection can miss context or produce false positives; users must inspect the original and redacted output before sharing.
+
+## Professional Relevance
+
+The project demonstrates privacy-aware workflow design, deterministic text analysis, defensive boundary handling, explainable scoring, human review controls, and the ability to translate a high-risk ambiguous task into a bounded, testable system.
 
 ## Future Expansion
 
