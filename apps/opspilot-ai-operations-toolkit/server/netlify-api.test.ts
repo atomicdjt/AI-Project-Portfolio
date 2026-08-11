@@ -15,4 +15,29 @@ describe('ProcessHarbor Netlify API function', () => {
     expect(body.error.code).toBe('bad_request')
     expect(body.error.message).toContain('valid JSON')
   })
+
+  it('does not grant write access when a request omits its demo session', async () => {
+    const request = new Request('https://example.test/api/createDocument', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        intake: {
+          business: 'Brightline Services',
+          role: 'Operations manager',
+          department: 'Customer operations',
+          documentType: 'SOP',
+          priority: 'Repeatable intake',
+          sourceNotes:
+            'Document each intake step, assign an owner, define escalation, and record the completed quality review.',
+        },
+      }),
+    })
+
+    const response = await handler(request, { params: { route: 'createDocument' } } as unknown as Context)
+    const body = (await response.json()) as { error: { code: string; message: string } }
+
+    expect(response.status).toBe(403)
+    expect(body.error.code).toBe('forbidden')
+    expect(body.error.message).toContain('Write access')
+  })
 })

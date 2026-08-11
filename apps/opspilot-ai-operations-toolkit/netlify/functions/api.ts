@@ -1,5 +1,5 @@
 import type { Config, Context } from '@netlify/functions'
-import { ProcessHarborApi, demoAdminSession } from '../../server/api'
+import { ProcessHarborApi, demoViewerSession } from '../../server/api'
 import { badRequest, toErrorBody } from '../../server/errors'
 import { apiRouteSchema } from '../../src/schemas'
 import type { WorkspaceSession } from '../../src/types'
@@ -19,7 +19,7 @@ export default async function handler(request: Request, context: Context): Promi
   try {
     const route = apiRouteSchema.parse(context.params.route ?? new URL(request.url).pathname.split('/').filter(Boolean).at(-1))
     const payload = await parsePayload(request)
-    const session = payload.session ?? demoAdminSession
+    const session = payload.session ?? demoViewerSession
     const data = await dispatch(route, session, payload, request, context)
     return json(200, { data })
   } catch (error) {
