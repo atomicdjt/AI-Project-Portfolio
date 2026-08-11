@@ -76,7 +76,7 @@ This is point-in-time deployment evidence. It does not replace project-level aut
 
 ### WeaveStudio
 
-Authoritative source: `atomicdjt/weavestudio`, branch `master`.
+Authoritative source: `atomicdjt/weavestudio`, branch `main`. The retained `master` branch is compatibility/legacy only.
 
 ```bash
 npm ci

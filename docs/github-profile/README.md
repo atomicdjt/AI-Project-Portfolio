@@ -7,7 +7,7 @@ I turn ambiguous operational, privacy, research, and documentation problems into
 [![Live Portfolio](https://img.shields.io/badge/Portfolio-Live%20on%20Vercel-000000?logo=vercel)](https://ai-project-portfolio-portfolio-hub.vercel.app/)
 [![Main Repository](https://img.shields.io/badge/GitHub-AI%20Project%20Portfolio-111827?logo=github)](https://github.com/atomicdjt/AI-Project-Portfolio)
 [![Deployment Policy](https://img.shields.io/badge/Deployments-Vercel%20Only-000000?logo=vercel)](https://github.com/atomicdjt/AI-Project-Portfolio/blob/main/docs/VERCEL_DEPLOYMENT.md)
-[![Portfolio Status](https://img.shields.io/badge/Portfolio%20Status-Jul%2014%202026-2563eb)](https://github.com/atomicdjt/AI-Project-Portfolio/blob/main/docs/public-portfolio-audit-2026-07-14.md)
+[![Audit Snapshot](https://img.shields.io/badge/Audit%20Snapshot-July%202026-475569)](https://github.com/atomicdjt/AI-Project-Portfolio/blob/main/docs/public-portfolio-audit-2026-07-14.md)
 
 ## Choose a Review Path
 
@@ -61,7 +61,7 @@ Additional live employer projects: [RedactReady](https://ai-project-portfolio-re
 
 - **Deployment policy:** Vercel only for new deployments and redeployments.
 - **Employer portfolio and monorepo applications:** [`atomicdjt/AI-Project-Portfolio`](https://github.com/atomicdjt/AI-Project-Portfolio), authoritative branch `main`.
-- **WeaveStudio product:** [`atomicdjt/weavestudio`](https://github.com/atomicdjt/weavestudio), authoritative branch `master`.
+- **WeaveStudio product:** [`atomicdjt/weavestudio`](https://github.com/atomicdjt/weavestudio), authoritative branch `main`; `master` is retained only as a compatibility/legacy branch.
 - **BuildWorld AI standalone product:** [`atomicdjt/buildworld-ai`](https://github.com/atomicdjt/buildworld-ai), authoritative branch `main`.
 - **QuoteForge Local product:** private `atomicdjt/quoteforge-local` repository, authoritative branch `main`.
 - **Deployment record:** [`docs/VERCEL_DEPLOYMENT.md`](https://github.com/atomicdjt/AI-Project-Portfolio/blob/main/docs/VERCEL_DEPLOYMENT.md).

@@ -40,7 +40,7 @@ The initial inspected deployments were derived from `AI-Project-Portfolio/main` 
 | Files outside Root Directory | Included in build step |
 | Skip unaffected deployments | Enabled |
 
-The repository includes a `vercel.json` file in each deployed Vite workspace to support SPA routing.
+The repository includes a `vercel.json` file in each deployed Vite workspace to support SPA routing. Git-connected projects also declare a conservative `ignoreCommand` that reuses the repository's affected-project selector; failures build rather than skip.
 
 ## Dependency Change Fanout
 
@@ -87,12 +87,12 @@ GardenGrid is a recovered Vite source workspace and passed type checking, lintin
 
 | Project | Route | Authority |
 | --- | --- | --- |
-| WeaveStudio production | `https://weavestudio-nine.vercel.app/` | `atomicdjt/weavestudio/master` |
-| WeaveStudio legacy preview | `https://weavestudio-demo.vercel.app/` | `atomicdjt/weavestudio/hardening/qa-remediation-multiprovider-ai`; non-canonical |
+| WeaveStudio canonical production | `https://weavestudio-nine.vercel.app/` | `atomicdjt/weavestudio/main` |
+| WeaveStudio supporting buyer-review demo | `https://weavestudio-demo.vercel.app/` | `atomicdjt/weavestudio/main`; noncanonical |
 | BuildWorld AI | `https://buildworld-ai-v01-improvements.vercel.app/` | `atomicdjt/buildworld-ai/main` |
 | QuoteForge Local | `https://quoteforge-local.vercel.app/` | private `atomicdjt/quoteforge-local/main` |
 
-A separate Vercel project named `source` is not assigned as a canonical portfolio deployment.
+A separate Vercel project named `source` is a verified redundant QuoteForge mirror and is not assigned as a canonical portfolio deployment. Deletion remains gated on owner-dashboard confirmation that no project-level hook or integration is unique.
 
 ## Verification and Rollback
 

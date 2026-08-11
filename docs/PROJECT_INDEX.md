@@ -31,7 +31,7 @@ This index records public names, source authority, implementation status, Vercel
 
 | Product | Status | Repository authority | Vercel surface | Best evidence |
 | --- | --- | --- | --- | --- |
-| [WeaveStudio](https://github.com/atomicdjt/weavestudio) | Acquisition-ready asset | Separate authoritative repository, `master` | [Demo](https://weavestudio-nine.vercel.app/) · [Acquisition overview](https://weavestudio-nine.vercel.app/acquire) | Consolidated default branch, local-first visual workflow canvas, undo/redo, data portability, exports, browser and unit validation, buyer transfer materials, and consent-gated OpenAI/Gemini assistance. |
+| [WeaveStudio](https://github.com/atomicdjt/weavestudio) | Acquisition-ready asset | Separate authoritative repository, `main`; `master` compatibility only | [Canonical demo](https://weavestudio-nine.vercel.app/) · [Acquisition overview](https://weavestudio-nine.vercel.app/acquire) | Consolidated default branch, local-first visual workflow canvas, undo/redo, data portability, exports, browser and unit validation, buyer transfer materials, and consent-gated OpenAI/Gemini assistance. |
 | QuoteForge Local | Shipped commercial package | Private separate repository, `main` | [Demo](https://quoteforge-local.vercel.app/) · [Product page](https://payhip.com/b/24De9) | Ten templates, typed quote engine, local demo leads, CSV export, branding, embed and WordPress paths, licensing, buyer docs, QA, and release packaging. |
 
 No customer, revenue, active-user, purchase, or completed-acquisition claim is implied by these status labels.
@@ -41,7 +41,7 @@ No customer, revenue, active-user, purchase, or completed-acquisition claim is i
 | Project | Status | Category | Best evidence |
 | --- | --- | --- | --- |
 | [AI Knowledge Operations Toolkit](../projects/ai-knowledge-operations-toolkit/CASE_STUDY.md) | Concept / product specification | Operations AI | Strong employer relevance for support operations, documentation, enablement, training, and knowledge management. |
-| [Amino Acid Research Workbench](../projects/amino-acid-research-workbench/CASE_STUDY.md) | Documentation-first | Bioinformatics education | Explainable scientific workflow and responsible educational framing; no current Vercel deployment is claimed. |
+| [Amino Acid Research Workbench](../projects/amino-acid-research-workbench/CASE_STUDY.md) | Documentation-first with a legacy preserved demo | Bioinformatics education | Explainable scientific workflow and responsible educational framing; the Vercel surface is a historical static artifact, not active production. |
 | [Ecology of Consciousness](../projects/ecology-of-consciousness/CASE_STUDY.md) | Research framework | Digital cognitive environments | Original interdisciplinary model, structured audit concepts, and research-synthesis evidence. |
 | [IHOS](../projects/ihos-integrated-human-operating-system/CASE_STUDY.md) | Research and self-governance framework | Non-clinical personal systems | Systems thinking, practical structure, ethics boundaries, and workbook/facilitation potential. |
 | [FrameEcho](../projects/frameecho/CASE_STUDY.md) | Technical product concept | Duplicate-video discovery | Clear utility, algorithmic framing, file-system workflow design, and product requirements. |
@@ -50,9 +50,9 @@ No customer, revenue, active-user, purchase, or completed-acquisition claim is i
 
 | Project | Current status | Repository interpretation |
 | --- | --- | --- |
-| Amino Acid Research Workbench | No current Vercel deployment | Case study exists; no local `apps/` workspace. |
+| Amino Acid Research Workbench | [Legacy preserved Vercel deployment](https://ai-project-portfolio-amino-workbenc.vercel.app/) | Case study plus preserved static artifact; not an active production application. |
 | GardenGrid | [Public Vercel deployment](https://ai-project-portfolio-garden-grid.vercel.app/) | Source-backed in this repository; controlled manual deployment while Vercel Git attachment is pending. |
-| HearthLink | No current Vercel deployment | Source is not present in this repository. |
+| HearthLink | [Legacy preserved Vercel deployment](https://ai-project-portfolio-hearthlink.vercel.app/) | Preserved offline/demo static artifact; not an operating multi-peer service or active production application. |
 
 Legacy non-Vercel URLs are not used as current portfolio routes.
 

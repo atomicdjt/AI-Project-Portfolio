@@ -1,4 +1,6 @@
-# Public Portfolio Audit — July 14, 2026
+# July 2026 Public Portfolio Audit Snapshot
+
+> Historical snapshot. This document preserves the July 14–15, 2026 verification record and is not the current authority map. Use `config/vercel-projects.json` and `docs/deployment-and-previews.md` for maintained project authority and deployment classifications.
 
 ## Scope
 
@@ -10,7 +12,7 @@ It is a first-party portfolio audit supported by repository metadata, documented
 
 All eight GitHub-connected employer-portfolio Vercel projects were confirmed `READY` on `AI-Project-Portfolio/main` commit `61b12a058b6d6467d15b95303fd1dea4219159cc`. The public Portfolio Hub and every canonical employer demo returned HTTP 200 with its intended application identity; the Hub no longer exposed Vercel-pending placeholders.
 
-## Current Authoritative Repositories
+## Repository Authority Recorded in This Snapshot
 
 | Surface | Authoritative repository | Branch |
 | --- | --- | --- |
@@ -151,4 +153,4 @@ The largest previous operational gap—the employer portfolio's deployment incon
 
 ## Historical Reports
 
-[Public Portfolio Audit — July 4, 2026](public-portfolio-audit-2026-07-04.md) remains available as a historical snapshot. It contains prior hosting references and must not be used as the current deployment map. This July 14 audit is the current public-status reference.
+[Public Portfolio Audit — July 4, 2026](public-portfolio-audit-2026-07-04.md) remains available as an earlier historical snapshot. Neither July snapshot should be used as the maintained deployment map.

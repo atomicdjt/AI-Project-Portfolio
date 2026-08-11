@@ -35,7 +35,7 @@ Commercial readiness does not imply verified revenue, customers, active users, p
 | Priority | Project | Interpretation |
 | --- | --- | --- |
 | 1 | [VariantVision Pro](../projects/variantvision-pro/CASE_STUDY.md) | Strongest source-backed research application; Vercel deployment pending. |
-| 2 | [Amino Acid Research Workbench](../projects/amino-acid-research-workbench/CASE_STUDY.md) | Documentation-first educational bioinformatics case study; no current Vercel deployment claimed. |
+| 2 | [Amino Acid Research Workbench](../projects/amino-acid-research-workbench/CASE_STUDY.md) | Documentation-first educational bioinformatics case study with a legacy preserved static Vercel artifact. |
 | 3 | [Ecology of Consciousness](../projects/ecology-of-consciousness/CASE_STUDY.md) | Strongest original interdisciplinary research framework. |
 | 4 | [IHOS](../projects/ihos-integrated-human-operating-system/CASE_STUDY.md) | Structured non-clinical self-governance framework with practical workbook potential. |
 | 5 | [FrameEcho](../projects/frameecho/CASE_STUDY.md) | Focused technical product concept for content-based duplicate-video discovery. |
@@ -44,9 +44,9 @@ Commercial readiness does not imply verified revenue, customers, active users, p
 
 | Project | Current interpretation |
 | --- | --- |
-| Amino Acid Research Workbench | Case study exists; no current Vercel deployment or local `apps/` workspace. |
+| Amino Acid Research Workbench | Case study plus a legacy preserved static Vercel artifact; not active production. |
 | GardenGrid | Source-backed in this repository and publicly deployed at [GardenGrid](https://ai-project-portfolio-garden-grid.vercel.app/); its existing Vercel project is awaiting Git attachment. |
-| HearthLink | Source is not present in this repository; no current Vercel deployment is claimed. |
+| HearthLink | Legacy preserved offline/demo Vercel artifact; not an active multi-peer service or production application. |
 
 Legacy non-Vercel hosts are not used as current review routes.
 
