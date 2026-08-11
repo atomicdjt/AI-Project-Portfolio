@@ -72,12 +72,12 @@ describe('Variant Normalization Module', () => {
     expect(datasetForBuild('GRCh38')).toEqual({
       id: 'gnomad_r4',
       label: 'gnomAD v4',
-      browserLabel: '4',
+      browserLabel: 'gnomad_r4',
     })
     expect(datasetForBuild('GRCh37')).toEqual({
       id: 'gnomad_r2_1',
       label: 'gnomAD v2.1.1',
-      browserLabel: '2-1',
+      browserLabel: 'gnomad_r2_1',
     })
   })
 

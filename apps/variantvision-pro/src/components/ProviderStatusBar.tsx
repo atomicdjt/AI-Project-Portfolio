@@ -40,7 +40,7 @@ export function ProviderStatusBar({ liveProviders, isLoading, onRefresh }: Provi
       <div className="health-chips">
         <span className="health-title">Live Providers ({liveProviders.totalDurationMs}ms):</span>
         {liveProviders.health.map((h) => {
-          const isNoResult = h.status === 'no_result'
+          const isNoResult = h.status === 'no_result' || h.status === 'unsupported_variant'
           const isTimeout = h.status === 'timeout'
           const isError = h.status === 'error' || h.status === 'unavailable'
 

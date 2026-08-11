@@ -33,7 +33,7 @@ export const variantCases: VariantCase[] = [
       'The substitution replaces an acidic residue with a hydrophobic residue near the beta-globin surface, a useful structural teaching point for hemoglobin polymerization context.',
     literature: [
       {
-        id: 'pmid-22371881',
+        id: 'pmid-20303803',
         title: 'Sickle cell disease',
         journal: 'Lancet',
         year: 2010,
@@ -41,7 +41,7 @@ export const variantCases: VariantCase[] = [
         url: 'https://pubmed.ncbi.nlm.nih.gov/20303803/',
       },
       {
-        id: 'pmid-26094546',
+        id: 'pmid-24086085',
         title: 'The molecular basis of sickle cell disease',
         journal: 'Cold Spring Harbor Perspectives in Medicine',
         year: 2013,
@@ -123,7 +123,7 @@ export const variantCases: VariantCase[] = [
       'Residue 175 sits in the DNA-binding domain; the dashboard treats this as a source lead that needs structural and literature review.',
     literature: [
       {
-        id: 'pmid-20128691',
+        id: 'pmid-20182602',
         title: 'TP53 mutations in human cancers',
         journal: 'Cold Spring Harbor Perspectives in Biology',
         year: 2010,
@@ -201,7 +201,7 @@ export const variantCases: VariantCase[] = [
       'The substitution sits in the activation segment of a kinase; mechanism and therapeutic implications require source-specific review.',
     literature: [
       {
-        id: 'pmid-15035987',
+        id: 'pmid-12068308',
         title: 'BRAF mutations in human cancer',
         journal: 'Nature',
         year: 2002,

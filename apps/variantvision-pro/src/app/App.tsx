@@ -214,7 +214,7 @@ export function App() {
         </section>
 
         <section className="metric-strip" aria-label="Evidence summary metrics">
-          <MetricCard icon={Gauge} label="Evidence score" value={`${dossier.evidenceScore}/100`} detail={dossier.confidenceBand} tone={dossier.evidenceScore >= 80 ? 'good' : 'warn'} />
+          <MetricCard icon={Gauge} label="Evidence coverage" value={`${dossier.coverageScore}/100`} detail={dossier.confidenceBand} tone={dossier.coverageScore >= 80 ? 'good' : 'warn'} />
           <MetricCard icon={Dna} label="Normalized ID" value={dossier.normalized.vcfId ?? 'Review'} detail={dossier.normalized.parsedFrom} />
           <MetricCard icon={Activity} label="Fixture AF" value={formatFrequency(dossier.populationSummary.estimatedFrequency)} detail={dossier.populationSummary.highestGroup} />
           <MetricCard icon={Library} label="Source records" value={dossier.sourceRecords.length.toString()} detail={`${dossier.literature.length} literature leads`} />
@@ -243,7 +243,7 @@ export function App() {
           <div className="workspace-primary">
             {activeTab === 'overview' && (
               <div className="page-stack">
-                <Panel icon={Sparkles} title="Evidence Quality Model">
+                <Panel icon={Sparkles} title="Evidence Coverage Model">
                   <div className="score-list">
                     {dossier.metrics.map((metric) => (
                       <article className="score-row" key={metric.label}>
@@ -445,8 +445,8 @@ export function App() {
                   <dd>{dossier.normalized.vcfId ?? 'Needs review'}</dd>
                 </div>
                 <div>
-                  <dt>SPDI</dt>
-                  <dd>{dossier.normalized.spdi ?? 'Needs review'}</dd>
+                  <dt>VCF-like coordinate</dt>
+                  <dd>{dossier.normalized.vcfLikeCoordinate ?? 'Needs review'}</dd>
                 </div>
                 <div>
                   <dt>rsID</dt>

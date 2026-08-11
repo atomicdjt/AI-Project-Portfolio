@@ -36,7 +36,7 @@ All tests are executed using **Vitest** in pure Node environment for rapid, dete
 
 ### Variant Engine Suite (`variantEngine.test.ts`)
 - **Amino Acid Comparison**: Tests charge shift, polarity shift, and hydropathy delta calculations.
-- **Evidence Scoring**: Tests score calculation across 5 quality metrics.
+- **Evidence Scoring**: Tests score calculation across 5 coverage metrics.
 - **Markdown Report Generation**: Verifies report output contains required sections, provenance headers, and responsible scope disclaimers.
 
 ---

@@ -38,7 +38,7 @@ describe('VariantVision Pro evidence engine', () => {
     expect(aa.hydropathyDelta).toBeGreaterThan(7)
 
     const dossier = buildDossier(defaultCase)
-    expect(dossier.evidenceScore).toBeGreaterThanOrEqual(70)
+    expect(dossier.coverageScore).toBeGreaterThanOrEqual(70)
     expect(dossier.responsibleBoundary).toContain('Not diagnosis')
   })
 

@@ -14,10 +14,9 @@
 
 import type { ClinVarClassification, ClinVarResult, ProviderResult } from './types'
 import { providerError, providerNoResult, providerSuccess } from './types'
+import { fetchNcbi } from './ncbi'
 
 const EUTILS_BASE = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils'
-const TOOL = 'variantvision-pro'
-const EMAIL = 'variantvision@example.com'
 const DEFAULT_TIMEOUT_MS = 10_000
 
 function reviewStarsFromStatus(status: string): number {
@@ -59,8 +58,8 @@ export async function fetchClinVar(
 
   try {
     // Step 1: esearch — find ClinVar variation IDs for this rsID
-    const searchUrl = `${EUTILS_BASE}/esearch.fcgi?db=clinvar&term=${variantIdUsed}[variant+id]&retmode=json&tool=${TOOL}&email=${EMAIL}`
-    const searchRes = await fetch(searchUrl, { signal: controller.signal })
+    const searchUrl = `${EUTILS_BASE}/esearch.fcgi?db=clinvar&term=${variantIdUsed}[variant+id]&retmode=json`
+    const searchRes = await fetchNcbi(searchUrl, { signal: controller.signal })
 
     if (!searchRes.ok) {
       return providerError('clinvar', 'error', `ClinVar esearch returned HTTP ${searchRes.status}`, {
@@ -81,8 +80,8 @@ export async function fetchClinVar(
 
     // Step 2: esummary — fetch classification details
     const ids = idList.slice(0, 5).join(',')
-    const summaryUrl = `${EUTILS_BASE}/esummary.fcgi?db=clinvar&id=${ids}&retmode=json&tool=${TOOL}&email=${EMAIL}`
-    const summaryRes = await fetch(summaryUrl, { signal: controller.signal })
+    const summaryUrl = `${EUTILS_BASE}/esummary.fcgi?db=clinvar&id=${ids}&retmode=json`
+    const summaryRes = await fetchNcbi(summaryUrl, { signal: controller.signal })
 
     if (!summaryRes.ok) {
       return providerError('clinvar', 'error', `ClinVar esummary returned HTTP ${summaryRes.status}`, {
@@ -136,6 +135,9 @@ export async function fetchClinVar(
     const title = variation.title ?? `ClinVar Variation ${variationId}`
 
     const warnings: string[] = []
+    if (idList.length > 1) {
+      warnings.push(`Multiple ClinVar records found for ${rsId}; returning the first match.`)
+    }
     if (classifications.length === 0) {
       warnings.push('ClinVar record found but no classification could be extracted from the response.')
     }

@@ -121,7 +121,7 @@ export interface PubMedArticle {
   pmid: string
   title: string
   journal: string
-  year: number
+  year: number | null
   authors: string[]
   url: string
 }

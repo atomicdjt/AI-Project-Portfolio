@@ -37,7 +37,17 @@ function summarizePopulation(rows: PopulationRecord[]) {
   }
 }
 
-export function compareAminoAcids(originalCode: string, replacementCode: string): AminoAcidComparison {
+export function compareAminoAcids(originalCode: string | null, replacementCode: string | null): AminoAcidComparison {
+  if (!originalCode || !replacementCode) {
+    return {
+      original: { code: '?' as any, name: 'Unknown', polarity: 'nonpolar', charge: 'neutral', size: 'medium', hydropathy: 0 },
+      replacement: { code: '?' as any, name: 'Unknown', polarity: 'nonpolar', charge: 'neutral', size: 'medium', hydropathy: 0 },
+      hydropathyDelta: 0,
+      chargeShift: 'Unknown',
+      polarityShift: 'Unknown',
+      interpretation: 'Unsupported / Manual Review Required: Protein change could not be parsed.',
+    }
+  }
   const original = aminoAcids[originalCode as keyof typeof aminoAcids] ?? aminoAcids.E
   const replacement = aminoAcids[replacementCode as keyof typeof aminoAcids] ?? aminoAcids.V
   const hydropathyDelta = Number((replacement.hydropathy - original.hydropathy).toFixed(1))
@@ -107,15 +117,19 @@ export function buildDossier(
   liveProviders?: OrchestratorResult,
 ): EvidenceDossier {
   const input = { ...variantCase, ...overrides }
+  const isCustomInput =
+    input.gene.trim().toUpperCase() !== variantCase.gene.trim().toUpperCase() ||
+    input.variant.trim().toUpperCase() !== variantCase.variant.trim().toUpperCase()
+
   const normalized = normalizeVariant(input)
   const parsedProtein = parseProteinChange(input.variant)
-  const original = parsedProtein.original ?? variantCase.originalAa
-  const replacement = parsedProtein.replacement ?? variantCase.replacementAa
+  const original = isCustomInput ? parsedProtein.original : (parsedProtein.original ?? variantCase.originalAa)
+  const replacement = isCustomInput ? parsedProtein.replacement : (parsedProtein.replacement ?? variantCase.replacementAa)
   const aminoAcid = compareAminoAcids(original, replacement)
-  const populationSummary = summarizePopulation(variantCase.population)
+  const populationSummary = summarizePopulation(isCustomInput ? [] : variantCase.population)
 
   // Merge static sourceRecords with live provider records if available
-  let sourceRecords = [...variantCase.sourceRecords]
+  let sourceRecords = isCustomInput ? [] : [...variantCase.sourceRecords]
 
   if (liveProviders) {
     const { clinvar, uniprot } = liveProviders
@@ -128,7 +142,13 @@ export function buildDossier(
         source: `NCBI ClinVar API (Live ${clinvar.data.variationId})`,
         status: clinvar.data.classifications.some((c) => c.reviewStars >= 2) ? 'ready' : 'partial',
         weight: 'high',
-        detail: clinvar.data.classifications.map((c) => `${c.clinicalSignificance} (${c.reviewStatus})`).join('; ') || 'Record retrieved; review details on NCBI.',
+        detail:
+          clinvar.data.classifications
+            .map((c) => {
+              const conditions = c.conditions.length > 0 ? ` for ${c.conditions.join(', ')}` : ''
+              return `${c.clinicalSignificance} (${c.reviewStatus})${conditions}`
+            })
+            .join('; ') || 'Record retrieved; review details on NCBI.',
         url: clinvar.data.url,
         lastReviewed: 'Live API response',
         retrievedAt: clinvar.retrievedAt,
@@ -136,6 +156,8 @@ export function buildDossier(
         retrievalStatus: clinvar.status,
       }
       sourceRecords = sourceRecords.filter((r) => !r.id.includes('clinvar')).concat(liveClinvar)
+    } else if (isCustomInput && clinvar.status !== 'success') {
+      // Prevent custom input from appearing successful if live lookup failed/returned nothing.
     }
 
     if (uniprot.status === 'success' && uniprot.data) {
@@ -158,7 +180,7 @@ export function buildDossier(
   }
 
   // Merge literature if live PubMed results arrived
-  let literature = [...variantCase.literature]
+  let literature = isCustomInput ? [] : [...variantCase.literature]
   if (liveProviders?.pubmed.status === 'success' && liveProviders.pubmed.data) {
     const liveArticles = liveProviders.pubmed.data.articles.map((art) => ({
       id: `pubmed-${art.pmid}`,
@@ -174,9 +196,9 @@ export function buildDossier(
   }
 
   const metrics = buildMetrics(sourceRecords, Boolean(normalized.vcfId), literature.length)
-  const evidenceScore = Math.round(metrics.reduce((sum, metric) => sum + metric.score, 0) / metrics.length)
+  const coverageScore = Math.round(metrics.reduce((sum, metric) => sum + metric.score, 0) / metrics.length)
   const confidenceBand =
-    evidenceScore >= 82 ? 'Strong research dossier' : evidenceScore >= 60 ? 'Usable with review' : 'Incomplete dossier'
+    coverageScore >= 82 ? 'Strong research dossier' : coverageScore >= 60 ? 'Usable with review' : 'Incomplete dossier'
 
   return {
     caseId: variantCase.id,
@@ -186,7 +208,7 @@ export function buildDossier(
     normalized,
     aminoAcid,
     populationSummary,
-    evidenceScore,
+    coverageScore,
     confidenceBand,
     metrics,
     sourceRecords,

@@ -15,6 +15,7 @@ const DEFAULT_TIMEOUT_MS = 10_000
 
 export async function fetchUniProt(
   accession: string,
+  expectedGene: string,
   timeoutMs = DEFAULT_TIMEOUT_MS,
 ): Promise<ProviderResult<UniProtResult>> {
   const start = performance.now()
@@ -58,6 +59,14 @@ export async function fetchUniProt(
     const geneName = data?.genes?.[0]?.geneName?.value ?? null
     const organism = data?.organism?.scientificName ?? 'Human'
 
+    const warnings: string[] = []
+    if (geneName && expectedGene && geneName.toUpperCase() !== expectedGene.toUpperCase()) {
+      warnings.push(`Warning: UniProt gene (${geneName}) does not match expected gene (${expectedGene}).`)
+    }
+    if (!organism.toLowerCase().includes('homo sapiens') && !organism.toLowerCase().includes('human')) {
+      warnings.push(`Warning: UniProt organism is ${organism}, expected Human.`)
+    }
+
     // Extract primary function comment
     let functionComment: string | null = null
     if (Array.isArray(data?.comments)) {
@@ -95,6 +104,7 @@ export async function fetchUniProt(
         variantIdUsed: cleanAccession,
         sourceUrl: entryUrl,
         durationMs: Math.round(performance.now() - start),
+        warnings,
       },
     )
   } catch (err: unknown) {

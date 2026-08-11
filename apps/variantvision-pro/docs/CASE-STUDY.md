@@ -8,7 +8,7 @@
 
 **VariantVision Pro** is an evidence-first bioinformatics workbench designed to aggregate, normalize, interpret, and present genomic variant evidence from multiple authoritative scientific sources (NCBI ClinVar, UniProtKB, PubMed, gnomAD) while handling uncertainty, provenance, API failures, inconsistent identifiers, and incomplete evidence responsibly.
 
-Heterogeneous biological databases use different coordinate systems, variant identifiers, and classification models. Furthermore, external APIs experience independent downtime, rate limits, and schema variations. VariantVision Pro addresses these challenges by implementing a fault-tolerant asynchronous provider architecture, a 4-path variant normalization engine, an explicit provenance data model, and an evidence-quality scoring system that communicates uncertainty rather than collapsing disagreement into pseudo-certainty.
+Heterogeneous biological databases use different coordinate systems, variant identifiers, and classification models. Furthermore, external APIs experience independent downtime, rate limits, and schema variations. VariantVision Pro addresses these challenges by implementing a fault-tolerant asynchronous provider architecture with centralized NCBI request throttling, a 4-path variant normalization engine, an explicit provenance data model, and an evidence-coverage scoring system that communicates uncertainty rather than collapsing disagreement into pseudo-certainty.
 
 Built with React 19, TypeScript 6, and Vite 8, VariantVision Pro operates as a zero-credential static web application. It integrates live REST endpoints from NCBI and UniProt via client-side fetch orchestration, providing a responsive research triage environment with self-contained Markdown and JSON dossier export capabilities.
 
@@ -18,9 +18,9 @@ Built with React 19, TypeScript 6, and Vite 8, VariantVision Pro operates as a z
 
 Genomic variant interpretation is one of the most structurally difficult problems in biomedical informatics:
 
-1. **Identifier Heterogeneity**: A single genetic variant can be referred to as an rsID (`rs334`), a genomic HGVS string (`NC_000011.10:g.5227002T>A`), a coding HGVS string (`c.179A>T`), a protein change (`p.Glu6Val` or `E6V`), a VCF coordinate (`11-5227002-T-A`), or an NCBI SPDI string (`chr11:5227002:T:A`).
+1. **Identifier Heterogeneity**: A single genetic variant can be referred to as an rsID (`rs334`), a genomic HGVS string (`NC_000011.10:g.5227002T>A`), a coding HGVS string (`c.179A>T`), a protein change (`p.Glu6Val` or `E6V`), a VCF coordinate (`11-5227002-T-A`), or a VCF-like coordinate string (`chr11:5227002:T:A`).
 2. **Distributed & Disagreeing Sources**: ClinVar provides clinical assertions; gnomAD provides population frequency data; UniProt provides protein function and structural domains; PubMed provides primary literature. These databases frequently disagree or reflect evolving evidence.
-3. **API Vulnerability**: External scientific APIs fail independently. A timeout on NCBI E-utilities should not crash protein domain rendering from UniProt or block user interaction.
+3. **API Vulnerability**: External scientific APIs fail independently. A timeout on NCBI E-utilities should not crash protein domain rendering from UniProt or block user interaction. Strict request hygiene (throttling, explicit tool/email headers) is required to remain compliant with NCBI guidelines.
 4. **Diagnostic Overclaiming**: Naïve bioinformatics applications often present raw database hits as definitive clinical diagnostic conclusions, creating medical misinterpretation risks.
 
 ---
@@ -94,7 +94,7 @@ export function normalizeVariant(input: VariantInput): NormalizedVariant {
 
 ### Trade-offs & Scientific Honesty
 
-- **Explicit Coordinate Labelling**: Coordinate strings are labelled as 1-based gnomAD coordinate IDs (`11-5227002-T-A`), not true 0-based NCBI SPDI strings, avoiding standard compliance confusion.
+- **Explicit Coordinate Labelling**: Coordinate strings are labelled as 1-based gnomAD coordinate IDs (`11-5227002-T-A`) and VCF-like coordinates, rather than attempting fragile SPDI normalization without reference verification.
 - **No Fragile Pseudo-Normalization**: When inputs cannot be normalized locally, the application explicitly assigns status `manual review required` rather than guessing transcript boundaries.
 
 ---
@@ -126,7 +126,7 @@ The orchestrator (`src/providers/orchestrator.ts`) fires requests concurrently u
 ```typescript
 const [clinvarRes, uniprotRes, pubmedRes] = await Promise.allSettled([
   fetchClinVar(rsId, timeoutMs),
-  fetchUniProt(accession, timeoutMs),
+  fetchUniProt(accession, gene, timeoutMs),
   fetchPubMed(gene, variant, timeoutMs),
 ])
 ```
@@ -142,12 +142,14 @@ Traditional aggregators often collapse multiple submitter assertions into a sing
 ### Implementation
 
 1. **Attribution Preservation**: Every record in `sourceRecords` tracks its originating database, API endpoint, retrieval timestamp (`retrievedAt`), and direct web URL.
-2. **Assertion Visibility**: ClinVar submissions retain submitter review status (e.g. `criteria provided, single submitter` vs `reviewed by expert panel`).
+2. **Assertion Visibility**: ClinVar submissions retain submitter review status (e.g. `criteria provided, single submitter` vs `reviewed by expert panel`), and condition context is preserved (e.g., `for Breast cancer`).
 3. **Biochemical Property Comparison**: Amino acid substitution shifts are calculated on the Kyte-Doolittle hydropathy scale with explicit charge and polarity deltas (`src/modules/variant/aminoAcids.ts`).
 
 ---
 
-## Reliability & Verification
+## 5. Evidence Coverage & Scoring Model
+
+The `buildDossier` engine computes an Evidence Coverage Score (0–100) across 5 weighted components:
 
 ### Automated Test Suite
 

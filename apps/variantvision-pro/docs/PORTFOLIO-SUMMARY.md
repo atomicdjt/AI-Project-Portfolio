@@ -20,7 +20,7 @@ VariantVision Pro is an evidence-first bioinformatics workbench designed to aggr
 
 The application features a fault-tolerant provider orchestration layer that concurrently fetches live evidence from NCBI ClinVar, UniProt, and PubMed via REST APIs. Using typed response envelopes (`ProviderResult<T>`) and per-provider timeouts, partial network failures (such as a PubMed timeout) do not break dossier generation or degrade other data streams.
 
-The interface includes a real-time provider health status bar, biochemical amino acid shift analysis (hydropathy, charge, polarity), a 5-dimension evidence quality score, and self-contained Markdown and JSON dossier export. VariantVision Pro is fully covered by 18 Vitest automated tests.
+The interface includes a real-time provider health status bar, biochemical amino acid shift analysis (hydropathy, charge, polarity), a 5-dimension evidence coverage score, and self-contained Markdown and JSON dossier export. VariantVision Pro is fully covered by 18 Vitest automated tests.
 
 ---
 

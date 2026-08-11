@@ -35,7 +35,7 @@ export async function fetchAllProviders(params: OrchestratorParams): Promise<Orc
       )
 
   const uniprotPromise = params.uniprotAccession
-    ? fetchUniProt(params.uniprotAccession, timeoutMs)
+    ? fetchUniProt(params.uniprotAccession, params.gene, timeoutMs)
     : Promise.resolve(
         providerError('uniprot', 'unsupported_variant', 'No UniProt accession provided', {
           variantIdUsed: 'N/A',

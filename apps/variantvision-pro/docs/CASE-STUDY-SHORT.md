@@ -8,7 +8,7 @@
 
 **VariantVision Pro** is a client-side React 19 / TypeScript 6 bioinformatics evidence workbench for research triage and variant review. It aggregates live scientific data from NCBI ClinVar, UniProt, PubMed, and gnomAD datasets into a unified, explainable interface.
 
-The application normalizes genomic coordinates, calculates amino acid biochemical property shifts, scores evidence quality across 5 dimensions, and displays live provider health without making diagnostic claims.
+The application normalizes genomic coordinates, calculates amino acid biochemical property shifts, scores evidence coverage across 5 dimensions, and displays live provider health without making diagnostic claims.
 
 ---
 

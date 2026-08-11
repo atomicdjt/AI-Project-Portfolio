@@ -7,10 +7,9 @@
 
 import type { ProviderResult, PubMedArticle, PubMedResult } from './types'
 import { providerError, providerNoResult, providerSuccess } from './types'
+import { fetchNcbi } from './ncbi'
 
 const EUTILS_BASE = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils'
-const TOOL = 'variantvision-pro'
-const EMAIL = 'variantvision@example.com'
 const DEFAULT_TIMEOUT_MS = 10_000
 
 export async function fetchPubMed(
@@ -34,10 +33,10 @@ export async function fetchPubMed(
   const timer = window.setTimeout(() => controller.abort(), timeoutMs)
 
   try {
-    const term = encodeURIComponent(`${searchQuery}[Title/Abstract] OR ${cleanGene}[Gene]`)
-    const searchUrl = `${EUTILS_BASE}/esearch.fcgi?db=pubmed&term=${term}&retmax=5&sort=pub_date&retmode=json&tool=${TOOL}&email=${EMAIL}`
+    let exactTerm = encodeURIComponent(`"${cleanGene}"[Title/Abstract] AND "${cleanVariant}"[Title/Abstract]`)
+    let searchUrl = `${EUTILS_BASE}/esearch.fcgi?db=pubmed&term=${exactTerm}&retmax=5&sort=pub_date&retmode=json`
 
-    const searchRes = await fetch(searchUrl, { signal: controller.signal })
+    let searchRes = await fetchNcbi(searchUrl, { signal: controller.signal })
     if (!searchRes.ok) {
       return providerError('pubmed', 'error', `PubMed esearch returned HTTP ${searchRes.status}`, {
         variantIdUsed: searchQuery,
@@ -45,9 +44,24 @@ export async function fetchPubMed(
       })
     }
 
-    const searchData = await searchRes.json()
-    const idList: string[] = searchData?.esearchresult?.idlist ?? []
-    const totalCount = Number(searchData?.esearchresult?.count ?? idList.length)
+    let searchData = await searchRes.json()
+    let idList: string[] = searchData?.esearchresult?.idlist ?? []
+    let totalCount = Number(searchData?.esearchresult?.count ?? idList.length)
+
+    if (idList.length === 0) {
+      const term = encodeURIComponent(`${searchQuery}[Title/Abstract] OR ${cleanGene}[Gene]`)
+      searchUrl = `${EUTILS_BASE}/esearch.fcgi?db=pubmed&term=${term}&retmax=5&sort=pub_date&retmode=json`
+      searchRes = await fetchNcbi(searchUrl, { signal: controller.signal })
+      if (!searchRes.ok) {
+        return providerError('pubmed', 'error', `PubMed esearch returned HTTP ${searchRes.status}`, {
+          variantIdUsed: searchQuery,
+          durationMs: Math.round(performance.now() - start),
+        })
+      }
+      searchData = await searchRes.json()
+      idList = searchData?.esearchresult?.idlist ?? []
+      totalCount = Number(searchData?.esearchresult?.count ?? idList.length)
+    }
 
     if (idList.length === 0) {
       return providerNoResult('pubmed', {
@@ -57,8 +71,8 @@ export async function fetchPubMed(
     }
 
     const ids = idList.join(',')
-    const summaryUrl = `${EUTILS_BASE}/esummary.fcgi?db=pubmed&id=${ids}&retmode=json&tool=${TOOL}&email=${EMAIL}`
-    const summaryRes = await fetch(summaryUrl, { signal: controller.signal })
+    const summaryUrl = `${EUTILS_BASE}/esummary.fcgi?db=pubmed&id=${ids}&retmode=json`
+    const summaryRes = await fetchNcbi(summaryUrl, { signal: controller.signal })
 
     if (!summaryRes.ok) {
       return providerError('pubmed', 'error', `PubMed esummary returned HTTP ${summaryRes.status}`, {
@@ -77,7 +91,7 @@ export async function fetchPubMed(
 
       const pubDate = item.pubdate ?? ''
       const yearMatch = String(pubDate).match(/\b(19|20)\d{2}\b/)
-      const year = yearMatch ? Number(yearMatch[0]) : new Date().getFullYear()
+      const year = yearMatch ? Number(yearMatch[0]) : null
 
       const authors = Array.isArray(item.authors)
         ? item.authors.map((a: { name?: string }) => a.name ?? '').filter(Boolean)

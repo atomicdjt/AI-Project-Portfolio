@@ -92,9 +92,9 @@ If all local normalization paths fail, the system assigns status `manual review 
 
 ---
 
-## 5. Evidence Quality & Scoring Model
+## 5. Evidence Coverage & Scoring Model
 
-The `buildDossier` engine computes an Evidence Quality Score (0–100) across 5 weighted components:
+The `buildDossier` engine computes an Evidence Coverage Score (0–100) across 5 weighted components:
 
 1. **Normalization (20%)**: Evaluates whether the variant maps to a coordinate-level identifier.
 2. **Population Frequency (20%)**: Evaluates availability of population allele frequency data.

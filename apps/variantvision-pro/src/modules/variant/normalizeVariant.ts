@@ -8,8 +8,8 @@ const HBB_HBS_BY_BUILD: Record<GenomeBuild, string> = {
 
 export function datasetForBuild(build: GenomeBuild) {
   return build === 'GRCh37'
-    ? { id: 'gnomad_r2_1', label: 'gnomAD v2.1.1', browserLabel: '2-1' }
-    : { id: 'gnomad_r4', label: 'gnomAD v4', browserLabel: '4' }
+    ? { id: 'gnomad_r2_1', label: 'gnomAD v2.1.1', browserLabel: 'gnomad_r2_1' }
+    : { id: 'gnomad_r4', label: 'gnomAD v4', browserLabel: 'gnomad_r4' }
 }
 
 export function parseGnomadId(value: string) {
@@ -82,7 +82,7 @@ export function normalizeVariant(input: VariantInput): NormalizedVariant {
       dataset: dataset.label,
       datasetId: dataset.id,
       vcfId: suppliedId.id,
-      spdi: `chr${suppliedId.chrom}:${suppliedId.pos}:${suppliedId.ref}:${suppliedId.alt}`,
+      vcfLikeCoordinate: `chr${suppliedId.chrom}:${suppliedId.pos}:${suppliedId.ref}:${suppliedId.alt}`,
       browserUrl: `https://gnomad.broadinstitute.org/variant/${suppliedId.id}?dataset=${dataset.browserLabel}`,
       parsedFrom: 'gnomAD ID',
       note: 'Parsed locally from a gnomAD-style ID (1-based chrom-pos-ref-alt). Human review still needs reference allele and transcript confirmation.',
@@ -99,7 +99,7 @@ export function normalizeVariant(input: VariantInput): NormalizedVariant {
       dataset: dataset.label,
       datasetId: dataset.id,
       vcfId: id,
-      spdi: `chr${chromosome}:${genomic.pos}:${genomic.ref}:${genomic.alt}`,
+      vcfLikeCoordinate: `chr${chromosome}:${genomic.pos}:${genomic.ref}:${genomic.alt}`,
       browserUrl: `https://gnomad.broadinstitute.org/variant/${id}?dataset=${dataset.browserLabel}`,
       parsedFrom: 'genomic HGVS',
       note: 'Derived a VCF-style ID from genomic HGVS syntax. Coordinate parsing only; not transcript-aware HGVS normalization.',
@@ -114,7 +114,7 @@ export function normalizeVariant(input: VariantInput): NormalizedVariant {
       dataset: dataset.label,
       datasetId: dataset.id,
       vcfId: null,
-      spdi: null,
+      vcfLikeCoordinate: null,
       browserUrl: `https://www.ncbi.nlm.nih.gov/snp/${rsId}`,
       parsedFrom: 'rsID lookup',
       note: `Recognized ${rsId}. Genomic coordinates require a dbSNP or ClinVar API lookup to resolve build-specific position.`,
@@ -131,7 +131,7 @@ export function normalizeVariant(input: VariantInput): NormalizedVariant {
       dataset: dataset.label,
       datasetId: dataset.id,
       vcfId: id,
-      spdi: parsed ? `chr${parsed.chrom}:${parsed.pos}:${parsed.ref}:${parsed.alt}` : null,
+      vcfLikeCoordinate: parsed ? `chr${parsed.chrom}:${parsed.pos}:${parsed.ref}:${parsed.alt}` : null,
       browserUrl: `https://gnomad.broadinstitute.org/variant/${id}?dataset=${dataset.browserLabel}`,
       parsedFrom: 'known teaching example',
       note: 'Recognized the HBB HbS teaching example and selected the matching demo coordinate for the chosen build.',
@@ -143,7 +143,7 @@ export function normalizeVariant(input: VariantInput): NormalizedVariant {
     dataset: dataset.label,
     datasetId: dataset.id,
     vcfId: null,
-    spdi: null,
+    vcfLikeCoordinate: null,
     browserUrl: null,
     parsedFrom: 'manual review required',
     note: 'No safe local normalization path was available. Provide a gnomAD-style ID, genomic HGVS coordinate, or rsID for a stronger dossier.',

@@ -73,7 +73,7 @@ export interface LiteratureRecord {
   id: string
   title: string
   journal: string
-  year: number
+  year: number | null
   role: 'mechanism' | 'clinical context' | 'methodology' | 'population context'
   url: string
 }
@@ -101,7 +101,7 @@ export interface NormalizedVariant {
   dataset: string
   datasetId: string
   vcfId: string | null
-  spdi: string | null
+  vcfLikeCoordinate: string | null
   browserUrl: string | null
   parsedFrom: 'gnomAD ID' | 'genomic HGVS' | 'rsID lookup' | 'known teaching example' | 'manual review required'
   note: string
@@ -136,7 +136,7 @@ export interface EvidenceDossier {
     estimatedFrequency: number
     highestGroup: string
   }
-  evidenceScore: number
+  coverageScore: number
   confidenceBand: 'Strong research dossier' | 'Usable with review' | 'Incomplete dossier'
   metrics: EvidenceMetric[]
   sourceRecords: SourceRecord[]
