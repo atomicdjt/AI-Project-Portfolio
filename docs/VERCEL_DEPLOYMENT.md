@@ -40,7 +40,7 @@ The initial inspected deployments were derived from `AI-Project-Portfolio/main` 
 | Files outside Root Directory | Included in build step |
 | Skip unaffected deployments | Enabled |
 
-The repository includes a `vercel.json` file in each deployed Vite workspace to support SPA routing. Git-connected projects also declare a conservative `ignoreCommand` that reuses the repository's affected-project selector; failures build rather than skip.
+The repository includes a `vercel.json` file in each deployed Vite workspace to support SPA routing. Git-connected projects also declare a conservative preview-only `ignoreCommand` that reuses the repository's affected-project selector. Production deployments and any selector failures build rather than skip.
 
 ## Dependency Change Fanout
 

@@ -37,6 +37,21 @@ const decide = (projectId, changedFiles) => decideIgnoredBuild({
   changedFiles,
 })
 
+test('production deployments always build', () => {
+  const decision = decideIgnoredBuild({
+    projectId: 'scamshield-ai',
+    environment: 'production',
+    previousSha: 'base',
+    currentSha: 'head',
+    manifest,
+    changedFiles: ['docs/verification.md'],
+  })
+
+  assert.equal(decision.shouldBuild, true)
+  assert.equal(decision.ignored, false)
+  assert.equal(decision.reason, 'Production deployments always build.')
+})
+
 test('an app-only change builds that app and skips unrelated apps', () => {
   assert.equal(decide('scamshield-ai', ['apps/scamshield-ai/src/App.tsx']).shouldBuild, true)
   assert.equal(decide('portfolio-hub', ['apps/scamshield-ai/src/App.tsx']).ignored, true)

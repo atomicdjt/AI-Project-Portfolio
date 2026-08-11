@@ -28,6 +28,7 @@ const parseArguments = (argv) => {
 
 export const decideIgnoredBuild = ({
   projectId,
+  environment = 'preview',
   previousSha,
   currentSha = 'HEAD',
   manifest,
@@ -36,11 +37,27 @@ export const decideIgnoredBuild = ({
   validateManifest(manifest)
   selectRequestedProjects({ requestedProjectIds: [projectId], manifest })
 
+  if (environment === 'production') {
+    return {
+      projectId,
+      environment,
+      previousSha,
+      currentSha,
+      shouldBuild: true,
+      ignored: false,
+      reason: 'Production deployments always build.',
+      changedFiles: changedFiles ?? [],
+      affectedProjects: [projectId],
+      manualProjects: [],
+    }
+  }
+
   const result = selectAffectedProjects({ changedFiles, manifest })
   const shouldBuild = result.deploy.includes(projectId)
 
   return {
     projectId,
+    environment,
     previousSha,
     currentSha,
     shouldBuild,
@@ -76,6 +93,7 @@ const runCli = () => {
   const changedFiles = readChangedFiles({ previousSha, currentSha })
   const decision = decideIgnoredBuild({
     projectId: options.project,
+    environment: process.env.VERCEL_ENV || 'preview',
     previousSha,
     currentSha,
     manifest,
