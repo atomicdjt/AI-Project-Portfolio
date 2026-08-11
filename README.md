@@ -19,7 +19,7 @@ A source-backed portfolio of applications, workflow systems, and product prototy
 - **[Project Index](docs/PROJECT_INDEX.md):** source authority, current Vercel routes, and best evidence for each project.
 - **[Deployment Map](docs/deployment-and-previews.md):** authoritative repository-to-Vercel mapping.
 - **[Usability Pilot Kit](docs/portfolio-usability-pilot.md):** ready-to-run, claim-safe research materials for the Portfolio Hub review path.
-- **[Current Public Audit — July 14, 2026](docs/public-portfolio-audit-2026-07-14.md):** current status and remaining limitations.
+- **[July 2026 Public Audit Snapshot](docs/public-portfolio-audit-2026-07-14.md):** historical point-in-time evidence; use the project catalog and deployment map for current authority.
 
 ## Recommended Employer Review Path
 
@@ -134,7 +134,7 @@ The former GitHub Pages workflow is a build-only **Portfolio Vercel Readiness** 
 - [Vercel Deployment Record](docs/VERCEL_DEPLOYMENT.md)
 - [Deployment and Source-Authority Map](docs/deployment-and-previews.md)
 - [Verification Guide](docs/verification.md)
-- [Current Public Audit](docs/public-portfolio-audit-2026-07-14.md)
+- [July 2026 Public Audit Snapshot](docs/public-portfolio-audit-2026-07-14.md)
 - [Historical Public Audit — July 4, 2026](docs/public-portfolio-audit-2026-07-04.md)
 
 ## Repository and License Boundary

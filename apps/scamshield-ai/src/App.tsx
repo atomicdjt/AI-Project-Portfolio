@@ -26,7 +26,8 @@ export default function App() {
         </Suspense>
       </main>
       <footer className="app-footer">
-        <p><strong>ScamShield AI</strong> · Defensive consumer-protection prototype</p>
+        <p><strong>ScamShield AI</strong> · Explainable scam analysis by David Turner</p>
+        <p><a href="https://github.com/atomicdjt/AI-Project-Portfolio/tree/main/apps/scamshield-ai">Source: github.com/atomicdjt</a></p>
         <p>Never send passwords, authentication codes, private keys, or full financial account numbers.</p>
       </footer>
     </div>

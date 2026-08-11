@@ -1,6 +1,6 @@
 # Vercel Deployment and Source-Authority Map
 
-Last updated: July 14, 2026.
+Last verified: August 11, 2026. Canonical authority is normalized in `config/vercel-projects.json`.
 
 All new portfolio deployments, redeployments, preview deployments, and production aliases use Vercel. Legacy non-Vercel hosts are historical evidence only and are not canonical routes. GitHub remains the editable source of truth; Vercel deployments are derivative outputs.
 
@@ -9,7 +9,7 @@ All new portfolio deployments, redeployments, preview deployments, and productio
 | Product or portfolio | Authoritative repository | Branch | Current deployment state |
 | --- | --- | --- | --- |
 | Employer portfolio and monorepo apps | `atomicdjt/AI-Project-Portfolio` | `main` | Portfolio Hub and seven employer applications live on Vercel |
-| WeaveStudio | `atomicdjt/weavestudio` | `master` | Live on Vercel |
+| WeaveStudio | `atomicdjt/weavestudio` | `main` (`master` compatibility only) | Live on Vercel |
 | BuildWorld AI standalone product | `atomicdjt/buildworld-ai` | `main` | Live on Vercel |
 | QuoteForge Local | private `atomicdjt/quoteforge-local` | `main` | Live on Vercel |
 | GitHub profile | `atomicdjt/atomicdjt` | `main` | GitHub profile surface; product links route only to Vercel or source |
@@ -46,12 +46,12 @@ The public Vercel deployment is the deterministic browser workflow. The reposito
 
 | Vercel project | Public URL | Source authority | Purpose |
 | --- | --- | --- | --- |
-| `weavestudio` | `https://weavestudio-nine.vercel.app/` | `atomicdjt/weavestudio/master` | Primary WeaveStudio production deployment. |
-| `weavestudio-demo` | `https://weavestudio-demo.vercel.app/` | `atomicdjt/weavestudio/hardening/qa-remediation-multiprovider-ai` | Non-canonical branch preview; retained only as a legacy review surface. |
+| `weavestudio` | `https://weavestudio-nine.vercel.app/` | `atomicdjt/weavestudio/main` | Canonical WeaveStudio production deployment. |
+| `weavestudio-demo` | `https://weavestudio-demo.vercel.app/` | `atomicdjt/weavestudio/main` | Supporting noncanonical buyer-review and transfer surface; public portfolio links use the canonical deployment. |
 | `buildworld-ai-v01-improvements` | `https://buildworld-ai-v01-improvements.vercel.app/` | `atomicdjt/buildworld-ai/main` | Authoritative BuildWorld public demo. |
 | `quoteforge-local` | `https://quoteforge-local.vercel.app/` | private `atomicdjt/quoteforge-local/main` | QuoteForge Local public product demo. |
 
-A project named `source` exists in the Vercel team but is not assigned as a canonical portfolio deployment.
+A project named `source` exists in the Vercel team as a redundant QuoteForge mirror and is not assigned as a canonical portfolio deployment. Its Git refs and deployment SHAs match `quoteforge-local`; no environment-variable names, custom domains, or public references were found. Owner-dashboard confirmation of project-level hooks and integrations remains required before deletion.
 
 ## Local-Only Workspaces
 
@@ -76,6 +76,8 @@ A project is labeled `Live` when:
 Interactive workflow testing and future uptime remain point-in-time concerns; a successful deployment does not imply independent security certification, compliance, external adoption, or production-scale suitability.
 
 ## Preview and Rollback Policy
+
+Each Git-connected monorepo app declares an `ignoreCommand` in its workspace `vercel.json`. The command reuses `scripts/detect-affected-apps.mjs`, compares the current commit with `VERCEL_GIT_PREVIOUS_SHA`, builds on project, shared, or global-input changes, and skips unrelated or documentation-only previews. Any missing SHA, invalid manifest, or Git diff failure falls back conservatively to building.
 
 1. Create a focused Git branch and pull request.
 2. Run repository validation.

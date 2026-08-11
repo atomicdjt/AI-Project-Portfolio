@@ -1,5 +1,7 @@
 # FocusForge
 
+**A focus civilization by David Turner · [atomicdjt](https://github.com/atomicdjt)**
+
 FocusForge is a mobile-first productivity web app that turns uninterrupted focus sessions into a growing idle civilization. It is fully client-side, saves locally, and builds as a static Vite application.
 
 ## Deployment Status

@@ -2,6 +2,13 @@
   "schemaVersion": 1,
   "catalogVersion": 1,
   "catalogPurpose": "Canonical project identity, deployment authority, public-review priority, and evidence boundary record. The projects array remains the deployment-selector input.",
+  "verifiedOn": "2026-08-11",
+  "monorepoAuthority": {
+    "repository": "atomicdjt/AI-Project-Portfolio",
+    "authoritativeBranch": "main",
+    "sourceRole": "editable source of truth",
+    "deploymentRole": "Vercel projects are derivative deployment outputs"
+  },
   "primaryEmployerReviewOrder": ["buildworld-ai", "processharbor", "weavestudio"],
   "supportingSpecialization": ["redactready-pro"],
   "commercialExecution": ["quoteforge-local"],
@@ -23,6 +30,9 @@
       "sharedPaths": [],
       "vercelProject": "ai-project-portfolio-portfolio-hub",
       "productionUrl": "https://ai-project-portfolio-portfolio-hub.vercel.app/",
+      "deploymentClassification": "canonical production",
+      "currentStatus": "active",
+      "publicReviewRole": "primary portfolio and recruiter entry point",
       "verificationCommand": "npm run build --workspace apps/portfolio-hub"
     },
     {
@@ -33,6 +43,9 @@
       "sharedPaths": [],
       "vercelProject": "ai-project-portfolio-redactready-pro-hri-os",
       "productionUrl": "https://ai-project-portfolio-redactready-pr.vercel.app/",
+      "deploymentClassification": "canonical production",
+      "currentStatus": "active",
+      "publicReviewRole": "supporting privacy and document-intelligence specialization",
       "verificationCommand": "npm run build --workspace apps/redactready-pro-hri-os"
     },
     {
@@ -43,6 +56,9 @@
       "sharedPaths": [],
       "vercelProject": "ai-project-portfolio-opspilot-ai-operations-toolkit",
       "productionUrl": "https://ai-project-portfolio-opspilot-ai-op.vercel.app/",
+      "deploymentClassification": "canonical production",
+      "currentStatus": "active",
+      "publicReviewRole": "flagship technical-operations workflow",
       "verificationCommand": "npm run build --workspace apps/opspilot-ai-operations-toolkit"
     },
     {
@@ -53,6 +69,9 @@
       "sharedPaths": [],
       "vercelProject": "ai-project-portfolio-scamshield-ai",
       "productionUrl": "https://ai-project-portfolio-scamshield-ai.vercel.app/",
+      "deploymentClassification": "canonical production",
+      "currentStatus": "active",
+      "publicReviewRole": "consumer-safety and explainability specialization",
       "verificationCommand": "npm run build --workspace apps/scamshield-ai"
     },
     {
@@ -63,6 +82,9 @@
       "sharedPaths": [],
       "vercelProject": "ai-project-portfolio-redactready-local",
       "productionUrl": "https://ai-project-portfolio-redactready-lo.vercel.app/",
+      "deploymentClassification": "canonical production",
+      "currentStatus": "active",
+      "publicReviewRole": "local-first redaction product evidence",
       "verificationCommand": "npm run build --workspace apps/redactready-local"
     },
     {
@@ -73,6 +95,9 @@
       "sharedPaths": [],
       "vercelProject": "ai-project-portfolio-layerforge-studio",
       "productionUrl": "https://ai-project-portfolio-layerforge-stu.vercel.app/",
+      "deploymentClassification": "canonical production",
+      "currentStatus": "active",
+      "publicReviewRole": "frontend and Canvas interaction evidence",
       "verificationCommand": "npm run build --workspace apps/layerforge-studio"
     },
     {
@@ -83,6 +108,9 @@
       "sharedPaths": [],
       "vercelProject": "ai-project-portfolio-focusforge",
       "productionUrl": "https://ai-project-portfolio-focusforge.vercel.app/",
+      "deploymentClassification": "canonical production",
+      "currentStatus": "active",
+      "publicReviewRole": "supporting stateful-product evidence",
       "verificationCommand": "npm run build --workspace apps/focusforge"
     },
     {
@@ -93,6 +121,9 @@
       "sharedPaths": [],
       "vercelProject": "ai-project-portfolio-variantvision-pro",
       "productionUrl": "https://ai-project-portfolio-variantvision.vercel.app/",
+      "deploymentClassification": "canonical production",
+      "currentStatus": "active",
+      "publicReviewRole": "educational bioinformatics specialization",
       "verificationCommand": "npm run build --workspace apps/variantvision-pro"
     },
     {
@@ -103,6 +134,9 @@
       "sharedPaths": [],
       "vercelProject": "ai-project-portfolio-garden-grid",
       "productionUrl": "https://ai-project-portfolio-garden-grid.vercel.app/",
+      "deploymentClassification": "supporting manual deployment",
+      "currentStatus": "active supporting demo",
+      "publicReviewRole": "supplemental recovered-source artifact",
       "verificationCommand": "npm --prefix apps/garden-grid-planner run build"
     },
     {
@@ -113,6 +147,9 @@
       "sharedPaths": [],
       "vercelProject": "ai-project-portfolio-amino-workbench",
       "productionUrl": "https://ai-project-portfolio-amino-workbenc.vercel.app/",
+      "deploymentClassification": "legacy preserved deployment",
+      "currentStatus": "historical static artifact",
+      "publicReviewRole": "supplemental research-history evidence",
       "verificationCommand": "test -f apps/amino-acid-workbench-legacy/index.html"
     },
     {
@@ -123,6 +160,9 @@
       "sharedPaths": [],
       "vercelProject": "ai-project-portfolio-hearthlink",
       "productionUrl": "https://ai-project-portfolio-hearthlink.vercel.app/",
+      "deploymentClassification": "legacy preserved deployment",
+      "currentStatus": "historical offline demo artifact",
+      "publicReviewRole": "supplemental product-history evidence",
       "verificationCommand": "test -f apps/hearthlink-legacy/index.html"
     }
   ],
@@ -162,7 +202,7 @@
       "status": "active",
       "repository": "https://github.com/atomicdjt/weavestudio",
       "repositoryVisibility": "public",
-      "authoritativeBranch": "master pending non-force migration to main",
+      "authoritativeBranch": "main",
       "sourcePath": "/",
       "canonicalProductionUrl": "https://weavestudio-nine.vercel.app/",
       "vercelProject": "weavestudio",
@@ -171,7 +211,7 @@
       "nodeVersion": "24.x",
       "currentRelease": "v1.0.0",
       "caseStudy": "https://weavestudio-nine.vercel.app/acquire",
-      "architecture": "https://github.com/atomicdjt/weavestudio/blob/master/docs/buyer/ARCHITECTURE.md",
+      "architecture": "https://github.com/atomicdjt/weavestudio/blob/main/docs/buyer/ARCHITECTURE.md",
       "roleAlignment": ["AI Workflow Specialist", "Frontend/Product Implementation", "Product Operations"],
       "responsibleUseBoundary": "Optional AI assistance is consent-gated and requires user review before application.",
       "legacy": false,
@@ -236,14 +276,14 @@
     {
       "vercelProject": "source",
       "status": "deletion candidate",
-      "reason": "Same private QuoteForge repository, branch, framework, and source commit as quoteforge-local; external references and environment differences must be checked before removal.",
+      "reason": "Verified on 2026-08-11 as a redundant Git-connected project: it mirrors quoteforge-local repository refs and source SHAs, has no environment-variable names or assigned custom domains, and has no discovered public reference. Project-level hooks and integration settings still require owner-dashboard confirmation before deletion.",
       "replacement": "https://quoteforge-local.vercel.app/",
       "requiresExplicitDeletionApproval": true
     },
     {
       "vercelProject": "weavestudio-demo",
-      "status": "secondary public demo",
-      "reason": "Uses the WeaveStudio repository but a hardening branch; retained only as a clearly secondary review surface until equivalence and audience boundaries are documented.",
+      "status": "supporting noncanonical buyer-review demo",
+      "reason": "Uses the same WeaveStudio repository, main-branch source, and current deployment SHAs as the canonical project. It remains referenced by buyer-transfer documentation, so it is retained as a clearly secondary review and transfer surface.",
       "replacement": "https://weavestudio-nine.vercel.app/",
       "requiresExplicitDeletionApproval": true
     },
