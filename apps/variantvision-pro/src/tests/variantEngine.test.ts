@@ -3,6 +3,8 @@ import { defaultCase } from '../data/cases'
 import { buildDossier, compareAminoAcids } from '../modules/evidence/buildDossier'
 import { datasetForBuild, normalizeVariant, parseGnomadId, parseHgvsGenomic, parseProteinChange } from '../modules/variant/normalizeVariant'
 import { generateMarkdownReport } from '../modules/reports/generateReport'
+import { providerSuccess } from '../providers/types'
+import type { OrchestratorResult } from '../providers/types'
 
 describe('VariantVision Pro evidence engine', () => {
   it('parses gnomAD IDs and genomic HGVS coordinates', () => {
@@ -26,6 +28,12 @@ describe('VariantVision Pro evidence engine', () => {
     expect(parseProteinChange('p.Glu6Val')).toMatchObject({ original: 'E', position: 6, replacement: 'V' })
   })
 
+  it('rejects invalid or unsupported amino acids safely', () => {
+    // X is not a standard amino acid code in our dictionary
+    expect(parseProteinChange('X100Y')).toEqual({ original: null, position: null, replacement: null })
+    expect(parseProteinChange('B12Z')).toEqual({ original: null, position: null, replacement: null })
+  })
+
   it('normalizes the HBB HbS teaching example without requiring a backend', () => {
     const normalized = normalizeVariant({ ...defaultCase, gnomadId: '', hgvs: '' })
     expect(normalized.vcfId).toBe('11-5227002-T-A')
@@ -37,9 +45,85 @@ describe('VariantVision Pro evidence engine', () => {
     expect(aa.chargeShift).toBe('negative -> neutral')
     expect(aa.hydropathyDelta).toBeGreaterThan(7)
 
+    const aaInvalid = compareAminoAcids(null, null)
+    expect(aaInvalid.interpretation).toContain('Unavailable / Manual Review Required')
+    expect(aaInvalid.original?.code).toBe('?')
+
     const dossier = buildDossier(defaultCase)
-    expect(dossier.evidenceScore).toBeGreaterThanOrEqual(70)
+    expect(dossier.coverageScore).toBeGreaterThanOrEqual(70)
     expect(dossier.responsibleBoundary).toContain('Not diagnosis')
+  })
+
+  it('clears curated fixture data when user input deviates from identity', () => {
+    const customInput = { ...defaultCase, variant: 'p.Val600Glu' }
+    const dossier = buildDossier(defaultCase, customInput)
+    // Because it differs from defaultCase, it should have fewer source records and low coverage
+    expect(dossier.coverageScore).toBeLessThan(70)
+    expect(dossier.sourceRecords.length).toBe(0)
+    expect(dossier.populationSummary.estimatedFrequency).toBe(0)
+  })
+
+  it('drops stale live provider evidence when input identity changes', () => {
+    const liveProviders: OrchestratorResult = {
+      clinvar: providerSuccess(
+        'clinvar',
+        {
+          variationId: '12345',
+          title: 'HBB curated test record',
+          classifications: [],
+          geneSymbol: defaultCase.gene,
+          url: 'https://www.ncbi.nlm.nih.gov/clinvar/variation/12345/',
+        },
+        {
+          variantIdUsed: defaultCase.rsid,
+          sourceUrl: 'https://www.ncbi.nlm.nih.gov/clinvar/variation/12345/',
+          durationMs: 10,
+        },
+      ),
+      uniprot: providerSuccess(
+        'uniprot',
+        {
+          accession: defaultCase.uniprot,
+          proteinName: defaultCase.protein,
+          geneName: defaultCase.gene,
+          organism: 'Homo sapiens',
+          function: 'Curated test protein function.',
+          subcellularLocation: null,
+          reviewStatus: 'reviewed',
+          url: `https://www.uniprot.org/uniprotkb/${defaultCase.uniprot}/entry`,
+        },
+        {
+          variantIdUsed: defaultCase.uniprot,
+          sourceUrl: `https://www.uniprot.org/uniprotkb/${defaultCase.uniprot}/entry`,
+          durationMs: 10,
+        },
+      ),
+      pubmed: providerSuccess(
+        'pubmed',
+        {
+          query: `${defaultCase.gene} ${defaultCase.variant}`,
+          totalResults: 0,
+          articles: [],
+        },
+        {
+          variantIdUsed: `${defaultCase.gene} ${defaultCase.variant}`,
+          sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/',
+          durationMs: 10,
+        },
+      ),
+      health: [],
+      totalDurationMs: 100,
+    }
+
+    const customInput = { ...defaultCase, variant: 'p.Val600Glu' }
+    const dossier = buildDossier(defaultCase, customInput, liveProviders)
+
+    // Live providers for the default case should NOT be merged since variant changed.
+    expect(dossier.sourceRecords).not.toEqual(expect.arrayContaining([
+      expect.objectContaining({ isLive: true }),
+    ]))
+    // Literature should also be empty because the pubmed query no longer matches.
+    expect(dossier.literature.length).toBe(0)
   })
 
   it('generates a transparent markdown report', () => {

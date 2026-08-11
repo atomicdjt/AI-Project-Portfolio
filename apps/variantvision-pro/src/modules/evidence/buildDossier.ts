@@ -37,9 +37,19 @@ function summarizePopulation(rows: PopulationRecord[]) {
   }
 }
 
-export function compareAminoAcids(originalCode: string, replacementCode: string): AminoAcidComparison {
-  const original = aminoAcids[originalCode as keyof typeof aminoAcids] ?? aminoAcids.E
-  const replacement = aminoAcids[replacementCode as keyof typeof aminoAcids] ?? aminoAcids.V
+export function compareAminoAcids(originalCode: string | null, replacementCode: string | null): AminoAcidComparison {
+  if (!originalCode || !replacementCode || !(originalCode in aminoAcids) || !(replacementCode in aminoAcids)) {
+    return {
+      original: { code: '?', name: 'Unknown', polarity: 'nonpolar', charge: 'neutral', size: 'medium', hydropathy: 0 },
+      replacement: { code: '?', name: 'Unknown', polarity: 'nonpolar', charge: 'neutral', size: 'medium', hydropathy: 0 },
+      hydropathyDelta: 0,
+      chargeShift: 'Unknown',
+      polarityShift: 'Unknown',
+      interpretation: 'Unavailable / Manual Review Required: Protein change could not be parsed or contains unsupported residues.',
+    }
+  }
+  const original = aminoAcids[originalCode as keyof typeof aminoAcids]
+  const replacement = aminoAcids[replacementCode as keyof typeof aminoAcids]
   const hydropathyDelta = Number((replacement.hydropathy - original.hydropathy).toFixed(1))
   const chargeShift = original.charge === replacement.charge ? 'No net charge-class shift' : `${original.charge} -> ${replacement.charge}`
   const polarityShift = original.polarity === replacement.polarity ? 'Same polarity class' : `${original.polarity} -> ${replacement.polarity}`
@@ -99,18 +109,125 @@ function buildMetrics(records: SourceRecord[], normalizedReady: boolean, literat
   ]
 }
 
-export function buildDossier(variantCase: VariantCase, overrides?: Partial<VariantInput>): EvidenceDossier {
+import type { OrchestratorResult } from '../../providers/types'
+
+export function buildDossier(
+  variantCase: VariantCase,
+  overrides?: Partial<VariantInput>,
+  liveProviders?: OrchestratorResult,
+): EvidenceDossier {
   const input = { ...variantCase, ...overrides }
+  const isCustomInput =
+    input.gene.trim().toUpperCase() !== variantCase.gene.trim().toUpperCase() ||
+    input.variant.trim().toUpperCase() !== variantCase.variant.trim().toUpperCase() ||
+    input.hgvs.trim() !== variantCase.hgvs.trim() ||
+    input.gnomadId.trim() !== variantCase.gnomadId.trim() ||
+    input.build !== variantCase.build
+
   const normalized = normalizeVariant(input)
   const parsedProtein = parseProteinChange(input.variant)
-  const original = parsedProtein.original ?? variantCase.originalAa
-  const replacement = parsedProtein.replacement ?? variantCase.replacementAa
+  const original = isCustomInput ? parsedProtein.original : (parsedProtein.original ?? variantCase.originalAa)
+  const replacement = isCustomInput ? parsedProtein.replacement : (parsedProtein.replacement ?? variantCase.replacementAa)
   const aminoAcid = compareAminoAcids(original, replacement)
-  const populationSummary = summarizePopulation(variantCase.population)
-  const metrics = buildMetrics(variantCase.sourceRecords, Boolean(normalized.vcfId), variantCase.literature.length)
-  const evidenceScore = Math.round(metrics.reduce((sum, metric) => sum + metric.score, 0) / metrics.length)
-  const confidenceBand =
-    evidenceScore >= 82 ? 'Strong research dossier' : evidenceScore >= 60 ? 'Usable with review' : 'Incomplete dossier'
+  const populationSummary = summarizePopulation(isCustomInput ? [] : variantCase.population)
+
+  // Merge static sourceRecords with live provider records if available
+  let sourceRecords = isCustomInput ? [] : [...variantCase.sourceRecords]
+
+  if (liveProviders) {
+    const { clinvar, uniprot } = liveProviders
+
+    const isClinVarMapped = !isCustomInput && clinvar.variantIdUsed === variantCase.rsid
+
+    if (isClinVarMapped && clinvar.status === 'success' && clinvar.data) {
+      const liveClinvar: SourceRecord = {
+        id: `live-clinvar-${clinvar.data.variationId}`,
+        kind: 'Curated database',
+        label: `ClinVar: ${clinvar.data.title}`,
+        source: `NCBI ClinVar API (Live ${clinvar.data.variationId})`,
+        status: clinvar.data.classifications.some((c) => c.reviewStars >= 2) ? 'ready' : 'partial',
+        weight: 'high',
+        detail:
+          clinvar.data.classifications
+            .map((c) => {
+              const conditions = c.conditions.length > 0 ? ` for ${c.conditions.join(', ')}` : ''
+              return `${c.clinicalSignificance} (${c.reviewStatus})${conditions}`
+            })
+            .join('; ') || 'Record retrieved; review details on NCBI.',
+        url: clinvar.data.url,
+        lastReviewed: 'Live API response',
+        retrievedAt: clinvar.retrievedAt,
+        isLive: true,
+        retrievalStatus: clinvar.status,
+      }
+      sourceRecords = sourceRecords.filter((r) => !r.id.includes('clinvar')).concat(liveClinvar)
+    } else if (isCustomInput && clinvar.status !== 'success') {
+      // Prevent custom input from appearing successful if live lookup failed/returned nothing.
+    }
+
+    const isUniProtMapped = !isCustomInput && uniprot.variantIdUsed === variantCase.uniprot
+
+    if (isUniProtMapped && uniprot.status === 'success' && uniprot.data) {
+      const hasMismatch = (uniprot.warnings && uniprot.warnings.length > 0) || uniprot.data.reviewStatus === 'unreviewed'
+      const status: EvidenceStatus = hasMismatch ? 'review' : 'ready'
+
+      const liveUniprot: SourceRecord = {
+        id: `live-uniprot-${uniprot.data.accession}`,
+        kind: 'Protein',
+        label: `UniProt ${uniprot.data.accession}: ${uniprot.data.proteinName}`,
+        source: `UniProt REST API (${uniprot.data.reviewStatus})`,
+        status,
+        weight: 'supporting',
+        detail: (uniprot.warnings?.join(' ') || '') + ' ' + (uniprot.data.function ?? `Subcellular: ${uniprot.data.subcellularLocation ?? 'N/A'}`),
+        url: uniprot.data.url,
+        lastReviewed: 'Live API response',
+        retrievedAt: uniprot.retrievedAt,
+        isLive: true,
+        retrievalStatus: uniprot.status,
+      }
+      sourceRecords = sourceRecords.filter((r) => !r.id.includes('uniprot')).concat(liveUniprot)
+    }
+  }
+
+  // Merge literature if live PubMed results arrived
+  let literature = isCustomInput ? [] : [...variantCase.literature]
+  
+  const currentQuery = `${input.gene.trim().toUpperCase()} ${input.variant.trim().toUpperCase()}`
+  const isPubMedMapped = liveProviders?.pubmed?.variantIdUsed === currentQuery
+
+  if (isPubMedMapped && liveProviders?.pubmed.status === 'success' && liveProviders.pubmed.data) {
+    const liveArticles = liveProviders.pubmed.data.articles.map((art) => ({
+      id: `pubmed-${art.pmid}`,
+      title: art.title,
+      journal: art.journal,
+      year: art.year,
+      role: 'clinical context' as const,
+      url: art.url,
+    }))
+    if (liveArticles.length > 0) {
+      literature = liveArticles
+    }
+    
+    if (liveProviders.pubmed.warnings && liveProviders.pubmed.warnings.length > 0) {
+      const pubmedWarningRecord: SourceRecord = {
+        id: 'pubmed-warning',
+        kind: 'Literature',
+        label: 'PubMed Search Fallback',
+        source: 'NCBI E-utilities',
+        status: 'review',
+        weight: 'context',
+        detail: liveProviders.pubmed.warnings.join(' '),
+        lastReviewed: 'Live API response',
+        isLive: true,
+      }
+      sourceRecords.push(pubmedWarningRecord)
+    }
+  }
+
+  const metrics = buildMetrics(sourceRecords, Boolean(normalized.vcfId), literature.length)
+  const coverageScore = Math.round(metrics.reduce((sum, metric) => sum + metric.score, 0) / metrics.length)
+  const coverageBand =
+    coverageScore >= 82 ? 'High source coverage' : coverageScore >= 60 ? 'Moderate source coverage' : 'Limited source coverage'
 
   return {
     caseId: variantCase.id,
@@ -120,11 +237,12 @@ export function buildDossier(variantCase: VariantCase, overrides?: Partial<Varia
     normalized,
     aminoAcid,
     populationSummary,
-    evidenceScore,
-    confidenceBand,
+    coverageScore,
+    coverageBand,
     metrics,
-    sourceRecords: variantCase.sourceRecords,
-    literature: variantCase.literature,
+    sourceRecords,
+    literature,
     responsibleBoundary: boundary,
+    liveProviderHealth: liveProviders?.health,
   }
 }

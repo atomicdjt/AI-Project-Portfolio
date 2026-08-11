@@ -27,6 +27,10 @@ import { buildDossier } from '../modules/evidence/buildDossier'
 import { generateMarkdownReport } from '../modules/reports/generateReport'
 import type { EvidenceStatus, SourceKind, VariantCase, VariantInput } from '../types/variant'
 
+import { ProviderStatusBar } from '../components/ProviderStatusBar'
+import { fetchAllProviders } from '../providers/orchestrator'
+import type { OrchestratorResult } from '../providers/types'
+
 type IconComponent = ComponentType<SVGProps<SVGSVGElement>>
 type TabId = 'overview' | 'sources' | 'report' | 'method'
 
@@ -65,6 +69,16 @@ function fieldInputFromCase(variantCase: VariantCase): VariantInput {
   }
 }
 
+function isIdentityMatch(input: VariantInput, variantCase: VariantCase): boolean {
+  return (
+    input.gene.trim().toUpperCase() === variantCase.gene.trim().toUpperCase() &&
+    input.variant.trim().toUpperCase() === variantCase.variant.trim().toUpperCase() &&
+    input.hgvs.trim() === variantCase.hgvs.trim() &&
+    input.gnomadId.trim() === variantCase.gnomadId.trim() &&
+    input.build === variantCase.build
+  )
+}
+
 export function App() {
   const [activeCaseId, setActiveCaseId] = useState(defaultCase.id)
   const [activeTab, setActiveTab] = useState<TabId>('overview')
@@ -72,11 +86,37 @@ export function App() {
   const [query, setQuery] = useState('')
   const [fields, setFields] = useState<VariantInput>(fieldInputFromCase(defaultCase))
   const [copied, setCopied] = useState(false)
+  const [liveProviders, setLiveProviders] = useState<OrchestratorResult | null>(null)
+  const [isFetchingLive, setIsFetchingLive] = useState(false)
+
+  function updateIdentityField<K extends keyof VariantInput>(key: K, value: VariantInput[K]) {
+    setLiveProviders(null)
+    setFields((current) => ({ ...current, [key]: value }))
+  }
 
   const activeCase = variantCases.find((variantCase) => variantCase.id === activeCaseId) ?? defaultCase
-  const dossier = useMemo(() => buildDossier(activeCase, fields), [activeCase, fields])
+
+  const dossier = useMemo(() => buildDossier(activeCase, fields, liveProviders ?? undefined), [activeCase, fields, liveProviders])
   const report = useMemo(() => generateMarkdownReport(activeCase, dossier), [activeCase, dossier])
   const jsonBundle = useMemo(() => JSON.stringify({ case: activeCase, dossier }, null, 2), [activeCase, dossier])
+
+  async function handleFetchLive() {
+    setIsFetchingLive(true)
+    try {
+      const match = isIdentityMatch(fields, activeCase)
+      const results = await fetchAllProviders({
+        gene: fields.gene || activeCase.gene,
+        variant: fields.variant || activeCase.variant,
+        rsId: match ? activeCase.rsid : '',
+        uniprotAccession: match ? activeCase.uniprot : '',
+      })
+      setLiveProviders(results)
+    } catch {
+      // Silently keep existing dossier state on unexpected error
+    } finally {
+      setIsFetchingLive(false)
+    }
+  }
 
   const filteredCases = useMemo(() => {
     const needle = query.trim().toLowerCase()
@@ -93,6 +133,7 @@ export function App() {
     setFields(fieldInputFromCase(variantCase))
     setActiveTab('overview')
     setCopied(false)
+    setLiveProviders(null)
   }
 
   async function copyReport() {
@@ -151,7 +192,10 @@ export function App() {
             <p>{activeCase.summary}</p>
           </div>
           <div className="topbar-actions">
-            <button type="button" onClick={() => setFields(fieldInputFromCase(activeCase))}>
+            <button type="button" onClick={() => {
+              setFields(fieldInputFromCase(activeCase))
+              setLiveProviders(null)
+            }}>
               <RotateCcw size={16} /> Reset case
             </button>
             <button className="primary-command" type="button" onClick={() => downloadText('variantvision-dossier.md', report)}>
@@ -160,26 +204,28 @@ export function App() {
           </div>
         </header>
 
+        <ProviderStatusBar liveProviders={liveProviders} isLoading={isFetchingLive} onRefresh={handleFetchLive} />
+
         <section className="input-deck" aria-label="Variant input controls">
           <label>
             Gene
-            <input value={fields.gene} onChange={(event) => setFields((current) => ({ ...current, gene: event.target.value }))} />
+            <input value={fields.gene} onChange={(event) => updateIdentityField('gene', event.target.value)} />
           </label>
           <label>
             Protein change
-            <input value={fields.variant} onChange={(event) => setFields((current) => ({ ...current, variant: event.target.value }))} />
+            <input value={fields.variant} onChange={(event) => updateIdentityField('variant', event.target.value)} />
           </label>
           <label>
             Genomic HGVS
-            <input value={fields.hgvs} onChange={(event) => setFields((current) => ({ ...current, hgvs: event.target.value }))} />
+            <input value={fields.hgvs} onChange={(event) => updateIdentityField('hgvs', event.target.value)} />
           </label>
           <label>
             gnomAD-style ID
-            <input value={fields.gnomadId} onChange={(event) => setFields((current) => ({ ...current, gnomadId: event.target.value }))} />
+            <input value={fields.gnomadId} onChange={(event) => updateIdentityField('gnomadId', event.target.value)} />
           </label>
           <label>
             Build
-            <select value={fields.build} onChange={(event) => setFields((current) => ({ ...current, build: event.target.value as VariantInput['build'] }))}>
+            <select value={fields.build} onChange={(event) => updateIdentityField('build', event.target.value as VariantInput['build'])}>
               <option>GRCh38</option>
               <option>GRCh37</option>
             </select>
@@ -187,7 +233,7 @@ export function App() {
         </section>
 
         <section className="metric-strip" aria-label="Evidence summary metrics">
-          <MetricCard icon={Gauge} label="Evidence score" value={`${dossier.evidenceScore}/100`} detail={dossier.confidenceBand} tone={dossier.evidenceScore >= 80 ? 'good' : 'warn'} />
+          <MetricCard icon={Gauge} label="Evidence coverage" value={`${dossier.coverageScore}/100`} detail={dossier.coverageBand} tone={dossier.coverageScore >= 80 ? 'good' : 'warn'} />
           <MetricCard icon={Dna} label="Normalized ID" value={dossier.normalized.vcfId ?? 'Review'} detail={dossier.normalized.parsedFrom} />
           <MetricCard icon={Activity} label="Fixture AF" value={formatFrequency(dossier.populationSummary.estimatedFrequency)} detail={dossier.populationSummary.highestGroup} />
           <MetricCard icon={Library} label="Source records" value={dossier.sourceRecords.length.toString()} detail={`${dossier.literature.length} literature leads`} />
@@ -216,7 +262,7 @@ export function App() {
           <div className="workspace-primary">
             {activeTab === 'overview' && (
               <div className="page-stack">
-                <Panel icon={Sparkles} title="Evidence Quality Model">
+                <Panel icon={Sparkles} title="Evidence Coverage Model">
                   <div className="score-list">
                     {dossier.metrics.map((metric) => (
                       <article className="score-row" key={metric.label}>
@@ -418,8 +464,8 @@ export function App() {
                   <dd>{dossier.normalized.vcfId ?? 'Needs review'}</dd>
                 </div>
                 <div>
-                  <dt>SPDI</dt>
-                  <dd>{dossier.normalized.spdi ?? 'Needs review'}</dd>
+                  <dt>VCF-like coordinate</dt>
+                  <dd>{dossier.normalized.vcfLikeCoordinate ?? 'Needs review'}</dd>
                 </div>
                 <div>
                   <dt>rsID</dt>

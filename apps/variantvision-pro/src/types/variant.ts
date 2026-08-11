@@ -38,7 +38,7 @@ export interface VariantInput {
 }
 
 export interface AminoAcidProfile {
-  code: AminoAcidCode
+  code: AminoAcidCode | '?'
   name: string
   polarity: 'nonpolar' | 'polar' | 'acidic' | 'basic'
   charge: 'negative' | 'neutral' | 'positive'
@@ -56,6 +56,9 @@ export interface SourceRecord {
   detail: string
   url?: string
   lastReviewed: string
+  retrievedAt?: string
+  isLive?: boolean
+  retrievalStatus?: 'success' | 'no_result' | 'error' | 'timeout' | 'unavailable' | 'unsupported_variant'
 }
 
 export interface PopulationRecord {
@@ -70,7 +73,7 @@ export interface LiteratureRecord {
   id: string
   title: string
   journal: string
-  year: number
+  year: number | null
   role: 'mechanism' | 'clinical context' | 'methodology' | 'population context'
   url: string
 }
@@ -98,9 +101,9 @@ export interface NormalizedVariant {
   dataset: string
   datasetId: string
   vcfId: string | null
-  spdi: string | null
+  vcfLikeCoordinate: string | null
   browserUrl: string | null
-  parsedFrom: 'gnomAD ID' | 'genomic HGVS' | 'known teaching example' | 'manual review required'
+  parsedFrom: 'gnomAD ID' | 'genomic HGVS' | 'rsID lookup' | 'known teaching example' | 'manual review required'
   note: string
 }
 
@@ -133,10 +136,17 @@ export interface EvidenceDossier {
     estimatedFrequency: number
     highestGroup: string
   }
-  evidenceScore: number
-  confidenceBand: 'Strong research dossier' | 'Usable with review' | 'Incomplete dossier'
+  coverageScore: number
+  coverageBand: 'High source coverage' | 'Moderate source coverage' | 'Limited source coverage'
   metrics: EvidenceMetric[]
   sourceRecords: SourceRecord[]
   literature: LiteratureRecord[]
   responsibleBoundary: string
+  liveProviderHealth?: Array<{
+    provider: string
+    status: string
+    durationMs: number
+    error: string | null
+    retrievedAt: string
+  }>
 }
