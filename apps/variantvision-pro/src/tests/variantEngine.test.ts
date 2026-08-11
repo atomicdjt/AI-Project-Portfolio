@@ -3,6 +3,7 @@ import { defaultCase } from '../data/cases'
 import { buildDossier, compareAminoAcids } from '../modules/evidence/buildDossier'
 import { datasetForBuild, normalizeVariant, parseGnomadId, parseHgvsGenomic, parseProteinChange } from '../modules/variant/normalizeVariant'
 import { generateMarkdownReport } from '../modules/reports/generateReport'
+import { providerSuccess } from '../providers/types'
 import type { OrchestratorResult } from '../providers/types'
 
 describe('VariantVision Pro evidence engine', () => {
@@ -63,13 +64,56 @@ describe('VariantVision Pro evidence engine', () => {
   })
 
   it('drops stale live provider evidence when input identity changes', () => {
-    const liveProviders = {
-      clinvar: { status: 'success', data: { variationId: defaultCase.rsid }, variantIdUsed: defaultCase.rsid },
-      uniprot: { status: 'success', data: { accession: defaultCase.uniprot }, variantIdUsed: defaultCase.uniprot },
-      pubmed: { status: 'success', data: { articles: [] }, variantIdUsed: `${defaultCase.gene} ${defaultCase.variant}` },
+    const liveProviders: OrchestratorResult = {
+      clinvar: providerSuccess(
+        'clinvar',
+        {
+          variationId: '12345',
+          title: 'HBB curated test record',
+          classifications: [],
+          geneSymbol: defaultCase.gene,
+          url: 'https://www.ncbi.nlm.nih.gov/clinvar/variation/12345/',
+        },
+        {
+          variantIdUsed: defaultCase.rsid,
+          sourceUrl: 'https://www.ncbi.nlm.nih.gov/clinvar/variation/12345/',
+          durationMs: 10,
+        },
+      ),
+      uniprot: providerSuccess(
+        'uniprot',
+        {
+          accession: defaultCase.uniprot,
+          proteinName: defaultCase.protein,
+          geneName: defaultCase.gene,
+          organism: 'Homo sapiens',
+          function: 'Curated test protein function.',
+          subcellularLocation: null,
+          reviewStatus: 'reviewed',
+          url: `https://www.uniprot.org/uniprotkb/${defaultCase.uniprot}/entry`,
+        },
+        {
+          variantIdUsed: defaultCase.uniprot,
+          sourceUrl: `https://www.uniprot.org/uniprotkb/${defaultCase.uniprot}/entry`,
+          durationMs: 10,
+        },
+      ),
+      pubmed: providerSuccess(
+        'pubmed',
+        {
+          query: `${defaultCase.gene} ${defaultCase.variant}`,
+          totalResults: 0,
+          articles: [],
+        },
+        {
+          variantIdUsed: `${defaultCase.gene} ${defaultCase.variant}`,
+          sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/',
+          durationMs: 10,
+        },
+      ),
       health: [],
       totalDurationMs: 100,
-    } as OrchestratorResult
+    }
 
     const customInput = { ...defaultCase, variant: 'p.Val600Glu' }
     const dossier = buildDossier(defaultCase, customInput, liveProviders)
