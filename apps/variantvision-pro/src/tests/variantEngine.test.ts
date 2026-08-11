@@ -61,6 +61,26 @@ describe('VariantVision Pro evidence engine', () => {
     expect(dossier.populationSummary.estimatedFrequency).toBe(0)
   })
 
+  it('drops stale live provider evidence when input identity changes', () => {
+    const liveProviders = {
+      clinvar: { status: 'success', data: { variationId: defaultCase.rsid }, variantIdUsed: defaultCase.rsid },
+      uniprot: { status: 'success', data: { accession: defaultCase.uniprot }, variantIdUsed: defaultCase.uniprot },
+      pubmed: { status: 'success', data: { articles: [] }, variantIdUsed: `${defaultCase.gene} ${defaultCase.variant}` },
+      health: [],
+      totalDurationMs: 100
+    } as OrchestratorResult
+
+    const customInput = { ...defaultCase, variant: 'p.Val600Glu' }
+    const dossier = buildDossier(defaultCase, customInput, liveProviders)
+    
+    // Live providers for the default case should NOT be merged since variant changed.
+    expect(dossier.sourceRecords).not.toEqual(expect.arrayContaining([
+      expect.objectContaining({ isLive: true })
+    ]))
+    // Literature should also be empty because the pubmed query no longer matches.
+    expect(dossier.literature.length).toBe(0)
+  })
+
   it('generates a transparent markdown report', () => {
     const dossier = buildDossier(defaultCase)
     const report = generateMarkdownReport(defaultCase, dossier)

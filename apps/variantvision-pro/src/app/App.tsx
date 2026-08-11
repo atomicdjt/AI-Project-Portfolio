@@ -89,6 +89,11 @@ export function App() {
   const [liveProviders, setLiveProviders] = useState<OrchestratorResult | null>(null)
   const [isFetchingLive, setIsFetchingLive] = useState(false)
 
+  function updateIdentityField<K extends keyof VariantInput>(key: K, value: VariantInput[K]) {
+    setLiveProviders(null)
+    setFields((current) => ({ ...current, [key]: value }))
+  }
+
   const activeCase = variantCases.find((variantCase) => variantCase.id === activeCaseId) ?? defaultCase
 
   const dossier = useMemo(() => buildDossier(activeCase, fields, liveProviders ?? undefined), [activeCase, fields, liveProviders])
@@ -187,7 +192,10 @@ export function App() {
             <p>{activeCase.summary}</p>
           </div>
           <div className="topbar-actions">
-            <button type="button" onClick={() => setFields(fieldInputFromCase(activeCase))}>
+            <button type="button" onClick={() => {
+              setFields(fieldInputFromCase(activeCase))
+              setLiveProviders(null)
+            }}>
               <RotateCcw size={16} /> Reset case
             </button>
             <button className="primary-command" type="button" onClick={() => downloadText('variantvision-dossier.md', report)}>
@@ -201,23 +209,23 @@ export function App() {
         <section className="input-deck" aria-label="Variant input controls">
           <label>
             Gene
-            <input value={fields.gene} onChange={(event) => setFields((current) => ({ ...current, gene: event.target.value }))} />
+            <input value={fields.gene} onChange={(event) => updateIdentityField('gene', event.target.value)} />
           </label>
           <label>
             Protein change
-            <input value={fields.variant} onChange={(event) => setFields((current) => ({ ...current, variant: event.target.value }))} />
+            <input value={fields.variant} onChange={(event) => updateIdentityField('variant', event.target.value)} />
           </label>
           <label>
             Genomic HGVS
-            <input value={fields.hgvs} onChange={(event) => setFields((current) => ({ ...current, hgvs: event.target.value }))} />
+            <input value={fields.hgvs} onChange={(event) => updateIdentityField('hgvs', event.target.value)} />
           </label>
           <label>
             gnomAD-style ID
-            <input value={fields.gnomadId} onChange={(event) => setFields((current) => ({ ...current, gnomadId: event.target.value }))} />
+            <input value={fields.gnomadId} onChange={(event) => updateIdentityField('gnomadId', event.target.value)} />
           </label>
           <label>
             Build
-            <select value={fields.build} onChange={(event) => setFields((current) => ({ ...current, build: event.target.value as VariantInput['build'] }))}>
+            <select value={fields.build} onChange={(event) => updateIdentityField('build', event.target.value as VariantInput['build'])}>
               <option>GRCh38</option>
               <option>GRCh37</option>
             </select>

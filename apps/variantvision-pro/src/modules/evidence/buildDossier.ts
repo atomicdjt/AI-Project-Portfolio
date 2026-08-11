@@ -137,7 +137,9 @@ export function buildDossier(
   if (liveProviders) {
     const { clinvar, uniprot } = liveProviders
 
-    if (clinvar.status === 'success' && clinvar.data) {
+    const isClinVarMapped = !isCustomInput && clinvar.variantIdUsed === variantCase.rsid
+
+    if (isClinVarMapped && clinvar.status === 'success' && clinvar.data) {
       const liveClinvar: SourceRecord = {
         id: `live-clinvar-${clinvar.data.variationId}`,
         kind: 'Curated database',
@@ -163,7 +165,9 @@ export function buildDossier(
       // Prevent custom input from appearing successful if live lookup failed/returned nothing.
     }
 
-    if (uniprot.status === 'success' && uniprot.data) {
+    const isUniProtMapped = !isCustomInput && uniprot.variantIdUsed === variantCase.uniprot
+
+    if (isUniProtMapped && uniprot.status === 'success' && uniprot.data) {
       const hasMismatch = (uniprot.warnings && uniprot.warnings.length > 0) || uniprot.data.reviewStatus === 'unreviewed'
       const status: EvidenceStatus = hasMismatch ? 'review' : 'ready'
 
@@ -187,7 +191,11 @@ export function buildDossier(
 
   // Merge literature if live PubMed results arrived
   let literature = isCustomInput ? [] : [...variantCase.literature]
-  if (liveProviders?.pubmed.status === 'success' && liveProviders.pubmed.data) {
+  
+  const currentQuery = `${input.gene.trim().toUpperCase()} ${input.variant.trim().toUpperCase()}`
+  const isPubMedMapped = liveProviders?.pubmed?.variantIdUsed === currentQuery
+
+  if (isPubMedMapped && liveProviders?.pubmed.status === 'success' && liveProviders.pubmed.data) {
     const liveArticles = liveProviders.pubmed.data.articles.map((art) => ({
       id: `pubmed-${art.pmid}`,
       title: art.title,
