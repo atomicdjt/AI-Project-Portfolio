@@ -21,6 +21,10 @@ Operational knowledge often arrives as incomplete notes, repeated support answer
 
 David Turner owned requirements, product strategy, operations workflow design, acceptance criteria, implementation direction, AI-assisted development, testing expectations, evidence packaging, documentation, and release decisions. The work is presented as directed and reviewed AI-assisted product development, not an unsupported claim of solo hand-coding every implementation detail.
 
+## Solution
+
+ProcessHarbor combines a deterministic browser workflow with structured intake, SOP/training/knowledge outputs, gap analysis, version and audit records, exports, and a source-only service/API path. The public experience remains useful without secrets, while schemas, provider fallback, database migration, and authorization contracts document a credible production path without presenting it as already deployed.
+
 ## Runnable App
 
 - Source: [apps/opspilot-ai-operations-toolkit](../../apps/opspilot-ai-operations-toolkit)
