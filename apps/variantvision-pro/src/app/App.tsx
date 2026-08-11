@@ -27,6 +27,10 @@ import { buildDossier } from '../modules/evidence/buildDossier'
 import { generateMarkdownReport } from '../modules/reports/generateReport'
 import type { EvidenceStatus, SourceKind, VariantCase, VariantInput } from '../types/variant'
 
+import { ProviderStatusBar } from '../components/ProviderStatusBar'
+import { fetchAllProviders } from '../providers/orchestrator'
+import type { OrchestratorResult } from '../providers/types'
+
 type IconComponent = ComponentType<SVGProps<SVGSVGElement>>
 type TabId = 'overview' | 'sources' | 'report' | 'method'
 
@@ -72,11 +76,31 @@ export function App() {
   const [query, setQuery] = useState('')
   const [fields, setFields] = useState<VariantInput>(fieldInputFromCase(defaultCase))
   const [copied, setCopied] = useState(false)
+  const [liveProviders, setLiveProviders] = useState<OrchestratorResult | null>(null)
+  const [isFetchingLive, setIsFetchingLive] = useState(false)
 
   const activeCase = variantCases.find((variantCase) => variantCase.id === activeCaseId) ?? defaultCase
-  const dossier = useMemo(() => buildDossier(activeCase, fields), [activeCase, fields])
+
+  const dossier = useMemo(() => buildDossier(activeCase, fields, liveProviders ?? undefined), [activeCase, fields, liveProviders])
   const report = useMemo(() => generateMarkdownReport(activeCase, dossier), [activeCase, dossier])
   const jsonBundle = useMemo(() => JSON.stringify({ case: activeCase, dossier }, null, 2), [activeCase, dossier])
+
+  async function handleFetchLive() {
+    setIsFetchingLive(true)
+    try {
+      const results = await fetchAllProviders({
+        gene: fields.gene || activeCase.gene,
+        variant: fields.variant || activeCase.variant,
+        rsId: activeCase.rsid,
+        uniprotAccession: activeCase.uniprot,
+      })
+      setLiveProviders(results)
+    } catch {
+      // Silently keep existing dossier state on unexpected error
+    } finally {
+      setIsFetchingLive(false)
+    }
+  }
 
   const filteredCases = useMemo(() => {
     const needle = query.trim().toLowerCase()
@@ -93,6 +117,7 @@ export function App() {
     setFields(fieldInputFromCase(variantCase))
     setActiveTab('overview')
     setCopied(false)
+    setLiveProviders(null)
   }
 
   async function copyReport() {
@@ -159,6 +184,8 @@ export function App() {
             </button>
           </div>
         </header>
+
+        <ProviderStatusBar liveProviders={liveProviders} isLoading={isFetchingLive} onRefresh={handleFetchLive} />
 
         <section className="input-deck" aria-label="Variant input controls">
           <label>
