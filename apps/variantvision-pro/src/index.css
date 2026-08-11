@@ -796,3 +796,111 @@ td {
     width: 100%;
   }
 }
+
+/* Provider Status Bar */
+.provider-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #ffffff;
+  border: 1px solid #dbe5e1;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  font-size: 0.86rem;
+  color: #536863;
+}
+
+.provider-status-bar.loading {
+  background: #f0fdf9;
+  border-color: #99f6e4;
+  color: #0d9488;
+}
+
+.provider-status-bar.active {
+  background: #f8faf9;
+}
+
+.health-chips {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.health-title {
+  font-weight: 750;
+  color: #12231f;
+  font-size: 0.8rem;
+}
+
+.health-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.health-chip small {
+  opacity: 0.75;
+  font-weight: 400;
+}
+
+.chip-success {
+  background: #dff7ef;
+  color: #085d52;
+}
+
+.chip-warning {
+  background: #fff2ca;
+  color: #7a5200;
+}
+
+.chip-timeout {
+  background: #ffe5d2;
+  color: #7c3f13;
+}
+
+.chip-error {
+  background: #ffe0e0;
+  color: #8a1f1f;
+}
+
+.live-fetch-btn {
+  min-height: 32px;
+  padding: 0 10px;
+  font-size: 0.8rem;
+  background: #19b8aa;
+  color: #ffffff;
+  border: 0;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+
+  &:hover {
+    background: #149388;
+  }
+}
+
+.live-fetch-btn.compact {
+  min-height: 28px;
+  font-size: 0.76rem;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+

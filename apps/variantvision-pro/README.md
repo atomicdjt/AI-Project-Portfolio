@@ -1,76 +1,67 @@
-# VariantVision Pro
+# VariantVision Pro — Provenance-First Genomic Evidence Workbench
 
-VariantVision Pro is a static bioinformatics evidence workbench for educational variant review and research triage. It demonstrates complex-domain product design without making diagnostic claims.
+VariantVision Pro is an evidence-first bioinformatics workbench engineered to aggregate, normalize, interpret, and present genomic variant evidence from multiple authoritative scientific sources (ClinVar, UniProt, PubMed, gnomAD) while handling uncertainty, provenance, API failures, inconsistent identifiers, and incomplete evidence responsibly.
 
-## Deployment Status
+It demonstrates complex-domain product design, typed asynchronous data pipelines, fault-tolerant provider orchestration, and evidence transparency without making diagnostic claims.
 
-VariantVision Pro is configured for Vercel through `vercel.json`. A production Vercel alias is not claimed until a preview and production deployment are verified.
+---
 
-## What It Does
+## Technical Documentation Package
 
-- Normalizes gnomAD-style IDs and simple genomic HGVS coordinates locally.
-- Routes GRCh37 and GRCh38 inputs to explicit gnomAD dataset labels.
-- Recognizes the HBB HbS teaching example without a backend.
-- Compares amino acid substitutions by charge, polarity, size, and hydropathy.
-- Scores evidence completeness across normalization, population frequency, curated database review, protein/structure context, and literature handoff.
-- Presents source records with status, provenance, source links, and review boundaries.
-- Exports Markdown and JSON evidence dossiers.
+- **[System Architecture](docs/ARCHITECTURE.md)**: System components, Mermaid data flow, provider abstraction, normalization pipeline, evidence scoring model.
+- **[Data Sources & Integration Strategy](docs/DATA-SOURCES.md)**: Per-provider API protocols, endpoints, authentication, normalization handling, and attribution rules.
+- **[Scientific & Technical Limitations](docs/LIMITATIONS.md)**: Explicit boundaries, unsupported inputs, liftover scope, and CORS/API fallback policies.
+- **[Testing Strategy](docs/TESTING.md)**: Test layers, Vitest suite coverage across normalization, provider abstraction, and dossier scoring.
+- **[Technical Case Study](docs/CASE-STUDY.md)**: Comprehensive engineering case study detailing architecture, trade-offs, reliability engineering, and verified results.
+- **[Short Case Study](docs/CASE-STUDY-SHORT.md)**: Concise 700-word portfolio overview.
+- **[Portfolio Summary](docs/PORTFOLIO-SUMMARY.md)**: Recruiter-friendly summary and resume bullets.
+- **[Evidence Ledger](docs/CASE-STUDY-EVIDENCE.md)**: Verifiable claim-to-code mapping for all case study claims.
 
-## Run Locally
+---
+
+## Key Capabilities
+
+- **Multi-Source Live Aggregation**: Concurrently fetches live scientific data from NCBI ClinVar (assertions & stars), UniProtKB (protein function & subcellular location), and PubMed (literature leads) with real ISO 8601 timestamps and latency tracking.
+- **Fault-Tolerant Provider Orchestration**: Uses `Promise.allSettled` with per-provider timeouts. Partial failure in one API (e.g. PubMed timeout) does not break dossier generation or other provider streams.
+- **Local Variant Normalization**: 4-path normalization supporting gnomAD-style VCF IDs (`11-5227002-T-A`), genomic HGVS (`NC_000011.10:g.5227002T>A`), rsIDs (`rs334`), and teaching fallback cases.
+- **Genome Build Routing**: Maps GRCh37 vs GRCh38 inputs to explicit gnomAD dataset labels (`gnomad_r2_1` vs `gnomad_r4`).
+- **Biochemical Substitution Context**: Calculates amino acid property shifts (charge, polarity, size, hydropathy delta on Kyte-Doolittle scale).
+- **Evidence Quality Model**: Scores evidence completeness (0–100) across 5 weighted dimensions (Normalization, Population, Curated Database, Protein/Structure, Literature).
+- **Source Transparency & Health Bar**: Live provider status bar displaying per-provider health, response time, error classification (`success`, `no_result`, `timeout`, `unavailable`), and direct source links.
+- **Dossier Export**: Exports self-contained Markdown (`.md`) reports and structured JSON (`.json`) evidence bundles.
+
+---
+
+## Quick Start
+
+### Run Locally
 
 From the repository root:
 
 ```bash
 npm install
-npm run dev --workspace apps/variantvision-pro
+npm run dev:variantvision
 ```
 
 Open `http://127.0.0.1:5182`.
 
-## Validate
+### Execute Test Suite
+
+```bash
+npm run test --workspace apps/variantvision-pro
+```
+
+### Validate Production Build
 
 ```bash
 npm run lint --workspace apps/variantvision-pro
-npm run test --workspace apps/variantvision-pro
 npm run build --workspace apps/variantvision-pro
 ```
 
-## Deploy to Vercel
-
-Create a Vercel project from `atomicdjt/AI-Project-Portfolio` with:
-
-```text
-Project name: variantvision-pro
-Root Directory: apps/variantvision-pro
-Framework Preset: Vite
-Build Command: npm run build
-Output Directory: dist
-Production Branch: main
-Node.js: 22
-```
-
-No server-side environment variables are required for the curated educational MVP.
-
-Use a preview deployment first and verify:
-
-1. each curated case and source record,
-2. genome-build labels and normalization helpers,
-3. amino-acid comparison,
-4. evidence-completeness scoring,
-5. source filtering and provenance links,
-6. Markdown and JSON export,
-7. direct-route refresh and static assets,
-8. mobile layout and browser console,
-9. the visible educational and non-diagnostic boundaries.
-
-Promote only after Vercel reports `READY` and the review workflow succeeds.
+---
 
 ## Responsible Scope
 
 VariantVision Pro is educational and research-support software only. It is not diagnosis, treatment guidance, genetic counseling, risk prediction, or automated ACMG/AMP classification.
 
-The MVP uses curated demo fixtures and source leads. Real research use would require live database refresh, versioned transcripts, reference validation, liftover handling, auditable source timestamps, and qualified domain review.
-
-## Source and Deployment Authority
-
-The authoritative source remains `atomicdjt/AI-Project-Portfolio/main` for this workspace. Vercel previews and production deployments are derivative outputs of recorded commits.
+Live provider data is retrieved directly from public REST endpoints (NCBI, UniProt) for research exploration. Always review primary source records before drawing clinical or research conclusions.

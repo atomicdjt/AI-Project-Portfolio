@@ -43,6 +43,11 @@ export function inferChromosomeFromRefseq(value: string) {
   return chromosome >= 1 && chromosome <= 22 ? String(chromosome) : null
 }
 
+export function parseRsId(value: string): string | null {
+  const match = value.trim().match(/^rs(\d+)$/i)
+  return match ? `rs${match[1]}` : null
+}
+
 export function parseProteinChange(value: string): { original: AminoAcidCode | null; position: number | null; replacement: AminoAcidCode | null } {
   const cleaned = value.trim().replace(/^p\./i, '').replace(/\s+/g, '').toUpperCase()
   const compact = cleaned.match(/^([A-Z])(\d+)([A-Z])$/)
@@ -68,6 +73,8 @@ export function parseProteinChange(value: string): { original: AminoAcidCode | n
 
 export function normalizeVariant(input: VariantInput): NormalizedVariant {
   const dataset = datasetForBuild(input.build)
+
+  // Path 1: Direct gnomAD-style ID (e.g. 11-5227002-T-A)
   const suppliedId = parseGnomadId(input.gnomadId)
   if (suppliedId) {
     return {
@@ -75,13 +82,14 @@ export function normalizeVariant(input: VariantInput): NormalizedVariant {
       dataset: dataset.label,
       datasetId: dataset.id,
       vcfId: suppliedId.id,
-      spdi: `${suppliedId.chrom}:${suppliedId.pos}:${suppliedId.ref}:${suppliedId.alt}`,
+      spdi: `chr${suppliedId.chrom}:${suppliedId.pos}:${suppliedId.ref}:${suppliedId.alt}`,
       browserUrl: `https://gnomad.broadinstitute.org/variant/${suppliedId.id}?dataset=${dataset.browserLabel}`,
       parsedFrom: 'gnomAD ID',
-      note: 'Parsed locally from a gnomAD-style ID. Human review still needs reference allele and transcript confirmation.',
+      note: 'Parsed locally from a gnomAD-style ID (1-based chrom-pos-ref-alt). Human review still needs reference allele and transcript confirmation.',
     }
   }
 
+  // Path 2: Genomic HGVS (e.g. NC_000011.10:g.5227002T>A)
   const genomic = parseHgvsGenomic(input.hgvs)
   const chromosome = inferChromosomeFromRefseq(input.hgvs)
   if (genomic && chromosome) {
@@ -91,13 +99,29 @@ export function normalizeVariant(input: VariantInput): NormalizedVariant {
       dataset: dataset.label,
       datasetId: dataset.id,
       vcfId: id,
-      spdi: `${chromosome}:${genomic.pos}:${genomic.ref}:${genomic.alt}`,
+      spdi: `chr${chromosome}:${genomic.pos}:${genomic.ref}:${genomic.alt}`,
       browserUrl: `https://gnomad.broadinstitute.org/variant/${id}?dataset=${dataset.browserLabel}`,
       parsedFrom: 'genomic HGVS',
-      note: 'Derived a VCF-style ID from genomic HGVS syntax. This is coordinate parsing, not transcript-aware HGVS normalization.',
+      note: 'Derived a VCF-style ID from genomic HGVS syntax. Coordinate parsing only; not transcript-aware HGVS normalization.',
     }
   }
 
+  // Path 3: rsID in gnomadId or variant input field
+  const rsId = parseRsId(input.gnomadId) || parseRsId(input.variant)
+  if (rsId) {
+    return {
+      input,
+      dataset: dataset.label,
+      datasetId: dataset.id,
+      vcfId: null,
+      spdi: null,
+      browserUrl: `https://www.ncbi.nlm.nih.gov/snp/${rsId}`,
+      parsedFrom: 'rsID lookup',
+      note: `Recognized ${rsId}. Genomic coordinates require a dbSNP or ClinVar API lookup to resolve build-specific position.`,
+    }
+  }
+
+  // Path 4: HBB HbS teaching fallback
   const isHbbHbS = input.gene.trim().toUpperCase() === 'HBB' && /^(E6V|P\.?GLU6VAL|RS334)$/i.test(input.variant.trim())
   if (isHbbHbS) {
     const id = HBB_HBS_BY_BUILD[input.build]
@@ -107,7 +131,7 @@ export function normalizeVariant(input: VariantInput): NormalizedVariant {
       dataset: dataset.label,
       datasetId: dataset.id,
       vcfId: id,
-      spdi: parsed ? `${parsed.chrom}:${parsed.pos}:${parsed.ref}:${parsed.alt}` : null,
+      spdi: parsed ? `chr${parsed.chrom}:${parsed.pos}:${parsed.ref}:${parsed.alt}` : null,
       browserUrl: `https://gnomad.broadinstitute.org/variant/${id}?dataset=${dataset.browserLabel}`,
       parsedFrom: 'known teaching example',
       note: 'Recognized the HBB HbS teaching example and selected the matching demo coordinate for the chosen build.',
@@ -122,6 +146,6 @@ export function normalizeVariant(input: VariantInput): NormalizedVariant {
     spdi: null,
     browserUrl: null,
     parsedFrom: 'manual review required',
-    note: 'No safe local normalization path was available. Provide a gnomAD-style ID or genomic HGVS coordinate for a stronger dossier.',
+    note: 'No safe local normalization path was available. Provide a gnomAD-style ID, genomic HGVS coordinate, or rsID for a stronger dossier.',
   }
 }

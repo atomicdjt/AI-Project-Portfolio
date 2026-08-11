@@ -56,6 +56,9 @@ export interface SourceRecord {
   detail: string
   url?: string
   lastReviewed: string
+  retrievedAt?: string
+  isLive?: boolean
+  retrievalStatus?: 'success' | 'no_result' | 'error' | 'timeout' | 'unavailable' | 'unsupported_variant'
 }
 
 export interface PopulationRecord {
@@ -100,7 +103,7 @@ export interface NormalizedVariant {
   vcfId: string | null
   spdi: string | null
   browserUrl: string | null
-  parsedFrom: 'gnomAD ID' | 'genomic HGVS' | 'known teaching example' | 'manual review required'
+  parsedFrom: 'gnomAD ID' | 'genomic HGVS' | 'rsID lookup' | 'known teaching example' | 'manual review required'
   note: string
 }
 
@@ -139,4 +142,11 @@ export interface EvidenceDossier {
   sourceRecords: SourceRecord[]
   literature: LiteratureRecord[]
   responsibleBoundary: string
+  liveProviderHealth?: Array<{
+    provider: string
+    status: string
+    durationMs: number
+    error: string | null
+    retrievedAt: string
+  }>
 }

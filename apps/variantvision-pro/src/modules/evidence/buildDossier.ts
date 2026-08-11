@@ -99,7 +99,13 @@ function buildMetrics(records: SourceRecord[], normalizedReady: boolean, literat
   ]
 }
 
-export function buildDossier(variantCase: VariantCase, overrides?: Partial<VariantInput>): EvidenceDossier {
+import type { OrchestratorResult } from '../../providers/types'
+
+export function buildDossier(
+  variantCase: VariantCase,
+  overrides?: Partial<VariantInput>,
+  liveProviders?: OrchestratorResult,
+): EvidenceDossier {
   const input = { ...variantCase, ...overrides }
   const normalized = normalizeVariant(input)
   const parsedProtein = parseProteinChange(input.variant)
@@ -107,7 +113,67 @@ export function buildDossier(variantCase: VariantCase, overrides?: Partial<Varia
   const replacement = parsedProtein.replacement ?? variantCase.replacementAa
   const aminoAcid = compareAminoAcids(original, replacement)
   const populationSummary = summarizePopulation(variantCase.population)
-  const metrics = buildMetrics(variantCase.sourceRecords, Boolean(normalized.vcfId), variantCase.literature.length)
+
+  // Merge static sourceRecords with live provider records if available
+  let sourceRecords = [...variantCase.sourceRecords]
+
+  if (liveProviders) {
+    const { clinvar, uniprot } = liveProviders
+
+    if (clinvar.status === 'success' && clinvar.data) {
+      const liveClinvar: SourceRecord = {
+        id: `live-clinvar-${clinvar.data.variationId}`,
+        kind: 'Curated database',
+        label: `ClinVar: ${clinvar.data.title}`,
+        source: `NCBI ClinVar API (Live ${clinvar.data.variationId})`,
+        status: clinvar.data.classifications.some((c) => c.reviewStars >= 2) ? 'ready' : 'partial',
+        weight: 'high',
+        detail: clinvar.data.classifications.map((c) => `${c.clinicalSignificance} (${c.reviewStatus})`).join('; ') || 'Record retrieved; review details on NCBI.',
+        url: clinvar.data.url,
+        lastReviewed: 'Live API response',
+        retrievedAt: clinvar.retrievedAt,
+        isLive: true,
+        retrievalStatus: clinvar.status,
+      }
+      sourceRecords = sourceRecords.filter((r) => !r.id.includes('clinvar')).concat(liveClinvar)
+    }
+
+    if (uniprot.status === 'success' && uniprot.data) {
+      const liveUniprot: SourceRecord = {
+        id: `live-uniprot-${uniprot.data.accession}`,
+        kind: 'Protein',
+        label: `UniProt ${uniprot.data.accession}: ${uniprot.data.proteinName}`,
+        source: `UniProt REST API (${uniprot.data.reviewStatus})`,
+        status: 'ready',
+        weight: 'supporting',
+        detail: uniprot.data.function ?? `Subcellular: ${uniprot.data.subcellularLocation ?? 'N/A'}`,
+        url: uniprot.data.url,
+        lastReviewed: 'Live API response',
+        retrievedAt: uniprot.retrievedAt,
+        isLive: true,
+        retrievalStatus: uniprot.status,
+      }
+      sourceRecords = sourceRecords.filter((r) => !r.id.includes('uniprot')).concat(liveUniprot)
+    }
+  }
+
+  // Merge literature if live PubMed results arrived
+  let literature = [...variantCase.literature]
+  if (liveProviders?.pubmed.status === 'success' && liveProviders.pubmed.data) {
+    const liveArticles = liveProviders.pubmed.data.articles.map((art) => ({
+      id: `pubmed-${art.pmid}`,
+      title: art.title,
+      journal: art.journal,
+      year: art.year,
+      role: 'clinical context' as const,
+      url: art.url,
+    }))
+    if (liveArticles.length > 0) {
+      literature = liveArticles
+    }
+  }
+
+  const metrics = buildMetrics(sourceRecords, Boolean(normalized.vcfId), literature.length)
   const evidenceScore = Math.round(metrics.reduce((sum, metric) => sum + metric.score, 0) / metrics.length)
   const confidenceBand =
     evidenceScore >= 82 ? 'Strong research dossier' : evidenceScore >= 60 ? 'Usable with review' : 'Incomplete dossier'
@@ -123,8 +189,9 @@ export function buildDossier(variantCase: VariantCase, overrides?: Partial<Varia
     evidenceScore,
     confidenceBand,
     metrics,
-    sourceRecords: variantCase.sourceRecords,
-    literature: variantCase.literature,
+    sourceRecords,
+    literature,
     responsibleBoundary: boundary,
+    liveProviderHealth: liveProviders?.health,
   }
 }
