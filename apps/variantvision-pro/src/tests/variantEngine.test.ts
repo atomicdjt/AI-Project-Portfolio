@@ -3,6 +3,7 @@ import { defaultCase } from '../data/cases'
 import { buildDossier, compareAminoAcids } from '../modules/evidence/buildDossier'
 import { datasetForBuild, normalizeVariant, parseGnomadId, parseHgvsGenomic, parseProteinChange } from '../modules/variant/normalizeVariant'
 import { generateMarkdownReport } from '../modules/reports/generateReport'
+import type { OrchestratorResult } from '../providers/types'
 
 describe('VariantVision Pro evidence engine', () => {
   it('parses gnomAD IDs and genomic HGVS coordinates', () => {
@@ -67,15 +68,15 @@ describe('VariantVision Pro evidence engine', () => {
       uniprot: { status: 'success', data: { accession: defaultCase.uniprot }, variantIdUsed: defaultCase.uniprot },
       pubmed: { status: 'success', data: { articles: [] }, variantIdUsed: `${defaultCase.gene} ${defaultCase.variant}` },
       health: [],
-      totalDurationMs: 100
+      totalDurationMs: 100,
     } as OrchestratorResult
 
     const customInput = { ...defaultCase, variant: 'p.Val600Glu' }
     const dossier = buildDossier(defaultCase, customInput, liveProviders)
-    
+
     // Live providers for the default case should NOT be merged since variant changed.
     expect(dossier.sourceRecords).not.toEqual(expect.arrayContaining([
-      expect.objectContaining({ isLive: true })
+      expect.objectContaining({ isLive: true }),
     ]))
     // Literature should also be empty because the pubmed query no longer matches.
     expect(dossier.literature.length).toBe(0)
