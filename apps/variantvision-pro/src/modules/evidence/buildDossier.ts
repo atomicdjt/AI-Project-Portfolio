@@ -38,18 +38,18 @@ function summarizePopulation(rows: PopulationRecord[]) {
 }
 
 export function compareAminoAcids(originalCode: string | null, replacementCode: string | null): AminoAcidComparison {
-  if (!originalCode || !replacementCode) {
+  if (!originalCode || !replacementCode || !(originalCode in aminoAcids) || !(replacementCode in aminoAcids)) {
     return {
-      original: { code: '?' as any, name: 'Unknown', polarity: 'nonpolar', charge: 'neutral', size: 'medium', hydropathy: 0 },
-      replacement: { code: '?' as any, name: 'Unknown', polarity: 'nonpolar', charge: 'neutral', size: 'medium', hydropathy: 0 },
+      original: { code: '?', name: 'Unknown', polarity: 'nonpolar', charge: 'neutral', size: 'medium', hydropathy: 0 },
+      replacement: { code: '?', name: 'Unknown', polarity: 'nonpolar', charge: 'neutral', size: 'medium', hydropathy: 0 },
       hydropathyDelta: 0,
       chargeShift: 'Unknown',
       polarityShift: 'Unknown',
-      interpretation: 'Unsupported / Manual Review Required: Protein change could not be parsed.',
+      interpretation: 'Unavailable / Manual Review Required: Protein change could not be parsed or contains unsupported residues.',
     }
   }
-  const original = aminoAcids[originalCode as keyof typeof aminoAcids] ?? aminoAcids.E
-  const replacement = aminoAcids[replacementCode as keyof typeof aminoAcids] ?? aminoAcids.V
+  const original = aminoAcids[originalCode as keyof typeof aminoAcids]
+  const replacement = aminoAcids[replacementCode as keyof typeof aminoAcids]
   const hydropathyDelta = Number((replacement.hydropathy - original.hydropathy).toFixed(1))
   const chargeShift = original.charge === replacement.charge ? 'No net charge-class shift' : `${original.charge} -> ${replacement.charge}`
   const polarityShift = original.polarity === replacement.polarity ? 'Same polarity class' : `${original.polarity} -> ${replacement.polarity}`
@@ -119,7 +119,10 @@ export function buildDossier(
   const input = { ...variantCase, ...overrides }
   const isCustomInput =
     input.gene.trim().toUpperCase() !== variantCase.gene.trim().toUpperCase() ||
-    input.variant.trim().toUpperCase() !== variantCase.variant.trim().toUpperCase()
+    input.variant.trim().toUpperCase() !== variantCase.variant.trim().toUpperCase() ||
+    input.hgvs.trim() !== variantCase.hgvs.trim() ||
+    input.gnomadId.trim() !== variantCase.gnomadId.trim() ||
+    input.build !== variantCase.build
 
   const normalized = normalizeVariant(input)
   const parsedProtein = parseProteinChange(input.variant)
@@ -161,14 +164,17 @@ export function buildDossier(
     }
 
     if (uniprot.status === 'success' && uniprot.data) {
+      const hasMismatch = (uniprot.warnings && uniprot.warnings.length > 0) || uniprot.data.reviewStatus === 'unreviewed'
+      const status: EvidenceStatus = hasMismatch ? 'review' : 'ready'
+
       const liveUniprot: SourceRecord = {
         id: `live-uniprot-${uniprot.data.accession}`,
         kind: 'Protein',
         label: `UniProt ${uniprot.data.accession}: ${uniprot.data.proteinName}`,
         source: `UniProt REST API (${uniprot.data.reviewStatus})`,
-        status: 'ready',
+        status,
         weight: 'supporting',
-        detail: uniprot.data.function ?? `Subcellular: ${uniprot.data.subcellularLocation ?? 'N/A'}`,
+        detail: (uniprot.warnings?.join(' ') || '') + ' ' + (uniprot.data.function ?? `Subcellular: ${uniprot.data.subcellularLocation ?? 'N/A'}`),
         url: uniprot.data.url,
         lastReviewed: 'Live API response',
         retrievedAt: uniprot.retrievedAt,
@@ -193,12 +199,27 @@ export function buildDossier(
     if (liveArticles.length > 0) {
       literature = liveArticles
     }
+    
+    if (liveProviders.pubmed.warnings && liveProviders.pubmed.warnings.length > 0) {
+      const pubmedWarningRecord: SourceRecord = {
+        id: 'pubmed-warning',
+        kind: 'Literature',
+        label: 'PubMed Search Fallback',
+        source: 'NCBI E-utilities',
+        status: 'review',
+        weight: 'context',
+        detail: liveProviders.pubmed.warnings.join(' '),
+        lastReviewed: 'Live API response',
+        isLive: true,
+      }
+      sourceRecords.push(pubmedWarningRecord)
+    }
   }
 
   const metrics = buildMetrics(sourceRecords, Boolean(normalized.vcfId), literature.length)
   const coverageScore = Math.round(metrics.reduce((sum, metric) => sum + metric.score, 0) / metrics.length)
-  const confidenceBand =
-    coverageScore >= 82 ? 'Strong research dossier' : coverageScore >= 60 ? 'Usable with review' : 'Incomplete dossier'
+  const coverageBand =
+    coverageScore >= 82 ? 'High source coverage' : coverageScore >= 60 ? 'Moderate source coverage' : 'Limited source coverage'
 
   return {
     caseId: variantCase.id,
@@ -209,7 +230,7 @@ export function buildDossier(
     aminoAcid,
     populationSummary,
     coverageScore,
-    confidenceBand,
+    coverageBand,
     metrics,
     sourceRecords,
     literature,

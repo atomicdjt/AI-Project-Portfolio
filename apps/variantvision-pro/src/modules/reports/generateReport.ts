@@ -19,7 +19,7 @@ export function generateMarkdownReport(variantCase: VariantCase, dossier: Eviden
     '## Evidence Coverage',
     '',
     `Score: ${dossier.coverageScore}/100`,
-    `Band: ${dossier.confidenceBand}`,
+    `Band: ${dossier.coverageBand}`,
     '',
     ...dossier.metrics.map((metric) => `- ${metric.label}: ${metric.score}/100 (${metric.status}) - ${metric.explanation}`),
     '',
@@ -54,5 +54,9 @@ export function generateMarkdownReport(variantCase: VariantCase, dossier: Eviden
     '## Fixture Note',
     '',
     'This MVP uses curated demo fixtures and source leads for portfolio review. It is designed to show architecture, evidence workflow, and responsible UX. Refresh public databases manually before using any record for real research decisions.',
+    '',
+    '## Disclaimer',
+    '',
+    'Coverage reflects available evidence streams, not pathogenicity, clinical confidence, or diagnostic certainty. This tool is for research purposes only and not intended for clinical use.',
   ].join('\n')
 }

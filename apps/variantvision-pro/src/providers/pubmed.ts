@@ -33,7 +33,7 @@ export async function fetchPubMed(
   const timer = window.setTimeout(() => controller.abort(), timeoutMs)
 
   try {
-    let exactTerm = encodeURIComponent(`"${cleanGene}"[Title/Abstract] AND "${cleanVariant}"[Title/Abstract]`)
+    const exactTerm = encodeURIComponent(`"${cleanGene}"[Title/Abstract] AND "${cleanVariant}"[Title/Abstract]`)
     let searchUrl = `${EUTILS_BASE}/esearch.fcgi?db=pubmed&term=${exactTerm}&retmax=5&sort=pub_date&retmode=json`
 
     let searchRes = await fetchNcbi(searchUrl, { signal: controller.signal })
@@ -47,8 +47,10 @@ export async function fetchPubMed(
     let searchData = await searchRes.json()
     let idList: string[] = searchData?.esearchresult?.idlist ?? []
     let totalCount = Number(searchData?.esearchresult?.count ?? idList.length)
+    const warnings: string[] = []
 
     if (idList.length === 0) {
+      warnings.push('No exact gene+variant Title/Abstract matches were found; results come from a broader gene-level literature search and may not describe the exact variant.')
       const term = encodeURIComponent(`${searchQuery}[Title/Abstract] OR ${cleanGene}[Gene]`)
       searchUrl = `${EUTILS_BASE}/esearch.fcgi?db=pubmed&term=${term}&retmax=5&sort=pub_date&retmode=json`
       searchRes = await fetchNcbi(searchUrl, { signal: controller.signal })
@@ -118,6 +120,7 @@ export async function fetchPubMed(
         variantIdUsed: searchQuery,
         sourceUrl: `https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(searchQuery)}`,
         durationMs: Math.round(performance.now() - start),
+        warnings,
       },
     )
   } catch (err: unknown) {

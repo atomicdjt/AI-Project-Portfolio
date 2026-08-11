@@ -1,5 +1,5 @@
 import type { AminoAcidCode, GenomeBuild, NormalizedVariant, VariantInput } from '../../types/variant'
-import { threeToOne } from './aminoAcids'
+import { aminoAcids, threeToOne } from './aminoAcids'
 
 const HBB_HBS_BY_BUILD: Record<GenomeBuild, string> = {
   GRCh37: '11-5248232-T-A',
@@ -52,10 +52,14 @@ export function parseProteinChange(value: string): { original: AminoAcidCode | n
   const cleaned = value.trim().replace(/^p\./i, '').replace(/\s+/g, '').toUpperCase()
   const compact = cleaned.match(/^([A-Z])(\d+)([A-Z])$/)
   if (compact) {
-    return {
-      original: compact[1] as AminoAcidCode,
-      position: Number(compact[2]),
-      replacement: compact[3] as AminoAcidCode,
+    const orig = compact[1]
+    const rep = compact[3]
+    if (orig in aminoAcids && rep in aminoAcids) {
+      return {
+        original: orig as AminoAcidCode,
+        position: Number(compact[2]),
+        replacement: rep as AminoAcidCode,
+      }
     }
   }
 

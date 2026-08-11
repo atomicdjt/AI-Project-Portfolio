@@ -3,7 +3,7 @@
  * Enforces global rate limits across all NCBI requests (ClinVar, PubMed).
  */
 
-const NCBI_EMAIL = 'variantvision@example.com'
+const NCBI_EMAIL = import.meta.env.VITE_NCBI_EMAIL
 const NCBI_TOOL = 'variantvision-pro'
 const THROTTLE_MS = 350
 
@@ -23,7 +23,9 @@ export async function fetchNcbi(url: string, options?: RequestInit): Promise<Res
   
   const urlObj = new URL(url)
   urlObj.searchParams.set('tool', NCBI_TOOL)
-  urlObj.searchParams.set('email', NCBI_EMAIL)
+  if (NCBI_EMAIL) {
+    urlObj.searchParams.set('email', NCBI_EMAIL)
+  }
 
   return fetch(urlObj.toString(), options)
 }

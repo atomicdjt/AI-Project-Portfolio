@@ -26,6 +26,12 @@ describe('VariantVision Pro evidence engine', () => {
     expect(parseProteinChange('p.Glu6Val')).toMatchObject({ original: 'E', position: 6, replacement: 'V' })
   })
 
+  it('rejects invalid or unsupported amino acids safely', () => {
+    // X is not a standard amino acid code in our dictionary
+    expect(parseProteinChange('X100Y')).toEqual({ original: null, position: null, replacement: null })
+    expect(parseProteinChange('B12Z')).toEqual({ original: null, position: null, replacement: null })
+  })
+
   it('normalizes the HBB HbS teaching example without requiring a backend', () => {
     const normalized = normalizeVariant({ ...defaultCase, gnomadId: '', hgvs: '' })
     expect(normalized.vcfId).toBe('11-5227002-T-A')
@@ -37,9 +43,22 @@ describe('VariantVision Pro evidence engine', () => {
     expect(aa.chargeShift).toBe('negative -> neutral')
     expect(aa.hydropathyDelta).toBeGreaterThan(7)
 
+    const aaInvalid = compareAminoAcids(null, null)
+    expect(aaInvalid.interpretation).toContain('Unavailable / Manual Review Required')
+    expect(aaInvalid.original?.code).toBe('?')
+
     const dossier = buildDossier(defaultCase)
     expect(dossier.coverageScore).toBeGreaterThanOrEqual(70)
     expect(dossier.responsibleBoundary).toContain('Not diagnosis')
+  })
+
+  it('clears curated fixture data when user input deviates from identity', () => {
+    const customInput = { ...defaultCase, variant: 'p.Val600Glu' }
+    const dossier = buildDossier(defaultCase, customInput)
+    // Because it differs from defaultCase, it should have fewer source records and low coverage
+    expect(dossier.coverageScore).toBeLessThan(70)
+    expect(dossier.sourceRecords.length).toBe(0)
+    expect(dossier.populationSummary.estimatedFrequency).toBe(0)
   })
 
   it('generates a transparent markdown report', () => {

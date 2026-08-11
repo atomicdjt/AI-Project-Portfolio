@@ -38,7 +38,7 @@ export interface VariantInput {
 }
 
 export interface AminoAcidProfile {
-  code: AminoAcidCode
+  code: AminoAcidCode | '?'
   name: string
   polarity: 'nonpolar' | 'polar' | 'acidic' | 'basic'
   charge: 'negative' | 'neutral' | 'positive'
@@ -137,7 +137,7 @@ export interface EvidenceDossier {
     highestGroup: string
   }
   coverageScore: number
-  confidenceBand: 'Strong research dossier' | 'Usable with review' | 'Incomplete dossier'
+  coverageBand: 'High source coverage' | 'Moderate source coverage' | 'Limited source coverage'
   metrics: EvidenceMetric[]
   sourceRecords: SourceRecord[]
   literature: LiteratureRecord[]

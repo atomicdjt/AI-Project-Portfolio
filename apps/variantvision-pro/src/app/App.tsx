@@ -69,6 +69,16 @@ function fieldInputFromCase(variantCase: VariantCase): VariantInput {
   }
 }
 
+function isIdentityMatch(input: VariantInput, variantCase: VariantCase): boolean {
+  return (
+    input.gene.trim().toUpperCase() === variantCase.gene.trim().toUpperCase() &&
+    input.variant.trim().toUpperCase() === variantCase.variant.trim().toUpperCase() &&
+    input.hgvs.trim() === variantCase.hgvs.trim() &&
+    input.gnomadId.trim() === variantCase.gnomadId.trim() &&
+    input.build === variantCase.build
+  )
+}
+
 export function App() {
   const [activeCaseId, setActiveCaseId] = useState(defaultCase.id)
   const [activeTab, setActiveTab] = useState<TabId>('overview')
@@ -88,11 +98,12 @@ export function App() {
   async function handleFetchLive() {
     setIsFetchingLive(true)
     try {
+      const match = isIdentityMatch(fields, activeCase)
       const results = await fetchAllProviders({
         gene: fields.gene || activeCase.gene,
         variant: fields.variant || activeCase.variant,
-        rsId: activeCase.rsid,
-        uniprotAccession: activeCase.uniprot,
+        rsId: match ? activeCase.rsid : '',
+        uniprotAccession: match ? activeCase.uniprot : '',
       })
       setLiveProviders(results)
     } catch {
@@ -214,7 +225,7 @@ export function App() {
         </section>
 
         <section className="metric-strip" aria-label="Evidence summary metrics">
-          <MetricCard icon={Gauge} label="Evidence coverage" value={`${dossier.coverageScore}/100`} detail={dossier.confidenceBand} tone={dossier.coverageScore >= 80 ? 'good' : 'warn'} />
+          <MetricCard icon={Gauge} label="Evidence coverage" value={`${dossier.coverageScore}/100`} detail={dossier.coverageBand} tone={dossier.coverageScore >= 80 ? 'good' : 'warn'} />
           <MetricCard icon={Dna} label="Normalized ID" value={dossier.normalized.vcfId ?? 'Review'} detail={dossier.normalized.parsedFrom} />
           <MetricCard icon={Activity} label="Fixture AF" value={formatFrequency(dossier.populationSummary.estimatedFrequency)} detail={dossier.populationSummary.highestGroup} />
           <MetricCard icon={Library} label="Source records" value={dossier.sourceRecords.length.toString()} detail={`${dossier.literature.length} literature leads`} />
