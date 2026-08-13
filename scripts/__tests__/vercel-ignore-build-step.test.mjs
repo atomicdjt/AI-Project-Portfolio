@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 
-import { decideIgnoredBuild } from '../vercel-ignore-build-step.mjs'
+import { decideIgnoredBuild, selectComparisonBase } from '../vercel-ignore-build-step.mjs'
 
 const manifest = {
   schemaVersion: 1,
@@ -50,6 +50,17 @@ test('production deployments always build', () => {
   assert.equal(decision.shouldBuild, true)
   assert.equal(decision.ignored, false)
   assert.equal(decision.reason, 'Production deployments always build.')
+})
+
+test('uses the current commit parent when Vercel omits the previous SHA', () => {
+  assert.equal(
+    selectComparisonBase({ previousSha: undefined, currentSha: 'abc123' }),
+    'abc123^',
+  )
+  assert.equal(
+    selectComparisonBase({ previousSha: 'def456', currentSha: 'abc123' }),
+    'def456',
+  )
 })
 
 test('an app-only change builds that app and skips unrelated apps', () => {
