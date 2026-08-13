@@ -148,7 +148,7 @@ Keep all secrets in Vercel environment settings.
 
 ## Authentication Setup
 
-The current authenticated workspace mode is a demo role/session simulation. For production:
+The current workspace mode is a demo role/session simulation, not authentication. The reference Netlify handler ignores caller-supplied session, role, permission, and claims fields and always uses its fixed viewer demo identity; its server routes therefore do not provide a privileged demo path. For production:
 
 1. Add an identity provider compatible with the chosen Vercel architecture.
 2. Validate signed identity server-side.

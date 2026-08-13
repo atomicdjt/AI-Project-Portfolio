@@ -6,6 +6,25 @@ ProcessHarbor Pro is a runnable operations-documentation system for small busine
 
 The product is designed as a polished operations workflow rather than a generic chatbot. It addresses manager-dependent tribal knowledge while preserving a credible path toward durable storage, authenticated workspaces, optional server-side AI, and integrations.
 
+## Problem
+
+Operational knowledge often arrives as incomplete notes, repeated support answers, and manager memory. Teams need a way to turn that material into reviewable procedures without pretending that generated text is already approved policy.
+
+## Constraints
+
+- The public Vercel app is a deterministic static workflow; reference API, provider, and database paths are source evidence, not deployed capability.
+- Optional AI must keep its key server-side, validate structured output, limit requests, and fall back deterministically.
+- Client-supplied demo roles illustrate authorization contracts but are not real identity verification.
+- The product must not claim legal, medical, HR, or compliance authority.
+
+## David's Role
+
+David Turner owned requirements, product strategy, operations workflow design, acceptance criteria, implementation direction, AI-assisted development, testing expectations, evidence packaging, documentation, and release decisions. The work is presented as directed and reviewed AI-assisted product development, not an unsupported claim of solo hand-coding every implementation detail.
+
+## Solution
+
+ProcessHarbor combines a deterministic browser workflow with structured intake, SOP/training/knowledge outputs, gap analysis, version and audit records, exports, and a source-only service/API path. The public experience remains useful without secrets, while schemas, provider fallback, database migration, and authorization contracts document a credible production path without presenting it as already deployed.
+
 ## Runnable App
 
 - Source: [apps/opspilot-ai-operations-toolkit](../../apps/opspilot-ai-operations-toolkit)
@@ -44,6 +63,26 @@ The deterministic browser workflow is configured for a Vercel preview. Optional 
 - Vitest coverage for create/update/version/export/audit/validation/authorization, AI fallback, health metadata, and normalization paths
 - Playwright workflow tests plus screenshot, GIF, video, and export proof
 - Vercel SPA configuration and documented Vercel Functions migration path
+
+## Important Decisions
+
+- A deterministic generator makes the full public workflow reviewable without a provider account.
+- Zod schemas and a service layer separate input validation, business behavior, and transport concerns.
+- Missing API sessions default to an unauthenticated viewer boundary, preventing anonymous callers from inheriting demo-admin write or provider access.
+- Diagnostics expose generation mode and validation status while explicitly withholding secrets.
+- Durable persistence and true authentication remain roadmap work instead of being simulated as production capability.
+
+## Verification
+
+The repository uses Vitest for deterministic generation, validation, authorization, API transport, AI fallback, health metadata, audit events, and export behavior; Playwright covers the primary workflow. Monorepo lint, typecheck, test, and production-build commands provide repeatable local evidence. Deployment claims require separate rendered-URL verification.
+
+## Responsible Boundaries
+
+ProcessHarbor does not provide authoritative policy, compliance, HR, legal, or medical advice. Generated material requires a named human owner and review. The public static workflow has no durable multi-tenant database, real authentication, live provider-backed automation, or verified collaboration layer.
+
+## Professional Relevance
+
+The project demonstrates technical operations, SOP and enablement design, workflow automation, human-in-the-loop controls, role and audit modeling, safe provider fallback, documentation discipline, and careful separation of prototype evidence from production claims.
 
 ## Honest Scope
 
