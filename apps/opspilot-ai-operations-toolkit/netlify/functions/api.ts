@@ -2,12 +2,15 @@ import type { Config, Context } from '@netlify/functions'
 import { ProcessHarborApi, demoViewerSession } from '../../server/api'
 import { badRequest, toErrorBody } from '../../server/errors'
 import { apiRouteSchema } from '../../src/schemas'
-import type { WorkspaceSession } from '../../src/types'
 
 const api = new ProcessHarborApi()
 
 interface ApiPayload {
-  session?: WorkspaceSession
+  /**
+   * Deliberately untrusted reference-demo input. The server does not derive a
+   * session from this field and must never use it for authorization.
+   */
+  session?: unknown
   documentId?: unknown
   gapId?: unknown
   trainingItemId?: unknown
@@ -19,8 +22,10 @@ export default async function handler(request: Request, context: Context): Promi
   try {
     const route = apiRouteSchema.parse(context.params.route ?? new URL(request.url).pathname.split('/').filter(Boolean).at(-1))
     const payload = await parsePayload(request)
-    const session = payload.session ?? demoViewerSession
-    const data = await dispatch(route, session, payload, request, context)
+    // ProcessHarbor's reference function has no identity provider. Keep its
+    // server contract read-only by using the fixed viewer demo identity rather
+    // than accepting caller-supplied roles, claims, or permissions.
+    const data = await dispatch(route, demoViewerSession, payload, request, context)
     return json(200, { data })
   } catch (error) {
     const body = toErrorBody(error)
@@ -54,7 +59,7 @@ async function parsePayload(request: Request): Promise<ApiPayload> {
   }
 }
 
-async function dispatch(route: string, session: WorkspaceSession, payload: ApiPayload, request: Request, context: Context) {
+async function dispatch(route: string, session: typeof demoViewerSession, payload: ApiPayload, request: Request, context: Context) {
   if (route === 'health') return api.health()
   if (route === 'listDocuments') return api.listDocuments(session)
   if (route === 'aiGenerate') return api.aiGenerate(session, payload.intake as never, { rateLimitKey: rateLimitKey(request, context, session) })
@@ -68,7 +73,7 @@ async function dispatch(route: string, session: WorkspaceSession, payload: ApiPa
   return api.exportWorkspace(session)
 }
 
-function rateLimitKey(request: Request, context: Context, session: WorkspaceSession): string {
+function rateLimitKey(request: Request, context: Context, session: typeof demoViewerSession): string {
   const contextWithIp = context as Context & { ip?: string }
   return (
     contextWithIp.ip ??
