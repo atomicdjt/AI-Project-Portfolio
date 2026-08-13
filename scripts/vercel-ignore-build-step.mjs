@@ -69,12 +69,21 @@ export const decideIgnoredBuild = ({
   }
 }
 
+export const selectComparisonBase = ({ previousSha, currentSha }) => {
+  // Vercel does not provide VERCEL_GIT_PREVIOUS_SHA for every first preview
+  // on a branch. GitHub-backed checkouts normally retain the current commit's
+  // parent, which is the safe comparison base for that case. If it is absent
+  // (for example, an unusually shallow checkout), the diff fails and the
+  // caller retains the conservative "build" fallback.
+  return previousSha || `${currentSha}^`
+}
+
 const readChangedFiles = ({ previousSha, currentSha }) => {
-  if (!previousSha) throw new Error('VERCEL_GIT_PREVIOUS_SHA is unavailable')
+  const baseline = selectComparisonBase({ previousSha, currentSha })
 
   const output = execFileSync(
     'git',
-    ['diff', '--name-only', previousSha, currentSha],
+    ['diff', '--name-only', baseline, currentSha],
     { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] },
   )
 
