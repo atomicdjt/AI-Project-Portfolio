@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ai-project-portfolio-portfolio-hub.vercel.app/sitemap.xml
