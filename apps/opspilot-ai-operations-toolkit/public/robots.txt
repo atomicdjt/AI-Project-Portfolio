@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ai-project-portfolio-opspilot-ai-op.vercel.app/sitemap.xml
