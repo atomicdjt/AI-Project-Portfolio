@@ -186,7 +186,7 @@ const projects = [
     category: 'Workflow product',
     demo: 'https://weavestudio-nine.vercel.app/',
     source: 'https://github.com/atomicdjt/weavestudio',
-    caseStudy: 'https://weavestudio-demo.vercel.app/acquire',
+    caseStudy: 'https://weavestudio-nine.vercel.app/acquire',
     image: imagePath('weavestudio-demo.gif'),
     stack: ['React', 'TypeScript', 'React Flow', 'Playwright', 'Vercel'],
     summary: 'Local-first visual workflow canvas for turning fragmented notes, transcripts, logs, and research inputs into structured, reviewable deliverables.',
