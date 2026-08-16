@@ -519,7 +519,7 @@ function ProjectCard({ project }) {
 }
 
 function ProjectThumb({ project, large = false }) {
-  if (project.image) return <img className={large ? 'project-thumb large' : 'project-thumb'} src={project.image} alt={`${project.publicName} screenshot`} />;
+  if (project.image) return <img className={large ? 'project-thumb large' : 'project-thumb'} src={project.image} alt={`${project.publicName} screenshot`} loading="lazy" decoding="async" />;
   return <div className={large ? 'project-thumb large generated-thumb' : 'project-thumb generated-thumb'} aria-hidden="true"><span>{project.publicName.split(' ').map((word) => word[0]).join('').slice(0, 3)}</span><small>{project.category}</small></div>;
 }
 
