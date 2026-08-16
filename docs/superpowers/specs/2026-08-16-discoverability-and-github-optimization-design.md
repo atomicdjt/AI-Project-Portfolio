@@ -197,14 +197,16 @@ For external listings:
 
 ## Success criteria
 
-Near-term success is not a guaranteed ranking position. It is:
+Near-term success is not a guaranteed ranking position. The first implementation cycle succeeds when it produces:
 
 - a coherent and consistent public entity graph across GitHub and deployed projects;
 - no obvious canonical/crawl/metadata regressions;
 - collision-prone projects described with differentiated intent-rich language;
 - high-quality public project/profile pages linking back to canonical assets;
-- at least several legitimate external discovery opportunities prepared to publication-ready quality;
-- measurable growth in genuine external discovery signals over time: backlinks, referral visits, project mentions, profile views where available, recruiter/founder/contact outreach, or community feedback.
+- a ranked backlog of **8-12** legitimate external discovery opportunities with eligibility and effort notes;
+- at least **3** publication-ready external listing/launch packets for the strongest eligible projects;
+- a discovery ledger containing the baseline query observations and every external listing/backlink that becomes public;
+- a mechanism for comparing later genuine discovery signals such as backlinks, referral visits, project mentions, profile views where available, recruiter/founder/contact outreach, or community feedback.
 
 ## Scope boundaries for the first implementation plan
 
