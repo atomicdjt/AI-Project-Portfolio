@@ -11,7 +11,9 @@ This file records concrete actions completed in the current discovery pass. It s
 - Sent a Richmond-focused portfolio/newsletter inquiry to Richmond EDA's marketing manager, positioning the work as an independent applied-AI and technical-workflow portfolio without unsupported traction claims.
 - Sent an interest note to Hack for RVA 2027 offering to participate, mentor, or help teams turn civic problems into reviewable prototypes.
 - Sent one targeted local project tip to Richmond BizSense's startup/small-business reporter; no other BizSense staff were mass-contacted.
-- Prepared publication-ready packets for Show HN (BuildWorld AI), Product Hunt (WeaveStudio), Validation Ledger technical writing, Local-First News, and Awesome Browser-Based Tools.
+- Continued the LangGraph cancellation/persistence discussion with a substantive evidence-boundary refinement: emitted stream frontier vs. client-acknowledged frontier, plus negative controls for partial persistence, sibling lineage, and transport interruption.
+- Added `docs/discovery/external-corroboration.md`, a conservative source-backed record that separates explicit adoption, independent technical validation, positive curation, and ongoing collaboration.
+- Prepared publication-ready packets for Show HN (BuildWorld AI), Product Hunt (WeaveStudio), Validation Ledger technical writing, Local-First News, Awesome Browser-Based Tools, and Awesome BYOK Apps.
 - Prepared a LinkedIn positioning/Featured refresh packet.
 - Added a source-backed external-opportunity backlog and discovery ledger.
 - Added a polished autonomous master prompt for future discovery/outreach passes.
@@ -23,6 +25,7 @@ This file records concrete actions completed in the current discovery pass. It s
 - `10words`: free concise startup/app submission surface; form-bound and suitable only with factual, non-promotional positioning.
 - `Launching Next`: accepts free side-project/startup submissions with manual review; form-bound, and paid express placement is unnecessary.
 - `Uneed`: free launch path exists, but the platform is vote-oriented; lower priority because the campaign will not solicit coordinated votes.
+- `ToolVerity`: free editorial review with no required payment; credible but lower priority than exact-fit local-first/BYOK curation because WeaveStudio's AI layer is optional rather than its entire product identity.
 - `ProductReveal`: rejected for this campaign because its current free-submission path requires a reciprocal footer badge/backlink.
 - `SaaSHub`: deferred because current canonical products use Vercel subdomains that do not satisfy its current submission rule.
 - DZone / InfoQ contributed articles: not suitable for AI-written article submission under their current editorial rules. Use only if David independently authors the substantive article and AI is limited to permitted research/editing assistance.
@@ -34,11 +37,12 @@ This file records concrete actions completed in the current discovery pass. It s
 - Hashnode/DEV publishing: requires an authorized publication account.
 - LinkedIn profile editing: the connected LinkedIn action supports search but not profile writes.
 - Awesome Browser-Based Tools: upstream requires a PR; connected GitHub tooling has read-only upstream access and no fork-creation action.
-- `757.vc`, `10words`, Launching Next, and Uneed: current submission paths are web-form/account actions rather than available connected write actions.
+- Awesome BYOK Apps: upstream requires a PR; connected GitHub tooling has read-only upstream access and no fork-creation action.
+- `757.vc`, `10words`, Launching Next, Uneed, and ToolVerity: current submission paths are web-form/account actions rather than available connected write actions.
 
 ## Current response state
 
-- No campaign reply was found yet in the latest Gmail check from Local-First News, Launch Llama, Hack for RVA, Richmond EDA, rvatech, AI Ready RVA, or Hatchpad.
+- No campaign reply was found yet in the latest Gmail check from ShareCV/Technolympus, Local-First News, Launch Llama, Hack for RVA, Richmond EDA, Richmond BizSense, rvatech, AI Ready RVA, or Hatchpad.
 - Do not duplicate-submit while those contacts are pending.
 
 ## Next autonomous actions
