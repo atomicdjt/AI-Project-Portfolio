@@ -13,18 +13,33 @@ Each opportunity is scored qualitatively on audience relevance, public/indexable
 
 | Priority | Surface | Best first project/content | Audience relevance | Index/link value | Friction | Cost | Status | Why it belongs |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Hacker News — Show HN | BuildWorld AI | High | High | Medium | Free | Packet ready | Non-trivial, public, directly usable without signup, technically explainable, and built for discussion/feedback rather than lead capture. |
-| 2 | Product Hunt | WeaveStudio | High | High | Medium | Free regular launch | Packet ready | Polished live product with a clear visual workflow and immediate demo. Product Hunt explicitly supports makers posting their own live digital products. |
-| 3 | Hashnode | Validation Ledger architecture case study | High | High | Medium | Free | Packet ready | Substantive technical writing can create a durable indexed creator/project association; Hashnode supports SEO fields and GitHub-backed publishing. |
-| 4 | DEV Community | BuildWorld or Validation Ledger case study | High | Medium–High | Low–Medium | Free | Researched | Developer-facing implementation/lessons article is a better fit than a thin launch post. |
-| 5 | AlternativeTo | WeaveStudio, after account aging | Medium–High | High | Medium | Free | Researched | Public software-discovery surface. New users must wait one week before suggesting a new application; later it can be proposed as a genuine alternative where defensible. |
-| 6 | Peerlist Launchpad | WeaveStudio or BuildWorld AI | High | Medium–High | Medium–High | Potentially free | Conditional | Strong builder/collaboration audience, but Launchpad requires a verified individual profile and 100% complete project page. |
-| 7 | Indie Hackers | Build/validation retrospective | Medium–High | Medium | Medium | Free | Researched | Best used as a useful founder/builder discussion about decisions, failures, validation, or commercial uncertainty—not a link dump. |
-| 8 | Microlaunch | WeaveStudio | Medium | Medium | Medium | Free/basic path appears available | Research before submission | Potential extra product-discovery surface. Verify current launch rules immediately before account-bound submission. |
-| 9 | Relevant GitHub curated lists | WeaveStudio / local-first tools | High when exact fit | High | Medium | Free | Active | WeaveStudio is already submitted to `awesome-local-first`; do not bump prematurely. Only submit to additional lists where contribution rules and scope genuinely fit. |
-| 10 | LinkedIn profile + Featured section | Portfolio Hub + 3 flagships | Very High for jobs/collaboration | High identity value | Low manual step | Free | Refresh packet ready | Highest-intent professional identity surface. Keep the headline/About/Featured links synchronized with the current applied-AI and technical-operations portfolio. |
+| 1 | Local-First News — Apps | WeaveStudio | Very High | High | Low–Medium | Free | Packet ready | Exact topical fit, public newsletter/site, and official GitHub contribution path. The Apps section explicitly surfaces relatively recent, not-yet-well-known local-first applications. |
+| 2 | Hacker News — Show HN | BuildWorld AI | High | High | Medium | Free | Packet ready | Non-trivial, public, directly usable without signup, technically explainable, and built for discussion/feedback rather than lead capture. |
+| 3 | Product Hunt | WeaveStudio | High | High | Medium | Free regular launch | Packet ready | Polished live product with a clear visual workflow and immediate demo. Product Hunt explicitly supports makers posting their own live digital products. |
+| 4 | Hashnode | Validation Ledger architecture case study | High | High | Medium | Free | Packet ready | Substantive technical writing can create a durable indexed creator/project association; Hashnode supports SEO fields and GitHub-backed publishing. |
+| 5 | DEV Community | BuildWorld or Validation Ledger case study | High | Medium–High | Low–Medium | Free | Researched | Developer-facing implementation/lessons article is a better fit than a thin launch post. |
+| 6 | AlternativeTo | WeaveStudio, after account aging | Medium–High | High | Medium | Free | Researched | Public software-discovery surface. New users must wait one week before suggesting a new application; later it can be proposed as a genuine alternative where defensible. |
+| 7 | Peerlist Launchpad | WeaveStudio or BuildWorld AI | High | Medium–High | Medium–High | Potentially free | Conditional | Strong builder/collaboration audience, but Launchpad requires a verified individual profile and 100% complete project page. |
+| 8 | Indie Hackers | Build/validation retrospective | Medium–High | Medium | Medium | Free | Researched | Best used as a useful founder/builder discussion about decisions, failures, validation, or commercial uncertainty—not a link dump. |
+| 9 | Microlaunch | WeaveStudio | Medium | Medium | Medium | Free/basic path appears available | Research before submission | Potential extra product-discovery surface. Verify current launch rules immediately before account-bound submission. |
+| 10 | Relevant GitHub curated lists | WeaveStudio / local-first tools | High when exact fit | High | Medium | Free | Active | WeaveStudio is already submitted to `awesome-local-first`; do not bump prematurely. Only submit to additional lists where contribution rules and scope genuinely fit. |
+| 11 | LinkedIn profile + Featured section | Portfolio Hub + 3 flagships | Very High for jobs/collaboration | High identity value | Low manual step | Free | Refresh packet ready | Highest-intent professional identity surface. Keep the headline/About/Featured links synchronized with the current applied-AI and technical-operations portfolio. |
 
 ## Official rules checked
+
+### Local-First News — Apps
+
+Official:
+- https://www.localfirstnews.com/
+- https://github.com/localfirstnews/localfirstnews
+
+- Anyone can contribute to the latest edition through a pull request against the newsletter repository.
+- The site publishes a dedicated `Apps` section for applications built with a local-first architecture.
+- Apps are most likely to fit when they are relatively recent, not already well-known, and have not already been featured.
+- The contribution format is deliberately short: app name linked to the website/GitHub page plus a descriptive summary; technology may be added where useful.
+- Weekly editions are sent Thursday at noon Eastern; contributions for that week's edition can be submitted until 10:00 AM Eastern Thursday, subject to editorial discretion.
+
+**Fit decision:** WeaveStudio is an unusually direct fit: browser-local workspaces, no required account/backend/cloud database, portable exports/backups, and optional BYOK AI rather than mandatory hosted AI. Prefer the official PR route over generic promotional email when a fork/contribution path is available.
 
 ### Hacker News — Show HN
 
@@ -107,10 +122,11 @@ SaaSHub currently rejects products using free hosting subdomains such as Vercel 
 
 ## Recommended publication sequence
 
-1. **Show HN: BuildWorld AI** — strongest technical-discussion fit.
-2. **Product Hunt: WeaveStudio** — strongest polished-product fit.
-3. **Hashnode or DEV: Validation Ledger case study** — strongest durable technical-writing/backlink fit.
-4. Refresh **LinkedIn headline/About/Featured** so people arriving from any of the above see the current body of work.
-5. Add AlternativeTo/Peerlist only after their account/verification prerequisites are satisfied.
+1. **Local-First News: WeaveStudio** — exact-fit niche publication with an official open contribution path.
+2. **Show HN: BuildWorld AI** — strongest technical-discussion fit.
+3. **Product Hunt: WeaveStudio** — strongest polished-product fit.
+4. **Hashnode or DEV: Validation Ledger case study** — strongest durable technical-writing/backlink fit.
+5. Refresh **LinkedIn headline/About/Featured** so people arriving from any of the above see the current body of work.
+6. Add AlternativeTo/Peerlist only after their account/verification prerequisites are satisfied.
 
-The sequence deliberately mixes discovery intents: technical peers, product users/builders, indexed technical writing, and professional/recruiter conversion.
+The sequence deliberately mixes discovery intents: exact-fit niche readers, technical peers, product users/builders, indexed technical writing, and professional/recruiter conversion.
