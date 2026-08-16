@@ -20,6 +20,8 @@ Primary identity hub: https://github.com/atomicdjt
 
 Primary portfolio hub: https://ai-project-portfolio-portfolio-hub.vercel.app/
 
+Public corroboration record (review branch): `docs/discovery/external-corroboration.md`
+
 ## Current discovery work
 
 | Surface | Target | Canonical destination | Status | Date | Published URL / evidence | Next action |
@@ -33,6 +35,7 @@ Primary portfolio hub: https://ai-project-portfolio-portfolio-hub.vercel.app/
 | Hack for RVA | 2027 participation / mentor contribution | https://ai-project-portfolio-portfolio-hub.vercel.app/ | Submitted by email | 2026-08-16 | Gmail sent to `hello@rvahacks.org` | Await planning/next-step response. |
 | Richmond BizSense | Local tech/project tip | https://ai-project-portfolio-portfolio-hub.vercel.app/ | Submitted by email | 2026-08-16 | Gmail sent to startup/small-business reporter | Await response; do not pitch additional staff while pending. |
 | Awesome Browser-Based Tools | WeaveStudio | https://weavestudio-nine.vercel.app/ | Packet ready | 2026-08-16 | `docs/discovery/packets/awesome-browser-based-tools-weavestudio.md` | Upstream requires PR; fork creation remains account-bound with current connector. |
+| Awesome BYOK Apps | WeaveStudio | https://weavestudio-nine.vercel.app/ | Packet ready | 2026-08-16 | `docs/discovery/packets/awesome-byok-apps-weavestudio.md` | Exact technical fit for optional user-supplied OpenAI/Gemini keys; upstream PR/fork remains account-bound. |
 | Hacker News | BuildWorld AI Show HN | https://buildworld-ai-v01-improvements.vercel.app/ | Packet ready | 2026-08-16 | `docs/discovery/packets/buildworld-ai.md` | Account-bound submission only after confirming HN account eligibility/culture familiarity. |
 | Product Hunt | WeaveStudio | https://weavestudio-nine.vercel.app/ | Packet ready | 2026-08-16 | `docs/discovery/packets/weavestudio.md` | Account-bound launch setup; obey personal-account age/onboarding requirements. |
 | Hashnode / DEV | Validation Ledger case study | https://validation-ledger.vercel.app/ | Packet ready | 2026-08-16 | `docs/discovery/packets/validation-ledger.md` | Publish through an authorized account; use a substantive article rather than duplicate launch copy. |
@@ -41,6 +44,7 @@ Primary portfolio hub: https://ai-project-portfolio-portfolio-hub.vercel.app/
 | 10words | Concise app/startup listing | WeaveStudio | Researched / form-bound | 2026-08-16 | Official submission surface | Free concise submission is credible; complete only through an authorized web session. |
 | Launching Next | Side-project/startup listing | WeaveStudio | Researched / form-bound | 2026-08-16 | Official submission surface | Free manual-review path is acceptable; do not pay for express placement. |
 | Uneed | Product launch/discovery | WeaveStudio | Researched / lower priority | 2026-08-16 | Official launch guide | Free path exists, but avoid coordinated-vote tactics; use only organically. |
+| ToolVerity | WeaveStudio optional AI workflow | https://weavestudio-nine.vercel.app/ | Researched / lower priority / form-bound | 2026-08-16 | Free editorial review surface | Editorially reviewed and no payment required, but less exact than the local-first/BYOK lists; do not prioritize over exact-fit curation. |
 | ProductReveal | Directory listing | — | Rejected | 2026-08-16 | Current free submission flow | Requires a reciprocal footer badge/backlink; conflicts with campaign rules. |
 | AlternativeTo | WeaveStudio or ProcessHarbor | Canonical product URL | Researched | 2026-08-16 | Official FAQ | Eligible account must be at least one week old before new-app submission. |
 | Peerlist Launchpad | WeaveStudio / BuildWorld | Canonical product URL | Conditional | 2026-08-16 | Official Launchpad guidance | Verify individual profile eligibility; do not pay solely for exposure. |
@@ -65,15 +69,16 @@ For every recheck, record only the observed result set and date. Do not describe
 
 Use this section only for real public events that can be evidenced without exposing private correspondence.
 
-| Date | Source | Type | Project | What happened | Evidence / follow-up |
+| Date | Source | Type | Project / topic | What happened | Evidence / follow-up |
 | --- | --- | --- | --- | --- | --- |
 | 2026-08-16 | `awesome-local-first` owner triage | Curated-list review | WeaveStudio | Preliminary owner triage recommended “likely worth adding,” citing device-primary storage, no required account/backend/cloud database, portable exports/restore, active maintenance, and explicit tradeoffs; it also flagged offline/sync limitations for verification. | https://github.com/alexanderop/awesome-local-first/issues/68 — clarification posted; await final action. |
+| 2026-08-16 | LangGraph issue #5672 | Technical collaboration | Cancellation / persistence evidence | A direct technical exchange progressed from run occurrence identity to lineage and then stream-frontier coverage; David added a further emitted-vs-acknowledged frontier distinction and falsification controls. | https://github.com/langchain-ai/langgraph/issues/5672#issuecomment-5306903027 — ongoing discussion, not maintainer adoption. |
 
-Possible types: recruiter contact, maintainer invitation, collaboration request, user feedback, buyer inquiry, interview request, backlink, curated-list acceptance, article discussion, unsolicited technical support.
+A broader source-backed record of public third-party technical validation, project-author agreement, explicit design adoption, and preliminary curation signals is maintained in `docs/discovery/external-corroboration.md` on this review branch.
 
 ## Latest response check
 
-At the latest Gmail check on 2026-08-16, no new campaign reply was found from Local-First News, Launch Llama, Hack for RVA, Richmond EDA, rvatech, AI Ready RVA, or Hatchpad. This is recorded only to prevent duplicate follow-ups; it is not a negative signal.
+At the latest Gmail check on 2026-08-16, no new campaign reply was found from ShareCV/Technolympus, Local-First News, Launch Llama, Hack for RVA, Richmond EDA, Richmond BizSense, rvatech, AI Ready RVA, or Hatchpad. This is recorded only to prevent duplicate follow-ups; it is not a negative signal.
 
 ## Next review trigger
 
