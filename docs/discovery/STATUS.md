@@ -18,6 +18,8 @@ This file records concrete actions completed in the current discovery pass. It s
 - Added a source-backed external-opportunity backlog and discovery ledger.
 - Added a polished autonomous master prompt for future discovery/outreach passes.
 - Opened PR #79 containing the external-distribution program.
+- Opened upstream PR #7 to add WeaveStudio to Awesome Browser-Based Tools; the one-line entry is factual and includes author disclosure in the PR body.
+- Opened upstream PR #12 to add WeaveStudio to Awesome BYOK Apps; the one-line entry, author disclosure, supported providers, key-storage boundary, and optional-AI boundary are all stated in the PR.
 
 ## Additional qualified opportunities researched
 
@@ -32,13 +34,13 @@ This file records concrete actions completed in the current discovery pass. It s
 
 ## Account-bound / blocked final steps
 
-- Hacker News Show HN: requires the owner's HN account/session.
-- Product Hunt: requires a personal Product Hunt account and current posting eligibility.
-- Hashnode/DEV publishing: requires an authorized publication account.
-- LinkedIn profile editing: the connected LinkedIn action supports search but not profile writes.
-- Awesome Browser-Based Tools: upstream requires a PR; connected GitHub tooling has read-only upstream access and no fork-creation action.
-- Awesome BYOK Apps: upstream requires a PR; connected GitHub tooling has read-only upstream access and no fork-creation action.
-- `757.vc`, `10words`, Launching Next, Uneed, and ToolVerity: current submission paths are web-form/account actions rather than available connected write actions.
+- Hacker News Show HN: requires the owner's eligible HN account/session; none has been confirmed.
+- Product Hunt: requires a personal Product Hunt account and current posting eligibility; none has been confirmed.
+- Hashnode/DEV publishing: requires an authorized publication account; none has been confirmed.
+- LinkedIn profile editing: requires an authenticated editable session; the available LinkedIn action supports search but not profile writes, and no editable session has been confirmed.
+- Awesome Browser-Based Tools: submitted as upstream PR #7; await maintainer review without bumping or duplicate submission.
+- Awesome BYOK Apps: submitted as upstream PR #12; await maintainer review without bumping or duplicate submission.
+- `757.vc`, `10words`, Launching Next, Uneed, and ToolVerity: current submission paths are web-form/account actions; a compatible authenticated session has not been confirmed.
 
 ## Current response state
 
