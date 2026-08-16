@@ -26,7 +26,7 @@ Primary portfolio hub: https://ai-project-portfolio-portfolio-hub.vercel.app/
 | --- | --- | --- | --- | --- | --- | --- |
 | GitHub profile | David Turner / atomicdjt | Portfolio Hub + flagships | Live | 2026-08-16 | https://github.com/atomicdjt | Preserve first-screen identity, demos, evidence, and contact paths. |
 | GitHub | BuildWorld AI search differentiation | https://buildworld-ai-v01-improvements.vercel.app/ | PR open | 2026-08-16 | https://github.com/atomicdjt/buildworld-ai/pull/11 | Review/merge normally after checks; do not treat Vercel quota state as an app failure. |
-| GitHub curated list | WeaveStudio local-first listing | https://weavestudio-nine.vercel.app/ | Submitted / awaiting response | 2026-08-16 | https://github.com/sethluedke/awesome-local-first/pull/68 | Wait for maintainer response; no premature bump. |
+| GitHub curated list | WeaveStudio local-first listing | https://weavestudio-nine.vercel.app/ | Submitted / positive preliminary owner triage | 2026-08-16 | https://github.com/alexanderop/awesome-local-first/issues/68 | Owner's preliminary triage says “likely worth adding”; David clarified the offline/sync limitations in-thread. Await final maintainer action without bumping. |
 | Local-First News | WeaveStudio `Apps` entry | https://weavestudio-nine.vercel.app/ | Packet ready | 2026-08-16 | `docs/discovery/packets/local-first-news-weavestudio.md` | Manual fork step required before the connected GitHub tooling can create the contribution PR. |
 | Hacker News | BuildWorld AI Show HN | https://buildworld-ai-v01-improvements.vercel.app/ | Packet ready | 2026-08-16 | `docs/discovery/packets/buildworld-ai.md` | Account-bound submission only after confirming HN account eligibility/culture familiarity. |
 | Product Hunt | WeaveStudio | https://weavestudio-nine.vercel.app/ | Packet ready | 2026-08-16 | `docs/discovery/packets/weavestudio.md` | Account-bound launch setup; obey personal-account age/onboarding requirements. |
@@ -51,13 +51,13 @@ Recheck these query families after external pages have had crawl time:
 
 For every recheck, record only the observed result set and date. Do not describe ranking as permanent or universal.
 
-## Inbound outcome log
+## Public inbound/validation log
 
-Use this section only for real inbound events that can be evidenced and are appropriate to record publicly.
+Use this section only for real public events that can be evidenced without exposing private correspondence.
 
 | Date | Source | Type | Project | What happened | Evidence / follow-up |
 | --- | --- | --- | --- | --- | --- |
-| — | — | — | — | No public inbound event recorded in this ledger yet. | — |
+| 2026-08-16 | `awesome-local-first` owner triage | Curated-list review | WeaveStudio | Preliminary owner triage recommended “likely worth adding,” citing device-primary storage, no required account/backend/cloud database, portable exports/restore, active maintenance, and explicit tradeoffs; it also flagged offline/sync limitations for verification. | https://github.com/alexanderop/awesome-local-first/issues/68 — clarification posted; await final action. |
 
 Possible types: recruiter contact, maintainer invitation, collaboration request, user feedback, buyer inquiry, interview request, backlink, curated-list acceptance, article discussion, unsolicited technical support.
 
