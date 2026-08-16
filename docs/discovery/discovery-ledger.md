@@ -7,7 +7,7 @@ Started: 2026-08-16
 
 - `Researched` means the current official rules were checked; it is not a backlink.
 - `Packet ready` means publication copy is prepared; it is not a backlink.
-- `Submitted` means an account-bound submission was actually made; approval/indexing may still be pending.
+- `Submitted` means a real submission or outreach action was actually made; approval/indexing may still be pending.
 - `Published` requires a public, crawlable URL.
 - Search ranking is observational and may vary by engine, location, personalization, and crawl timing.
 - Never record inferred traffic, users, sales, rankings, or validation as fact.
@@ -26,8 +26,10 @@ Primary portfolio hub: https://ai-project-portfolio-portfolio-hub.vercel.app/
 | --- | --- | --- | --- | --- | --- | --- |
 | GitHub profile | David Turner / atomicdjt | Portfolio Hub + flagships | Live | 2026-08-16 | https://github.com/atomicdjt | Preserve first-screen identity, demos, evidence, and contact paths. |
 | GitHub | BuildWorld AI search differentiation | https://buildworld-ai-v01-improvements.vercel.app/ | PR open | 2026-08-16 | https://github.com/atomicdjt/buildworld-ai/pull/11 | Review/merge normally after checks; do not treat Vercel quota state as an app failure. |
-| GitHub curated list | WeaveStudio local-first listing | https://weavestudio-nine.vercel.app/ | Submitted / positive preliminary owner triage | 2026-08-16 | https://github.com/alexanderop/awesome-local-first/issues/68 | Owner's preliminary triage says “likely worth adding”; David clarified the offline/sync limitations in-thread. Await final maintainer action without bumping. |
-| Local-First News | WeaveStudio `Apps` entry | https://weavestudio-nine.vercel.app/ | Packet ready | 2026-08-16 | `docs/discovery/packets/local-first-news-weavestudio.md` | Manual fork step required before the connected GitHub tooling can create the contribution PR. |
+| GitHub curated list | WeaveStudio local-first listing | https://weavestudio-nine.vercel.app/ | Submitted / positive preliminary owner triage | 2026-08-16 | https://github.com/alexanderop/awesome-local-first/issues/68 | Owner's preliminary triage says “likely worth adding”; clarification posted. Await final maintainer action without bumping. |
+| Local-First News | WeaveStudio `Apps` entry | https://weavestudio-nine.vercel.app/ | Submitted by email | 2026-08-16 | Gmail sent message + `docs/discovery/packets/local-first-news-weavestudio.md` | Await editor response; do not duplicate-submit. |
+| Launch Llama | WeaveStudio directory/newsletter consideration | https://weavestudio-nine.vercel.app/ | Submitted by email | 2026-08-16 | Gmail sent to `contact@launchllama.co` | Await response; use official directory form only if requested or if no email route is accepted. |
+| Awesome Browser-Based Tools | WeaveStudio | https://weavestudio-nine.vercel.app/ | Packet ready | 2026-08-16 | `docs/discovery/packets/awesome-browser-based-tools-weavestudio.md` | Upstream requires PR; fork creation remains account-bound with current connector. |
 | Hacker News | BuildWorld AI Show HN | https://buildworld-ai-v01-improvements.vercel.app/ | Packet ready | 2026-08-16 | `docs/discovery/packets/buildworld-ai.md` | Account-bound submission only after confirming HN account eligibility/culture familiarity. |
 | Product Hunt | WeaveStudio | https://weavestudio-nine.vercel.app/ | Packet ready | 2026-08-16 | `docs/discovery/packets/weavestudio.md` | Account-bound launch setup; obey personal-account age/onboarding requirements. |
 | Hashnode / DEV | Validation Ledger case study | https://validation-ledger.vercel.app/ | Packet ready | 2026-08-16 | `docs/discovery/packets/validation-ledger.md` | Publish through an authorized account; use substantive article rather than duplicate launch copy. |
