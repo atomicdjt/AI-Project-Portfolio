@@ -13,33 +13,36 @@ Each opportunity is scored qualitatively on audience relevance, public/indexable
 
 | Priority | Surface | Best first project/content | Audience relevance | Index/link value | Friction | Cost | Status | Why it belongs |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Local-First News — Apps | WeaveStudio | Very High | High | Low–Medium | Free | Packet ready | Exact topical fit, public newsletter/site, and official GitHub contribution path. The Apps section explicitly surfaces relatively recent, not-yet-well-known local-first applications. |
-| 2 | Hacker News — Show HN | BuildWorld AI | High | High | Medium | Free | Packet ready | Non-trivial, public, directly usable without signup, technically explainable, and built for discussion/feedback rather than lead capture. |
-| 3 | Product Hunt | WeaveStudio | High | High | Medium | Free regular launch | Packet ready | Polished live product with a clear visual workflow and immediate demo. Product Hunt explicitly supports makers posting their own live digital products. |
-| 4 | Hashnode | Validation Ledger architecture case study | High | High | Medium | Free | Packet ready | Substantive technical writing can create a durable indexed creator/project association; Hashnode supports SEO fields and GitHub-backed publishing. |
-| 5 | DEV Community | BuildWorld or Validation Ledger case study | High | Medium–High | Low–Medium | Free | Researched | Developer-facing implementation/lessons article is a better fit than a thin launch post. |
-| 6 | AlternativeTo | WeaveStudio, after account aging | Medium–High | High | Medium | Free | Researched | Public software-discovery surface. New users must wait one week before suggesting a new application; later it can be proposed as a genuine alternative where defensible. |
-| 7 | Peerlist Launchpad | WeaveStudio or BuildWorld AI | High | Medium–High | Medium–High | Potentially free | Conditional | Strong builder/collaboration audience, but Launchpad requires a verified individual profile and 100% complete project page. |
-| 8 | Indie Hackers | Build/validation retrospective | Medium–High | Medium | Medium | Free | Researched | Best used as a useful founder/builder discussion about decisions, failures, validation, or commercial uncertainty—not a link dump. |
-| 9 | Microlaunch | WeaveStudio | Medium | Medium | Medium | Free/basic path appears available | Research before submission | Potential extra product-discovery surface. Verify current launch rules immediately before account-bound submission. |
-| 10 | Relevant GitHub curated lists | WeaveStudio / local-first tools | High when exact fit | High | Medium | Free | Active | WeaveStudio is already submitted to `awesome-local-first`; do not bump prematurely. Only submit to additional lists where contribution rules and scope genuinely fit. |
-| 11 | LinkedIn profile + Featured section | Portfolio Hub + 3 flagships | Very High for jobs/collaboration | High identity value | Low manual step | Free | Refresh packet ready | Highest-intent professional identity surface. Keep the headline/About/Featured links synchronized with the current applied-AI and technical-operations portfolio. |
+| 1 | Local-First News | WeaveStudio | Very High | High | Low | Free | Submitted | Exact editorial fit: the newsletter has an Apps section for local-first software. A tailored email submission was sent on 2026-08-16. |
+| 2 | `awesome-local-first` | WeaveStudio | Very High | High | Low | Free | Positive maintainer triage | Maintainer preliminary review says the project is "likely worth adding" and specifically cites local storage, portable exports, active maintenance, and clear tradeoff documentation. |
+| 3 | Hacker News — Show HN | BuildWorld AI | High | High | Medium | Free | Packet ready | Non-trivial, public, directly usable without signup, technically explainable, and built for discussion/feedback rather than lead capture. |
+| 4 | Product Hunt | WeaveStudio | High | High | Medium | Free regular launch | Packet ready | Polished live product with a clear visual workflow and immediate demo. Product Hunt explicitly supports makers posting their own live digital products. |
+| 5 | Hashnode | Validation Ledger architecture case study | High | High | Medium | Free | Packet ready | Substantive technical writing can create a durable indexed creator/project association; Hashnode supports SEO fields and GitHub-backed publishing. |
+| 6 | Awesome Browser-Based Tools | WeaveStudio | High | Medium–High | Medium | Free | Packet ready | The list explicitly accepts browser-local tools, open web apps, and privacy-friendly browser workflows. PR contribution is required. |
+| 7 | DEV Community | BuildWorld or Validation Ledger case study | High | Medium–High | Low–Medium | Free | Researched | Developer-facing implementation/lessons article is a better fit than a thin launch post. |
+| 8 | AlternativeTo | WeaveStudio, after account aging | Medium–High | High | Medium | Free | Researched | Public software-discovery surface. New users must wait one week before suggesting a new application; later it can be proposed as a genuine alternative where defensible. |
+| 9 | Peerlist Launchpad | WeaveStudio or BuildWorld AI | High | Medium–High | Medium–High | Potentially free | Conditional | Strong builder/collaboration audience, but Launchpad requires a verified individual profile and 100% complete project page. |
+| 10 | Indie Hackers | Build/validation retrospective | Medium–High | Medium | Medium | Free | Researched | Best used as a useful founder/builder discussion about decisions, failures, validation, or commercial uncertainty—not a link dump. |
+| 11 | Microlaunch | WeaveStudio | Medium | Medium | Medium | Free/basic path appears available | Research before submission | Potential extra product-discovery surface. Verify current launch rules immediately before account-bound submission. |
+| 12 | LinkedIn profile + Featured section | Portfolio Hub + 3 flagships | Very High for jobs/collaboration | High identity value | Low manual step | Free | Refresh packet ready | Highest-intent professional identity surface. Keep the headline/About/Featured links synchronized with the current applied-AI and technical-operations portfolio. |
 
 ## Official rules checked
 
-### Local-First News — Apps
+### Local-First News
 
-Official:
-- https://www.localfirstnews.com/
-- https://github.com/localfirstnews/localfirstnews
+Official project/source: https://github.com/localfirstnews/localfirstnews
 
-- Anyone can contribute to the latest edition through a pull request against the newsletter repository.
-- The site publishes a dedicated `Apps` section for applications built with a local-first architecture.
-- Apps are most likely to fit when they are relatively recent, not already well-known, and have not already been featured.
-- The contribution format is deliberately short: app name linked to the website/GitHub page plus a descriptive summary; technology may be added where useful.
-- Weekly editions are sent Thursday at noon Eastern; contributions for that week's edition can be submitted until 10:00 AM Eastern Thursday, subject to editorial discretion.
+The newsletter publishes a recurring **Apps** section for local-first applications. A tailored WeaveStudio submission was sent to the newsletter contact on 2026-08-16. Do not send a duplicate unless the editor replies requesting more information.
 
-**Fit decision:** WeaveStudio is an unusually direct fit: browser-local workspaces, no required account/backend/cloud database, portable exports/backups, and optional BYOK AI rather than mandatory hosted AI. Prefer the official PR route over generic promotional email when a fork/contribution path is available.
+**Fit decision:** strongest currently actionable editorial match for WeaveStudio.
+
+### `awesome-local-first`
+
+Submission: https://github.com/alexanderop/awesome-local-first/issues/68
+
+Maintainer preliminary triage on 2026-08-16: **"Recommendation: likely worth adding"**. The maintainer specifically cited on-device workspaces, portable export/restore, active maintenance, and explicit documentation of browser-local storage/BYOK AI tradeoffs. The remaining uncertainty noted was offline behavior after first load and the lack of built-in sync/collaboration.
+
+**Fit decision:** already producing external validation; respond only with useful clarification, not repeated promotion.
 
 ### Hacker News — Show HN
 
@@ -94,6 +97,19 @@ Official:
 
 **Fit decision:** use for a substantive technical case study, not duplicated promotional copy.
 
+### Awesome Browser-Based Tools
+
+Official repository and guide:
+- https://github.com/ZihangDong/awesome-browser-based-tools
+- https://github.com/ZihangDong/awesome-browser-based-tools/blob/main/CONTRIBUTING.md
+
+- Accepts tools directly usable in a browser.
+- Explicitly calls out browser-local tools, open web apps, and privacy-friendly workflows.
+- Requires a short, factual entry and a pull request.
+- Discourages promotional language and repeated category placement.
+
+**Fit decision:** WeaveStudio is a credible match under Writing and Documentation. Submission packet prepared; upstream fork/PR remains account-bound because the connected GitHub action does not expose fork creation.
+
 ### AlternativeTo
 
 Official: https://alternativeto.net/faq//
@@ -122,11 +138,12 @@ SaaSHub currently rejects products using free hosting subdomains such as Vercel 
 
 ## Recommended publication sequence
 
-1. **Local-First News: WeaveStudio** — exact-fit niche publication with an official open contribution path.
+1. **Local-First News / awesome-local-first** — already active; let responses develop and provide only useful follow-up.
 2. **Show HN: BuildWorld AI** — strongest technical-discussion fit.
 3. **Product Hunt: WeaveStudio** — strongest polished-product fit.
 4. **Hashnode or DEV: Validation Ledger case study** — strongest durable technical-writing/backlink fit.
-5. Refresh **LinkedIn headline/About/Featured** so people arriving from any of the above see the current body of work.
-6. Add AlternativeTo/Peerlist only after their account/verification prerequisites are satisfied.
+5. **Awesome Browser-Based Tools: WeaveStudio** — exact-fit curated-list PR once an upstream fork can be created.
+6. Refresh **LinkedIn headline/About/Featured** so people arriving from any of the above see the current body of work.
+7. Add AlternativeTo/Peerlist only after their account/verification prerequisites are satisfied.
 
-The sequence deliberately mixes discovery intents: exact-fit niche readers, technical peers, product users/builders, indexed technical writing, and professional/recruiter conversion.
+The sequence deliberately mixes discovery intents: technical peers, product users/builders, indexed technical writing, curated-list backlinks, and professional/recruiter conversion.
