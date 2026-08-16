@@ -31,6 +31,9 @@ Public corroboration record (review branch): `docs/discovery/external-corroborat
 | GitHub curated list | WeaveStudio local-first listing | https://weavestudio-nine.vercel.app/ | Submitted / positive preliminary owner triage | 2026-08-16 | https://github.com/alexanderop/awesome-local-first/issues/68 | Owner preliminary triage says “likely worth adding”; clarification posted. Await final maintainer action without bumping. |
 | Local-First News | WeaveStudio `Apps` entry | https://weavestudio-nine.vercel.app/ | Submitted by email | 2026-08-16 | Gmail sent message + `docs/discovery/packets/local-first-news-weavestudio.md` | Await editor response; do not duplicate-submit. |
 | Launch Llama | WeaveStudio directory/newsletter consideration | https://weavestudio-nine.vercel.app/ | Submitted by email | 2026-08-16 | Gmail sent to `contact@launchllama.co` | Await response; do not duplicate-submit. |
+| Hatchpad | BuildWorld AI / DMV project feature | https://buildworld-ai-v01-improvements.vercel.app/ | Submitted by email | 2026-08-16 | Gmail sent to `newsletter@myhatchpad.com` | Await editorial response; Hatchpad explicitly accepts project/side-project pitches by email. |
+| rvatech | Richmond technology-community participation | https://ai-project-portfolio-portfolio-hub.vercel.app/ | Submitted by email | 2026-08-16 | Gmail sent to `info@rvatech.com` | Await guidance to the most appropriate community/event channel. |
+| AI Ready RVA | Local AI community contribution | https://ai-project-portfolio-portfolio-hub.vercel.app/ | Submitted by email | 2026-08-16 | Gmail sent to `hello@aireadyrva.com` | Offered demos, writing, podcast, and community participation; await response without duplicating form submissions. |
 | Richmond EDA | Richmond-built applied-AI / technical-workflow portfolio | https://ai-project-portfolio-portfolio-hub.vercel.app/ | Submitted by email | 2026-08-16 | Gmail sent to EDA marketing manager | Await response; no duplicate newsletter form submission unless requested. |
 | Hack for RVA | 2027 participation / mentor contribution | https://ai-project-portfolio-portfolio-hub.vercel.app/ | Submitted by email | 2026-08-16 | Gmail sent to `hello@rvahacks.org` | Await planning/next-step response. |
 | Richmond BizSense | Local tech/project tip | https://ai-project-portfolio-portfolio-hub.vercel.app/ | Submitted by email | 2026-08-16 | Gmail sent to startup/small-business reporter | Await response; do not pitch additional staff while pending. |
@@ -78,7 +81,7 @@ A broader source-backed record of public third-party technical validation, proje
 
 ## Latest response check
 
-At the latest Gmail check on 2026-08-16, no new campaign reply was found from ShareCV/Technolympus, Local-First News, Launch Llama, Hack for RVA, Richmond EDA, Richmond BizSense, rvatech, AI Ready RVA, or Hatchpad. This is recorded only to prevent duplicate follow-ups; it is not a negative signal.
+At the latest Gmail check on 2026-08-16, no new campaign reply was found from ShareCV/Technolympus, Local-First News, Launch Llama, Hatchpad, rvatech, AI Ready RVA, Hack for RVA, Richmond EDA, or Richmond BizSense. This is recorded only to prevent duplicate follow-ups; it is not a negative signal.
 
 ## Next review trigger
 
