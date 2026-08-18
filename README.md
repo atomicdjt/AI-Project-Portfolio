@@ -1,6 +1,10 @@
 # AI Project Portfolio
 
-A source-backed portfolio of applications, workflow systems, and product prototypes demonstrating applied AI judgment, technical-operations thinking, local-first architecture, frontend implementation, documentation discipline, and responsible scope control.
+**What is this?** A source-backed portfolio of applications, workflow systems, and product prototypes demonstrating applied AI judgment, technical-operations thinking, local-first architecture, frontend implementation, documentation discipline, and responsible scope control.
+**Who is it for?** Hiring managers, technical recruiters, and engineering leads evaluating practical initiative, AI-assisted execution, and product judgment.
+**Why is it interesting?** It demonstrates the ability to turn ambiguous ideas into structured, reviewable, local-first working systems without fabricating claims or overstating scope.
+**Can I see it?** Yes, view the [Live Portfolio Hub](https://ai-project-portfolio-portfolio-hub.vercel.app/) or take the [Five-minute review](https://ai-project-portfolio-portfolio-hub.vercel.app/review).
+**Where is the evidence?** Every portfolio entry is backed by source in this repository or its identified authoritative repository, with tests, documentation and live deployments where applicable.
 
 ![React](https://img.shields.io/badge/React-19-61dafb?logo=react&logoColor=111)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5%2F6-3178c6?logo=typescript&logoColor=fff)

@@ -186,7 +186,7 @@ const projects = [
     category: 'Workflow product',
     demo: 'https://weavestudio-nine.vercel.app/',
     source: 'https://github.com/atomicdjt/weavestudio',
-    caseStudy: 'https://weavestudio-demo.vercel.app/acquire',
+    caseStudy: 'https://weavestudio-nine.vercel.app/acquire',
     image: imagePath('weavestudio-demo.gif'),
     stack: ['React', 'TypeScript', 'React Flow', 'Playwright', 'Vercel'],
     summary: 'Local-first visual workflow canvas for turning fragmented notes, transcripts, logs, and research inputs into structured, reviewable deliverables.',
@@ -519,7 +519,7 @@ function ProjectCard({ project }) {
 }
 
 function ProjectThumb({ project, large = false }) {
-  if (project.image) return <img className={large ? 'project-thumb large' : 'project-thumb'} src={project.image} alt={`${project.publicName} screenshot`} />;
+  if (project.image) return <img className={large ? 'project-thumb large' : 'project-thumb'} src={project.image} alt={`${project.publicName} screenshot`} loading="lazy" decoding="async" />;
   return <div className={large ? 'project-thumb large generated-thumb' : 'project-thumb generated-thumb'} aria-hidden="true"><span>{project.publicName.split(' ').map((word) => word[0]).join('').slice(0, 3)}</span><small>{project.category}</small></div>;
 }
 
