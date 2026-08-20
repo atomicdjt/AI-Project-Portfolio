@@ -1,4 +1,4 @@
-name: One-shot accessibility phase executor
+name: One-shot accessibility triage diagnostic
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 jobs:
-  verify:
+  diagnose:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -23,69 +23,145 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Execute Task 6 and persist diagnostics
+      - name: Install dependencies and Chromium
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+
+      - name: Capture focused browser diagnostics
         shell: bash
         run: |
-          set -u
-          failure_stage=""
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs'
+          import { chromium } from '@playwright/test'
 
-          run_stage() {
-            stage="$1"
-            shift
-            if [ -n "$failure_stage" ]; then
-              return 0
-            fi
-            set +e
-            "$@" > "/tmp/${stage}.log" 2>&1
-            status=$?
-            set -e
-            cat "/tmp/${stage}.log"
-            if [ "$status" -ne 0 ]; then
-              failure_stage="$stage"
-            fi
+          const browser = await chromium.launch({ headless: true })
+          const result = { sourceSha: process.env.GITHUB_SHA, browserVersion: browser.version(), checks: {} }
+
+          async function pageAt(url, width, height = 844) {
+            const context = await browser.newContext({ viewport: { width, height } })
+            const page = await context.newPage()
+            await page.goto(url, { waitUntil: 'networkidle', timeout: 45000 })
+            return { context, page }
           }
 
-          run_stage npm-ci npm ci
-          run_stage chromium npx playwright install --with-deps chromium
-          run_stage unit-contracts npm run a11y:test-config
-          run_stage baseline env AUDIT_SOURCE_SHA="$GITHUB_SHA" npm run a11y:baseline
-          run_stage renderer node scripts/accessibility/render-baseline.mjs
-          run_stage claim-boundary bash -lc 'set -euo pipefail; test -f docs/accessibility/README.md; test -f docs/accessibility/AUDIT_MATRIX.md; test -f docs/accessibility/FINDINGS.md; test -f docs/accessibility/NVDA_MANUAL_CHECK.md; grep -q "Baseline — remediation not yet applied" docs/accessibility/README.md; grep -q "not yet tested with genuine screen reader" docs/accessibility/README.md; if grep -RniE "WCAG compliant|fully accessible|screen-reader passed|NVDA passed" docs/accessibility; then exit 1; fi'
+          {
+            const { context, page } = await pageAt('https://ai-project-portfolio-variantvision.vercel.app/', 390)
+            result.checks.variantOverflow390 = await page.evaluate(() => {
+              const clientWidth = document.documentElement.clientWidth
+              const scrollWidth = document.documentElement.scrollWidth
+              const offenders = [...document.querySelectorAll('body *')]
+                .map((el) => {
+                  const rect = el.getBoundingClientRect()
+                  const style = getComputedStyle(el)
+                  return {
+                    tag: el.tagName.toLowerCase(),
+                    className: typeof el.className === 'string' ? el.className : '',
+                    text: (el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 100),
+                    left: Math.round(rect.left),
+                    right: Math.round(rect.right),
+                    width: Math.round(rect.width),
+                    overflowX: style.overflowX,
+                    display: style.display,
+                  }
+                })
+                .filter((item) => item.width > 0 && (item.right > clientWidth + 2 || item.width > clientWidth + 2))
+                .sort((a, b) => Math.max(b.right - clientWidth, b.width - clientWidth) - Math.max(a.right - clientWidth, a.width - clientWidth))
+                .slice(0, 30)
+              return { clientWidth, scrollWidth, offenders }
+            })
+            await context.close()
+          }
 
-          mkdir -p .github/ops
-          if [ -z "$failure_stage" ]; then
-            desktop=.accessibility-results/baseline-desktop-chromium.json
-            narrow=.accessibility-results/baseline-narrow-chromium.json
-            total_records="$(jq -s '[.[].records | length] | add' "$desktop" "$narrow")"
-            candidate_sections="$(grep -c '^## .*-' docs/accessibility/FINDINGS.md || true)"
-            jq -n \
-              --arg phase "task-6-renderer-green" \
-              --arg sha "$GITHUB_SHA" \
-              --arg node "$(node --version)" \
-              --arg npm "$(npm --version)" \
-              --argjson records "$total_records" \
-              --argjson candidates "$candidate_sections" \
-              '{phase:$phase,verified_sha:$sha,node:$node,npm:$npm,result:"pass",record_count:$records,normalized_candidate_sections:$candidates,assistive_technology_status:"not yet tested with genuine screen reader"}' \
-              > .github/ops/a11y-phase-result.json
-          else
-            jq -n \
-              --arg phase "task-6-renderer-diagnostic" \
-              --arg sha "$GITHUB_SHA" \
-              --arg stage "$failure_stage" \
-              --rawfile log "/tmp/${failure_stage}.log" \
-              '{phase:$phase,verified_sha:$sha,result:"fail",failure_stage:$stage,log_excerpt:($log[-6000:])}' \
-              > .github/ops/a11y-phase-result.json
-          fi
+          {
+            const { context, page } = await pageAt('https://ai-project-portfolio-scamshield-ai.vercel.app/', 390)
+            result.checks.scamshieldMobileToggles = await page.locator('.mode-toggle').evaluateAll((labels) => labels.map((label) => {
+              const input = label.querySelector('input')
+              const span = label.querySelector('span')
+              return {
+                visibleText: label.innerText.trim(),
+                spanText: span?.textContent?.trim() ?? '',
+                spanDisplay: span ? getComputedStyle(span).display : null,
+                ariaLabel: input?.getAttribute('aria-label'),
+                ariaLabelledby: input?.getAttribute('aria-labelledby'),
+                inputType: input?.getAttribute('type'),
+              }
+            }))
+            await context.close()
+          }
 
+          {
+            const { context, page } = await pageAt('https://ai-project-portfolio-redactready-pr.vercel.app/', 390)
+            result.checks.redactreadySessionStatus = await page.locator('.session-status').evaluate((el) => ({
+              clientWidth: el.clientWidth,
+              scrollWidth: el.scrollWidth,
+              tabIndex: el.tabIndex,
+              overflowX: getComputedStyle(el).overflowX,
+              text: el.textContent?.trim().replace(/\s+/g, ' '),
+            }))
+            result.checks.redactreadyMeters = await page.locator('.score-meter').evaluateAll((els) => els.map((el) => ({
+              tag: el.tagName.toLowerCase(),
+              role: el.getAttribute('role'),
+              ariaLabel: el.getAttribute('aria-label'),
+              ariaValueNow: el.getAttribute('aria-valuenow'),
+              text: el.textContent?.trim(),
+            })))
+            await context.close()
+          }
+
+          {
+            const { context, page } = await pageAt('https://ai-project-portfolio-variantvision.vercel.app/', 1366, 900)
+            result.checks.variantMeters = await page.locator('.score-meter').evaluateAll((els) => els.map((el) => ({
+              tag: el.tagName.toLowerCase(),
+              role: el.getAttribute('role'),
+              ariaLabel: el.getAttribute('aria-label'),
+              ariaValueNow: el.getAttribute('aria-valuenow'),
+              text: el.textContent?.trim(),
+            })))
+            const colorTargets = {
+              activeCaseSmall: '.case-list button.active small',
+              liveFetch: '.live-fetch-btn',
+            }
+            result.checks.variantRenderedColors = {}
+            for (const [name, selector] of Object.entries(colorTargets)) {
+              result.checks.variantRenderedColors[name] = await page.locator(selector).first().evaluate((el) => {
+                const s = getComputedStyle(el)
+                const parent = getComputedStyle(el.parentElement)
+                return { color: s.color, backgroundColor: s.backgroundColor, parentBackgroundColor: parent.backgroundColor, fontSize: s.fontSize, fontWeight: s.fontWeight }
+              })
+            }
+            await context.close()
+          }
+
+          {
+            const { context, page } = await pageAt('https://ai-project-portfolio-portfolio-hub.vercel.app/', 1366, 900)
+            result.checks.portfolioMetaColors = await page.locator('.card-meta span:nth-child(2)').evaluateAll((els) => els.slice(0, 8).map((el) => {
+              const s = getComputedStyle(el)
+              const card = el.closest('.project-card')
+              const cardStyle = card ? getComputedStyle(card) : null
+              return { text: el.textContent?.trim(), color: s.color, backgroundColor: s.backgroundColor, cardBackgroundColor: cardStyle?.backgroundColor, fontSize: s.fontSize, fontWeight: s.fontWeight }
+            }))
+            await context.close()
+          }
+
+          {
+            const { context, page } = await pageAt('https://ai-project-portfolio-scamshield-ai.vercel.app/', 1366, 900)
+            result.checks.scamshieldRenderedColors = {
+              inactiveStep: await page.locator('.stepper button').nth(1).evaluate((el) => { const s = getComputedStyle(el); return { text: el.textContent?.trim(), color: s.color, backgroundColor: s.backgroundColor, fontSize: s.fontSize, fontWeight: s.fontWeight } }),
+              footerLink: await page.locator('.app-footer a').evaluate((el) => { const s = getComputedStyle(el); const p = getComputedStyle(el.parentElement); const footer = getComputedStyle(el.closest('.app-footer')); return { text: el.textContent?.trim(), color: s.color, backgroundColor: s.backgroundColor, parentBackgroundColor: p.backgroundColor, footerBackgroundColor: footer.backgroundColor, fontSize: s.fontSize, fontWeight: s.fontWeight } }),
+            }
+            await context.close()
+          }
+
+          await browser.close()
+          fs.mkdirSync('.github/ops', { recursive: true })
+          fs.writeFileSync('.github/ops/a11y-triage-diagnostic.json', JSON.stringify(result, null, 2))
+          NODE
+
+      - name: Persist triage diagnostic
+        run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .github/ops/a11y-phase-result.json
-          if [ -z "$failure_stage" ]; then
-            git add docs/accessibility
-          fi
-          git commit -m "test(a11y): record task 6 verification outcome"
+          git add .github/ops/a11y-triage-diagnostic.json
+          git commit -m "test(a11y): capture focused task 8 diagnostics"
           git push origin HEAD:feat/39-accessibility-baseline
-
-          if [ -n "$failure_stage" ]; then
-            exit 1
-          fi
