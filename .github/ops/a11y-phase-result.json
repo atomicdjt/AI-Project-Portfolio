@@ -1,7 +1,7 @@
 {
-  "phase": "task-2-registry-green",
-  "verified_sha": "66b0cfc19f6829f5f1e2e429eff79698117acd06",
+  "phase": "task-3-evidence-red",
+  "verified_sha": "71b2ef9114b081b8148bc383a0c7ba7cf65e54b8",
   "node": "v22.23.2",
   "npm": "10.9.8",
-  "result": "pass"
+  "result": "expected-red-confirmed"
 }
