@@ -334,7 +334,7 @@ export function App() {
                 </div>
 
                 <Panel icon={Activity} title="Population Frequency Fixture">
-                  <div className="table-wrap">
+                  <div className="table-wrap" tabIndex={0} aria-label="Population frequency fixture table">
                     <table>
                       <thead>
                         <tr>

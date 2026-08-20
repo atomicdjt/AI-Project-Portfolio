@@ -590,6 +590,11 @@ dd {
   overflow-x: auto;
 }
 
+.table-wrap:focus-visible {
+  outline: 3px solid #087f75;
+  outline-offset: 3px;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;

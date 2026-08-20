@@ -98,3 +98,27 @@ test('A11Y-05 VariantVision contains wide content locally at narrow and zoom-pro
     expect(geometry.localWideRegion).toBe(true)
   }
 })
+
+test('A11Y-15 VariantVision population table is named, keyboard-focusable, and visibly focused when horizontally scrollable', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto(urls.variantvision)
+
+  const tableWrap = page.locator('.table-wrap')
+  await expect(tableWrap).toBeVisible()
+  const state = await tableWrap.evaluate((element) => ({
+    tabIndex: element.tabIndex,
+    scrollable: element.scrollWidth > element.clientWidth + 1,
+    accessibleName: element.getAttribute('aria-label'),
+  }))
+
+  expect(state.scrollable).toBe(true)
+  expect(state.tabIndex).toBe(0)
+  expect(state.accessibleName).toMatch(/population frequency fixture/i)
+
+  await tableWrap.focus()
+  const focus = await tableWrap.evaluate((element) => {
+    const style = getComputedStyle(element)
+    return { outlineStyle: style.outlineStyle, outlineWidth: style.outlineWidth, boxShadow: style.boxShadow }
+  })
+  expect(focus.outlineStyle !== 'none' || focus.boxShadow !== 'none').toBe(true)
+})
