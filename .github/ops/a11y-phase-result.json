@@ -1,7 +1,7 @@
 {
-  "phase": "task-3-evidence-red",
-  "verified_sha": "71b2ef9114b081b8148bc383a0c7ba7cf65e54b8",
+  "phase": "task-3-evidence-green",
+  "verified_sha": "4bb1ab487d380e30e30db0117c44f815f47946e5",
   "node": "v22.23.2",
   "npm": "10.9.8",
-  "result": "expected-red-confirmed"
+  "result": "pass"
 }
