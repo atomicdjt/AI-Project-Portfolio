@@ -8,8 +8,8 @@ import {
 import { createAuditRecord, writeAuditBundle } from '../../scripts/accessibility/evidence.mjs'
 import { loadFlagshipProjects } from '../../scripts/accessibility/projects.mjs'
 
-const sourceSha = process.env.AUDIT_SOURCE_SHA
-if (!sourceSha) throw new Error('AUDIT_SOURCE_SHA is required for reproducible accessibility evidence')
+const auditHarnessSha = process.env.AUDIT_HARNESS_SHA
+if (!auditHarnessSha) throw new Error('AUDIT_HARNESS_SHA is required for reproducible accessibility evidence')
 
 const projects = loadFlagshipProjects()
 const records = []
@@ -31,7 +31,9 @@ for (const project of projects) {
         createAuditRecord({
           projectId: project.id,
           productionUrl: page.url(),
-          sourceSha,
+          sourceSha: project.productionSourceSha,
+          auditHarnessSha,
+          productionDeploymentId: project.productionDeploymentId,
           browserName: 'chromium',
           browserVersion: browser.version(),
           operatingSystem: process.platform,
@@ -44,10 +46,7 @@ for (const project of projects) {
     }
 
     const violations = await scanPage(page)
-    addRecord('automated-axe', {
-      status: violations.length > 0 ? 'finding' : 'observed',
-      violations,
-    })
+    addRecord('automated-axe', { status: violations.length > 0 ? 'finding' : 'observed', violations })
 
     const keyboardFocus = await collectKeyboardFocusObservation(page)
     addRecord('keyboard-focus', keyboardFocus)
@@ -67,6 +66,9 @@ for (const project of projects) {
     await testInfo.attach(`${project.id}-baseline-summary`, {
       body: JSON.stringify({
         projectId: project.id,
+        productionDeploymentId: project.productionDeploymentId,
+        productionSourceSha: project.productionSourceSha,
+        auditHarnessSha,
         axeViolationCount: violations.length,
         keyboardStatus: keyboardFocus.status,
         narrowReflowStatus: narrowReflow.status,
@@ -82,8 +84,8 @@ test.afterAll(async ({ browser }, testInfo) => {
   writeAuditBundle(
     records,
     {
-      sourceSha,
-      runId: process.env.GITHUB_RUN_ID ?? `local-${sourceSha.slice(0, 12)}`,
+      auditHarnessSha,
+      runId: process.env.GITHUB_RUN_ID ?? `local-${auditHarnessSha.slice(0, 12)}`,
       observedAt: suiteObservedAt,
       environment: {
         operatingSystem: process.platform,
