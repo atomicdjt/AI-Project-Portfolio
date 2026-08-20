@@ -1,4 +1,4 @@
-name: One-shot accessibility bootstrap
+name: One-shot accessibility phase executor
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 jobs:
-  bootstrap:
+  verify:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -21,32 +21,30 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 22
+          cache: npm
 
-      - name: Prove registry contract is RED before implementation
-        shell: bash
-        run: |
-          set +e
-          node --test scripts/accessibility/__tests__/projects.test.mjs > /tmp/a11y-red.log 2>&1
-          status=$?
-          set -e
-          cat /tmp/a11y-red.log
-          test "$status" -ne 0
-          grep -Eq "ERR_MODULE_NOT_FOUND|Cannot find module|projects\.mjs" /tmp/a11y-red.log
-          echo "EXPECTED_RED_CONFIRMED=true"
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Generate package lock from declared accessibility tooling
-        run: npm install --package-lock-only --ignore-scripts
+      - name: Verify accessibility config contract
+        run: npm run a11y:test-config
 
-      - name: Persist generated lockfile only
+      - name: Persist verified phase result
         shell: bash
         run: |
           set -euo pipefail
+          mkdir -p .github/ops
+          cat > .github/ops/a11y-phase-result.json <<EOF
+          {
+            "phase": "task-2-registry-green",
+            "verified_sha": "${GITHUB_SHA}",
+            "node": "$(node --version)",
+            "npm": "$(npm --version)",
+            "result": "pass"
+          }
+          EOF
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet -- package-lock.json; then
-            echo "package-lock.json already synchronized"
-            exit 0
-          fi
-          git add package-lock.json
-          git commit -m "chore(a11y): synchronize root audit tooling lockfile"
+          git add .github/ops/a11y-phase-result.json
+          git commit -m "test(a11y): record registry contract green"
           git push origin HEAD:feat/39-accessibility-baseline
