@@ -59,6 +59,8 @@ The artifact for run `32334523191` preserves the raw schema-v2 JSON bundles, Pla
 
 Plan 1 established a reproducible baseline and adjudicated the scanner/behavior output into 14 validated product findings. No Critical portfolio-level defect was validated. Five High findings must be corrected and retested before any positive accessibility-review claim is appropriate; the authorized remediation pass will also correct the Medium/Low scanner-serious defects where practical.
 
+The frozen run is the evidentiary basis for the finding set. Subsequent PR-head checks verify that the committed harness, documentation, and claim boundaries remain internally consistent after cleanup; they do not retroactively change which production deployment was tested in the frozen baseline.
+
 See:
 
 - [AUDIT_MATRIX.md](./AUDIT_MATRIX.md) — project/category result matrix
