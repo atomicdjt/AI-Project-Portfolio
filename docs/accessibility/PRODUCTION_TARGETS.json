@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "verifiedOn": "2026-08-20",
+  "provider": "Vercel",
+  "repository": "atomicdjt/AI-Project-Portfolio",
+  "projects": {
+    "portfolio-hub": {
+      "productionUrl": "https://ai-project-portfolio-portfolio-hub.vercel.app/",
+      "deploymentId": "dpl_2sW9EhJFRrVuK1Kjg2n86dcP8tN4",
+      "sourceSha": "cd782588bc6b6b36bc2ca7f1efaaa7c31e78d7b2",
+      "state": "READY",
+      "target": "production"
+    },
+    "processharbor": {
+      "productionUrl": "https://ai-project-portfolio-opspilot-ai-op.vercel.app/",
+      "deploymentId": "dpl_EiNAD1QwbdyFmvHWPKAewLY6fDSe",
+      "sourceSha": "cd782588bc6b6b36bc2ca7f1efaaa7c31e78d7b2",
+      "state": "READY",
+      "target": "production"
+    },
+    "redactready-pro": {
+      "productionUrl": "https://ai-project-portfolio-redactready-pr.vercel.app/",
+      "deploymentId": "dpl_2xkFztSB7vGFAwYdYkFm9oDDqHQD",
+      "sourceSha": "cd782588bc6b6b36bc2ca7f1efaaa7c31e78d7b2",
+      "state": "READY",
+      "target": "production"
+    },
+    "layerforge-studio": {
+      "productionUrl": "https://ai-project-portfolio-layerforge-stu.vercel.app/",
+      "deploymentId": "dpl_DBk1PqmK8TEZssQMJoCDCfuzRraD",
+      "sourceSha": "cd782588bc6b6b36bc2ca7f1efaaa7c31e78d7b2",
+      "state": "READY",
+      "target": "production"
+    },
+    "scamshield-ai": {
+      "productionUrl": "https://ai-project-portfolio-scamshield-ai.vercel.app/",
+      "deploymentId": "dpl_Bwe2ywgqyZ2J1BgjbBLYiuFV6e4r",
+      "sourceSha": "cd782588bc6b6b36bc2ca7f1efaaa7c31e78d7b2",
+      "state": "READY",
+      "target": "production"
+    },
+    "variantvision-pro": {
+      "productionUrl": "https://ai-project-portfolio-variantvision.vercel.app/",
+      "deploymentId": "dpl_Hgw1V49V5e85V925RKokcp2BJ5gd",
+      "sourceSha": "cd782588bc6b6b36bc2ca7f1efaaa7c31e78d7b2",
+      "state": "READY",
+      "target": "production"
+    }
+  }
+}

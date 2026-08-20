@@ -1,0 +1,76 @@
+name: Accessibility Baseline
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'scripts/accessibility/**'
+      - 'tests/accessibility/**'
+      - 'playwright.accessibility.config.mjs'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'docs/accessibility/**'
+      - '.github/workflows/accessibility-baseline.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify accessibility unit contracts
+        run: npm run a11y:test-config
+
+      - name: Run six-app accessibility baseline
+        env:
+          AUDIT_HARNESS_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: npm run a11y:baseline
+
+      - name: Render normalized baseline evidence
+        if: success()
+        run: node scripts/accessibility/render-baseline.mjs
+
+      - name: Enforce claim boundary
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'Baseline — remediation not yet applied' docs/accessibility/README.md
+          grep -q 'not yet tested with genuine screen reader' docs/accessibility/README.md
+          if grep -RniE 'WCAG compliant|fully accessible|screen-reader passed|NVDA passed' docs/accessibility; then
+            echo 'Unsupported accessibility claim detected.'
+            exit 1
+          fi
+
+      - name: Upload accessibility baseline evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: accessibility-baseline-${{ github.run_id }}
+          path: |
+            .accessibility-results
+            accessibility-playwright-report
+            docs/accessibility
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 30
