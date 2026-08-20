@@ -1,0 +1,198 @@
+name: One-shot Plan 2A accessibility apply
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/ops/run-a11y-plan2a-apply'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'feat/39-accessibility-remediation'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout remediation head
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Apply exact guarded replacements
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          def replace_once(path, old, new):
+              file = Path(path)
+              text = file.read_text(encoding='utf-8')
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'{path}: expected exactly one replacement target, found {count}')
+              file.write_text(text.replace(old, new, 1), encoding='utf-8')
+
+          replace_once(
+              'apps/portfolio-hub/src/styles.css',
+              '''.search-field input,
+          .filters select {
+            border: 0;
+            outline: 0;
+            background: transparent;
+          }
+          ''',
+              '''.search-field input,
+          .filters select {
+            border: 0;
+            background: transparent;
+          }
+
+          .search-field:focus-within {
+            border-color: #075e56;
+            box-shadow: 0 0 0 3px rgba(7, 94, 86, 0.18);
+          }
+          ''',
+          )
+
+          replace_once(
+              'apps/redactready-pro-hri-os/src/app/App.tsx',
+              '''                  <div className="score-meter" aria-label={`${score.category}: ${score.score}`}>
+                    <i style={{ width: `${score.score}%` }} />
+                  </div>''',
+              '''                  <div
+                    className="score-meter"
+                    role="meter"
+                    aria-label={`${score.category} score`}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-valuenow={score.score}
+                    aria-valuetext={`${score.score} out of 100`}
+                  >
+                    <i aria-hidden="true" style={{ width: `${score.score}%` }} />
+                  </div>''',
+          )
+
+          replace_once(
+              'apps/variantvision-pro/src/app/App.tsx',
+              '''                        <div className="score-meter" aria-label={`${metric.label} score ${metric.score}`}>
+                          <i style={{ width: `${metric.score}%` }} />
+                        </div>''',
+              '''                        <div
+                          className="score-meter"
+                          role="meter"
+                          aria-label={`${metric.label} score`}
+                          aria-valuemin={0}
+                          aria-valuemax={100}
+                          aria-valuenow={metric.score}
+                          aria-valuetext={`${metric.score} out of 100`}
+                        >
+                          <i aria-hidden="true" style={{ width: `${metric.score}%` }} />
+                        </div>''',
+          )
+
+          replace_once(
+              'apps/scamshield-ai/src/components/layout/Header.tsx',
+              '''          <input type="checkbox" checked={plainLanguage} onChange={(event) => setPlainLanguage(event.target.checked)} />''',
+              '''          <input aria-label="Plain-language mode" type="checkbox" checked={plainLanguage} onChange={(event) => setPlainLanguage(event.target.checked)} />''',
+          )
+          replace_once(
+              'apps/scamshield-ai/src/components/layout/Header.tsx',
+              '''          <input type="checkbox" checked={caregiverMode} onChange={(event) => setCaregiverMode(event.target.checked)} />''',
+              '''          <input aria-label="Caregiver mode" type="checkbox" checked={caregiverMode} onChange={(event) => setCaregiverMode(event.target.checked)} />''',
+          )
+
+          replace_once(
+              'apps/scamshield-ai/src/test/app.test.tsx',
+              '''    expect(screen.getByText(/risk assessment, not a final determination/i)).toBeInTheDocument()''',
+              '''    expect(screen.getByText(/risk assessment, not a final determination/i)).toBeInTheDocument()
+            expect(screen.getByRole('checkbox', { name: 'Plain-language mode' })).toBeInTheDocument()
+            expect(screen.getByRole('checkbox', { name: 'Caregiver mode' })).toBeInTheDocument()''',
+          )
+
+          replace_once(
+              'apps/variantvision-pro/src/index.css',
+              '''.workspace-primary,
+          .page-stack,
+          .inspector {
+            display: grid;
+            gap: 14px;
+          }''',
+              '''.workspace-primary,
+          .page-stack,
+          .inspector {
+            display: grid;
+            gap: 14px;
+            min-width: 0;
+          }''',
+          )
+
+          replace_once(
+              'apps/variantvision-pro/src/index.css',
+              '''.panel {
+            background: rgba(255, 255, 255, 0.92);''',
+              '''.panel {
+            min-width: 0;
+            background: rgba(255, 255, 255, 0.92);''',
+          )
+
+          replace_once(
+              'apps/variantvision-pro/src/index.css',
+              '''.table-wrap {
+            overflow-x: auto;
+          }''',
+              '''.table-wrap {
+            min-width: 0;
+            overflow-x: auto;
+          }''',
+          )
+          PY
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify ScamShield component regression
+        run: npm test --workspace apps/scamshield-ai -- --run src/test/app.test.tsx
+
+      - name: Verify all High browser regressions
+        run: npm run a11y:remediation
+
+      - name: Verify affected builds
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run build --workspace apps/portfolio-hub
+          npm run build --workspace apps/redactready-pro-hri-os
+          npm run build --workspace apps/scamshield-ai
+          npm run build --workspace apps/variantvision-pro
+
+      - name: Commit verified product fixes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'David Turner'
+          git config user.email 'davidelsey9513@gmail.com'
+          git add \
+            apps/portfolio-hub/src/styles.css \
+            apps/redactready-pro-hri-os/src/app/App.tsx \
+            apps/scamshield-ai/src/components/layout/Header.tsx \
+            apps/scamshield-ai/src/test/app.test.tsx \
+            apps/variantvision-pro/src/app/App.tsx \
+            apps/variantvision-pro/src/index.css
+          git diff --cached --check
+          git commit -m 'fix(a11y): remediate high-severity findings'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
