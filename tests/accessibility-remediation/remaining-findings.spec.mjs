@@ -54,7 +54,7 @@ test('A11Y-07 LayerForge recent project select exposes visible focus', async ({ 
   expect(hasVisibleIndicator(await computedFocusIndicator(select))).toBe(true)
 })
 
-test('A11Y-08 RedactReady scrollable session status is keyboard-operable and named', async ({ page }) => {
+test('A11Y-08 RedactReady scrollable session status is keyboard-operable, named, and visibly focused', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('http://127.0.0.1:5181')
   const status = page.locator('.session-status')
@@ -66,6 +66,7 @@ test('A11Y-08 RedactReady scrollable session status is keyboard-operable and nam
   expect(state.scrollable).toBe(true)
   expect(state.tabIndex).toBe(0)
   await expect(status).toHaveAccessibleName('Session status')
+  expect(hasVisibleIndicator(await computedFocusIndicator(status))).toBe(true)
 })
 
 test('A11Y-09 ScamShield footer source link clears normal-text contrast', async ({ page }) => {
@@ -99,14 +100,22 @@ test('A11Y-11 VariantVision active-case shorthand clears normal-text contrast', 
   expect(contrastRatio(foreground, background)).toBeGreaterThanOrEqual(4.5)
 })
 
-test('A11Y-12 VariantVision live-fetch action clears normal-text contrast', async ({ page }) => {
+test('A11Y-12 VariantVision live-fetch action clears normal-text contrast at rest and hover', async ({ page }) => {
   await page.goto('http://127.0.0.1:5182')
   const action = page.locator('.live-fetch-btn').first()
   await expect(action).toBeVisible()
-  const styles = await action.evaluate((element) => {
+
+  const readContrast = async () => action.evaluate((element) => {
     const style = getComputedStyle(element)
     return { foreground: style.color, background: style.backgroundColor }
   })
+
+  let styles = await readContrast()
+  expect(contrastRatio(styles.foreground, styles.background)).toBeGreaterThanOrEqual(4.5)
+
+  await action.hover()
+  await page.waitForTimeout(180)
+  styles = await readContrast()
   expect(contrastRatio(styles.foreground, styles.background)).toBeGreaterThanOrEqual(4.5)
 })
 
@@ -122,14 +131,21 @@ test('A11Y-13 Portfolio Hub secondary card metadata clears normal-text contrast'
   expect(contrastRatio(foreground, background)).toBeGreaterThanOrEqual(4.5)
 })
 
-test('A11Y-14 ScamShield inactive step label clears normal-text contrast', async ({ page }) => {
+test('A11Y-14 ScamShield inactive step label and number clear normal-text contrast', async ({ page }) => {
   await page.goto('http://127.0.0.1:5178')
   const step = page.locator('.stepper button:not(.active):not(.complete)').first()
+  const number = step.locator('span')
   const stepper = page.locator('.stepper')
   await expect(step).toBeVisible()
-  const [foreground, background] = await Promise.all([
+  await expect(number).toBeVisible()
+
+  const [stepForeground, stepBackground, numberForeground, numberBackground] = await Promise.all([
     step.evaluate((element) => getComputedStyle(element).color),
     stepper.evaluate((element) => getComputedStyle(element).backgroundColor),
+    number.evaluate((element) => getComputedStyle(element).color),
+    number.evaluate((element) => getComputedStyle(element).backgroundColor),
   ])
-  expect(contrastRatio(foreground, background)).toBeGreaterThanOrEqual(4.5)
+
+  expect(contrastRatio(stepForeground, stepBackground)).toBeGreaterThanOrEqual(4.5)
+  expect(contrastRatio(numberForeground, numberBackground)).toBeGreaterThanOrEqual(4.5)
 })
