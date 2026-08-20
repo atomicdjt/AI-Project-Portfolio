@@ -20,20 +20,24 @@ const flowById = {
 }
 
 const configPath = fileURLToPath(new URL('../../config/vercel-projects.json', import.meta.url))
+const targetsPath = fileURLToPath(new URL('../../docs/accessibility/PRODUCTION_TARGETS.json', import.meta.url))
 
 export function loadFlagshipProjects() {
   const config = JSON.parse(readFileSync(configPath, 'utf8'))
+  const targets = JSON.parse(readFileSync(targetsPath, 'utf8'))
   const projectById = new Map(config.projects.map((project) => [project.id, project]))
 
   return flagshipIds.map((id) => {
     const project = projectById.get(id)
+    const target = targets.projects?.[id]
     if (!project) throw new Error(`Missing canonical project configuration for ${id}`)
-    if (!String(project.currentStatus ?? '').startsWith('active')) {
-      throw new Error(`Flagship project ${id} is not active`)
-    }
-    if (!project.productionUrl || !project.productionUrl.startsWith('https://')) {
-      throw new Error(`Flagship project ${id} lacks a canonical HTTPS production URL`)
-    }
+    if (!String(project.currentStatus ?? '').startsWith('active')) throw new Error(`Flagship project ${id} is not active`)
+    if (!project.productionUrl || !project.productionUrl.startsWith('https://')) throw new Error(`Flagship project ${id} lacks a canonical HTTPS production URL`)
+    if (!target) throw new Error(`Missing provider-verified production target for ${id}`)
+    if (target.productionUrl !== project.productionUrl) throw new Error(`Production URL provenance mismatch for ${id}`)
+    if (!/^dpl_[A-Za-z0-9]+$/.test(target.deploymentId ?? '')) throw new Error(`Invalid production deployment id for ${id}`)
+    if (!/^[0-9a-f]{40}$/.test(target.sourceSha ?? '')) throw new Error(`Invalid production source SHA for ${id}`)
+    if (target.state !== 'READY' || target.target !== 'production') throw new Error(`Production target for ${id} is not verified READY production`)
 
     return {
       id,
@@ -41,6 +45,9 @@ export function loadFlagshipProjects() {
       productionUrl: project.productionUrl,
       workspacePath: project.path,
       primaryFlow: flowById[id],
+      productionDeploymentId: target.deploymentId,
+      productionSourceSha: target.sourceSha,
+      productionTargetVerifiedOn: targets.verifiedOn,
       assistiveTechnologyStatus: 'not yet tested with genuine screen reader',
     }
   })
