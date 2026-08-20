@@ -62,11 +62,6 @@ Plan 1 established a reproducible baseline and adjudicated the scanner/behavior 
 
 The frozen run is the evidentiary basis for the finding set. Subsequent PR-head checks verify that the committed harness, documentation, and claim boundaries remain internally consistent after cleanup; they do not retroactively change which production deployment was tested in the frozen baseline.
 
-**Plan 1 completion boundary:** the baseline PR contains no product-code remediation. Product corrections begin only in the separate remediation plan/branch generated from the validated finding ledger.
+**Plan 1 completion boundary:** this baseline PR contains no product-code remediation. Product corrections begin only in the separate remediation plan/branch generated from the validated finding ledger.
 
-See:
-
-- [AUDIT_MATRIX.md](./AUDIT_MATRIX.md) — project/category result matrix
-- [FINDINGS.md](./FINDINGS.md) — consolidated root findings, evidence, and severities
-- [PRODUCTION_TARGETS.json](./PRODUCTION_TARGETS.json) — provider-verified production provenance
-- [NVDA_MANUAL_CHECK.md](./NVDA_MANUAL_CHECK.md) — genuine assistive-technology checklist and pending boundary
+See [AUDIT_MATRIX.md](./AUDIT_MATRIX.md), [FINDINGS.md](./FINDINGS.md), [PRODUCTION_TARGETS.json](./PRODUCTION_TARGETS.json), and [NVDA_MANUAL_CHECK.md](./NVDA_MANUAL_CHECK.md).
