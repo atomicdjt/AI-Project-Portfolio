@@ -473,8 +473,12 @@ main {
 .search-field input,
 .filters select {
   border: 0;
-  outline: 0;
   background: transparent;
+}
+
+.search-field:focus-within {
+  border-color: #075e56;
+  box-shadow: 0 0 0 3px rgba(7, 94, 86, 0.18);
 }
 
 .search-field input {

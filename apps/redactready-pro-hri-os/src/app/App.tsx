@@ -189,8 +189,16 @@ export function App() {
                     <strong>{score.category}</strong>
                     <span>{score.explanation}</span>
                   </div>
-                  <div className="score-meter" aria-label={`${score.category}: ${score.score}`}>
-                    <i style={{ width: `${score.score}%` }} />
+                  <div
+                    className="score-meter"
+                    role="meter"
+                    aria-label={`${score.category} score`}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-valuenow={score.score}
+                    aria-valuetext={`${score.score} out of 100`}
+                  >
+                    <i aria-hidden="true" style={{ width: `${score.score}%` }} />
                   </div>
                   <span className={severityClass(score.band)}>{score.band}</span>
                 </div>

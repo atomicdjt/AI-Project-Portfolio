@@ -22,13 +22,13 @@ export function Header() {
         <label className="mode-toggle">
           <Accessibility size={17} aria-hidden="true" />
           <span>Plain-language mode</span>
-          <input type="checkbox" checked={plainLanguage} onChange={(event) => setPlainLanguage(event.target.checked)} />
+          <input aria-label="Plain-language mode" type="checkbox" checked={plainLanguage} onChange={(event) => setPlainLanguage(event.target.checked)} />
           <i aria-hidden="true" />
         </label>
         <label className="mode-toggle">
           <HeartHandshake size={17} aria-hidden="true" />
           <span>Caregiver mode</span>
-          <input type="checkbox" checked={caregiverMode} onChange={(event) => setCaregiverMode(event.target.checked)} />
+          <input aria-label="Caregiver mode" type="checkbox" checked={caregiverMode} onChange={(event) => setCaregiverMode(event.target.checked)} />
           <i aria-hidden="true" />
         </label>
       </div>
