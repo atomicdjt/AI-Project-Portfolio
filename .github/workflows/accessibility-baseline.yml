@@ -71,5 +71,6 @@ jobs:
             .accessibility-results
             accessibility-playwright-report
             docs/accessibility
+          include-hidden-files: true
           if-no-files-found: warn
           retention-days: 30
