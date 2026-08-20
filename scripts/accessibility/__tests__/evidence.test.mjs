@@ -5,7 +5,9 @@ import { createAuditRecord, normalizeAxeViolation } from '../evidence.mjs'
 const baseInput = {
   projectId: 'portfolio-hub',
   productionUrl: 'https://example.test/',
-  sourceSha: 'abc123',
+  sourceSha: 'cd782588bc6b6b36bc2ca7f1efaaa7c31e78d7b2',
+  auditHarnessSha: '1234567890abcdef1234567890abcdef12345678',
+  productionDeploymentId: 'dpl_example123',
   browserName: 'chromium',
   browserVersion: '1.2.3',
   operatingSystem: 'linux',
@@ -18,8 +20,10 @@ const baseInput = {
 test('audit record requires reproducibility fields and defaults AT boundary', () => {
   const record = createAuditRecord(baseInput)
   assert.equal(record.assistiveTechnology, 'not yet tested with genuine screen reader')
+  assert.equal(record.sourceSha, baseInput.sourceSha)
+  assert.equal(record.auditHarnessSha, baseInput.auditHarnessSha)
 
-  for (const key of Object.keys(baseInput)) {
+  for (const key of ['projectId', 'productionUrl', 'sourceSha', 'auditHarnessSha', 'browserName', 'browserVersion', 'operatingSystem', 'viewport', 'category', 'observedAt', 'result']) {
     const candidate = { ...baseInput }
     delete candidate[key]
     assert.throws(() => createAuditRecord(candidate), new RegExp(key))
@@ -28,17 +32,10 @@ test('audit record requires reproducibility fields and defaults AT boundary', ()
 
 test('screen-reader success claims require genuine assistive-technology evidence', () => {
   for (const claim of ['NVDA tested', 'screen-reader passed', 'Screen reader passed']) {
-    assert.throws(
-      () => createAuditRecord({ ...baseInput, assistiveTechnology: claim }),
-      /genuine assistive-technology evidence/i,
-    )
+    assert.throws(() => createAuditRecord({ ...baseInput, assistiveTechnology: claim }), /genuine assistive-technology evidence/i)
   }
 
-  const genuine = createAuditRecord({
-    ...baseInput,
-    assistiveTechnology: 'NVDA tested with Chrome',
-    genuineAssistiveTechnology: true,
-  })
+  const genuine = createAuditRecord({ ...baseInput, assistiveTechnology: 'NVDA tested with Chrome', genuineAssistiveTechnology: true })
   assert.equal(genuine.genuineAssistiveTechnology, true)
 })
 
