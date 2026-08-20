@@ -14,6 +14,18 @@ export default defineConfig({
   ],
   webServer: [
     {
+      command: 'npm run dev --workspace apps/layerforge-studio -- --port 5176',
+      url: 'http://127.0.0.1:5176',
+      reuseExistingServer: false,
+      timeout: 120_000,
+    },
+    {
+      command: 'npm run dev --workspace apps/opspilot-ai-operations-toolkit',
+      url: 'http://127.0.0.1:5177',
+      reuseExistingServer: false,
+      timeout: 120_000,
+    },
+    {
       command: 'npm run dev --workspace apps/scamshield-ai',
       url: 'http://127.0.0.1:5178',
       reuseExistingServer: false,
