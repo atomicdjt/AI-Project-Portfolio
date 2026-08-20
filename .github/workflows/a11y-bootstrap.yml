@@ -1,0 +1,52 @@
+name: One-shot accessibility bootstrap
+
+on:
+  push:
+    branches:
+      - feat/39-accessibility-baseline
+    paths:
+      - .github/ops/run-a11y-bootstrap
+
+permissions:
+  contents: write
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: Prove registry contract is RED before implementation
+        shell: bash
+        run: |
+          set +e
+          node --test scripts/accessibility/__tests__/projects.test.mjs > /tmp/a11y-red.log 2>&1
+          status=$?
+          set -e
+          cat /tmp/a11y-red.log
+          test "$status" -ne 0
+          grep -Eq "ERR_MODULE_NOT_FOUND|Cannot find module|projects\.mjs" /tmp/a11y-red.log
+          echo "EXPECTED_RED_CONFIRMED=true"
+
+      - name: Generate package lock from declared accessibility tooling
+        run: npm install --package-lock-only --ignore-scripts
+
+      - name: Persist generated lockfile only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- package-lock.json; then
+            echo "package-lock.json already synchronized"
+            exit 0
+          fi
+          git add package-lock.json
+          git commit -m "chore(a11y): synchronize root audit tooling lockfile"
+          git push origin HEAD:feat/39-accessibility-baseline
