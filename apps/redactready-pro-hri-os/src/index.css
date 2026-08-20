@@ -200,6 +200,11 @@ textarea:focus-visible {
   overflow-x: auto;
 }
 
+.session-status:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
 .session-status span {
   min-height: 30px;
   display: inline-flex;

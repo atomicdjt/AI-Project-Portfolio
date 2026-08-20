@@ -224,7 +224,6 @@ select:focus-visible {
 .select-control select {
   min-width: 92px;
   border: 0;
-  outline: 0;
   color: inherit;
   background: transparent;
 }

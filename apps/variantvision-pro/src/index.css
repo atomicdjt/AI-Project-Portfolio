@@ -148,7 +148,6 @@ svg {
   border: 0;
   background: transparent;
   color: #ffffff;
-  outline: 0;
 }
 
 .search-box input::placeholder {
@@ -195,6 +194,10 @@ svg {
 .case-list small {
   font-weight: 900;
   color: #e1b85f;
+}
+
+.case-list button.active small {
+  color: #735400;
 }
 
 .case-list em {
@@ -877,7 +880,7 @@ td {
   min-height: 32px;
   padding: 0 10px;
   font-size: 0.8rem;
-  background: #19b8aa;
+  background: #0f766e;
   color: #ffffff;
   border: 0;
   border-radius: 6px;
@@ -885,7 +888,7 @@ td {
   cursor: pointer;
 
   &:hover {
-    background: #149388;
+    background: #0b5f59;
   }
 }
 

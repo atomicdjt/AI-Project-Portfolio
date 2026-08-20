@@ -467,7 +467,7 @@ export function App() {
       </aside>
       <main>
         <header className="topbar">
-          <div className="session-status">
+          <div className="session-status" tabIndex={0} aria-label="Session status">
             <span>
               <Lock size={15} /> Local session
             </span>
