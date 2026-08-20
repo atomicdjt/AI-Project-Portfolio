@@ -270,8 +270,16 @@ export function App() {
                           <strong>{metric.label}</strong>
                           <span>{metric.explanation}</span>
                         </div>
-                        <div className="score-meter" aria-label={`${metric.label} score ${metric.score}`}>
-                          <i style={{ width: `${metric.score}%` }} />
+                        <div
+                          className="score-meter"
+                          role="meter"
+                          aria-label={`${metric.label} score`}
+                          aria-valuemin={0}
+                          aria-valuemax={100}
+                          aria-valuenow={metric.score}
+                          aria-valuetext={`${metric.score} out of 100`}
+                        >
+                          <i aria-hidden="true" style={{ width: `${metric.score}%` }} />
                         </div>
                         <StatusChip status={metric.status} />
                       </article>

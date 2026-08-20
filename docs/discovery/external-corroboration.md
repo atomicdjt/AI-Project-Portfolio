@@ -1,6 +1,6 @@
 # External Corroboration and Technical Engagement
 
-Checked: 2026-08-16
+Checked: 2026-08-19
 Owner: David Turner (`atomicdjt`)
 
 ## Purpose
@@ -20,6 +20,7 @@ It is deliberately conservative. A thoughtful reply is not the same thing as mai
 
 | Surface | Tier | What the external party actually established | Evidence boundary |
 | --- | --- | --- | --- |
+| Grid Dynamics Rosetta PR #299 | **A / B** | A Rosetta maintainer independently adversarially verified David's `git branch` force-delete guard fix with a hand-built matrix, randomized differential fuzzing, real Git execution, the repository test suite, and mutation testing. The maintainer reported zero real regressions, approved the contribution, and merged it into `main`. | This validates the scoped Rosetta contribution and its regression behavior. It is not a blanket endorsement of David's broader portfolio or unrelated technical claims. |
 | `GhostlyGawd/agentic-dev-os` issue #5 | **A** | The repository owner explicitly wrote that David's proposed epistemic-promotion model was **"Adopted"** as a recorded design decision, mapping the proposed `Source/Signal → Observation → Candidate evidence → Hypothesis → Decision/Bet` flow and five invariants into ADR/test work. | The cited comment described work on an implementation branch pending owner approval at that moment; do not present it as a released upstream feature without separate evidence. |
 | CrewAI GuardrailProvider discussion #4877 | **B** | Another contributor explicitly described David's TOCTOU-between-revalidation-and-execution concern as non-hypothetical, said the proposed `use_token` / `context_digest` shape was the right primitive, and compared it to optimistic concurrency / compare-and-swap. Related participants then continued formalizing occurrence-bound authorization and execution-consumption boundaries. | This is strong independent technical validation inside a CrewAI issue, not evidence that CrewAI maintainers adopted the model into core. |
 | OpenClaw PR #122142 | **B** | The PR author thanked David for a careful cross-check, agreed with his identity-boundary framing, and called his parity-test suggestion a useful non-blocking follow-up. | Agreement from the PR author is not proof that the suggested follow-up test was implemented or that the PR was merged. |
@@ -29,6 +30,7 @@ It is deliberately conservative. A thoughtful reply is not the same thing as mai
 
 ## Source links
 
+- Rosetta PR #299 maintainer review and merged contribution: https://github.com/griddynamics/rosetta/pull/299#pullrequestreview-4971371411
 - Agentic Dev OS adoption comment: https://github.com/GhostlyGawd/agentic-dev-os/issues/5#issuecomment-5296188226
 - CrewAI independent validation: https://github.com/crewAIInc/crewAI/issues/4877#issuecomment-5301964686
 - OpenClaw PR-author reply: https://github.com/openclaw/openclaw/pull/122142#issuecomment-5306576912
@@ -40,6 +42,7 @@ It is deliberately conservative. A thoughtful reply is not the same thing as mai
 ## What this evidence does support
 
 - David's public technical participation is receiving specific, content-based responses rather than only generic reactions.
+- A contribution authored by David has been independently stress-tested, approved, and merged into an established external repository.
 - Some external contributors are independently reusing, extending, or explicitly validating distinctions he introduced into technical discussions.
 - At least one external project owner explicitly recorded one of his proposed models as an adopted design decision on active implementation work.
 - WeaveStudio has received a positive preliminary fit assessment from an external local-first curator.
@@ -48,4 +51,4 @@ It is deliberately conservative. A thoughtful reply is not the same thing as mai
 
 It does not prove customers, revenue, user adoption, formal employment history, senior-engineering tenure, official endorsement by CrewAI/LangGraph/OpenClaw/Kimi, or production adoption by any project unless separately documented.
 
-The value of this record is narrower and more useful: it gives a reviewer direct evidence that the work is being read closely enough for other builders to challenge, validate, extend, or adopt specific ideas.
+The value of this record is narrower and more useful: it gives a reviewer direct evidence that the work is being read closely enough for other builders to challenge, validate, extend, adopt, or merge specific contributions.

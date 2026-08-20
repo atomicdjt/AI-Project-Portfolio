@@ -9,5 +9,7 @@ describe('ScamShield application shell', () => {
     expect(await screen.findByRole('heading', { name: 'ScamShield AI' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /analyze suspicious content/i })).toBeInTheDocument()
     expect(screen.getByText(/risk assessment, not a final determination/i)).toBeInTheDocument()
+    expect(screen.getByRole('checkbox', { name: 'Plain-language mode' })).toBeInTheDocument()
+    expect(screen.getByRole('checkbox', { name: 'Caregiver mode' })).toBeInTheDocument()
   })
 })

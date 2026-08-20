@@ -385,8 +385,12 @@ select:focus-visible {
   width: 100%;
   min-width: 0;
   border: 0;
-  outline: 0;
   background: transparent;
+}
+
+.search-box:focus-within {
+  border-color: var(--teal-dark);
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.16);
 }
 
 .document-list,

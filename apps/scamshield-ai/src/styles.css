@@ -82,9 +82,9 @@ p { line-height: 1.65; }
 .mode-toggle:has(input:focus-visible) { outline: 3px solid #73b8dd; }
 
 .stepper { min-height: 61px; padding: 0 clamp(20px, 4vw, 64px); display: flex; align-items: stretch; justify-content: center; gap: 0; background: #fff; border-bottom: 1px solid var(--border); box-shadow: 0 4px 20px rgba(21,48,60,.04); position: sticky; top: 0; z-index: 20; }
-.stepper button { position: relative; min-width: 130px; padding: 14px 18px; display: flex; align-items: center; justify-content: center; gap: 9px; color: #6a7b82; background: transparent; border: 0; border-bottom: 3px solid transparent; font-size: 13px; font-weight: 700; }
+.stepper button { position: relative; min-width: 130px; padding: 14px 18px; display: flex; align-items: center; justify-content: center; gap: 9px; color: #637177; background: transparent; border: 0; border-bottom: 3px solid transparent; font-size: 13px; font-weight: 700; }
 .stepper button + button::before { content: ""; position: absolute; left: 0; top: 21px; width: 1px; height: 19px; background: #e3e9e7; }
-.stepper button > span { width: 25px; height: 25px; display: grid; place-items: center; border-radius: 50%; color: #6b7d84; background: #edf1ef; font-size: 11px; }
+.stepper button > span { width: 25px; height: 25px; display: grid; place-items: center; border-radius: 50%; color: #52656d; background: #edf1ef; font-size: 11px; }
 .stepper button.active { color: var(--navy-900); border-color: var(--teal-600); }
 .stepper button.active > span { color: #fff; background: var(--teal-600); }
 .stepper button.complete { color: var(--teal-700); }
@@ -321,6 +321,7 @@ p { line-height: 1.65; }
 .empty-state { min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
 .app-footer { padding: 22px clamp(20px, 4vw, 64px); display: flex; justify-content: space-between; gap: 20px; color: #bfd0d7; background: var(--navy-950); font-size: 11px; }
 .app-footer p { margin: 0; }
+.app-footer a { color: #7fd3ff; }
 
 @media (max-width: 1180px) {
   .mode-toggle span { display: none; }

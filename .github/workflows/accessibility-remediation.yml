@@ -1,0 +1,55 @@
+name: Accessibility Remediation
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'apps/layerforge-studio/**'
+      - 'apps/opspilot-ai-operations-toolkit/**'
+      - 'apps/portfolio-hub/**'
+      - 'apps/redactready-pro-hri-os/**'
+      - 'apps/scamshield-ai/**'
+      - 'apps/variantvision-pro/**'
+      - 'tests/accessibility-remediation/**'
+      - 'playwright.accessibility-remediation.config.mjs'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/accessibility-remediation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  accessibility-regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run accessibility regressions
+        run: npm run a11y:remediation
+
+      - name: Upload remediation report
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: accessibility-remediation-${{ github.run_id }}
+          path: accessibility-remediation-report
+          if-no-files-found: warn
+          retention-days: 14
