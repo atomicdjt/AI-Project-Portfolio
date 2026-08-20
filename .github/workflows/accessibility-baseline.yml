@@ -43,7 +43,7 @@ jobs:
 
       - name: Run six-app accessibility baseline
         env:
-          AUDIT_SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          AUDIT_HARNESS_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: npm run a11y:baseline
 
       - name: Render normalized baseline evidence
