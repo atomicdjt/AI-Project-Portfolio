@@ -1,0 +1,81 @@
+name: One-shot Dependabot issue 50 provider probe
+
+on:
+  push:
+    branches:
+      - ops/dependabot-state-probe-50
+    paths:
+      - .github/ops/run-dependabot-50-probe
+
+permissions:
+  contents: write
+  vulnerability-alerts: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Query open Dependabot alerts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          mkdir -p .github/ops
+          response="$(mktemp)"
+          status="$(curl --silent --show-error --location \
+            --output "$response" \
+            --write-out '%{http_code}' \
+            --header 'Accept: application/vnd.github+json' \
+            --header "Authorization: Bearer ${GH_TOKEN}" \
+            --header 'X-GitHub-Api-Version: 2026-03-10' \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/dependabot/alerts?state=open&per_page=100")"
+
+          if [ "$status" != "200" ]; then
+            jq -n \
+              --arg status "$status" \
+              --arg message "$(jq -r '.message // "unknown error"' "$response" 2>/dev/null || echo 'unknown error')" \
+              '{http_status: ($status | tonumber), error: $message}' \
+              > .github/ops/dependabot-50-result.json
+          else
+            jq '[.[] | {
+              number,
+              state,
+              dependency: {
+                package: .dependency.package,
+                manifest_path: .dependency.manifest_path,
+                scope: .dependency.scope
+              },
+              advisory: {
+                ghsa_id: .security_advisory.ghsa_id,
+                cve_id: .security_advisory.cve_id,
+                summary: .security_advisory.summary
+              },
+              vulnerability: {
+                severity: .security_vulnerability.severity,
+                first_patched_version: .security_vulnerability.first_patched_version
+              }
+            }]' "$response" > /tmp/open-alerts.json
+
+            count="$(jq 'length' /tmp/open-alerts.json)"
+            jq -n \
+              --arg status "$status" \
+              --argjson count "$count" \
+              --slurpfile alerts /tmp/open-alerts.json \
+              '{http_status: ($status | tonumber), open_count: $count, open_alerts: $alerts[0]}' \
+              > .github/ops/dependabot-50-result.json
+          fi
+
+          cat .github/ops/dependabot-50-result.json
+
+      - name: Persist temporary probe result on probe branch
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/ops/dependabot-50-result.json
+          git commit -m "ops: record Dependabot provider-state probe"
+          git push origin HEAD:ops/dependabot-state-probe-50
