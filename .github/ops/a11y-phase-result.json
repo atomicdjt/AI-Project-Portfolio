@@ -1,7 +1,10 @@
 {
-  "phase": "task-6-renderer-red",
-  "verified_sha": "d5d7b5761645aedfbf34caf876f95cf42f55d385",
+  "phase": "task-6-renderer-green",
+  "verified_sha": "fb73a0aa82cc756bf52f99ba10e86a2bfb6f33d4",
   "node": "v22.23.2",
   "npm": "10.9.8",
-  "result": "expected-red-confirmed"
+  "result": "pass",
+  "record_count": 60,
+  "normalized_candidate_sections": 55,
+  "assistive_technology_status": "not yet tested with genuine screen reader"
 }
