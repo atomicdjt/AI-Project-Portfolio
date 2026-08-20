@@ -30,6 +30,14 @@ on:
         required: true
         default: false
         type: boolean
+      deployment_target:
+        description: Deployment target for manual execution; production requires an explicit project on main
+        required: true
+        default: preview
+        type: choice
+        options:
+          - preview
+          - production
 
 permissions:
   contents: read
@@ -127,6 +135,7 @@ jobs:
           HEAD_SHA: ${{ steps.changes.outputs.head }}
           REQUESTED_PROJECT: ${{ github.event.inputs.project_id || 'auto' }}
           EXECUTE_REQUESTED: ${{ github.event.inputs.execute_deployment || 'false' }}
+          DEPLOYMENT_TARGET: ${{ github.event.inputs.deployment_target || 'not-applicable' }}
           DEPLOY_PROJECTS: ${{ steps.selector.outputs.deploy }}
           MANUAL_PROJECTS: ${{ steps.selector.outputs.manual }}
           PLAN_REASON: ${{ steps.selector.outputs.reason }}
@@ -139,6 +148,7 @@ jobs:
             echo "- Head: \`$HEAD_SHA\`"
             echo "- Requested project: \`$REQUESTED_PROJECT\`"
             echo "- Execute requested: \`$EXECUTE_REQUESTED\`"
+            echo "- Deployment target: \`$DEPLOYMENT_TARGET\`"
             echo "- Automatically deployable projects: \`$DEPLOY_PROJECTS\`"
             echo "- Manual-only projects: \`$MANUAL_PROJECTS\`"
             echo "- Selection reason: \`$PLAN_REASON\`"
@@ -171,9 +181,25 @@ jobs:
         github.event_name != 'pull_request' &&
         needs.plan.outputs.has_deployments == 'true' &&
         vars.VERCEL_DEPLOYMENT_ORCHESTRATION_ENABLED == 'true' &&
-        (github.event_name != 'workflow_dispatch' || inputs.execute_deployment == true)
+        (
+          (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+          (
+            github.event_name == 'workflow_dispatch' &&
+            inputs.execute_deployment == true &&
+            (
+              inputs.deployment_target == 'preview' ||
+              (
+                inputs.deployment_target == 'production' &&
+                inputs.project_id != 'auto' &&
+                github.ref == 'refs/heads/main'
+              )
+            )
+          )
+        )
       }}
     runs-on: ubuntu-latest
+    env:
+      PRODUCTION_DEPLOYMENT: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && inputs.execute_deployment == true && inputs.deployment_target == 'production' && inputs.project_id != 'auto' && github.ref == 'refs/heads/main') }}
     strategy:
       fail-fast: false
       max-parallel: 1
@@ -218,7 +244,7 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
           environment="preview"
-          if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/main" ]]; then
+          if [[ "$PRODUCTION_DEPLOYMENT" == "true" ]]; then
             environment="production"
           fi
           npx --yes "vercel@$VERCEL_CLI_VERSION" pull \
@@ -232,7 +258,7 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
           production_flag=""
-          if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/main" ]]; then
+          if [[ "$PRODUCTION_DEPLOYMENT" == "true" ]]; then
             production_flag="--prod"
           fi
           npx --yes "vercel@$VERCEL_CLI_VERSION" build \
@@ -246,7 +272,7 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
           production_flag=""
-          if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/main" ]]; then
+          if [[ "$PRODUCTION_DEPLOYMENT" == "true" ]]; then
             production_flag="--prod"
           fi
           url="$(npx --yes "vercel@$VERCEL_CLI_VERSION" deploy \
