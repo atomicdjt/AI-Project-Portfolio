@@ -5,6 +5,7 @@ const requiredFields = [
   'projectId',
   'productionUrl',
   'sourceSha',
+  'auditHarnessSha',
   'browserName',
   'browserVersion',
   'operatingSystem',
@@ -19,9 +20,7 @@ const unsupportedSuccessPattern = /\b(nvda\s+tested|screen[- ]?reader\s+passed|s
 
 export function createAuditRecord(input) {
   for (const field of requiredFields) {
-    if (input[field] === undefined || input[field] === null || input[field] === '') {
-      throw new Error(`Audit record requires ${field}`)
-    }
+    if (input[field] === undefined || input[field] === null || input[field] === '') throw new Error(`Audit record requires ${field}`)
   }
 
   const assistiveTechnology = input.assistiveTechnology ?? defaultAssistiveTechnology
@@ -35,6 +34,8 @@ export function createAuditRecord(input) {
     projectId: input.projectId,
     productionUrl: input.productionUrl,
     sourceSha: input.sourceSha,
+    auditHarnessSha: input.auditHarnessSha,
+    productionDeploymentId: input.productionDeploymentId ?? null,
     browserName: input.browserName,
     browserVersion: input.browserVersion,
     operatingSystem: input.operatingSystem,
@@ -59,9 +60,10 @@ export function normalizeAxeViolation(violation) {
 }
 
 export function writeAuditBundle(records, metadata, outputPath = '.accessibility-results/baseline.json') {
+  if (!metadata.auditHarnessSha) throw new Error('Audit bundle requires auditHarnessSha')
   const bundle = {
-    schemaVersion: 1,
-    sourceSha: metadata.sourceSha,
+    schemaVersion: 2,
+    auditHarnessSha: metadata.auditHarnessSha,
     runId: metadata.runId,
     observedAt: metadata.observedAt,
     environment: metadata.environment,
