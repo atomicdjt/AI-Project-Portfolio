@@ -1,11 +1,7 @@
 {
-  "phase": "task-5-full-behavior-baseline",
-  "verified_sha": "d4a17d06bdfce88bf656dd223a5d9eee1de150c1",
+  "phase": "task-6-renderer-red",
+  "verified_sha": "d5d7b5761645aedfbf34caf876f95cf42f55d385",
   "node": "v22.23.2",
   "npm": "10.9.8",
-  "result": "pass",
-  "record_count": 60,
-  "axe_candidate_findings": 41,
-  "behavior_records_requiring_triage": 4,
-  "focus_indicator_observations_requiring_triage": 14
+  "result": "expected-red-confirmed"
 }
