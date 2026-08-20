@@ -18,6 +18,7 @@ Canonical URLs and provider-verified deployment identities are recorded in [PROD
 ## Frozen baseline run
 
 - GitHub Actions run: `32334523191` (`Accessibility Baseline` run #16)
+- Artifact: `accessibility-baseline-32334523191` (artifact id `9394174030`, SHA-256 digest `9ce3f9955567d2ae8ad4ff36379b5f87bec0974d4972ee5be60d956947f913ef`)
 - Audit-harness SHA: `9d7459254a69d19015566ab2c79ff18d21fae1ae`
 - Tested production source SHA: `cd782588bc6b6b36bc2ca7f1efaaa7c31e78d7b2`
 - Production state: all six canonical aliases resolved to provider-verified `READY` production deployments on 2026-08-20
@@ -32,7 +33,7 @@ Canonical URLs and provider-verified deployment identities are recorded in [PROD
 - Validated root findings after deduplication/reproduction: **14**
 - Severity distribution: **0 Critical, 5 High, 7 Medium, 2 Low**
 
-The artifact for run `32334523191` preserves the raw schema-v2 JSON bundles, Playwright report, and rendered audit documents. Each raw record separately identifies the production source SHA and the audit-harness SHA.
+The frozen artifact preserves the raw schema-v2 JSON bundles, Playwright report, and rendered audit documents. Each raw record separately identifies the production source SHA and the audit-harness SHA.
 
 ## Reproducible observations
 
