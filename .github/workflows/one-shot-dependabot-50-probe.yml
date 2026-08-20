@@ -77,5 +77,16 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .github/ops/dependabot-50-result.json
-          git commit -m "ops: record Dependabot provider-state probe"
-          git push origin HEAD:ops/dependabot-state-probe-50
+          if git diff --cached --quiet; then
+            echo "Probe result unchanged."
+          else
+            git commit -m "ops: record Dependabot provider-state probe"
+            git push origin HEAD:ops/dependabot-state-probe-50
+          fi
+
+      - name: Delete temporary execution branch
+        if: always()
+        env:
+          BRANCH_NAME: ops/dependabot-state-probe-50
+        run: |
+          git push origin ":refs/heads/${BRANCH_NAME}" || true
