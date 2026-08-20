@@ -26,33 +26,25 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Prove evidence contract is RED before implementation
-        shell: bash
-        run: |
-          set +e
-          npm run a11y:test-config > /tmp/a11y-red.log 2>&1
-          status=$?
-          set -e
-          cat /tmp/a11y-red.log
-          test "$status" -ne 0
-          grep -Eq "ERR_MODULE_NOT_FOUND|Cannot find module|evidence\.mjs" /tmp/a11y-red.log
+      - name: Verify accessibility config and evidence contracts
+        run: npm run a11y:test-config
 
-      - name: Persist expected RED result
+      - name: Persist verified phase result
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p .github/ops
           cat > .github/ops/a11y-phase-result.json <<EOF
           {
-            "phase": "task-3-evidence-red",
+            "phase": "task-3-evidence-green",
             "verified_sha": "${GITHUB_SHA}",
             "node": "$(node --version)",
             "npm": "$(npm --version)",
-            "result": "expected-red-confirmed"
+            "result": "pass"
           }
           EOF
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .github/ops/a11y-phase-result.json
-          git commit -m "test(a11y): record evidence contract red"
+          git commit -m "test(a11y): record evidence contract green"
           git push origin HEAD:feat/39-accessibility-baseline
