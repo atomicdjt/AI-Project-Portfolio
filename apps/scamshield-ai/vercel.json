@@ -3,6 +3,9 @@
   "git": {
     "deploymentEnabled": false
   },
+  "github": {
+    "enabled": false
+  },
   "ignoreCommand": "node ../../scripts/vercel-ignore-build-step.mjs --project scamshield-ai",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
