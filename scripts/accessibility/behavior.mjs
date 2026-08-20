@@ -17,6 +17,7 @@ export function summarizeFocusSequence(sequence) {
 }
 
 export async function collectKeyboardFocusObservation(page, maxTabs = 30) {
+  await page.addStyleTag({ content: 'html { scroll-behavior: auto !important; }' })
   await page.evaluate(() => {
     if (document.activeElement instanceof HTMLElement) document.activeElement.blur()
   })
@@ -24,6 +25,7 @@ export async function collectKeyboardFocusObservation(page, maxTabs = 30) {
   const sequence = []
   for (let index = 0; index < maxTabs; index += 1) {
     await page.keyboard.press('Tab')
+    await page.waitForTimeout(10)
     const item = await page.evaluate(() => {
       const element = document.activeElement
       if (!(element instanceof HTMLElement) || element === document.body) return null
@@ -43,7 +45,7 @@ export async function collectKeyboardFocusObservation(page, maxTabs = 30) {
       const focused = describeStyle()
       element.blur()
       const unfocused = describeStyle()
-      element.focus()
+      element.focus({ preventScroll: true })
 
       const rect = element.getBoundingClientRect()
       const focusStyleChanged = Object.keys(focused).some((key) => focused[key] !== unfocused[key])
@@ -51,7 +53,10 @@ export async function collectKeyboardFocusObservation(page, maxTabs = 30) {
         (focused.outlineStyle !== 'none' && focused.outlineWidth !== '0px') ||
         (focused.boxShadow !== 'none' && focused.boxShadow !== unfocused.boxShadow)
 
-      const text = (element.getAttribute('aria-label') || element.getAttribute('title') || element.textContent || element.getAttribute('name') || '')
+      const labels = 'labels' in element && element.labels
+        ? [...element.labels].map((label) => label.textContent || '').join(' ')
+        : ''
+      const text = (element.getAttribute('aria-label') || element.getAttribute('title') || labels || element.textContent || element.getAttribute('name') || '')
         .replace(/\s+/g, ' ')
         .trim()
         .slice(0, 120)
@@ -78,7 +83,7 @@ export async function collectKeyboardFocusObservation(page, maxTabs = 30) {
     offscreenFocusCount: sequence.filter((item) => !item.inViewport).length,
     focusIndicatorReviewCount: sequence.filter((item) => item.focusIndicator !== 'observed').length,
     sequence,
-    interpretation: 'reproducible browser heuristic; requires human triage for ambiguous focus visibility or cycles',
+    interpretation: 'reproducible browser heuristic with smooth scrolling disabled for deterministic focus geometry; ambiguous focus-style observations still require adjudication',
   }
 }
 
