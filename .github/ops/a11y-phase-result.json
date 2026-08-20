@@ -1,7 +1,35 @@
 {
-  "phase": "task-3-evidence-green",
-  "verified_sha": "4bb1ab487d380e30e30db0117c44f815f47946e5",
+  "phase": "task-4-desktop-baseline",
+  "verified_sha": "deca20d6ed0e02f33c5f1265efc8bbd8ed96c3c4",
   "node": "v22.23.2",
   "npm": "10.9.8",
-  "result": "pass"
+  "result": "pass",
+  "record_count": 6,
+  "total_candidate_findings": 19,
+  "projects": [
+    {
+      "projectId": "portfolio-hub",
+      "violations": 4
+    },
+    {
+      "projectId": "processharbor",
+      "violations": 0
+    },
+    {
+      "projectId": "redactready-pro",
+      "violations": 6
+    },
+    {
+      "projectId": "layerforge-studio",
+      "violations": 0
+    },
+    {
+      "projectId": "scamshield-ai",
+      "violations": 2
+    },
+    {
+      "projectId": "variantvision-pro",
+      "violations": 7
+    }
+  ]
 }
