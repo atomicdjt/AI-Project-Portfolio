@@ -38,118 +38,125 @@ jobs:
                   raise SystemExit(f'{path}: expected exactly one replacement target, found {count}')
               file.write_text(text.replace(old, new, 1), encoding='utf-8')
 
+          def replace_element(path, marker, replacement):
+              file = Path(path)
+              text = file.read_text(encoding='utf-8')
+              count = text.count(marker)
+              if count != 1:
+                  raise SystemExit(f'{path}: expected exactly one semantic marker, found {count}: {marker}')
+              start = text.index(marker)
+              line_start = text.rfind('\n', 0, start) + 1
+              indent = text[line_start:start]
+              end = text.index('</div>', start) + len('</div>')
+              rendered = replacement.replace('\n', '\n' + indent)
+              file.write_text(text[:start] + rendered + text[end:], encoding='utf-8')
+
           replace_once(
               'apps/portfolio-hub/src/styles.css',
               '''.search-field input,
-          .filters select {
-            border: 0;
-            outline: 0;
-            background: transparent;
-          }
-          ''',
+.filters select {
+  border: 0;
+  outline: 0;
+  background: transparent;
+}
+''',
               '''.search-field input,
-          .filters select {
-            border: 0;
-            background: transparent;
-          }
+.filters select {
+  border: 0;
+  background: transparent;
+}
 
-          .search-field:focus-within {
-            border-color: #075e56;
-            box-shadow: 0 0 0 3px rgba(7, 94, 86, 0.18);
-          }
-          ''',
+.search-field:focus-within {
+  border-color: #075e56;
+  box-shadow: 0 0 0 3px rgba(7, 94, 86, 0.18);
+}
+''',
           )
 
-          replace_once(
+          replace_element(
               'apps/redactready-pro-hri-os/src/app/App.tsx',
-              '''                  <div className="score-meter" aria-label={`${score.category}: ${score.score}`}>
-                    <i style={{ width: `${score.score}%` }} />
-                  </div>''',
-              '''                  <div
-                    className="score-meter"
-                    role="meter"
-                    aria-label={`${score.category} score`}
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                    aria-valuenow={score.score}
-                    aria-valuetext={`${score.score} out of 100`}
-                  >
-                    <i aria-hidden="true" style={{ width: `${score.score}%` }} />
-                  </div>''',
+              '<div className="score-meter" aria-label={`${score.category}: ${score.score}`}>',
+              '''<div
+  className="score-meter"
+  role="meter"
+  aria-label={`${score.category} score`}
+  aria-valuemin={0}
+  aria-valuemax={100}
+  aria-valuenow={score.score}
+  aria-valuetext={`${score.score} out of 100`}
+>
+  <i aria-hidden="true" style={{ width: `${score.score}%` }} />
+</div>''',
           )
 
-          replace_once(
+          replace_element(
               'apps/variantvision-pro/src/app/App.tsx',
-              '''                        <div className="score-meter" aria-label={`${metric.label} score ${metric.score}`}>
-                          <i style={{ width: `${metric.score}%` }} />
-                        </div>''',
-              '''                        <div
-                          className="score-meter"
-                          role="meter"
-                          aria-label={`${metric.label} score`}
-                          aria-valuemin={0}
-                          aria-valuemax={100}
-                          aria-valuenow={metric.score}
-                          aria-valuetext={`${metric.score} out of 100`}
-                        >
-                          <i aria-hidden="true" style={{ width: `${metric.score}%` }} />
-                        </div>''',
+              '<div className="score-meter" aria-label={`${metric.label} score ${metric.score}`}>',
+              '''<div
+  className="score-meter"
+  role="meter"
+  aria-label={`${metric.label} score`}
+  aria-valuemin={0}
+  aria-valuemax={100}
+  aria-valuenow={metric.score}
+  aria-valuetext={`${metric.score} out of 100`}
+>
+  <i aria-hidden="true" style={{ width: `${metric.score}%` }} />
+</div>''',
           )
 
           replace_once(
               'apps/scamshield-ai/src/components/layout/Header.tsx',
-              '''          <input type="checkbox" checked={plainLanguage} onChange={(event) => setPlainLanguage(event.target.checked)} />''',
-              '''          <input aria-label="Plain-language mode" type="checkbox" checked={plainLanguage} onChange={(event) => setPlainLanguage(event.target.checked)} />''',
+              '<input type="checkbox" checked={plainLanguage} onChange={(event) => setPlainLanguage(event.target.checked)} />',
+              '<input aria-label="Plain-language mode" type="checkbox" checked={plainLanguage} onChange={(event) => setPlainLanguage(event.target.checked)} />',
           )
           replace_once(
               'apps/scamshield-ai/src/components/layout/Header.tsx',
-              '''          <input type="checkbox" checked={caregiverMode} onChange={(event) => setCaregiverMode(event.target.checked)} />''',
-              '''          <input aria-label="Caregiver mode" type="checkbox" checked={caregiverMode} onChange={(event) => setCaregiverMode(event.target.checked)} />''',
+              '<input type="checkbox" checked={caregiverMode} onChange={(event) => setCaregiverMode(event.target.checked)} />',
+              '<input aria-label="Caregiver mode" type="checkbox" checked={caregiverMode} onChange={(event) => setCaregiverMode(event.target.checked)} />',
           )
 
           replace_once(
               'apps/scamshield-ai/src/test/app.test.tsx',
-              '''    expect(screen.getByText(/risk assessment, not a final determination/i)).toBeInTheDocument()''',
-              '''    expect(screen.getByText(/risk assessment, not a final determination/i)).toBeInTheDocument()
-            expect(screen.getByRole('checkbox', { name: 'Plain-language mode' })).toBeInTheDocument()
-            expect(screen.getByRole('checkbox', { name: 'Caregiver mode' })).toBeInTheDocument()''',
+              "    expect(screen.getByText(/risk assessment, not a final determination/i)).toBeInTheDocument()",
+              "    expect(screen.getByText(/risk assessment, not a final determination/i)).toBeInTheDocument()\n    expect(screen.getByRole('checkbox', { name: 'Plain-language mode' })).toBeInTheDocument()\n    expect(screen.getByRole('checkbox', { name: 'Caregiver mode' })).toBeInTheDocument()",
           )
 
           replace_once(
               'apps/variantvision-pro/src/index.css',
               '''.workspace-primary,
-          .page-stack,
-          .inspector {
-            display: grid;
-            gap: 14px;
-          }''',
+.page-stack,
+.inspector {
+  display: grid;
+  gap: 14px;
+}''',
               '''.workspace-primary,
-          .page-stack,
-          .inspector {
-            display: grid;
-            gap: 14px;
-            min-width: 0;
-          }''',
+.page-stack,
+.inspector {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}''',
           )
 
           replace_once(
               'apps/variantvision-pro/src/index.css',
               '''.panel {
-            background: rgba(255, 255, 255, 0.92);''',
+  background: rgba(255, 255, 255, 0.92);''',
               '''.panel {
-            min-width: 0;
-            background: rgba(255, 255, 255, 0.92);''',
+  min-width: 0;
+  background: rgba(255, 255, 255, 0.92);''',
           )
 
           replace_once(
               'apps/variantvision-pro/src/index.css',
               '''.table-wrap {
-            overflow-x: auto;
-          }''',
+  overflow-x: auto;
+}''',
               '''.table-wrap {
-            min-width: 0;
-            overflow-x: auto;
-          }''',
+  min-width: 0;
+  overflow-x: auto;
+}''',
           )
           PY
 
