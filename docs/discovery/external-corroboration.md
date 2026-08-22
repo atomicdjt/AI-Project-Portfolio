@@ -5,18 +5,18 @@ Owner: David Turner (`atomicdjt`)
 
 ## Purpose
 
-This document collects public third-party evidence that David Turner's technical ideas or projects have received substantive outside review, discussion, agreement, independent testing, or adoption.
+This document collects third-party evidence that David Turner's technical ideas or projects have received substantive outside review, discussion, agreement, independent testing, critique, or adoption.
 
-It is deliberately conservative. A thoughtful reply is not the same thing as maintainer endorsement; a design adopted on a feature branch is not necessarily a merged upstream release; a positive curation recommendation is not the same thing as a published listing; and an automated repository review is not the same thing as human maintainer approval.
+It is deliberately conservative. A thoughtful reply is not the same thing as maintainer endorsement; a design adopted on a feature branch is not necessarily a merged upstream release; a positive curation recommendation is not the same thing as a published listing; an automated repository review is not the same thing as human maintainer approval; and attributed private correspondence is identified as such rather than presented as independently public evidence.
 
 ## Evidence tiers
 
 - **Tier A — explicit adoption / implementation:** an external project owner or contributor explicitly records or implements an idea attributed to David.
 - **Tier B — direct technical validation:** another contributor independently agrees with, tests, extends, reproduces, or pressure-tests a specific technical proposal.
 - **Tier C — positive curation / review signal:** an external curator or reviewer gives a favorable preliminary assessment of one of David's projects.
-- **Tier D — substantive ongoing collaboration:** a public technical thread shows repeated, concrete back-and-forth around an implementation, invariant, or design decision, without claiming adoption.
+- **Tier D — substantive external technical engagement:** a public technical thread, or attributed correspondence with explicit permission to quote, shows concrete engagement around an implementation, invariant, architecture, or design decision without claiming adoption.
 
-## Current public evidence
+## Current evidence
 
 | Surface | Tier | What the external party actually established | Evidence boundary |
 | --- | --- | --- | --- |
@@ -30,10 +30,11 @@ It is deliberately conservative. A thoughtful reply is not the same thing as mai
 | OpenClaw PR #125740 | **B (automated external review)** | OpenClaw's repository-integrated ClawSweeper review independently described the routing-loss defect as reproducible, found the patch a coherent owner-boundary repair with no actionable correctness finding, rated proof confidence 5/6, and marked the PR ready for maintainer review while explicitly reserving the legacy migration-policy decision for a maintainer. | This is independent repository-side automated review, not human maintainer approval. The PR remains subject to a maintainer decision, especially on compatibility behavior for legacy pending updates. |
 | Kimi CLI issue #1478 | **B** | A contributor said David's personal-memory vs. project-continuity split was structurally correct, reinforced his decision-state and invalidation-trigger distinctions, and described his working-summary-as-projection choice as the right one. | This is independent architectural validation, not Kimi maintainer adoption. |
 | `awesome-local-first` issue #68 | **C** | The repository owner gave WeaveStudio a preliminary recommendation of **"likely worth adding"**, citing device-primary storage, no required account/backend/cloud database, portable exports/restore, active maintenance, and explicit local-first tradeoffs. | The owner explicitly described this as preliminary triage and asked for verification before acting; no published listing should be claimed until a maintainer actually adds it. |
+| BuildWorld AI — yWorks / yFiles technical feedback | **D** | Sebastian Müller of yWorks gave substantive feedback on BuildWorld AI's graph-visualization architecture: he agreed that layout can create perceptual meaning not encoded by the model, emphasized that mitigation depends on user/context rather than one generic visual rule, and challenged the decision to build the visualization layer without evaluating a mature graph-visualization engine. He subsequently gave David explicit permission to quote the feedback publicly with yWorks/yFiles attribution. | This is external architectural critique and permission to attribute it, not an endorsement of BuildWorld AI or a claim that yWorks reviewed the whole product. The source interaction was private email correspondence rather than an independently hosted public review. |
 | LangGraph issue #5672 | **D / B** | David and another contributor iteratively refined a cancellation/persistence model across run occurrence identity, branch lineage, persistence receipts, stream-frontier coverage, and attempt binding. The other contributor repeatedly addressed David directly and incorporated distinctions into the evolving acceptance rule. | This is substantive technical collaboration in a public issue. It is not evidence of LangGraph maintainer acceptance or implementation unless that happens separately. |
 | `philippe-ths/ai-coding-workflow` issue #217 | **D** | After landing the main observed-failings-ledger change in PR #226, the repository owner explicitly carried David's proposal for named observation/source/interpretation/counterevidence/confidence fields and stable source snapshots forward as an unresolved design decision rather than discarding it. | The owner did not adopt the proposed schema in the landed change. This is evidence that the proposal received substantive owner-level architectural consideration, not implementation. |
 
-## Source links
+## Source links and provenance
 
 - Rosetta PR #299 maintainer review and merged contribution: https://github.com/griddynamics/rosetta/pull/299#pullrequestreview-4971371411
 - Rosetta PR #319 independent review: https://github.com/griddynamics/rosetta/pull/319#pullrequestreview-4996590447
@@ -46,6 +47,7 @@ It is deliberately conservative. A thoughtful reply is not the same thing as mai
 - OpenClaw PR #125740 repository-side review: https://github.com/openclaw/openclaw/pull/125740
 - Kimi CLI technical reply: https://github.com/MoonshotAI/kimi-cli/issues/1478#issuecomment-5299557026
 - `awesome-local-first` preliminary curation signal: https://github.com/alexanderop/awesome-local-first/issues/68#issuecomment-5306713016
+- yWorks / yFiles feedback: private email correspondence dated 2026-08-20; Sebastian Müller explicitly granted permission to quote the feedback publicly and supplied preferred yWorks/yFiles attribution wording.
 - LangGraph latest frontier/lineage exchange: https://github.com/langchain-ai/langgraph/issues/5672#issuecomment-5306719967
 - David's latest LangGraph follow-up: https://github.com/langchain-ai/langgraph/issues/5672#issuecomment-5306903027
 - `ai-coding-workflow` owner follow-up preserving David's proposal as an open design decision: https://github.com/philippe-ths/ai-coding-workflow/issues/217#issuecomment-5371840538
@@ -55,6 +57,7 @@ It is deliberately conservative. A thoughtful reply is not the same thing as mai
 These are externally visible but have not crossed the evidence threshold above:
 
 - **AgentCI issue #121:** the owner narrowed a provenance hold and returned David's submission to `UNVERIFIED / reproducible-candidate`, authorizing bounded reproduction of the immutable public package. This is a meaningful evaluation-stage signal, but the owner explicitly stated it is not acceptance and reproduction is still pending.
+- **Google Antigravity CLI issue #567:** David posted the Agent Session Bridge reference implementation, integration RFC, verification/ablation report, and reproduction guide as evidence for the missing external transcript-import primitive. No external response to that submission was present in the checked thread yet.
 - **`mylofi/localfirstweb.dev` PR #102:** David submitted Validation Ledger for the local-first examples list. The PR is open and has no external comment or review yet.
 - **Super Productivity PR #9619:** repository automation has created a preview and acknowledged the contribution, but no human review is recorded yet.
 
@@ -66,10 +69,11 @@ These are externally visible but have not crossed the evidence threshold above:
 - External contributors are independently reusing, extending, empirically testing, and in at least one case implementing a falsification method David introduced.
 - At least one external project owner explicitly recorded one of his proposed models as an adopted design decision on active implementation work.
 - WeaveStudio has received a positive preliminary fit assessment from an external local-first curator.
+- BuildWorld AI has received substantive specialist architectural critique from a graph-visualization company representative who explicitly allowed the feedback to be attributed publicly.
 - Multiple external project owners/contributors have preserved or advanced specific distinctions David introduced instead of responding only with generic encouragement.
 
 ## What this evidence does **not** prove
 
-It does not prove customers, revenue, broad user adoption, formal employment history, senior-engineering tenure, official organizational endorsement by CrewAI/LangGraph/OpenClaw/Kimi, or production adoption by any project unless separately documented.
+It does not prove customers, revenue, broad user adoption, formal employment history, senior-engineering tenure, official organizational endorsement by CrewAI/LangGraph/OpenClaw/Kimi/yWorks, or production adoption by any project unless separately documented.
 
 The value of this record is narrower and more useful: it gives a reviewer direct evidence that the work is being read closely enough for other builders to challenge, validate, reproduce, extend, adopt, implement, or merge specific contributions.
