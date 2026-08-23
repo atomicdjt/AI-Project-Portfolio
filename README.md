@@ -25,6 +25,12 @@
 - **[Usability Pilot Kit](docs/portfolio-usability-pilot.md):** ready-to-run, claim-safe research materials for the Portfolio Hub review path.
 - **[July 2026 Public Audit Snapshot](docs/public-portfolio-audit-2026-07-14.md):** historical point-in-time evidence; use the project catalog and deployment map for current authority.
 
+## Writing & Technical Analysis
+
+- **[Your AI Agent Finished the Task. What Did It Actually Prove?](https://github.com/atomicdjt/atomicdjt/blob/main/writing/your-ai-agent-finished-the-task.md)** — canonical long-form article on verification boundaries for AI-agent work: what changed, what actually ran, what external state was observed, what independent challenge exists, and what remains unproven.
+
+The profile repository is the canonical source for published writing. This portfolio links to that source rather than maintaining competing copies.
+
 ## Recommended Employer Review Path
 
 1. **[Portfolio Hub](https://ai-project-portfolio-portfolio-hub.vercel.app/)** — fastest visual orientation.
