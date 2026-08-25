@@ -4,16 +4,18 @@ David Turner's portfolio demonstrates applied AI workflow design, technical-oper
 
 The consistent pattern is the ability to take an ambiguous problem, define the user and workflow, build a reviewable application, document the boundaries and tradeoffs, validate the result, and package the work for another person to evaluate or continue.
 
-## Best Employer Review Path
+## Best Employer / Operations Review Path
 
 1. **[Portfolio Hub](https://ai-project-portfolio-portfolio-hub.vercel.app/)** — fastest visual orientation across projects, evidence, source, and case studies.
-2. **[BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/)** — strongest technical originality and systems thinking.
-3. **[RedactReady Pro](https://ai-project-portfolio-redactready-pr.vercel.app/)** — strongest privacy and document-intelligence workflow.
-4. **[ProcessHarbor](https://ai-project-portfolio-opspilot-ai-op.vercel.app/)** — strongest direct evidence for technical operations, documentation, enablement, and knowledge-management roles.
+2. **[ProcessHarbor](https://ai-project-portfolio-opspilot-ai-op.vercel.app/)** — strongest direct evidence for technical operations, documentation, enablement, and knowledge-management roles.
+3. **[BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/)** — strongest technical originality and systems thinking.
+4. **[WeaveStudio](https://weavestudio-nine.vercel.app/)** — strongest workflow-product and handoff evidence.
 5. **[ScamShield AI](https://ai-project-portfolio-scamshield-ai.vercel.app/)** — strongest public-interest safety and explainable workflow design.
 6. **[LayerForge Studio](https://ai-project-portfolio-layerforge-stu.vercel.app/)** — strongest frontend and Canvas interaction depth.
 
 Use [Verification](verification.md) to understand the evidence behind public claims and [Deployment Map](deployment-and-previews.md) to confirm source authority and canonical routes.
+
+The separate technical proof path is Validation Ledger → Agent Session Bridge → BuildWorld AI → WeaveStudio. These audience paths are intentionally distinct and do not imply universal ranking, adoption, revenue, or endorsement.
 
 ## Role-to-Evidence Map
 

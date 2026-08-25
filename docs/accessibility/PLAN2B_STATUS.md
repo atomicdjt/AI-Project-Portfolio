@@ -23,4 +23,4 @@ Current state: **all 14 validated findings are corrected and regression-green in
 
 ## Remaining evidence boundary
 
-These are branch-code corrections, not yet canonical-production retest results. Findings remain tied to the historical production baseline until PR #88 is integrated, corrected deployments are verified, and the production accessibility baseline/retest is run against the deployed source SHA. Genuine NVDA + Chrome/Edge and actual browser 200% zoom remain separate manual evidence gates.
+These are merged source-code corrections, not canonical-production retest results. Findings remain tied to the historical production baseline until a corrected deployment is verified and the production accessibility baseline/retest is run against its source SHA. Genuine NVDA + Chrome/Edge and actual browser 200% zoom remain separate manual evidence gates.

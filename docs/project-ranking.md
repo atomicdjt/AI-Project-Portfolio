@@ -34,7 +34,7 @@ Commercial readiness does not imply verified revenue, customers, active users, p
 
 | Priority | Project | Interpretation |
 | --- | --- | --- |
-| 1 | [VariantVision Pro](../projects/variantvision-pro/CASE_STUDY.md) | Strongest source-backed research application; Vercel deployment pending. |
+| 1 | [VariantVision Pro](../projects/variantvision-pro/CASE_STUDY.md) | Strongest source-backed research application; a Vercel route is recorded, while deployment provenance and non-diagnostic boundaries remain separate evidence questions. |
 | 2 | [Amino Acid Research Workbench](../projects/amino-acid-research-workbench/CASE_STUDY.md) | Documentation-first educational bioinformatics case study with a legacy preserved static Vercel artifact. |
 | 3 | [Ecology of Consciousness](../projects/ecology-of-consciousness/CASE_STUDY.md) | Strongest original interdisciplinary research framework. |
 | 4 | [IHOS](../projects/ihos-integrated-human-operating-system/CASE_STUDY.md) | Structured non-clinical self-governance framework with practical workbook potential. |

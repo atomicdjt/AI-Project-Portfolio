@@ -19,4 +19,4 @@ Current state: **all five High findings are corrected in branch code and the gua
 
 ## Remaining evidence boundary
 
-The findings remain production-baseline findings until corrected code is merged/deployed and the canonical production accessibility baseline is rerun against the new deployment source SHA. Genuine NVDA + Chrome/Edge and actual browser 200% zoom remain separate manual evidence gates.
+The source-level corrections are merged into the canonical repository. A provider-proven production retest against the deployed source SHA is still pending. Genuine NVDA + Chrome/Edge and actual browser 200% zoom remain separate manual evidence gates.

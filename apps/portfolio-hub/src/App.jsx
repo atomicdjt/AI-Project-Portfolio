@@ -18,6 +18,38 @@ const imagePath = (fileName) => `images/${fileName}`;
 
 const projects = [
   {
+    name: 'validation-ledger',
+    publicName: 'Validation Ledger',
+    audience: 'Technical',
+    status: 'Live',
+    repositoryAuthority: 'Separate authoritative repository',
+    category: 'Evidence-to-decision workflow',
+    demo: 'https://validation-ledger.vercel.app/',
+    source: 'https://github.com/atomicdjt/validation-ledger',
+    caseStudy: '/projects/validation-ledger',
+    image: null,
+    stack: ['React', 'TypeScript', 'Dexie', 'IndexedDB', 'Vercel'],
+    summary: 'Local-first workspace for tracing source evidence through explicit hypotheses and decisions while keeping counterevidence and decision history inspectable.',
+    evidence: 'A production Vercel application and public source demonstrate the evidence model, local-first boundary, explainable scoring, and regression-oriented verification. Practitioner adoption remains under evaluation.',
+    review: 'Evidence and ResearchOps workflow',
+  },
+  {
+    name: 'agent-session-bridge',
+    publicName: 'Agent Session Bridge',
+    audience: 'Technical',
+    status: 'Published',
+    repositoryAuthority: 'Separate authoritative repository',
+    category: 'Agent trace interoperability',
+    demo: 'https://pypi.org/project/atomicdjt-agent-session-bridge/',
+    source: 'https://github.com/atomicdjt/agent-session-bridge',
+    caseStudy: '/projects/agent-session-bridge',
+    image: null,
+    stack: ['Python', 'ATIF v1.7', 'OpenTelemetry', 'OpenInference'],
+    summary: 'Provider-neutral Python reference implementation for normalizing coding-agent session records with explicit fidelity, privacy, and historical-projection boundaries.',
+    evidence: 'Published package and public source document ATIF normalization, best-effort secret redaction, fidelity accounting, and the limits of historical observability. It does not claim native session rehydration or original runtime telemetry.',
+    review: 'Interoperability and provenance',
+  },
+  {
     name: 'buildworld-ai',
     publicName: 'BuildWorld AI',
     audience: 'Employer',
@@ -259,6 +291,9 @@ const projects = [
   },
 ];
 
+const technicalFlagships = projects.filter((project) =>
+  ['Validation Ledger', 'Agent Session Bridge', 'BuildWorld AI', 'WeaveStudio'].includes(project.publicName),
+);
 const employerQuickReview = projects.filter((project) =>
   ['BuildWorld AI', 'ProcessHarbor', 'WeaveStudio'].includes(project.publicName),
 );
@@ -292,8 +327,8 @@ function App() {
           </span>
         </a>
         <nav>
-          <a href="/review"><BriefcaseBusiness size={18} aria-hidden="true" /> Five-minute review</a>
-          <a href="#employer-review"><BriefcaseBusiness size={18} aria-hidden="true" /> Hiring evidence</a>
+          <a href="/review"><BriefcaseBusiness size={18} aria-hidden="true" /> Technical review</a>
+          <a href="#employer-review"><BriefcaseBusiness size={18} aria-hidden="true" /> Role-fit review</a>
           <a href="#commercial-assets"><Sparkles size={18} aria-hidden="true" /> Products</a>
           <a href="#projects"><Layers3 size={18} aria-hidden="true" /> All projects</a>
           <a href="#technical-depth"><BookOpen size={18} aria-hidden="true" /> Evidence</a>
@@ -324,18 +359,34 @@ function App() {
         </header>
 
         <section className="review-intro" aria-label="Portfolio review guidance">
-          <p><strong>Start with the three flagships below.</strong> Each includes a live product, source authority, and a specific kind of evidence—without implying customer, revenue, or compliance claims.</p>
+          <p><strong>Start with the four core technical flagships below.</strong> Employer, buyer, and research paths remain separate because they answer different questions; none implies customer, revenue, or compliance claims.</p>
           <div className="topbar-actions">
             <a className="button secondary" href={repoBase}><Code2 size={17} aria-hidden="true" /> View GitHub</a>
             <a className="button primary" href={`${repoBase}/blob/main/docs/recruiter-quick-review.md`}><FileText size={17} aria-hidden="true" /> Recruiter guide</a>
           </div>
         </section>
 
+        <section className="quick-review" aria-labelledby="technical-title">
+          <div className="section-title">
+            <div>
+              <span>Core technical flagships</span>
+              <h2 id="technical-title">Four projects for evidence, interoperability, systems reasoning, and workflow delivery</h2>
+            </div>
+            <a href="/review">
+              Technical review path <ArrowUpRight size={15} aria-hidden="true" />
+            </a>
+          </div>
+          <p>These are the primary technical projects. Their ordering is a review sequence, not a claim that one project is universally stronger or more validated than another.</p>
+          <div className="featured-grid">
+            {technicalFlagships.map((project) => <ProjectCard key={project.name} project={project} />)}
+          </div>
+        </section>
+
         <section id="employer-review" className="quick-review" aria-labelledby="employer-title">
           <div className="section-title">
             <div>
-              <span>Employer review</span>
-              <h2 id="employer-title">Three projects that show role fit in under five minutes</h2>
+              <span>Employer and operations review</span>
+              <h2 id="employer-title">Three projects that show role-fit evidence for applied AI and technical operations</h2>
             </div>
             <a href={`${repoBase}/blob/main/docs/EMPLOYER_OVERVIEW.md`}>
               Employer overview <ArrowUpRight size={15} aria-hidden="true" />
@@ -374,12 +425,14 @@ function App() {
               <select value={audience} onChange={(event) => setAudience(event.target.value)} aria-label="Filter by audience">
                 <option>All</option>
                 <option>Employer</option>
+                <option>Technical</option>
                 <option>Commercial</option>
                 <option>Supplemental</option>
               </select>
               <select value={status} onChange={(event) => setStatus(event.target.value)} aria-label="Filter by status">
                 <option>All</option>
                 <option>Live</option>
+                <option>Published</option>
                 <option>Local</option>
                 <option>Commercial</option>
                 <option>Acquisition Asset</option>
@@ -469,11 +522,11 @@ function ReviewPath() {
     <main className="review-page">
       <a className="review-back" href="/">← Portfolio hub</a>
       <header className="review-hero">
-        <h1>A five-minute review of applied AI and technical-operations work.</h1>
-        <p>Three focused projects demonstrate product reasoning, operational workflow design, and end-to-end delivery. Review each in order, then inspect the source and validation evidence that matters to you.</p>
+        <h1>A five-minute technical proof review.</h1>
+        <p>Four core technical projects show evidence-to-decision workflows, agent-trace interoperability, systems reasoning, and reviewable delivery. Review each in order, then inspect the source and validation evidence that matters to you.</p>
       </header>
       <ol className="review-steps">
-        {employerQuickReview.map((project, index) => (
+        {technicalFlagships.map((project, index) => (
           <li key={project.name}>
             <span className="review-number">0{index + 1}</span>
             <div>
@@ -511,7 +564,7 @@ function ProjectCard({ project }) {
         <div className="card-actions">
           {project.demo ? <ExternalLink href={project.demo}>Vercel demo</ExternalLink> : null}
           {project.source ? <ExternalLink href={project.source}>Source</ExternalLink> : null}
-          {project.caseStudy ? <ExternalLink href={project.caseStudy}>{project.audience === 'Commercial' ? 'Product details' : 'Case study'}</ExternalLink> : null}
+          {project.caseStudy ? <ExternalLink href={project.caseStudy}>{project.audience === 'Commercial' ? 'Product details' : project.audience === 'Technical' ? 'Canonical page' : 'Case study'}</ExternalLink> : null}
         </div>
       </div>
     </article>
