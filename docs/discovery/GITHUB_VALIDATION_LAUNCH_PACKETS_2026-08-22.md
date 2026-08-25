@@ -1,15 +1,15 @@
 # GitHub External Validation Launch Packets
 
-Checked: 2026-08-22  
+Checked: 2026-08-25  
 Owner: David Turner (`atomicdjt`)
 
 ## Purpose
 
-This is the execution packet for legitimate GitHub discoverability and external validation. It is intentionally optimized for qualified technical attention rather than vanity traffic.
+This is the execution packet for legitimate GitHub discoverability, technical review, and external validation. It is optimized for qualified attention rather than vanity traffic.
 
 Hard boundaries:
 
-- no purchased/fake stars;
+- no purchased or fake stars;
 - no reciprocal-star schemes;
 - no coordinated HN/Product Hunt voting;
 - no duplicate cold outreach while a prior message is pending;
@@ -17,56 +17,83 @@ Hard boundaries:
 - no representing proprietary public-source repositories as open source;
 - no treating automated review, preliminary curation, or an open PR as endorsement.
 
+## Canonical link policy
+
+The Portfolio Hub now provides the authoritative public discovery layer for the flagship projects. Future public posts should normally link to the canonical project page first, then the source repository or live application as supporting destinations.
+
+- Validation Ledger: https://ai-project-portfolio-portfolio-hub.vercel.app/projects/validation-ledger
+- Agent Session Bridge: https://ai-project-portfolio-portfolio-hub.vercel.app/projects/agent-session-bridge
+- BuildWorld AI: https://ai-project-portfolio-portfolio-hub.vercel.app/projects/buildworld-ai
+- WeaveStudio: https://ai-project-portfolio-portfolio-hub.vercel.app/projects/weavestudio
+
+This concentrates external authority on stable pages that already link onward to source, demos, related projects, and the portfolio root. Use a direct repository or demo link when the community context specifically calls for source code or an immediately runnable application.
+
 ## Current hero order
 
-1. **Validation Ledger** — primary immediate hero; MIT, live demo, local-first evidence workflow, broad product/research audience.
-2. **Agent Session Bridge** — highest developer-tool upside after the 2026-08-22 package/install hardening; MIT, coding-agent interoperability, explicit loss accounting.
-3. **BuildWorld AI** — strong technical/visual demo centered on deterministic reproducibility; public source under an evaluation-focused proprietary license.
-4. **WeaveStudio** — strong local-first/provenance product but public source remains proprietary; promote selectively rather than as an open-source contribution target.
+1. **Agent Session Bridge** — strongest developer-tool and interoperability story; MIT; current ATIF v1.7 implementation; explicit fidelity/loss accounting.
+2. **Validation Ledger** — MIT, live demo, local-first evidence workflow, broad product/research audience.
+3. **BuildWorld AI** — strong technical/visual demo centered on deterministic reproducibility and model-bound simulation claims.
+4. **WeaveStudio** — strong local-first/provenance product; public source remains proprietary, so promote selectively rather than as an open-source contribution target.
 
 ## Manual GitHub settings packet
 
-The connected GitHub automation can change files/issues/PRs but currently does not expose repository-topic, Discussions-enable, or social-preview-setting writes. Apply these manually in GitHub settings.
+The connected GitHub automation can change files/issues/PRs but does not currently expose repository-topic, repository-homepage, Discussions-enable, or social-preview-setting writes. Apply these manually in GitHub settings.
 
-### Agent Session Bridge topics
+### Agent Session Bridge
 
-Recommended, in priority order:
+Recommended topics, in priority order:
 
-`coding-agents` · `ai-agents` · `developer-tools` · `claude-code` · `session-portability` · `agent-interoperability` · `python` · `pydantic` · `llm-tools` · `cli`
+`coding-agents` · `ai-agents` · `developer-tools` · `claude-code` · `atif` · `agent-interoperability` · `session-portability` · `python` · `pydantic` · `llm-tools`
 
-Repository description:
+Recommended repository description:
 
-> Provider-neutral coding-agent session exchange with explicit fidelity/loss reporting and Claude Code adapters.
+> ATIF v1.7 reference implementation for Claude Code trajectory portability, explicit fidelity/loss reporting, redaction, and historical observability.
 
-### Validation Ledger topics
+Recommended Website field:
 
-Keep the current relevant stack/local-first topics and target this semantic set:
+> https://ai-project-portfolio-portfolio-hub.vercel.app/projects/agent-session-bridge
+
+### Validation Ledger
+
+Target semantic topics:
 
 `product-discovery` · `ux-research` · `customer-discovery` · `local-first` · `indexeddb` · `evidence-management` · `ai-assisted` · `react` · `typescript` · `vite`
 
-Repository description:
+Recommended repository description:
 
 > Local-first product-discovery workspace that keeps sources, evidence, counterevidence, hypotheses, and decisions traceable.
 
-### BuildWorld AI topics
+Recommended Website field:
 
-Target:
+> https://ai-project-portfolio-portfolio-hub.vercel.app/projects/validation-ledger
+
+### BuildWorld AI
+
+Target topics:
 
 `systems-simulation` · `complex-systems` · `network-simulation` · `graph-simulation` · `scenario-analysis` · `reproducible-research` · `data-visualization` · `local-first` · `react` · `typescript`
 
 Drop generic `portfolio` if the 20-topic limit becomes relevant.
 
-Repository description:
+Recommended repository description:
 
 > Reproducible browser-based systems simulation for graph scenarios, bottlenecks, cascades, sensitivity, and intervention analysis.
 
-### WeaveStudio topics
+Recommended Website field:
 
-Target:
+> https://ai-project-portfolio-portfolio-hub.vercel.app/projects/buildworld-ai
+
+### WeaveStudio
+
+Target topics:
 
 `local-first` · `workflow-canvas` · `data-portability` · `provenance` · `human-in-the-loop` · `ai-workflows` · `privacy` · `react` · `typescript` · `vite`
 
 Do not add `open-source`.
+
+Recommended Website field:
+
+> https://ai-project-portfolio-portfolio-hub.vercel.app/projects/weavestudio
 
 ## GitHub Discussions seed packet
 
@@ -78,11 +105,11 @@ Enable Discussions first only on the MIT projects unless there is a specific rea
 
 **Body:**
 
-> Agent Session Bridge currently treats messages, tool calls/results, timestamps, and explicit loss accounting as durable interchange state, while provider-only UI/token metadata may be degraded or omitted.
+> Agent Session Bridge currently treats supported messages, tool calls/results, timestamps, and explicit fidelity/loss accounting as portable ATIF trajectory state, while provider-only metadata can be degraded or omitted.
 >
-> I am trying to falsify that boundary. Which state would you consider essential for a real coding-agent handoff, and which fields are just provider noise?
+> I am trying to falsify that boundary. Which state would you consider essential for a real coding-agent handoff, and which fields are provider noise?
 >
-> Concrete provider examples are especially useful. If a field cannot be represented canonically, I would rather record the loss explicitly than pretend it survived.
+> Concrete provider examples are especially useful. If a source field cannot be represented faithfully, I would rather report the loss than pretend it survived.
 
 ### Agent Session Bridge — seed #2
 
@@ -116,12 +143,12 @@ Enable Discussions first only on the MIT projects unless there is a specific rea
 
 ## Social-preview specifications
 
-GitHub recommends 1280×640 for strong link previews. Use a readable 2:1 card with one product screenshot maximum and no tiny feature-list text.
+Use a readable 2:1 card with one product screenshot maximum and no tiny feature-list text.
 
 ### Agent Session Bridge
 
-Headline: **Portable coding-agent history**  
-Diagram: `Claude Code → ASEF → target adapter`  
+Headline: **Portable coding-agent trajectories**  
+Diagram: `Claude Code → ATIF v1.7 → target mapper`  
 Footer: `Explicit fidelity + loss accounting · MIT`
 
 ### Validation Ledger
@@ -144,8 +171,7 @@ Footer: `Browser-local · public evaluation source`
 
 ## DEV Community `#showdev`
 
-Current rule source: https://dev.to/t/showdev  
-Current guidance: project launches are explicitly allowed; keep the post community-driven rather than corporate/salesy.
+Keep launch posts technical and community-driven rather than corporate or salesy.
 
 ### Agent Session Bridge — primary DEV launch
 
@@ -161,23 +187,25 @@ Current guidance: project launches are explicitly allowed; keep the post communi
 >
 > I wanted to test a stricter question: **what can actually be transferred faithfully, and what must be declared lost?**
 >
-> I built Agent Session Bridge as an MIT-licensed reference implementation around a provider-neutral Agent Session Exchange Format (ASEF).
+> I built Agent Session Bridge as an MIT-licensed reference implementation that normalizes supported coding-agent history into the public Agent Trajectory Interchange Format (ATIF) v1.7. ASB is not a competing interchange standard.
 >
 > Today it can:
 >
 > - import supported Claude Code JSONL;
-> - normalize it into ASEF;
-> - report unsupported/degraded structures instead of silently dropping them;
+> - normalize it into ATIF v1.7;
+> - report unsupported/degraded source structures through namespaced fidelity accounting instead of silently dropping them;
 > - apply heuristic secret redaction;
-> - map the result into Antigravity's derived transcript shape.
+> - map the result into an observed Antigravity derived-log shape.
 >
 > The interesting failure is the last mile: Antigravity currently has no supported historical-session ingestion API. Its internal conversation store is not a safe interoperability surface, so the project deliberately stops at payload generation instead of mutating opaque internal state.
 >
-> That failure changed the design for me. “Exportable transcript” and “resumable session” are very different capabilities.
+> That failure changed the design for me. “Portable trajectory” and “resumable native session” are very different capabilities.
 >
-> Repository: https://github.com/atomicdjt/agent-session-bridge
+> Project overview: https://ai-project-portfolio-portfolio-hub.vercel.app/projects/agent-session-bridge
 >
-> I would especially value criticism on one question: **what state should be considered durable agent state rather than provider-specific noise?**
+> Source: https://github.com/atomicdjt/agent-session-bridge
+>
+> I would especially value criticism on one question: **where does the current Claude Code → ATIF mapping overstate fidelity or classify provider-specific state incorrectly?**
 
 ### Validation Ledger — DEV launch
 
@@ -199,6 +227,8 @@ Current guidance: project launches are explicitly allowed; keep the post communi
 >
 > The scoring heuristic is intentionally inspectable—independent sources, segment diversity, behavioral/WTP evidence, and direct citations—because I want people to be able to argue with it.
 >
+> Project overview: https://ai-project-portfolio-portfolio-hub.vercel.app/projects/validation-ledger
+>
 > Demo: https://validation-ledger.vercel.app/
 >
 > Source: https://github.com/atomicdjt/validation-ledger
@@ -219,6 +249,8 @@ Current guidance: project launches are explicitly allowed; keep the post communi
 >
 > The design goal is to let someone disagree with the assumptions and rerun the same model rather than receive an unexplained generated answer.
 >
+> Project overview: https://ai-project-portfolio-portfolio-hub.vercel.app/projects/buildworld-ai
+>
 > Demo: https://buildworld-ai-v01-improvements.vercel.app/
 >
 > Source/evidence: https://github.com/atomicdjt/buildworld-ai
@@ -229,9 +261,7 @@ Current guidance: project launches are explicitly allowed; keep the post communi
 
 ### r/ChatGPTCoding
 
-Current sanctioned route: weekly self-promotion thread.  
-Current thread checked 2026-08-22: https://www.reddit.com/r/ChatGPTCoding/comments/1vqlw77/weekly_self_promotion_thread/  
-Do not use a standalone launch post; current Rule 5 routes primarily promotional showcases into the weekly thread.
+Use the sanctioned weekly self-promotion thread when that remains the current community route; do not use an unrelated standalone technical thread for a promotional showcase.
 
 **Agent Session Bridge comment:**
 
@@ -239,13 +269,15 @@ Do not use a standalone launch post; current Rule 5 routes primarily promotional
 >
 > I made an MIT-licensed reference implementation for a problem I kept running into with AI-assisted coding: switching agents usually means collapsing structured history into a summary.
 >
-> Agent Session Bridge imports supported Claude Code JSONL into a provider-neutral ASEF representation, records fidelity/loss explicitly, applies heuristic secret redaction, and can generate an Antigravity-style derived transcript payload.
+> Agent Session Bridge imports supported Claude Code JSONL into ATIF v1.7, records source fidelity/loss explicitly, applies heuristic secret redaction, and can generate an Antigravity-style derived transcript payload.
 >
 > The important limitation: native Antigravity resumption does **not** work today because there is no supported historical-session import API. I deliberately did not write into its opaque internal database.
 >
+> Overview: https://ai-project-portfolio-portfolio-hub.vercel.app/projects/agent-session-bridge
+>
 > Repo: https://github.com/atomicdjt/agent-session-bridge
 >
-> I am looking for feedback on two things: which state actually needs to survive a handoff, and which provider would make the most useful next documented adapter.
+> I am looking for feedback on two things: where the current mapping loses important state, and which provider would make the most useful next documented adapter.
 
 ### r/github self-promotion thread
 
@@ -253,22 +285,19 @@ Use the current sanctioned self-promotion megathread, not an unrelated technical
 
 **Comment:**
 
-> **Agent Session Bridge** — an MIT-licensed provider-neutral reference implementation for portable coding-agent session history.
+> **Agent Session Bridge** — an MIT-licensed ATIF v1.7 reference implementation for portable coding-agent trajectory history.
 >
-> It currently imports supported Claude Code JSONL into ASEF, reports preservation/loss explicitly, and generates target payloads without claiming unsupported native rehydration.
+> It currently imports supported Claude Code JSONL into ATIF, reports preservation/loss explicitly, and generates target mappings without claiming unsupported native rehydration.
+>
+> Overview: https://ai-project-portfolio-portfolio-hub.vercel.app/projects/agent-session-bridge
 >
 > Repository: https://github.com/atomicdjt/agent-session-bridge
 >
-> I am especially looking for adapter/schema critique and additional synthetic fidelity fixtures rather than generic promotion.
+> I am especially looking for adapter/fidelity critique and additional synthetic conformance fixtures rather than generic promotion.
 
 ## Hacker News packet
 
-Official rules: https://news.ycombinator.com/showhn.html  
-Temporary restriction notice checked 2026-08-22: https://news.ycombinator.com/showlim
-
-Do not create a fresh account simply to launch. HN is temporarily restricting Show HN submissions because of a large influx of users unfamiliar with the community. Participate normally first if the account is not established.
-
-Never ask anyone to upvote/comment.
+Follow the current Show HN rules and any current community restrictions before posting. Do not create a fresh account simply to launch, and never ask anyone to upvote or comment.
 
 ### Agent Session Bridge
 
@@ -276,17 +305,21 @@ Never ask anyone to upvote/comment.
 
 **Opening comment:**
 
-> Coding agents can accumulate a lot more state than survives a summary-and-reprompt handoff. I built this to see how much of that state can be normalized into a provider-neutral format without pretending the providers are equivalent.
+> Coding agents can accumulate a lot more state than survives a summary-and-reprompt handoff. I built this to see how much of that state can be normalized into ATIF without pretending the providers are equivalent.
 >
-> The current reference implementation imports Claude Code JSONL into ASEF, preserves supported tool/message structures, emits a loss report for degraded/unsupported information, and maps to an Antigravity-derived transcript payload.
+> The current reference implementation imports supported Claude Code JSONL into ATIF v1.7, preserves supported tool/message structures, records degraded or unsupported source information in namespaced fidelity metadata, and maps to an observed Antigravity-derived transcript payload.
 >
 > The main result so far is partly negative: generating a target transcript is not the same thing as restoring a resumable session. Antigravity currently has no supported external historical-session ingestion API, and I chose not to mutate its undocumented internal database.
 >
-> I would be interested in critiques of the canonical schema and especially examples of provider state that ASEF currently misclassifies as durable vs. disposable.
+> Overview: https://ai-project-portfolio-portfolio-hub.vercel.app/projects/agent-session-bridge
+>
+> Source: https://github.com/atomicdjt/agent-session-bridge
+>
+> I would be interested in concrete critiques of the ATIF mapping and fidelity boundary—especially source state that ASB currently misclassifies as preserved, degraded, or disposable.
 
 ### BuildWorld AI
 
-**Title:** `Show HN: BuildWorld – a reproducible browser-based systems simulation lab`
+**Title:** `Show HN: BuildWorld AI – a reproducible browser-based systems simulation lab`
 
 **Opening comment:**
 
@@ -295,6 +328,8 @@ Never ask anyone to upvote/comment.
 > The main design constraint is reproducibility: reports record model version, seed, input fingerprint, and the assumptions used for the run. The core simulation/insight layer is deterministic rather than an LLM-generated interpretation.
 >
 > There are eight editable scenarios, including supply chains, power grids, traffic, ecosystems, and emergency resources.
+>
+> Overview: https://ai-project-portfolio-portfolio-hub.vercel.app/projects/buildworld-ai
 >
 > One thing I am actively unsure about is the visualization boundary: graph layout can make relationships look meaningful even when position is purely presentational. I would value concrete examples where the current interface over-communicates structure.
 
@@ -320,6 +355,7 @@ Do not ask for upvotes. Ask people to visit, try, and critique.
 >
 > The most useful feedback for me is not “nice app”; it is a concrete example where the evidence model would create false confidence, reward the wrong signal, or hide meaningful contradiction.
 
+Project overview: https://ai-project-portfolio-portfolio-hub.vercel.app/projects/validation-ledger  
 Demo: https://validation-ledger.vercel.app/
 
 ## Local-first community framing
@@ -348,35 +384,32 @@ Rules:
 - no duplicate follow-up while a recent message is pending;
 - critique is a successful outcome.
 
-Current duplication guard as of 2026-08-22:
-
-- Product Talk / Teresa Torres: already contacted and responded to this week; do not resend.
-- Martin Kleppmann: already contacted 2026-08-21; do not resend.
-- Ink & Switch: already contacted 2026-08-19; do not resend.
+Existing duplication guards must be checked against current sent-mail/outreach evidence before any new contact.
 
 ## Channel order
 
 Do not launch everything simultaneously. Preserve attribution.
 
-1. Agent Session Bridge — r/ChatGPTCoding weekly thread.
+1. Agent Session Bridge — one technically appropriate community placement.
 2. Measure 24–48 hours.
 3. Agent Session Bridge — DEV `#showdev` technical post.
 4. Measure.
 5. Validation Ledger — DEV/local-first technical discussion.
 6. Measure.
 7. Validation Ledger — Product Hunt only after launch page/profile preparation.
-8. Show HN only when account/community status makes the temporary restriction non-issue.
+8. Show HN only when account/community status makes any current restriction a non-issue.
 9. BuildWorld technical launch after the first two projects have clean attribution windows.
 
 ## Analytics ledger
 
-GitHub repository Traffic is a 14-day rolling window. Capture the numbers immediately before and 24–48 hours after each placement.
+GitHub repository Traffic is a 14-day rolling window. Capture the numbers immediately before and 24–48 hours after each placement when owner Insights access is available.
 
 | Date/time | Project | Channel | Unique visitors | Views | Clones | Stars | Followers | Forks | Watchers | Issues/Discussions | External mentions | Notes |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
-| baseline | Agent Session Bridge | none | manual | manual | manual | 0 at pre-campaign audit | manual | 0 | 0 | contributor issues seeded | — | GitHub Traffic requires owner Insights access |
-| baseline | Validation Ledger | none | manual | manual | manual | 0 at pre-campaign audit | manual | 0 | 0 | critique + contributor issues seeded | — | README conversion pass merged 2026-08-22 |
-| baseline | BuildWorld AI | none | manual | manual | manual | 0 at pre-campaign audit | manual | 0 | 0 | critique issue seeded | — | reproducibility framing merged 2026-08-22 |
+| baseline | Agent Session Bridge | none | manual | manual | manual | manual | manual | manual | manual | contributor issues seeded | — | GitHub Traffic requires owner Insights access |
+| baseline | Validation Ledger | none | manual | manual | manual | manual | manual | manual | manual | critique + contributor issues seeded | — | canonical authority links added 2026-08-25 |
+| baseline | BuildWorld AI | none | manual | manual | manual | manual | manual | manual | manual | critique issue seeded | — | canonical authority links added 2026-08-25 |
+| baseline | WeaveStudio | awesome-local-first review | manual | manual | manual | manual | manual | manual | manual | external curation issue open | contextual canonical backlink added | maintainer preliminary triage said likely worth adding |
 
 Diagnostic rule:
 
@@ -388,10 +421,11 @@ Diagnostic rule:
 
 These items cannot currently be executed through the connected tools:
 
-- add/update GitHub repository topics;
+- update GitHub repository topics;
+- update repository Website/homepage fields or repository descriptions;
 - enable GitHub Discussions and paste the seed discussions;
 - upload repository social-preview images in GitHub Settings;
 - read private `Insights → Traffic` visitor/referrer metrics;
 - publish to DEV, Reddit, Hacker News, or Product Hunt without an authenticated connector for those services.
 
-Everything else in this packet is prepared for direct execution or measurement.
+Everything else in this packet should preserve the canonical-link policy and the current ATIF terminology before public use.
