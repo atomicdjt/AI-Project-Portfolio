@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Validation Ledger | Traceable Product Discovery — David Turner</title>
+  <meta name="description" content="Validation Ledger is David Turner's MIT-licensed, local-first product-discovery workspace for traceable customer evidence, counterevidence, hypotheses, and decisions." />
+  <meta name="author" content="David Turner" />
+  <link rel="canonical" href="https://ai-project-portfolio-portfolio-hub.vercel.app/projects/validation-ledger" />
+  <link rel="stylesheet" href="/project.css" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Validation Ledger | Traceable Product Discovery" />
+  <meta property="og:description" content="A local-first product-discovery workspace that preserves the chain from source material to evidence, counterevidence, hypotheses, and decisions." />
+  <meta property="og:url" content="https://ai-project-portfolio-portfolio-hub.vercel.app/projects/validation-ledger" />
+  <meta property="og:image" content="https://raw.githubusercontent.com/atomicdjt/validation-ledger/main/docs/images/dashboard.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Validation Ledger",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "url": "https://ai-project-portfolio-portfolio-hub.vercel.app/projects/validation-ledger",
+    "sameAs": ["https://validation-ledger.vercel.app/", "https://github.com/atomicdjt/validation-ledger"],
+    "codeRepository": "https://github.com/atomicdjt/validation-ledger",
+    "license": "https://opensource.org/license/mit",
+    "description": "Local-first workspace for traceable product discovery and evidence-based decisions.",
+    "author": {"@type": "Person", "name": "David Turner", "url": "https://ai-project-portfolio-portfolio-hub.vercel.app/", "sameAs": ["https://github.com/atomicdjt", "https://www.linkedin.com/in/david-turner-6052491a2"]},
+    "isPartOf": {"@type": "ProfilePage", "url": "https://ai-project-portfolio-portfolio-hub.vercel.app/"}
+  }
+  </script>
+</head>
+<body>
+  <main class="shell">
+    <nav class="topnav" aria-label="Portfolio navigation"><strong>David Turner · Applied AI & Technical Operations</strong><div class="navlinks"><a href="/">Portfolio hub</a><a href="/review">Five-minute review</a><a href="https://github.com/atomicdjt">GitHub profile</a></div></nav>
+    <p class="path"><a href="/">Portfolio</a><span>→</span><span>Flagship project</span></p>
+    <header>
+      <span class="eyebrow">Open-source flagship · MIT · Local-first</span>
+      <h1>Validation Ledger</h1>
+      <p class="lede">Turn customer conversations into traceable product decisions without losing the chain of reasoning—or allowing contradictory evidence to disappear inside a summary.</p>
+      <div class="actions"><a class="button primary" href="https://validation-ledger.vercel.app/">Open live product</a><a class="button" href="https://github.com/atomicdjt/validation-ledger">Inspect source</a><a class="button" href="https://github.com/atomicdjt/validation-ledger/blob/main/docs/ARCHITECTURE.md">Architecture</a></div>
+    </header>
+    <div class="grid">
+      <div>
+        <section><h2>What it solves</h2><p>Product-discovery work often starts with interviews, support notes, observations, sales signals, and other qualitative material. The difficult part is not collecting more notes; it is preserving the reasoning path between raw material and the decision that follows. Validation Ledger models that path explicitly as <strong>Source → Evidence → Hypothesis → Decision</strong>, with counterevidence retained as a separate signal rather than silently averaged away.</p><p>The intended audience is product managers, UX researchers, founders, and analysts who need an inspectable research record rather than an opaque summary.</p></section>
+        <section><h2>Why it is technically interesting</h2><ul><li>Browser-primary persistence uses IndexedDB through Dexie; the core workflow requires no application backend.</li><li>Supporting evidence and counterevidence are scored separately using an explicit heuristic rather than hidden model judgment.</li><li>Only excerpts that resolve back to saved source material can be treated as direct evidence; missing provenance is shown as inference.</li><li>Gemini-assisted extraction is optional, user-initiated, and subordinate to human review.</li><li>The repository includes unit tests, linting, production builds, browser workflow checks, accessibility checks, dependency auditing, and CI.</li></ul></section>
+        <section><h2>Evidence boundary</h2><p>The scoring model structures judgment; it does not prove product-market fit, causal demand, source truthfulness, or research quality. Browser-local storage is not encrypted durable cloud storage, and clearing browser/site data can remove local records. The project documents these constraints explicitly.</p><p class="note">The strongest way to review this project is to try the demo, inspect the scoring model, then challenge the handling of contradictory evidence rather than treating the score as an answer.</p></section>
+        <section><h2>Discovery path</h2><p>This page is the portfolio-level canonical description. The live application remains the executable product, while GitHub is the authoritative source and verification record.</p><p><a href="/projects/agent-session-bridge">Next: Agent Session Bridge</a> · <a href="/projects/buildworld-ai">BuildWorld AI</a> · <a href="/projects/weavestudio">WeaveStudio</a></p></section>
+      </div>
+      <aside class="card"><h2>Project facts</h2><dl class="meta"><div><dt>Primary problem</dt><dd>Traceable product discovery</dd></div><div><dt>Architecture</dt><dd>Local-first browser application</dd></div><div><dt>Core storage</dt><dd>IndexedDB / Dexie</dd></div><div><dt>Stack</dt><dd>React · TypeScript · Vite</dd></div><div><dt>AI boundary</dt><dd>Optional Gemini extraction with human review</dd></div><div><dt>License</dt><dd>MIT</dd></div><div><dt>Source authority</dt><dd><a href="https://github.com/atomicdjt/validation-ledger">atomicdjt/validation-ledger</a></dd></div></dl></aside>
+    </div>
+    <footer>Built by David Turner. Portfolio claims are intentionally scoped to documented implementation, testing, deployment, and external evidence.</footer>
+  </main>
+</body>
+</html>
