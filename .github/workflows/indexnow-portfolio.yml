@@ -1,0 +1,201 @@
+name: IndexNow Portfolio Notifications
+
+on:
+  workflow_run:
+    workflows:
+      - Vercel Affected Deployment Plan
+    types:
+      - completed
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexnow-portfolio-${{ github.event.workflow_run.head_sha || github.sha }}
+  cancel-in-progress: true
+
+env:
+  SITE_HOST: ai-project-portfolio-portfolio-hub.vercel.app
+  SITE_ORIGIN: https://ai-project-portfolio-portfolio-hub.vercel.app
+  INDEXNOW_KEY_FILE: apps/portfolio-hub/public/fef84205ce6b4f9d9b18d866e378dfcb.txt
+  INDEXNOW_KEY_LOCATION: https://ai-project-portfolio-portfolio-hub.vercel.app/fef84205ce6b4f9d9b18d866e378dfcb.txt
+
+jobs:
+  notify:
+    if: >-
+      ${{
+        github.event_name == 'workflow_dispatch' ||
+        (
+          github.event.workflow_run.conclusion == 'success' &&
+          github.event.workflow_run.head_branch == 'main'
+        )
+      }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout deployed source
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          fetch-depth: 2
+
+      - name: Determine changed canonical URLs
+        id: urls
+        shell: bash
+        env:
+          SOURCE_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+        run: |
+          set -euo pipefail
+
+          : > changed-files.txt
+          if [[ "$GITHUB_EVENT_NAME" != "workflow_dispatch" ]]; then
+            git diff-tree --no-commit-id --name-only -r "$SOURCE_SHA" | sort -u > changed-files.txt
+          fi
+
+          echo "Changed files considered for IndexNow:"
+          cat changed-files.txt || true
+
+          urls=()
+          add_url() {
+            local candidate="$1"
+            local existing
+            for existing in "${urls[@]:-}"; do
+              if [[ "$existing" == "$candidate" ]]; then
+                return
+              fi
+            done
+            urls+=("$candidate")
+          }
+
+          add_all_flagships() {
+            add_url "$SITE_ORIGIN/"
+            add_url "$SITE_ORIGIN/projects/agent-session-bridge"
+            add_url "$SITE_ORIGIN/projects/validation-ledger"
+            add_url "$SITE_ORIGIN/projects/buildworld-ai"
+            add_url "$SITE_ORIGIN/projects/weavestudio"
+          }
+
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
+            add_all_flagships
+          else
+            if grep -Eq '^apps/portfolio-hub/(index\.html|src/)' changed-files.txt; then
+              add_url "$SITE_ORIGIN/"
+            fi
+
+            if grep -Eq '^apps/portfolio-hub/public/project\.css$' changed-files.txt; then
+              add_url "$SITE_ORIGIN/projects/agent-session-bridge"
+              add_url "$SITE_ORIGIN/projects/validation-ledger"
+              add_url "$SITE_ORIGIN/projects/buildworld-ai"
+              add_url "$SITE_ORIGIN/projects/weavestudio"
+            fi
+
+            if grep -Eq '^apps/portfolio-hub/public/projects/agent-session-bridge\.html$' changed-files.txt; then
+              add_url "$SITE_ORIGIN/projects/agent-session-bridge"
+            fi
+            if grep -Eq '^apps/portfolio-hub/public/projects/validation-ledger\.html$' changed-files.txt; then
+              add_url "$SITE_ORIGIN/projects/validation-ledger"
+            fi
+            if grep -Eq '^apps/portfolio-hub/public/projects/buildworld-ai\.html$' changed-files.txt; then
+              add_url "$SITE_ORIGIN/projects/buildworld-ai"
+            fi
+            if grep -Eq '^apps/portfolio-hub/public/projects/weavestudio\.html$' changed-files.txt; then
+              add_url "$SITE_ORIGIN/projects/weavestudio"
+            fi
+
+            # Bootstrap the current flagship set when IndexNow is first installed.
+            if grep -Fqx "$INDEXNOW_KEY_FILE" changed-files.txt; then
+              add_all_flagships
+            fi
+
+            if grep -Eq '^apps/portfolio-hub/public/(sitemap\.xml|robots\.txt)$' changed-files.txt; then
+              add_url "$SITE_ORIGIN/"
+            fi
+          fi
+
+          if (( ${#urls[@]} == 0 )); then
+            echo "No canonical page content changed; skipping IndexNow submission."
+            echo "should_submit=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          printf '%s\n' "${urls[@]}" > indexnow-urls.txt
+          echo "IndexNow URLs:"
+          cat indexnow-urls.txt
+          echo "should_submit=true" >> "$GITHUB_OUTPUT"
+          echo "count=${#urls[@]}" >> "$GITHUB_OUTPUT"
+
+      - name: Verify IndexNow key is live
+        if: steps.urls.outputs.should_submit == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected="$(tr -d '\r\n' < "$INDEXNOW_KEY_FILE")"
+          actual="$(curl --fail --location --silent --show-error \
+            --retry 5 --retry-delay 3 \
+            "$INDEXNOW_KEY_LOCATION" | tr -d '\r\n')"
+          test "$actual" = "$expected"
+
+      - name: Prepare IndexNow payload
+        if: steps.urls.outputs.should_submit == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs');
+          const key = fs.readFileSync(process.env.INDEXNOW_KEY_FILE, 'utf8').trim();
+          const urlList = fs.readFileSync('indexnow-urls.txt', 'utf8')
+            .split(/\r?\n/)
+            .map((value) => value.trim())
+            .filter(Boolean);
+          fs.writeFileSync('indexnow-payload.json', JSON.stringify({
+            host: process.env.SITE_HOST,
+            key,
+            keyLocation: process.env.INDEXNOW_KEY_LOCATION,
+            urlList,
+          }, null, 2));
+          NODE
+
+      - name: Submit URLs to IndexNow
+        id: submit
+        if: steps.urls.outputs.should_submit == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          http_code="$(curl --silent --show-error \
+            --output indexnow-response.txt \
+            --write-out '%{http_code}' \
+            --request POST \
+            --header 'Content-Type: application/json; charset=utf-8' \
+            --data-binary @indexnow-payload.json \
+            https://api.indexnow.org/IndexNow)"
+
+          echo "http_code=$http_code" >> "$GITHUB_OUTPUT"
+          if [[ -s indexnow-response.txt ]]; then
+            cat indexnow-response.txt
+          fi
+
+          if [[ "$http_code" != "200" && "$http_code" != "202" ]]; then
+            echo "IndexNow rejected the submission with HTTP $http_code" >&2
+            exit 1
+          fi
+
+      - name: Publish IndexNow evidence
+        if: steps.urls.outputs.should_submit == 'true'
+        shell: bash
+        env:
+          URL_COUNT: ${{ steps.urls.outputs.count }}
+          HTTP_CODE: ${{ steps.submit.outputs.http_code }}
+        run: |
+          {
+            echo "## IndexNow portfolio notification"
+            echo
+            echo "- Source SHA: \`${{ github.event.workflow_run.head_sha || github.sha }}\`"
+            echo "- Submitted canonical URLs: $URL_COUNT"
+            echo "- IndexNow response: HTTP $HTTP_CODE"
+            echo "- Key location: $INDEXNOW_KEY_LOCATION"
+            echo
+            echo '```text'
+            cat indexnow-urls.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
