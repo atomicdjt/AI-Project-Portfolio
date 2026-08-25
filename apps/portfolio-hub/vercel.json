@@ -11,6 +11,22 @@
   "outputDirectory": "dist",
   "rewrites": [
     {
+      "source": "/projects/validation-ledger",
+      "destination": "/projects/validation-ledger.html"
+    },
+    {
+      "source": "/projects/agent-session-bridge",
+      "destination": "/projects/agent-session-bridge.html"
+    },
+    {
+      "source": "/projects/buildworld-ai",
+      "destination": "/projects/buildworld-ai.html"
+    },
+    {
+      "source": "/projects/weavestudio",
+      "destination": "/projects/weavestudio.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
