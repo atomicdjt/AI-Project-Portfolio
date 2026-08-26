@@ -325,6 +325,7 @@ jobs:
             curl --fail --location --silent --show-error --retry 3 --retry-delay 2 "$DEPLOYMENT_URL$route" > /dev/null
           done
           declare -A asset_types=(
+            [agent-session-bridge-pypi.png]=image/png
             [buildworld-ai-demo.gif]=image/gif
             [redactready-pro-dashboard.png]=image/png
             [opspilot-home.png]=image/png

@@ -43,7 +43,7 @@ const projects = [
     demo: 'https://pypi.org/project/atomicdjt-agent-session-bridge/',
     source: 'https://github.com/atomicdjt/agent-session-bridge',
     caseStudy: '/projects/agent-session-bridge',
-    image: null,
+    image: imagePath('agent-session-bridge-pypi.png'),
     stack: ['Python', 'ATIF v1.7', 'OpenTelemetry', 'OpenInference'],
     summary: 'Provider-neutral Python reference implementation for normalizing coding-agent session records with explicit fidelity, privacy, and historical-projection boundaries.',
     evidence: 'Published package and public source document ATIF normalization, best-effort secret redaction, fidelity accounting, and the limits of historical observability. It does not claim native session rehydration or original runtime telemetry.',
@@ -302,6 +302,7 @@ const externalProof = [
     title: 'Grid Dynamics Rosetta',
     text: 'Scoped security, correctness, performance, and regression-coverage contributions were independently reviewed and merged upstream in PRs #299, #319, #320, and #322.',
     links: [
+      ['Rosetta PR #299', 'https://github.com/griddynamics/rosetta/pull/299'],
       ['Rosetta PR #319', 'https://github.com/griddynamics/rosetta/pull/319'],
       ['Rosetta PR #320', 'https://github.com/griddynamics/rosetta/pull/320'],
       ['Rosetta PR #322', 'https://github.com/griddynamics/rosetta/pull/322'],
@@ -331,7 +332,7 @@ function App() {
 
   const filteredProjects = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
-    return projects.filter((project) => {
+    return archiveProjects.filter((project) => {
       const matchesStatus = status === 'All' || project.status === status;
       const matchesAudience = audience === 'All' || project.audience === audience;
       const searchable = `${project.publicName} ${project.category} ${project.summary} ${project.evidence} ${project.stack.join(' ')}`.toLowerCase();
@@ -454,12 +455,12 @@ function App() {
               <option>All</option><option>Employer</option><option>Technical</option><option>Commercial</option><option>Supplemental</option>
             </select>
             <select value={status} onChange={(event) => setStatus(event.target.value)} aria-label="Filter by status">
-              <option>All</option><option>Live</option><option>Published</option><option>Local</option><option>Commercial</option><option>Acquisition Asset</option><option>Supplemental</option>
+              <option>All</option><option>Live</option><option>Published</option><option>Local</option><option>Commercial</option><option>Acquisition Asset</option>
             </select>
           </div>
           <details className="archive-details">
             <summary>Open the searchable project archive</summary>
-            <p className="filter-summary" role="status" aria-live="polite">Showing {filteredProjects.length} of {projects.length} projects.</p>
+            <p className="filter-summary" role="status" aria-live="polite">Showing {filteredProjects.length} of {archiveProjects.length} projects.</p>
             <div className="table-wrap">
             <table>
               <thead>

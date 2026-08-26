@@ -14,7 +14,7 @@ const publicImagesDir = path.join(repositoryRoot, 'apps', 'portfolio-hub', 'publ
 
 test('all Portfolio Hub imagePath metadata references tracked public assets', () => {
   const result = validatePortfolioAssets();
-  assert.equal(result.references.length, 13);
+  assert.equal(result.references.length, 14);
   assert.deepEqual(result.problems, []);
 });
 
