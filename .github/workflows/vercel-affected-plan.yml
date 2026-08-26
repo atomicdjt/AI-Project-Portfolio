@@ -310,9 +310,14 @@ jobs:
           DEPLOYMENT_URL: ${{ steps.deploy.outputs.url }}
         run: |
           set -euo pipefail
+          verification_url="$DEPLOYMENT_URL"
+          if [[ "$PRODUCTION_DEPLOYMENT" == "true" ]]; then
+            verification_url="${{ matrix.productionUrl }}"
+            verification_url="${verification_url%/}"
+          fi
           curl --fail --location --silent --show-error \
             --retry 3 --retry-delay 2 \
-            "$DEPLOYMENT_URL" > deployed-document.html
+            "$verification_url" > deployed-document.html
           test -s deployed-document.html
 
       - name: Smoke-check Portfolio Hub routes and image MIME types
@@ -322,8 +327,13 @@ jobs:
           DEPLOYMENT_URL: ${{ steps.deploy.outputs.url }}
         run: |
           set -euo pipefail
+          verification_url="$DEPLOYMENT_URL"
+          if [[ "$PRODUCTION_DEPLOYMENT" == "true" ]]; then
+            verification_url="${{ matrix.productionUrl }}"
+            verification_url="${verification_url%/}"
+          fi
           for route in / /review /projects/validation-ledger /projects/agent-session-bridge /projects/buildworld-ai /projects/weavestudio; do
-            curl --fail --location --silent --show-error --retry 3 --retry-delay 2 "$DEPLOYMENT_URL$route" > /dev/null
+            curl --fail --location --silent --show-error --retry 3 --retry-delay 2 "$verification_url$route" > /dev/null
           done
           declare -A asset_types=(
             [agent-session-bridge-pypi.png]=image/png
@@ -345,7 +355,7 @@ jobs:
             expected="${asset_types[$asset]}"
             headers="$(mktemp)"
             trap 'rm -f "$headers"' RETURN
-            curl --fail --location --silent --show-error --retry 3 --retry-delay 2 -D "$headers" -o /dev/null "$DEPLOYMENT_URL/images/$asset"
+            curl --fail --location --silent --show-error --retry 3 --retry-delay 2 -D "$headers" -o /dev/null "$verification_url/images/$asset"
             grep -Eiq "^content-type:[[:space:]]*$expected([;[:space:]]|$)" "$headers"
           done
 
