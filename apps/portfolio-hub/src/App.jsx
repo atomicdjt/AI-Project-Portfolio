@@ -14,7 +14,7 @@ import {
 import { useMemo, useState } from 'react';
 
 const repoBase = 'https://github.com/atomicdjt/AI-Project-Portfolio';
-const imagePath = (fileName) => `images/${fileName}`;
+const imagePath = (fileName) => `/images/${fileName}`;
 
 const projects = [
   {
@@ -27,7 +27,7 @@ const projects = [
     demo: 'https://validation-ledger.vercel.app/',
     source: 'https://github.com/atomicdjt/validation-ledger',
     caseStudy: '/projects/validation-ledger',
-    image: null,
+    image: imagePath('validation-ledger-dashboard.jpg'),
     stack: ['React', 'TypeScript', 'Dexie', 'IndexedDB', 'Vercel'],
     summary: 'Local-first workspace for tracing source evidence through explicit hypotheses and decisions while keeping counterevidence and decision history inspectable.',
     evidence: 'A production Vercel application and public source demonstrate the evidence model, local-first boundary, explainable scoring, and regression-oriented verification. Practitioner adoption remains under evaluation.',
@@ -294,10 +294,36 @@ const projects = [
 const technicalFlagships = projects.filter((project) =>
   ['Validation Ledger', 'Agent Session Bridge', 'BuildWorld AI', 'WeaveStudio'].includes(project.publicName),
 );
-const employerQuickReview = projects.filter((project) =>
-  ['BuildWorld AI', 'ProcessHarbor', 'WeaveStudio'].includes(project.publicName),
-);
-const commercialAssets = projects.filter((project) => project.publicName === 'QuoteForge Local');
+const archiveProjects = projects.filter((project) => !technicalFlagships.includes(project));
+
+const externalProof = [
+  {
+    eyebrow: 'Merged upstream contributions',
+    title: 'Grid Dynamics Rosetta',
+    text: 'Scoped security, correctness, performance, and regression-coverage contributions were independently reviewed and merged upstream in PRs #299, #319, #320, and #322.',
+    links: [
+      ['Rosetta PR #319', 'https://github.com/griddynamics/rosetta/pull/319'],
+      ['Rosetta PR #320', 'https://github.com/griddynamics/rosetta/pull/320'],
+      ['Rosetta PR #322', 'https://github.com/griddynamics/rosetta/pull/322'],
+    ],
+  },
+  {
+    eyebrow: 'Merged upstream contribution',
+    title: 'super-productivity',
+    text: 'PR #9619 was merged upstream with a section-ordering fix that keeps visible task order aligned with existing move actions, with regression coverage across project and tag contexts.',
+    links: [['Read PR #9619', 'https://github.com/super-productivity/super-productivity/pull/9619']],
+  },
+  {
+    eyebrow: 'Published interoperability work',
+    title: 'Agent Session Bridge',
+    text: 'A published Python package and technical article document ATIF normalization, fidelity accounting, redaction boundaries, and the distinction between portable history and native session resumption.',
+    links: [
+      ['Open package', 'https://pypi.org/project/atomicdjt-agent-session-bridge/'],
+      ['Read technical article', 'https://github.com/atomicdjt/atomicdjt/blob/main/writing/from-claude-code-jsonl-to-atif-v1-7.md'],
+    ],
+  },
+];
+
 function App() {
   const [query, setQuery] = useState('');
   const [status, setStatus] = useState('All');
@@ -328,10 +354,10 @@ function App() {
         </a>
         <nav>
           <a href="/review"><BriefcaseBusiness size={18} aria-hidden="true" /> Technical review</a>
-          <a href="#employer-review"><BriefcaseBusiness size={18} aria-hidden="true" /> Role-fit review</a>
-          <a href="#commercial-assets"><Sparkles size={18} aria-hidden="true" /> Products</a>
-          <a href="#projects"><Layers3 size={18} aria-hidden="true" /> All projects</a>
-          <a href="#technical-depth"><BookOpen size={18} aria-hidden="true" /> Evidence</a>
+          <a href="#flagships"><BriefcaseBusiness size={18} aria-hidden="true" /> Flagship work</a>
+          <a href="#external-proof"><Sparkles size={18} aria-hidden="true" /> External proof</a>
+          <a href="#capabilities"><BookOpen size={18} aria-hidden="true" /> How I work</a>
+          <a href="#projects"><Layers3 size={18} aria-hidden="true" /> More projects</a>
           <a href={repoBase}><Code2 size={18} aria-hidden="true" /> GitHub repo</a>
         </nav>
         <div className="rail-panel">
@@ -366,7 +392,7 @@ function App() {
           </div>
         </section>
 
-        <section className="quick-review" aria-labelledby="technical-title">
+        <section id="flagships" className="quick-review flagship-section" aria-labelledby="technical-title">
           <div className="section-title">
             <div>
               <span>Core technical flagships</span>
@@ -377,73 +403,64 @@ function App() {
             </a>
           </div>
           <p>These are the primary technical projects. Their ordering is a review sequence, not a claim that one project is universally stronger or more validated than another.</p>
-          <div className="featured-grid">
+          <div className="featured-grid flagship-grid">
             {technicalFlagships.map((project) => <ProjectCard key={project.name} project={project} />)}
           </div>
         </section>
 
-        <section id="employer-review" className="quick-review" aria-labelledby="employer-title">
+        <section id="external-proof" className="external-proof" aria-labelledby="proof-title">
           <div className="section-title">
             <div>
-              <span>Employer and operations review</span>
-              <h2 id="employer-title">Three projects that show role-fit evidence for applied AI and technical operations</h2>
+              <span>External / open-source proof</span>
+              <h2 id="proof-title">Work that has been read, challenged, and accepted outside this portfolio</h2>
             </div>
-            <a href={`${repoBase}/blob/main/docs/EMPLOYER_OVERVIEW.md`}>
-              Employer overview <ArrowUpRight size={15} aria-hidden="true" />
-            </a>
+            <a href={`${repoBase}/blob/main/docs/discovery/external-corroboration.md`}>Evidence record <ArrowUpRight size={15} aria-hidden="true" /></a>
           </div>
-          <div className="featured-grid">
-            {employerQuickReview.map((project) => <ProjectCard key={project.name} project={project} />)}
+          <p className="section-lede">The strongest external signals here are narrow and specific: merged upstream contributions and a published interoperability implementation. They do not imply customers, revenue, broad adoption, or endorsement beyond the linked evidence.</p>
+          <div className="proof-grid">
+            {externalProof.map((item) => <ProofCard key={item.title} item={item} />)}
           </div>
         </section>
 
-        <section id="commercial-assets" className="quick-review" aria-labelledby="commercial-title">
+        <section id="capabilities" className="technical-depth" aria-labelledby="capabilities-title">
           <div className="section-title">
             <div>
-              <span>Commercial execution</span>
-              <h2 id="commercial-title">A separately maintained private-source product</h2>
+              <span>Working method</span>
+              <h2 id="capabilities-title">Useful software begins with explicit boundaries.</h2>
             </div>
           </div>
-          <p>Commercial status describes product packaging and availability; it does not imply revenue, customers, active users, or a completed acquisition.</p>
-          <div className="featured-grid">
-            {commercialAssets.map((project) => <ProjectCard key={project.name} project={project} />)}
+          <div className="depth-grid">
+            <DepthLink icon={<ShieldCheck size={19} aria-hidden="true" />} title="Make evidence inspectable" text="Trace source material, transformations, counterevidence, and decisions so a reviewer can challenge the result." href={`${repoBase}/blob/main/docs/verification.md`} />
+            <DepthLink icon={<Network size={19} aria-hidden="true" />} title="Keep humans in the loop" text="Use local-first storage, explicit review checkpoints, and conservative claims where automation or AI assistance is involved." href={`${repoBase}/blob/main/docs/EMPLOYER_OVERVIEW.md`} />
+            <DepthLink icon={<Code2 size={19} aria-hidden="true" />} title="Ship the proof with the product" text="Pair implementation with tests, source authority, deployment checks, technical writing, and a clear handoff path." href={`${repoBase}/blob/main/docs/PROJECT_INDEX.md`} />
           </div>
         </section>
 
-        <section id="projects" className="project-browser" aria-labelledby="projects-title">
+        <section id="projects" className="project-browser archive-section" aria-labelledby="projects-title">
           <div className="section-title browser-title">
             <div>
-              <span>Complete catalog</span>
-              <h2 id="projects-title">Source authority, Vercel status, case studies, and evidence</h2>
+              <span>More projects</span>
+              <h2 id="projects-title">The complete catalog, kept available without competing with the flagships</h2>
             </div>
-            <div className="filters">
+            <p className="archive-count">{archiveProjects.length} supporting projects</p>
+          </div>
+          <details className="archive-details">
+            <summary>Open the searchable project archive</summary>
+            <div className="archive-controls">
               <label className="search-field">
                 <Search size={16} aria-hidden="true" />
                 <span className="sr-only">Search projects</span>
                 <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search projects" />
               </label>
               <select value={audience} onChange={(event) => setAudience(event.target.value)} aria-label="Filter by audience">
-                <option>All</option>
-                <option>Employer</option>
-                <option>Technical</option>
-                <option>Commercial</option>
-                <option>Supplemental</option>
+                <option>All</option><option>Employer</option><option>Technical</option><option>Commercial</option><option>Supplemental</option>
               </select>
               <select value={status} onChange={(event) => setStatus(event.target.value)} aria-label="Filter by status">
-                <option>All</option>
-                <option>Live</option>
-                <option>Published</option>
-                <option>Local</option>
-                <option>Commercial</option>
-                <option>Acquisition Asset</option>
-                <option>Supplemental</option>
+                <option>All</option><option>Live</option><option>Published</option><option>Local</option><option>Commercial</option><option>Acquisition Asset</option><option>Supplemental</option>
               </select>
             </div>
-          </div>
-          <p className="filter-summary" role="status" aria-live="polite">
-            Showing {filteredProjects.length} of {projects.length} projects.
-          </p>
-          <div className="table-wrap">
+            <p className="filter-summary" role="status" aria-live="polite">Showing {filteredProjects.length} of {projects.length} projects.</p>
+            <div className="table-wrap">
             <table>
               <thead>
                 <tr>
@@ -488,17 +505,11 @@ function App() {
                 ) : null}
               </tbody>
             </table>
-          </div>
+            </div>
+          </details>
         </section>
 
-        <section id="technical-depth" className="technical-depth" aria-labelledby="depth-title">
-          <div><span>Evidence and role mapping</span><h2 id="depth-title">Recommended next stops after the project review</h2></div>
-          <div className="depth-grid">
-            <DepthLink icon={<ShieldCheck size={19} aria-hidden="true" />} title="Verification guide" text="Commands, validation boundaries, and public checks used to support portfolio claims." href={`${repoBase}/blob/main/docs/verification.md`} />
-            <DepthLink icon={<BookOpen size={19} aria-hidden="true" />} title="Project index" text="Source authority, Vercel status, best evidence, and role-fit notes for the complete catalog." href={`${repoBase}/blob/main/docs/PROJECT_INDEX.md`} />
-            <DepthLink icon={<FileText size={19} aria-hidden="true" />} title="Vercel deployment plan" text="Project-by-project migration settings and the Vercel-only publication policy." href={`${repoBase}/blob/main/docs/VERCEL_DEPLOYMENT.md`} />
-          </div>
-        </section>
+        <SiteFooter />
       </main>
     </div>
   );
@@ -572,8 +583,17 @@ function ProjectCard({ project }) {
 }
 
 function ProjectThumb({ project, large = false }) {
-  if (project.image) return <img className={large ? 'project-thumb large' : 'project-thumb'} src={project.image} alt={`${project.publicName} screenshot`} loading="lazy" decoding="async" />;
+  const [imageFailed, setImageFailed] = useState(false);
+  if (project.image && !imageFailed) return <img className={large ? 'project-thumb large' : 'project-thumb'} src={project.image} alt={`${project.publicName} screenshot`} loading="lazy" decoding="async" onError={() => setImageFailed(true)} />;
   return <div className={large ? 'project-thumb large generated-thumb' : 'project-thumb generated-thumb'} aria-hidden="true"><span>{project.publicName.split(' ').map((word) => word[0]).join('').slice(0, 3)}</span><small>{project.category}</small></div>;
+}
+
+function ProofCard({ item }) {
+  return <article className="proof-card"><span>{item.eyebrow}</span><h3>{item.title}</h3><p>{item.text}</p><div className="card-actions">{item.links.map(([label, href]) => <ExternalLink key={href} href={href}>{label}</ExternalLink>)}</div></article>;
+}
+
+function SiteFooter() {
+  return <footer className="site-footer"><div><span className="footer-eyebrow">Canonical project navigation</span><h2>Keep exploring the work</h2><p>Start with a flagship page for technical context, then inspect the executable product and authoritative source linked from that page.</p></div><nav aria-label="Canonical flagship projects"><a href="/projects/validation-ledger">Validation Ledger</a><a href="/projects/agent-session-bridge">Agent Session Bridge</a><a href="/projects/buildworld-ai">BuildWorld AI</a><a href="/projects/weavestudio">WeaveStudio</a></nav><small>Built by David Turner. Claims are limited to documented implementation, testing, publication, deployment, and linked external evidence.</small></footer>;
 }
 
 function StatusChip({ status }) {

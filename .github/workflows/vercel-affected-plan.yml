@@ -208,6 +208,18 @@ jobs:
     steps:
       - name: Checkout source
         uses: actions/checkout@v6
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+
+      - name: Verify exact clean source checkout
+        shell: bash
+        run: |
+          set -euo pipefail
+          actual_sha="$(git rev-parse HEAD)"
+          test "$actual_sha" = "${{ github.sha }}"
+          test -z "$(git status --porcelain)"
+          echo "Building exact clean source SHA: $actual_sha"
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
@@ -266,6 +278,14 @@ jobs:
             --scope "$VERCEL_SCOPE" \
             --token "$VERCEL_TOKEN"
 
+      - name: Verify Portfolio Hub Vercel output assets
+        if: matrix.id == 'portfolio-hub'
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -d .vercel/output/static
+          node scripts/validate-portfolio-assets.mjs --built-dir .vercel/output/static
+
       - name: Deploy prebuilt output
         id: deploy
         env:
@@ -293,6 +313,39 @@ jobs:
             --retry 3 --retry-delay 2 \
             "$DEPLOYMENT_URL" > deployed-document.html
           test -s deployed-document.html
+
+      - name: Smoke-check Portfolio Hub routes and image MIME types
+        if: matrix.id == 'portfolio-hub'
+        shell: bash
+        env:
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.url }}
+        run: |
+          set -euo pipefail
+          for route in / /review /projects/validation-ledger /projects/agent-session-bridge /projects/buildworld-ai /projects/weavestudio; do
+            curl --fail --location --silent --show-error --retry 3 --retry-delay 2 "$DEPLOYMENT_URL$route" > /dev/null
+          done
+          declare -A asset_types=(
+            [buildworld-ai-demo.gif]=image/gif
+            [redactready-pro-dashboard.png]=image/png
+            [opspilot-home.png]=image/png
+            [scamshield-assessment.png]=image/png
+            [redactready-review-workspace.png]=image/png
+            [layerforge-studio-home.png]=image/png
+            [focusforge-home.png]=image/png
+            [variantvision-pro-dashboard.png]=image/png
+            [astra-home.png]=image/png
+            [nexus-play-home.png]=image/png
+            [weavestudio-demo.gif]=image/gif
+            [quoteforge-local-home.png]=image/png
+            [validation-ledger-dashboard.jpg]=image/jpeg
+          )
+          for asset in "${!asset_types[@]}"; do
+            expected="${asset_types[$asset]}"
+            headers="$(mktemp)"
+            trap 'rm -f "$headers"' RETURN
+            curl --fail --location --silent --show-error --retry 3 --retry-delay 2 -D "$headers" -o /dev/null "$DEPLOYMENT_URL/images/$asset"
+            grep -Eiq "^content-type:[[:space:]]*$expected([;[:space:]]|$)" "$headers"
+          done
 
       - name: Publish deployment evidence
         shell: bash

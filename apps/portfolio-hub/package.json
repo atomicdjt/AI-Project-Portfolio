@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 5180",
-    "build": "vite build",
+    "check:assets": "node ../../scripts/validate-portfolio-assets.mjs",
+    "build": "npm run check:assets && vite build && node ../../scripts/validate-portfolio-assets.mjs --built",
     "lint": "eslint .",
     "preview": "vite preview --host 127.0.0.1 --port 4180"
   },
