@@ -29,3 +29,9 @@ test('production mode drives Vercel pull, build, and deploy while pull requests 
   assert.match(workflow, /github\.event_name != 'pull_request'/)
   assert.doesNotMatch(workflow, /if \[\[ "\$\{\{ github\.event_name \}\}" == "push"/)
 })
+
+test('production smoke uses the canonical public alias instead of the protected deployment URL', () => {
+  assert.equal((workflow.match(/verification_url="\$\{\{ matrix\.productionUrl \}\}"/g) ?? []).length, 2)
+  assert.match(workflow, /verification_url="\$DEPLOYMENT_URL"/)
+  assert.match(workflow, /verification_url="\$\{verification_url%\//)
+})
