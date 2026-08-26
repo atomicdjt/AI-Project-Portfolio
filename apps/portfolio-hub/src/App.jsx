@@ -444,21 +444,21 @@ function App() {
             </div>
             <p className="archive-count">{archiveProjects.length} supporting projects</p>
           </div>
+          <div className="filters archive-controls">
+            <label className="search-field">
+              <Search size={16} aria-hidden="true" />
+              <span className="sr-only">Search projects</span>
+              <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search projects" />
+            </label>
+            <select value={audience} onChange={(event) => setAudience(event.target.value)} aria-label="Filter by audience">
+              <option>All</option><option>Employer</option><option>Technical</option><option>Commercial</option><option>Supplemental</option>
+            </select>
+            <select value={status} onChange={(event) => setStatus(event.target.value)} aria-label="Filter by status">
+              <option>All</option><option>Live</option><option>Published</option><option>Local</option><option>Commercial</option><option>Acquisition Asset</option><option>Supplemental</option>
+            </select>
+          </div>
           <details className="archive-details">
             <summary>Open the searchable project archive</summary>
-            <div className="archive-controls">
-              <label className="search-field">
-                <Search size={16} aria-hidden="true" />
-                <span className="sr-only">Search projects</span>
-                <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search projects" />
-              </label>
-              <select value={audience} onChange={(event) => setAudience(event.target.value)} aria-label="Filter by audience">
-                <option>All</option><option>Employer</option><option>Technical</option><option>Commercial</option><option>Supplemental</option>
-              </select>
-              <select value={status} onChange={(event) => setStatus(event.target.value)} aria-label="Filter by status">
-                <option>All</option><option>Live</option><option>Published</option><option>Local</option><option>Commercial</option><option>Acquisition Asset</option><option>Supplemental</option>
-              </select>
-            </div>
             <p className="filter-summary" role="status" aria-live="polite">Showing {filteredProjects.length} of {projects.length} projects.</p>
             <div className="table-wrap">
             <table>
