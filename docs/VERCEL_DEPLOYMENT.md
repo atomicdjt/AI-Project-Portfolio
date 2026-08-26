@@ -69,6 +69,8 @@ The former GitHub Pages deployment workflow is a build-only Vercel-readiness che
 
 `https://ai-project-portfolio-portfolio-hub.vercel.app/`
 
+Portfolio Hub builds validate every `imagePath(...)` reference against `apps/portfolio-hub/public/images` before Vite runs and against the generated output after Vite completes. The controller repeats that check against `.vercel/output/static` and, for Portfolio Hub deployments, smoke-checks the canonical routes plus every referenced image's expected MIME type. Native Vercel Git fan-out remains disabled because this monorepo contains multiple independently deployed applications; the guarded affected-project controller checks out `${github.sha}`, requires a clean tree, builds that exact source, and records the source SHA beside the deployment URL.
+
 ### ProcessHarbor
 
 The public Vercel deployment exposes the deterministic browser workflow. The repository also contains reference API contracts, optional server-side AI design, schema validation, audit behavior, and a database migration path.

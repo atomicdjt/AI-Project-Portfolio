@@ -11,6 +11,17 @@ This index records public names, source authority, implementation status, Vercel
 - **Documentation-first** — case study or specification exists without a maintained runnable workspace.
 - **Commercial / Acquisition asset** — packaged for sale, licensing, or transfer; does not imply verified traction.
 
+## Core Technical Flagships
+
+| Public name | Evidence surface | Repository authority | Boundary |
+| --- | --- | --- | --- |
+| [Validation Ledger](https://validation-ledger.vercel.app/) | Production application and source | [Separate authoritative repository](https://github.com/atomicdjt/validation-ledger) | Internal validation and qualified practitioner evaluation; no adoption or endorsement claim. |
+| [Agent Session Bridge](https://pypi.org/project/atomicdjt-agent-session-bridge/) | Published package and source | [Separate authoritative repository](https://github.com/atomicdjt/agent-session-bridge) | Historical projection and interoperability reference; no native session rehydration claim. |
+| [BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/) | Vercel application and source | [Separate authoritative repository](https://github.com/atomicdjt/buildworld-ai) | Deterministic heuristic simulation; not scientific or real-world prediction. |
+| [WeaveStudio](https://weavestudio-nine.vercel.app/) | Canonical product and acquisition overview | [Separate authoritative repository](https://github.com/atomicdjt/weavestudio) | Acquisition-ready packaging; no customer, revenue, or completed-acquisition claim. |
+
+These four are the core technical review sequence. Employer/operations and buyer paths below are intentionally audience-specific.
+
 ## Employer-Facing Applications
 
 | Public name | Deployment status | Repository authority | Best evidence |
@@ -58,9 +69,9 @@ Legacy non-Vercel URLs are not used as current portfolio routes.
 
 ## Recommended Review by Audience
 
-- **Employer:** Portfolio Hub → BuildWorld AI → RedactReady Pro → ProcessHarbor → verification documentation.
+- **Employer/operations:** Portfolio Hub → ProcessHarbor → BuildWorld AI → WeaveStudio → verification documentation.
 - **Buyer or commercial partner:** WeaveStudio → QuoteForge Local → source-authority and transfer documentation.
-- **Technical reviewer:** BuildWorld AI → RedactReady family → LayerForge Studio → VariantVision Pro.
+- **Technical reviewer:** Validation Ledger → Agent Session Bridge → BuildWorld AI → WeaveStudio.
 - **Research reviewer:** VariantVision Pro → Amino Acid Workbench → Ecology of Consciousness → IHOS.
 - **Deployment reviewer:** [Vercel Deployment Record](VERCEL_DEPLOYMENT.md) → [Deployment and Source-Authority Map](deployment-and-previews.md).
 

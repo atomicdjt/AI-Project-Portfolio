@@ -16,7 +16,7 @@
 ## Fast Review
 
 - **[Live Portfolio Hub](https://ai-project-portfolio-portfolio-hub.vercel.app/):** visual employer-facing review surface with project filters, evidence routes, demos, and case studies.
-- **[Five-minute review](https://ai-project-portfolio-portfolio-hub.vercel.app/review):** a focused BuildWorld AI, ProcessHarbor, and WeaveStudio review sequence.
+- **[Technical proof review](https://ai-project-portfolio-portfolio-hub.vercel.app/review):** a focused Validation Ledger, Agent Session Bridge, BuildWorld AI, and WeaveStudio sequence.
 - **[Recruiter Quick Review](docs/recruiter-quick-review.md):** shortest evidence-based review sequence.
 - **[Employer Overview](docs/EMPLOYER_OVERVIEW.md):** direct role-to-project mapping.
 - **[Verification Guide](docs/verification.md):** repository scripts, deployment checks, validation scope, and evidence boundaries.
@@ -31,14 +31,21 @@
 
 The profile repository is the canonical source for published writing. This portfolio links to that source rather than maintaining competing copies.
 
-## Recommended Employer Review Path
+## Audience-specific Review Paths
+
+### Employer and operations
 
 1. **[Portfolio Hub](https://ai-project-portfolio-portfolio-hub.vercel.app/)** — fastest visual orientation.
-2. **[BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/)** — strongest technical originality: deterministic graph simulation, cascade analysis, reproducible experiments, SSI scoring, local persistence, and reports.
-3. **[RedactReady Pro](https://ai-project-portfolio-redactready-pr.vercel.app/)** — strongest privacy and document-intelligence workflow.
-4. **[ProcessHarbor](https://ai-project-portfolio-opspilot-ai-op.vercel.app/)** — clearest role fit for technical operations, SOPs, onboarding, knowledge-base workflows, gap analysis, versions, and export bundles.
-5. **[ScamShield AI](https://ai-project-portfolio-scamshield-ai.vercel.app/)** — strongest public-interest safety design and explainable local workflow.
-6. **[LayerForge Studio](https://ai-project-portfolio-layerforge-stu.vercel.app/)** — strongest frontend and Canvas interaction depth.
+2. **[ProcessHarbor](https://ai-project-portfolio-opspilot-ai-op.vercel.app/)** — direct evidence for technical operations, documentation, enablement, and knowledge-management workflows.
+3. **[BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/)** — systems reasoning and reproducible simulation.
+4. **[WeaveStudio](https://weavestudio-nine.vercel.app/)** — workflow product design, portability, and handoff discipline.
+
+### Technical proof
+
+1. **[Validation Ledger](https://validation-ledger.vercel.app/)** — evidence-to-decision traceability and local-first verification.
+2. **[Agent Session Bridge](https://pypi.org/project/atomicdjt-agent-session-bridge/)** — agent-trace interoperability, fidelity accounting, and privacy boundaries.
+3. **[BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/)** — deterministic systems simulation.
+4. **[WeaveStudio](https://weavestudio-nine.vercel.app/)** — reviewable workflow construction and transfer materials.
 
 This repository is evidence of practical initiative, AI-assisted execution, product judgment, documentation discipline, and the ability to turn ambiguous ideas into structured working systems. It is not presented as a claim of senior engineering tenure.
 

@@ -2,13 +2,15 @@
 
 ## 60-Second Review Path
 
-1. Open the [live Portfolio Hub](https://ai-project-portfolio-portfolio-hub.vercel.app/) for visual orientation and direct project routes.
-2. Review [BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/) for technical originality and systems thinking.
-3. Review [RedactReady Pro](https://ai-project-portfolio-redactready-pr.vercel.app/) for privacy, document intelligence, and responsible product boundaries.
-4. Review [ProcessHarbor](https://ai-project-portfolio-opspilot-ai-op.vercel.app/) for technical operations, SOPs, onboarding, knowledge-base workflows, and documentation role fit.
+1. Open the [Portfolio Hub](https://ai-project-portfolio-portfolio-hub.vercel.app/) for visual orientation and direct project routes.
+2. Review [ProcessHarbor](https://ai-project-portfolio-opspilot-ai-op.vercel.app/) for technical operations, SOPs, onboarding, knowledge-base workflows, and documentation role fit.
+3. Review [BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/) for technical originality and systems thinking.
+4. Review [WeaveStudio](https://weavestudio-nine.vercel.app/) for workflow-product design, portability, and handoff discipline.
 5. Use [Verification](verification.md), the [Skills Matrix](SKILLS_MATRIX.md), and the [Deployment Map](deployment-and-previews.md) to connect the work to supported evidence.
 
 ## Best Employer-Facing Evidence
+
+For the separate technical proof path, review [Validation Ledger](https://validation-ledger.vercel.app/) → [Agent Session Bridge](https://pypi.org/project/atomicdjt-agent-session-bridge/) → [BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/) → [WeaveStudio](https://weavestudio-nine.vercel.app/). This is an audience-specific review order, not a universal ranking or adoption claim.
 
 | Project | Current review route | Why review it |
 | --- | --- | --- |
