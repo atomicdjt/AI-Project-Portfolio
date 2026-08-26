@@ -8,8 +8,12 @@ updates:
     open-pull-requests-limit: 5
     groups:
       portfolio-dependencies:
+        applies-to: "version-updates"
         patterns:
           - "*"
+        update-types:
+          - "minor"
+          - "patch"
 
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -18,5 +22,9 @@ updates:
     open-pull-requests-limit: 5
     groups:
       github-actions:
+        applies-to: "version-updates"
         patterns:
           - "*"
+        update-types:
+          - "minor"
+          - "patch"
