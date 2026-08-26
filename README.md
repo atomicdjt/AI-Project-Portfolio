@@ -46,7 +46,6 @@ The profile repository is the canonical source for published writing. This portf
 2. **[Agent Session Bridge](https://pypi.org/project/atomicdjt-agent-session-bridge/)** — agent-trace interoperability, fidelity accounting, and privacy boundaries.
 3. **[BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/)** — deterministic systems simulation.
 4. **[WeaveStudio](https://weavestudio-nine.vercel.app/)** — reviewable workflow construction and transfer materials.
-6. **[LayerForge Studio](https://ai-project-portfolio-layerforge-stu.vercel.app/)** — strongest frontend and Canvas interaction depth.
 
 This repository is evidence of practical initiative, AI-assisted execution, product judgment, documentation discipline, and the ability to turn ambiguous ideas into structured working systems. It is not presented as a claim of senior engineering tenure.
 
