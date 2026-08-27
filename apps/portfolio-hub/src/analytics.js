@@ -9,7 +9,21 @@ export const ANALYTICS_EVENTS = {
   PROJECT_VIEWED: 'project_viewed',
 };
 
+const EVENT_PROPERTY_ALLOWLISTS = {
+  $pageview: [],
+  [ANALYTICS_EVENTS.CTA_CLICKED]: ['cta_name', 'destination_type', 'surface'],
+  [ANALYTICS_EVENTS.DEMO_STARTED]: ['project_slug', 'project_name', 'surface'],
+  [ANALYTICS_EVENTS.GITHUB_CLICKED]: ['project_slug', 'project_name', 'destination_type', 'surface'],
+  [ANALYTICS_EVENTS.PROJECT_VIEWED]: ['project_slug', 'project_name', 'surface'],
+};
+
 const normalizeValue = (value) => typeof value === 'string' && value.trim() ? value.trim().slice(0, 120) : undefined;
+const filterEventProperties = (event, properties) => Object.fromEntries(
+  (EVENT_PROPERTY_ALLOWLISTS[event] || []).flatMap((key) => {
+    const value = normalizeValue(properties[key]);
+    return value ? [[key, value]] : [];
+  }),
+);
 
 export function getAnalyticsConfig(env = {}) {
   const key = normalizeValue(env.VITE_POSTHOG_KEY);
@@ -75,7 +89,7 @@ export function createAnalytics({ env, loadClient, location, referrer } = {}) {
   const capture = (event, properties = {}) => client().then((posthog) => {
     if (!posthog) return;
     try {
-      posthog.capture(event, { ...getPageProperties(getLocation(), getReferrer()), ...properties });
+      posthog.capture(event, { ...filterEventProperties(event, properties), ...getPageProperties(getLocation(), getReferrer()) });
     } catch {
       // Analytics is observational: a blocked or failing SDK cannot break a user action.
     }

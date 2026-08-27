@@ -616,7 +616,7 @@ function ProjectLink({ project, surface, kind, href, children }) {
     const properties = { project_slug: project.name, project_name: project.publicName, surface };
     trackProjectViewed(properties);
     if (kind === 'demo') trackDemoStarted(properties);
-    if (kind === 'source' && href.startsWith('https://github.com/')) trackGithubClicked({ ...properties, destination_type: 'project_source' });
+    if (href.startsWith('https://github.com/')) trackGithubClicked({ ...properties, destination_type: kind === 'source' ? 'project_source' : 'project_case_study' });
   };
   return <ExternalLink href={href} onClick={handleClick}>{children}</ExternalLink>;
 }
