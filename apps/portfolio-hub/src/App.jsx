@@ -360,7 +360,7 @@ function App() {
           <a href="#external-proof"><Sparkles size={18} aria-hidden="true" /> External proof</a>
           <a href="#capabilities"><BookOpen size={18} aria-hidden="true" /> How I work</a>
           <a href="#projects"><Layers3 size={18} aria-hidden="true" /> More projects</a>
-          <a href={repoBase}><Code2 size={18} aria-hidden="true" /> GitHub repo</a>
+          <a href={repoBase} onClick={() => trackGithubClicked({ destination_type: 'portfolio_repository', surface: 'side_rail' })}><Code2 size={18} aria-hidden="true" /> GitHub repo</a>
         </nav>
         <div className="rail-panel">
           <span>Deployment policy</span>
@@ -492,9 +492,9 @@ function App() {
                     </td>
                     <td data-label="Links">
                       <div className="link-stack">
-                        {project.demo ? <ExternalLink href={project.demo}>Vercel demo</ExternalLink> : <span>No current Vercel demo</span>}
-                        {project.source && project.source !== project.caseStudy ? <ExternalLink href={project.source}>Source</ExternalLink> : null}
-                        {project.caseStudy ? <ExternalLink href={project.caseStudy}>{project.audience === 'Commercial' ? 'Product details' : 'Case study'}</ExternalLink> : <span>No portfolio case study</span>}
+                        {project.demo ? <ProjectLink project={project} surface="archive" kind="demo" href={project.demo}>Vercel demo</ProjectLink> : <span>No current Vercel demo</span>}
+                        {project.source && project.source !== project.caseStudy ? <ProjectLink project={project} surface="archive" kind="source" href={project.source}>Source</ProjectLink> : null}
+                        {project.caseStudy ? <ProjectLink project={project} surface="archive" kind="case_study" href={project.caseStudy}>{project.audience === 'Commercial' ? 'Product details' : 'Case study'}</ProjectLink> : <span>No portfolio case study</span>}
                       </div>
                     </td>
                     <td data-label="Tech / framing"><div className="tag-list">{project.stack.map((item) => <span key={item}>{item}</span>)}</div></td>
@@ -547,9 +547,9 @@ function ReviewPath() {
               <h2>{project.publicName}</h2>
               <p>{project.evidence}</p>
               <div className="card-actions">
-                {project.demo ? <ExternalLink href={project.demo}>Open live demo</ExternalLink> : null}
-                {project.source ? <ExternalLink href={project.source}>Inspect source</ExternalLink> : null}
-                {project.caseStudy ? <ExternalLink href={project.caseStudy}>Read case study</ExternalLink> : null}
+              {project.demo ? <ProjectLink project={project} surface="review_path" kind="demo" href={project.demo}>Open live demo</ProjectLink> : null}
+              {project.source ? <ProjectLink project={project} surface="review_path" kind="source" href={project.source}>Inspect source</ProjectLink> : null}
+              {project.caseStudy ? <ProjectLink project={project} surface="review_path" kind="case_study" href={project.caseStudy}>Read case study</ProjectLink> : null}
               </div>
             </div>
           </li>
@@ -575,9 +575,9 @@ function ProjectCard({ project }) {
         <p>{project.evidence}</p>
         <small>{project.repositoryAuthority}</small>
         <div className="card-actions">
-          {project.demo ? <ExternalLink href={project.demo} onClick={() => { trackProjectViewed({ project_slug: project.name, project_name: project.publicName, surface: 'flagship_card' }); trackDemoStarted({ project_slug: project.name, project_name: project.publicName, surface: 'flagship_card' }); }}>Vercel demo</ExternalLink> : null}
-          {project.source ? <ExternalLink href={project.source} onClick={() => trackProjectViewed({ project_slug: project.name, project_name: project.publicName, surface: 'flagship_card' })}>Source</ExternalLink> : null}
-          {project.caseStudy ? <ExternalLink href={project.caseStudy} onClick={() => trackProjectViewed({ project_slug: project.name, project_name: project.publicName, surface: 'flagship_card' })}>{project.audience === 'Commercial' ? 'Product details' : project.audience === 'Technical' ? 'Canonical page' : 'Case study'}</ExternalLink> : null}
+          {project.demo ? <ProjectLink project={project} surface="flagship_card" kind="demo" href={project.demo}>Vercel demo</ProjectLink> : null}
+          {project.source ? <ProjectLink project={project} surface="flagship_card" kind="source" href={project.source}>Source</ProjectLink> : null}
+          {project.caseStudy ? <ProjectLink project={project} surface="flagship_card" kind="case_study" href={project.caseStudy}>{project.audience === 'Commercial' ? 'Product details' : project.audience === 'Technical' ? 'Canonical page' : 'Case study'}</ProjectLink> : null}
         </div>
       </div>
     </article>
@@ -606,9 +606,19 @@ function StatusChip({ status }) {
 function ExternalLink({ href, children, onClick }) {
   const handleClick = () => {
     onClick?.();
-    if (href.startsWith('https://github.com/')) trackGithubClicked({ destination_type: 'github', surface: 'external_link' });
+    if (!onClick && href.startsWith('https://github.com/')) trackGithubClicked({ destination_type: 'github', surface: 'external_link' });
   };
   return <a href={href} target="_blank" rel="noreferrer" onClick={handleClick}>{children} <ArrowUpRight size={14} aria-hidden="true" /></a>;
+}
+
+function ProjectLink({ project, surface, kind, href, children }) {
+  const handleClick = () => {
+    const properties = { project_slug: project.name, project_name: project.publicName, surface };
+    trackProjectViewed(properties);
+    if (kind === 'demo') trackDemoStarted(properties);
+    if (kind === 'source' && href.startsWith('https://github.com/')) trackGithubClicked({ ...properties, destination_type: 'project_source' });
+  };
+  return <ExternalLink href={href} onClick={handleClick}>{children}</ExternalLink>;
 }
 
 function DepthLink({ icon, title, text, href }) {

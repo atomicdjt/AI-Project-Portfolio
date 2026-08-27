@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 import { ANALYTICS_EVENTS, createAnalytics, getAnalyticsConfig, getPageProperties } from '../../apps/portfolio-hub/src/analytics.js';
 
@@ -53,8 +54,27 @@ test('explicit project and CTA events contain only allowlisted page context', as
   assert.deepEqual(getPageProperties(location, 'not a URL'), { page_path: '/review', utm_source: 'github', utm_medium: 'referral' });
 });
 
+test('every allowlisted UTM key retains normal campaign values and excludes email-like values', () => {
+  for (const key of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content']) {
+    const normal = getPageProperties({ pathname: '/', search: `?${key}=summer-launch` });
+    const sensitive = getPageProperties({ pathname: '/', search: `?${key}=alice%40example.com` });
+    assert.equal(normal[key], 'summer-launch');
+    assert.equal(sensitive[key], undefined);
+  }
+});
+
 test('analytics failures do not reject user-triggered capture', async () => {
   const analytics = createAnalytics({ env: configuredEnv, loadClient: () => ({ default: { init: () => {}, capture: () => { throw new Error('blocked'); } } }) });
   await assert.doesNotReject(analytics.capture(ANALYTICS_EVENTS.DEMO_STARTED, { project_slug: 'buildworld-ai' }));
   await assert.doesNotReject(createAnalytics({ env: configuredEnv, loadClient: () => { throw new Error('blocked'); } }).initialize());
+});
+
+test('every project-link surface uses the shared tracker and the side rail tracks GitHub', async () => {
+  const source = await readFile(new URL('../../apps/portfolio-hub/src/App.jsx', import.meta.url), 'utf8');
+  assert.match(source, /surface="archive" kind="demo"/);
+  assert.match(source, /surface="review_path" kind="demo"/);
+  assert.match(source, /surface="flagship_card" kind="demo"/);
+  assert.match(source, /surface: 'side_rail'/);
+  assert.match(source, /kind === 'source' && href\.startsWith\('https:\/\/github\.com\/'\)/);
+  assert.match(source, /if \(!onClick && href\.startsWith\('https:\/\/github\.com\/'\)\)/);
 });

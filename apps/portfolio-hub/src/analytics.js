@@ -1,5 +1,6 @@
 const POSTHOG_DENYLIST = ['$current_url', '$referrer', '$referring_domain', '$email', '$name', 'email', 'name'];
 const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+const EMAIL_LIKE_VALUE = /\b[^\s@]+@[^\s@]+\.[^\s@]+\b/i;
 
 export const ANALYTICS_EVENTS = {
   CTA_CLICKED: 'cta_clicked',
@@ -23,7 +24,7 @@ export function getPageProperties(location = globalThis.location, referrer = glo
     const params = new URLSearchParams(location?.search || '');
     for (const key of UTM_KEYS) {
       const value = normalizeValue(params.get(key));
-      if (value) properties[key] = value;
+      if (value && !EMAIL_LIKE_VALUE.test(value)) properties[key] = value;
     }
   } catch {
     // Analytics must never make an invalid browser URL operationally significant.
