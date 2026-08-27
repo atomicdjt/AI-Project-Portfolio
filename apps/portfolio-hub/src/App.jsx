@@ -12,6 +12,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { useMemo, useState } from 'react';
+import { trackCtaClicked, trackDemoStarted, trackGithubClicked, trackProjectViewed } from './analytics.js';
 
 const repoBase = 'https://github.com/atomicdjt/AI-Project-Portfolio';
 const imagePath = (fileName) => `/images/${fileName}`;
@@ -359,7 +360,7 @@ function App() {
           <a href="#external-proof"><Sparkles size={18} aria-hidden="true" /> External proof</a>
           <a href="#capabilities"><BookOpen size={18} aria-hidden="true" /> How I work</a>
           <a href="#projects"><Layers3 size={18} aria-hidden="true" /> More projects</a>
-          <a href={repoBase}><Code2 size={18} aria-hidden="true" /> GitHub repo</a>
+          <a href={repoBase} onClick={() => trackGithubClicked({ destination_type: 'portfolio_repository', surface: 'side_rail' })}><Code2 size={18} aria-hidden="true" /> GitHub repo</a>
         </nav>
         <div className="rail-panel">
           <span>Deployment policy</span>
@@ -374,10 +375,10 @@ function App() {
             <h1>I turn ambiguous workflows into reviewable, local-first software.</h1>
             <p>Applied AI and technical operations work for teams that need clearer processes, human review checkpoints, and defensible handoffs.</p>
             <div className="topbar-actions" aria-label="Primary portfolio actions">
-              <a className="button primary" href="/review">
+              <a className="button primary" href="/review" onClick={() => trackCtaClicked({ cta_name: 'review_work', destination_type: 'technical_review', surface: 'home' })}>
                 Review the work <ArrowRight size={17} aria-hidden="true" />
               </a>
-              <a className="button secondary" href="#projects">
+              <a className="button secondary" href="#projects" onClick={() => trackCtaClicked({ cta_name: 'open_portfolio', destination_type: 'project_archive', surface: 'home' })}>
                 <Layers3 size={17} aria-hidden="true" /> Open portfolio
               </a>
             </div>
@@ -388,7 +389,7 @@ function App() {
         <section className="review-intro" aria-label="Portfolio review guidance">
           <p><strong>Start with the four core technical flagships below.</strong> Employer, buyer, and research paths remain separate because they answer different questions; none implies customer, revenue, or compliance claims.</p>
           <div className="topbar-actions">
-            <a className="button secondary" href={repoBase}><Code2 size={17} aria-hidden="true" /> View GitHub</a>
+            <a className="button secondary" href={repoBase} onClick={() => trackGithubClicked({ destination_type: 'portfolio_repository', surface: 'home' })}><Code2 size={17} aria-hidden="true" /> View GitHub</a>
             <a className="button primary" href={`${repoBase}/blob/main/docs/recruiter-quick-review.md`}><FileText size={17} aria-hidden="true" /> Recruiter guide</a>
           </div>
         </section>
@@ -491,9 +492,9 @@ function App() {
                     </td>
                     <td data-label="Links">
                       <div className="link-stack">
-                        {project.demo ? <ExternalLink href={project.demo}>Vercel demo</ExternalLink> : <span>No current Vercel demo</span>}
-                        {project.source && project.source !== project.caseStudy ? <ExternalLink href={project.source}>Source</ExternalLink> : null}
-                        {project.caseStudy ? <ExternalLink href={project.caseStudy}>{project.audience === 'Commercial' ? 'Product details' : 'Case study'}</ExternalLink> : <span>No portfolio case study</span>}
+                        {project.demo ? <ProjectLink project={project} surface="archive" kind="demo" href={project.demo}>Vercel demo</ProjectLink> : <span>No current Vercel demo</span>}
+                        {project.source && project.source !== project.caseStudy ? <ProjectLink project={project} surface="archive" kind="source" href={project.source}>Source</ProjectLink> : null}
+                        {project.caseStudy ? <ProjectLink project={project} surface="archive" kind="case_study" href={project.caseStudy}>{project.audience === 'Commercial' ? 'Product details' : 'Case study'}</ProjectLink> : <span>No portfolio case study</span>}
                       </div>
                     </td>
                     <td data-label="Tech / framing"><div className="tag-list">{project.stack.map((item) => <span key={item}>{item}</span>)}</div></td>
@@ -546,9 +547,9 @@ function ReviewPath() {
               <h2>{project.publicName}</h2>
               <p>{project.evidence}</p>
               <div className="card-actions">
-                {project.demo ? <ExternalLink href={project.demo}>Open live demo</ExternalLink> : null}
-                {project.source ? <ExternalLink href={project.source}>Inspect source</ExternalLink> : null}
-                {project.caseStudy ? <ExternalLink href={project.caseStudy}>Read case study</ExternalLink> : null}
+              {project.demo ? <ProjectLink project={project} surface="review_path" kind="demo" href={project.demo}>Open live demo</ProjectLink> : null}
+              {project.source ? <ProjectLink project={project} surface="review_path" kind="source" href={project.source}>Inspect source</ProjectLink> : null}
+              {project.caseStudy ? <ProjectLink project={project} surface="review_path" kind="case_study" href={project.caseStudy}>Read case study</ProjectLink> : null}
               </div>
             </div>
           </li>
@@ -574,9 +575,9 @@ function ProjectCard({ project }) {
         <p>{project.evidence}</p>
         <small>{project.repositoryAuthority}</small>
         <div className="card-actions">
-          {project.demo ? <ExternalLink href={project.demo}>Vercel demo</ExternalLink> : null}
-          {project.source ? <ExternalLink href={project.source}>Source</ExternalLink> : null}
-          {project.caseStudy ? <ExternalLink href={project.caseStudy}>{project.audience === 'Commercial' ? 'Product details' : project.audience === 'Technical' ? 'Canonical page' : 'Case study'}</ExternalLink> : null}
+          {project.demo ? <ProjectLink project={project} surface="flagship_card" kind="demo" href={project.demo}>Vercel demo</ProjectLink> : null}
+          {project.source ? <ProjectLink project={project} surface="flagship_card" kind="source" href={project.source}>Source</ProjectLink> : null}
+          {project.caseStudy ? <ProjectLink project={project} surface="flagship_card" kind="case_study" href={project.caseStudy}>{project.audience === 'Commercial' ? 'Product details' : project.audience === 'Technical' ? 'Canonical page' : 'Case study'}</ProjectLink> : null}
         </div>
       </div>
     </article>
@@ -602,8 +603,22 @@ function StatusChip({ status }) {
   return <span className={`status-chip ${className}`}>{status}</span>;
 }
 
-function ExternalLink({ href, children }) {
-  return <a href={href} target="_blank" rel="noreferrer">{children} <ArrowUpRight size={14} aria-hidden="true" /></a>;
+function ExternalLink({ href, children, onClick }) {
+  const handleClick = () => {
+    onClick?.();
+    if (!onClick && href.startsWith('https://github.com/')) trackGithubClicked({ destination_type: 'github', surface: 'external_link' });
+  };
+  return <a href={href} target="_blank" rel="noreferrer" onClick={handleClick}>{children} <ArrowUpRight size={14} aria-hidden="true" /></a>;
+}
+
+function ProjectLink({ project, surface, kind, href, children }) {
+  const handleClick = () => {
+    const properties = { project_slug: project.name, project_name: project.publicName, surface };
+    trackProjectViewed(properties);
+    if (kind === 'demo') trackDemoStarted(properties);
+    if (href.startsWith('https://github.com/')) trackGithubClicked({ ...properties, destination_type: kind === 'source' ? 'project_source' : 'project_case_study' });
+  };
+  return <ExternalLink href={href} onClick={handleClick}>{children}</ExternalLink>;
 }
 
 function DepthLink({ icon, title, text, href }) {

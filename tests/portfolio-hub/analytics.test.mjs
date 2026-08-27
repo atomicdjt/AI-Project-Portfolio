@@ -1,0 +1,102 @@
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+import test from 'node:test';
+import { ANALYTICS_EVENTS, createAnalytics, getAnalyticsConfig, getPageProperties } from '../../apps/portfolio-hub/src/analytics.js';
+
+const configuredEnv = { VITE_POSTHOG_KEY: 'phc_test', VITE_POSTHOG_HOST: 'https://us.i.posthog.com' };
+const location = { pathname: '/review', search: '?utm_source=github&utm_medium=referral&email=not-captured@example.com' };
+
+test('analytics is disabled safely without complete HTTPS configuration', async () => {
+  let loaded = false;
+  const analytics = createAnalytics({ env: { VITE_POSTHOG_KEY: 'phc_test' }, loadClient: () => { loaded = true; } });
+
+  await analytics.initialize();
+  await analytics.capture(ANALYTICS_EVENTS.CTA_CLICKED, { cta_name: 'review_work' });
+
+  assert.equal(loaded, false);
+  assert.equal(getAnalyticsConfig({ VITE_POSTHOG_KEY: 'phc_test', VITE_POSTHOG_HOST: 'http://localhost' }), null);
+});
+
+test('analytics initializes once and captures one manual pageview per document load', async () => {
+  const calls = [];
+  const posthog = { init: (...args) => calls.push(['init', ...args]), capture: (...args) => calls.push(['capture', ...args]) };
+  const analytics = createAnalytics({ env: configuredEnv, location, referrer: 'https://github.com/atomicdjt', loadClient: () => ({ default: posthog }) });
+
+  await Promise.all([analytics.initialize(), analytics.initialize()]);
+  await analytics.capturePageView();
+  await analytics.capturePageView();
+
+  assert.equal(calls.filter(([method]) => method === 'init').length, 1);
+  assert.equal(calls.filter(([method, event]) => method === 'capture' && event === '$pageview').length, 1);
+  const [, , options] = calls.find(([method]) => method === 'init');
+  assert.deepEqual(options, {
+    api_host: 'https://us.i.posthog.com', autocapture: false, capture_exceptions: false, capture_pageleave: false,
+    capture_pageview: false, disable_capture_url_hashes: true, disable_session_recording: true, disable_surveys: true,
+    persistence: 'memory', person_profiles: 'never', property_denylist: ['$current_url', '$referrer', '$referring_domain', '$email', '$name', 'email', 'name'], respect_dnt: true,
+  });
+});
+
+test('explicit project and CTA events contain only allowlisted page context', async () => {
+  const calls = [];
+  const posthog = { init: () => {}, capture: (...args) => calls.push(args) };
+  const analytics = createAnalytics({ env: configuredEnv, location, referrer: 'https://github.com/atomicdjt/example?private=value', loadClient: () => ({ default: posthog }) });
+
+  await analytics.capture(ANALYTICS_EVENTS.PROJECT_VIEWED, { project_slug: 'validation-ledger', project_name: 'Validation Ledger', surface: 'flagship_card' });
+  await analytics.capture(ANALYTICS_EVENTS.CTA_CLICKED, { cta_name: 'review_work', destination_type: 'technical_review', surface: 'home' });
+
+  assert.deepEqual(calls[0], [ANALYTICS_EVENTS.PROJECT_VIEWED, {
+    page_path: '/review', utm_source: 'github', utm_medium: 'referral', referrer_origin: 'https://github.com',
+    project_slug: 'validation-ledger', project_name: 'Validation Ledger', surface: 'flagship_card',
+  }]);
+  assert.equal(calls[1][0], ANALYTICS_EVENTS.CTA_CLICKED);
+  assert.equal(calls[1][1].email, undefined);
+  assert.equal(calls[1][1].referrer_origin, 'https://github.com');
+  assert.deepEqual(getPageProperties(location, 'not a URL'), { page_path: '/review', utm_source: 'github', utm_medium: 'referral' });
+});
+
+test('every allowlisted UTM key retains normal campaign values and excludes email-like values', () => {
+  for (const key of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content']) {
+    const normal = getPageProperties({ pathname: '/', search: `?${key}=summer-launch` });
+    const sensitive = getPageProperties({ pathname: '/', search: `?${key}=alice%40example.com` });
+    assert.equal(normal[key], 'summer-launch');
+    assert.equal(sensitive[key], undefined);
+  }
+});
+
+test('event property allowlists preserve permitted values and protect trusted page context', async () => {
+  const calls = [];
+  const posthog = { init: () => {}, capture: (...args) => calls.push(args) };
+  const analytics = createAnalytics({ env: configuredEnv, location, referrer: 'https://github.com/atomicdjt', loadClient: () => ({ default: posthog }) });
+
+  await analytics.capture(ANALYTICS_EVENTS.CTA_CLICKED, {
+    cta_name: 'review_work', destination_type: 'technical_review', surface: 'home', project_slug: 'discarded',
+    page_path: '/forged', referrer_origin: 'https://forged.example', utm_source: 'forged', unknown: 'discarded',
+  });
+  await analytics.capture(ANALYTICS_EVENTS.PROJECT_VIEWED, { project_slug: 'validation-ledger', project_name: 'Validation Ledger', surface: 'archive', cta_name: 'discarded' });
+  await analytics.capture(ANALYTICS_EVENTS.DEMO_STARTED, { project_slug: 'buildworld-ai', destination_type: 'discarded' });
+  await analytics.capture(ANALYTICS_EVENTS.GITHUB_CLICKED, { project_slug: 'buildworld-ai', destination_type: 'project_case_study', surface: 'review_path', cta_name: 'discarded' });
+  await analytics.capture('$pageview', { page_path: '/forged', unknown: 'discarded' });
+
+  assert.deepEqual(calls[0][1], { cta_name: 'review_work', destination_type: 'technical_review', surface: 'home', page_path: '/review', utm_source: 'github', utm_medium: 'referral', referrer_origin: 'https://github.com' });
+  assert.equal(calls[1][1].cta_name, undefined);
+  assert.equal(calls[2][1].destination_type, undefined);
+  assert.equal(calls[3][1].destination_type, 'project_case_study');
+  assert.deepEqual(calls[4][1], { page_path: '/review', utm_source: 'github', utm_medium: 'referral', referrer_origin: 'https://github.com' });
+});
+
+test('analytics failures do not reject user-triggered capture', async () => {
+  const analytics = createAnalytics({ env: configuredEnv, loadClient: () => ({ default: { init: () => {}, capture: () => { throw new Error('blocked'); } } }) });
+  await assert.doesNotReject(analytics.capture(ANALYTICS_EVENTS.DEMO_STARTED, { project_slug: 'buildworld-ai' }));
+  await assert.doesNotReject(createAnalytics({ env: configuredEnv, loadClient: () => { throw new Error('blocked'); } }).initialize());
+});
+
+test('every project-link surface uses the shared tracker and the side rail tracks GitHub', async () => {
+  const source = await readFile(new URL('../../apps/portfolio-hub/src/App.jsx', import.meta.url), 'utf8');
+  assert.match(source, /surface="archive" kind="demo"/);
+  assert.match(source, /surface="review_path" kind="demo"/);
+  assert.match(source, /surface="flagship_card" kind="demo"/);
+  assert.match(source, /surface: 'side_rail'/);
+  assert.match(source, /if \(href\.startsWith\('https:\/\/github\.com\/'\)\) trackGithubClicked/);
+  assert.match(source, /kind === 'source' \? 'project_source' : 'project_case_study'/);
+  assert.match(source, /if \(!onClick && href\.startsWith\('https:\/\/github\.com\/'\)\)/);
+});
