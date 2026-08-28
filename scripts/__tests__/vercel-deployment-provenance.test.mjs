@@ -66,3 +66,15 @@ test('rejects a deployment source SHA mismatch', () => {
     /does not match/i,
   );
 });
+
+test('rejects a deployment that is not ready', () => {
+  assert.throws(
+    () => createDeploymentProvenanceEvidence({
+      deployment: { ...deployment, readyState: 'ERROR' },
+      expectedSourceSha,
+      canonicalUrl: 'https://portfolio.example.com/',
+      deploymentUrl: 'https://portfolio.example.vercel.app',
+    }),
+    /must be READY/i,
+  );
+});

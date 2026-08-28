@@ -43,3 +43,10 @@ test('deployment provenance carries and verifies the exact source SHA before smo
   assert.match(workflow, /verify-vercel-deployment-provenance\.mjs/)
   assert.match(workflow, /name: Upload deployment provenance evidence/)
 })
+
+test('preview provenance omits the production-only canonical URL argument and still writes evidence', () => {
+  assert.match(workflow, /provenance_args=\(/)
+  assert.match(workflow, /if \[\[ "\$PRODUCTION_DEPLOYMENT" == "true" \]\]; then\n+\s+provenance_args\+=\(--canonical-url "\$\{\{ matrix\.productionUrl \}\}"\)/)
+  assert.match(workflow, /node scripts\/verify-vercel-deployment-provenance\.mjs "\$\{provenance_args\[@\]\}"/)
+  assert.match(workflow, /--output deployment-provenance\.json/)
+})

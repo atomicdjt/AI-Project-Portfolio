@@ -21,6 +21,12 @@ export function createDeploymentProvenanceEvidence({
 
   const target = requiredString(deployment?.target, 'Deployment target');
   const resolvedDeploymentUrl = requiredString(deploymentUrl, 'Deployment URL');
+  const readyState = requiredString(deployment?.readyState, 'Deployment ready state');
+
+  if (readyState !== 'READY') {
+    throw new Error(`Deployment ready state must be READY, received ${readyState}.`);
+  }
+
   const smokeUrl = target === 'production'
     ? requiredString(canonicalUrl, 'Canonical production URL')
     : resolvedDeploymentUrl;
@@ -31,7 +37,7 @@ export function createDeploymentProvenanceEvidence({
     deploymentId: requiredString(deployment?.id, 'Deployment ID'),
     deploymentUrl: resolvedDeploymentUrl,
     target,
-    readyState: requiredString(deployment?.readyState, 'Deployment ready state'),
+    readyState,
     expectedSourceSha: expected,
     deployedSourceSha: deployed,
     smokeUrl,

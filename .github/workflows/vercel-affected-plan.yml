@@ -316,21 +316,21 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
           set -euo pipefail
-          canonical_url=""
-          if [[ "$PRODUCTION_DEPLOYMENT" == "true" ]]; then
-            canonical_url="${{ matrix.productionUrl }}"
-          fi
           npx --yes "vercel@$VERCEL_CLI_VERSION" inspect \
             "$DEPLOYMENT_URL" \
             --json \
             --scope "$VERCEL_SCOPE" \
             --token "$VERCEL_TOKEN" > vercel-deployment.json
-          node scripts/verify-vercel-deployment-provenance.mjs \
+          provenance_args=(
             --expected-source-sha "${{ github.sha }}" \
             --deployment-file vercel-deployment.json \
             --deployment-url "$DEPLOYMENT_URL" \
-            --canonical-url "$canonical_url" \
             --output deployment-provenance.json
+          )
+          if [[ "$PRODUCTION_DEPLOYMENT" == "true" ]]; then
+            provenance_args+=(--canonical-url "${{ matrix.productionUrl }}")
+          fi
+          node scripts/verify-vercel-deployment-provenance.mjs "${provenance_args[@]}"
 
       - name: Smoke-check deployed document
         shell: bash
