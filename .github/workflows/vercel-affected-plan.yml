@@ -243,6 +243,7 @@ jobs:
           test -n "$VERCEL_TOKEN"
 
       - name: Link selected Vercel project
+        working-directory: ${{ matrix.id == 'garden-grid' && matrix.path || '.' }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
@@ -253,6 +254,7 @@ jobs:
             --token "$VERCEL_TOKEN"
 
       - name: Pull Vercel project configuration
+        working-directory: ${{ matrix.id == 'garden-grid' && matrix.path || '.' }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
@@ -267,6 +269,7 @@ jobs:
             --token "$VERCEL_TOKEN"
 
       - name: Build Vercel output
+        working-directory: ${{ matrix.id == 'garden-grid' && matrix.path || '.' }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
@@ -288,6 +291,7 @@ jobs:
           node scripts/validate-portfolio-assets.mjs --built-dir .vercel/output/static
 
       - name: Deploy prebuilt output
+        working-directory: ${{ matrix.id == 'garden-grid' && matrix.path || '.' }}
         id: deploy
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
