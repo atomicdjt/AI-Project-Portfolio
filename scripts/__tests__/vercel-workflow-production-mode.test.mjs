@@ -35,3 +35,11 @@ test('production smoke uses the canonical public alias instead of the protected 
   assert.match(workflow, /verification_url="\$DEPLOYMENT_URL"/)
   assert.match(workflow, /verification_url="\$\{verification_url%\//)
 })
+
+test('deployment provenance carries and verifies the exact source SHA before smoke evidence is published', () => {
+  assert.match(workflow, /--meta "source_sha=\$\{\{ github\.sha \}\}"/)
+  assert.match(workflow, /name: Verify deployment provenance/)
+  assert.match(workflow, /inspect \\\n+\s+"\$DEPLOYMENT_URL" \\\n+\s+--json/)
+  assert.match(workflow, /verify-vercel-deployment-provenance\.mjs/)
+  assert.match(workflow, /name: Upload deployment provenance evidence/)
+})
