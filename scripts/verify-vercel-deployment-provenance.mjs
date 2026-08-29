@@ -20,7 +20,7 @@ export function createDeploymentProvenanceEvidence({
     throw new Error(`Deployment source SHA ${deployed} does not match expected source SHA ${expected}.`);
   }
 
-  const target = requiredString(deployment?.target, 'Deployment target');
+  const target = deployment?.target ?? 'preview';
   const expectedDeploymentTarget = requiredString(expectedTarget, 'Expected deployment target');
   if (target !== expectedDeploymentTarget) {
     throw new Error(`Deployment target ${target} does not match expected target ${expectedDeploymentTarget}.`);

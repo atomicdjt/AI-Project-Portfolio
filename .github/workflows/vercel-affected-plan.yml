@@ -321,7 +321,7 @@ jobs:
           set -euo pipefail
           node scripts/get-vercel-deployment.mjs \
             --deployment-url "$DEPLOYMENT_URL" \
-            --team-slug "$VERCEL_SCOPE" \
+            --slug "$VERCEL_SCOPE" \
             --output vercel-deployment.json
 
       - name: Verify deployment provenance

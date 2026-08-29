@@ -7,9 +7,9 @@ test('normalizes a deployment URL to a scoped Vercel deployment API request', ()
   assert.equal(
     getVercelDeploymentApiUrl({
       deploymentUrl: 'https://portfolio-example.vercel.app/path?ignored=true',
-      teamSlug: 'atomicdjts-projects',
+      slug: 'atomicdjts-projects',
     }),
-    'https://api.vercel.com/v13/deployments/portfolio-example.vercel.app?teamSlug=atomicdjts-projects',
+    'https://api.vercel.com/v13/deployments/portfolio-example.vercel.app?slug=atomicdjts-projects',
   );
 });
 
@@ -18,7 +18,7 @@ test('returns an authenticated deployment API response with metadata', async () 
   let request;
   const result = await fetchVercelDeployment({
     deploymentUrl: 'portfolio-example.vercel.app',
-    teamSlug: 'atomicdjts-projects',
+    slug: 'atomicdjts-projects',
     token: 'test-token',
     fetchImplementation: async (url, options) => {
       request = { url, options };
@@ -27,7 +27,7 @@ test('returns an authenticated deployment API response with metadata', async () 
   });
 
   assert.deepEqual(result, deployment);
-  assert.equal(request.url, 'https://api.vercel.com/v13/deployments/portfolio-example.vercel.app?teamSlug=atomicdjts-projects');
+  assert.equal(request.url, 'https://api.vercel.com/v13/deployments/portfolio-example.vercel.app?slug=atomicdjts-projects');
   assert.equal(request.options.headers.Authorization, 'Bearer test-token');
 });
 
@@ -35,7 +35,7 @@ test('fails closed when the authoritative deployment API request fails', async (
   await assert.rejects(
     () => fetchVercelDeployment({
       deploymentUrl: 'portfolio-example.vercel.app',
-      teamSlug: 'atomicdjts-projects',
+      slug: 'atomicdjts-projects',
       token: 'test-token',
       fetchImplementation: async () => ({ ok: false, status: 403 }),
     }),

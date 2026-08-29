@@ -39,7 +39,7 @@ test('accepts an authoritative deployment API response with matching production 
 
 test('uses the unique deployment URL for preview provenance', () => {
   const evidence = createDeploymentProvenanceEvidence({
-    deployment: { ...deployment, target: 'preview' },
+    deployment: { ...deployment, target: null },
     expectedSourceSha,
     expectedTarget: 'preview',
     deploymentUrl: 'https://portfolio.example.vercel.app',
@@ -88,7 +88,7 @@ test('rejects a deployment that is not ready', () => {
 test('rejects a deployment for an unexpected target', () => {
   assert.throws(
     () => createDeploymentProvenanceEvidence({
-      deployment: { ...deployment, target: 'preview' },
+      deployment: { ...deployment, target: 'staging' },
       expectedSourceSha,
       expectedTarget: 'production',
       canonicalUrl: 'https://portfolio.example.com/',

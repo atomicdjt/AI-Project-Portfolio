@@ -43,7 +43,7 @@ test('deployment provenance carries and verifies the exact source SHA before smo
   assert.match(workflow, /--meta "source_sha=\$SOURCE_SHA"/)
   assert.match(workflow, /name: Retrieve authoritative Vercel deployment metadata/)
   assert.match(workflow, /get-vercel-deployment\.mjs/)
-  assert.match(workflow, /--team-slug "\$VERCEL_SCOPE"/)
+  assert.match(workflow, /--slug "\$VERCEL_SCOPE"/)
   assert.doesNotMatch(workflow, /vercel@\$VERCEL_CLI_VERSION" inspect/)
   assert.match(workflow, /name: Verify deployment provenance/)
   assert.match(workflow, /--expected-target "\$expected_target"/)
