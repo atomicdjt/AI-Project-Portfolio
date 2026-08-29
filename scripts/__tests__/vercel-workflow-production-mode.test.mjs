@@ -35,3 +35,31 @@ test('production smoke uses the canonical public alias instead of the protected 
   assert.match(workflow, /verification_url="\$DEPLOYMENT_URL"/)
   assert.match(workflow, /verification_url="\$\{verification_url%\//)
 })
+
+test('deployment provenance carries and verifies the exact source SHA before smoke evidence is published', () => {
+  assert.match(workflow, /name: Verify exact clean source checkout/)
+  assert.match(workflow, /verify-source-checkout\.mjs/)
+  assert.match(workflow, /SOURCE_SHA: \$\{\{ steps\.source-checkout\.outputs\.source-sha \}\}/)
+  assert.match(workflow, /--meta "source_sha=\$SOURCE_SHA"/)
+  assert.match(workflow, /name: Verify deployment provenance/)
+  assert.match(workflow, /inspect \\\n+\s+"\$DEPLOYMENT_URL" \\\n+\s+--json/)
+  assert.match(workflow, /verify-vercel-deployment-provenance\.mjs/)
+  assert.match(workflow, /name: Upload deployment provenance evidence/)
+})
+
+test('preview provenance omits the production-only canonical URL argument and still writes evidence', () => {
+  const provenanceStep = workflow.match(/- name: Verify deployment provenance[\s\S]*?(?=\n\s*- name: Smoke-check deployed document)/)?.[0] ?? ''
+  const previewArguments = provenanceStep.replace(/if \[\[ "\$PRODUCTION_DEPLOYMENT" == "true" \]\]; then[\s\S]*?\n\s*fi/, '')
+
+  assert.match(provenanceStep, /provenance_args=\(/)
+  assert.match(provenanceStep, /if \[\[ "\$PRODUCTION_DEPLOYMENT" == "true" \]\]; then\n+\s+provenance_args\+=\(--canonical-url "\$\{\{ matrix\.productionUrl \}\}"\)/)
+  assert.doesNotMatch(previewArguments, /--canonical-url/)
+  assert.match(previewArguments, /--output deployment-provenance\.json/)
+  assert.match(provenanceStep, /node scripts\/verify-vercel-deployment-provenance\.mjs "\$\{provenance_args\[@\]\}"/)
+})
+
+test('deployment evidence uploads after failures unless the job is cancelled', () => {
+  const artifactStep = workflow.match(/- name: Upload deployment provenance evidence[\s\S]*$/)?.[0] ?? ''
+  assert.match(artifactStep, /if: \$\{\{ !cancelled\(\) \}\}/)
+  assert.match(artifactStep, /source-checkout-provenance\.json/)
+})

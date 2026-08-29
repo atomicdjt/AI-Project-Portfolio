@@ -214,13 +214,15 @@ jobs:
           persist-credentials: false
 
       - name: Verify exact clean source checkout
+        id: source-checkout
         shell: bash
+        env:
+          EXPECTED_SOURCE_SHA: ${{ github.sha }}
         run: |
           set -euo pipefail
-          actual_sha="$(git rev-parse HEAD)"
-          test "$actual_sha" = "${{ github.sha }}"
-          test -z "$(git status --porcelain)"
-          echo "Building exact clean source SHA: $actual_sha"
+          node scripts/verify-source-checkout.mjs \
+            --expected-source-sha "$EXPECTED_SOURCE_SHA" \
+            --output source-checkout-provenance.json
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
@@ -294,6 +296,7 @@ jobs:
         working-directory: ${{ matrix.id == 'garden-grid' && matrix.path || '.' }}
         id: deploy
         env:
+          SOURCE_SHA: ${{ steps.source-checkout.outputs.source-sha }}
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
           production_flag=""
@@ -303,10 +306,35 @@ jobs:
           url="$(npx --yes "vercel@$VERCEL_CLI_VERSION" deploy \
             --prebuilt \
             $production_flag \
+            --meta "source_sha=$SOURCE_SHA" \
             --scope "$VERCEL_SCOPE" \
             --token "$VERCEL_TOKEN")"
           echo "url=$url" >> "$GITHUB_OUTPUT"
           echo "Deployed ${{ matrix.publicName }} to $url"
+
+      - name: Verify deployment provenance
+        shell: bash
+        env:
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.url }}
+          SOURCE_SHA: ${{ steps.source-checkout.outputs.source-sha }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          set -euo pipefail
+          npx --yes "vercel@$VERCEL_CLI_VERSION" inspect \
+            "$DEPLOYMENT_URL" \
+            --json \
+            --scope "$VERCEL_SCOPE" \
+            --token "$VERCEL_TOKEN" > vercel-deployment.json
+          provenance_args=(
+            --expected-source-sha "$SOURCE_SHA" \
+            --deployment-file vercel-deployment.json \
+            --deployment-url "$DEPLOYMENT_URL" \
+            --output deployment-provenance.json
+          )
+          if [[ "$PRODUCTION_DEPLOYMENT" == "true" ]]; then
+            provenance_args+=(--canonical-url "${{ matrix.productionUrl }}")
+          fi
+          node scripts/verify-vercel-deployment-provenance.mjs "${provenance_args[@]}"
 
       - name: Smoke-check deployed document
         shell: bash
@@ -367,11 +395,29 @@ jobs:
         shell: bash
         env:
           DEPLOYMENT_URL: ${{ steps.deploy.outputs.url }}
+          SOURCE_SHA: ${{ steps.source-checkout.outputs.source-sha }}
         run: |
           {
             echo "## ${{ matrix.publicName }} deployment"
             echo
-            echo "- Source SHA: \`${{ github.sha }}\`"
+            echo "- Source SHA: \`$SOURCE_SHA\`"
             echo "- Deployment: $DEPLOYMENT_URL"
             echo "- Canonical route: ${{ matrix.productionUrl }}"
+            echo
+            echo '```json'
+            cat deployment-provenance.json
+            echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload deployment provenance evidence
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: vercel-deployment-provenance-${{ matrix.id }}-${{ github.run_id }}
+          path: |
+            source-checkout-provenance.json
+            vercel-deployment.json
+            deployment-provenance.json
+            deployed-document.html
+          if-no-files-found: error
+          retention-days: 14
