@@ -14,10 +14,11 @@ const deployment = {
   meta: { source_sha: expectedSourceSha },
 };
 
-test('records matching production provenance with the canonical smoke URL', () => {
+test('accepts an authoritative deployment API response with matching production metadata', () => {
   const evidence = createDeploymentProvenanceEvidence({
     deployment,
     expectedSourceSha,
+    expectedTarget: 'production',
     canonicalUrl: 'https://portfolio.example.com/',
     deploymentUrl: 'https://portfolio.example.vercel.app',
   });
@@ -28,6 +29,7 @@ test('records matching production provenance with the canonical smoke URL', () =
     deploymentId: 'dpl_example',
     deploymentUrl: 'https://portfolio.example.vercel.app',
     target: 'production',
+    expectedTarget: 'production',
     readyState: 'READY',
     expectedSourceSha,
     deployedSourceSha: expectedSourceSha,
@@ -39,17 +41,19 @@ test('uses the unique deployment URL for preview provenance', () => {
   const evidence = createDeploymentProvenanceEvidence({
     deployment: { ...deployment, target: 'preview' },
     expectedSourceSha,
+    expectedTarget: 'preview',
     deploymentUrl: 'https://portfolio.example.vercel.app',
   });
 
   assert.equal(evidence.smokeUrl, 'https://portfolio.example.vercel.app');
 });
 
-test('rejects a missing deployment source SHA', () => {
+test('does not treat a vercel inspect-like response without metadata as authoritative provenance evidence', () => {
   assert.throws(
     () => createDeploymentProvenanceEvidence({
-      deployment: { ...deployment, meta: {} },
+      deployment: { id: 'dpl_example', name: deployment.name, target: 'production', readyState: 'READY' },
       expectedSourceSha,
+      expectedTarget: 'production',
       deploymentUrl: 'https://portfolio.example.vercel.app',
     }),
     /source SHA/i,
@@ -61,6 +65,7 @@ test('rejects a deployment source SHA mismatch', () => {
     () => createDeploymentProvenanceEvidence({
       deployment: { ...deployment, meta: { source_sha: 'fedcba9876543210fedcba9876543210fedcba98' } },
       expectedSourceSha,
+      expectedTarget: 'production',
       deploymentUrl: 'https://portfolio.example.vercel.app',
     }),
     /does not match/i,
@@ -72,9 +77,23 @@ test('rejects a deployment that is not ready', () => {
     () => createDeploymentProvenanceEvidence({
       deployment: { ...deployment, readyState: 'ERROR' },
       expectedSourceSha,
+      expectedTarget: 'production',
       canonicalUrl: 'https://portfolio.example.com/',
       deploymentUrl: 'https://portfolio.example.vercel.app',
     }),
     /must be READY/i,
+  );
+});
+
+test('rejects a deployment for an unexpected target', () => {
+  assert.throws(
+    () => createDeploymentProvenanceEvidence({
+      deployment: { ...deployment, target: 'preview' },
+      expectedSourceSha,
+      expectedTarget: 'production',
+      canonicalUrl: 'https://portfolio.example.com/',
+      deploymentUrl: 'https://portfolio.example.vercel.app',
+    }),
+    /target/i,
   );
 });
