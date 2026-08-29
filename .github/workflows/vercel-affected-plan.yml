@@ -312,21 +312,32 @@ jobs:
           echo "url=$url" >> "$GITHUB_OUTPUT"
           echo "Deployed ${{ matrix.publicName }} to $url"
 
+      - name: Retrieve authoritative Vercel deployment metadata
+        shell: bash
+        env:
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.url }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          set -euo pipefail
+          node scripts/get-vercel-deployment.mjs \
+            --deployment-url "$DEPLOYMENT_URL" \
+            --slug "$VERCEL_SCOPE" \
+            --output vercel-deployment.json
+
       - name: Verify deployment provenance
         shell: bash
         env:
           DEPLOYMENT_URL: ${{ steps.deploy.outputs.url }}
           SOURCE_SHA: ${{ steps.source-checkout.outputs.source-sha }}
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
           set -euo pipefail
-          npx --yes "vercel@$VERCEL_CLI_VERSION" inspect \
-            "$DEPLOYMENT_URL" \
-            --json \
-            --scope "$VERCEL_SCOPE" \
-            --token "$VERCEL_TOKEN" > vercel-deployment.json
+          expected_target="preview"
+          if [[ "$PRODUCTION_DEPLOYMENT" == "true" ]]; then
+            expected_target="production"
+          fi
           provenance_args=(
             --expected-source-sha "$SOURCE_SHA" \
+            --expected-target "$expected_target" \
             --deployment-file vercel-deployment.json \
             --deployment-url "$DEPLOYMENT_URL" \
             --output deployment-provenance.json

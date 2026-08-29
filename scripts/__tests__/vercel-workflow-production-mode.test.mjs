@@ -41,15 +41,21 @@ test('deployment provenance carries and verifies the exact source SHA before smo
   assert.match(workflow, /verify-source-checkout\.mjs/)
   assert.match(workflow, /SOURCE_SHA: \$\{\{ steps\.source-checkout\.outputs\.source-sha \}\}/)
   assert.match(workflow, /--meta "source_sha=\$SOURCE_SHA"/)
+  assert.match(workflow, /name: Retrieve authoritative Vercel deployment metadata/)
+  assert.match(workflow, /get-vercel-deployment\.mjs/)
+  assert.match(workflow, /--slug "\$VERCEL_SCOPE"/)
+  assert.doesNotMatch(workflow, /vercel@\$VERCEL_CLI_VERSION" inspect/)
   assert.match(workflow, /name: Verify deployment provenance/)
-  assert.match(workflow, /inspect \\\n+\s+"\$DEPLOYMENT_URL" \\\n+\s+--json/)
+  assert.match(workflow, /--expected-target "\$expected_target"/)
   assert.match(workflow, /verify-vercel-deployment-provenance\.mjs/)
   assert.match(workflow, /name: Upload deployment provenance evidence/)
 })
 
 test('preview provenance omits the production-only canonical URL argument and still writes evidence', () => {
   const provenanceStep = workflow.match(/- name: Verify deployment provenance[\s\S]*?(?=\n\s*- name: Smoke-check deployed document)/)?.[0] ?? ''
-  const previewArguments = provenanceStep.replace(/if \[\[ "\$PRODUCTION_DEPLOYMENT" == "true" \]\]; then[\s\S]*?\n\s*fi/, '')
+  const previewArguments = provenanceStep
+    .split('provenance_args=')[1]
+    ?.split('if [[ "$PRODUCTION_DEPLOYMENT" == "true" ]]; then')[0] ?? ''
 
   assert.match(provenanceStep, /provenance_args=\(/)
   assert.match(provenanceStep, /if \[\[ "\$PRODUCTION_DEPLOYMENT" == "true" \]\]; then\n+\s+provenance_args\+=\(--canonical-url "\$\{\{ matrix\.productionUrl \}\}"\)/)

@@ -8,6 +8,7 @@ const requiredString = (value, label) => {
 export function createDeploymentProvenanceEvidence({
   deployment,
   expectedSourceSha,
+  expectedTarget,
   deploymentUrl,
   canonicalUrl,
 }) {
@@ -19,7 +20,11 @@ export function createDeploymentProvenanceEvidence({
     throw new Error(`Deployment source SHA ${deployed} does not match expected source SHA ${expected}.`);
   }
 
-  const target = requiredString(deployment?.target, 'Deployment target');
+  const target = deployment?.target ?? 'preview';
+  const expectedDeploymentTarget = requiredString(expectedTarget, 'Expected deployment target');
+  if (target !== expectedDeploymentTarget) {
+    throw new Error(`Deployment target ${target} does not match expected target ${expectedDeploymentTarget}.`);
+  }
   const resolvedDeploymentUrl = requiredString(deploymentUrl, 'Deployment URL');
   const readyState = requiredString(deployment?.readyState, 'Deployment ready state');
 
@@ -37,6 +42,7 @@ export function createDeploymentProvenanceEvidence({
     deploymentId: requiredString(deployment?.id, 'Deployment ID'),
     deploymentUrl: resolvedDeploymentUrl,
     target,
+    expectedTarget: expectedDeploymentTarget,
     readyState,
     expectedSourceSha: expected,
     deployedSourceSha: deployed,
@@ -63,6 +69,7 @@ if (import.meta.url === `file://${process.argv[1].replaceAll('\\', '/')}`) {
   const evidence = createDeploymentProvenanceEvidence({
     deployment,
     expectedSourceSha: options['expected-source-sha'],
+    expectedTarget: options['expected-target'],
     deploymentUrl: options['deployment-url'],
     canonicalUrl: options['canonical-url'],
   });
