@@ -30,10 +30,12 @@ test('production mode drives Vercel pull, build, and deploy while pull requests 
   assert.doesNotMatch(workflow, /if \[\[ "\$\{\{ github\.event_name \}\}" == "push"/)
 })
 
-test('production smoke uses the canonical public alias instead of the protected deployment URL', () => {
-  assert.equal((workflow.match(/verification_url="\$\{\{ matrix\.productionUrl \}\}"/g) ?? []).length, 2)
+test('production smoke passes the canonical public alias through the step environment', () => {
+  assert.equal((workflow.match(/PRODUCTION_URL: \$\{\{ matrix\.productionUrl \}\}/g) ?? []).length, 4)
+  assert.equal((workflow.match(/verification_url="\$PRODUCTION_URL"/g) ?? []).length, 2)
   assert.match(workflow, /verification_url="\$DEPLOYMENT_URL"/)
   assert.match(workflow, /verification_url="\$\{verification_url%\//)
+  assert.doesNotMatch(workflow, /verification_url="\$\{\{ matrix\.productionUrl \}\}"/)
 })
 
 test('deployment provenance carries and verifies the exact source SHA before smoke evidence is published', () => {
@@ -57,8 +59,10 @@ test('preview provenance omits the production-only canonical URL argument and st
     .split('provenance_args=')[1]
     ?.split('if [[ "$PRODUCTION_DEPLOYMENT" == "true" ]]; then')[0] ?? ''
 
+  assert.match(provenanceStep, /PRODUCTION_URL: \$\{\{ matrix\.productionUrl \}\}/)
   assert.match(provenanceStep, /provenance_args=\(/)
-  assert.match(provenanceStep, /if \[\[ "\$PRODUCTION_DEPLOYMENT" == "true" \]\]; then\n+\s+provenance_args\+=\(--canonical-url "\$\{\{ matrix\.productionUrl \}\}"\)/)
+  assert.match(provenanceStep, /if \[\[ "\$PRODUCTION_DEPLOYMENT" == "true" \]\]; then\n+\s+provenance_args\+=\(--canonical-url "\$PRODUCTION_URL"\)/)
+  assert.doesNotMatch(provenanceStep, /--canonical-url "\$\{\{ matrix\.productionUrl \}\}"/)
   assert.doesNotMatch(previewArguments, /--canonical-url/)
   assert.match(previewArguments, /--output deployment-provenance\.json/)
   assert.match(provenanceStep, /node scripts\/verify-vercel-deployment-provenance\.mjs "\$\{provenance_args\[@\]\}"/)
