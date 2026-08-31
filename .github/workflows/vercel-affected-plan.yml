@@ -329,6 +329,7 @@ jobs:
         env:
           DEPLOYMENT_URL: ${{ steps.deploy.outputs.url }}
           SOURCE_SHA: ${{ steps.source-checkout.outputs.source-sha }}
+          PRODUCTION_URL: ${{ matrix.productionUrl }}
         run: |
           set -euo pipefail
           expected_target="preview"
@@ -343,7 +344,7 @@ jobs:
             --output deployment-provenance.json
           )
           if [[ "$PRODUCTION_DEPLOYMENT" == "true" ]]; then
-            provenance_args+=(--canonical-url "${{ matrix.productionUrl }}")
+            provenance_args+=(--canonical-url "$PRODUCTION_URL")
           fi
           node scripts/verify-vercel-deployment-provenance.mjs "${provenance_args[@]}"
 
@@ -351,11 +352,12 @@ jobs:
         shell: bash
         env:
           DEPLOYMENT_URL: ${{ steps.deploy.outputs.url }}
+          PRODUCTION_URL: ${{ matrix.productionUrl }}
         run: |
           set -euo pipefail
           verification_url="$DEPLOYMENT_URL"
           if [[ "$PRODUCTION_DEPLOYMENT" == "true" ]]; then
-            verification_url="${{ matrix.productionUrl }}"
+            verification_url="$PRODUCTION_URL"
             verification_url="${verification_url%/}"
           fi
           curl --fail --location --silent --show-error \
@@ -368,11 +370,12 @@ jobs:
         shell: bash
         env:
           DEPLOYMENT_URL: ${{ steps.deploy.outputs.url }}
+          PRODUCTION_URL: ${{ matrix.productionUrl }}
         run: |
           set -euo pipefail
           verification_url="$DEPLOYMENT_URL"
           if [[ "$PRODUCTION_DEPLOYMENT" == "true" ]]; then
-            verification_url="${{ matrix.productionUrl }}"
+            verification_url="$PRODUCTION_URL"
             verification_url="${verification_url%/}"
           fi
           for route in / /review /projects/validation-ledger /projects/agent-session-bridge /projects/buildworld-ai /projects/weavestudio; do
@@ -407,13 +410,14 @@ jobs:
         env:
           DEPLOYMENT_URL: ${{ steps.deploy.outputs.url }}
           SOURCE_SHA: ${{ steps.source-checkout.outputs.source-sha }}
+          PRODUCTION_URL: ${{ matrix.productionUrl }}
         run: |
           {
             echo "## ${{ matrix.publicName }} deployment"
             echo
             echo "- Source SHA: \`$SOURCE_SHA\`"
             echo "- Deployment: $DEPLOYMENT_URL"
-            echo "- Canonical route: ${{ matrix.productionUrl }}"
+            echo "- Canonical route: $PRODUCTION_URL"
             echo
             echo '```json'
             cat deployment-provenance.json
