@@ -20,6 +20,7 @@ test('signaling server only forwards signals within a joined room', () => {
 
 test('server exposes a health endpoint and same-origin WebSocket guard', () => {
   assert.match(server, /urlPath === '\/healthz'/);
+  assert.match(server, /server\.listen\(port, '0\.0\.0\.0'/);
   assert.match(server, /new URL\(origin\)\.host !== request\.headers\.host/);
   assert.match(server, /HEARTHLINK_ICE_SERVERS/);
   assert.match(server, /const publicRoot = realpathSync/);
