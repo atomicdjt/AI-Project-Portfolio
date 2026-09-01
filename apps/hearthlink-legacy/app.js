@@ -48,7 +48,7 @@ const state = {
   posts: [],
   pins: [],
   typing: new Map(),
-  selectedAccent: '#8b5cf6'
+  selectedAccent: '#c85836'
 };
 
 function resolveSignalingUrl() {
@@ -128,7 +128,11 @@ function saveLocal() {
     posts: state.posts.slice(-100),
     pins: state.pins.slice(-100)
   };
-  localStorage.setItem(storageKey(), JSON.stringify(payload));
+  try {
+    localStorage.setItem(storageKey(), JSON.stringify(payload));
+  } catch {
+    toast('Local storage is unavailable or full. New activity will not persist after this session.');
+  }
 }
 
 function loadLocal() {
@@ -144,6 +148,18 @@ function loadLocal() {
     state.posts = [];
     state.pins = [];
   }
+}
+
+function addDemoStarterContent() {
+  if (state.messages.length || state.posts.length || !isDemoMode()) return;
+  const now = Date.now();
+  state.messages = [
+    { id: 'demo-maya', channel: 'commons', authorName: 'Maya', accent: '#c85836', body: 'Welcome in. This room is a local demo, so your messages stay in this browser.', timestamp: now - 13 * 60_000 },
+    { id: 'demo-liam', channel: 'commons', authorName: 'Liam', accent: '#5d76ad', body: 'Try a message, pin something useful, or open the bulletin. A live room needs a signaling service.', timestamp: now - 8 * 60_000 },
+    { id: 'demo-sophie', channel: 'plans', authorName: 'Sophie', accent: '#3d7a72', body: 'Let’s keep the study plan in one place.', timestamp: now - 4 * 60_000 }
+  ];
+  state.posts = [{ id: 'demo-post', title: 'A note about this demo', body: 'HearthLink demonstrates browser-side room interactions. It does not claim an active hosted peer network.', authorName: 'HearthLink', timestamp: now - 12 * 60_000 }];
+  saveLocal();
 }
 
 async function deriveRoomKey(passphrase, roomId) {
@@ -517,6 +533,7 @@ function renderTextChannels() {
     const btn = document.createElement('button');
     btn.className = `channel-button ${state.activeChannel === channel.id ? 'active' : ''}`;
     btn.type = 'button';
+    btn.setAttribute('aria-current', state.activeChannel === channel.id ? 'page' : 'false');
     const label = document.createElement('span');
     label.textContent = `# ${channel.label}`;
     const count = document.createElement('span');
@@ -877,7 +894,9 @@ function wireUi() {
       state.selectedAccent = dot.dataset.accent;
       document.documentElement.style.setProperty('--accent', state.selectedAccent);
       document.querySelectorAll('.accent-dot').forEach((node) => node.classList.remove('selected'));
+      document.querySelectorAll('.accent-dot').forEach((node) => node.setAttribute('aria-pressed', 'false'));
       dot.classList.add('selected');
+      dot.setAttribute('aria-pressed', 'true');
     });
   }
 
@@ -950,8 +969,12 @@ function wireUi() {
     const params = new URLSearchParams({ room: state.roomId });
     if (state.roomKeyText) params.set('key', state.roomKeyText);
     const invite = `${location.origin}${location.pathname}#${params.toString()}`;
-    await navigator.clipboard.writeText(invite);
-    toast('Invite copied. The passphrase is in the URL hash, not sent to the server.');
+    try {
+      await navigator.clipboard.writeText(invite);
+      toast('Invite copied. The passphrase is in the URL hash, not sent to the server.');
+    } catch {
+      window.prompt('Copy this room invite:', invite);
+    }
   };
 
   $('muteBtn').onclick = () => {
@@ -1032,7 +1055,12 @@ async function startJoin() {
 
   state.roomId = roomId;
   state.roomKeyText = passphrase;
-  state.appKey = await deriveRoomKey(passphrase, roomId);
+  try {
+    state.appKey = await deriveRoomKey(passphrase, roomId);
+  } catch (error) {
+    toast(error instanceof Error ? error.message : 'Could not prepare the room key.');
+    return;
+  }
   state.self = {
     id: randomId('peer_').replace(/[^a-zA-Z0-9_-]/g, ''),
     name,
@@ -1043,6 +1071,7 @@ async function startJoin() {
 
   document.documentElement.style.setProperty('--accent', state.selectedAccent);
   loadLocal();
+  addDemoStarterContent();
   if (isDemoMode()) {
     enterDemoMode();
     return;
@@ -1171,6 +1200,7 @@ function hydrateFromHash() {
     document.documentElement.style.setProperty('--accent', storedAccent);
     document.querySelectorAll('.accent-dot').forEach((node) => {
       node.classList.toggle('selected', node.dataset.accent === storedAccent);
+      node.setAttribute('aria-pressed', String(node.dataset.accent === storedAccent));
     });
   }
 }

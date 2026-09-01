@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#111827" />
+  <meta name="theme-color" content="#111110" />
   <title>HearthLink P2P</title>
   <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="stylesheet" href="/styles.css" />
@@ -17,20 +17,20 @@
         <div class="brand-mark">HL</div>
         <div>
           <h1>HearthLink</h1>
-          <p>Private peer-to-peer rooms for your close circle.</p>
+          <p>Small, local-first rooms for your close circle.</p>
         </div>
       </div>
       <p class="hero-copy">
-        Host a small, encrypted-by-transport social space with live voice rooms, text/image chat,
-        lightweight posts, presence, pins, reactions, and local-only history.
+        Explore a private-room interface with text and image chat, lightweight posts, pins,
+        reactions, voice controls, and browser-local history. Live peers require your own signaling service.
       </p>
       <div id="configStatus" class="status-panel" role="status">
         Checking signaling configuration...
       </div>
       <div class="feature-grid">
-        <div><strong>P2P first</strong><span>Chat and media move over WebRTC data/media channels.</span></div>
-        <div><strong>Self-hosted</strong><span>The Node server only coordinates room discovery and signaling.</span></div>
-        <div><strong>Private keys</strong><span>Optional passphrase encryption runs in the browser.</span></div>
+        <div><strong>Peer-ready</strong><span>With signaling configured, room data can use WebRTC data and media channels.</span></div>
+        <div><strong>Local by default</strong><span>This public demo keeps its sample activity in this browser.</span></div>
+        <div><strong>Optional room key</strong><span>A browser-derived passphrase key is available when peers use the same key.</span></div>
         <div><strong>Small circles</strong><span>Designed for friend groups, study pods, and private squads.</span></div>
       </div>
     </section>
@@ -50,11 +50,11 @@
         <input id="roomKey" type="password" maxlength="120" placeholder="Shared secret" autocomplete="current-password" />
       </label>
       <div class="accent-row" aria-label="Choose profile accent color">
-        <button class="accent-dot selected" data-accent="#8b5cf6" style="--accent:#8b5cf6" title="Violet"></button>
-        <button class="accent-dot" data-accent="#06b6d4" style="--accent:#06b6d4" title="Cyan"></button>
-        <button class="accent-dot" data-accent="#10b981" style="--accent:#10b981" title="Emerald"></button>
-        <button class="accent-dot" data-accent="#f59e0b" style="--accent:#f59e0b" title="Amber"></button>
-        <button class="accent-dot" data-accent="#f43f5e" style="--accent:#f43f5e" title="Rose"></button>
+        <button class="accent-dot selected" data-accent="#c85836" style="--accent:#c85836" title="Terracotta" aria-label="Use terracotta profile accent" aria-pressed="true"></button>
+        <button class="accent-dot" data-accent="#3d7a72" style="--accent:#3d7a72" title="Teal" aria-label="Use teal profile accent" aria-pressed="false"></button>
+        <button class="accent-dot" data-accent="#5d76ad" style="--accent:#5d76ad" title="Blue" aria-label="Use blue profile accent" aria-pressed="false"></button>
+        <button class="accent-dot" data-accent="#a87a27" style="--accent:#a87a27" title="Ochre" aria-label="Use ochre profile accent" aria-pressed="false"></button>
+        <button class="accent-dot" data-accent="#a74e65" style="--accent:#a74e65" title="Rose" aria-label="Use rose profile accent" aria-pressed="false"></button>
       </div>
       <button id="joinBtn" class="primary">Create / Join Room</button>
       <button id="randomRoomBtn" class="ghost">Generate private room code</button>
@@ -65,7 +65,8 @@
   </main>
 
   <main id="app" class="app hidden" aria-label="HearthLink application">
-    <aside class="sidebar left-rail">
+    <h1 class="sr-only">HearthLink room</h1>
+    <aside class="sidebar left-rail" aria-label="Room navigation">
       <div class="app-brand">
         <div class="brand-mark small">HL</div>
         <div>
@@ -74,7 +75,7 @@
         </div>
       </div>
 
-      <section>
+      <section aria-label="Room controls">
         <div class="section-title">Circle</div>
         <div id="roomBadge" class="room-badge"></div>
         <button id="copyInviteBtn" class="wide secondary">Copy invite</button>
@@ -82,12 +83,12 @@
 
       <section>
         <div class="section-title">Text spaces</div>
-        <nav id="textChannels" class="channel-list"></nav>
+        <nav id="textChannels" class="channel-list" aria-label="Text spaces"></nav>
       </section>
 
       <section>
         <div class="section-title">Voice hearths</div>
-        <nav id="voiceChannels" class="channel-list voice-list"></nav>
+        <nav id="voiceChannels" class="channel-list voice-list" aria-label="Voice hearths"></nav>
         <div class="voice-controls">
           <button id="muteBtn" class="secondary" title="Mute microphone">Mic on</button>
           <button id="deafenBtn" class="secondary" title="Mute incoming voice">Sound on</button>
@@ -111,7 +112,7 @@
       <section id="postsPanel" class="drawer hidden" aria-label="Bulletin posts">
         <div class="drawer-head">
           <h3>Bulletin</h3>
-          <button id="closePostsBtn" class="icon">×</button>
+          <button id="closePostsBtn" class="icon" aria-label="Close bulletin">×</button>
         </div>
         <form id="postForm" class="post-form">
           <input id="postTitle" maxlength="80" placeholder="Post title" />
@@ -124,12 +125,12 @@
       <section id="pinsPanel" class="drawer right hidden" aria-label="Pinned messages">
         <div class="drawer-head">
           <h3>Pins</h3>
-          <button id="closePinsBtn" class="icon">×</button>
+          <button id="closePinsBtn" class="icon" aria-label="Close pinned messages">×</button>
         </div>
         <div id="pinsList" class="pins-list"></div>
       </section>
 
-      <section id="messages" class="messages" aria-live="polite"></section>
+      <section id="messages" class="messages" aria-live="polite" aria-label="Messages"></section>
 
       <div id="typingLine" class="typing-line muted"></div>
 

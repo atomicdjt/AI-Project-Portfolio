@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: hearthlink-p2p
+    runtime: docker
+    healthCheckPath: /healthz
+    envVars:
+      - key: HEARTHLINK_ROOM_LIMIT
+        value: "10"
