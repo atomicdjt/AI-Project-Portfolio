@@ -48,7 +48,7 @@ const state = {
   posts: [],
   pins: [],
   typing: new Map(),
-  selectedAccent: '#8b5cf6'
+  selectedAccent: '#c85836'
 };
 
 function resolveSignalingUrl() {
@@ -121,6 +121,30 @@ function storageKey() {
   return `hearthlink:v1:${state.roomId}`;
 }
 
+function readStoredValue(key) {
+  try { return localStorage.getItem(key); } catch { return null; }
+}
+
+function writeStoredValue(key, value) {
+  try { localStorage.setItem(key, value); return true; } catch { return false; }
+}
+
+function accentForeground(color) {
+  const hex = String(color || '').replace('#', '');
+  if (!/^[0-9a-f]{6}$/i.test(hex)) return '#f4f0e9';
+  const channel = (offset) => {
+    const value = Number.parseInt(hex.slice(offset, offset + 2), 16) / 255;
+    return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+  };
+  const luminance = 0.2126 * channel(0) + 0.7152 * channel(2) + 0.0722 * channel(4);
+  return luminance > 0.179 ? '#0d0705' : '#f4f0e9';
+}
+
+function applyAvatarAccent(avatar, color) {
+  avatar.style.background = color || '#64748b';
+  avatar.style.setProperty('--accent-foreground', accentForeground(color));
+}
+
 function saveLocal() {
   if (!state.roomId) return;
   const payload = {
@@ -128,12 +152,14 @@ function saveLocal() {
     posts: state.posts.slice(-100),
     pins: state.pins.slice(-100)
   };
-  localStorage.setItem(storageKey(), JSON.stringify(payload));
+  if (!writeStoredValue(storageKey(), JSON.stringify(payload))) {
+    toast('Local storage is unavailable or full. New activity will not persist after this session.');
+  }
 }
 
 function loadLocal() {
   try {
-    const raw = localStorage.getItem(storageKey());
+    const raw = readStoredValue(storageKey());
     if (!raw) return;
     const payload = JSON.parse(raw);
     state.messages = Array.isArray(payload.messages) ? payload.messages : [];
@@ -144,6 +170,18 @@ function loadLocal() {
     state.posts = [];
     state.pins = [];
   }
+}
+
+function addDemoStarterContent() {
+  if (state.messages.length || state.posts.length || !isDemoMode()) return;
+  const now = Date.now();
+  state.messages = [
+    { id: 'demo-maya', channel: 'commons', authorName: 'Maya', accent: '#c85836', body: 'Welcome in. This room is a local demo, so your messages stay in this browser.', timestamp: now - 13 * 60_000 },
+    { id: 'demo-liam', channel: 'commons', authorName: 'Liam', accent: '#5d76ad', body: 'Try a message, pin something useful, or open the bulletin. A live room needs a signaling service.', timestamp: now - 8 * 60_000 },
+    { id: 'demo-sophie', channel: 'plans', authorName: 'Sophie', accent: '#3d7a72', body: 'Let’s keep the study plan in one place.', timestamp: now - 4 * 60_000 }
+  ];
+  state.posts = [{ id: 'demo-post', title: 'A note about this demo', body: 'HearthLink demonstrates browser-side room interactions. It does not claim an active hosted peer network.', authorName: 'HearthLink', timestamp: now - 12 * 60_000 }];
+  saveLocal();
 }
 
 async function deriveRoomKey(passphrase, roomId) {
@@ -517,6 +555,7 @@ function renderTextChannels() {
     const btn = document.createElement('button');
     btn.className = `channel-button ${state.activeChannel === channel.id ? 'active' : ''}`;
     btn.type = 'button';
+    btn.setAttribute('aria-current', state.activeChannel === channel.id ? 'page' : 'false');
     const label = document.createElement('span');
     label.textContent = `# ${channel.label}`;
     const count = document.createElement('span');
@@ -571,7 +610,7 @@ function renderMembers() {
     item.className = `member ${profile.voiceChannel ? 'in-voice' : ''}`;
     const av = document.createElement('div');
     av.className = 'avatar';
-    av.style.background = profile.accent || '#64748b';
+    applyAvatarAccent(av, profile.accent);
     av.textContent = initials(profile.name);
 
     const meta = document.createElement('div');
@@ -616,7 +655,7 @@ function renderMessages() {
 
     const av = document.createElement('div');
     av.className = 'avatar';
-    av.style.background = message.accent || '#64748b';
+    applyAvatarAccent(av, message.accent);
     av.textContent = initials(message.authorName);
 
     const content = document.createElement('div');
@@ -877,7 +916,9 @@ function wireUi() {
       state.selectedAccent = dot.dataset.accent;
       document.documentElement.style.setProperty('--accent', state.selectedAccent);
       document.querySelectorAll('.accent-dot').forEach((node) => node.classList.remove('selected'));
+      document.querySelectorAll('.accent-dot').forEach((node) => node.setAttribute('aria-pressed', 'false'));
       dot.classList.add('selected');
+      dot.setAttribute('aria-pressed', 'true');
     });
   }
 
@@ -950,8 +991,12 @@ function wireUi() {
     const params = new URLSearchParams({ room: state.roomId });
     if (state.roomKeyText) params.set('key', state.roomKeyText);
     const invite = `${location.origin}${location.pathname}#${params.toString()}`;
-    await navigator.clipboard.writeText(invite);
-    toast('Invite copied. The passphrase is in the URL hash, not sent to the server.');
+    try {
+      await navigator.clipboard.writeText(invite);
+      toast('Invite copied. The passphrase is in the URL hash, not sent to the server.');
+    } catch {
+      window.prompt('Copy this room invite:', invite);
+    }
   };
 
   $('muteBtn').onclick = () => {
@@ -1020,19 +1065,25 @@ function throttleTyping() {
 setInterval(renderTyping, 1000);
 
 async function startJoin() {
-  const name = ($('displayName').value.trim() || localStorage.getItem('hearthlink:name') || 'Guest').slice(0, 40);
+  const name = ($('displayName').value.trim() || readStoredValue('hearthlink:name') || 'Guest').slice(0, 40);
   const roomId = sanitizeRoom($('roomId').value || 'my-friends');
   const passphrase = $('roomKey').value;
   if (!roomId) {
     toast('Enter a room code.');
     return;
   }
-  localStorage.setItem('hearthlink:name', name);
-  localStorage.setItem('hearthlink:accent', state.selectedAccent);
+  if (!writeStoredValue('hearthlink:name', name) || !writeStoredValue('hearthlink:accent', state.selectedAccent)) {
+    toast('Browser storage is unavailable. Your name and accent will not persist after this session.');
+  }
 
   state.roomId = roomId;
   state.roomKeyText = passphrase;
-  state.appKey = await deriveRoomKey(passphrase, roomId);
+  try {
+    state.appKey = await deriveRoomKey(passphrase, roomId);
+  } catch (error) {
+    toast(error instanceof Error ? error.message : 'Could not prepare the room key.');
+    return;
+  }
   state.self = {
     id: randomId('peer_').replace(/[^a-zA-Z0-9_-]/g, ''),
     name,
@@ -1042,7 +1093,11 @@ async function startJoin() {
   };
 
   document.documentElement.style.setProperty('--accent', state.selectedAccent);
+  state.messages = [];
+  state.posts = [];
+  state.pins = [];
   loadLocal();
+  addDemoStarterContent();
   if (isDemoMode()) {
     enterDemoMode();
     return;
@@ -1163,14 +1218,15 @@ function hydrateFromHash() {
   const key = params.get('key');
   if (room) $('roomId').value = sanitizeRoom(room);
   if (key) $('roomKey').value = key;
-  const storedName = localStorage.getItem('hearthlink:name');
+  const storedName = readStoredValue('hearthlink:name');
   if (storedName) $('displayName').value = storedName;
-  const storedAccent = localStorage.getItem('hearthlink:accent');
+  const storedAccent = readStoredValue('hearthlink:accent');
   if (storedAccent) {
     state.selectedAccent = storedAccent;
     document.documentElement.style.setProperty('--accent', storedAccent);
     document.querySelectorAll('.accent-dot').forEach((node) => {
       node.classList.toggle('selected', node.dataset.accent === storedAccent);
+      node.setAttribute('aria-pressed', String(node.dataset.accent === storedAccent));
     });
   }
 }

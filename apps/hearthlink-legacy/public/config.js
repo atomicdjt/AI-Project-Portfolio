@@ -8,5 +8,5 @@ window.HEARTHLINK_CONFIG = {
   ],
   "roomSizeLimit": 10,
   "maxImageBytes": 1500000,
-  "demoMode": true
+  "demoMode": false
 };

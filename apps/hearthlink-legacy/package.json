@@ -1,0 +1,15 @@
+{
+  "name": "hearthlink-p2p",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Self-hosted WebRTC signaling and static application server for HearthLink.",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node --watch server.mjs",
+    "test": "node --test app.contract.test.mjs server.contract.test.mjs"
+  },
+  "dependencies": {
+    "ws": "8.21.3"
+  }
+}
