@@ -141,4 +141,4 @@ wss.on('connection', (ws, request) => {
   ws.on('error', () => removePeer(ws));
 });
 
-server.listen(port, () => console.log(`HearthLink is listening on http://127.0.0.1:${port}`));
+server.listen(port, '0.0.0.0', () => console.log(`HearthLink is listening on port ${port}.`));
