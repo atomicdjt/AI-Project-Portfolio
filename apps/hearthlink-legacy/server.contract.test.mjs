@@ -9,6 +9,7 @@ test('signaling server bounds room, profile, and packet inputs', () => {
   assert.match(server, /function cleanRoom/);
   assert.match(server, /function cleanProfile/);
   assert.match(server, /room\.size >= roomLimit/);
+  assert.match(server, /This peer identity is already connected to the room/);
 });
 
 test('signaling server only forwards signals within a joined room', () => {
@@ -21,4 +22,7 @@ test('server exposes a health endpoint and same-origin WebSocket guard', () => {
   assert.match(server, /urlPath === '\/healthz'/);
   assert.match(server, /new URL\(origin\)\.host !== request\.headers\.host/);
   assert.match(server, /HEARTHLINK_ICE_SERVERS/);
+  assert.match(server, /const publicRoot = realpathSync/);
+  assert.match(server, /Malformed URL path/);
+  assert.match(server, /map\(\(entry\) => \(\{ urls: entry\.urls \}\)\)/);
 });

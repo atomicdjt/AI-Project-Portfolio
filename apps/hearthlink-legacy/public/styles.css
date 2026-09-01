@@ -260,7 +260,7 @@ button:active { transform: translateY(0); }
   place-items: center;
   font-weight: 900;
   background: var(--accent);
-  color: #fff;
+  color: var(--accent-foreground, #0d0705);
   text-transform: uppercase;
   flex: 0 0 auto;
 }

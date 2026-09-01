@@ -1,11 +1,12 @@
-import { createReadStream, existsSync } from 'node:fs';
+import { createReadStream, existsSync, realpathSync, statSync } from 'node:fs';
 import { createServer } from 'node:http';
-import { extname, join, normalize } from 'node:path';
+import { extname, isAbsolute, relative, resolve } from 'node:path';
 import { WebSocketServer, WebSocket } from 'ws';
 
 const port = Number.parseInt(process.env.PORT || '4173', 10);
 const roomLimit = Number.parseInt(process.env.HEARTHLINK_ROOM_LIMIT || '10', 10);
 const root = process.cwd();
+const publicRoot = realpathSync(resolve(root, 'public'));
 const rooms = new Map();
 const mimeTypes = new Map([
   ['.html', 'text/html; charset=utf-8'], ['.js', 'text/javascript; charset=utf-8'],
@@ -35,6 +36,7 @@ function iceServers() {
     if (!Array.isArray(parsed)) throw new Error('ICE servers must be an array.');
     return parsed
       .filter((entry) => entry && (typeof entry.urls === 'string' || Array.isArray(entry.urls)))
+      .map((entry) => ({ urls: entry.urls }))
       .slice(0, 8);
   } catch {
     console.warn('Ignoring invalid HEARTHLINK_ICE_SERVERS configuration.');
@@ -73,9 +75,18 @@ const server = createServer((request, response) => {
       .end(`window.HEARTHLINK_CONFIG = ${JSON.stringify({ appName: 'HearthLink P2P', signalingUrl: '', iceServers: iceServers(), roomSizeLimit: roomLimit, maxImageBytes: 1_500_000, demoMode: false })};`);
     return;
   }
-  const requested = urlPath === '/' ? 'index.html' : decodeURIComponent(urlPath).replace(/^\/+/, '');
-  const filePath = normalize(join(root, requested));
-  if (!filePath.startsWith(root) || !existsSync(filePath)) {
+  let requested;
+  try { requested = urlPath === '/' ? 'index.html' : decodeURIComponent(urlPath).replace(/^\/+/, ''); }
+  catch { response.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' }).end('Malformed URL path'); return; }
+  const candidate = resolve(publicRoot, requested);
+  const candidateRelative = relative(publicRoot, candidate);
+  if (candidateRelative.startsWith('..') || isAbsolute(candidateRelative) || !existsSync(candidate)) {
+    response.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' }).end('Not found');
+    return;
+  }
+  const filePath = realpathSync(candidate);
+  const fileRelative = relative(publicRoot, filePath);
+  if (fileRelative.startsWith('..') || isAbsolute(fileRelative) || !statSync(filePath).isFile()) {
     response.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' }).end('Not found');
     return;
   }
@@ -102,7 +113,8 @@ wss.on('connection', (ws, request) => {
       const profile = cleanProfile(message.profile);
       if (!roomId || !profile.id) { send(ws, { type: 'error', message: 'A valid room and profile are required.' }); return; }
       const room = rooms.get(roomId) || new Map();
-      if (!room.has(profile.id) && room.size >= roomLimit) { send(ws, { type: 'error', message: `This room is limited to ${roomLimit} peers.` }); return; }
+      if (room.has(profile.id)) { send(ws, { type: 'error', message: 'This peer identity is already connected to the room.' }); return; }
+      if (room.size >= roomLimit) { send(ws, { type: 'error', message: `This room is limited to ${roomLimit} peers.` }); return; }
       const peers = [...room.entries()].map(([id, peer]) => ({ id, ...peer.hearthlink.profile }));
       room.set(profile.id, ws); rooms.set(roomId, room);
       ws.hearthlink = { roomId, peerId: profile.id, profile };

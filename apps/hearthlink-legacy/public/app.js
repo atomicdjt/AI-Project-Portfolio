@@ -121,6 +121,30 @@ function storageKey() {
   return `hearthlink:v1:${state.roomId}`;
 }
 
+function readStoredValue(key) {
+  try { return localStorage.getItem(key); } catch { return null; }
+}
+
+function writeStoredValue(key, value) {
+  try { localStorage.setItem(key, value); return true; } catch { return false; }
+}
+
+function accentForeground(color) {
+  const hex = String(color || '').replace('#', '');
+  if (!/^[0-9a-f]{6}$/i.test(hex)) return '#f4f0e9';
+  const channel = (offset) => {
+    const value = Number.parseInt(hex.slice(offset, offset + 2), 16) / 255;
+    return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+  };
+  const luminance = 0.2126 * channel(0) + 0.7152 * channel(2) + 0.0722 * channel(4);
+  return luminance > 0.179 ? '#0d0705' : '#f4f0e9';
+}
+
+function applyAvatarAccent(avatar, color) {
+  avatar.style.background = color || '#64748b';
+  avatar.style.setProperty('--accent-foreground', accentForeground(color));
+}
+
 function saveLocal() {
   if (!state.roomId) return;
   const payload = {
@@ -128,16 +152,14 @@ function saveLocal() {
     posts: state.posts.slice(-100),
     pins: state.pins.slice(-100)
   };
-  try {
-    localStorage.setItem(storageKey(), JSON.stringify(payload));
-  } catch {
+  if (!writeStoredValue(storageKey(), JSON.stringify(payload))) {
     toast('Local storage is unavailable or full. New activity will not persist after this session.');
   }
 }
 
 function loadLocal() {
   try {
-    const raw = localStorage.getItem(storageKey());
+    const raw = readStoredValue(storageKey());
     if (!raw) return;
     const payload = JSON.parse(raw);
     state.messages = Array.isArray(payload.messages) ? payload.messages : [];
@@ -588,7 +610,7 @@ function renderMembers() {
     item.className = `member ${profile.voiceChannel ? 'in-voice' : ''}`;
     const av = document.createElement('div');
     av.className = 'avatar';
-    av.style.background = profile.accent || '#64748b';
+    applyAvatarAccent(av, profile.accent);
     av.textContent = initials(profile.name);
 
     const meta = document.createElement('div');
@@ -633,7 +655,7 @@ function renderMessages() {
 
     const av = document.createElement('div');
     av.className = 'avatar';
-    av.style.background = message.accent || '#64748b';
+    applyAvatarAccent(av, message.accent);
     av.textContent = initials(message.authorName);
 
     const content = document.createElement('div');
@@ -1043,15 +1065,16 @@ function throttleTyping() {
 setInterval(renderTyping, 1000);
 
 async function startJoin() {
-  const name = ($('displayName').value.trim() || localStorage.getItem('hearthlink:name') || 'Guest').slice(0, 40);
+  const name = ($('displayName').value.trim() || readStoredValue('hearthlink:name') || 'Guest').slice(0, 40);
   const roomId = sanitizeRoom($('roomId').value || 'my-friends');
   const passphrase = $('roomKey').value;
   if (!roomId) {
     toast('Enter a room code.');
     return;
   }
-  localStorage.setItem('hearthlink:name', name);
-  localStorage.setItem('hearthlink:accent', state.selectedAccent);
+  if (!writeStoredValue('hearthlink:name', name) || !writeStoredValue('hearthlink:accent', state.selectedAccent)) {
+    toast('Browser storage is unavailable. Your name and accent will not persist after this session.');
+  }
 
   state.roomId = roomId;
   state.roomKeyText = passphrase;
@@ -1192,9 +1215,9 @@ function hydrateFromHash() {
   const key = params.get('key');
   if (room) $('roomId').value = sanitizeRoom(room);
   if (key) $('roomKey').value = key;
-  const storedName = localStorage.getItem('hearthlink:name');
+  const storedName = readStoredValue('hearthlink:name');
   if (storedName) $('displayName').value = storedName;
-  const storedAccent = localStorage.getItem('hearthlink:accent');
+  const storedAccent = readStoredValue('hearthlink:accent');
   if (storedAccent) {
     state.selectedAccent = storedAccent;
     document.documentElement.style.setProperty('--accent', storedAccent);

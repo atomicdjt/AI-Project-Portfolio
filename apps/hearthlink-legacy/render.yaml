@@ -2,6 +2,9 @@ services:
   - type: web
     name: hearthlink-p2p
     runtime: docker
+    rootDir: apps/hearthlink-legacy
+    dockerfilePath: apps/hearthlink-legacy/Dockerfile
+    dockerContext: apps/hearthlink-legacy
     healthCheckPath: /healthz
     envVars:
       - key: HEARTHLINK_ROOM_LIMIT

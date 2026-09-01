@@ -18,9 +18,9 @@ Set these host-side environment variables:
 | --- | --- | --- |
 | `PORT` | Host-provided | Listening port; hosts commonly set it automatically. |
 | `HEARTHLINK_ROOM_LIMIT` | No | Maximum peers per room; default `10`. |
-| `HEARTHLINK_ICE_SERVERS` | Recommended | JSON array of STUN/TURN server definitions supplied to joining browsers. |
+| `HEARTHLINK_ICE_SERVERS` | Recommended | JSON array of public STUN/TURN URLs supplied to joining browsers. Credentials are intentionally stripped. |
 
-For real friends on different Wi-Fi/mobile networks, configure a TURN service. A typical `HEARTHLINK_ICE_SERVERS` value contains both a STUN endpoint and your TURN endpoint. Keep long-lived TURN credentials in host configuration, never committed source; use short-lived TURN credentials in a production system when your provider supports them.
+For real friends on different Wi-Fi/mobile networks, configure a TURN service. A typical `HEARTHLINK_ICE_SERVERS` value contains both a STUN endpoint and your TURN endpoint. This unauthenticated app deliberately does not expose long-lived TURN usernames or credentials to every visitor. Add authenticated, short-lived TURN credential issuance before enabling credentialed TURN relay in production.
 
 After deployment, open the same HTTPS URL in two separate browsers, join the same room name, and confirm both session headers show `online - 1/1 linked` before inviting anyone.
 
