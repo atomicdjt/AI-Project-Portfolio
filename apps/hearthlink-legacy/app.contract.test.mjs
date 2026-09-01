@@ -29,6 +29,11 @@ test('storage and avatar presentation degrade safely', () => {
   assert.match(app, /applyAvatarAccent\(av,/);
 });
 
+test('remote voice tracks explicitly request audio playback after joining a shared channel', () => {
+  assert.match(app, /peer\.audioEl\.play\(\)\.catch/);
+  assert.match(app, /sameVoice && !state\.deafened/);
+});
+
 test('joining another room clears prior room content before local state loads', () => {
   assert.match(app, /state\.messages = \[\];\s+state\.posts = \[\];\s+state\.pins = \[\];\s+loadLocal\(\);/);
 });

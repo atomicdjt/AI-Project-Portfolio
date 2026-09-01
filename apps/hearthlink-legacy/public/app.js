@@ -545,6 +545,11 @@ function updateAudioElements() {
     const sameVoice = Boolean(state.voiceChannel) && peer.profile.voiceChannel === state.voiceChannel;
     peer.audioEl.muted = state.deafened || !sameVoice;
     peer.audioEl.volume = sameVoice ? 1 : 0;
+    if (sameVoice && !state.deafened) {
+      peer.audioEl.play().catch((error) => {
+        console.warn(`Remote audio playback for ${peer.profile.name || 'a peer'} was blocked.`, error);
+      });
+    }
   }
 }
 
