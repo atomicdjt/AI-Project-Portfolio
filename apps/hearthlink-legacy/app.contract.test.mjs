@@ -28,3 +28,7 @@ test('storage and avatar presentation degrade safely', () => {
   assert.match(app, /function accentForeground/);
   assert.match(app, /applyAvatarAccent\(av,/);
 });
+
+test('joining another room clears prior room content before local state loads', () => {
+  assert.match(app, /state\.messages = \[\];\s+state\.posts = \[\];\s+state\.pins = \[\];\s+loadLocal\(\);/);
+});

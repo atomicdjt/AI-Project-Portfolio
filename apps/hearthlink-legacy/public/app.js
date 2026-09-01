@@ -1093,6 +1093,9 @@ async function startJoin() {
   };
 
   document.documentElement.style.setProperty('--accent', state.selectedAccent);
+  state.messages = [];
+  state.posts = [];
+  state.pins = [];
   loadLocal();
   addDemoStarterContent();
   if (isDemoMode()) {
