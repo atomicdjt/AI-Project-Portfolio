@@ -122,6 +122,8 @@ npm run verify
 npm run verify:release
 ```
 
+The root `package-lock.json` is the sole lockfile for the eleven configured npm workspaces. Run workspace commands from the repository root with `npm --workspace <path> ...`; do not create separate lockfiles within those workspace directories. GardenGrid is a separate supporting application and retains its own lockfile because it is not a root npm workspace.
+
 The former GitHub Pages workflow is a build-only **Portfolio Vercel Readiness** workflow. It validates static outputs but does not deploy them. See [docs/verification.md](docs/verification.md) for exact scope and responsible interpretation.
 
 ## Vercel-Only Deployment Boundary

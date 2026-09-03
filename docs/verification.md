@@ -20,6 +20,17 @@ npm run verify
 npm run verify:release
 ```
 
+## Lockfile Authority
+
+The root `package-lock.json` is the canonical dependency lockfile for the eleven configured npm workspaces. Install and run a configured workspace from the repository root, for example:
+
+```bash
+npm ci
+npm run build --workspace apps/scamshield-ai
+```
+
+Do not add per-workspace lockfiles for those applications: they duplicate the root resolution and can drift from the CI and deployment dependency graph. GardenGrid is not part of the root workspace list and intentionally keeps `apps/garden-grid-planner/package-lock.json` for its standalone installation and controlled manual deployment.
+
 The root `package.json` defines:
 
 - `check:docs` — validates repository Markdown links and documentation references.
