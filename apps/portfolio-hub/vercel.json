@@ -11,6 +11,14 @@
   "outputDirectory": "dist",
   "rewrites": [
     {
+      "source": "/review",
+      "destination": "/review.html"
+    },
+    {
+      "source": "/review/",
+      "destination": "/review.html"
+    },
+    {
       "source": "/projects/validation-ledger",
       "destination": "/projects/validation-ledger.html"
     },

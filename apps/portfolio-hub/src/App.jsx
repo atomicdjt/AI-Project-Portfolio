@@ -326,7 +326,7 @@ const externalProof = [
   },
 ];
 
-function App() {
+function App({ pathname = '/' }) {
   const [query, setQuery] = useState('');
   const [status, setStatus] = useState('All');
   const [audience, setAudience] = useState('All');
@@ -341,7 +341,7 @@ function App() {
     });
   }, [audience, query, status]);
 
-  if (window.location.pathname.replace(/\/+$/, '') === '/review') return <ReviewPath />;
+  if (pathname.replace(/\/+$/, '').replace(/\.html$/, '') === '/review') return <ReviewPath />;
 
   return (
     <div className="app-shell">
@@ -549,7 +549,7 @@ function ReviewPath() {
               <div className="card-actions">
               {project.demo ? <ProjectLink project={project} surface="review_path" kind="demo" href={project.demo}>Open live demo</ProjectLink> : null}
               {project.source ? <ProjectLink project={project} surface="review_path" kind="source" href={project.source}>Inspect source</ProjectLink> : null}
-              {project.caseStudy ? <ProjectLink project={project} surface="review_path" kind="case_study" href={project.caseStudy}>Read case study</ProjectLink> : null}
+              {project.caseStudy ? <ProjectLink project={project} surface="review_path" kind="case_study" href={`/projects/${project.name}`}>Read case study</ProjectLink> : null}
               </div>
             </div>
           </li>
