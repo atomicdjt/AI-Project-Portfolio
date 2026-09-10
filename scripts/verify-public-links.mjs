@@ -1,8 +1,8 @@
 const targets = [
   ['Portfolio Hub', 'https://ai-project-portfolio-portfolio-hub.vercel.app/', 'David Turner | Applied AI & Technical Operations'],
-  ['BuildWorld AI', 'https://buildworld-ai-v01-improvements.vercel.app/', 'BuildWorld AI | Visual Systems Simulation Lab'],
-  ['ProcessHarbor', 'https://ai-project-portfolio-opspilot-ai-op.vercel.app/', 'ProcessHarbor Pro | Operations Documentation Toolkit'],
-  ['WeaveStudio', 'https://weavestudio-nine.vercel.app/', 'WeaveStudio | Local-First Workflow Canvas'],
+  ['BuildWorld AI', 'https://buildworld-ai-v01-improvements.vercel.app/', 'BuildWorld AI — Local-First Systems Simulation Lab by David Turner'],
+  ['ProcessHarbor', 'https://ai-project-portfolio-opspilot-ai-op.vercel.app/', 'ProcessHarbor Pro — Operations Documentation Toolkit by David Turner'],
+  ['WeaveStudio', 'https://weavestudio-nine.vercel.app/', 'WeaveStudio — Local-First Workflow Canvas by David Turner'],
   ['QuoteForge Local', 'https://quoteforge-local.vercel.app/', 'White-Label Quote Calculators for Agencies'],
 ];
 const titlePattern = /<title[^>]*>([^<]*)<\/title>/i;
