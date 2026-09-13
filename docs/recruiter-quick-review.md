@@ -2,15 +2,28 @@
 
 ## 60-Second Review Path
 
-1. Open the [Portfolio Hub](https://ai-project-portfolio-portfolio-hub.vercel.app/) for visual orientation and direct project routes.
-2. Review [ProcessHarbor](https://ai-project-portfolio-opspilot-ai-op.vercel.app/) for technical operations, SOPs, onboarding, knowledge-base workflows, and documentation role fit.
-3. Review [BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/) for technical originality and systems thinking.
-4. Review [WeaveStudio](https://weavestudio-nine.vercel.app/) for workflow-product design, portability, and handoff discipline.
-5. Use [Verification](verification.md), the [Skills Matrix](SKILLS_MATRIX.md), and the [Deployment Map](deployment-and-previews.md) to connect the work to supported evidence.
+1. Start with [External Corroboration](discovery/external-corroboration.md): five merged upstream contributions across Grid Dynamics Rosetta and super-productivity, with substantive human review on the strongest Rosetta changes.
+2. Open the [Portfolio Hub](https://ai-project-portfolio-portfolio-hub.vercel.app/) for visual orientation and direct project routes.
+3. Review [ProcessHarbor](https://ai-project-portfolio-opspilot-ai-op.vercel.app/) for technical operations, SOPs, onboarding, knowledge-base workflows, and documentation role fit.
+4. Review [BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/) for technical originality and systems thinking.
+5. Review [WeaveStudio](https://weavestudio-nine.vercel.app/) for workflow-product design, portability, and handoff discipline.
+
+For the clearest narrative behind the upstream record, see [External Validation: What Upstream Review Actually Established](https://github.com/atomicdjt/atomicdjt/blob/main/writing/external-validation-upstream-review.md).
+
+## External Validation First
+
+The portfolio is self-directed evidence. The upstream record is third-party-controlled evidence.
+
+- **Grid Dynamics Rosetta #320:** security-critical matcher performance/correctness change; independently differential-tested across millions of inputs, revised after review, approved, and merged.
+- **Grid Dynamics Rosetta #319:** review established that part of the original target was dead code; the contribution was narrowed to the live-path hardening and documentation corrections, then re-verified, approved, and merged.
+- **Rosetta #299 and #322:** focused correctness/regression contributions merged upstream.
+- **super-productivity #9619:** task-ordering regression fix merged upstream.
+
+Use [External Corroboration](discovery/external-corroboration.md) for the claim-bounded evidence record and source links. These outcomes establish acceptance of the scoped contributions; they do not imply employment by, or blanket endorsement from, the upstream organizations.
 
 ## Best Employer-Facing Evidence
 
-For the separate technical proof path, review [Validation Ledger](https://validation-ledger.vercel.app/) → [Agent Session Bridge](https://pypi.org/project/atomicdjt-agent-session-bridge/) → [BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/) → [WeaveStudio](https://weavestudio-nine.vercel.app/). This is an audience-specific review order, not a universal ranking or adoption claim.
+For the separate technical proof path, review [Validation Ledger](https://validation-ledger.vercel.app/) -> [Agent Session Bridge](https://pypi.org/project/atomicdjt-agent-session-bridge/) -> [BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/) -> [WeaveStudio](https://weavestudio-nine.vercel.app/). This is an audience-specific review order, not a universal ranking or adoption claim.
 
 | Project | Current review route | Why review it |
 | --- | --- | --- |
@@ -42,6 +55,7 @@ For the separate technical proof path, review [Validation Ledger](https://valida
 | AI Workflow Specialist | WeaveStudio, ScamShield AI, ProcessHarbor, Astra, explicit provider boundaries, and human-review checkpoints. |
 | Documentation / Knowledge Operations | ProcessHarbor, case studies, project index, recruiter documentation, architecture guides, and transfer materials. |
 | Product Operations | WeaveStudio acquisition packaging, QuoteForge release workflow, scope control, feature-reality matrices, and roadmaps. |
+| QA / Technical Quality | Merged upstream regression fixes, Rosetta review history, mutation/differential testing evidence, acceptance criteria, and release verification. |
 | Junior Technical Product Analyst | BuildWorld AI, evidence comparison, deterministic metrics, risk boundaries, and structured product documentation. |
 | Frontend / Product Implementation | React, TypeScript, Vite, Canvas, local persistence, testing, reporting, and verified Vercel deployments. |
 
@@ -56,6 +70,7 @@ These products demonstrate packaging and transfer discipline. Their status does 
 
 ## What This Portfolio Demonstrates
 
+- External technical work that has survived upstream review, requested corrections, independent verification, and merge.
 - Turning ambiguous ideas into runnable applications and reviewable documentation.
 - Product judgment: users, workflows, limitations, evidence, non-goals, and next improvements.
 - Frontend implementation with React, TypeScript, Vite, local state, Canvas workflows, PDF/report generation, and responsive UI.
@@ -66,6 +81,7 @@ These products demonstrate packaging and transfer discipline. Their status does 
 ## What This Portfolio Does Not Claim
 
 - Senior engineering tenure.
+- Employment by organizations whose repositories accepted contributions.
 - Regulated compliance approval or certification.
 - Legal, medical, financial, infrastructure, fraud, or safety-critical determinations.
 - That every supplemental concept is represented by source or a current Vercel deployment.
