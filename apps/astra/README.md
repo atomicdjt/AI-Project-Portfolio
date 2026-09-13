@@ -14,6 +14,8 @@ Many AI chat demos are thin wrappers around an API call. Astra is designed as a 
 
 Astra separates the user interface from the model/API layer. The React app handles the chat workspace and settings experience, while the Express server handles API configuration and model requests.
 
+The reference server binds to `127.0.0.1` only. It is not a production or network-facing service, and it must not be exposed beyond the local machine without authentication, request throttling, and deployment-specific security review.
+
 ## Key Features
 
 - React chat workspace

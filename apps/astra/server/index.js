@@ -171,6 +171,6 @@ app.use((_req, res) => {
   res.sendFile(path.join(rootDir, 'dist', 'index.html'))
 })
 
-app.listen(port, () => {
+app.listen(port, '127.0.0.1', () => {
   console.log(`Astra API listening on http://127.0.0.1:${port}`)
 })
