@@ -27,6 +27,17 @@ describe('deterministic ProcessHarbor engine', () => {
     expect(updated.body).toContain('Owner review complete.')
   })
 
+  it('does not recreate active tags from nested generated markup', () => {
+    const document = generateDocument({
+      ...initialIntake,
+      sourceNotes: 'Review <scr<script>ipt>alert(1)</scr</script>ipt> and <ifr<iframe>ame src=x>markup.',
+    })
+    const markdown = toMarkdown(document)
+
+    expect(markdown).not.toMatch(/[<>]/)
+    expect(markdown).not.toMatch(/<\/?(?:script|iframe)/i)
+  })
+
   it('creates required SOP sections for operations review', () => {
     const document = generateDocument(initialIntake)
 

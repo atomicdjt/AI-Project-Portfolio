@@ -2,6 +2,8 @@
 
 Nexus Play is a local digital game distribution platform demo built with React, Vite, and Express. It demonstrates product UI thinking, storefront design, catalog interaction, account simulation, checkout flow, wishlist behavior, owned library concepts, and install queue design.
 
+The reference server binds to `127.0.0.1` only. Its account, wallet, checkout, and download state are simulations; it is not designed or secured for network or production exposure.
+
 ## Project Type
 
 **Runnable MVP**

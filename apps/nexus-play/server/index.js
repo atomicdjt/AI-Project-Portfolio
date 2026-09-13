@@ -230,7 +230,7 @@ app.post('/api/downloads/start', (req, res) => {
 app.use(express.static(path.join(rootDir, 'dist')))
 app.use((_req, res) => res.sendFile(path.join(rootDir, 'dist', 'index.html')))
 
-app.listen(port, () => {
+app.listen(port, '127.0.0.1', () => {
   console.log(`Nexus Play listening on http://127.0.0.1:${port}`)
 })
 

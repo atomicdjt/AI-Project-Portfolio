@@ -17,6 +17,7 @@ export function normalizeGeneratedText(value: string): string {
     .replace(/<\s*li[^>]*>/gi, '\n- ')
     .replace(/<\s*\/?(p|div|section|article|strong|em|b|i|span|ul|ol|h[1-6])[^>]*>/gi, '')
     .replace(/<[^>\n]+>/g, '')
+    .replace(/[<>]/g, '')
     .replace(/[ \t]+\n/g, '\n')
     .replace(/\n[ \t]+/g, '\n')
     .replace(/\n{3,}/g, '\n\n')
