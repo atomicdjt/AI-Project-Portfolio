@@ -1,3 +1,15 @@
+<div align="center">
+
+<img src="./docs/images/repository-header.svg" alt="AI PROJECT PORTFOLIO — portfolio identity banner" width="100%" />
+
+<br />
+
+[**LIVE PORTFOLIO**](https://ai-project-portfolio-portfolio-hub.vercel.app/) · [**5-MIN REVIEW**](https://ai-project-portfolio-portfolio-hub.vercel.app/review) · [**PROFILE**](https://github.com/atomicdjt) · [**VERIFICATION**](docs/verification.md)
+
+</div>
+
+<br />
+
 # AI Project Portfolio
 
 **What is this?** A source-backed portfolio of applications, workflow systems, and product prototypes demonstrating applied AI judgment, technical-operations thinking, local-first architecture, frontend implementation, documentation discipline, and responsible scope control.
