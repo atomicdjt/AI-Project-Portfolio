@@ -22,7 +22,7 @@ Hard boundaries:
 The Portfolio Hub now provides the authoritative public discovery layer for the flagship projects. Future public posts should normally link to the canonical project page first, then the source repository or live application as supporting destinations.
 
 - Validation Ledger: https://ai-project-portfolio-portfolio-hub.vercel.app/projects/validation-ledger
-- Agent Session Bridge: https://ai-project-portfolio-portfolio-hub.vercel.app/projects/agent-session-bridge
+- Trajectory Fidelity Bridge: https://ai-project-portfolio-portfolio-hub.vercel.app/projects/agent-session-bridge
 - BuildWorld AI: https://ai-project-portfolio-portfolio-hub.vercel.app/projects/buildworld-ai
 - WeaveStudio: https://ai-project-portfolio-portfolio-hub.vercel.app/projects/weavestudio
 
@@ -30,7 +30,7 @@ This concentrates external authority on stable pages that already link onward to
 
 ## Current hero order
 
-1. **Agent Session Bridge** — strongest developer-tool and interoperability story; MIT; current ATIF v1.7 implementation; explicit fidelity/loss accounting.
+1. **Trajectory Fidelity Bridge** — strongest developer-tool and interoperability story; MIT; current ATIF v1.7 implementation; explicit fidelity/loss accounting.
 2. **Validation Ledger** — MIT, live demo, local-first evidence workflow, broad product/research audience.
 3. **BuildWorld AI** — strong technical/visual demo centered on deterministic reproducibility and model-bound simulation claims.
 4. **WeaveStudio** — strong local-first/provenance product; public source remains proprietary, so promote selectively rather than as an open-source contribution target.
@@ -39,7 +39,7 @@ This concentrates external authority on stable pages that already link onward to
 
 The connected GitHub automation can change files/issues/PRs but does not currently expose repository-topic, repository-homepage, Discussions-enable, or social-preview-setting writes. Apply these manually in GitHub settings.
 
-### Agent Session Bridge
+### Trajectory Fidelity Bridge
 
 Recommended topics, in priority order:
 
@@ -99,19 +99,19 @@ Recommended Website field:
 
 Enable Discussions first only on the MIT projects unless there is a specific reason to add them elsewhere.
 
-### Agent Session Bridge — seed #1
+### Trajectory Fidelity Bridge — seed #1
 
 **Title:** What state must survive a coding-agent handoff?
 
 **Body:**
 
-> Agent Session Bridge currently treats supported messages, tool calls/results, timestamps, and explicit fidelity/loss accounting as portable ATIF trajectory state, while provider-only metadata can be degraded or omitted.
+> Trajectory Fidelity Bridge currently treats supported messages, tool calls/results, timestamps, and explicit fidelity/loss accounting as portable ATIF trajectory state, while provider-only metadata can be degraded or omitted.
 >
 > I am trying to falsify that boundary. Which state would you consider essential for a real coding-agent handoff, and which fields are provider noise?
 >
 > Concrete provider examples are especially useful. If a source field cannot be represented faithfully, I would rather report the loss than pretend it survived.
 
-### Agent Session Bridge — seed #2
+### Trajectory Fidelity Bridge — seed #2
 
 **Title:** Which provider should be the next source or target adapter?
 
@@ -145,7 +145,7 @@ Enable Discussions first only on the MIT projects unless there is a specific rea
 
 Use a readable 2:1 card with one product screenshot maximum and no tiny feature-list text.
 
-### Agent Session Bridge
+### Trajectory Fidelity Bridge
 
 Headline: **Portable coding-agent trajectories**  
 Diagram: `Claude Code → ATIF v1.7 → target mapper`  
@@ -173,7 +173,7 @@ Footer: `Browser-local · public evaluation source`
 
 Keep launch posts technical and community-driven rather than corporate or salesy.
 
-### Agent Session Bridge — primary DEV launch
+### Trajectory Fidelity Bridge — primary DEV launch
 
 **Title:** What actually breaks when you try to move a coding-agent session between providers
 
@@ -187,7 +187,7 @@ Keep launch posts technical and community-driven rather than corporate or salesy
 >
 > I wanted to test a stricter question: **what can actually be transferred faithfully, and what must be declared lost?**
 >
-> I built Agent Session Bridge as an MIT-licensed reference implementation that normalizes supported coding-agent history into the public Agent Trajectory Interchange Format (ATIF) v1.7. ASB is not a competing interchange standard.
+> I built Trajectory Fidelity Bridge as an MIT-licensed reference implementation that normalizes supported coding-agent history into the public Agent Trajectory Interchange Format (ATIF) v1.7. ASB is not a competing interchange standard.
 >
 > Today it can:
 >
@@ -263,13 +263,13 @@ Keep launch posts technical and community-driven rather than corporate or salesy
 
 Use the sanctioned weekly self-promotion thread when that remains the current community route; do not use an unrelated standalone technical thread for a promotional showcase.
 
-**Agent Session Bridge comment:**
+**Trajectory Fidelity Bridge comment:**
 
 > **Affiliation: I built this.**
 >
 > I made an MIT-licensed reference implementation for a problem I kept running into with AI-assisted coding: switching agents usually means collapsing structured history into a summary.
 >
-> Agent Session Bridge imports supported Claude Code JSONL into ATIF v1.7, records source fidelity/loss explicitly, applies heuristic secret redaction, and can generate an Antigravity-style derived transcript payload.
+> Trajectory Fidelity Bridge imports supported Claude Code JSONL into ATIF v1.7, records source fidelity/loss explicitly, applies heuristic secret redaction, and can generate an Antigravity-style derived transcript payload.
 >
 > The important limitation: native Antigravity resumption does **not** work today because there is no supported historical-session import API. I deliberately did not write into its opaque internal database.
 >
@@ -285,7 +285,7 @@ Use the current sanctioned self-promotion megathread, not an unrelated technical
 
 **Comment:**
 
-> **Agent Session Bridge** — an MIT-licensed ATIF v1.7 reference implementation for portable coding-agent trajectory history.
+> **Trajectory Fidelity Bridge** — an MIT-licensed ATIF v1.7 reference implementation for portable coding-agent trajectory history.
 >
 > It currently imports supported Claude Code JSONL into ATIF, reports preservation/loss explicitly, and generates target mappings without claiming unsupported native rehydration.
 >
@@ -299,9 +299,9 @@ Use the current sanctioned self-promotion megathread, not an unrelated technical
 
 Follow the current Show HN rules and any current community restrictions before posting. Do not create a fresh account simply to launch, and never ask anyone to upvote or comment.
 
-### Agent Session Bridge
+### Trajectory Fidelity Bridge
 
-**Title:** `Show HN: Agent Session Bridge – portable history between coding agents`
+**Title:** `Show HN: Trajectory Fidelity Bridge – portable history between coding agents`
 
 **Opening comment:**
 
@@ -390,9 +390,9 @@ Existing duplication guards must be checked against current sent-mail/outreach e
 
 Do not launch everything simultaneously. Preserve attribution.
 
-1. Agent Session Bridge — one technically appropriate community placement.
+1. Trajectory Fidelity Bridge — one technically appropriate community placement.
 2. Measure 24–48 hours.
-3. Agent Session Bridge — DEV `#showdev` technical post.
+3. Trajectory Fidelity Bridge — DEV `#showdev` technical post.
 4. Measure.
 5. Validation Ledger — DEV/local-first technical discussion.
 6. Measure.
@@ -406,7 +406,7 @@ GitHub repository Traffic is a 14-day rolling window. Capture the numbers immedi
 
 | Date/time | Project | Channel | Unique visitors | Views | Clones | Stars | Followers | Forks | Watchers | Issues/Discussions | External mentions | Notes |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
-| baseline | Agent Session Bridge | none | manual | manual | manual | manual | manual | manual | manual | contributor issues seeded | — | GitHub Traffic requires owner Insights access |
+| baseline | Trajectory Fidelity Bridge | none | manual | manual | manual | manual | manual | manual | manual | contributor issues seeded | — | GitHub Traffic requires owner Insights access |
 | baseline | Validation Ledger | none | manual | manual | manual | manual | manual | manual | manual | critique + contributor issues seeded | — | canonical authority links added 2026-08-25 |
 | baseline | BuildWorld AI | none | manual | manual | manual | manual | manual | manual | manual | critique issue seeded | — | canonical authority links added 2026-08-25 |
 | baseline | WeaveStudio | awesome-local-first review | manual | manual | manual | manual | manual | manual | manual | external curation issue open | contextual canonical backlink added | maintainer preliminary triage said likely worth adding |

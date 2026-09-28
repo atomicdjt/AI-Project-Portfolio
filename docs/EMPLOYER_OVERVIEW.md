@@ -15,7 +15,7 @@ The consistent pattern is the ability to take an ambiguous problem, define the u
 
 Use [Verification](verification.md) to understand the evidence behind public claims and [Deployment Map](deployment-and-previews.md) to confirm source authority and canonical routes.
 
-The separate technical proof path is Validation Ledger → Agent Session Bridge → BuildWorld AI → WeaveStudio. These audience paths are intentionally distinct and do not imply universal ranking, adoption, revenue, or endorsement.
+The separate technical proof path is Validation Ledger → Trajectory Fidelity Bridge → BuildWorld AI → WeaveStudio. These audience paths are intentionally distinct and do not imply universal ranking, adoption, revenue, or endorsement.
 
 ## Role-to-Evidence Map
 
