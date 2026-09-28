@@ -68,7 +68,7 @@ It is deliberately conservative. A thoughtful reply is not the same thing as mai
 These are externally visible but have not crossed the evidence threshold above:
 
 - **AgentCI issue #121:** the owner narrowed a provenance hold and returned David's submission to `UNVERIFIED / reproducible-candidate`, authorizing bounded reproduction of the immutable public package. This is a meaningful evaluation-stage signal, but the owner explicitly stated it is not acceptance and reproduction is still pending.
-- **Google Antigravity CLI issue #567:** David posted the Agent Session Bridge reference implementation, integration RFC, verification/ablation report, and reproduction guide as evidence for the missing external transcript-import primitive. No external response to that submission was present in the checked thread yet.
+- **Google Antigravity CLI issue #567:** David posted the Trajectory Fidelity Bridge reference implementation, integration RFC, verification/ablation report, and reproduction guide as evidence for the missing external transcript-import primitive. No external response to that submission was present in the checked thread yet.
 - **`mylofi/localfirstweb.dev` PR #102:** David submitted Validation Ledger for the local-first examples list. The PR is open and has no external comment or review yet.
 
 ## What this evidence does support
