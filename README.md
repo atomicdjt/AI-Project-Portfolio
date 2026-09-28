@@ -55,7 +55,7 @@ The profile repository is the canonical source for published writing. This portf
 ### Technical proof
 
 1. **[Validation Ledger](https://validation-ledger.vercel.app/)** — evidence-to-decision traceability and local-first verification.
-2. **[Trajectory Fidelity Bridge](https://pypi.org/project/atomicdjt-agent-session-bridge/)** — agent-trace interoperability, fidelity accounting, and privacy boundaries.
+2. **[Trajectory Fidelity Bridge](https://pypi.org/project/atomicdjt-trajectory-fidelity-bridge/)** — agent-trace interoperability, fidelity accounting, and privacy boundaries. Existing users of the previous `atomicdjt-agent-session-bridge` distribution can follow the [migration guide](https://github.com/atomicdjt/trajectory-fidelity-bridge/blob/main/docs/PYPI_MIGRATION.md).
 3. **[BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/)** — deterministic systems simulation.
 4. **[WeaveStudio](https://weavestudio-nine.vercel.app/)** — reviewable workflow construction and transfer materials.
 

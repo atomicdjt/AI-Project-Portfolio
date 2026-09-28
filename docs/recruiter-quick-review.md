@@ -23,7 +23,7 @@ Use [External Corroboration](discovery/external-corroboration.md) for the claim-
 
 ## Best Employer-Facing Evidence
 
-For the separate technical proof path, review [Validation Ledger](https://validation-ledger.vercel.app/) -> [Trajectory Fidelity Bridge](https://pypi.org/project/atomicdjt-agent-session-bridge/) -> [BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/) -> [WeaveStudio](https://weavestudio-nine.vercel.app/). This is an audience-specific review order, not a universal ranking or adoption claim.
+For the separate technical proof path, review [Validation Ledger](https://validation-ledger.vercel.app/) -> [Trajectory Fidelity Bridge](https://pypi.org/project/atomicdjt-trajectory-fidelity-bridge/) -> [BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/) -> [WeaveStudio](https://weavestudio-nine.vercel.app/). This is an audience-specific review order, not a universal ranking or adoption claim.
 
 | Project | Current review route | Why review it |
 | --- | --- | --- |
