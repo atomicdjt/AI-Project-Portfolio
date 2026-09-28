@@ -28,7 +28,7 @@
 ## Fast Review
 
 - **[Live Portfolio Hub](https://ai-project-portfolio-portfolio-hub.vercel.app/):** visual employer-facing review surface with project filters, evidence routes, demos, and case studies.
-- **[Technical proof review](https://ai-project-portfolio-portfolio-hub.vercel.app/review):** a focused Validation Ledger, Agent Session Bridge, BuildWorld AI, and WeaveStudio sequence.
+- **[Technical proof review](https://ai-project-portfolio-portfolio-hub.vercel.app/review):** a focused Validation Ledger, Trajectory Fidelity Bridge, BuildWorld AI, and WeaveStudio sequence.
 - **[Recruiter Quick Review](docs/recruiter-quick-review.md):** shortest evidence-based review sequence.
 - **[Employer Overview](docs/EMPLOYER_OVERVIEW.md):** direct role-to-project mapping.
 - **[Verification Guide](docs/verification.md):** repository scripts, deployment checks, validation scope, and evidence boundaries.
@@ -55,7 +55,7 @@ The profile repository is the canonical source for published writing. This portf
 ### Technical proof
 
 1. **[Validation Ledger](https://validation-ledger.vercel.app/)** — evidence-to-decision traceability and local-first verification.
-2. **[Agent Session Bridge](https://pypi.org/project/atomicdjt-agent-session-bridge/)** — agent-trace interoperability, fidelity accounting, and privacy boundaries.
+2. **[Trajectory Fidelity Bridge](https://pypi.org/project/atomicdjt-agent-session-bridge/)** — agent-trace interoperability, fidelity accounting, and privacy boundaries.
 3. **[BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/)** — deterministic systems simulation.
 4. **[WeaveStudio](https://weavestudio-nine.vercel.app/)** — reviewable workflow construction and transfer materials.
 
