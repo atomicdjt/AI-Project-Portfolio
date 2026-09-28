@@ -9,7 +9,7 @@ test('interactive catalogue and technical review path include every core technic
 
   for (const flagship of [
     'Validation Ledger',
-    'Agent Session Bridge',
+    'Trajectory Fidelity Bridge',
     'BuildWorld AI',
     'WeaveStudio',
   ]) {
