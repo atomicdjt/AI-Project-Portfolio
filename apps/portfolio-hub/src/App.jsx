@@ -36,7 +36,7 @@ const projects = [
   },
   {
     name: 'agent-session-bridge',
-    publicName: 'Agent Session Bridge',
+    publicName: 'Trajectory Fidelity Bridge',
     audience: 'Technical',
     status: 'Published',
     repositoryAuthority: 'Separate authoritative repository',
@@ -293,7 +293,7 @@ const projects = [
 ];
 
 const technicalFlagships = projects.filter((project) =>
-  ['Validation Ledger', 'Agent Session Bridge', 'BuildWorld AI', 'WeaveStudio'].includes(project.publicName),
+  ['Validation Ledger', 'Trajectory Fidelity Bridge', 'BuildWorld AI', 'WeaveStudio'].includes(project.publicName),
 );
 const archiveProjects = projects.filter((project) => !technicalFlagships.includes(project));
 
@@ -317,7 +317,7 @@ const externalProof = [
   },
   {
     eyebrow: 'Published interoperability work',
-    title: 'Agent Session Bridge',
+    title: 'Trajectory Fidelity Bridge',
     text: 'A published Python package and technical article document ATIF normalization, fidelity accounting, redaction boundaries, and the distinction between portable history and native session resumption.',
     links: [
       ['Open package', 'https://pypi.org/project/atomicdjt-agent-session-bridge/'],
@@ -595,7 +595,7 @@ function ProofCard({ item }) {
 }
 
 function SiteFooter() {
-  return <footer className="site-footer"><div><span className="footer-eyebrow">Canonical project navigation</span><h2>Keep exploring the work</h2><p>Start with a flagship page for technical context, then inspect the executable product and authoritative source linked from that page.</p></div><nav aria-label="Canonical flagship projects"><a href="/projects/validation-ledger">Validation Ledger</a><a href="/projects/agent-session-bridge">Agent Session Bridge</a><a href="/projects/buildworld-ai">BuildWorld AI</a><a href="/projects/weavestudio">WeaveStudio</a></nav><small>Built by David Turner. Claims are limited to documented implementation, testing, publication, deployment, and linked external evidence.</small></footer>;
+  return <footer className="site-footer"><div><span className="footer-eyebrow">Canonical project navigation</span><h2>Keep exploring the work</h2><p>Start with a flagship page for technical context, then inspect the executable product and authoritative source linked from that page.</p></div><nav aria-label="Canonical flagship projects"><a href="/projects/validation-ledger">Validation Ledger</a><a href="/projects/agent-session-bridge">Trajectory Fidelity Bridge</a><a href="/projects/buildworld-ai">BuildWorld AI</a><a href="/projects/weavestudio">WeaveStudio</a></nav><small>Built by David Turner. Claims are limited to documented implementation, testing, publication, deployment, and linked external evidence.</small></footer>;
 }
 
 function StatusChip({ status }) {
