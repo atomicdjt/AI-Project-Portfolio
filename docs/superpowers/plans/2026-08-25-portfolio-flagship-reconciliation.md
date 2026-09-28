@@ -6,7 +6,7 @@
 
 ## Architecture decision
 
-Use four named **core technical flagships**: Validation Ledger, Agent Session Bridge, BuildWorld AI, and WeaveStudio. They are distinct from:
+Use four named **core technical flagships**: Validation Ledger, Trajectory Fidelity Bridge, BuildWorld AI, and WeaveStudio. They are distinct from:
 
 - an **employer/operations review path** (ProcessHarbor and the projects that best evidence role fit);
 - an **external technical-proof path** (accepted upstream GitHub contributions);
@@ -18,7 +18,7 @@ This is not a universal ranking and it does not imply adoption, customers, reven
 
 **Files:** `tests/portfolio-hub/flagship-review-path.test.mjs` (new), `package.json`.
 
-1. Add a Node test that reads the Portfolio Hub source and fails unless the interactive catalogue contains Validation Ledger, Agent Session Bridge, BuildWorld AI, and WeaveStudio.
+1. Add a Node test that reads the Portfolio Hub source and fails unless the interactive catalogue contains Validation Ledger, Trajectory Fidelity Bridge, BuildWorld AI, and WeaveStudio.
 2. Make it fail against the current source before changing the application.
 3. Add a focused `test:portfolio-hierarchy` script, and keep the check narrow: it asserts the architecture boundary rather than snapshots all prose.
 
@@ -26,7 +26,7 @@ This is not a universal ranking and it does not imply adoption, customers, reven
 
 **Files:** `apps/portfolio-hub/src/App.jsx`, `apps/portfolio-hub/index.html` only if structured metadata needs a truthful wording alignment.
 
-1. Add first-class project-card/catalogue entries for Validation Ledger and Agent Session Bridge, with their authoritative repositories, canonical project pages, current verified package/live status, and narrow evidence statements.
+1. Add first-class project-card/catalogue entries for Validation Ledger and Trajectory Fidelity Bridge, with their authoritative repositories, canonical project pages, current verified package/live status, and narrow evidence statements.
 2. Add a `Technical` audience and a `Published` status option where needed so catalogue filters remain semantically correct.
 3. Separate the core technical-flagship collection from the employer/operations collection. Do not call the employer subset “the three flagships.”
 4. Make `/review` follow the core technical-proof sequence, while the employer section retains role-fit framing and the commercial section retains its non-traction disclaimer.
@@ -36,7 +36,7 @@ This is not a universal ranking and it does not imply adoption, customers, reven
 **Files:** `README.md`, `docs/recruiter-quick-review.md`, `docs/EMPLOYER_OVERVIEW.md`, `docs/PROJECT_INDEX.md`, `docs/project-ranking.md`, `docs/accessibility/PLAN2A_STATUS.md`, `docs/accessibility/PLAN2B_STATUS.md`.
 
 1. Document the four technical flagships and audience-specific review paths consistently across recruiter and employer documents.
-2. Add Validation Ledger and Agent Session Bridge to the human-readable Project Index with source authority and claim boundaries.
+2. Add Validation Ledger and Trajectory Fidelity Bridge to the human-readable Project Index with source authority and claim boundaries.
 3. Correct VariantVision’s status from “deployment pending” to a narrowly worded live Vercel deployment statement; retain non-diagnostic and deployment-evidence limits.
 4. Correct accessibility status files to say source-level remediation is merged. Keep provider-proven production retest, NVDA/equivalent assistive-technology use, and actual 200% browser zoom as outstanding gates.
 
