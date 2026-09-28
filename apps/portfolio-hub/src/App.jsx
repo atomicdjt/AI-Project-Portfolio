@@ -41,10 +41,10 @@ const projects = [
     status: 'Published',
     repositoryAuthority: 'Separate authoritative repository',
     category: 'Agent trace interoperability',
-    demo: 'https://pypi.org/project/atomicdjt-agent-session-bridge/',
-    source: 'https://github.com/atomicdjt/agent-session-bridge',
+    demo: 'https://pypi.org/project/atomicdjt-trajectory-fidelity-bridge/',
+    demoLabel: 'PyPI package',
+    source: 'https://github.com/atomicdjt/trajectory-fidelity-bridge',
     caseStudy: '/projects/agent-session-bridge',
-    image: imagePath('agent-session-bridge-pypi.png'),
     stack: ['Python', 'ATIF v1.7', 'OpenTelemetry', 'OpenInference'],
     summary: 'Provider-neutral Python reference implementation for normalizing coding-agent session records with explicit fidelity, privacy, and historical-projection boundaries.',
     evidence: 'Published package and public source document ATIF normalization, best-effort secret redaction, fidelity accounting, and the limits of historical observability. It does not claim native session rehydration or original runtime telemetry.',
@@ -320,7 +320,7 @@ const externalProof = [
     title: 'Trajectory Fidelity Bridge',
     text: 'A published Python package and technical article document ATIF normalization, fidelity accounting, redaction boundaries, and the distinction between portable history and native session resumption.',
     links: [
-      ['Open package', 'https://pypi.org/project/atomicdjt-agent-session-bridge/'],
+      ['Open package', 'https://pypi.org/project/atomicdjt-trajectory-fidelity-bridge/'],
       ['Read technical article', 'https://github.com/atomicdjt/atomicdjt/blob/main/writing/from-claude-code-jsonl-to-atif-v1-7.md'],
     ],
   },
@@ -575,7 +575,7 @@ function ProjectCard({ project }) {
         <p>{project.evidence}</p>
         <small>{project.repositoryAuthority}</small>
         <div className="card-actions">
-          {project.demo ? <ProjectLink project={project} surface="flagship_card" kind="demo" href={project.demo}>Vercel demo</ProjectLink> : null}
+          {project.demo ? <ProjectLink project={project} surface="flagship_card" kind="demo" href={project.demo}>{project.demoLabel || 'Vercel demo'}</ProjectLink> : null}
           {project.source ? <ProjectLink project={project} surface="flagship_card" kind="source" href={project.source}>Source</ProjectLink> : null}
           {project.caseStudy ? <ProjectLink project={project} surface="flagship_card" kind="case_study" href={project.caseStudy}>{project.audience === 'Commercial' ? 'Product details' : project.audience === 'Technical' ? 'Canonical page' : 'Case study'}</ProjectLink> : null}
         </div>

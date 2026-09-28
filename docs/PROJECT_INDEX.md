@@ -16,7 +16,7 @@ This index records public names, source authority, implementation status, Vercel
 | Public name | Evidence surface | Repository authority | Boundary |
 | --- | --- | --- | --- |
 | [Validation Ledger](https://validation-ledger.vercel.app/) | Production application and source | [Separate authoritative repository](https://github.com/atomicdjt/validation-ledger) | Internal validation and qualified practitioner evaluation; no adoption or endorsement claim. |
-| [Trajectory Fidelity Bridge](https://pypi.org/project/atomicdjt-agent-session-bridge/) | Published package and source | [Separate authoritative repository](https://github.com/atomicdjt/agent-session-bridge) | Historical projection and interoperability reference; no native session rehydration claim. |
+| [Trajectory Fidelity Bridge](https://pypi.org/project/atomicdjt-trajectory-fidelity-bridge/) | Published package and source | [Separate authoritative repository](https://github.com/atomicdjt/trajectory-fidelity-bridge) | Historical projection and interoperability reference; no native session rehydration claim. [PyPI migration guide](https://github.com/atomicdjt/trajectory-fidelity-bridge/blob/main/docs/PYPI_MIGRATION.md). |
 | [BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/) | Vercel application and source | [Separate authoritative repository](https://github.com/atomicdjt/buildworld-ai) | Deterministic heuristic simulation; not scientific or real-world prediction. |
 | [WeaveStudio](https://weavestudio-nine.vercel.app/) | Canonical product and acquisition overview | [Separate authoritative repository](https://github.com/atomicdjt/weavestudio) | Acquisition-ready packaging; no customer, revenue, or completed-acquisition claim. |
 
