@@ -15,9 +15,14 @@ for (const [route, file, heading] of [
     assert.equal((html.match(/<h1[ >]/g) || []).length, 1);
     assert.ok(html.includes(`<link rel="canonical" href="${origin}${route}"`));
     assert.ok(html.includes(`<meta property="og:url" content="${origin}${route}"`));
-    for (const slug of ['validation-ledger', 'agent-session-bridge', 'buildworld-ai', 'weavestudio']) {
+    for (const [slug, sourceSlug] of [
+      ['validation-ledger', 'validation-ledger'],
+      ['agent-session-bridge', 'trajectory-fidelity-bridge'],
+      ['buildworld-ai', 'buildworld-ai'],
+      ['weavestudio', 'weavestudio'],
+    ]) {
       assert.ok(html.includes(`href="/projects/${slug}"`), `Missing canonical link: ${slug}`);
-      assert.ok(html.includes(`href="https://github.com/atomicdjt/${slug}"`), `Missing source link: ${slug}`);
+      assert.ok(html.includes(`href="https://github.com/atomicdjt/${sourceSlug}"`), `Missing source link: ${slug}`);
     }
     assert.doesNotMatch(html, /<div id="root"><\/div>/);
     assert.match(html, /<script type="module"[^>]*src="\/assets\//);
