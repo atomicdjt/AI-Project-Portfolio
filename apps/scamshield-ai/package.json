@@ -28,7 +28,7 @@
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.5",
     "@vitejs/plugin-react": "^4.3.0",
-    "eslint": "^9.17.0",
+    "eslint": "^10.11.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.5.5",
     "jsdom": "^25.0.0",
