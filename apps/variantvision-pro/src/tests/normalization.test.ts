@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import {
   datasetForBuild,
   inferChromosomeFromRefseq,
+  inferBuildFromRefseq,
   normalizeVariant,
   parseGnomadId,
   parseHgvsGenomic,
@@ -10,6 +11,18 @@ import {
 } from '../modules/variant/normalizeVariant'
 
 describe('Variant Normalization Module', () => {
+  it('rejects conflicting coordinates and a RefSeq accession from another assembly', () => {
+    const input = { gene: 'HBB', variant: 'E6V', hgvs: 'NC_000011.10:g.5227002T>A', gnomadId: '11-5227002-T-A', build: 'GRCh38' as const, condition: '' }
+    expect(normalizeVariant({ ...input, gnomadId: '11-5227002-T-G' }).vcfId).toBeNull()
+    expect(normalizeVariant({ ...input, build: 'GRCh37' }).vcfId).toBeNull()
+    expect(inferBuildFromRefseq(input.hgvs)).toBe('GRCh38')
+    expect(inferBuildFromRefseq('NC_000011.9:g.5248232T>A')).toBe('GRCh37')
+  })
+  it('rejects invalid chromosomes, zero positions, unchanged alleles and partial HGVS strings', () => {
+    for (const id of ['99-123-A-T', '11-0-T-A', '11-123-T-T']) expect(parseGnomadId(id)).toBeNull()
+    expect(parseHgvsGenomic('prefix NC_000011.10:g.5227002T>A suffix')).toBeNull()
+    expect(parseProteinChange('E0V').position).toBeNull()
+  })
   it('parses valid gnomAD IDs with or without chr prefix', () => {
     expect(parseGnomadId('11-5227002-T-A')).toEqual({
       chrom: '11',
@@ -128,6 +141,8 @@ describe('Variant Normalization Module', () => {
       condition: 'sickle cell',
     })
     expect(fallbackResult.parsedFrom).toBe('known teaching example')
+    expect(normalizeVariant({ ...fallbackResult.input, variant: 'p.Glu7Val' }).vcfId).toBe('11-5227002-T-A')
+    expect(normalizeVariant({ ...fallbackResult.input, variant: 'p.Glu6Val' }).vcfId).toBeNull()
 
     // Path 5: Manual review required
     const manualResult = normalizeVariant({

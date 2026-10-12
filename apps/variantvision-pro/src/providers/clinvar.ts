@@ -2,19 +2,19 @@
  * ClinVar provider adapter.
  *
  * Uses NCBI E-utilities (esearch + esummary) to fetch variant classifications
- * from ClinVar by rsID. The E-utilities API is public, CORS-friendly, and
+ * from ClinVar by rsID. Browser access depends on upstream CORS headers, and
  * does not require an API key for modest request rates (<3 req/s without key).
  *
  * NCBI requests that users provide a tool name and email for identification.
- * We use generic values since this is an educational tool, not a production
- * clinical system.
+ * The client sends a tool name and an optional configured contact email.
  *
  * Reference: https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/
  */
 
-import type { ClinVarClassification, ClinVarResult, ProviderResult } from './types'
+import type { ClinVarClassification, ClinVarExpectedVariant, ClinVarResult, ProviderResult } from './types'
 import { providerError, providerNoResult, providerSuccess } from './types'
 import { fetchNcbi } from './ncbi'
+import { asRecord, matchesClinVarAllele } from './clinvarMatch'
 
 const EUTILS_BASE = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils'
 const DEFAULT_TIMEOUT_MS = 10_000
@@ -40,6 +40,7 @@ function reviewStarsFromStatus(status: string): number {
  */
 export async function fetchClinVar(
   rsId: string,
+  expected?: ClinVarExpectedVariant,
   timeoutMs = DEFAULT_TIMEOUT_MS,
 ): Promise<ProviderResult<ClinVarResult>> {
   const start = performance.now()
@@ -53,12 +54,18 @@ export async function fetchClinVar(
     })
   }
 
+  if (!expected) {
+    return providerError('clinvar', 'unsupported_variant', 'An assembly-specific genomic allele is required to select a ClinVar record safely.', {
+      variantIdUsed, durationMs: Math.round(performance.now() - start),
+    })
+  }
+
   const controller = new AbortController()
-  const timer = window.setTimeout(() => controller.abort(), timeoutMs)
+  const timer = setTimeout(() => controller.abort(), timeoutMs)
 
   try {
     // Step 1: esearch — find ClinVar variation IDs for this rsID
-    const searchUrl = `${EUTILS_BASE}/esearch.fcgi?db=clinvar&term=${variantIdUsed}[variant+id]&retmode=json`
+    const searchUrl = `${EUTILS_BASE}/esearch.fcgi?db=clinvar&term=${variantIdUsed}[variant+id]&retmax=100&retmode=json`
     const searchRes = await fetchNcbi(searchUrl, { signal: controller.signal })
 
     if (!searchRes.ok) {
@@ -69,7 +76,8 @@ export async function fetchClinVar(
     }
 
     const searchData = await searchRes.json()
-    const idList: string[] = searchData?.esearchresult?.idlist ?? []
+    const idList: string[] = Array.isArray(searchData?.esearchresult?.idlist)
+      ? searchData.esearchresult.idlist.filter((id: unknown): id is string => typeof id === 'string' && /^\d+$/.test(id)) : []
 
     if (idList.length === 0) {
       return providerNoResult('clinvar', {
@@ -79,7 +87,7 @@ export async function fetchClinVar(
     }
 
     // Step 2: esummary — fetch classification details
-    const ids = idList.slice(0, 5).join(',')
+    const ids = idList.join(',')
     const summaryUrl = `${EUTILS_BASE}/esummary.fcgi?db=clinvar&id=${ids}&retmode=json`
     const summaryRes = await fetchNcbi(summaryUrl, { signal: controller.signal })
 
@@ -99,44 +107,52 @@ export async function fetchClinVar(
       })
     }
 
-    // Parse classifications from the first variation
-    const firstId = idList[0]
-    const variation = result[firstId]
-    if (!variation) {
+    const matchingIds = idList.filter((id) => matchesClinVarAllele(result[id], expected))
+    if (matchingIds.length !== 1) {
       return providerNoResult('clinvar', {
         variantIdUsed,
         durationMs: Math.round(performance.now() - start),
+        sourceUrl: `https://www.ncbi.nlm.nih.gov/clinvar/?term=${variantIdUsed}`,
+        warnings: [matchingIds.length === 0
+          ? `No single-variant ClinVar record matched ${expected.build} ${expected.gnomadId}. Compound records and other alleles were excluded; inspect the search results manually.`
+          : `More than one ClinVar record matched ${expected.build} ${expected.gnomadId}; no assertion was selected automatically.`],
       })
     }
+    const matchedId = matchingIds[0]
+    const variation = result[matchedId]
 
     const classifications: ClinVarClassification[] = []
 
-    // ClinVar esummary returns clinical_significance and supporting_submissions
-    const clinSig = variation.clinical_significance?.description ?? variation.germline_classification?.description ?? ''
-    const reviewStatus = variation.clinical_significance?.review_status ?? variation.germline_classification?.review_status ?? ''
-    const lastEval = variation.clinical_significance?.last_evaluated ?? variation.germline_classification?.last_evaluated ?? null
-
-    if (clinSig) {
+    const tracks = [
+      ['germline', variation.germline_classification ?? variation.clinical_significance],
+      ['somatic clinical impact', variation.clinical_impact_classification],
+      ['oncogenicity', variation.oncogenicity_classification],
+    ] as const
+    for (const [track, value] of tracks) {
+      const assertion = asRecord(value)
+      if (!assertion || typeof assertion.description !== 'string' || !assertion.description) continue
+      const reviewStatus = typeof assertion.review_status === 'string' ? assertion.review_status : ''
       classifications.push({
-        clinicalSignificance: clinSig,
+        track,
+        clinicalSignificance: assertion.description,
         reviewStatus,
         reviewStars: reviewStarsFromStatus(reviewStatus),
-        conditions: extractConditions(variation),
+        conditions: extractConditions(assertion),
         submissionCount: typeof variation.supporting_submissions?.scv === 'number'
           ? variation.supporting_submissions.scv
           : (Array.isArray(variation.supporting_submissions?.scv) ? variation.supporting_submissions.scv.length : 0),
-        lastEvaluated: lastEval || null,
+        lastEvaluated: typeof assertion.last_evaluated === 'string' ? assertion.last_evaluated : null,
       })
     }
 
-    const variationId = String(firstId)
+    const variationId = String(matchedId)
     const url = `https://www.ncbi.nlm.nih.gov/clinvar/variation/${variationId}/`
-    const geneSymbol = extractGeneSymbol(variation)
-    const title = variation.title ?? `ClinVar Variation ${variationId}`
+    const geneSymbol = expected.gene.trim().toUpperCase()
+    const title = typeof variation.title === 'string' ? variation.title : `ClinVar Variation ${variationId}`
 
     const warnings: string[] = []
     if (idList.length > 1) {
-      warnings.push(`Multiple ClinVar records found for ${rsId}; returning the first match.`)
+      warnings.push(`Selected the exact single-variant allele from ${idList.length} ClinVar search records; compound records and alternate alleles were excluded.`)
     }
     if (classifications.length === 0) {
       warnings.push('ClinVar record found but no classification could be extracted from the response.')
@@ -148,6 +164,9 @@ export async function fetchClinVar(
       classifications,
       geneSymbol,
       url,
+      matchedAssembly: expected.build,
+      matchedGenomicId: expected.gnomadId,
+      accessionVersion: typeof variation.accession_version === 'string' ? variation.accession_version : null,
     }, {
       variantIdUsed,
       sourceUrl: url,
@@ -175,7 +194,7 @@ function extractConditions(variation: Record<string, unknown>): string[] {
   try {
     const traits = variation.trait_set as Array<{ trait_name?: string }> | undefined
     if (Array.isArray(traits)) {
-      return traits.map((t) => t.trait_name ?? 'Unknown condition').filter(Boolean)
+      return [...new Set(traits.map((t) => t.trait_name ?? 'Unknown condition').filter(Boolean))]
     }
     // Alternative structure
     const traitNames = variation.trait_name as string | undefined
@@ -184,16 +203,4 @@ function extractConditions(variation: Record<string, unknown>): string[] {
     // Silently return empty — provenance is more important than parsing every edge case
   }
   return []
-}
-
-function extractGeneSymbol(variation: Record<string, unknown>): string | null {
-  try {
-    const genes = variation.genes as Array<{ symbol?: string }> | undefined
-    if (Array.isArray(genes) && genes.length > 0) {
-      return genes[0].symbol ?? null
-    }
-  } catch {
-    // Non-critical
-  }
-  return null
 }

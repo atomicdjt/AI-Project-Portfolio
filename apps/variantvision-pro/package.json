@@ -2,12 +2,13 @@
   "name": "variantvision-pro",
   "private": true,
   "version": "1.0.0",
-  "description": "A static-deployable bioinformatics evidence workbench for educational variant review, source transparency, and non-diagnostic research triage.",
+  "description": "An educational variant evidence workbench with assembly-aware teaching coordinates, attributed source leads, and a PubMed metadata endpoint.",
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 5182",
     "build": "tsc -b && vite build",
-    "lint": "eslint src vite.config.ts vitest.config.ts",
+    "lint": "eslint src api server e2e vite.config.ts vitest.config.ts playwright.config.ts",
+    "test:e2e": "playwright test --config playwright.config.ts",
     "test": "vitest run",
     "preview": "npm run build && vite preview --host 127.0.0.1 --port 4182"
   },

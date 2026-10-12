@@ -76,6 +76,9 @@ export interface LiteratureRecord {
   year: number | null
   role: 'mechanism' | 'clinical context' | 'methodology' | 'population context'
   url: string
+  origin?: 'curated literature lead' | 'live PubMed search'
+  metadataVerifiedAt?: string
+  retrievedAt?: string
 }
 
 export interface VariantCase extends VariantInput {
@@ -89,6 +92,7 @@ export interface VariantCase extends VariantInput {
   originalAa: AminoAcidCode
   replacementAa: AminoAcidCode
   position: number
+  coordinatesByBuild: Record<GenomeBuild, { hgvs: string; gnomadId: string }>
   population: PopulationRecord[]
   clinvarDirection: string
   structuralContext: string
@@ -125,18 +129,16 @@ export interface EvidenceMetric {
 
 export interface EvidenceDossier {
   caseId: string
+  isCuratedCase: boolean
   headline: string
   generatedAt: string
   input: VariantInput
   normalized: NormalizedVariant
   aminoAcid: AminoAcidComparison
-  populationSummary: {
-    totalAlleles: number
-    totalAltAlleles: number
-    estimatedFrequency: number
-    highestGroup: string
-  }
+  populationRecords: PopulationRecord[]
+  populationSummary: { highestFrequency: number | null; highestGroup: string | null; rowCount: number }
   coverageScore: number
+  coverageMethodology: string
   coverageBand: 'High source coverage' | 'Moderate source coverage' | 'Limited source coverage'
   metrics: EvidenceMetric[]
   sourceRecords: SourceRecord[]
@@ -148,5 +150,8 @@ export interface EvidenceDossier {
     durationMs: number
     error: string | null
     retrievedAt: string
+    warnings?: string[]
+    variantIdUsed?: string
+    sourceUrl?: string | null
   }>
 }

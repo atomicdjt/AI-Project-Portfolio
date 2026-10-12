@@ -7,6 +7,8 @@
  * "no evidence found" and "source unavailable."
  */
 
+import type { GenomeBuild } from '../types/variant'
+
 export type ProviderName = 'clinvar' | 'uniprot' | 'pubmed' | 'gnomad'
 
 export type RetrievalStatus =
@@ -49,7 +51,7 @@ export function providerSuccess<T>(
 
 export function providerNoResult(
   provider: ProviderName,
-  meta: { variantIdUsed: string; durationMs: number },
+  meta: { variantIdUsed: string; durationMs: number; warnings?: string[]; sourceUrl?: string | null },
 ): ProviderResult<never> {
   return {
     provider,
@@ -58,8 +60,8 @@ export function providerNoResult(
     error: null,
     retrievedAt: new Date().toISOString(),
     variantIdUsed: meta.variantIdUsed,
-    sourceUrl: null,
-    warnings: [],
+    sourceUrl: meta.sourceUrl ?? null,
+    warnings: meta.warnings ?? [],
     durationMs: meta.durationMs,
   }
 }
@@ -86,6 +88,7 @@ export function providerError(
 // --- ClinVar response types ---
 
 export interface ClinVarClassification {
+  track: 'germline' | 'somatic clinical impact' | 'oncogenicity'
   clinicalSignificance: string
   reviewStatus: string
   reviewStars: number
@@ -100,6 +103,15 @@ export interface ClinVarResult {
   classifications: ClinVarClassification[]
   geneSymbol: string | null
   url: string
+  matchedAssembly: GenomeBuild
+  matchedGenomicId: string
+  accessionVersion?: string | null
+}
+
+export interface ClinVarExpectedVariant {
+  gene: string
+  build: GenomeBuild
+  gnomadId: string
 }
 
 // --- UniProt response types ---
@@ -140,6 +152,9 @@ export interface ProviderHealth {
   durationMs: number
   error: string | null
   retrievedAt: string
+  warnings: string[]
+  variantIdUsed: string
+  sourceUrl: string | null
 }
 
 export interface OrchestratorResult {
