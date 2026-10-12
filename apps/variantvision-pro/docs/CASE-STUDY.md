@@ -10,7 +10,7 @@
 
 Heterogeneous biological databases use different coordinate systems, variant identifiers, and classification models. Furthermore, external APIs experience independent downtime, rate limits, and schema variations. VariantVision Pro addresses these challenges by implementing a fault-tolerant asynchronous provider architecture with centralized NCBI request throttling, a 4-path variant normalization engine, an explicit provenance data model, and an evidence-coverage scoring system that communicates uncertainty rather than collapsing disagreement into pseudo-certainty.
 
-Built with React 19, TypeScript 6, and Vite 8, VariantVision Pro operates as a zero-credential static web application. It integrates live REST endpoints from NCBI and UniProt via client-side fetch orchestration, providing a responsive research triage environment with self-contained Markdown and JSON dossier export capabilities.
+Built with React 19, TypeScript 7 and Vite 8, VariantVision Pro combines a browser workbench with a small Node PubMed metadata endpoint. It retrieves public NCBI/UniProt leads on request and preserves provenance in Markdown and JSON exports.
 
 ---
 
@@ -149,19 +149,15 @@ Traditional aggregators often collapse multiple submitter assertions into a sing
 
 ## 5. Evidence Coverage & Scoring Model
 
-The `buildDossier` engine computes an Evidence Coverage Score (0–100) across 5 weighted components:
+The `buildDossier` engine averages five workflow dimensions equally using fixed status/count rules. The resulting score is uncalibrated; it does not measure source correctness or clinical confidence. See the documented formula in `ARCHITECTURE.md`.
 
 ### Automated Test Suite
 
-VariantVision Pro is covered by 18 unit and integration tests across 3 Vitest suites:
+Verification on 2026-10-12 passed 44 unit tests across nine Vitest files and ten Playwright browser regressions. Current counts should be obtained by running the suites:
 
 ```text
- ✓ src/tests/normalization.test.ts (8 tests)
- ✓ src/tests/variantEngine.test.ts (6 tests)
- ✓ src/tests/providers.test.ts (4 tests)
-
- Test Files  3 passed (3)
-      Tests  18 passed (18)
+ npm run test --workspace apps/variantvision-pro
+ npm run test:e2e --workspace apps/variantvision-pro
 ```
 
 ### Production Build & Linting
@@ -172,7 +168,7 @@ npm run test --workspace apps/variantvision-pro
 npm run build --workspace apps/variantvision-pro
 ```
 
-All commands complete with zero errors and zero warnings.
+The repair verification passed lint, unit tests, browser tests and the production build. These results are software checks, separate from provider availability and independent scientific validation.
 
 ---
 
@@ -186,7 +182,7 @@ All commands complete with zero errors and zero warnings.
 
 ## Technical Stack
 
-- **Frontend**: React 19, TypeScript 6, Vite 8, Tailwind CSS 4, Lucide Icons
+- **Frontend**: React 19, TypeScript 7, Vite 8, Tailwind CSS 4, Lucide Icons
 - **Testing**: Vitest 4
 - **APIs**: NCBI E-utilities (ClinVar, PubMed), UniProt REST API
 - **Deployment**: Vercel Static SPA (`vercel.json`)

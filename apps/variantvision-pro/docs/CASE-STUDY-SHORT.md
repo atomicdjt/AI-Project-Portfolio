@@ -6,7 +6,7 @@
 
 ### What I Built
 
-**VariantVision Pro** is a client-side React 19 / TypeScript 6 bioinformatics evidence workbench for research triage and variant review. It aggregates live scientific data from NCBI ClinVar, UniProt, PubMed, and gnomAD datasets into a unified, explainable interface.
+**VariantVision Pro** is a React 19 / TypeScript 7 educational source review workbench. It combines optional ClinVar, UniProt and PubMed retrieval with illustrative gnomAD-style population fixtures. A small same-origin Node endpoint retrieves PubMed summaries; the workbench performs its calculations in the browser.
 
 The application normalizes genomic coordinates, calculates amino acid biochemical property shifts, scores evidence coverage across 5 dimensions, and displays live provider health without making diagnostic claims.
 
@@ -26,13 +26,13 @@ VariantVision Pro solves this by prioritizing provenance transparency, displayin
 2. **4-Path Variant Normalization**: Implemented a local normalization engine handling gnomAD VCF IDs, genomic HGVS, rsIDs, and teaching fallbacks (HBB E6V), while flagging unresolvable inputs for manual review.
 3. **Biochemical Substitution Engine**: Built a pure functional property comparison module that computes charge, polarity, size, and Kyte-Doolittle hydropathy deltas for amino acid substitutions.
 4. **Live Provider Status Bar**: Designed a real-time health indicator showing status, response latency, and error classification for each external API.
-5. **Deterministic Testing**: Created 18 Vitest unit/integration tests covering normalization edge cases, provider envelopes, and report generation.
+5. **Regression Testing**: Added unit and browser checks for exact ClinVar identity, assembly changes, provider schemas/failures, race conditions, report provenance, keyboard tabs and responsive layouts.
 
 ---
 
 ### Technology Used
 
-- **Framework**: React 19, TypeScript 6, Vite 8, Tailwind CSS 4
+- **Framework**: React 19, TypeScript 7, Vite 8, Tailwind CSS 4
 - **Testing**: Vitest 4
 - **APIs**: NCBI E-utilities (ClinVar, PubMed), UniProt REST API
 - **Deployment**: Vercel Static SPA (`vercel.json`)
