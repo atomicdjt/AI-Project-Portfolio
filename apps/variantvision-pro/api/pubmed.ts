@@ -1,5 +1,5 @@
 import type { IncomingMessage, ServerResponse } from 'node:http'
-import { getPubMedSummary } from '../server/pubmedSummary'
+import { getPubMedSummary } from '../server/pubmedSummary.js'
 
 export default async function handler(request: IncomingMessage, response: ServerResponse) {
   const result = await getPubMedSummary(request.url ?? '/', request.method ?? 'GET')
