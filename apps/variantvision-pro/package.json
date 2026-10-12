@@ -12,13 +12,13 @@
     "preview": "npm run build && vite preview --host 127.0.0.1 --port 4182"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.3.3",
     "lucide-react": "^1.17.0",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "tailwindcss": "^4.3.0"
+    "react-dom": "^19.2.8"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "tailwindcss": "^4.3.0",
     "@eslint/js": "^10.0.1",
     "@types/node": "^26.4.1",
     "@types/react": "^19.2.18",
