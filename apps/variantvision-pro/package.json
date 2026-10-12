@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 5182",
-    "prebuild": "node scripts/verify-vercel-typescript.mjs",
+    "prebuild": "node scripts/verify-vercel-typescript.mjs && node scripts/verify-vercel-function.mjs",
     "build": "tsc -b && vite build",
     "lint": "eslint src api server e2e vite.config.ts vitest.config.ts playwright.config.ts",
     "test:e2e": "playwright test --config playwright.config.ts",

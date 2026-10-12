@@ -1,4 +1,4 @@
-import { createRequestScheduler } from '../src/providers/requestScheduler'
+import { createRequestScheduler } from '../src/providers/requestScheduler.js'
 import process from 'node:process'
 
 const schedule = createRequestScheduler(350)
