@@ -19,4 +19,5 @@ export default defineConfig([
       globals: globals.browser,
     },
   },
+  { files: ['api/**/*.ts', 'server/**/*.ts', 'e2e/**/*.ts', '*config.ts'], languageOptions: { globals: globals.node } },
 ])

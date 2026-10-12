@@ -6,7 +6,7 @@
  * UniProt and PubMed results are still collected and returned with complete health status.
  */
 
-import type { OrchestratorResult, ProviderHealth } from './types'
+import type { ClinVarExpectedVariant, OrchestratorResult, ProviderHealth } from './types'
 import { fetchClinVar } from './clinvar'
 import { fetchUniProt } from './uniprot'
 import { fetchPubMed } from './pubmed'
@@ -16,6 +16,7 @@ export interface OrchestratorParams {
   gene: string
   variant: string
   rsId?: string
+  clinvarExpected?: ClinVarExpectedVariant
   uniprotAccession?: string
   timeoutMs?: number
 }
@@ -26,7 +27,7 @@ export async function fetchAllProviders(params: OrchestratorParams): Promise<Orc
 
   // Trigger all API requests in parallel
   const clinvarPromise = params.rsId
-    ? fetchClinVar(params.rsId, timeoutMs)
+    ? fetchClinVar(params.rsId, params.clinvarExpected, timeoutMs)
     : Promise.resolve(
         providerError('clinvar', 'unsupported_variant', 'No rsID provided for ClinVar lookup', {
           variantIdUsed: 'N/A',
@@ -89,6 +90,9 @@ export async function fetchAllProviders(params: OrchestratorParams): Promise<Orc
       durationMs: clinvar.durationMs,
       error: clinvar.error,
       retrievedAt: clinvar.retrievedAt,
+      warnings: clinvar.warnings,
+      variantIdUsed: clinvar.variantIdUsed,
+      sourceUrl: clinvar.sourceUrl,
     },
     {
       provider: 'uniprot',
@@ -96,6 +100,9 @@ export async function fetchAllProviders(params: OrchestratorParams): Promise<Orc
       durationMs: uniprot.durationMs,
       error: uniprot.error,
       retrievedAt: uniprot.retrievedAt,
+      warnings: uniprot.warnings,
+      variantIdUsed: uniprot.variantIdUsed,
+      sourceUrl: uniprot.sourceUrl,
     },
     {
       provider: 'pubmed',
@@ -103,6 +110,9 @@ export async function fetchAllProviders(params: OrchestratorParams): Promise<Orc
       durationMs: pubmed.durationMs,
       error: pubmed.error,
       retrievedAt: pubmed.retrievedAt,
+      warnings: pubmed.warnings,
+      variantIdUsed: pubmed.variantIdUsed,
+      sourceUrl: pubmed.sourceUrl,
     },
   ]
 

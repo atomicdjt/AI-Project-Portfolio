@@ -20,27 +20,23 @@ import {
   ShieldAlert,
   Sparkles,
 } from 'lucide-react'
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import type { ComponentType, SVGProps } from 'react'
 import { defaultCase, variantCases } from '../data/cases'
 import { buildDossier } from '../modules/evidence/buildDossier'
 import { generateMarkdownReport } from '../modules/reports/generateReport'
+import { changeInputBuild, inputFromCase, isCaseIdentityMatch } from '../modules/variant/caseIdentity'
+import { parseRsId } from '../modules/variant/normalizeVariant'
 import type { EvidenceStatus, SourceKind, VariantCase, VariantInput } from '../types/variant'
+import { WorkbenchTabs } from '../components/WorkbenchTabs'
+import type { TabId } from '../components/WorkbenchTabs'
+import { ProteinContext } from '../components/ProteinContext'
 
 import { ProviderStatusBar } from '../components/ProviderStatusBar'
 import { fetchAllProviders } from '../providers/orchestrator'
 import type { OrchestratorResult } from '../providers/types'
 
 type IconComponent = ComponentType<SVGProps<SVGSVGElement>>
-type TabId = 'overview' | 'sources' | 'report' | 'method'
-
-const tabs: Array<{ id: TabId; label: string; icon: IconComponent }> = [
-  { id: 'overview', label: 'Dossier', icon: Gauge },
-  { id: 'sources', label: 'Sources', icon: Database },
-  { id: 'report', label: 'Report', icon: FileText },
-  { id: 'method', label: 'Method', icon: ShieldAlert },
-]
-
 const sourceKinds: Array<SourceKind | 'All'> = ['All', 'Normalization', 'Population', 'Curated database', 'Protein', 'Structure', 'Literature']
 
 function formatFrequency(value: number) {
@@ -54,29 +50,10 @@ function downloadText(filename: string, content: string, type = 'text/plain;char
   const anchor = document.createElement('a')
   anchor.href = url
   anchor.download = filename
+  document.body.appendChild(anchor)
   anchor.click()
-  URL.revokeObjectURL(url)
-}
-
-function fieldInputFromCase(variantCase: VariantCase): VariantInput {
-  return {
-    gene: variantCase.gene,
-    variant: variantCase.variant,
-    hgvs: variantCase.hgvs,
-    gnomadId: variantCase.gnomadId,
-    build: variantCase.build,
-    condition: variantCase.condition,
-  }
-}
-
-function isIdentityMatch(input: VariantInput, variantCase: VariantCase): boolean {
-  return (
-    input.gene.trim().toUpperCase() === variantCase.gene.trim().toUpperCase() &&
-    input.variant.trim().toUpperCase() === variantCase.variant.trim().toUpperCase() &&
-    input.hgvs.trim() === variantCase.hgvs.trim() &&
-    input.gnomadId.trim() === variantCase.gnomadId.trim() &&
-    input.build === variantCase.build
-  )
+  anchor.remove()
+  setTimeout(() => URL.revokeObjectURL(url), 1000)
 }
 
 export function App() {
@@ -84,37 +61,52 @@ export function App() {
   const [activeTab, setActiveTab] = useState<TabId>('overview')
   const [sourceFilter, setSourceFilter] = useState<SourceKind | 'All'>('All')
   const [query, setQuery] = useState('')
-  const [fields, setFields] = useState<VariantInput>(fieldInputFromCase(defaultCase))
+  const [fields, setFields] = useState<VariantInput>(inputFromCase(defaultCase))
   const [copied, setCopied] = useState(false)
   const [liveProviders, setLiveProviders] = useState<OrchestratorResult | null>(null)
   const [isFetchingLive, setIsFetchingLive] = useState(false)
+  const requestGeneration = useRef(0)
+  const [feedback, setFeedback] = useState('')
+  const [buildNotice, setBuildNotice] = useState('')
+
+  function invalidateLiveEvidence() {
+    requestGeneration.current += 1
+    setLiveProviders(null)
+    setIsFetchingLive(false)
+    setCopied(false)
+    setFeedback('')
+  }
 
   function updateIdentityField<K extends keyof VariantInput>(key: K, value: VariantInput[K]) {
-    setLiveProviders(null)
-    setFields((current) => ({ ...current, [key]: value }))
+    invalidateLiveEvidence()
+    setBuildNotice('')
+    setFields((current) => ({ ...current, [key]: value, condition: '' }))
   }
 
   const activeCase = variantCases.find((variantCase) => variantCase.id === activeCaseId) ?? defaultCase
 
   const dossier = useMemo(() => buildDossier(activeCase, fields, liveProviders ?? undefined), [activeCase, fields, liveProviders])
   const report = useMemo(() => generateMarkdownReport(activeCase, dossier), [activeCase, dossier])
-  const jsonBundle = useMemo(() => JSON.stringify({ case: activeCase, dossier }, null, 2), [activeCase, dossier])
+  const jsonBundle = useMemo(() => JSON.stringify({ schemaVersion: 2, case: dossier.isCuratedCase ? activeCase : null, dossier, liveProviderResponses: liveProviders }, null, 2), [activeCase, dossier, liveProviders])
 
   async function handleFetchLive() {
+    const generation = ++requestGeneration.current
     setIsFetchingLive(true)
+    setFeedback('')
     try {
-      const match = isIdentityMatch(fields, activeCase)
+      const match = isCaseIdentityMatch(fields, activeCase)
       const results = await fetchAllProviders({
-        gene: fields.gene || activeCase.gene,
-        variant: fields.variant || activeCase.variant,
+        gene: fields.gene,
+        variant: fields.variant,
         rsId: match ? activeCase.rsid : '',
+        clinvarExpected: match ? { gene: fields.gene, build: fields.build, gnomadId: fields.gnomadId } : undefined,
         uniprotAccession: match ? activeCase.uniprot : '',
       })
-      setLiveProviders(results)
+      if (generation === requestGeneration.current) setLiveProviders(results)
     } catch {
-      // Silently keep existing dossier state on unexpected error
+      if (generation === requestGeneration.current) setFeedback('Live retrieval could not complete. Review the attached source links or try again.')
     } finally {
-      setIsFetchingLive(false)
+      if (generation === requestGeneration.current) setIsFetchingLive(false)
     }
   }
 
@@ -129,17 +121,23 @@ export function App() {
   const visibleSources = dossier.sourceRecords.filter((record) => sourceFilter === 'All' || record.kind === sourceFilter)
 
   function selectCase(variantCase: VariantCase) {
+    invalidateLiveEvidence()
     setActiveCaseId(variantCase.id)
-    setFields(fieldInputFromCase(variantCase))
+    setFields(inputFromCase(variantCase))
     setActiveTab('overview')
-    setCopied(false)
-    setLiveProviders(null)
+    setSourceFilter('All')
+    setBuildNotice('')
   }
 
   async function copyReport() {
-    await navigator.clipboard.writeText(report)
-    setCopied(true)
-    window.setTimeout(() => setCopied(false), 1600)
+    try {
+      await navigator.clipboard.writeText(report)
+      setCopied(true)
+      setFeedback('Markdown report copied.')
+      window.setTimeout(() => setCopied(false), 1600)
+    } catch {
+      setFeedback('Clipboard access failed. Use Download .md to save the report.')
+    }
   }
 
   return (
@@ -165,6 +163,7 @@ export function App() {
           {filteredCases.map((variantCase) => (
             <button
               className={variantCase.id === activeCase.id ? 'active' : ''}
+              aria-pressed={variantCase.id === activeCase.id}
               key={variantCase.id}
               onClick={() => selectCase(variantCase)}
               type="button"
@@ -176,6 +175,7 @@ export function App() {
               <em>{variantCase.condition}</em>
             </button>
           ))}
+          {filteredCases.length === 0 && <p className="muted" role="status">No teaching cases match this search.</p>}
         </nav>
 
         <section className="rail-note" aria-label="Responsible scope">
@@ -189,12 +189,13 @@ export function App() {
         <header className="topbar">
           <div>
             <h1>{dossier.headline}</h1>
-            <p>{activeCase.summary}</p>
+            <p>{dossier.isCuratedCase ? activeCase.summary : 'Custom input. The selected case’s population, protein and source fixtures have been detached.'}</p>
           </div>
           <div className="topbar-actions">
             <button type="button" onClick={() => {
-              setFields(fieldInputFromCase(activeCase))
-              setLiveProviders(null)
+              invalidateLiveEvidence()
+              setFields(inputFromCase(activeCase))
+              setBuildNotice('')
             }}>
               <RotateCcw size={16} /> Reset case
             </button>
@@ -204,7 +205,8 @@ export function App() {
           </div>
         </header>
 
-        <ProviderStatusBar liveProviders={liveProviders} isLoading={isFetchingLive} onRefresh={handleFetchLive} />
+        <ProviderStatusBar liveProviders={liveProviders} isLoading={isFetchingLive} onRefresh={handleFetchLive} hasCuratedCase={dossier.isCuratedCase} />
+        {feedback && <p className="analysis-note" role="status">{feedback}</p>}
 
         <section className="input-deck" aria-label="Variant input controls">
           <label>
@@ -225,44 +227,33 @@ export function App() {
           </label>
           <label>
             Build
-            <select value={fields.build} onChange={(event) => updateIdentityField('build', event.target.value as VariantInput['build'])}>
+            <select value={fields.build} onChange={(event) => {
+              invalidateLiveEvidence()
+              const build = event.target.value as VariantInput['build']
+              setBuildNotice(isCaseIdentityMatch(fields, activeCase) ? `Teaching coordinates updated for ${build}.` : 'Custom genomic coordinates cleared. Enter coordinates for the selected assembly; automatic liftover is unavailable.')
+              setFields(changeInputBuild(fields, activeCase, build))
+            }}>
               <option>GRCh38</option>
               <option>GRCh37</option>
             </select>
           </label>
         </section>
+        {buildNotice && <p className="analysis-note" role="status">{buildNotice}</p>}
 
         <section className="metric-strip" aria-label="Evidence summary metrics">
-          <MetricCard icon={Gauge} label="Evidence coverage" value={`${dossier.coverageScore}/100`} detail={dossier.coverageBand} tone={dossier.coverageScore >= 80 ? 'good' : 'warn'} />
+          <MetricCard icon={Gauge} label="Workflow coverage" value={`${dossier.coverageScore}/100`} detail={dossier.coverageBand} tone={dossier.coverageScore >= 80 ? 'good' : 'warn'} />
           <MetricCard icon={Dna} label="Normalized ID" value={dossier.normalized.vcfId ?? 'Review'} detail={dossier.normalized.parsedFrom} />
-          <MetricCard icon={Activity} label="Fixture AF" value={formatFrequency(dossier.populationSummary.estimatedFrequency)} detail={dossier.populationSummary.highestGroup} />
+          <MetricCard icon={Activity} label="Highest fixture row AF" value={dossier.populationSummary.highestFrequency === null ? 'Unavailable' : formatFrequency(dossier.populationSummary.highestFrequency)} detail={dossier.populationSummary.highestGroup ?? 'No fixture counts for this input'} />
           <MetricCard icon={Library} label="Source records" value={dossier.sourceRecords.length.toString()} detail={`${dossier.literature.length} literature leads`} />
         </section>
 
-        <div className="tabbar" role="tablist" aria-label="Workbench sections">
-          {tabs.map((tab) => {
-            const Icon = tab.icon
-            return (
-              <button
-                aria-selected={activeTab === tab.id}
-                className={activeTab === tab.id ? 'active' : ''}
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                role="tab"
-                type="button"
-              >
-                <Icon aria-hidden="true" />
-                {tab.label}
-              </button>
-            )
-          })}
-        </div>
+        <WorkbenchTabs activeTab={activeTab} onChange={setActiveTab} />
 
         <section className="workspace-grid">
           <div className="workspace-primary">
-            {activeTab === 'overview' && (
-              <div className="page-stack">
+              <div className="page-stack" role="tabpanel" id="workbench-panel-overview" aria-labelledby="workbench-tab-overview" tabIndex={0} hidden={activeTab !== 'overview'}>
                 <Panel icon={Sparkles} title="Evidence Coverage Model">
+                  <p className="muted">{dossier.coverageMethodology}</p>
                   <div className="score-list">
                     {dossier.metrics.map((metric) => (
                       <article className="score-row" key={metric.label}>
@@ -311,25 +302,7 @@ export function App() {
                   </Panel>
 
                   <Panel icon={Microscope} title="Protein + Structure Context">
-                    <dl className="compact-facts">
-                      <div>
-                        <dt>Protein</dt>
-                        <dd>{activeCase.protein}</dd>
-                      </div>
-                      <div>
-                        <dt>UniProt</dt>
-                        <dd>{activeCase.uniprot}</dd>
-                      </div>
-                      <div>
-                        <dt>Transcript</dt>
-                        <dd>{activeCase.transcript}</dd>
-                      </div>
-                      <div>
-                        <dt>Position</dt>
-                        <dd>{activeCase.position}</dd>
-                      </div>
-                    </dl>
-                    <p className="analysis-note">{activeCase.structuralContext}</p>
+                    <ProteinContext variantCase={dossier.isCuratedCase ? activeCase : undefined} />
                   </Panel>
                 </div>
 
@@ -347,7 +320,7 @@ export function App() {
                         </tr>
                       </thead>
                       <tbody>
-                        {activeCase.population.map((row) => (
+                        {dossier.populationRecords.map((row) => (
                           <tr key={`${row.source}-${row.group}`}>
                             <td>{row.source}</td>
                             <td>{row.group}</td>
@@ -357,23 +330,22 @@ export function App() {
                             <td>{formatFrequency(row.alleleCount / row.alleleNumber)}</td>
                           </tr>
                         ))}
+                        {dossier.populationRecords.length === 0 && <tr><td colSpan={6}>No teaching population counts are attached to this custom input.</td></tr>}
                       </tbody>
                     </table>
                   </div>
-                  <p className="muted">Population frequency is one evidence stream only. It does not determine clinical significance by itself.</p>
+                  <p className="muted">Teaching fixtures only. Each row has its own denominator; cohorts are not pooled. Population frequency needs source and phenotype review.</p>
                 </Panel>
               </div>
-            )}
-
-            {activeTab === 'sources' && (
-              <div className="page-stack">
+              <div className="page-stack" role="tabpanel" id="workbench-panel-sources" aria-labelledby="workbench-tab-sources" tabIndex={0} hidden={activeTab !== 'sources'}>
                 <Panel icon={Database} title="Source Transparency">
                   <div className="filter-row" aria-label="Source filters">
                     {sourceKinds.map((kind) => (
-                      <button className={sourceFilter === kind ? 'active' : ''} key={kind} onClick={() => setSourceFilter(kind)} type="button">
+                      <button aria-pressed={sourceFilter === kind} className={sourceFilter === kind ? 'active' : ''} key={kind} onClick={() => setSourceFilter(kind)} type="button">
                         {kind}
                       </button>
                     ))}
+                    {visibleSources.length === 0 && <p className="muted">No sources match this filter.</p>}
                   </div>
                   <div className="source-list">
                     {visibleSources.map((record) => (
@@ -385,7 +357,7 @@ export function App() {
                         <StatusChip status={record.status} />
                         <p>{record.detail}</p>
                         <footer>
-                          <small>{record.source} - {record.lastReviewed}</small>
+                          <small>{record.source} - {record.retrievedAt ? `Retrieved ${record.retrievedAt}` : record.lastReviewed}</small>
                           {record.url && (
                             <a href={record.url} target="_blank" rel="noreferrer">
                               Open source <ArrowUpRight size={14} aria-hidden="true" />
@@ -394,6 +366,7 @@ export function App() {
                         </footer>
                       </article>
                     ))}
+                    {dossier.literature.length === 0 && <p className="muted">No literature leads are attached. Fetch live evidence or review PubMed manually.</p>}
                   </div>
                 </Panel>
 
@@ -405,6 +378,7 @@ export function App() {
                         <span>
                           {item.journal}, {item.year} - {item.role}
                         </span>
+                        <span>{item.origin ?? 'curated literature lead'} · {item.retrievedAt ? `Retrieved ${item.retrievedAt}` : `Metadata verified ${item.metadataVerifiedAt ?? 'date unavailable'}`}</span>
                         <a href={item.url} target="_blank" rel="noreferrer">
                           PubMed lead <ArrowUpRight size={14} aria-hidden="true" />
                         </a>
@@ -413,10 +387,7 @@ export function App() {
                   </div>
                 </Panel>
               </div>
-            )}
-
-            {activeTab === 'report' && (
-              <div className="page-stack">
+              <div className="page-stack" role="tabpanel" id="workbench-panel-report" aria-labelledby="workbench-tab-report" tabIndex={0} hidden={activeTab !== 'report'}>
                 <section className="report-actions" aria-label="Report actions">
                   <button type="button" onClick={copyReport}>
                     <ClipboardCopy size={16} /> {copied ? 'Copied' : 'Copy Markdown'}
@@ -432,32 +403,30 @@ export function App() {
                   <pre>{report}</pre>
                 </article>
               </div>
-            )}
-
-            {activeTab === 'method' && (
-              <div className="page-stack readable">
+              <div className="page-stack readable" role="tabpanel" id="workbench-panel-method" aria-labelledby="workbench-tab-method" tabIndex={0} hidden={activeTab !== 'method'}>
                 <Panel icon={ShieldAlert} title="Responsible Scope">
                   <p>{dossier.responsibleBoundary}</p>
                   <p>
                     VariantVision Pro is intentionally designed as an evidence organization tool. It does not compute ACMG/AMP classifications, does not infer diagnosis, and does not replace source review by qualified humans.
                   </p>
+                  <p>Live fetch sends gene and variant search terms to NCBI and protein identifiers to UniProt. Public PubMed IDs pass through this app’s metadata endpoint. The app does not persist inputs or retrieval results.</p>
                 </Panel>
                 <Panel icon={FlaskConical} title="How This MVP Works">
                   <ol className="method-list">
                     <li>Parse gnomAD-style IDs and simple genomic HGVS coordinates locally.</li>
-                    <li>Route genome builds to explicit gnomAD dataset labels.</li>
+                    <li>Use verified GRCh37/GRCh38 mappings for teaching cases; clear custom coordinates on a build change.</li>
                     <li>Compare amino acid properties for explainable protein-impact context.</li>
                     <li>Summarize curated source fixtures with review status, provenance, and limitations.</li>
-                    <li>Generate Markdown and JSON dossiers without a backend or external runtime dependency.</li>
+                    <li>Retrieve public ClinVar, UniProt and PubMed leads on request, with timestamps and failures recorded in exports.</li>
+                    <li>Generate Markdown and JSON dossiers in the browser.</li>
                   </ol>
                 </Panel>
                 <Panel icon={AlertTriangle} title="Known Limitations">
                   <p>
-                    The demo fixtures are not live database calls. They prove the workflow, data model, UX, and source-transparency pattern. Real research use would need live API refresh, versioned transcripts, reference validation, liftover handling, and auditable source timestamps.
+                    Population rows are teaching fixtures, not live gnomAD counts. Live retrieval is optional and can fail. Local parsing does not perform transcript-aware HGVS normalization, reference validation or liftover. Coverage is an uncalibrated workflow heuristic; all source assertions require human review.
                   </p>
                 </Panel>
               </div>
-            )}
           </div>
 
           <aside className="inspector" aria-label="Evidence inspector">
@@ -477,13 +446,13 @@ export function App() {
                 </div>
                 <div>
                   <dt>rsID</dt>
-                  <dd>{activeCase.rsid}</dd>
+                  <dd>{dossier.isCuratedCase ? activeCase.rsid : parseRsId(fields.gnomadId) ?? parseRsId(fields.variant) ?? 'Not resolved'}</dd>
                 </div>
               </dl>
               <p className="muted">{dossier.normalized.note}</p>
               {dossier.normalized.browserUrl && (
                 <a className="source-link" href={dossier.normalized.browserUrl} target="_blank" rel="noreferrer">
-                  Open in gnomAD <ArrowUpRight size={14} aria-hidden="true" />
+                  {dossier.normalized.vcfId ? 'Open in gnomAD' : 'Open source lookup'} <ArrowUpRight size={14} aria-hidden="true" />
                 </a>
               )}
             </Panel>

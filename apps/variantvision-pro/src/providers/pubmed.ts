@@ -2,7 +2,7 @@
  * PubMed provider adapter.
  *
  * Uses NCBI E-utilities (esearch + esummary) to search for literature leads by gene and variant terms.
- * Public, CORS-friendly REST API.
+ * Browser access depends on NCBI availability and CORS response headers.
  */
 
 import type { ProviderResult, PubMedArticle, PubMedResult } from './types'
@@ -28,12 +28,15 @@ export async function fetchPubMed(
       durationMs: Math.round(performance.now() - start),
     })
   }
+  if (!/^[A-Z0-9][A-Z0-9._-]{0,39}$/.test(cleanGene) || cleanVariant.length > 120 || [...cleanVariant].some((character) => character.charCodeAt(0) < 32)) {
+    return providerError('pubmed', 'unsupported_variant', 'Use a gene symbol and a short variant term for the literature query.', { variantIdUsed: searchQuery, durationMs: 0 })
+  }
 
   const controller = new AbortController()
-  const timer = window.setTimeout(() => controller.abort(), timeoutMs)
+  const timer = setTimeout(() => controller.abort(), timeoutMs)
 
   try {
-    const exactTerm = encodeURIComponent(`"${cleanGene}"[Title/Abstract] AND "${cleanVariant}"[Title/Abstract]`)
+    const exactTerm = encodeURIComponent(cleanVariant ? `"${cleanGene}"[Title/Abstract] AND "${cleanVariant}"[Title/Abstract]` : `"${cleanGene}"[Title/Abstract]`)
     let searchUrl = `${EUTILS_BASE}/esearch.fcgi?db=pubmed&term=${exactTerm}&retmax=5&sort=pub_date&retmode=json`
 
     let searchRes = await fetchNcbi(searchUrl, { signal: controller.signal })
@@ -45,9 +48,11 @@ export async function fetchPubMed(
     }
 
     let searchData = await searchRes.json()
-    let idList: string[] = searchData?.esearchresult?.idlist ?? []
+    let idList: string[] = Array.isArray(searchData?.esearchresult?.idlist) ? searchData.esearchresult.idlist.filter((id: unknown): id is string => typeof id === 'string' && /^\d+$/.test(id)).slice(0, 5) : []
     let totalCount = Number(searchData?.esearchresult?.count ?? idList.length)
+    if (!Number.isFinite(totalCount) || totalCount < 0) totalCount = idList.length
     const warnings: string[] = []
+    if (!cleanVariant) warnings.push('No variant term supplied; these are gene-level literature leads.')
 
     if (idList.length === 0) {
       warnings.push('No exact gene+variant Title/Abstract matches were found; results come from a broader gene-level literature search and may not describe the exact variant.')
@@ -61,8 +66,9 @@ export async function fetchPubMed(
         })
       }
       searchData = await searchRes.json()
-      idList = searchData?.esearchresult?.idlist ?? []
+      idList = Array.isArray(searchData?.esearchresult?.idlist) ? searchData.esearchresult.idlist.filter((id: unknown): id is string => typeof id === 'string' && /^\d+$/.test(id)).slice(0, 5) : []
       totalCount = Number(searchData?.esearchresult?.count ?? idList.length)
+      if (!Number.isFinite(totalCount) || totalCount < 0) totalCount = idList.length
     }
 
     if (idList.length === 0) {
@@ -73,11 +79,11 @@ export async function fetchPubMed(
     }
 
     const ids = idList.join(',')
-    const summaryUrl = `${EUTILS_BASE}/esummary.fcgi?db=pubmed&id=${ids}&retmode=json`
+    const summaryUrl = `/api/pubmed?ids=${encodeURIComponent(ids)}`
     const summaryRes = await fetchNcbi(summaryUrl, { signal: controller.signal })
 
     if (!summaryRes.ok) {
-      return providerError('pubmed', 'error', `PubMed esummary returned HTTP ${summaryRes.status}`, {
+      return providerError('pubmed', summaryRes.status === 504 ? 'timeout' : 'error', `PubMed metadata endpoint returned HTTP ${summaryRes.status}`, {
         variantIdUsed: searchQuery,
         durationMs: Math.round(performance.now() - start),
       })
@@ -89,25 +95,31 @@ export async function fetchPubMed(
     const articles: PubMedArticle[] = []
     for (const id of idList) {
       const item = resultObj[id]
-      if (!item) continue
+      if (!item || typeof item.title !== 'string') continue
 
       const pubDate = item.pubdate ?? ''
       const yearMatch = String(pubDate).match(/\b(19|20)\d{2}\b/)
       const year = yearMatch ? Number(yearMatch[0]) : null
 
       const authors = Array.isArray(item.authors)
-        ? item.authors.map((a: { name?: string }) => a.name ?? '').filter(Boolean)
+        ? item.authors.map((a: { name?: unknown }) => typeof a?.name === 'string' ? a.name : '').filter(Boolean)
         : []
 
       articles.push({
         pmid: id,
-        title: item.title ?? 'Untitled Article',
-        journal: item.source ?? 'PubMed',
+        title: item.title,
+        journal: typeof item.source === 'string' ? item.source : 'PubMed',
         year,
         authors,
         url: `https://pubmed.ncbi.nlm.nih.gov/${id}/`,
       })
     }
+
+    if (articles.length === 0) return providerNoResult('pubmed', {
+      variantIdUsed: searchQuery, durationMs: Math.round(performance.now() - start),
+      warnings: [...warnings, 'Search returned PMIDs, but no readable article summaries were returned.'],
+      sourceUrl: `https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(searchQuery)}`,
+    })
 
     return providerSuccess(
       'pubmed',

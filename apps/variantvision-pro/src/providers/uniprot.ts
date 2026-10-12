@@ -29,7 +29,7 @@ export async function fetchUniProt(
   }
 
   const controller = new AbortController()
-  const timer = window.setTimeout(() => controller.abort(), timeoutMs)
+  const timer = setTimeout(() => controller.abort(), timeoutMs)
 
   try {
     const url = `${UNIPROT_BASE}/${cleanAccession}.json`
@@ -50,20 +50,27 @@ export async function fetchUniProt(
     }
 
     const data = await res.json()
+    if (!data || typeof data !== 'object' || Array.isArray(data) || (data.primaryAccession && data.primaryAccession !== cleanAccession)) {
+      return providerError('uniprot', 'error', 'UniProt returned malformed metadata or a different accession.', { variantIdUsed: cleanAccession, durationMs: Math.round(performance.now() - start) })
+    }
 
-    const proteinName =
+    const proteinNameValue =
       data?.proteinDescription?.recommendedName?.fullName?.value ??
       data?.proteinDescription?.submissionNames?.[0]?.fullName?.value ??
       `UniProt Entry ${cleanAccession}`
+    const proteinName = typeof proteinNameValue === 'string' ? proteinNameValue : `UniProt Entry ${cleanAccession}`
 
-    const geneName = data?.genes?.[0]?.geneName?.value ?? null
-    const organism = data?.organism?.scientificName ?? 'Human'
+    const geneValue = data?.genes?.[0]?.geneName?.value
+    const geneName = typeof geneValue === 'string' ? geneValue : null
+    const organismValue = data?.organism?.scientificName
+    const organism = typeof organismValue === 'string' ? organismValue : 'Unknown organism'
 
     const warnings: string[] = []
+    if (!geneName) warnings.push('UniProt did not return a gene symbol; gene identity could not be confirmed.')
     if (geneName && expectedGene && geneName.toUpperCase() !== expectedGene.toUpperCase()) {
       warnings.push(`Warning: UniProt gene (${geneName}) does not match expected gene (${expectedGene}).`)
     }
-    if (!organism.toLowerCase().includes('homo sapiens') && !organism.toLowerCase().includes('human')) {
+    if (!['homo sapiens', 'human'].includes(organism.trim().toLowerCase())) {
       warnings.push(`Warning: UniProt organism is ${organism}, expected Human.`)
     }
 

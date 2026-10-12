@@ -19,7 +19,7 @@ This document details the scientific, technical, and data limitations of the imp
 1. **Variant Normalization Scope**:
    - **Local Normalization**: Handles gnomAD-style VCF IDs (`11-5227002-T-A`), basic genomic HGVS (`NC_000011.10:g.5227002T>A`), and rsID lookups (`rs334`).
    - **Unsupported Inputs**: Does not perform full transcript-aware coding HGVS (`c.179A>T`) resolution, structural variant breakpoints, or complex indels without pre-parsed VCF coordinates.
-   - **No Automated Liftover**: Build conversion between GRCh37 and GRCh38 requires explicit user build selection; coordinates are not automatically converted via CrossMap or UCSC Liftover.
+   - **No General Liftover**: Teaching cases have verified mappings for both builds. Changing the build of a custom input clears genomic coordinates so the user must supply a verified coordinate in the new assembly.
 
 2. **Population Frequency Data**:
    - Population tables use curated demo summary fixtures for demonstration cases (HBB, TP53, BRAF). Live gnomAD GraphQL query integration is documented as a manual browser link fallback due to CORS policies on gnomAD endpoints.

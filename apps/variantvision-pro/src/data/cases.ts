@@ -21,6 +21,10 @@ export const variantCases: VariantCase[] = [
     originalAa: 'E',
     replacementAa: 'V',
     position: 6,
+    coordinatesByBuild: {
+      GRCh38: { hgvs: 'NC_000011.10:g.5227002T>A', gnomadId: '11-5227002-T-A' },
+      GRCh37: { hgvs: 'NC_000011.9:g.5248232T>A', gnomadId: '11-5248232-T-A' },
+    },
     population: [
       { source: 'exome', group: 'afr', alleleCount: 1821, alleleNumber: 41620, homozygotes: 31 },
       { source: 'exome', group: 'amr', alleleCount: 114, alleleNumber: 33218, homozygotes: 0 },
@@ -33,20 +37,22 @@ export const variantCases: VariantCase[] = [
       'The substitution replaces an acidic residue with a hydrophobic residue near the beta-globin surface, a useful structural teaching point for hemoglobin polymerization context.',
     literature: [
       {
-        id: 'pmid-20303803',
-        title: 'Sickle cell disease',
+        id: 'pmid-21131035',
+        title: 'Sickle-cell disease',
         journal: 'Lancet',
         year: 2010,
         role: 'clinical context',
-        url: 'https://pubmed.ncbi.nlm.nih.gov/20303803/',
+        url: 'https://pubmed.ncbi.nlm.nih.gov/21131035/',
+        metadataVerifiedAt: '2026-10-12',
       },
       {
-        id: 'pmid-24086085',
-        title: 'The molecular basis of sickle cell disease',
-        journal: 'Cold Spring Harbor Perspectives in Medicine',
-        year: 2013,
+        id: 'pmid-30332562',
+        title: 'Pathophysiology of Sickle Cell Disease',
+        journal: 'Annual Review of Pathology',
+        year: 2019,
         role: 'mechanism',
-        url: 'https://pubmed.ncbi.nlm.nih.gov/24086085/',
+        url: 'https://pubmed.ncbi.nlm.nih.gov/30332562/',
+        metadataVerifiedAt: '2026-10-12',
       },
     ],
     sourceRecords: [
@@ -113,6 +119,10 @@ export const variantCases: VariantCase[] = [
     originalAa: 'R',
     replacementAa: 'H',
     position: 175,
+    coordinatesByBuild: {
+      GRCh38: { hgvs: '', gnomadId: '17-7675088-C-T' },
+      GRCh37: { hgvs: '', gnomadId: '17-7578406-C-T' },
+    },
     population: [
       { source: 'exome', group: 'global', alleleCount: 2, alleleNumber: 1394022, homozygotes: 0 },
       { source: 'genome', group: 'global', alleleCount: 0, alleleNumber: 152132, homozygotes: 0 },
@@ -124,19 +134,21 @@ export const variantCases: VariantCase[] = [
     literature: [
       {
         id: 'pmid-20182602',
-        title: 'TP53 mutations in human cancers',
+        title: 'TP53 mutations in human cancers: origins, consequences, and clinical use',
         journal: 'Cold Spring Harbor Perspectives in Biology',
         year: 2010,
         role: 'mechanism',
         url: 'https://pubmed.ncbi.nlm.nih.gov/20182602/',
+        metadataVerifiedAt: '2026-10-12',
       },
       {
         id: 'pmid-30224644',
-        title: 'Clinical and functional classification of TP53 variants',
-        journal: 'Human Mutation',
+        title: 'Mutational processes shape the landscape of TP53 mutations in human cancer',
+        journal: 'Nature Genetics',
         year: 2018,
         role: 'methodology',
         url: 'https://pubmed.ncbi.nlm.nih.gov/30224644/',
+        metadataVerifiedAt: '2026-10-12',
       },
     ],
     sourceRecords: [
@@ -191,6 +203,10 @@ export const variantCases: VariantCase[] = [
     originalAa: 'V',
     replacementAa: 'E',
     position: 600,
+    coordinatesByBuild: {
+      GRCh38: { hgvs: '', gnomadId: '7-140753336-A-T' },
+      GRCh37: { hgvs: '', gnomadId: '7-140453136-A-T' },
+    },
     population: [
       { source: 'exome', group: 'global', alleleCount: 3, alleleNumber: 1408602, homozygotes: 0 },
       { source: 'genome', group: 'global', alleleCount: 1, alleleNumber: 152054, homozygotes: 0 },
@@ -202,11 +218,12 @@ export const variantCases: VariantCase[] = [
     literature: [
       {
         id: 'pmid-12068308',
-        title: 'BRAF mutations in human cancer',
+        title: 'Mutations of the BRAF gene in human cancer',
         journal: 'Nature',
         year: 2002,
         role: 'mechanism',
         url: 'https://pubmed.ncbi.nlm.nih.gov/12068308/',
+        metadataVerifiedAt: '2026-10-12',
       },
       {
         id: 'pmid-21639808',
@@ -215,6 +232,7 @@ export const variantCases: VariantCase[] = [
         year: 2011,
         role: 'clinical context',
         url: 'https://pubmed.ncbi.nlm.nih.gov/21639808/',
+        metadataVerifiedAt: '2026-10-12',
       },
     ],
     sourceRecords: [

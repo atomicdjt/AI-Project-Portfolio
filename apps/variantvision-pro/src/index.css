@@ -915,3 +915,13 @@ td {
   animation: spin 1s linear infinite;
 }
 
+[hidden] {
+  display: none !important;
+}
+
+.provider-status-bar.active { flex-wrap: wrap; }
+.provider-details { flex-basis: 100%; overflow-wrap: anywhere; font-size: 0.8rem; }
+.provider-details summary { cursor: pointer; }
+.provider-details p { margin: 0.25rem 0; }
+[role="tabpanel"]:focus-visible { outline: 2px solid var(--accent, #226c60); outline-offset: 4px; }
+

@@ -1,0 +1,27 @@
+name: VariantVision browser regression
+on:
+  pull_request:
+    paths: ['apps/variantvision-pro/**', 'package-lock.json', '.github/workflows/variantvision.yml']
+  push:
+    branches: [main]
+    paths: ['apps/variantvision-pro/**', 'package-lock.json', '.github/workflows/variantvision.yml']
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --workspace apps/variantvision-pro --include-workspace-root=true
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e --workspace apps/variantvision-pro
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: variantvision-browser-failure
+          path: apps/variantvision-pro/test-results
+          retention-days: 7

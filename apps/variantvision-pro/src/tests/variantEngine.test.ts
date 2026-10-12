@@ -59,8 +59,13 @@ describe('VariantVision Pro evidence engine', () => {
     const dossier = buildDossier(defaultCase, customInput)
     // Because it differs from defaultCase, it should have fewer source records and low coverage
     expect(dossier.coverageScore).toBeLessThan(70)
-    expect(dossier.sourceRecords.length).toBe(0)
-    expect(dossier.populationSummary.estimatedFrequency).toBe(0)
+    expect(dossier.sourceRecords.every((record) => record.kind === 'Normalization')).toBe(true)
+    expect(dossier.populationRecords).toEqual([])
+    expect(dossier.populationSummary.highestFrequency).toBeNull()
+    expect(dossier.isCuratedCase).toBe(false)
+    expect(dossier.input).not.toHaveProperty('population')
+    expect(dossier.normalized.input).not.toHaveProperty('sourceRecords')
+    expect(dossier.caseId).toBe('custom-input')
   })
 
   it('drops stale live provider evidence when input identity changes', () => {
@@ -73,6 +78,8 @@ describe('VariantVision Pro evidence engine', () => {
           classifications: [],
           geneSymbol: defaultCase.gene,
           url: 'https://www.ncbi.nlm.nih.gov/clinvar/variation/12345/',
+          matchedAssembly: defaultCase.build,
+          matchedGenomicId: defaultCase.gnomadId,
         },
         {
           variantIdUsed: defaultCase.rsid,
@@ -132,5 +139,18 @@ describe('VariantVision Pro evidence engine', () => {
     expect(report).toContain('VariantVision Pro Evidence Dossier')
     expect(report).toContain('Fixture Note')
     expect(report).toContain('not as standalone interpretation')
+    expect(report).toContain('URL: https://gnomad.broadinstitute.org/')
+    expect(report).toContain('five dimensions contribute equally')
+    expect(report).toContain('No live retrieval has been performed')
+  })
+
+  it('reports the highest fixture row without pooling cohort denominators', () => {
+    const dossier = buildDossier(defaultCase)
+    expect(dossier.populationSummary.highestFrequency).toBeCloseTo(1821 / 41620)
+    expect(dossier.populationSummary.highestGroup).toBe('AFR exome')
+    const report = generateMarkdownReport(defaultCase, dossier)
+    expect(report).toContain('4.375%')
+    expect(report).toContain('cohorts are not pooled')
+    expect(report).not.toContain('Total alt alleles in fixture')
   })
 })
