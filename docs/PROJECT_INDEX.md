@@ -22,6 +22,12 @@ This index records public names, source authority, implementation status, Vercel
 
 These four are the core technical review sequence. Employer/operations and buyer paths below are intentionally audience-specific.
 
+## Additional Scientific Software
+
+**[Cosmic Atlas Scientific](https://github.com/atomicdjt/cosmic-atlas-scientific)** is maintained in its own authoritative repository. Main contains the merged v6 scientific workspace for offline JPL Horizons/DE441 states, numerical propagation, bounded Lambert transfer exploration, and local HEALPix catalogs. The [frozen v5.1.0 package](https://github.com/atomicdjt/cosmic-atlas-scientific/releases/latest) remains the latest formal release. Scientific models, interpolation validation, imported catalogs, and approximate observer pointing have distinct limits documented in that repository.
+
+For work outside this monorepo, including Aether Browser, ACDL, RMA Relay, and the finite automata research note, see the [current work and evidence index](https://github.com/atomicdjt/atomicdjt/blob/main/docs/CURRENT_WORK.md). Those local-development summaries do not imply public releases.
+
 ## Employer-Facing Applications
 
 | Public name | Deployment status | Repository authority | Best evidence |

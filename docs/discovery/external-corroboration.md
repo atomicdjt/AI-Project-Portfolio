@@ -1,7 +1,22 @@
 # External Corroboration and Technical Engagement
 
-Checked: 2026-08-24
+Current additions checked: 2026-10-15
+Historical engagement inventory checked: 2026-08-24
 Owner: David Turner (`atomicdjt`)
+
+## Current public evidence
+
+The accepted external pull-request record now contains **eight merges**: six in Grid Dynamics Rosetta and two in super-productivity. The [current contribution case study](https://github.com/atomicdjt/atomicdjt/blob/main/writing/external-validation-upstream-review.md) links all eight and keeps open work outside that total.
+
+| Addition since the original inventory | Public record | Scope established |
+| --- | --- | --- |
+| Rosetta #338 | [Merged September 29, 2026](https://github.com/griddynamics/rosetta/pull/338) | Configurable command-evaluator deadlines and termination of descendant processes on timeout. |
+| Rosetta #339 | [Merged September 29, 2026](https://github.com/griddynamics/rosetta/pull/339) | MultiEdit's review override marker is accepted only from the new content being written. |
+| super-productivity #10126 | [Merged September 25, 2026](https://github.com/super-productivity/super-productivity/pull/10126) | The schedule day panel retains the user's scroll position after its initial positioning. |
+| AgentMeasure DR-005 | [Public rationale and named attribution](https://github.com/roy-tong/AgentMeasure/blob/main/design-rationale/DR-005-evidence-calibrated-consumption-claims.md) | David Turner (@atomicdjt) is credited for the provider-inference boundary. This is scoped technical input, not authorship of the whole specification or standards-body adoption. |
+| AgentMeasure evidence fixture | [Attributed fixture directory](https://github.com/roy-tong/AgentMeasure/tree/main/conformance/evidence/inference-boundary-aggregation-replay) | The external repository includes David's synthetic aggregation/replay ambiguity fixture. The fixture describes expected handling; it is not a real-provider trace or external-user adoption metric. |
+
+See the [current work index](https://github.com/atomicdjt/atomicdjt/blob/main/docs/CURRENT_WORK.md) for the wider software record. The inventory and watchlist below preserve the August 24 snapshot; their original engagement evidence should not be read as a fresh claim of current implementation, release, or acceptance.
 
 ## Purpose
 
@@ -16,7 +31,7 @@ It is deliberately conservative. A thoughtful reply is not the same thing as mai
 - **Tier C — positive curation / review signal:** an external curator or reviewer gives a favorable preliminary assessment of one of David's projects.
 - **Tier D — substantive external technical engagement:** a public technical thread, or attributed correspondence with explicit permission to quote, shows concrete engagement around an implementation, invariant, architecture, or design decision without claiming adoption.
 
-## Current evidence
+## Historical evidence — August 24, 2026
 
 | Surface | Tier | What the external party actually established | Evidence boundary |
 | --- | --- | --- | --- |
@@ -63,7 +78,7 @@ It is deliberately conservative. A thoughtful reply is not the same thing as mai
 - AgentCI issue #121 owner triage returning the submission to `UNVERIFIED / reproducible-candidate`: https://github.com/jinngimk-lang/agentci/issues/121#issuecomment-5314625044
 - `mylofi/localfirstweb.dev` PR #102 Validation Ledger submission: https://github.com/mylofi/localfirstweb.dev/pull/102
 
-## Pending / watchlist — not counted as corroboration yet
+## Historical watchlist — status recorded August 24, 2026
 
 These are externally visible but have not crossed the evidence threshold above:
 
