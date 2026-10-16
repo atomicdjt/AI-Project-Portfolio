@@ -33,6 +33,7 @@
 - **[Employer Overview](docs/EMPLOYER_OVERVIEW.md):** direct role-to-project mapping.
 - **[Verification Guide](docs/verification.md):** repository scripts, deployment checks, validation scope, and evidence boundaries.
 - **[Project Index](docs/PROJECT_INDEX.md):** source authority, current Vercel routes, and best evidence for each project.
+- **[Current Work & Evidence](https://github.com/atomicdjt/atomicdjt/blob/main/docs/CURRENT_WORK.md):** the broader record, including eight merged upstream contributions, attributed AgentMeasure work, Cosmic Atlas v6 development, and current local prototypes.
 - **[Deployment Map](docs/deployment-and-previews.md):** authoritative repository-to-Vercel mapping.
 - **[Usability Pilot Kit](docs/portfolio-usability-pilot.md):** ready-to-run, claim-safe research materials for the Portfolio Hub review path.
 - **[July 2026 Public Audit Snapshot](docs/public-portfolio-audit-2026-07-14.md):** historical point-in-time evidence; use the project catalog and deployment map for current authority.
@@ -40,6 +41,7 @@
 ## Writing & Technical Analysis
 
 - **[Your AI Agent Finished the Task. What Did It Actually Prove?](https://github.com/atomicdjt/atomicdjt/blob/main/writing/your-ai-agent-finished-the-task.md)** — canonical long-form article on verification boundaries for AI-agent work: what changed, what actually ran, what external state was observed, what independent challenge exists, and what remains unproven.
+- **[AgentMeasure: An Attributed Inference Boundary and a Synthetic Fixture](https://github.com/atomicdjt/atomicdjt/blob/main/writing/agentmeasure-inference-boundary.md)** — public attribution for a scoped observability contribution and the included ambiguity-preserving fixture, with direct source links and limits.
 
 The profile repository is the canonical source for published writing. This portfolio links to that source rather than maintaining competing copies.
 
