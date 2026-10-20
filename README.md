@@ -33,7 +33,7 @@
 - **[Employer Overview](docs/EMPLOYER_OVERVIEW.md):** direct role-to-project mapping.
 - **[Verification Guide](docs/verification.md):** repository scripts, deployment checks, validation scope, and evidence boundaries.
 - **[Project Index](docs/PROJECT_INDEX.md):** source authority, current Vercel routes, and best evidence for each project.
-- **[Current Work & Evidence](https://github.com/atomicdjt/atomicdjt/blob/main/docs/CURRENT_WORK.md):** the broader record, including eight merged upstream contributions, attributed AgentMeasure work, Cosmic Atlas v6 development, and current local prototypes.
+- **[Current Work & Evidence](https://github.com/atomicdjt/atomicdjt/blob/main/docs/CURRENT_WORK.md):** the broader record, including nine verified merged upstream contributions (seven Rosetta; two super-productivity), attributed AgentMeasure work, Cosmic Atlas v6 development, and current local prototypes.
 - **[Deployment Map](docs/deployment-and-previews.md):** authoritative repository-to-Vercel mapping.
 - **[Usability Pilot Kit](docs/portfolio-usability-pilot.md):** ready-to-run, claim-safe research materials for the Portfolio Hub review path.
 - **[July 2026 Public Audit Snapshot](docs/public-portfolio-audit-2026-07-14.md):** historical point-in-time evidence; use the project catalog and deployment map for current authority.
