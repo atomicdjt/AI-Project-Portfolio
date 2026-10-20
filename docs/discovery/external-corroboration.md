@@ -55,6 +55,24 @@ It is deliberately conservative. A thoughtful reply is not the same thing as mai
 
 An earlier version of this inventory inaccurately treated a **delete-the-rule-and-rerun** conformance-suite test in `babyblueviper1/invinoveritas` as an adopted technique credited to David Turner. That personal adoption claim is **withdrawn**: the [implementation commit](https://github.com/babyblueviper1/invinoveritas/commit/be141e8d501d61486fb7a363bee507312ef61162) explicitly credits `Rul1an` for the test idea, and the cited [CrewAI discussion comment](https://github.com/crewAIInc/crewAI/issues/4877#issuecomment-5380510680) is by `Rul1an`. Those sources do not establish adoption of that technique from `@atomicdjt`. The tests themselves may be legitimate work in the external repository; they must not be counted as David's contribution without separate primary attribution.
 
+## Attribution and disposition reconciliation — verified 20 October 2026
+
+**Identity, authorship, sign-off, testing, and acceptance are separate evidence classes.** The following rows correct earlier personal-credit mistakes and prevent open or rejected work from being counted as adopted.
+
+| Record | Primary-source disposition | Permitted personal claim |
+| --- | --- | --- |
+| [SCITT interoperability report](https://github.com/atomicdjt/AI-Project-Portfolio/issues/144) | Zenodo publication exists, but published authorship or named contribution by `atomicdjt` was not established. The reported final October sign-off and file-digest verification came from `babyblueviper1`, not David. | **No publication/byline or independent final-verification credit.** An earlier first-person sign-off assertion is withdrawn. |
+| [Vaara conformance results #590](https://github.com/vaaraio/vaara/issues/590) | The 43-suite run (40 pass, 3 skip, 49 cases) names `babyblueviper1 (invinoveritas)` as its submitter. | **No David-authored Vaara run or conformance credit.** |
+| [Delete-the-rule-and-rerun test](https://github.com/babyblueviper1/invinoveritas/commit/be141e8d501d61486fb7a363bee507312ef61162) | The implementation attributes the falsifiability-test idea to `Rul1an`. See the correction immediately above. | **Do not count as David's adopted technique.** |
+| [OpenClaw PR #125740](https://github.com/openclaw/openclaw/pull/125740) | Authored by `atomicdjt` and received automated review; **closed without merge**, no recorded human acceptance. | Authored proposal/automated review only; **not a merged OpenClaw fix**. |
+| [AgentCI issue #121](https://github.com/jinngimk-lang/agentci/issues/121) | `atomicdjt` submitted a public-source breaker corpus. The project classified it **UNVERIFIED / reproducible-candidate** after narrowing a provenance hold. | Submitted candidate; **not an adopted or integrated AgentCI implementation**, certified result, or independently passed current-main reproduction. |
+| [LocalFirstWeb PR #102](https://github.com/mylofi/localfirstweb.dev/pull/102) | Validation Ledger listing proposed; PR **open / unmerged**. | Submission only; **not a published curated listing**. |
+| [Awesome BYOK Apps PR #12](https://github.com/yatsyk/awesome-byok-apps/pull/12) | WeaveStudio listing proposed; PR **open / unmerged**. | Submission only; **not a published curated listing**. |
+| [Awesome Browser-Based Tools PR #7](https://github.com/ZihangDong/awesome-browser-based-tools/pull/7) | WeaveStudio listing proposed; PR **open / unmerged**. | Submission only; **not a published curated listing**. |
+| [AgentMeasure DR-005](https://github.com/roy-tong/AgentMeasure/blob/main/design-rationale/DR-005-evidence-calibrated-consumption-claims.md) and [synthetic fixture](https://github.com/roy-tong/AgentMeasure/blob/main/conformance/evidence/inference-boundary-aggregation-replay/README.md) | Both **explicitly credit David Turner / @atomicdjt** for bounded technical input; neither makes him author of the entire specification. | **Retain exact credited technical-review and synthetic-fixture attribution**; no formal standardization or user-adoption claim. |
+
+The **nine independently verified merged upstream PRs** remain credited to `atomicdjt`: seven [Rosetta](https://github.com/atomicdjt/atomicdjt/blob/main/writing/external-validation-upstream-review.md) and two super-productivity fixes. This count excludes self-owned repositories, pending proposals, and the non-credited work above.
+
 ## Source links and provenance
 
 - Rosetta PR #299 maintainer review and merged contribution: https://github.com/griddynamics/rosetta/pull/299#pullrequestreview-4971371411
@@ -80,13 +98,14 @@ An earlier version of this inventory inaccurately treated a **delete-the-rule-an
 - AgentCI issue #121 owner triage returning the submission to `UNVERIFIED / reproducible-candidate`: https://github.com/jinngimk-lang/agentci/issues/121#issuecomment-5314625044
 - `mylofi/localfirstweb.dev` PR #102 Validation Ledger submission: https://github.com/mylofi/localfirstweb.dev/pull/102
 
-## Historical watchlist — status recorded August 24, 2026
+## Outstanding external-status watchlist — verified October 20, 2026
 
-These are externally visible but have not crossed the evidence threshold above:
+These are externally visible submissions or discussions, **not accepted external implementations or listings**:
 
 - **AgentCI issue #121:** the owner narrowed a provenance hold and returned David's submission to `UNVERIFIED / reproducible-candidate`, authorizing bounded reproduction of the immutable public package. This is a meaningful evaluation-stage signal, but the owner explicitly stated it is not acceptance and reproduction is still pending.
 - **Google Antigravity CLI issue #567:** David posted the Trajectory Fidelity Bridge reference implementation, integration RFC, verification/ablation report, and reproduction guide as evidence for the missing external transcript-import primitive. No external response to that submission was present in the checked thread yet.
-- **`mylofi/localfirstweb.dev` PR #102:** David submitted Validation Ledger for the local-first examples list. The PR is open and has no external comment or review yet.
+- **`mylofi/localfirstweb.dev` PR #102:** David submitted Validation Ledger for the local-first examples list. The PR remains open and unmerged; no published listing is established.
+- **`yatsyk/awesome-byok-apps` PR #12 and `ZihangDong/awesome-browser-based-tools` PR #7:** WeaveStudio listings remain open and unmerged; no published directory credit is established.
 
 ## What this evidence does support
 

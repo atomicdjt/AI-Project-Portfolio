@@ -8,7 +8,7 @@ Started: 2026-08-16
 - `Researched` means the current official rules were checked; it is not a backlink.
 - `Packet ready` means publication copy is prepared; it is not a backlink.
 - `Submitted` means a real submission or outreach action was actually made; approval/indexing may still be pending.
-- `Published` requires a public, crawlable URL.
+- `Published` requires a public, crawlable URL. **An open directory PR is a submission, not an accepted listing or backlink.**
 - Search ranking is observational and may vary by engine, location, personalization, and crawl timing.
 - Never record inferred traffic, users, sales, rankings, or validation as fact.
 
@@ -20,7 +20,7 @@ Primary identity hub: https://github.com/atomicdjt
 
 Primary portfolio hub: https://ai-project-portfolio-portfolio-hub.vercel.app/
 
-Public corroboration record (review branch): `docs/discovery/external-corroboration.md`
+Public corroboration record (canonical source): `docs/discovery/external-corroboration.md`
 
 ## Current discovery work
 
@@ -37,8 +37,9 @@ Public corroboration record (review branch): `docs/discovery/external-corroborat
 | Richmond EDA | Richmond-built applied-AI / technical-workflow portfolio | https://ai-project-portfolio-portfolio-hub.vercel.app/ | Submitted by email | 2026-08-16 | Gmail sent to EDA marketing manager | Await response; no duplicate newsletter form submission unless requested. |
 | Hack for RVA | 2027 participation / mentor contribution | https://ai-project-portfolio-portfolio-hub.vercel.app/ | Submitted by email | 2026-08-16 | Gmail sent to `hello@rvahacks.org` | Await planning/next-step response. |
 | Richmond BizSense | Local tech/project tip | https://ai-project-portfolio-portfolio-hub.vercel.app/ | Submitted by email | 2026-08-16 | Gmail sent to startup/small-business reporter | Await response; do not pitch additional staff while pending. |
-| Awesome Browser-Based Tools | WeaveStudio | https://weavestudio-nine.vercel.app/ | Submitted / awaiting maintainer review | 2026-08-16 | https://github.com/ZihangDong/awesome-browser-based-tools/pull/7 | One factual entry under Writing and Documentation; author affiliation disclosed in the PR. Do not bump or duplicate-submit. |
-| Awesome BYOK Apps | WeaveStudio | https://weavestudio-nine.vercel.app/ | Submitted / awaiting maintainer review | 2026-08-16 | https://github.com/yatsyk/awesome-byok-apps/pull/12 | One factual entry under Agents and workflow builders; author affiliation, OpenAI/Gemini BYOK model, volatile key handling, and provider-request boundary disclosed in the PR. Do not bump or duplicate-submit. |
+| Awesome Browser-Based Tools | WeaveStudio | https://weavestudio-nine.vercel.app/ | Open PR / unmerged; not listed (checked 2026-10-20) | 2026-08-16 | https://github.com/ZihangDong/awesome-browser-based-tools/pull/7 | One factual entry under Writing and Documentation; author affiliation disclosed in the PR. Do not bump or duplicate-submit. |
+| Awesome BYOK Apps | WeaveStudio | https://weavestudio-nine.vercel.app/ | Open PR / unmerged; not listed (checked 2026-10-20) | 2026-08-16 | https://github.com/yatsyk/awesome-byok-apps/pull/12 | One factual entry under Agents and workflow builders; author affiliation, OpenAI/Gemini BYOK model, volatile key handling, and provider-request boundary disclosed in the PR. Do not bump or duplicate-submit. |
+| LocalFirstWeb examples | Validation Ledger | https://validation-ledger.vercel.app/ | Open PR / unmerged; not listed (checked 2026-10-20) | Status checked 2026-10-20 | https://github.com/mylofi/localfirstweb.dev/pull/102 | Submitted example entry; await maintainer decision, no adoption, listing, or backlink claimed. |
 | Hacker News | BuildWorld AI Show HN | https://buildworld-ai-v01-improvements.vercel.app/ | Packet ready | 2026-08-16 | `docs/discovery/packets/buildworld-ai.md` | Account-bound submission only after confirming HN account eligibility/culture familiarity. |
 | Product Hunt | WeaveStudio | https://weavestudio-nine.vercel.app/ | Packet ready | 2026-08-16 | `docs/discovery/packets/weavestudio.md` | Account-bound launch setup; obey personal-account age/onboarding requirements. |
 | Hashnode / DEV | Validation Ledger case study | https://validation-ledger.vercel.app/ | Packet ready | 2026-08-16 | `docs/discovery/packets/validation-ledger.md` | Publish through an authorized account; use a substantive article rather than duplicate launch copy. |
@@ -77,7 +78,7 @@ Use this section only for real public events that can be evidenced without expos
 | 2026-08-16 | `awesome-local-first` owner triage | Curated-list review | WeaveStudio | Preliminary owner triage recommended “likely worth adding,” citing device-primary storage, no required account/backend/cloud database, portable exports/restore, active maintenance, and explicit tradeoffs; it also flagged offline/sync limitations for verification. | https://github.com/alexanderop/awesome-local-first/issues/68 — clarification posted; await final action. |
 | 2026-08-16 | LangGraph issue #5672 | Technical collaboration | Cancellation / persistence evidence | A direct technical exchange progressed from run occurrence identity to lineage and then stream-frontier coverage; David added a further emitted-vs-acknowledged frontier distinction and falsification controls. | https://github.com/langchain-ai/langgraph/issues/5672#issuecomment-5306903027 — ongoing discussion, not maintainer adoption. |
 
-A broader source-backed record of public third-party technical validation, project-author agreement, explicit design adoption, and preliminary curation signals is maintained in `docs/discovery/external-corroboration.md` on this review branch.
+A broader source-backed record of public third-party technical validation, project-author agreement, explicit design adoption, and preliminary curation signals is maintained in `docs/discovery/external-corroboration.md` in the canonical repository.
 
 ## Latest response check
 
