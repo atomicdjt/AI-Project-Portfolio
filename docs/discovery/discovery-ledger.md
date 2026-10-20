@@ -78,7 +78,7 @@ Use this section only for real public events that can be evidenced without expos
 | 2026-08-16 | `awesome-local-first` owner triage | Curated-list review | WeaveStudio | Preliminary owner triage recommended “likely worth adding,” citing device-primary storage, no required account/backend/cloud database, portable exports/restore, active maintenance, and explicit tradeoffs; it also flagged offline/sync limitations for verification. | https://github.com/alexanderop/awesome-local-first/issues/68 — clarification posted; await final action. |
 | 2026-08-16 | LangGraph issue #5672 | Technical collaboration | Cancellation / persistence evidence | A direct technical exchange progressed from run occurrence identity to lineage and then stream-frontier coverage; David added a further emitted-vs-acknowledged frontier distinction and falsification controls. | https://github.com/langchain-ai/langgraph/issues/5672#issuecomment-5306903027 — ongoing discussion, not maintainer adoption. |
 
-A broader source-backed record of public third-party technical validation, project-author agreement, explicit design adoption, and preliminary curation signals is maintained in `docs/discovery/external-corroboration.md` on this review branch.
+A broader source-backed record of public third-party technical validation, project-author agreement, explicit design adoption, and preliminary curation signals is maintained in `docs/discovery/external-corroboration.md` in the canonical repository.
 
 ## Latest response check
 
