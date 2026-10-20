@@ -27,9 +27,9 @@
 
 ## Fast Review
 
-**Independent verification paths:** [Rosetta/CrewAI proof cases](https://github.com/atomicdjt/atomicdjt/blob/main/writing/engineering-proof-cases.md) · [TFB reviewer guide](https://github.com/atomicdjt/trajectory-fidelity-bridge/blob/main/docs/REVIEWER_QUICKSTART.md) · [Validation Ledger reviewer guide](https://github.com/atomicdjt/validation-ledger/blob/main/docs/REVIEWER_QUICKSTART.md) · [WeaveStudio reviewer guide](https://github.com/atomicdjt/weavestudio/blob/main/docs/REVIEWER_QUICKSTART.md) · [Cosmic Atlas scientific reviewer guide](https://github.com/atomicdjt/cosmic-atlas-scientific/blob/main/docs/REVIEWER_QUICKSTART.md).
+**Independent verification paths:** [Rosetta/CrewAI proof cases](https://github.com/atomicdjt/atomicdjt/blob/main/writing/engineering-proof-cases.md) · [TFB verification report](https://github.com/atomicdjt/trajectory-fidelity-bridge/blob/main/docs/VERIFICATION_REPORT.md) · [Validation Ledger checks](https://github.com/atomicdjt/validation-ledger/blob/main/docs/VALIDATION.md) · [WeaveStudio release verification](https://github.com/atomicdjt/weavestudio/blob/main/docs/RELEASE_VERIFICATION.md) · [Cosmic Atlas scientific reviewer guide](https://github.com/atomicdjt/cosmic-atlas-scientific/blob/main/docs/REVIEWER_QUICKSTART.md).
 
-These paths specify test commands, source artifacts, and limits; a link is **not** proof that an independent evaluator has run the steps. The official publication/release status remains governed by each repository's main branch and tagged releases.
+These paths document test commands, source artifacts, and limits; a link is **not** proof that an independent evaluator has run the steps. Dedicated reviewer guides remain on open PR branches for Trajectory Fidelity Bridge, Validation Ledger, and WeaveStudio while their CI blockers are resolved. The official publication/release status remains governed by each repository's main branch and tagged releases.
 
 - **[Live Portfolio Hub](https://ai-project-portfolio-portfolio-hub.vercel.app/):** visual employer-facing review surface with project filters, evidence routes, demos, and case studies.
 - **[Technical proof review](https://ai-project-portfolio-portfolio-hub.vercel.app/review):** a focused Validation Ledger, Trajectory Fidelity Bridge, BuildWorld AI, and WeaveStudio sequence.
