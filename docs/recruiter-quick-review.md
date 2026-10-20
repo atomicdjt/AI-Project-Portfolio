@@ -21,6 +21,12 @@ The portfolio is self-directed evidence. The upstream record is third-party-cont
 
 Use [External Corroboration](discovery/external-corroboration.md) for the claim-bounded evidence record and source links. These outcomes establish acceptance of the scoped contributions; they do not imply employment by, or blanket endorsement from, the upstream organizations.
 
+### Verified credit and non-acceptance boundaries (20 October 2026)
+
+The nine upstream merges and explicit AgentMeasure attribution are genuine, bounded evidence. **Do not add the SCITT/Zenodo report to David's authored publications or credit him with its final sign-off, Vaara #590 conformance run, or the delete-the-rule test credited to Rul1an.** [Source-by-source reconciliation](discovery/external-corroboration.md#attribution-and-disposition-reconciliation--verified-20-october-2026) and [SCITT correction](https://github.com/atomicdjt/AI-Project-Portfolio/issues/144) identify the actual credit holders.
+
+Likewise, [OpenClaw #125740](https://github.com/openclaw/openclaw/pull/125740) was closed without merge; [AgentCI #121](https://github.com/jinngimk-lang/agentci/issues/121) remains a candidate rather than adopted work; and the [LocalFirstWeb](https://github.com/mylofi/localfirstweb.dev/pull/102), [Awesome BYOK](https://github.com/yatsyk/awesome-byok-apps/pull/12), and [Awesome Browser-Based Tools](https://github.com/ZihangDong/awesome-browser-based-tools/pull/7) listing PRs remain open. None belongs in accepted-contribution, publication, or live-directory totals.
+
 ## Best Employer-Facing Evidence
 
 For the separate technical proof path, review [Validation Ledger](https://validation-ledger.vercel.app/) -> [Trajectory Fidelity Bridge](https://pypi.org/project/atomicdjt-trajectory-fidelity-bridge/) -> [BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/) -> [WeaveStudio](https://weavestudio-nine.vercel.app/). This is an audience-specific review order, not a universal ranking or adoption claim.
