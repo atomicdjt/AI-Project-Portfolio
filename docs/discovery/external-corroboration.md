@@ -69,8 +69,6 @@ An earlier version of this inventory inaccurately treated a **delete-the-rule-an
 - CrewAI shipped-code validation of six gaps: https://github.com/crewAIInc/crewAI/issues/4877#issuecomment-5380800457
 - David's public correction preserving the narrower CrewAI boundary: https://github.com/crewAIInc/crewAI/issues/4877#issuecomment-5388401058
 - Amit Nikhade's reported shipped follow-through: https://github.com/crewAIInc/crewAI/issues/4877#issuecomment-5393250829
-- External implementation of David's falsification technique: https://github.com/crewAIInc/crewAI/issues/4877#issuecomment-5380510680
-- Follow-up measurement of decision-reference binding coverage: https://github.com/crewAIInc/crewAI/issues/4877#issuecomment-5380809162
 - OpenClaw PR-author reply: https://github.com/openclaw/openclaw/pull/122142#issuecomment-5306576912
 - OpenClaw PR #125740 repository-side review and final closed state: https://github.com/openclaw/openclaw/pull/125740
 - Kimi CLI technical reply: https://github.com/MoonshotAI/kimi-cli/issues/1478#issuecomment-5299557026
