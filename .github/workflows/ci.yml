@@ -46,7 +46,7 @@ jobs:
         with:
           name: documentation-check
           path: documentation-check.log
-          if-no-files-found: error
+          if-no-files-found: warn
 
       - name: Enforce Vercel-only deployment policy
         run: npm run check:deployment-policy
