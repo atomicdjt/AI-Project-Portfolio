@@ -44,10 +44,11 @@ These paths document test commands, source artifacts, and limits; a link is **no
 
 ## Writing & Technical Analysis
 
+- **[When Research Evidence Stops Surviving Product Decisions](https://medium.com/researchops-community/when-research-evidence-stops-surviving-product-decisions-183579089904?postPublishedType=approve-in-publication)** — accepted and published by the ResearchOps Community on Medium on October 22, 2026.
 - **[Your AI Agent Finished the Task. What Did It Actually Prove?](https://github.com/atomicdjt/atomicdjt/blob/main/writing/your-ai-agent-finished-the-task.md)** — canonical long-form article on verification boundaries for AI-agent work: what changed, what actually ran, what external state was observed, what independent challenge exists, and what remains unproven.
 - **[AgentMeasure: An Attributed Inference Boundary and a Synthetic Fixture](https://github.com/atomicdjt/atomicdjt/blob/main/writing/agentmeasure-inference-boundary.md)** — public attribution for a scoped observability contribution and the included ambiguity-preserving fixture, with direct source links and limits.
 
-The profile repository is the canonical source for published writing. This portfolio links to that source rather than maintaining competing copies.
+GitHub-hosted writing lives in the profile repository; externally published pieces link to their publisher's canonical page. This portfolio links to the authoritative source for each item rather than maintaining competing copies.
 
 ## Audience-specific Review Paths
 
