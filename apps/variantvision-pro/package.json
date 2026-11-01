@@ -14,7 +14,7 @@
     "preview": "npm run build && vite preview --host 127.0.0.1 --port 4182"
   },
   "dependencies": {
-    "lucide-react": "^1.17.0",
+    "lucide-react": "^1.64.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },
