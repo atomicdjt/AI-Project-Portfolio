@@ -39,7 +39,7 @@
     "@eslint/js": "^10.0.1",
     "@netlify/functions": "^5.1.0",
     "@playwright/test": "^1.64.1",
-    "@types/node": "^26.6.5",
+    "@types/node": "^26.6.6",
     "@types/pngjs": "^6.0.5",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
@@ -50,7 +50,7 @@
     "globals": "^17.13.0",
     "pngjs": "^7.0.0",
     "typescript": "~7.0.2",
-    "typescript-eslint": "^8.72.0",
+    "typescript-eslint": "^8.72.1",
     "vite": "^8.0.12",
     "vitest": "^5.0.5"
   }
