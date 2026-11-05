@@ -1,12 +1,12 @@
 # External Corroboration and Technical Engagement
 
-Current additions checked: 2026-10-20
+Current contribution totals checked: 2026-11-05
 Historical engagement inventory checked: 2026-08-24
 Owner: David Turner (`atomicdjt`)
 
 ## Current public evidence
 
-The verified external pull-request record now contains **nine merges**: seven in Grid Dynamics Rosetta and two in super-productivity (as of October 20, 2026). The [current contribution case study](https://github.com/atomicdjt/atomicdjt/blob/main/writing/external-validation-upstream-review.md) links all nine and keeps open work outside that total.
+The verified external pull-request record contains **16 authored merges**: ten in Grid Dynamics Rosetta, three in Super Productivity, one in OpenClaw, and two in a collaborator’s OpenWorldRPGUnreal repository, as of November 5, 2026. The two OpenWorldRPGUnreal PRs were merged by the author’s account and are not independent maintainer-merge evidence. The [current contribution record](https://github.com/atomicdjt/atomicdjt/blob/main/writing/external-validation-upstream-review.md) links all 16 and excludes open work.
 
 | Addition since the original inventory | Public record | Scope established |
 | --- | --- | --- |
@@ -71,7 +71,7 @@ An earlier version of this inventory inaccurately treated a **delete-the-rule-an
 | [Awesome Browser-Based Tools PR #7](https://github.com/ZihangDong/awesome-browser-based-tools/pull/7) | WeaveStudio listing proposed; PR **open / unmerged**. | Submission only; **not a published curated listing**. |
 | [AgentMeasure DR-005](https://github.com/roy-tong/AgentMeasure/blob/main/design-rationale/DR-005-evidence-calibrated-consumption-claims.md) and [synthetic fixture](https://github.com/roy-tong/AgentMeasure/blob/main/conformance/evidence/inference-boundary-aggregation-replay/README.md) | Both **explicitly credit David Turner / @atomicdjt** for bounded technical input; neither makes him author of the entire specification. | **Retain exact credited technical-review and synthetic-fixture attribution**; no formal standardization or user-adoption claim. |
 
-The **nine independently verified merged upstream PRs** remain credited to `atomicdjt`: seven [Rosetta](https://github.com/atomicdjt/atomicdjt/blob/main/writing/external-validation-upstream-review.md) and two super-productivity fixes. This count excludes self-owned repositories, pending proposals, and the non-credited work above.
+At the October 20 check, the **nine verified merged upstream PRs** comprised seven [Rosetta](https://github.com/atomicdjt/atomicdjt/blob/main/writing/external-validation-upstream-review.md) and two super-productivity fixes. This count excludes self-owned repositories, pending proposals, and the non-credited work above.
 
 ## Source links and provenance
 

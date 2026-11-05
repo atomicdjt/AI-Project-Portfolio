@@ -29,7 +29,7 @@
 
 **Independent verification paths:** [Rosetta/CrewAI proof cases](https://github.com/atomicdjt/atomicdjt/blob/main/writing/engineering-proof-cases.md) · [TFB verification report](https://github.com/atomicdjt/trajectory-fidelity-bridge/blob/main/docs/VERIFICATION_REPORT.md) · [Validation Ledger checks](https://github.com/atomicdjt/validation-ledger/blob/main/docs/VALIDATION.md) · [WeaveStudio release verification](https://github.com/atomicdjt/weavestudio/blob/main/docs/RELEASE_VERIFICATION.md) · [Cosmic Atlas scientific reviewer guide](https://github.com/atomicdjt/cosmic-atlas-scientific/blob/main/docs/REVIEWER_QUICKSTART.md).
 
-These paths document test commands, source artifacts, and limits; a link is **not** proof that an independent evaluator has run the steps. Dedicated reviewer guides remain on open PR branches for Trajectory Fidelity Bridge, Validation Ledger, and WeaveStudio while their CI blockers are resolved. The official publication/release status remains governed by each repository's main branch and tagged releases.
+These paths document test commands, source artifacts, and limits; a link is **not** proof that an independent evaluator has run the steps. Consult each repository’s default branch and current PRs for the status of reviewer guides and checks. The official publication/release status remains governed by each repository's main branch and tagged releases.
 
 - **[Live Portfolio Hub](https://ai-project-portfolio-portfolio-hub.vercel.app/):** visual employer-facing review surface with project filters, evidence routes, demos, and case studies.
 - **[Technical proof review](https://ai-project-portfolio-portfolio-hub.vercel.app/review):** a focused Validation Ledger, Trajectory Fidelity Bridge, BuildWorld AI, and WeaveStudio sequence.
@@ -37,12 +37,14 @@ These paths document test commands, source artifacts, and limits; a link is **no
 - **[Employer Overview](docs/EMPLOYER_OVERVIEW.md):** direct role-to-project mapping.
 - **[Verification Guide](docs/verification.md):** repository scripts, deployment checks, validation scope, and evidence boundaries.
 - **[Project Index](docs/PROJECT_INDEX.md):** source authority, current Vercel routes, and best evidence for each project.
-- **[Current Work & Evidence](https://github.com/atomicdjt/atomicdjt/blob/main/docs/CURRENT_WORK.md):** the broader record, including nine verified merged upstream contributions (seven Rosetta; two super-productivity), attributed AgentMeasure work, Cosmic Atlas v6 development, and current local prototypes.
+- **[Current Work & Evidence](https://github.com/atomicdjt/atomicdjt/blob/main/docs/CURRENT_WORK.md):** the broader record, including 16 authored merges in external repositories (ten Rosetta, three Super Productivity, one OpenClaw, and two self-merged in a collaborator’s repository; checked November 5, 2026), attributed AgentMeasure work, Cosmic Atlas v6 development, and current local prototypes.
 - **[Deployment Map](docs/deployment-and-previews.md):** authoritative repository-to-Vercel mapping.
 - **[Usability Pilot Kit](docs/portfolio-usability-pilot.md):** ready-to-run, claim-safe research materials for the Portfolio Hub review path.
 - **[July 2026 Public Audit Snapshot](docs/public-portfolio-audit-2026-07-14.md):** historical point-in-time evidence; use the project catalog and deployment map for current authority.
 
 ## Writing & Technical Analysis
+
+- **[Super Productivity REST API weekday scheduling](https://github.com/atomicdjt/atomicdjt/blob/main/writing/super-productivity-weekday-api-case-study.md)** — a merged compatibility fix, review-requested revisions, and the CI evidence.
 
 - **[When Research Evidence Stops Surviving Product Decisions](https://medium.com/researchops-community/when-research-evidence-stops-surviving-product-decisions-183579089904?postPublishedType=approve-in-publication)** — accepted and published by the ResearchOps Community on Medium on October 22, 2026.
 - **[Your AI Agent Finished the Task. What Did It Actually Prove?](https://github.com/atomicdjt/atomicdjt/blob/main/writing/your-ai-agent-finished-the-task.md)** — canonical long-form article on verification boundaries for AI-agent work: what changed, what actually ran, what external state was observed, what independent challenge exists, and what remains unproven.

@@ -2,7 +2,7 @@
 
 ## 60-Second Review Path
 
-1. Start with [External Corroboration](discovery/external-corroboration.md): nine merged upstream contributions across Grid Dynamics Rosetta (seven) and super-productivity (two), checked October 20, 2026, plus publicly attributed AgentMeasure input and an included synthetic fixture.
+1. Start with [External Corroboration](discovery/external-corroboration.md): 16 authored merged PRs across external repositories: ten Rosetta, three Super Productivity, one OpenClaw, and two self-merged in a collaborator’s repository, checked November 5, 2026, plus publicly attributed AgentMeasure input and an included synthetic fixture.
 2. Open the [Portfolio Hub](https://ai-project-portfolio-portfolio-hub.vercel.app/) for visual orientation and direct project routes.
 3. Review [ProcessHarbor](https://ai-project-portfolio-opspilot-ai-op.vercel.app/) for technical operations, SOPs, onboarding, knowledge-base workflows, and documentation role fit.
 4. Review [BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/) for technical originality and systems thinking.
@@ -23,7 +23,7 @@ Use [External Corroboration](discovery/external-corroboration.md) for the claim-
 
 ### Verified credit and non-acceptance boundaries (20 October 2026)
 
-The nine upstream merges and explicit AgentMeasure attribution are genuine, bounded evidence. **Do not add the SCITT/Zenodo report to David's authored publications or credit him with its final sign-off, Vaara #590 conformance run, or the delete-the-rule test credited to Rul1an.** [Source-by-source reconciliation](discovery/external-corroboration.md#attribution-and-disposition-reconciliation--verified-20-october-2026) and [SCITT correction](https://github.com/atomicdjt/AI-Project-Portfolio/issues/144) identify the actual credit holders.
+The external-repository merges and explicit AgentMeasure attribution are genuine, bounded evidence. **Do not add the SCITT/Zenodo report to David's authored publications or credit him with its final sign-off, Vaara #590 conformance run, or the delete-the-rule test credited to Rul1an.** [Source-by-source reconciliation](discovery/external-corroboration.md#attribution-and-disposition-reconciliation--verified-20-october-2026) and [SCITT correction](https://github.com/atomicdjt/AI-Project-Portfolio/issues/144) identify the actual credit holders.
 
 Likewise, [OpenClaw #125740](https://github.com/openclaw/openclaw/pull/125740) was closed without merge; [AgentCI #121](https://github.com/jinngimk-lang/agentci/issues/121) remains a candidate rather than adopted work; and the [LocalFirstWeb](https://github.com/mylofi/localfirstweb.dev/pull/102), [Awesome BYOK](https://github.com/yatsyk/awesome-byok-apps/pull/12), and [Awesome Browser-Based Tools](https://github.com/ZihangDong/awesome-browser-based-tools/pull/7) listing PRs remain open. None belongs in accepted-contribution, publication, or live-directory totals.
 
