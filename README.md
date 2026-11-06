@@ -37,7 +37,7 @@ These paths document test commands, source artifacts, and limits; a link is **no
 - **[Employer Overview](docs/EMPLOYER_OVERVIEW.md):** direct role-to-project mapping.
 - **[Verification Guide](docs/verification.md):** repository scripts, deployment checks, validation scope, and evidence boundaries.
 - **[Project Index](docs/PROJECT_INDEX.md):** source authority, current Vercel routes, and best evidence for each project.
-- **[Current Work & Evidence](https://github.com/atomicdjt/atomicdjt/blob/main/docs/CURRENT_WORK.md):** the broader record, including ten authored Rosetta merges, three Super Productivity merges, and one OpenClaw merge (checked November 5, 2026), attributed AgentMeasure work, Cosmic Atlas v6 development, and current local prototypes.
+- **[Current Work & Evidence](https://github.com/atomicdjt/atomicdjt/blob/main/docs/CURRENT_WORK.md):** the broader record, including 16 verified authored-and-merged contributions to external repositories as of November 5, 2026 (10 Rosetta; 3 Super Productivity; 1 OpenClaw; 2 OpenWorldRPGUnreal). The [current evidence register](docs/discovery/external-corroboration.md) links all 16 PRs and separates merged work from unmerged submissions and comment-only activity, alongside attributed AgentMeasure work, Cosmic Atlas v6 development, and current local prototypes.
 - **[Deployment Map](docs/deployment-and-previews.md):** authoritative repository-to-Vercel mapping.
 - **[Usability Pilot Kit](docs/portfolio-usability-pilot.md):** ready-to-run, claim-safe research materials for the Portfolio Hub review path.
 - **[July 2026 Public Audit Snapshot](docs/public-portfolio-audit-2026-07-14.md):** historical point-in-time evidence; use the project catalog and deployment map for current authority.

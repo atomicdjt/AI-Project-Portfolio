@@ -6,7 +6,16 @@ Owner: David Turner (`atomicdjt`)
 
 ## Current public evidence
 
-As of November 5, 2026, GitHub records ten authored Rosetta merges, three Super Productivity merges and one OpenClaw merge. [Super Productivity #11273](https://github.com/super-productivity/super-productivity/pull/11273) is the latest of those merges. The [contribution record](https://github.com/atomicdjt/atomicdjt/blob/main/writing/external-validation-upstream-review.md) preserves an earlier dated snapshot and links its source records.
+As of November 5, 2026, GitHub's live pull-request records confirm **16 PRs authored by `atomicdjt` and merged into four external repositories**:
+
+| Repository | Count | Merged PR evidence |
+| --- | ---: | --- |
+| [Grid Dynamics Rosetta](https://github.com/griddynamics/rosetta) | **10** | [#299](https://github.com/griddynamics/rosetta/pull/299), [#319](https://github.com/griddynamics/rosetta/pull/319), [#320](https://github.com/griddynamics/rosetta/pull/320), [#322](https://github.com/griddynamics/rosetta/pull/322), [#338](https://github.com/griddynamics/rosetta/pull/338), [#339](https://github.com/griddynamics/rosetta/pull/339), [#359](https://github.com/griddynamics/rosetta/pull/359), [#377](https://github.com/griddynamics/rosetta/pull/377), [#378](https://github.com/griddynamics/rosetta/pull/378), [#379](https://github.com/griddynamics/rosetta/pull/379) |
+| [Super Productivity](https://github.com/super-productivity/super-productivity) | **3** | [#9619](https://github.com/super-productivity/super-productivity/pull/9619), [#10126](https://github.com/super-productivity/super-productivity/pull/10126), [#11273](https://github.com/super-productivity/super-productivity/pull/11273) |
+| [OpenClaw](https://github.com/openclaw/openclaw) | **1** | [#187880](https://github.com/openclaw/openclaw/pull/187880) |
+| [TateParker/OpenWorldRPGUnreal](https://github.com/TateParker/OpenWorldRPGUnreal) | **2** | [#252](https://github.com/TateParker/OpenWorldRPGUnreal/pull/252), [#253](https://github.com/TateParker/OpenWorldRPGUnreal/pull/253) |
+
+The total requires both `author=atomicdjt` and a merged state. It excludes self-owned repositories, [Rosetta #335](https://github.com/griddynamics/rosetta/pull/335) and [OpenClaw #125740](https://github.com/openclaw/openclaw/pull/125740) (authored proposals closed without merge), and [Rosetta #397](https://github.com/griddynamics/rosetta/pull/397) (authored by `xyrolle`, with comments from `atomicdjt`). No open authored PRs appeared in these four repositories at this check. The [source-linked profile record](https://github.com/atomicdjt/atomicdjt/blob/main/writing/external-validation-upstream-review.md) preserves earlier dated counts and detailed review history.
 
 | Addition since the original inventory | Public record | Scope established |
 | --- | --- | --- |
