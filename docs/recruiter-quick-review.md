@@ -2,7 +2,7 @@
 
 ## 60-Second Review Path
 
-1. Start with [External Corroboration](discovery/external-corroboration.md): nine merged upstream contributions across Grid Dynamics Rosetta (seven) and super-productivity (two), checked October 20, 2026, plus publicly attributed AgentMeasure input and an included synthetic fixture.
+1. Start with [External Corroboration](discovery/external-corroboration.md): 16 authored and merged contributions across Grid Dynamics Rosetta (10), Super Productivity (3), OpenClaw (1), and OpenWorldRPGUnreal (2), verified November 5, 2026. The register links every PR and separates merged work from unmerged submissions and comment-only activity, alongside publicly attributed AgentMeasure input and an included synthetic fixture.
 2. Open the [Portfolio Hub](https://ai-project-portfolio-portfolio-hub.vercel.app/) for visual orientation and direct project routes.
 3. Review [ProcessHarbor](https://ai-project-portfolio-opspilot-ai-op.vercel.app/) for technical operations, SOPs, onboarding, knowledge-base workflows, and documentation role fit.
 4. Review [BuildWorld AI](https://buildworld-ai-v01-improvements.vercel.app/) for technical originality and systems thinking.

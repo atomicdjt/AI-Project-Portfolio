@@ -1,12 +1,21 @@
 # External Corroboration and Technical Engagement
 
-Current additions checked: 2026-10-20
+Selected upstream contributions checked: 2026-11-05
 Historical engagement inventory checked: 2026-08-24
 Owner: David Turner (`atomicdjt`)
 
 ## Current public evidence
 
-The verified external pull-request record now contains **nine merges**: seven in Grid Dynamics Rosetta and two in super-productivity (as of October 20, 2026). The [current contribution case study](https://github.com/atomicdjt/atomicdjt/blob/main/writing/external-validation-upstream-review.md) links all nine and keeps open work outside that total.
+As of November 5, 2026, GitHub's live pull-request records confirm **16 PRs authored by `atomicdjt` and merged into four external repositories**:
+
+| Repository | Count | Merged PR evidence |
+| --- | ---: | --- |
+| [Grid Dynamics Rosetta](https://github.com/griddynamics/rosetta) | **10** | [#299](https://github.com/griddynamics/rosetta/pull/299), [#319](https://github.com/griddynamics/rosetta/pull/319), [#320](https://github.com/griddynamics/rosetta/pull/320), [#322](https://github.com/griddynamics/rosetta/pull/322), [#338](https://github.com/griddynamics/rosetta/pull/338), [#339](https://github.com/griddynamics/rosetta/pull/339), [#359](https://github.com/griddynamics/rosetta/pull/359), [#377](https://github.com/griddynamics/rosetta/pull/377), [#378](https://github.com/griddynamics/rosetta/pull/378), [#379](https://github.com/griddynamics/rosetta/pull/379) |
+| [Super Productivity](https://github.com/super-productivity/super-productivity) | **3** | [#9619](https://github.com/super-productivity/super-productivity/pull/9619), [#10126](https://github.com/super-productivity/super-productivity/pull/10126), [#11273](https://github.com/super-productivity/super-productivity/pull/11273) |
+| [OpenClaw](https://github.com/openclaw/openclaw) | **1** | [#187880](https://github.com/openclaw/openclaw/pull/187880) |
+| [TateParker/OpenWorldRPGUnreal](https://github.com/TateParker/OpenWorldRPGUnreal) | **2** | [#252](https://github.com/TateParker/OpenWorldRPGUnreal/pull/252), [#253](https://github.com/TateParker/OpenWorldRPGUnreal/pull/253) |
+
+The total requires both `author=atomicdjt` and a merged state. It excludes self-owned repositories, [Rosetta #335](https://github.com/griddynamics/rosetta/pull/335) and [OpenClaw #125740](https://github.com/openclaw/openclaw/pull/125740) (authored proposals closed without merge), and [Rosetta #397](https://github.com/griddynamics/rosetta/pull/397) (authored by `xyrolle`, with comments from `atomicdjt`). No open authored PRs appeared in these four repositories at this check. The [source-linked profile record](https://github.com/atomicdjt/atomicdjt/blob/main/writing/external-validation-upstream-review.md) preserves earlier dated counts and detailed review history.
 
 | Addition since the original inventory | Public record | Scope established |
 | --- | --- | --- |
@@ -71,7 +80,7 @@ An earlier version of this inventory inaccurately treated a **delete-the-rule-an
 | [Awesome Browser-Based Tools PR #7](https://github.com/ZihangDong/awesome-browser-based-tools/pull/7) | WeaveStudio listing proposed; PR **open / unmerged**. | Submission only; **not a published curated listing**. |
 | [AgentMeasure DR-005](https://github.com/roy-tong/AgentMeasure/blob/main/design-rationale/DR-005-evidence-calibrated-consumption-claims.md) and [synthetic fixture](https://github.com/roy-tong/AgentMeasure/blob/main/conformance/evidence/inference-boundary-aggregation-replay/README.md) | Both **explicitly credit David Turner / @atomicdjt** for bounded technical input; neither makes him author of the entire specification. | **Retain exact credited technical-review and synthetic-fixture attribution**; no formal standardization or user-adoption claim. |
 
-The **nine independently verified merged upstream PRs** remain credited to `atomicdjt`: seven [Rosetta](https://github.com/atomicdjt/atomicdjt/blob/main/writing/external-validation-upstream-review.md) and two super-productivity fixes. This count excludes self-owned repositories, pending proposals, and the non-credited work above.
+At the October 20 check, the **nine verified merged upstream PRs** comprised seven [Rosetta](https://github.com/atomicdjt/atomicdjt/blob/main/writing/external-validation-upstream-review.md) and two super-productivity fixes. This count excludes self-owned repositories, pending proposals, and the non-credited work above.
 
 ## Source links and provenance
 
