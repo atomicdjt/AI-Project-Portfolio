@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@vitejs/plugin-react": "^6.3.0",
-    "lucide-react": "^1.17.0",
+    "lucide-react": "^1.74.0",
     "posthog-js": "^1.450.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
